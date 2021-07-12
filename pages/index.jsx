@@ -1,13 +1,8 @@
-import Head from 'next/head'
 
 export default function Home() {
   return (
     <div className='container'>
-      <Head>
-        <title>Collab easy</title>
-        {/* <link rel="stylesheet" href="/styles.css" /> */}
-      </Head>
-      <h1>Collab easy</h1>
+      <h1>Collab Web App</h1>
     </div>
   )
 }
