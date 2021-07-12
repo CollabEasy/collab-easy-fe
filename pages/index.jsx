@@ -5,9 +5,8 @@ export default function Home() {
     <div className='container'>
       <Head>
         <title>Collab easy</title>
-        <link rel="stylesheet" href="/styles.css"/>
+        {/* <link rel="stylesheet" href="/styles.css" /> */}
       </Head>
-
       <h1>Collab easy</h1>
     </div>
   )
