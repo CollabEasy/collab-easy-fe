@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import homeReducer from "./home.reducer";
+import home from "./home.reducer";
 
 export const rootReducer = combineReducers({
-  homeReducer
+  home
 });
