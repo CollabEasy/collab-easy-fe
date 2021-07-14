@@ -1,8 +1,9 @@
 import Title from '../components/title'
 import { useSelector } from 'react-redux'
+import { AppState } from '../types/core';
 
 const SignUp = () => {
-  const myState = useSelector((state) => state.homeReducer);
+  const myState = useSelector((state: AppState) => state.home);
 
   console.log(myState, '<==== ');
   return (
