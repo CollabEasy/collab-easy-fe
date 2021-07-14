@@ -1,6 +1,5 @@
 import Head from "next/head";
 
-
 const Title = ({ title }) => {
   return (
     <Head>

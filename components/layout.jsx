@@ -1,6 +1,7 @@
 
-import Navbar from './navbar';
-export default function Layout({ children }) {
+import Navbar from "./navbar";
+
+const Layout = ({ children }) => {
   return (
     <>
       <Navbar />
@@ -10,3 +11,5 @@ export default function Layout({ children }) {
     </>
   );
 }
+
+export default Layout

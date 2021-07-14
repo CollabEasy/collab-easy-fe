@@ -1,16 +1,16 @@
 import Title from '../components/title'
 import { useSelector } from 'react-redux'
 
-const Home = () => {
+const Login = () => {
   const myState = useSelector((state) => state.homeReducer);
 
   console.log(myState, '<==== ');
   return (
     <div className='container'>
-      <Title title="Collab Easy" />
-      <h1>Collab Web App</h1>
+      <Title title="Login" />
+      <h1>Collab Login</h1>
     </div>
   )
 }
 
-export default Home
+export default Login
