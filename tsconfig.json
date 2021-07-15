@@ -3,8 +3,6 @@
     "baseUrl": ".",
     "types": [
       "node",
-      "jest",
-      "jquery"
     ],
     "declaration": false,
     "emitDecoratorMetadata": true,
