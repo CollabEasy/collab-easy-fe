@@ -1,0 +1,16 @@
+@import '../styles/_variable';
+@import '../styles/_font-size';
+
+
+.hdr-clr {
+	background-color: $white !important;
+}
+.appLogo {
+  font-family: $pacifico-cursive;
+  color: $black !important;
+  font-size: $font-size45;
+}
+	
+.nav ul li a{
+				color: black !important;
+}
