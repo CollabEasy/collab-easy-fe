@@ -17,6 +17,13 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
+            <Link href={toDiscover().href}>
+              <a className="nav-link" aria-current="page">
+                About
+              </a>
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link href={toLogin().href}>
               <a className="nav-link">
                 Login
