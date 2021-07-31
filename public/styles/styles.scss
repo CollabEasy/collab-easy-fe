@@ -1,5 +1,6 @@
 @import "bootstrap/dist/css/bootstrap.css";
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nova+Round|Varela+Round&display=swap');
 @import "./font-styler";
 @import "./font-size";
 @import "./variable";
@@ -24,6 +25,7 @@ body {
 
 .nav-item a {
 	color: $black !important;
+	font-family: 'Varela Round', sans-serif;
 	text-decoration: none;
 	font-size: $font-size16;
 	&:hover {
