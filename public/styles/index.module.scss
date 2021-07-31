@@ -1,12 +1,15 @@
+@import '../styles/_variable';
+@import '../styles/_font-size';
+
 .searchbox {
     width: 100%;
     padding-top:80%;
     background-size: cover;
-    padding-bottom: 13%
+    padding-bottom: 13%;
 }
 
 .padding {
-  padding-top: 2rem;
+  padding-top: 20rem;
 }
 .speciality img {
   width: 6%;

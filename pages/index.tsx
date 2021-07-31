@@ -3,7 +3,12 @@ import { useSelector } from 'react-redux'
 import { AppState } from '../types/core';
 import Image from 'next/image';
 import landingPageImg from '../public/images/landing-1.png';
-import styles from '../public/styles/landing-page.module.scss';
+import musiciansImg from '../public/images/musicians.png';
+import singersImg from '../public/images/singers.png';
+import paintersImg from '../public/images/painter.png';
+import dancersImg from '../public/images/dancers.png';
+import inspireImg from '../public/images/inspire.png';
+import styles from '../public/styles/index.module.scss';
 
 
 const Home = () => {
@@ -33,7 +38,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="container-fluid" style={{ padding: '20px' }}>
+        <div className={'container-fluid' + styles["padding"]}>
           <div className="row welcome text-left">
             <div className="col-12">
               <h2>Popular Categories.</h2>
@@ -42,26 +47,89 @@ const Home = () => {
         </div>
 
 
-        <div className="container fluid">
+        <div className={'container fluid' + styles["pading"]}>
           <div className="row text-center padding">
             <div className='col-xs-12 col-sm-6 col-md-3 speciality'>
-              <Image src={landingPageImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
-              <h6>Women's Health</h6>
+              <Image src={musiciansImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
             </div>
             <div className="col-xs-12 col-sm-6 col-md-3 speciality">
-              <Image src={landingPageImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
-              <h6>Skin Care</h6>
+              <Image src={singersImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
             </div>
             <div className="col-xs-12 col-sm-6 col-md-3 speciality">
-              <Image src={landingPageImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
-              <h6>Men's Health</h6>
+              <Image src={paintersImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
             </div>
             <div className="col-xs-12 col-sm-6 col-md-3 speciality">
-              <Image src={landingPageImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
-              <h6>Hair Fall</h6>
+              <Image src={dancersImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
             </div>
           </div>
         </div>
+        <div className={'container-fluid' + styles["padding"]}>
+          <div className="row welcome text-left">
+            <div className="col-12">
+              <h2>Featured Artwork.</h2>
+            </div>
+          </div>
+        </div>
+
+        {/* https://freefrontend.com/bootstrap-galleries/ */}
+        <div className={'container-fluid' + styles["padding"]}>
+        <div className="row text-center padding">
+          <div className="col-lg-4 col-md-12 mb-4 mb-lg-0">
+            <Image
+              src={dancersImg}
+              className="w-100 shadow-1-strong rounded mb-4"
+              alt=""
+            />
+
+            <Image
+              src={dancersImg}
+              className="w-100 shadow-1-strong rounded mb-4"
+              alt=""
+            />
+          </div>
+
+          <div className="col-lg-4 mb-4 mb-lg-0">
+            <Image
+              src={dancersImg}
+              className="w-100 shadow-1-strong rounded mb-4"
+              alt=""
+            />
+
+            <Image
+              src={dancersImg}
+              className="w-100 shadow-1-strong rounded mb-4"
+              alt=""
+            />
+          </div>
+
+          <div className="col-lg-4 mb-4 mb-lg-0">
+            <Image
+              src={dancersImg}
+              className="w-100 shadow-1-strong rounded mb-4"
+              alt=""
+            />
+
+            <Image
+              src={dancersImg}
+              className="w-100 shadow-1-strong rounded mb-4"
+              alt=""
+            />
+          </div>
+          </div>
+        </div>
+
+        <div className="container-fluid">
+          <div className="container box">
+            <div className='container-fluid m-0'>
+              <div className="row">
+                <div className="col-md-12 m-0 p-0">
+                  <Image className={'container-fluid' + styles.searchbox} src={inspireImg} alt="Landing page" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </>
   )
