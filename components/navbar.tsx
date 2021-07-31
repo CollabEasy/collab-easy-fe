@@ -3,16 +3,25 @@ import { useRoutesContext } from "./routeContext";
 import styles from '../public/styles/navbar.module.scss';
 
 const Navbar = () => {
-  const { toLogin, toSignup, toDiscover } = useRoutesContext()
+  const { toLogin, toSignup, toDiscover, toWondorHome } = useRoutesContext()
   return (
     <nav className="navbar navbar-light bg-light hdr-clr">
       <div className="container-fluid">
-        <a className={'navbar-brand ' + styles.appLogo}>Wondor</a>
+        <Link href={toWondorHome().href}>
+          <a className={'navbar-brand ' + styles.appLogo}>Wondor</a>
+        </Link>
         <ul className="nav justify-content-end">
           <li className="nav-item">
             <Link href={toDiscover().href}>
               <a className="nav-link active" aria-current="page">
                 Discover
+              </a>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link href={toDiscover().href}>
+              <a className="nav-link" aria-current="page">
+                About
               </a>
             </Link>
           </li>
