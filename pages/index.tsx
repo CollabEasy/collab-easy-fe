@@ -19,7 +19,7 @@ const Home = () => {
     <>
       <Title title="Collab Easy ..." />
       <div>
-        <div className="container-fluid">
+        <div className="container fluid">
           <div className="container box">
             <div className='container-fluid m-0'>
               <div className="row">
@@ -38,41 +38,44 @@ const Home = () => {
           </div>
         </div>
 
-        <div className={'container-fluid' + styles["padding"]}>
+        <div className={'container fluid'}>
           <div className="row welcome text-left">
             <div className="col-12">
-              <h2>Popular Categories.</h2>
+              <h2 className={styles['padding']}>Popular categories</h2>
             </div>
           </div>
         </div>
-
-
-        <div className={'container fluid' + styles["pading"]}>
-          <div className="row text-center padding">
-            <div className='col-xs-12 col-sm-6 col-md-3 speciality'>
-              <Image src={musiciansImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
-            </div>
-            <div className="col-xs-12 col-sm-6 col-md-3 speciality">
-              <Image src={singersImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
-            </div>
-            <div className="col-xs-12 col-sm-6 col-md-3 speciality">
-              <Image src={paintersImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
-            </div>
-            <div className="col-xs-12 col-sm-6 col-md-3 speciality">
-              <Image src={dancersImg} alt="Listing of online prescription treatment options for erectile dysfunction and premature ejaculation." />
-            </div>
+        
+        {/* took the code from here: http://jsfiddle.net/abhitalks/o3mxb4x9/1/ */}
+        <div className="container fluid">
+          <div className="col-lg-12 col-sm-6 col-md-3">
+              <div className={styles["cover-container"]}>
+                <div className={styles['cover-item']}>
+                    <Image src={musiciansImg}/>
+                </div>
+                <div className={styles['cover-item']}>
+                    <Image src={singersImg}/>
+                </div>
+                <div className={styles['cover-item']}>
+                    <Image src={paintersImg}/>
+                </div>
+                <div className={styles['cover-item']}>
+                    <Image src={dancersImg}/>
+                </div>
+              </div>
           </div>
         </div>
-        <div className={'container-fluid' + styles["padding"]}>
+
+        <div className={'container fluid'}>
           <div className="row welcome text-left">
             <div className="col-12">
-              <h2>Featured Artwork.</h2>
+              <h2 className={styles['padding']}>Featured art</h2>
             </div>
           </div>
         </div>
 
         {/* https://freefrontend.com/bootstrap-galleries/ */}
-        <div className={'container-fluid' + styles["padding"]}>
+        <div className={'container fluid' + styles["padding"]}>
         <div className="row text-center padding">
           <div className="col-lg-4 col-md-12 mb-4 mb-lg-0">
             <Image
