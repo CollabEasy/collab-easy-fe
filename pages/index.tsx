@@ -45,24 +45,24 @@ const Home = () => {
             </div>
           </div>
         </div>
-        
+
         {/* took the code from here: http://jsfiddle.net/abhitalks/o3mxb4x9/1/ */}
         <div className="container fluid">
           <div className="col-lg-12 col-sm-6 col-md-3">
-              <div className={styles["cover-container"]}>
-                <div className={styles['cover-item']}>
-                    <Image src={musiciansImg}/>
-                </div>
-                <div className={styles['cover-item']}>
-                    <Image src={singersImg}/>
-                </div>
-                <div className={styles['cover-item']}>
-                    <Image src={paintersImg}/>
-                </div>
-                <div className={styles['cover-item']}>
-                    <Image src={dancersImg}/>
-                </div>
+            <div className={styles["cover-container"]}>
+              <div className={styles['cover-item']}>
+                <Image src={musiciansImg} />
               </div>
+              <div className={styles['cover-item']}>
+                <Image src={singersImg} />
+              </div>
+              <div className={styles['cover-item']}>
+                <Image src={paintersImg} />
+              </div>
+              <div className={styles['cover-item']}>
+                <Image src={dancersImg} />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -74,53 +74,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* https://freefrontend.com/bootstrap-galleries/ */}
-        <div className={'container fluid' + styles["padding"]}>
-        <div className="row text-center padding">
-          <div className="col-lg-4 col-md-12 mb-4 mb-lg-0">
-            <Image
-              src={dancersImg}
-              className="w-100 shadow-1-strong rounded mb-4"
-              alt=""
-            />
-
-            <Image
-              src={dancersImg}
-              className="w-100 shadow-1-strong rounded mb-4"
-              alt=""
-            />
-          </div>
-
-          <div className="col-lg-4 mb-4 mb-lg-0">
-            <Image
-              src={dancersImg}
-              className="w-100 shadow-1-strong rounded mb-4"
-              alt=""
-            />
-
-            <Image
-              src={dancersImg}
-              className="w-100 shadow-1-strong rounded mb-4"
-              alt=""
-            />
-          </div>
-
-          <div className="col-lg-4 mb-4 mb-lg-0">
-            <Image
-              src={dancersImg}
-              className="w-100 shadow-1-strong rounded mb-4"
-              alt=""
-            />
-
-            <Image
-              src={dancersImg}
-              className="w-100 shadow-1-strong rounded mb-4"
-              alt=""
-            />
-          </div>
-          </div>
-        </div>
-
+        {/* look at gallery options here: https://freefrontend.com/bootstrap-galleries/ */}
         <div className="container-fluid">
           <div className="container box">
             <div className='container-fluid m-0'>
