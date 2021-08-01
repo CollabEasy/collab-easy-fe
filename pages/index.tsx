@@ -75,6 +75,11 @@ const Home = () => {
         </div>
 
         {/* look at gallery options here: https://freefrontend.com/bootstrap-galleries/ */}
+
+        <div className="container fluid">
+          {/* "add gallery code" */}
+        </div >
+        
         <div className="container-fluid">
           <div className="container box">
             <div className='container-fluid m-0'>
