@@ -21,7 +21,7 @@
 
 
 .cover-container {
-  height: 280px;
+  height: 100%;
   width: 100%;
   white-space: nowrap;
   overflow-x: scroll;
@@ -33,8 +33,8 @@
   margin: 8px 8px;
   //box-shadow: 2px 2px 4px #bbb;
   //border-top-right-radius: 4px;
-  width: 5% auto;
-  height: 158px;
+  // width: 50% auto;
+  // height: 50%;
   vertical-align: bottom;
   background-position: top left;
   background-repeat: no-repeat;
