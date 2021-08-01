@@ -32,42 +32,127 @@
 	}
 }
 
-// .searchbox {
-//     width: 100%;
-//     padding-top:80%;
-//     background-size: cover;
-//     padding-bottom: 13%;
-// }
+// /* mobile/tablet css starts from here  */
+// @media only screen and (max-width: 1024px) and (min-width: 993px) {
+// 	h1 {
+// 	  font-size: 30px;
+// 	  text-align: center;
+// 	  margin-bottom: 1rem;
+// 	}
+  
+// 	h2 {
+// 	  font-size: 20px;
+// 	  padding-bottom: 1rem;
+// 	}
+//   } 
+  
+//   @media only screen and (max-width: 992px) and (min-width: 768px) {
+// 	h1 {
+// 	  font-size: 30px;
+// 	  text-align: center;
+// 	  margin-bottom: 1rem;
+// 	}
+  
+// 	h2 {
+// 	  font-size: 20px;
+// 	  padding-bottom: 1rem;
+// 	}
+//   } 
+  
+//   @media only screen and (max-width: 767px) and (min-width: 601px) {
+// 	h1 {
+// 	  font-size: 30px;
+// 	  text-align: center;
+// 	  margin-bottom: 1rem;
+// 	}
+  
+// 	h2 {
+// 	  font-size: 20px;
+// 	  padding-bottom: 1rem;
+// 	}
+//   }
+  
+//   @media only screen and (max-width: 600px) {
+  
+// 	h1 {
+// 	  font-size: 16px;
+// 	  text-align: center;
+// 	  margin-bottom: 1rem;
+// 	}
+  
+// 	h2 {
+// 	  font-size: 16px;
+// 	  padding-bottom: 1rem;
+// 	}
+  
+// 	.searchbox {
+// 	  background-image: url( '../../assets/images/background/background-mobile.jpeg' );
+// 	  background-size: cover;
+// 	  background-size:100% auto;
+// 	  background-repeat: no-repeat;
+// 	}
+  
+// 	.card {
+// 	  width: 80%;
+// 	  margin-left: 10%;
+// 	}
+  
+// 	.speciality img {
+// 	  width: 15%;
+// 	  height: auto;
+// 	}
+  
+// 	.speciality p {
+// 	  margin-bottom: 2rem;
+// 	}
+  
+// 	button {
+// 	  width: 100%;
+// 	}
+//   }
 
-// .padding {
-//   padding-top: 5rem;
-//   padding-left: 1rem;
-//   color: rgba(0, 0, 0, 0.75)
-// }
 
-// .welcome {
-//   margin: 0 auto;
-//   padding-top: 1.5rem;
-// }
+// // .searchbox {
+// //     width: 100%;
+// //     padding-top:80%;
+// //     background-size: cover;
+// //     padding-bottom: 13%;
+// // }
+
+// // .speciality img {
+// // 	width: 16%;
+// // 	height: auto;
+// //   }
+
+// // .padding {
+// //   padding-top: 5rem;
+// //   padding-left: 1rem;
+// //   color: rgba(0, 0, 0, 0.75)
+// // }
+
+// // .welcome {
+// //   margin: 0 auto;
+// //   padding-top: 1.5rem;
+// // }
 
 
-// .cover-container {
-//   height: 100%;
-//   width: 100%;
-//   white-space: nowrap;
-//   overflow-x: scroll;
-//   overflow-y: hidden;
-// }
-// .cover-item {
-//   position: relative;
-//   display: inline-block;
-//   margin: 8px 8px;
-//   //box-shadow: 2px 2px 4px #bbb;
-//   //border-top-right-radius: 4px;
-//   // width: 50% auto;
-//   // height: 50%;
-//   vertical-align: bottom;
-//   background-position: top left;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
+// // .cover-container {
+// //   height: 100%;
+// //   width: 100%;
+// //   white-space: nowrap;
+// //   overflow-x: scroll;
+// //   overflow-y: hidden;
+// // }
+// // .cover-item {
+// //   position: relative;
+// //   display: inline-block;
+// //   margin: 8px 8px;
+// //   //box-shadow: 2px 2px 4px #bbb;
+// //   //border-top-right-radius: 4px;
+// //   // width: 50% auto;
+// //   // height: 50%;
+// //   vertical-align: bottom;
+// //   background-position: top left;
+// //   background-repeat: no-repeat;
+// //   background-size: cover;
+// // }
