@@ -1,4 +1,6 @@
 @import "bootstrap/dist/css/bootstrap.css";
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'antd/dist/antd.css';
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Nova+Round|Varela+Round&display=swap');
 @import "./font-styler";
@@ -61,19 +63,21 @@ input[type=number]:focus,
 	.src-box {
 		position: absolute;
 		margin: auto;
-		bottom: -48px;
+		bottom: -38px;
 	} & em {
 		position: absolute;
 		right: 22px;
-		bottom: 31px;
+		bottom: 3.5vh;
 		cursor: pointer;
 	} & input[type=text]{
-		height: 77px;
+		height: 10vh;
 		-webkit-box-shadow: 0 5px 6px -6px $plan-border;
 		-moz-box-shadow: 0 5px 6px -6px $plan-border;
 		box-shadow: 0 5px 6px -6px $plan-border;
+		border: 1px solid #9b9b9b42;
 	} & label {
 		top: 11% !important;
+		font-size: 2.2vmin;
 	}
 }
 
