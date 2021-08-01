@@ -13,13 +13,13 @@ const Navbarr = () => {
     <Navbar expand="lg" id="myNavbar" className="container-xl">
       <Navbar.Brand href="#home">
         <Link href={toWondorHome().href}>
-           <a className={'navbar-brand ' + styles.appLogo}>Wondor</a>
+           <a style={{fontSize: '30px'}} className={'navbar-brand ' + styles.appLogo}>Wondor</a>
          </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
         <Nav className="ml-auto" id="myNavItem">
-          <Nav.Link href={toDiscover().href} id="myNavItem">Discover</Nav.Link>
+          <Nav.Link className="active" href={toDiscover().href} id="myNavItem">Discover</Nav.Link>
           <Nav.Link href={toDiscover().href} id="myNavItem">About us</Nav.Link>
           <Nav.Link href={toLogin().href} id= "myNavItem">Log in</Nav.Link>
           <Nav.Link href={toSignup().href} id= "myNavItem">Sign up</Nav.Link>
