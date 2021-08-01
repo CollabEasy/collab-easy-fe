@@ -9,15 +9,13 @@
 }
 
 .padding {
-  padding-top: 5rem;
+  padding-top: 3rem;
   padding-left: 1rem;
   color: rgba(0, 0, 0, 0.75)
 }
 
 .scrolling-wrapper {
 	overflow-x: hidden;
-	padding-left: 2vw;
-	padding-right: 2vw;
 	&:hover {
 		overflow-x: scroll;
 	}
