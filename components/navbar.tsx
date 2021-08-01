@@ -1,48 +1,32 @@
 import Link from "next/link";
 import { useRoutesContext } from "./routeContext";
 import styles from '../public/styles/navbar.module.scss';
+import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Nav, Navbar } from 'react-bootstrap';
 
-const Navbar = () => {
+
+// I took the code from here https://stackoverflow.com/questions/62609559/navbar-collapse-button-does-not-show-items-for-bootstrap-4-5-0-and-nextjs-9-4-4
+const Navbarr = () => {
   const { toLogin, toSignup, toDiscover, toWondorHome } = useRoutesContext()
   return (
-    <nav className="navbar navbar-light bg-light hdr-clr">
-      <div className="container-fluid">
+    <Navbar expand="lg" id="myNavbar" className="container-xl">
+      <Navbar.Brand href="#home">
         <Link href={toWondorHome().href}>
-          <a className={'navbar-brand ' + styles.appLogo}>Wondor</a>
-        </Link>
-        <ul className="nav justify-content-end">
-          <li className="nav-item">
-            <Link href={toDiscover().href}>
-              <a className="nav-link active" aria-current="page">
-                Discover
-              </a>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link href={toDiscover().href}>
-              <a className="nav-link" aria-current="page">
-                About
-              </a>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link href={toLogin().href}>
-              <a className="nav-link">
-                Login
-              </a>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link href={toSignup().href}>
-              <a className="nav-link">
-                Sign up
-              </a>
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
+           <a style={{fontSize: '30px'}} className={'navbar-brand ' + styles.appLogo}>Wondor</a>
+         </Link>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+        <Nav className="ml-auto" id="myNavItem">
+          <Nav.Link className="active" href={toDiscover().href} id="myNavItem">Discover</Nav.Link>
+          <Nav.Link href={toDiscover().href} id="myNavItem">About us</Nav.Link>
+          <Nav.Link href={toLogin().href} id= "myNavItem">Log in</Nav.Link>
+          <Nav.Link href={toSignup().href} id= "myNavItem">Sign up</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  )
 }
 
-export default Navbar
+export default Navbarr

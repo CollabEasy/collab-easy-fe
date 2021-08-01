@@ -1,5 +1,6 @@
 @import "bootstrap/dist/css/bootstrap.css";
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nova+Round|Varela+Round&display=swap');
 @import "./font-styler";
 @import "./font-size";
 @import "./variable";
@@ -7,12 +8,12 @@
 html {
 	padding: 0;
 	margin: 0;
-	font-family: sans-serif;
+	font-family: 'Varela Round', sans-serif;
 }
 body {
 	padding: 0;
 	margin: 0;
-	font-family: sans-serif;
+	font-family: 'Varela Round', sans-serif;
 }
 * {
 	box-sizing: border-box;
@@ -23,14 +24,14 @@ body {
 
 
 .nav-item a {
-	color: $black !important;
+	color: $C000000BF !important;
+	font-family: 'Varela Round', sans-serif;
 	text-decoration: none;
 	font-size: $font-size16;
 	&:hover {
-		color: $C000000BF !important;
+		color: $black !important;
 	}
 	&.active, .active:hover{
-		text-decoration: underline;
 		color: $black !important;
 	}
 }
