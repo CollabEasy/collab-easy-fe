@@ -2,9 +2,6 @@
 @import '../styles/_font-size';
 
 
-.hdr-clr {
-	background-color: $white !important;
-}
 .appLogo {
   font-family: $pacifico-cursive;
   color: $black !important;
@@ -15,5 +12,5 @@
 }
 	
 .nav ul li a{
-	color: black !important;
+	color: $C000000BF !important;
 }
