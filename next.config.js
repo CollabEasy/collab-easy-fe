@@ -10,5 +10,8 @@ module.exports = {
   reactStrictMode: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'public/styles')],
-  }
+  },
+  images: {
+    domains: ['images.unsplash.com'],
+  },
 }
