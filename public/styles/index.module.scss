@@ -3,12 +3,12 @@
 
 
 .card_rw {
-	padding-top: 12vh;
-	>div {
-		padding-bottom: 2vh;
-	}
+	padding-top: 10vh;
 }
-
+.padding {
+  padding-left: 2vw;
+	padding-right: 2vw;
+}
 .scrolling-wrapper {
 	overflow-x: hidden;
 	padding-left: 2vw;
@@ -17,9 +17,7 @@
 		overflow-x: scroll;
 	}
 }
-
-
-.card-block{
+.card-block {
 	height: 250px;
 	background-color: transparent;
 	border: none;
@@ -32,51 +30,49 @@
 		box-shadow: none;
 	}
 }
-
-.h2 {
-	>h2 {
-		color: green;
-		font-size: 2vh;
-	}
+.grid-container {
+  columns: 4 200px;
+  column-gap: 1.5rem;
+  width: 100%;
+  padding-left: 2vw;
+	padding-right: 2vw;
+  margin: 0 auto;
+  div {
+    width: 150px;
+    margin: 0 1.5rem 1.5rem 0;
+    display: inline-block;
+    width: 100%;
+    // border: solid 2px black;
+    padding-top: 5px;
+    // box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    transition: all .25s ease-in-out;
+    &:hover img {
+      //filter: grayscale(0);
+      transform: translateY(-5px);
+		  box-shadow: none;
+      //box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    }
+    &:hover {
+      //border-color: coral;
+      transform: translateY(-5px);
+		  box-shadow: 3px 3px 3px rgba(63, 63, 63, 0.3);
+    }
+    img {
+      width: 100%;
+      //filter: grayscale(100%);
+      border-radius: 5px;
+      transition: all .25s ease-in-out;
+    }
+    p {
+      margin: 5px 0;
+      padding: 0;
+      text-align: center;
+      font-style: italic;
+    }
+  }
 }
 
 
-// .searchbox {
-//     width: 100%;
-//     padding-top:80%;
-//     background-size: cover;
-//     padding-bottom: 13%;
-// }
-
-// .padding {
-//   padding-top: 5rem;
-//   padding-left: 1rem;
-//   color: rgba(0, 0, 0, 0.75)
-// }
-
-// .welcome {
-//   margin: 0 auto;
-//   padding-top: 1.5rem;
-// }
 
 
-// .cover-container {
-//   height: 100%;
-//   width: 100%;
-//   white-space: nowrap;
-//   overflow-x: scroll;
-//   overflow-y: hidden;
-// }
-// .cover-item {
-//   position: relative;
-//   display: inline-block;
-//   margin: 8px 8px;
-//   //box-shadow: 2px 2px 4px #bbb;
-//   //border-top-right-radius: 4px;
-//   // width: 50% auto;
-//   // height: 50%;
-//   vertical-align: bottom;
-//   background-position: top left;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
