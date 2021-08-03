@@ -14,10 +14,6 @@ import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 
 const { Meta } = Card;
-const array1 = Array(4).fill(inspireImg)
-const array2 = Array(3).fill(inspireImg)
-const array3 = Array(2).fill(inspireImg)
-const array4 = Array(2).fill(inspireImg)
 
 const Home = () => {
   const myState = useSelector((state: AppState) => state.home);
@@ -29,7 +25,7 @@ const Home = () => {
       <Title title="Wondor | meet the artists" />
       <div className="row">
         <div className="col-md-12 m-0 p-0">
-          <Image src={landingPageImg} alt="Landing page" />
+          <Image src={landingPageImg} alt="Landing page" className={styles['lnd-img']} />
         </div>
         <div className="col-md-12 col-sm-12 src-prnt">
           <div className="form-floating mb-3 col-md-4 col-sm-6 src-box">
@@ -45,42 +41,42 @@ const Home = () => {
           <h2 className={styles.padding}>Popular categories</h2>
           <div className={"row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 " + styles['scrolling-wrapper']}>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'musician'}>
+              <Link href={toArtist().href + 'musician'} passHref>
                 <Card hoverable style={{ width: '100%', borderRadius: '20px' }} cover={<Image src={musiciansImg} alt="cards" />}>
                   <Meta title="Musicians" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'singer'}>
+              <Link href={toArtist().href + 'singer'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={singersImg} alt="cards" />}>
                   <Meta title="Singers" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'painter'}>
+              <Link href={toArtist().href + 'painter'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={paintersImg} alt="cards" />}>
                   <Meta title="Painters" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'dancer'}>
+              <Link href={toArtist().href + 'dancer'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={dancersImg} alt="cards" />}>
                   <Meta title="Dancers" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'dancer'}>
+              <Link href={toArtist().href + 'dancer'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={dancersImg} alt="cards" />}>
                   <Meta title="Dancers" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'dancer'}>
+              <Link href={toArtist().href + 'dancer'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={dancersImg} alt="cards" />}>
                   <Meta title="Dancers" />
                 </Card>

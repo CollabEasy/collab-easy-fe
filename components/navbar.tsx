@@ -11,9 +11,10 @@ const NavBar = () => {
   return (
     <Navbar expand="lg">
       <Navbar.Brand href="#home">
-        <Link href={toWondorHome().href}>
-          <a className={'navbar-brand f-30 ' + styles.appLogo}>Wondor</a>
-        </Link>
+        <h2 className={'navbar-brand f-30 ' + styles.appLogo}>Wondor</h2>
+        {/* <Link href={toWondorHome().href} passHref>
+          <span className={'navbar-brand f-30 ' + styles.appLogo}>Wondor</span>
+        </Link> */}
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse className="justify-content-end px-2" id="basic-navbar-nav">
