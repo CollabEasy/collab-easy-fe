@@ -10,11 +10,14 @@ import dancersImg from '../public/images/dancers.png';
 import inspireImg from '../public/images/inspire.png';
 import styles from '../public/styles/index.module.scss';
 import { Card } from 'antd';
-
-const { Meta } = Card;
+import Link from "next/link";
+import { useRoutesContext } from "../components/routeContext";
 
 const Home = () => {
   const myState = useSelector((state: AppState) => state.home);
+
+  const { toArtist } = useRoutesContext();
+  console.log(toArtist().href, '<-- toArtist().href');
   return (
     <>
       <Title title="Collab Easy ..." />
@@ -32,34 +35,50 @@ const Home = () => {
       </div>
 
       <div className={"row " + styles.card_rw}>
-        <div className="col-12">
+        <div className={"col-12 " + styles.h2}>
           <h2 className="px-4">Popular categories</h2>
         </div>
         <div className={"row flex-row flex-nowrap mt-4 pb-4 pt-2 " + styles['scrolling-wrapper']}>
 
           <div className="col-2">
-            <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={musiciansImg} alt="cards" />}></Card>
+            <Link href={toArtist().href + 'music'}>
+              <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={musiciansImg} alt="cards" />}></Card>
+            </Link>
           </div>
           <div className="col-2">
-            <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={singersImg} alt="cards" />}></Card>
+            <Link href={toArtist().href + 'singer'}>
+              <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={singersImg} alt="cards" />}></Card>
+            </Link>
           </div>
           <div className="col-2">
-            <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={paintersImg} alt="cards" />}></Card>
+            <Link href={toArtist().href + 'painting'}>
+              <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={paintersImg} alt="cards" />}></Card>
+            </Link>
           </div>
           <div className="col-2">
-            <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={dancersImg} alt="cards" />}></Card>
+            <Link href={toArtist().href + 'dancing'}>
+              <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={dancersImg} alt="cards" />}></Card>
+            </Link>
           </div>
           <div className="col-2">
-            <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={singersImg} alt="cards" />}></Card>
+            <Link href={toArtist().href + 'singer'}>
+              <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={singersImg} alt="cards" />}></Card>
+            </Link>
           </div>
           <div className="col-2">
-            <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={dancersImg} alt="cards" />}></Card>
+            <Link href={toArtist().href + 'dancer'}>
+              <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={dancersImg} alt="cards" />}></Card>
+            </Link>
           </div>
           <div className="col-2">
-            <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={musiciansImg} alt="cards" />}></Card>
+            <Link href={toArtist().href + 'musician'}>
+              <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={musiciansImg} alt="cards" />}></Card>
+            </Link>
           </div>
           <div className="col-2">
-            <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={singersImg} alt="cards" />}></Card>
+            <Link href={toArtist().href + 'singer'}>
+              <Card hoverable bordered={false} style={{ height: '80%' }} cover={<Image src={singersImg} alt="cards" />}></Card>
+            </Link>
           </div>
         </div>
       </div>

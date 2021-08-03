@@ -11,6 +11,7 @@ export interface AppRouteCreators {
   toLogin: () => WebRoute;
   toSignup: () => WebRoute;
   toDiscover: () => WebRoute;
+  toArtist: () => WebRoute;
 }
 
 export interface Home {
