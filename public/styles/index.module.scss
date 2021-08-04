@@ -1,7 +1,6 @@
 @import '../styles/_variable';
 @import '../styles/_font-size';
 
-
 .card_rw {
 	padding-top: 10vh;
 }
@@ -34,6 +33,7 @@
   columns: 4 200px;
   column-gap: 1.5rem;
   width: 100%;
+  padding-top: 1vw;
   padding-left: 2vw;
 	padding-right: 2vw;
   margin: 0 auto;
@@ -71,11 +71,6 @@
       font-style: italic;
     }
   }
-}
-
-.lnd-img {
-  min-height: 80% !important;
-  margin:0px !important;
 }
 
 

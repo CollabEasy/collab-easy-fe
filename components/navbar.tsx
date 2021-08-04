@@ -10,7 +10,7 @@ const NavBar = () => {
   const { toLogin, toSignup, toDiscover, toWondorHome } = useRoutesContext();
   return (
     <Navbar expand="lg">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="/">
         <h2 className={'navbar-brand f-30 ' + styles.appLogo}>Wondor</h2>
         {/* <Link href={toWondorHome().href} passHref>
           <span className={'navbar-brand f-30 ' + styles.appLogo}>Wondor</span>

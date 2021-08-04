@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useSelector } from 'react-redux'
 import { AppState } from '../types/core';
 import Image from 'next/image';
-import landingPageImg from '../public/images/landing-page.png';
+import landingPageImg from '../public/images/landing.png';
 import musiciansImg from '../public/images/musicians.png';
 import singersImg from '../public/images/singers.png';
 import paintersImg from '../public/images/painters.png';
@@ -25,7 +25,7 @@ const Home = () => {
       <Title title="Wondor | meet the artists" />
       <div className="row">
         <div className="col-md-12 m-0 p-0">
-          <Image src={landingPageImg} alt="Landing page" className={styles['lnd-img']} />
+          <Image src={landingPageImg} alt="Landing page" />
         </div>
         <div className="col-md-12 col-sm-12 src-prnt">
           <div className="form-floating mb-3 col-md-4 col-sm-6 src-box">
@@ -96,13 +96,13 @@ const Home = () => {
       </div>
 
       <div className="row">
-        <div className="col-12" style={{ paddingTop: "2vh" }}>
+        <div className="col-12" >
           <h2 className={styles.padding}>Featured artists</h2>
         </div>
       </div>
 
       {/* look at gallery options here: https://freefrontend.com/bootstrap-galleries/ , https://thetuteur.com/react-image-gallery-with-masonry-js/, https://codepen.io/rperry1886/pen/KKwbQNP*/}
-      {/* <div className={styles["grid-container"]}>
+      <div className={styles["grid-container"]}>
         <div>
           <img className="grid-item grid-item-1" src='https://images.unsplash.com/photo-1544568100-847a948585b9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='' />
           <p>"I'm so happy today!"</p>
@@ -144,7 +144,7 @@ const Home = () => {
           <img className='grid-item grid-item-10' src='https://images.unsplash.com/photo-1504595403659-9088ce801e29?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='' />
           <p>"Dis my fren!"</p>
         </div>
-      </div> */}
+      </div>
     </>
   )
 }
