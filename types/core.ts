@@ -21,3 +21,9 @@ export interface Home {
 export interface AppState {
   home: Home
 }
+
+export interface GridData {
+  src: string
+  description: string
+  alt: string
+}
