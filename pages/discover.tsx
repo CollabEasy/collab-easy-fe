@@ -4,7 +4,7 @@ import { AppState } from '../types/core';
 
 const Login = () => {
   const myState = useSelector((state: AppState) => {
-    console.log(state);  return state.home
+    return state.home
   });
 
   console.log(myState, '<==== ');
