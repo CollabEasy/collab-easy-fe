@@ -23,7 +23,8 @@ export interface AppState {
 }
 
 export interface GridData {
-  src: string
-  description: string
-  alt: string
+  src: string;
+  description: string;
+  alt: string;
+  id?: number | string;
 }

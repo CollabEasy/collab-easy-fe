@@ -13,14 +13,16 @@ import styles from '../public/styles/index.module.scss';
 import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';
+import React from 'react';
 
 const { Meta } = Card;
 
+
 const Home = () => {
-  const myState = useSelector((state: AppState) => state.home);
+  // const myState = useSelector((state: AppState) => state.home);
 
   const { toArtist } = useRoutesContext();
-  console.log(toArtist().href, '<-- toArtist().href');
+  const ref = React.createRef();
   return (
     <>
       <Title title="Wondor | meet the artists" />
@@ -43,12 +45,10 @@ const Home = () => {
           <div className={"row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 " + styles['scrolling-wrapper']}>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'musician'} passHref>
-                <Card hoverable style={{ width: '100%', borderRadius: '20px' }} cover={<Image src={musiciansImg} alt="cards" />}>
-                  <Meta title="Musicians" />
-                </Card>
+                <CustomNavbarBrand ref={ref}></CustomNavbarBrand>
               </Link>
             </div>
-            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+            {/* <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'singer'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={singersImg} alt="cards" />}>
                   <Meta title="Singers" />
@@ -82,7 +82,7 @@ const Home = () => {
                   <Meta title="Dancers" />
                 </Card>
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@ const Home = () => {
       <div className={styles["grid-container"]}>
         {data.map((image) => (
           // eslint-disable-next-line react/jsx-key
-          <div>
+          <div key={image.id}>
             <Image className={`grid-item grid-item-${image}`} src={image.src} alt={image.alt} width='500' height='500' placeholder='blur' blurDataURL={image.src} />
             <p>{image.description}</p>
           </div>
