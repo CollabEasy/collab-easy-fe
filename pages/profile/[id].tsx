@@ -39,7 +39,6 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ userData }) => {
 export const getServerSideProps: GetServerSideProps<ProfilePageProps> = async ({
   req,
 }) => {
-  console.log(req)
   const user = await getUserData('1234')
   return {
     props: {
