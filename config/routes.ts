@@ -5,4 +5,5 @@ export const routes: AppRouteCreators = {
   toLogin: () => ({ href: "/login" }),
   toSignup: () => ({ href: "/signup" }),
   toDiscover: () => ({ href: "/" }),
+  toArtist: () => ({ href: "/discover-artist/" }),
 };

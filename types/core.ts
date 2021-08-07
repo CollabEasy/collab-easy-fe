@@ -11,6 +11,7 @@ export interface AppRouteCreators {
   toLogin: () => WebRoute;
   toSignup: () => WebRoute;
   toDiscover: () => WebRoute;
+  toArtist: () => WebRoute;
 }
 
 export interface Home {
@@ -19,4 +20,11 @@ export interface Home {
 
 export interface AppState {
   home: Home
+}
+
+export interface GridData {
+  src: string;
+  description: string;
+  alt: string;
+  id?: number | string;
 }

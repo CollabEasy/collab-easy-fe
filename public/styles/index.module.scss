@@ -1,42 +1,111 @@
 @import '../styles/_variable';
 @import '../styles/_font-size';
 
-.searchbox {
-    width: 100%;
-    padding-top:80%;
-    background-size: cover;
-    padding-bottom: 13%;
+.card_rw {
+	padding-top: 10vh;
 }
-
 .padding {
-  padding-top: 5rem;
-  padding-left: 1rem;
-  color: rgba(0, 0, 0, 0.75)
+  padding-left: 2vw;
+	padding-right: 2vw;
 }
-
-.welcome {
-  margin: 0 auto;
-  padding-top: 1.5rem;
+.scrolling-wrapper {
+	overflow-x: hidden;
+	padding-left: 2vw;
+	padding-right: 2vw;
+	&:hover {
+		overflow-x: scroll;
+	}
 }
-
-
-.cover-container {
-  height: 100%;
+.card-block {
+	height: 250px;
+	background-color: transparent;
+	border: none;
+	background-position: center;
+	background-size: cover;
+	transition: all 0.2s ease-in-out !important;
+	border-radius: 24px;
+	&:hover{
+		transform: translateY(-5px);
+		box-shadow: none;
+	}
+}
+.grid-container {
+  columns: 4 200px;
+  column-gap: 1.5rem;
   width: 100%;
-  white-space: nowrap;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  padding-top: 1vw;
+  padding-left: 2vw;
+	padding-right: 2vw;
+  margin: 0 auto;
+  div {
+    width: 150px;
+    margin: 0 1.5rem 1.5rem 0;
+    display: inline-block;
+    width: 100%;
+    // border: solid 2px black;
+    padding-top: 5px;
+    // box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    transition: all .25s ease-in-out;
+    &:hover img {
+      //filter: grayscale(0);
+      transform: translateY(-5px);
+		  box-shadow: none;
+      //box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    }
+    &:hover {
+      //border-color: coral;
+      transform: translateY(-5px);
+		  box-shadow: 3px 3px 3px rgba(63, 63, 63, 0.3);
+    }
+    img {
+      width: 100%;
+      //filter: grayscale(100%);
+      border-radius: 5px;
+      transition: all .25s ease-in-out;
+    }
+    p {
+      margin: 5px 0;
+      padding: 0;
+      text-align: center;
+      font-style: italic;
+    }
+  }
 }
-.cover-item {
-  position: relative;
-  display: inline-block;
-  margin: 8px 8px;
-  //box-shadow: 2px 2px 4px #bbb;
-  //border-top-right-radius: 4px;
-  // width: 50% auto;
-  // height: 50%;
-  vertical-align: bottom;
-  background-position: top left;
-  background-repeat: no-repeat;
-  background-size: cover;
+
+.footer {
+  padding-top: 2rem;
 }
+
+// .context-dark, .bg-gray-dark, .bg-primary {
+//   color: green;
+// }
+
+// .footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+//   color: #ffffff;
+// }
+
+// .nav-list li {
+//   padding-top: 5px;
+//   padding-bottom: 5px;
+// }
+
+// .nav-list li a:hover:before {
+//   margin-left: 0;
+//   opacity: 1;
+//   visibility: visible;
+// }
+
+// .nav-list li a:before {
+//   content: "\f14f";
+//   font: 400 21px/1 "Material Design Icons";
+//   color: #4d6de6;
+//   display: inline-block;
+//   vertical-align: baseline;
+//   margin-left: -28px;
+//   margin-right: 7px;
+//   opacity: 0;
+//   visibility: hidden;
+//   transition: .22s ease;
+// }
+
