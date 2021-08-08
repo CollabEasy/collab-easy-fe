@@ -1,4 +1,5 @@
 import Title from '../components/title'
+import ProfileModal from '../components/profilePage';
 import { useSelector } from 'react-redux'
 import { AppState } from '../types/core';
 import Image from 'next/image';
@@ -18,6 +19,7 @@ const Home = () => {
   return (
     <>
       <Title title="Collab Easy ..." />
+      <ProfileModal/>
       <div>
         <div className="container fluid">
           <div className="container box">

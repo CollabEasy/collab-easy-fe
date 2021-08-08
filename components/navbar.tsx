@@ -3,7 +3,7 @@ import { useRoutesContext } from "./routeContext";
 import styles from '../public/styles/navbar.module.scss';
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 
 
 // I took the code from here https://stackoverflow.com/questions/62609559/navbar-collapse-button-does-not-show-items-for-bootstrap-4-5-0-and-nextjs-9-4-4

@@ -6,20 +6,19 @@
 @import "./variable";
 
 html {
-	padding: 0;
-	margin: 0;
 	font-family: 'Varela Round', sans-serif;
 }
 body {
-	padding: 0;
-	margin: 0;
 	font-family: 'Varela Round', sans-serif;
 }
-* {
-	box-sizing: border-box;
-	border-radius: 0 !important;
-	-webkit-border-radius: 0 !important;
-	-moz-border-radius: 0 !important;
+
+*,
+*::after,
+*::before {
+  /* Remove unncessary styles */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 
