@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Title from './../../components/title';
+import Title from '../../components/title';
 import { useRouter } from 'next/router'
 import landingPageImg from '../../public/images/listing.png';
 import dancersImg from '../../public/images/dancers.png';
@@ -13,7 +13,7 @@ const DiscoverArtist = () => {
   const { id } = router.query;
   console.log(router, id, '<=== ')
 
-  const array = Array(7).fill(undefined)
+  const array = Array(7).fill(Math.random())
 
   return (
     <>

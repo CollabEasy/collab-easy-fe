@@ -45,10 +45,12 @@ const Home = () => {
           <div className={"row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 " + styles['scrolling-wrapper']}>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'musician'} passHref>
-                <CustomNavbarBrand ref={ref}></CustomNavbarBrand>
+              <Card hoverable style={{ width: '100%', borderRadius: '20px' }} cover={<Image src={musiciansImg} alt="cards" />}>
+                  <Meta title="Musicians" />
+                </Card>
               </Link>
             </div>
-            {/* <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'singer'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={singersImg} alt="cards" />}>
                   <Meta title="Singers" />
@@ -82,7 +84,7 @@ const Home = () => {
                   <Meta title="Dancers" />
                 </Card>
               </Link>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
