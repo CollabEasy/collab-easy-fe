@@ -38,6 +38,7 @@ class ProfileModal extends React.Component {
   state = {
     loading: false,
     visible: false,
+    windowWidth: 1000,
   };
 
   showModal = () => {
@@ -67,8 +68,12 @@ class ProfileModal extends React.Component {
       return 900;
   }
   
+  componentDidMount() {
+    
+    this.setState({ windowWidth: window.innerWidth });
+  }
   render() {
-    const { visible, loading } = this.state;
+    const { visible, loading, windowWidth } = this.state;
     return (
       <>
         <Button type="primary" onClick={this.showModal}>
@@ -79,7 +84,7 @@ class ProfileModal extends React.Component {
           destroyOnClose={true}
           onCancel={this.handleCancel}
           footer={null}
-          width={window.innerWidth > 680 ? 900:450}
+          width={ windowWidth > 680 ? 900:450}
           bodyStyle={{padding:0}}
         >
           <div className={styles["container"]}>
