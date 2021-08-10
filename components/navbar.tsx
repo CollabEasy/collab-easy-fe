@@ -7,8 +7,6 @@ import { routeToHref } from "config/routes";
 import { useSelector } from "react-redux";
 import { AppState, UserState } from "types/core";
 
-
-// I took the code from here https://stackoverflow.com/questions/62609559/navbar-collapse-button-does-not-show-items-for-bootstrap-4-5-0-and-nextjs-9-4-4
 const NavBar = () => {
   const { toLogin, toSignup, toDiscover, toProfile, toWondorHome } = useRoutesContext();
   return (

@@ -1,7 +1,8 @@
 import Title from '../components/title'
+import ProfileModal from '../components/profilePage';
 import Link from "next/link";
-import { useSelector } from 'react-redux'
-import { AppState } from '../types/core';
+// import { useSelector } from 'react-redux'
+// import { AppState } from '../types/core';
 import Image from 'next/image';
 import landingPageImg from '../public/images/landing.png';
 import musiciansImg from '../public/images/musicians.png';
@@ -26,6 +27,7 @@ const Home = () => {
   return (
     <>
       <Title title="Wondor | meet the artists" />
+      <ProfileModal></ProfileModal>
       <div className="row">
         <div className="col-md-12 m-0 p-0">
           <Image src={landingPageImg} alt="Landing page" />
