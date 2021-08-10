@@ -14,12 +14,12 @@ import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';
 import React from 'react';
+import Navbar from "../components/navbar";
 
 const { Meta } = Card;
 
 
 const Home = () => {
-  // const myState = useSelector((state: AppState) => state.home);
 
   const { toArtist } = useRoutesContext();
   const ref = React.createRef();
@@ -27,13 +27,13 @@ const Home = () => {
     <>
       <Title title="Wondor | meet the artists" />
       <div className="row">
+        <Navbar />
         <div className="col-md-12 m-0 p-0">
           <Image src={landingPageImg} alt="Landing page" />
         </div>
         <div className="col-md-12 col-sm-12 src-prnt">
-          <div className="form-floating mb-3 col-md-4 col-sm-6 src-box">
-            <input type="text" className="form-control" id="floatingInput" placeholder="" />
-            <label className="label-search" htmlFor="floatingInput">Search Category, users, etc.</label>
+          <div className="mb-3 col-md-4 col-sm-6 src-box">
+            <input type="text" className="form-control" id="floatingInput" placeholder="Search Category, users, etc." />
             <span className="fa-cion"><em className="fa fa-search" aria-hidden="true"></em></span>
           </div>
         </div>
@@ -45,7 +45,7 @@ const Home = () => {
           <div className={"row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 " + styles['scrolling-wrapper']}>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'musician'} passHref>
-              <Card hoverable style={{ width: '100%', borderRadius: '20px' }} cover={<Image src={musiciansImg} alt="cards" />}>
+                <Card hoverable style={{ width: '100%', borderRadius: '20px' }} cover={<Image src={musiciansImg} alt="cards" />}>
                   <Meta title="Musicians" />
                 </Card>
               </Link>
