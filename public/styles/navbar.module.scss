@@ -1,15 +1,36 @@
 @import '../styles/_variable';
 @import '../styles/_font-size';
 
-
-.appLogo {
-  font-family: $pacifico-cursive;
-  color: $black !important;
-  width: 140px;
-  height: 20px;
-  padding-left: 3px;
+.nv-f-t {
+  position: fixed;
+  display: inline-flex;
+  background-color: transparent;
+  z-index: 1;
+  & > [class*='col-']{
+    padding-top: 2em;
+    display: flex;
+  }
+  & .c-p{
+    text-align: center;
+    padding: .6em;
+  }
+  & .c-p >a {
+    color: $black;
+    font-size: $font-size15;
+  }
+  & :nth-child(2){
+    justify-content: end;
+  }
+	.appLogo {
+    font-family: $pacifico-cursive;
+    color: $black !important;
+    padding-left: 2.6vw;
+    font-size: 4vh;
+	}
 }
-	
-.nav ul li a{
-	color: $C000000BF !important;
+.scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: lightblue;
 }
