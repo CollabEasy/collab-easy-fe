@@ -1,0 +1,31 @@
+@import '../styles/_variable';
+@import '../styles/_font-size';
+
+.login-h{
+  text-align: center;
+  padding-top: 4em;
+  & p{
+    font-size: $font-size15;
+  }
+}
+
+.fb {
+	border: 1px solid black;
+	padding: .5em 4em;
+	border-radius: 26px;
+	margin-bottom: 1em;
+	a {
+		margin-left: 1em;
+	}
+	span {
+		&:nth-child(1) {
+			>em {
+				color: #3B5998;
+			}
+		}
+	}
+}
+
+.rit_txt{
+  text-align: center;
+}

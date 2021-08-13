@@ -32,7 +32,7 @@ const NavBar = ({ scrollY }) => {
             {/* <span className="fa-cion"><em className="fa fa-search" aria-hidden="true"></em></span> */}
           </div>
           <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
-            <Link href={toDiscover().href} passHref>
+            <Link href={routeToHref(toDiscover())} passHref>
               Discover
             </Link>
           </div>
