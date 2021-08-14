@@ -17,17 +17,21 @@ import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';
 import React, { useEffect, useState } from 'react';
 import Navbar from "../components/navbar";
+import { AppState, LoginModalDetails } from 'types/core';
 
 const { Meta } = Card;
 
+export interface HomeProps {
+  homeDetails: any
+  loginModalDetails: LoginModalDetails
+}
 
-const Home = (props) => {
-  // const myState = useSelector((state: AppState) => state.home);
+const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
   const [showModal, setShowModal] = useState(false);
   const { toArtist } = useRoutesContext();
 
-  const [scrolled, setScrolled] = React.useState(false);
-  const [scrollY, setScrollY] = React.useState(0);
+  const [scrolled, setScrolled] = React.useState<boolean>(false);
+  const [scrollY, setScrollY] = React.useState<number>(0);
   const handleScroll = () => {
     const offset = window.scrollY;
     console.log("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio)
@@ -43,8 +47,8 @@ const Home = (props) => {
   }
 
   useEffect(() => {
-    if( props.homeReducer.loginModalDetails.openModal ) setShowModal(true);
-  }, [props.homeReducer.loginModalDetails]);
+    if (false) setShowModal(true);
+  }, [loginModalDetails]);
 
 
   useEffect(() => {
@@ -72,9 +76,9 @@ const Home = (props) => {
   return (
     <>
       <Title title="Wondor | meet the artists" />
-      { showModal && (
-          <ProfileModal></ProfileModal>
-        )
+      {showModal && (
+        <ProfileModal></ProfileModal>
+      )
       }
       <div className="row">
         <Navbar scrollY={scrollY} />
@@ -218,15 +222,8 @@ const Home = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    homeReducer: state.homeReducer,
-  };
-};
-
-// const mapDispatchToProps = (dispatch) => ({
-//   dispatch,
-//   closeLoginModalAction: data => dispatch(openLoginModalAction()),
-// });
+const mapStateToProps = (state: AppState) => ({
+  loginModalDetails: state.home.loginModalDetails
+})
 
 export default connect(mapStateToProps, null)(Home);

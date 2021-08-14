@@ -3,19 +3,25 @@ import { useRoutesContext } from "./routeContext";
 import { connect } from "react-redux";
 import styles from '../public/styles/navbar.module.scss';
 import React, { useEffect } from 'react'
-import { Nav, Navbar } from 'react-bootstrap';
 import { routeToHref } from "config/routes";
 import { openLoginModalAction } from "../state/action";
-import { useSelector } from "react-redux";
-import { AppState, UserState } from "types/core";
+import { Dispatch } from "redux";
+import { AppState } from "types/core";
 
+export interface NavBarProps {
+  openLoginModalAction: () => void
+  scrollY: number
+}
 
 // I took the code from here https://stackoverflow.com/questions/62609559/navbar-collapse-button-does-not-show-items-for-bootstrap-4-5-0-and-nextjs-9-4-4
-const NavBar = (props, { scrollY }) => {
-  const { toLogin, toSignup, toDiscover, toProfile, toWondorHome } = useRoutesContext();
+const NavBar: React.FC<NavBarProps> = ({ 
+  openLoginModalAction,
+  scrollY 
+}) => {
+  const { toSignup, toDiscover, toProfile } = useRoutesContext();
   // console.log(scrollY, '<-')
   const openLoginModal = () => {
-    props.openLoginModalAction();
+    openLoginModalAction()
   };
 
   useEffect(() => {
@@ -69,15 +75,14 @@ const NavBar = (props, { scrollY }) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppState) => {
   return {
-    homeReducer: state.homeReducer,
+    homeReducer: state.home,
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  dispatch,
-  openLoginModalAction: data => dispatch(openLoginModalAction()),
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  openLoginModalAction: () => dispatch(openLoginModalAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
