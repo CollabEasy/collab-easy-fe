@@ -2,55 +2,70 @@ import Link from "next/link";
 import { useRoutesContext } from "./routeContext";
 import { connect } from "react-redux";
 import styles from '../public/styles/navbar.module.scss';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Nav, Navbar } from 'react-bootstrap';
 import { routeToHref } from "config/routes";
 import { openLoginModalAction } from "../state/action";
 import { useSelector } from "react-redux";
 import { AppState, UserState } from "types/core";
 
-const NavBar = (props) => {
-  const { toLogin, toSignup, toDiscover, toProfile, toWondorHome } = useRoutesContext();
 
+// I took the code from here https://stackoverflow.com/questions/62609559/navbar-collapse-button-does-not-show-items-for-bootstrap-4-5-0-and-nextjs-9-4-4
+const NavBar = (props, { scrollY }) => {
+  const { toLogin, toSignup, toDiscover, toProfile, toWondorHome } = useRoutesContext();
+  // console.log(scrollY, '<-')
   const openLoginModal = () => {
     props.openLoginModalAction();
   };
 
+  useEffect(() => {
+    const _hdr_s = document.querySelector('#_hdr-id');
+    if (scrollY >= 470) {
+      _hdr_s['style'].setProperty('display', 'block');
+    } else {
+      _hdr_s['style'].setProperty('display', 'none');
+    }
+  }, [scrollY])
   return (
-    <Navbar expand="lg">
-      <Link href={routeToHref(toWondorHome())} passHref>
-        <Navbar.Brand>
-          <h2 className={'navbar-brand f-30 ' + styles.appLogo}>Wondor</h2>
-        </Navbar.Brand>
-      </Link>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse className="justify-content-end px-2" id="basic-navbar-nav">
-        <Nav className="ml-auto" id="myNavItem">
-          <Link href={toDiscover().href} passHref>
-            <Nav.Link className="active" id="myNavItem">
+    <div className="row">
+      <div id="p-h" className={"col-lg-12 col-md-12 col-sm-12 " + styles['nv-f-t']}>
+        <div className="col-lg-2 col-md-2 col-sm-2">
+          <h2 className={'' + styles.appLogo}>Wondor</h2>
+        </div>
+        <div className="col-lg-10 col-md-10 col-sm-10">
+          <div id="_hdr-id" style={{ display: "none" }} className="col-lg-7 col-md-2 col-sm-2 clearfix">
+            <input type="text" className="form-control" id="floatingInput" placeholder="Search Category, users, etc." />
+            {/* <span className="fa-cion"><em className="fa fa-search" aria-hidden="true"></em></span> */}
+          </div>
+          <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
+            <Link href={toDiscover().href} passHref>
               Discover
-            </Nav.Link>
-          </Link>
-          <Link href={routeToHref(toDiscover())} passHref>
-            <Nav.Link id="myNavItem">
+            </Link>
+          </div>
+          <div className={"col-sm-2 col-lg-1 col-md-2  " + styles['c-p']}>
+            <Link href={routeToHref(toDiscover())} passHref>
               About us
-            </Nav.Link>
-          </Link>
-          {/* <Link href={routeToHref((toLogin()))} passHref>
+            </Link>
+          </div>
+          <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
+            {/* <Link href={routeToHref((toLogin()))} passHref>
             <Nav.Link id="myNavItem">Log in</Nav.Link>
           </Link> */}
           <div className="nav-link" id="myNavItem" onClick={openLoginModal}>Log in</div>
-          <Link href={routeToHref((toSignup()))} passHref>
-            <Nav.Link id="myNavItem">
+          </div>
+          <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
+            <Link href={routeToHref((toSignup()))} passHref>
               Sign up
-            </Nav.Link>
-          </Link>
-          <Link href={routeToHref(toProfile({ id: '1234' }))} passHref>
-            <Nav.Link>Profile</Nav.Link>
-          </Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+            </Link>
+          </div>
+          <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
+            <Link href={routeToHref(toProfile({ id: '1234' }))} passHref>
+              Profile
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 

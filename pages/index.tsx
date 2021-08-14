@@ -15,7 +15,8 @@ import styles from '../public/styles/index.module.scss';
 import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import Navbar from "../components/navbar";
 
 const { Meta } = Card;
 
@@ -24,12 +25,50 @@ const Home = (props) => {
   // const myState = useSelector((state: AppState) => state.home);
   const [showModal, setShowModal] = useState(false);
   const { toArtist } = useRoutesContext();
-  const ref = React.createRef();
+
+  const [scrolled, setScrolled] = React.useState(false);
+  const [scrollY, setScrollY] = React.useState(0);
+  const handleScroll = () => {
+    const offset = window.scrollY;
+    console.log("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio)
+    console.log("Your screen width is: " + window.screen.width)
+    setScrollY(() => offset);
+    console.log(offset)
+    if (offset > 200) {
+      setScrolled(true);
+    }
+    else {
+      setScrolled(false);
+    }
+  }
 
   useEffect(() => {
     if( props.homeReducer.loginModalDetails.openModal ) setShowModal(true);
   }, [props.homeReducer.loginModalDetails]);
 
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+  })
+  useEffect(() => {
+    const elem = document.querySelector('#p-h');
+    const _srcElem = document.querySelector('#_src-i');
+
+    if (scrolled) {
+      elem['style'].setProperty('position', 'fixed');
+      elem['style'].setProperty('background', 'white');
+    } else {
+      elem['style'].setProperty('position', 'absolute');
+      elem['style'].setProperty('background', 'transparent');
+    }
+
+    if (scrollY >= 470) {
+      _srcElem['style'].setProperty('display', 'none');
+    } else {
+      _srcElem['style'].removeProperty('display');
+    }
+
+  }, [scrolled, scrollY])
   return (
     <>
       <Title title="Wondor | meet the artists" />
@@ -38,13 +77,13 @@ const Home = (props) => {
         )
       }
       <div className="row">
+        <Navbar scrollY={scrollY} />
         <div className="col-md-12 m-0 p-0">
           <Image src={landingPageImg} alt="Landing page" />
         </div>
-        <div className="col-md-12 col-sm-12 src-prnt">
-          <div className="form-floating mb-3 col-md-4 col-sm-6 src-box">
-            <input type="text" className="form-control" id="floatingInput" placeholder="" />
-            <label className="label-search" htmlFor="floatingInput">Search Category, users, etc.</label>
+        <div id="_src-i" className="col-md-12 col-sm-12 src-prnt">
+          <div className="mb-3 col-md-4 col-sm-6 src-box">
+            <input type="text" className="form-control" id="floatingInput" placeholder="Search Category, users, etc." />
             <span className="fa-cion"><em className="fa fa-search" aria-hidden="true"></em></span>
           </div>
         </div>
@@ -56,7 +95,7 @@ const Home = (props) => {
           <div className={"row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 " + styles['scrolling-wrapper']}>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'musician'} passHref>
-              <Card hoverable style={{ width: '100%', borderRadius: '20px' }} cover={<Image src={musiciansImg} alt="cards" />}>
+                <Card hoverable style={{ width: '100%', borderRadius: '20px' }} cover={<Image src={musiciansImg} alt="cards" />}>
                   <Meta title="Musicians" />
                 </Card>
               </Link>
