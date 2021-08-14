@@ -1,6 +1,7 @@
 import Title from '../components/title'
 import ProfileModal from '../components/profilePage';
 import Link from "next/link";
+import { connect } from "react-redux";
 // import { useSelector } from 'react-redux'
 // import { AppState } from '../types/core';
 import Image from 'next/image';
@@ -14,20 +15,28 @@ import styles from '../public/styles/index.module.scss';
 import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 const { Meta } = Card;
 
 
-const Home = () => {
+const Home = (props) => {
   // const myState = useSelector((state: AppState) => state.home);
-
+  const [showModal, setShowModal] = useState(false);
   const { toArtist } = useRoutesContext();
   const ref = React.createRef();
+
+  useEffect(() => {
+    if( props.homeReducer.loginModalDetails.openModal ) setShowModal(true);
+  }, [props.homeReducer.loginModalDetails]);
+
   return (
     <>
       <Title title="Wondor | meet the artists" />
-      <ProfileModal></ProfileModal>
+      { showModal && (
+          <ProfileModal></ProfileModal>
+        )
+      }
       <div className="row">
         <div className="col-md-12 m-0 p-0">
           <Image src={landingPageImg} alt="Landing page" />
@@ -170,4 +179,15 @@ const Home = () => {
   )
 }
 
-export default Home
+const mapStateToProps = (state) => {
+  return {
+    homeReducer: state.homeReducer,
+  };
+};
+
+// const mapDispatchToProps = (dispatch) => ({
+//   dispatch,
+//   closeLoginModalAction: data => dispatch(openLoginModalAction()),
+// });
+
+export default connect(mapStateToProps, null)(Home);

@@ -1,14 +1,21 @@
 import Link from "next/link";
 import { useRoutesContext } from "./routeContext";
+import { connect } from "react-redux";
 import styles from '../public/styles/navbar.module.scss';
 import React from 'react'
 import { Nav, Navbar } from 'react-bootstrap';
 import { routeToHref } from "config/routes";
+import { openLoginModalAction } from "../state/action";
 import { useSelector } from "react-redux";
 import { AppState, UserState } from "types/core";
 
-const NavBar = () => {
+const NavBar = (props) => {
   const { toLogin, toSignup, toDiscover, toProfile, toWondorHome } = useRoutesContext();
+
+  const openLoginModal = () => {
+    props.openLoginModalAction();
+  };
+
   return (
     <Navbar expand="lg">
       <Link href={routeToHref(toWondorHome())} passHref>
@@ -29,14 +36,15 @@ const NavBar = () => {
               About us
             </Nav.Link>
           </Link>
-              <Link href={routeToHref((toLogin()))} passHref>
-                <Nav.Link id="myNavItem">Log in</Nav.Link>
-              </Link>
-              <Link href={routeToHref((toSignup()))} passHref>
-                <Nav.Link id="myNavItem">
-                  Sign up
-                </Nav.Link>
-              </Link>
+          {/* <Link href={routeToHref((toLogin()))} passHref>
+            <Nav.Link id="myNavItem">Log in</Nav.Link>
+          </Link> */}
+          <div className="nav-link" id="myNavItem" onClick={openLoginModal}>Log in</div>
+          <Link href={routeToHref((toSignup()))} passHref>
+            <Nav.Link id="myNavItem">
+              Sign up
+            </Nav.Link>
+          </Link>
           <Link href={routeToHref(toProfile({ id: '1234' }))} passHref>
             <Nav.Link>Profile</Nav.Link>
           </Link>
@@ -46,4 +54,15 @@ const NavBar = () => {
   )
 }
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  return {
+    homeReducer: state.homeReducer,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatch,
+  openLoginModalAction: data => dispatch(openLoginModalAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

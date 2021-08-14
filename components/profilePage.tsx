@@ -37,7 +37,7 @@ function handleChange(value) {
 class ProfileModal extends React.Component {
   state = {
     loading: false,
-    visible: false,
+    visible: true,
     windowWidth: 1000,
   };
 
@@ -76,9 +76,6 @@ class ProfileModal extends React.Component {
     const { visible, loading, windowWidth } = this.state;
     return (
       <>
-        <Button type="primary" onClick={this.showModal}>
-          Open Modal
-        </Button>
         <Modal
           visible={visible}
           destroyOnClose={true}
