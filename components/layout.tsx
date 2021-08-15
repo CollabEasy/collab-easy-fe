@@ -1,4 +1,8 @@
 
+import { footerLinkColumns } from "copy/footer";
+import Footer from "./footer";
+import Navbar from "./navbar";
+
 const Layout = ({ children }) => {
   return (
     <div className="container-fluid">
@@ -6,6 +10,7 @@ const Layout = ({ children }) => {
       <main>
         {children}
       </main>
+      <Footer footerLinkColumns={footerLinkColumns}/>
     </div>
   );
 }
