@@ -11,7 +11,7 @@ import singersImg from '../public/images/singers.png';
 import paintersImg from '../public/images/painters.png';
 import dancersImg from '../public/images/dancers.png';
 import inspireImg from '../public/images/inspire.png';
-import styles from '../public/styles/index.module.scss';
+import styles from '../styles/index.module.scss';
 import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';

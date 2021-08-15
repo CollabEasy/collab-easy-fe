@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRoutesContext } from "./routeContext";
 import { connect } from "react-redux";
-import styles from '../public/styles/navbar.module.scss';
+import styles from '../styles/navbar.module.scss';
 import React, { useEffect } from 'react'
 import { routeToHref } from "config/routes";
 import { openLoginModalAction } from "../state/action";
@@ -57,7 +57,7 @@ const NavBar: React.FC<NavBarProps> = ({
             {/* <Link href={routeToHref((toLogin()))} passHref>
             <Nav.Link id="myNavItem">Log in</Nav.Link>
           </Link> */}
-          <div className="nav-link" id="myNavItem" onClick={openLoginModal}>Log in</div>
+          <div id="myNavItem" onClick={openLoginModal}>Log in</div>
           </div>
           <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
             <Link href={routeToHref((toSignup()))} passHref>
