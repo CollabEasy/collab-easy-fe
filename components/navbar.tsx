@@ -1,17 +1,29 @@
 import Link from "next/link";
 import { useRoutesContext } from "./routeContext";
-import styles from '../public/styles/navbar.module.scss';
+import { connect } from "react-redux";
+import styles from '../styles/navbar.module.scss';
 import React, { useEffect } from 'react'
-import { Nav, Navbar } from 'react-bootstrap';
 import { routeToHref } from "config/routes";
-import { useSelector } from "react-redux";
-import { AppState, UserState } from "types/core";
+import { openLoginModalAction } from "../state/action";
+import { Dispatch } from "redux";
+import { AppState } from "types/core";
 
+export interface NavBarProps {
+  openLoginModalAction: () => void
+  scrollY: number
+}
 
 // I took the code from here https://stackoverflow.com/questions/62609559/navbar-collapse-button-does-not-show-items-for-bootstrap-4-5-0-and-nextjs-9-4-4
-const NavBar = ({ scrollY }) => {
-  const { toLogin, toSignup, toDiscover, toProfile, toWondorHome } = useRoutesContext();
-  console.log(scrollY, '<-')
+const NavBar: React.FC<NavBarProps> = ({ 
+  openLoginModalAction,
+  scrollY 
+}) => {
+  const { toSignup, toDiscover, toProfile } = useRoutesContext();
+  // console.log(scrollY, '<-')
+  const openLoginModal = () => {
+    openLoginModalAction()
+  };
+
   useEffect(() => {
     const _hdr_s = document.querySelector('#_hdr-id');
     if (scrollY >= 470) {
@@ -42,9 +54,10 @@ const NavBar = ({ scrollY }) => {
             </Link>
           </div>
           <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
-            <Link href={routeToHref((toLogin()))} passHref>
-              Log in
-            </Link>
+            {/* <Link href={routeToHref((toLogin()))} passHref>
+            <Nav.Link id="myNavItem">Log in</Nav.Link>
+          </Link> */}
+          <div id="myNavItem" onClick={openLoginModal}>Log in</div>
           </div>
           <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
             <Link href={routeToHref((toSignup()))} passHref>
@@ -62,4 +75,14 @@ const NavBar = ({ scrollY }) => {
   )
 }
 
-export default NavBar;
+const mapStateToProps = (state: AppState) => {
+  return {
+    homeReducer: state.home,
+  };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  openLoginModalAction: () => dispatch(openLoginModalAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

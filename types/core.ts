@@ -16,7 +16,12 @@ export interface AppRouteCreators {
 }
 
 export interface HomeState {
-  // add data here
+  homeDetails: any;
+  loginModalDetails: LoginModalDetails;
+}
+
+export interface LoginModalDetails {
+  openModal: boolean;
 }
 
 export interface UserState {
