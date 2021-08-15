@@ -1,22 +1,22 @@
-import Title from '../components/title'
-import ProfileModal from '../components/profilePage';
+import Title from 'components/title'
+import ProfileModal from 'components/profilePage';
 import Link from "next/link";
 import { connect } from "react-redux";
 // import { useSelector } from 'react-redux'
-// import { AppState } from '../types/core';
+// import { AppState } from 'types/core';
 import Image from 'next/image';
-import landingPageImg from '../public/images/landing.png';
-import musiciansImg from '../public/images/musicians.png';
-import singersImg from '../public/images/singers.png';
-import paintersImg from '../public/images/painters.png';
-import dancersImg from '../public/images/dancers.png';
-import inspireImg from '../public/images/inspire.png';
-import styles from '../styles/index.module.scss';
+import landingPageImg from 'public/images/landing.png';
+import musiciansImg from 'public/images/musicians.png';
+import singersImg from 'public/images/singers.png';
+import paintersImg from 'public/images/painters.png';
+import dancersImg from 'public/images/dancers.png';
+import inspireImg from 'public/images/inspire.png';
+import styles from 'styles/index.module.scss';
 import { Card } from 'antd';
-import { useRoutesContext } from "../components/routeContext";
+import { useRoutesContext } from "components/routeContext";
 import { data } from 'copy';
 import React, { useEffect, useState } from 'react';
-import Navbar from "../components/navbar";
+import Navbar from "components/navbar";
 import { AppState, LoginModalDetails } from 'types/core';
 
 const { Meta } = Card;

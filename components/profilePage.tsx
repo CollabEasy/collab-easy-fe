@@ -1,11 +1,11 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { RightCircleFilled } from '@ant-design/icons';
-import styles from '../styles/profileModal.module.scss';
+import styles from 'styles/profileModal.module.scss';
 import { Form, Switch, Modal, Button, Select } from 'antd';
 import Image from 'next/image';
-import landingPageImg from '../public/images/profile.png';
-// import SubmitImg from '../public/images/submit.png';
+import landingPageImg from 'public/images/profile.png';
+// import SubmitImg from 'public/images/submit.png';
 
 const layout = {
     labelCol: {

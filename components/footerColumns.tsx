@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
-import styles from '../styles/index.module.scss';
+import styles from 'styles/index.module.scss';
 import { FooterColumn } from 'types/core';
 
 interface FooterColumnsProps {

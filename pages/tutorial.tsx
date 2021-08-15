@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import Title from '../components/title'
+import Title from 'components/title'
 
 const Tutorial: NextPage<{}> = () => {
   return (

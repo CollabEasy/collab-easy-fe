@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { useRoutesContext } from "./routeContext";
 import { connect } from "react-redux";
-import styles from '../styles/navbar.module.scss';
+import styles from 'styles/navbar.module.scss';
 import React, { useEffect } from 'react'
 import { routeToHref } from "config/routes";
-import { openLoginModalAction } from "../state/action";
+import { openLoginModalAction } from "state/action";
 import { Dispatch } from "redux";
 import { AppState } from "types/core";
 
