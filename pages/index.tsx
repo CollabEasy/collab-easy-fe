@@ -1,6 +1,7 @@
 import Title from '../components/title'
 import ProfileModal from '../components/profilePage';
 import Link from "next/link";
+import { connect } from "react-redux";
 // import { useSelector } from 'react-redux'
 // import { AppState } from '../types/core';
 import Image from 'next/image';
@@ -10,22 +11,27 @@ import singersImg from '../public/images/singers.png';
 import paintersImg from '../public/images/painters.png';
 import dancersImg from '../public/images/dancers.png';
 import inspireImg from '../public/images/inspire.png';
-import styles from '../public/styles/index.module.scss';
+import styles from '../styles/index.module.scss';
 import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from "../components/navbar";
+import { AppState, LoginModalDetails } from 'types/core';
 
 const { Meta } = Card;
 
+export interface HomeProps {
+  homeDetails: any
+  loginModalDetails: LoginModalDetails
+}
 
-const Home = () => {
-
+const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
+  const [showModal, setShowModal] = useState(false);
   const { toArtist } = useRoutesContext();
 
-  const [scrolled, setScrolled] = React.useState(false);
-  const [scrollY, setScrollY] = React.useState(0);
+  const [scrolled, setScrolled] = React.useState<boolean>(false);
+  const [scrollY, setScrollY] = React.useState<number>(0);
   const handleScroll = () => {
     const offset = window.scrollY;
     console.log("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio)
@@ -39,6 +45,10 @@ const Home = () => {
       setScrolled(false);
     }
   }
+
+  useEffect(() => {
+    if (false) setShowModal(true);
+  }, [loginModalDetails]);
 
 
   useEffect(() => {
@@ -66,7 +76,10 @@ const Home = () => {
   return (
     <>
       <Title title="Wondor | meet the artists" />
-      <ProfileModal></ProfileModal>
+      {showModal && (
+        <ProfileModal></ProfileModal>
+      )
+      }
       <div className="row">
         <Navbar scrollY={scrollY} />
         <div className="col-md-12 m-0 p-0">
@@ -159,4 +172,8 @@ const Home = () => {
   )
 }
 
-export default Home
+const mapStateToProps = (state: AppState) => ({
+  loginModalDetails: state.home.loginModalDetails
+})
+
+export default connect(mapStateToProps, null)(Home);
