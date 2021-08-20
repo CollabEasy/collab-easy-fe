@@ -13,6 +13,7 @@ export interface AppRouteCreators {
   toDiscover: () => WebRoute;
   toArtist: () => WebRoute;
   toProfile: ({ id: string }) => WebRoute;
+  toArtistProfile: (typeOfArtist: string | string [], id: string) => WebRoute;
 }
 
 export interface HomeState {
