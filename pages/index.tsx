@@ -1,8 +1,5 @@
 import Title from '../components/title'
-import ProfileModal from '../components/profilePage';
 import Link from "next/link";
-// import { useSelector } from 'react-redux'
-// import { AppState } from '../types/core';
 import Image from 'next/image';
 import landingPageImg from '../public/images/landing.png';
 import musiciansImg from '../public/images/musicians.png';
@@ -14,69 +11,20 @@ import styles from '../public/styles/index.module.scss';
 import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';
-import React, { useEffect } from 'react';
-import Navbar from "../components/navbar";
+import React from 'react';
 
 const { Meta } = Card;
-
-
 const Home = () => {
 
   const { toArtist } = useRoutesContext();
-
-  const [scrolled, setScrolled] = React.useState(false);
-  const [scrollY, setScrollY] = React.useState(0);
-  const handleScroll = () => {
-    const offset = window.scrollY;
-    console.log("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio)
-    console.log("Your screen width is: " + window.screen.width)
-    setScrollY(() => offset);
-    console.log(offset)
-    if (offset > 200) {
-      setScrolled(true);
-    }
-    else {
-      setScrolled(false);
-    }
-  }
-
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-  })
-  useEffect(() => {
-    const elem = document.querySelector('#p-h');
-    const _srcElem = document.querySelector('#_src-i');
-
-    if (scrolled) {
-      elem['style'].setProperty('position', 'fixed');
-      elem['style'].setProperty('background', 'white');
-    } else {
-      elem['style'].setProperty('position', 'absolute');
-      elem['style'].setProperty('background', 'transparent');
-    }
-
-    if (scrollY >= 470) {
-      _srcElem['style'].setProperty('display', 'none');
-    } else {
-      _srcElem['style'].removeProperty('display');
-    }
-
-  }, [scrolled, scrollY])
+  
   return (
     <>
       <Title title="Wondor | meet the artists" />
-      <ProfileModal></ProfileModal>
+      {/* <ProfileModal></ProfileModal> */}
       <div className="row">
-        <Navbar scrollY={scrollY} />
-        <div className="col-md-12 m-0 p-0">
+        <div id="discoverImg" className="col-md-12 m-0 p-0">
           <Image src={landingPageImg} alt="Landing page" />
-        </div>
-        <div id="_src-i" className="col-md-12 col-sm-12 src-prnt">
-          <div className="mb-3 col-md-4 col-sm-6 src-box">
-            <input type="text" className="form-control" id="floatingInput" placeholder="Search Category, users, etc." />
-            <span className="fa-cion"><em className="fa fa-search" aria-hidden="true"></em></span>
-          </div>
         </div>
       </div>
 
@@ -148,7 +96,6 @@ const Home = () => {
       {/* look at gallery options here: https://freefrontend.com/bootstrap-galleries/ , https://thetuteur.com/react-image-gallery-with-masonry-js/, https://codepen.io/rperry1886/pen/KKwbQNP*/}
       <div className={styles["grid-container"]}>
         {data.map((image) => (
-          // eslint-disable-next-line react/jsx-key
           <div key={image.id}>
             <Image className={`grid-item grid-item-${image}`} src={image.src} alt={image.alt} width='500' height='500' placeholder='blur' blurDataURL={image.src} />
             <p>{image.description}</p>
