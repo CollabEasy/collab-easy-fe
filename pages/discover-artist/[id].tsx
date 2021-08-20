@@ -19,22 +19,23 @@ const DiscoverArtist = () => {
     <>
       <Title title="Discover Artist" />
       <div className="container fluid">
-        <div className="row" style={{paddingTop: '3rem'}}>
-              <Image src={landingPageImg} alt="Landing page" />
+        <div className="row" style={{ paddingTop: '3rem' }}>
+          <Image src={landingPageImg} alt="Landing page" />
         </div>
+
         {/* <h1>Artist Page Dynamic <strong>{id.toUpperCase()}</strong></h1> */}
 
-          <div className="row" style={{paddingTop:'2rem'}}>
+        <div className="row" style={{ paddingTop: '2rem' }}>
           {array.map(_ => (
-            <div className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3" style={{padding: '1rem'}}>
+            <div className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3" style={{ padding: '1rem' }}>
               <Card hoverable style={{ height: '100%' }} cover={<Image src={dancersImg} alt="cards" />}>
                 <Meta title="Dancers" />
               </Card>
             </div>
           ))}
-            
-        </div> 
+
         </div>
+      </div>
     </>
   )
 }
