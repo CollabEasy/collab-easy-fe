@@ -16,7 +16,12 @@ export interface AppRouteCreators {
 }
 
 export interface HomeState {
-  // add data here
+  homeDetails: any;
+  loginModalDetails: LoginModalDetails;
+}
+
+export interface LoginModalDetails {
+  openModal: boolean;
 }
 
 export interface UserState {
@@ -52,4 +57,16 @@ export interface User {
   gender: string;
   createdAt: number;
   updatedAt: number;
+}
+
+export interface FooterLink {
+  url: string
+  name: string
+  rel?: string
+  id?: string
+  className?: string
+}
+
+export interface FooterColumn {
+  links: FooterLink[]
 }

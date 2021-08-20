@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { RightCircleFilled } from '@ant-design/icons';
-import styles from '../public/styles/profileModal.module.scss';
+import styles from '../styles/profileModal.module.scss';
 import { Form, Switch, Modal, Button, Select } from 'antd';
 import Image from 'next/image';
 import landingPageImg from '../public/images/profile.png';
@@ -37,7 +37,7 @@ function handleChange(value) {
 class ProfileModal extends React.Component {
   state = {
     loading: false,
-    visible: false,
+    visible: true,
     windowWidth: 1000,
   };
 
@@ -76,9 +76,6 @@ class ProfileModal extends React.Component {
     const { visible, loading, windowWidth } = this.state;
     return (
       <>
-        <Button type="primary" onClick={this.showModal}>
-          Open Modal
-        </Button>
         <Modal
           visible={visible}
           destroyOnClose={true}

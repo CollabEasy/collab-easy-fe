@@ -1,19 +1,31 @@
-import Link from "next/link";
-// import 'antd/dist/antd.css';
-// import { Input } from 'antd';
-import { useRoutesContext } from "./routeContext";
-import styles from '../public/styles/navbar.module.scss';
+// import Link from "next/link";
+// import { useRoutesContext } from "./routeContext";
+import { connect } from "react-redux";
+import styles from '../styles/navbar.module.scss';
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer';
-import { routeToHref } from "config/routes";
+// import { routeToHref } from "config/routes";
 import Search from './search';
-// const { Search } = Input;
-const NavBar = () => {
-  const { toLogin, toSignup, toDiscover, toProfile, toWondorHome } = useRoutesContext();
+import { openLoginModalAction } from "../state/action";
+import { Dispatch } from "redux";
+import { AppState } from "types/core";
+
+export interface NavBarProps {
+  openLoginModalAction: () => void
+}
+
+const NavBar: React.FC<NavBarProps> = ({ 
+  openLoginModalAction, 
+}) => {
   const [ref, inView, entry] = useInView({
     root: null,
     rootMargin: '-20px 0px 0px 0px',
   });
+
+  const openLoginModal = () => {
+    openLoginModalAction()
+  };
+
   useEffect(() => {
     const navBarElement = document.querySelector('#p-h');
     if(!inView && entry !== undefined) {
@@ -42,4 +54,14 @@ const NavBar = () => {
   )
 }
 
-export default NavBar;
+const mapStateToProps = (state: AppState) => {
+  return {
+    homeReducer: state.home,
+  };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  openLoginModalAction: () => dispatch(openLoginModalAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

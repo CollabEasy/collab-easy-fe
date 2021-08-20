@@ -1,5 +1,9 @@
 import Title from '../components/title'
+import ProfileModal from '../components/profilePage';
 import Link from "next/link";
+import { connect } from "react-redux";
+// import { useSelector } from 'react-redux'
+// import { AppState } from '../types/core';
 import Image from 'next/image';
 import landingPageImg from '../public/images/landing.png';
 import musiciansImg from '../public/images/musicians.png';
@@ -7,21 +11,35 @@ import singersImg from '../public/images/singers.png';
 import paintersImg from '../public/images/painters.png';
 import dancersImg from '../public/images/dancers.png';
 import inspireImg from '../public/images/inspire.png';
-import styles from '../public/styles/index.module.scss';
+import styles from '../styles/index.module.scss';
 import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { AppState, LoginModalDetails } from 'types/core';
 
 const { Meta } = Card;
-const Home = () => {
 
+export interface HomeProps {
+  homeDetails: any
+  loginModalDetails: LoginModalDetails
+}
+
+const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
+  const [showModal, setShowModal] = useState(false);
   const { toArtist } = useRoutesContext();
+
+  useEffect(() => {
+    if (false) setShowModal(true);
+  }, [loginModalDetails]);
   
   return (
     <>
       <Title title="Wondor | meet the artists" />
-      {/* <ProfileModal></ProfileModal> */}
+      {showModal && (
+        <ProfileModal></ProfileModal>
+      )
+      }
       <div className="row">
         <div id="discoverImg" className="col-md-12 m-0 p-0">
           <Image src={landingPageImg} alt="Landing page" />
@@ -102,58 +120,12 @@ const Home = () => {
           </div>
         ))}
       </div>
-
-      {/* footer code from here https://bootsnipp.com/snippets/2eMK5 */}
-      <footer className={styles["footer"]} style={{ background: "#F9F9F9" }}>
-        <div className="container">
-          <div className="row row-30">
-            <div className="col-md-4 col-xl-5">
-              <div className="pr-xl-4">
-                <h2 className={'navbar-brand f-30 ' + styles.appLogo}>Wondor</h2>
-                <p>We are an award-winning creative agency, dedicated to the best result in web design, promotion, business consulting, and marketing.</p>
-                <p className="rights"><span>©  </span><span className="copyright-year">2018</span><span> </span><span>Waves</span><span>. </span><span>All Rights Reserved.</span></p>
-                <dl className={styles["contact-list"]}>
-                  <dd><a href="mailto:#">dkstudioin@gmail.com</a></dd>
-                </dl>
-                <dl className={styles["contact-list"]}>
-                  <dd><a href="tel:#">https://karosearch.com</a> <span>or</span> <a href="tel:#">https://karosearch.com</a>
-                  </dd>
-                </dl>
-              </div>
-            </div>
-            <div className="col-md-4 col-xl-3">
-              <ul className={styles["nav-list"]}>
-                <li><a href="#">Sign up</a></li>
-                <li><a href="#">Sign in</a></li>
-                <li><a href="#">Get Inspired</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">About Us</a></li>
-              </ul>
-            </div>
-            <div className="col-md-4 col-xl-3">
-              <ul className={styles["nav-list"]}>
-                <li><a href="#">Terms & Policy</a></li>
-                <li><a href="#">Tutorial</a></li>
-                <li><a href="#">privacy</a></li>
-                <li><a href="#">Contacts</a></li>
-              </ul>
-            </div>
-          </div>
-          {/* <div className="container">
-            <ul>
-                <li><a target="_blank" href="https://www.facebook.com/Nous-Care-109397770411017/"> <i className="fa fa-facebook fa-lg" area-hidden="true"></i></a></li>
-                <li><a target="_blank" href="https://twitter.com/CareNous"> <i className="fa fa-twitter fa-lg" area-hidden="true"></i></a></li>
-                <li><a target="_blank" href="https://www.youtube.com/channel/UCWXgFHh9jduTtB7fbdOXcqA"> <i className="fa fa-youtube-play fa-lg" area-hidden="true"></i></a></li>
-                <li><a target="_blank" href="https://www.instagram.com/nous_care/"> <i className="fa fa-instagram fa-lg" area-hidden="true"></i></a></li>
-                <li><a target="_blank" href="https://www.pinterest.com/nouscare/"> <i className="fa fa-pinterest fa-lg" area-hidden="true"></i></a></li>
-                <li><a target="_blank" href="https://nous-care.tumblr.com/"> <i className="fa fa-tumblr fa-lg" area-hidden="true"></i></a></li>
-                <div style={{clear: "both"}}></div>
-            </ul>
-          </div> */}
-        </div>
-      </footer>
     </>
   )
 }
 
-export default Home
+const mapStateToProps = (state: AppState) => ({
+  loginModalDetails: state.home.loginModalDetails
+})
+
+export default connect(mapStateToProps, null)(Home);
