@@ -1,6 +1,8 @@
 import Title from '../components/title'
 import ProfileModal from '../components/profilePage';
+import LoginModal from '../components/loginModal';
 import Link from "next/link";
+import Script from 'next/script'
 import { connect } from "react-redux";
 // import { useSelector } from 'react-redux'
 // import { AppState } from '../types/core';
@@ -47,8 +49,16 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
   }
 
   useEffect(() => {
-    if (false) setShowModal(true);
+    if (loginModalDetails.openModal){
+      setShowModal(true);
+    }else{
+      setShowModal(false);
+    }
   }, [loginModalDetails]);
+
+  useEffect(() => {
+		console.log("token: ", process.env.AUTH0_SECRET);
+	}, []);
 
 
   useEffect(() => {
@@ -77,7 +87,7 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
     <>
       <Title title="Wondor | meet the artists" />
       {showModal && (
-        <ProfileModal></ProfileModal>
+        <LoginModal></LoginModal>
       )
       }
       <div className="row">
@@ -218,6 +228,9 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
           </div> */}
         </div>
       </footer>
+      <Script src="https://www.google-analytics.com/analytics.js" />
+      <Script src="https://cdn.auth0.com/js/auth0/9.16/auth0.min.js"></Script>
+      <Script src="https://cdn.auth0.com/js/polyfills/1.0/object-assign.min.js"></Script>
     </>
   )
 }

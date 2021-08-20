@@ -2,7 +2,8 @@ import Link from "next/link";
 import { useRoutesContext } from "./routeContext";
 import { connect } from "react-redux";
 import styles from '../styles/navbar.module.scss';
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
+import { useUser } from '@auth0/nextjs-auth0';
 import { routeToHref } from "config/routes";
 import { openLoginModalAction } from "../state/action";
 import { Dispatch } from "redux";
@@ -19,6 +20,7 @@ const NavBar: React.FC<NavBarProps> = ({
   scrollY 
 }) => {
   const { toSignup, toDiscover, toProfile } = useRoutesContext();
+  const { user, error } = useUser();
   // console.log(scrollY, '<-')
   const openLoginModal = () => {
     openLoginModalAction()
@@ -53,17 +55,27 @@ const NavBar: React.FC<NavBarProps> = ({
               About us
             </Link>
           </div>
-          <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
-            {/* <Link href={routeToHref((toLogin()))} passHref>
-            <Nav.Link id="myNavItem">Log in</Nav.Link>
-          </Link> */}
-          <div id="myNavItem" onClick={openLoginModal}>Log in</div>
-          </div>
-          <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
+          { !user && (
+              <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
+                <div id="myNavItem" onClick={openLoginModal}>
+                  <span className="f-15 md-c000 csr-pnt">Log in</span>
+                </div>
+              </div>
+            )
+          }
+          { user && (
+              <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
+                <div id="myNavItem">
+                  <a className="f-15 csr-pnt" href="/api/auth/logout" style={{color: '#000'}}>Logout</a>
+                </div>
+              </div>
+            )
+          }
+          {/* <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
             <Link href={routeToHref((toSignup()))} passHref>
               Sign up
             </Link>
-          </div>
+          </div> */}
           <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
             <Link href={routeToHref(toProfile({ id: '1234' }))} passHref>
               Profile
