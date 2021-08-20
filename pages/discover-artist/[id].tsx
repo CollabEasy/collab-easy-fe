@@ -25,8 +25,8 @@ const DiscoverArtist = () => {
         {/* <h1>Artist Page Dynamic <strong>{id.toUpperCase()}</strong></h1> */}
 
           <div className="row" style={{paddingTop:'2rem'}}>
-          {array.map(_ => (
-            <div className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3" style={{padding: '1rem'}}>
+          {array.map((_, index) => (
+            <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3" style={{padding: '1rem'}}>
               <Card hoverable style={{ height: '100%' }} cover={<Image src={dancersImg} alt="cards" />}>
                 <Meta title="Dancers" />
               </Card>
