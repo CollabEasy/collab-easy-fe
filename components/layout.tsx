@@ -6,7 +6,7 @@ import Navbar from "./navbar";
 const Layout = ({ children }) => {
   return (
     <div className="container-fluid">
-      {/* <Navbar /> */}
+      <Navbar />
       <main>
         {children}
       </main>

@@ -16,7 +16,6 @@ import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';
 import React, { useEffect, useState } from 'react';
-import Navbar from "../components/navbar";
 import { AppState, LoginModalDetails } from 'types/core';
 
 const { Meta } = Card;
@@ -30,49 +29,10 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
   const [showModal, setShowModal] = useState(false);
   const { toArtist } = useRoutesContext();
 
-  const [scrolled, setScrolled] = React.useState<boolean>(false);
-  const [scrollY, setScrollY] = React.useState<number>(0);
-  const handleScroll = () => {
-    const offset = window.scrollY;
-    console.log("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio)
-    console.log("Your screen width is: " + window.screen.width)
-    setScrollY(() => offset);
-    console.log(offset)
-    if (offset > 200) {
-      setScrolled(true);
-    }
-    else {
-      setScrolled(false);
-    }
-  }
-
   useEffect(() => {
     if (false) setShowModal(true);
   }, [loginModalDetails]);
-
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-  })
-  useEffect(() => {
-    const elem = document.querySelector('#p-h');
-    const _srcElem = document.querySelector('#_src-i');
-
-    if (scrolled) {
-      elem['style'].setProperty('position', 'fixed');
-      elem['style'].setProperty('background', 'white');
-    } else {
-      elem['style'].setProperty('position', 'absolute');
-      elem['style'].setProperty('background', 'transparent');
-    }
-
-    if (scrollY >= 470) {
-      _srcElem['style'].setProperty('display', 'none');
-    } else {
-      _srcElem['style'].removeProperty('display');
-    }
-
-  }, [scrolled, scrollY])
+  
   return (
     <>
       <Title title="Wondor | meet the artists" />
@@ -81,15 +41,8 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
       )
       }
       <div className="row">
-        <Navbar scrollY={scrollY} />
-        <div className="col-md-12 m-0 p-0">
+        <div id="discoverImg" className="col-md-12 m-0 p-0">
           <Image src={landingPageImg} alt="Landing page" />
-        </div>
-        <div id="_src-i" className="col-md-12 col-sm-12 src-prnt">
-          <div className="mb-3 col-md-4 col-sm-6 src-box">
-            <input type="text" className="form-control" id="floatingInput" placeholder="Search Category, users, etc." />
-            <span className="fa-cion"><em className="fa fa-search" aria-hidden="true"></em></span>
-          </div>
         </div>
       </div>
 
@@ -161,7 +114,6 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
       {/* look at gallery options here: https://freefrontend.com/bootstrap-galleries/ , https://thetuteur.com/react-image-gallery-with-masonry-js/, https://codepen.io/rperry1886/pen/KKwbQNP*/}
       <div className={styles["grid-container"]}>
         {data.map((image) => (
-          // eslint-disable-next-line react/jsx-key
           <div key={image.id}>
             <Image className={`grid-item grid-item-${image}`} src={image.src} alt={image.alt} width='500' height='500' placeholder='blur' blurDataURL={image.src} />
             <p>{image.description}</p>

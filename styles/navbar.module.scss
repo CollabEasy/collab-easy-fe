@@ -2,35 +2,56 @@
 @import '../styles/common/_font-size';
 
 .nv-f-t {
-  position: fixed;
-  display: inline-flex;
+  position: absolute;
+  display: flex;
   background-color: transparent;
   z-index: 1;
-  & > [class*='col-']{
-    padding-top: 2em;
+  padding: 1.8rem;
+  align-items: center;
+  width: 100%;
+  transition: all .15s ease-in-out;
+
+  & .navbar-search {
     display: flex;
+    width: 80%;
+    justify-content: center;
   }
-  & .c-p{
-    text-align: center;
-    padding: .6em;
-  }
-  & .c-p >a {
-    color: $black;
-    font-size: $font-size15;
-  }
-  & :nth-child(2){
-    justify-content: end;
-  }
-	.appLogo {
+
+	& .appLogo {
     font-family: $pacifico-cursive;
     color: $black !important;
-    padding-left: 2.6vw;
-    font-size: 4vh;
+    width: 10%;
+    & h2 {
+      margin-bottom: 0px;
+      font-size: 35px;
+    }
 	}
+
+  & .navbar-menu {
+    width: 10%;
+    
+    & button {
+      background: transparent;
+      border: 0;
+    }
+  }
 }
-.scrolled {
+
+.dummy-div {
+  width: 100%;
+  position: absolute;
+  height: 30px;
+}
+
+.menu_items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-effect{
   position: fixed;
-  top: 0;
-  left: 0;
-  background-color: lightblue;
+  background: white;
+  box-shadow: 0 5px 6px -6px #777;
+  padding: 1rem;
 }

@@ -1,75 +1,88 @@
-import Link from "next/link";
-import { useRoutesContext } from "./routeContext";
+// import Link from "next/link";
 import { connect } from "react-redux";
 import styles from '../styles/navbar.module.scss';
 import React, { useEffect } from 'react'
-import { routeToHref } from "config/routes";
+import { useInView } from 'react-intersection-observer';
+import Search from './search';
 import { openLoginModalAction } from "../state/action";
 import { Dispatch } from "redux";
 import { AppState } from "types/core";
+import { /* Menu, Dropdown, */ Button } from 'antd';
+// import { UserOutlined, SettingOutlined } from '@ant-design/icons';
 
+/* const menu = (
+  <Menu>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer">
+        <div className={styles["menu__items"]}> 
+          <UserOutlined /> <span>Profile</span>  
+        </div>
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer">
+        <div> <SettingOutlined /> <span>Settings</span>  </div>
+      </a>
+    </Menu.Item>
+   { <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer">
+        Logout
+      </a>
+    </Menu.Item>}
+  </Menu>
+); */
 export interface NavBarProps {
   openLoginModalAction: () => void
-  scrollY: number
 }
 
-// I took the code from here https://stackoverflow.com/questions/62609559/navbar-collapse-button-does-not-show-items-for-bootstrap-4-5-0-and-nextjs-9-4-4
 const NavBar: React.FC<NavBarProps> = ({ 
-  openLoginModalAction,
-  scrollY 
+  openLoginModalAction, 
 }) => {
-  const { toSignup, toDiscover, toProfile } = useRoutesContext();
-  // console.log(scrollY, '<-')
+  const [ref, inView, entry] = useInView({
+    root: null,
+    rootMargin: '-20px 0px 0px 0px',
+  });
+
   const openLoginModal = () => {
     openLoginModalAction()
   };
 
   useEffect(() => {
-    const _hdr_s = document.querySelector('#_hdr-id');
-    if (scrollY >= 470) {
-      _hdr_s['style'].setProperty('display', 'block');
-    } else {
-      _hdr_s['style'].setProperty('display', 'none');
+    const navBarElement = document.querySelector('#p-h');
+    if(!inView && entry !== undefined) {
+      navBarElement.classList.add(styles['scroll-effect'])
     }
-  }, [scrollY])
+
+    if(inView && entry !== undefined) {
+      navBarElement.classList.remove(styles['scroll-effect'])
+    }
+  }, [inView, entry])
+
   return (
     <div className="row">
       <div id="p-h" className={"col-lg-12 col-md-12 col-sm-12 " + styles['nv-f-t']}>
-        <div className="col-lg-2 col-md-2 col-sm-2">
-          <h2 className={'' + styles.appLogo}>Wondor</h2>
+        <div className={styles.appLogo}>
+          <h2>Wondor</h2>
         </div>
-        <div className="col-lg-10 col-md-10 col-sm-10">
-          <div id="_hdr-id" style={{ display: "none" }} className="col-lg-7 col-md-2 col-sm-2 clearfix">
-            <input type="text" className="form-control" id="floatingInput" placeholder="Search Category, users, etc." />
-            {/* <span className="fa-cion"><em className="fa fa-search" aria-hidden="true"></em></span> */}
-          </div>
-          <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
-            <Link href={toDiscover().href} passHref>
-              Discover
-            </Link>
-          </div>
-          <div className={"col-sm-2 col-lg-1 col-md-2  " + styles['c-p']}>
-            <Link href={routeToHref(toDiscover())} passHref>
-              About us
-            </Link>
-          </div>
-          <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
-            {/* <Link href={routeToHref((toLogin()))} passHref>
-            <Nav.Link id="myNavItem">Log in</Nav.Link>
-          </Link> */}
-          <div id="myNavItem" onClick={openLoginModal}>Log in</div>
-          </div>
-          <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
-            <Link href={routeToHref((toSignup()))} passHref>
-              Sign up
-            </Link>
-          </div>
-          <div className={"col-lg-1 col-md-2 col-sm-2 " + styles['c-p']}>
-            <Link href={routeToHref(toProfile({ id: '1234' }))} passHref>
-              Profile
-            </Link>
-          </div>
+        <div className={styles["navbar-search"]}>
+          <Search></Search>
         </div>
+        <Button type="primary" size="large">Sign Up</Button>
+        {/* <div className={styles["navbar-menu"]}>
+          <Dropdown 
+            overlay={menu} 
+            overlayStyle={{width:'100px', borderRadius:'10px'}}
+            placement="topCenter"
+          >
+            <button>
+              <svg x="0px" y="0px" width="36" height="36" viewBox="0 0 24 24" style={{fill: "#000000"}}>
+                <path d="M 2 5 L 2 7 L 22 7 L 22 5 L 2 5 z M 2 11 L 2 13 L 22 13 L 22 11 L 2 11 z M 2 17 L 2 19 L 22 19 L 22 17 L 2 17 z"></path>
+              </svg>
+            </button>
+          </Dropdown>
+        </div> */}
+      </div>
+      <div ref={ref} className={styles['dummy-div']}>
       </div>
     </div>
   )

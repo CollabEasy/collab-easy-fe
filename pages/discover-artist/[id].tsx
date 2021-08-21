@@ -23,9 +23,7 @@ const DiscoverArtist = () => {
           <Image src={landingPageImg} alt="Landing page" />
         </div>
         {/* <h1>Artist Page Dynamic <strong>{id.toUpperCase()}</strong></h1> */}
-
         <div className="row" style={{ paddingTop: '2rem' }}>
-
           {array.map((item, index) => (
             <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3" style={{ padding: '1rem' }}>
               <Link key={index} href={routeToHref(toArtistProfile(typeOfArtist, item))} passHref>
