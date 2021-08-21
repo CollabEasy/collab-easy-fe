@@ -1,5 +1,5 @@
 import React from 'react'
-import { FooterColumn } from 'types/core';
+import { FooterColumn } from 'types/model/footer.model';
 import styles from '../styles/index.module.scss';
 import { FooterColumns } from './footerColumns';
 

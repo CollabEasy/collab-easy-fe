@@ -58,10 +58,10 @@ const ArtistProfile = () => {
           <div className="col-xl-12 col-md-12 col-sm-12">
             <div className="_connect">
               <span className="">
-                <a href="javascript:void(0)">Follow</a>
+                <a>Follow</a>
               </span>
               <span className="">
-                <a href="javascript:void(0)">Message</a>
+                <a>Message</a>
               </span>
             </div>
           </div>

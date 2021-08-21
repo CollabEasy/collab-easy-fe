@@ -1,5 +1,5 @@
 import { Config } from "config/config";
-import { User } from "types/core";
+import { User } from "types/model/user.model";
 import api from "./client";
 
 export const mockUser = (id: string): User => ({
