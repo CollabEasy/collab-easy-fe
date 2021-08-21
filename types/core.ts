@@ -1,13 +1,7 @@
 import { UserState } from './states/user.state';
 import { HomeState } from './states/home.state';
+import { WebRoute } from './model/web-route.model';
 
-export interface WebRoute {
-  /**
-   * This is understood as being a normal URL for use in non-NextJS <a>
-   */
-  href: string;
-  as?: undefined | null | string;
-}
 
 export interface AppRouteCreators {
   toWondorHome: () => WebRoute;
