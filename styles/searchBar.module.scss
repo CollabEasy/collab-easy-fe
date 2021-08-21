@@ -3,10 +3,12 @@
     display: flex;
     border-radius: 15px;
     height: 55px;
-    width: 500px;
+    width: 50%;
     padding: 3px;
     background: white;
     overflow: hidden;
+    justify-content: center;
+    align-items: center;
     box-shadow: 0px 1px 2px rgb(0 0 0 / 8%), 0px 4px 12px rgb(0 0 0 / 5%);
 
     &:hover {
@@ -17,15 +19,21 @@
     &__input {
         flex-grow: 1;
         font-size: 1.2rem;
-        padding: 0 0.5em;
         border: 0;
-        width: 100%;
+        width: 80%;
     }
 
     &__submit {
         border: 0;
         height: 47px;
-        width: 55px;
+        width: 10%;
+        background: white;
+    }
+
+    &__cross {
+        border: 0;
+        height: 47px;
+        width: 10%;
         background: white;
     }
 

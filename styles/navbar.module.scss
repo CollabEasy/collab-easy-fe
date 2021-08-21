@@ -6,32 +6,35 @@
   display: flex;
   background-color: transparent;
   z-index: 1;
+  padding: 1.8rem;
+  align-items: center;
+  width: 100%;
+  transition: all .15s ease-in-out;
 
-  & > [class*='col-']{
-    padding-top: 1.75rem;
+  & .navbar-search {
     display: flex;
-  }
-  & .c-p{
-    text-align: center;
-    padding: .6em;
-  }
-  & .c-p > a {
-    color: $black;
-    font-size: $font-size15;
-  }
-  & .nav-bar-items {
-    display: flex;
-    padding: 1.5rem;
-    width: 100%;
+    width: 80%;
     justify-content: center;
   }
 
-	.appLogo {
+	& .appLogo {
     font-family: $pacifico-cursive;
     color: $black !important;
-    padding-left: 2.6vw;
-    font-size: 35px;
+    width: 10%;
+    & h2 {
+      margin-bottom: 0px;
+      font-size: 35px;
+    }
 	}
+
+  & .navbar-menu {
+    width: 10%;
+    
+    & button {
+      background: transparent;
+      border: 0;
+    }
+  }
 }
 
 .dummy-div {
@@ -40,8 +43,15 @@
   height: 30px;
 }
 
+.menu_items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .scroll-effect{
   position: fixed;
   background: white;
   box-shadow: 0 5px 6px -6px #777;
+  padding: 1rem;
 }
