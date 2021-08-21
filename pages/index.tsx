@@ -11,7 +11,7 @@ import singersImg from '../public/images/singers.png';
 import paintersImg from '../public/images/painters.png';
 import dancersImg from '../public/images/dancers.png';
 import inspireImg from '../public/images/inspire.png';
-import styles from '../styles/index.module.scss';
+import styles from '../styles/discover.scss';
 import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';
@@ -46,10 +46,10 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
         </div>
       </div>
 
-      <div className={"row " + styles.card_rw}>
+      <div className="row card-rw">
         <div className="container">
-          <h2 className={styles.padding}>Popular categories</h2>
-          <div className={"row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 " + styles['scrolling-wrapper']}>
+          <h2 className="custom-padding">Popular categories</h2>
+          <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'musician'} passHref>
                 <Card hoverable style={{ width: '100%', borderRadius: '20px' }} cover={<Image src={musiciansImg} alt="cards" />}>
@@ -97,9 +97,9 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
       </div>
       <div className="row">
         <div className="container">
-          <div className={"row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 " + styles['scrolling-wrapper']}>
+          <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
             <div className="col-12">
-              <Image className={styles.searchbox + styles['padding']} src={inspireImg} alt="Landing page" />
+              <Image className="searchbox custom-padding" src={inspireImg} alt="Landing page" />
             </div>
           </div>
         </div>
@@ -107,12 +107,12 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
 
       <div className="row">
         <div className="col-12" >
-          <h2 className={styles.padding}>Featured artists</h2>
+          <h2 className="custom-padding">Featured artists</h2>
         </div>
       </div>
 
       {/* look at gallery options here: https://freefrontend.com/bootstrap-galleries/ , https://thetuteur.com/react-image-gallery-with-masonry-js/, https://codepen.io/rperry1886/pen/KKwbQNP*/}
-      <div className={styles["grid-container"]}>
+      <div className="grid-container">
         {data.map((image) => (
           <div key={image.id}>
             <Image className={`grid-item grid-item-${image}`} src={image.src} alt={image.alt} width='500' height='500' placeholder='blur' blurDataURL={image.src} />
