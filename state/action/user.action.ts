@@ -1,4 +1,4 @@
-import { User } from "types/core";
+import { User } from "types/model/user.model";
 
 export const FETCH_USER_DATA = 'USER/FETCH_USER_DATA'
 export const SET_USER_DATA = 'USER/SET_USER_DATA'
