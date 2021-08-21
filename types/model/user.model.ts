@@ -5,13 +5,15 @@ export interface User {
     lastName?: string;
     email: string;
     phoneNumber: number;
-    country: String;
-    profilePicUrl: String;
-    timezone: String;
-    bio: String;
+    country: string;
+    profilePicUrl: string;
+    timezone: string;
+    bio: string;
     age: number;
     lastActive: number;
     gender: string;
     createdAt: number;
     updatedAt: number;
+    skills: string[];
+    sample: any[]
 }
