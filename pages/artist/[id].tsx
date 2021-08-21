@@ -1,36 +1,48 @@
 import Title from '../../components/title';
 import Image from 'next/image';
 import avatar from '../../public/images/avatar.png'
-import React from 'react';
+import React, { useEffect } from 'react';
 
 /**
  * @description On Click tab active the window
- * @param evt 
- * @param actionName 
+ * @param actionName contain the string from which button click
  */
 const toggleTab = (actionName) => {
   let i;
-  let tabcontent;
-  let tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
+  let tabContent;
+  let tabLinks;
+  tabContent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabContent.length; i++) {
+    tabContent[i].style.display = "none";
   }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  tabLinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tabLinks.length; i++) {
+    tabLinks[i].className = tabLinks[i].className.replace(" active", "");
   }
   document.getElementById(actionName).style.display = "block";
-  document.getElementById(`${actionName}_1`).classList.add('active');;
-
+  document.getElementById(`${actionName}_1`).classList.add('active');
 };
 
 const ArtistProfile = () => {
-
   return (
     <>
       <Title title="Artist Profile" />
       <div className="artist-profile-page container">
+        <div className="absolute-div">
+          <div className="col-xl-5 col-md-5 col-sm-5">
+            <div className="wrapper">
+              <div className="grouped">
+                <input className="input" placeholder="Theme" type="text" />
+              </div>
+              <div className="grouped">
+                <textarea placeholder="Note" name="w3review" rows={4} cols={32}></textarea>
+              </div>
+              <div className="grouped">
+                <button className="btn btn-success" type="button">Send Collab Request</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="row">
           <div className="col-xl-12 col-md-12 col-sm-12">
             <div className="avtr">
@@ -56,7 +68,7 @@ const ArtistProfile = () => {
           <div className="col-xl-12 col-md-12 col-sm-12 _tab-p">
             <div className="col-xl-4 col-md-4 col-sm-4">
               <div className="tab">
-                <button id="about_1" className="tablinks active about" onClick={() => toggleTab( 'about')}>About</button>
+                <button id="about_1" className="tablinks active about" onClick={() => toggleTab('about')}>About</button>
                 <button id="sample_1" className="tablinks sample" onClick={() => toggleTab('sample')}>My sample work</button>
               </div>
             </div>
