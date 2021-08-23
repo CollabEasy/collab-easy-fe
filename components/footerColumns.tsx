@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
-import styles from '../styles/discover.scss';
-import { FooterColumn } from 'types/model/footer.model';
+import { FooterColumn } from 'types/model';
 
 interface FooterColumnsProps {
   columns: FooterColumn[]

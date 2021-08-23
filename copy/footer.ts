@@ -1,5 +1,5 @@
 import { Config } from "config/config";
-import { FooterColumn } from "../types/model/footer.model";
+import { FooterColumn } from "types/model/footer";
 
 export const footerLinkColumns: FooterColumn[] = [
   {

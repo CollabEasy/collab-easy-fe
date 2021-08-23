@@ -1,13 +1,12 @@
 // import Link from "next/link";
 import { connect } from "react-redux";
-import styles from '../styles/navbar.scss';
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer';
 import Search from './search';
 import { openLoginModalAction } from "../state/action";
 import { Dispatch } from "redux";
-import { AppState } from "types/core";
 import { /* Menu, Dropdown, */ Button } from 'antd';
+import { AppState } from "types/states";
 // import { UserOutlined, SettingOutlined } from '@ant-design/icons';
 
 /* const menu = (

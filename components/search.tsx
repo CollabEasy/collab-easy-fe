@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
-import styles from '../styles/searchBar.scss';
+
 const Search = () => {
     const [inputVal, setInputVal] = useState('');
     

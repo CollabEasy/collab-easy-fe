@@ -11,12 +11,12 @@ import singersImg from '../public/images/singers.png';
 import paintersImg from '../public/images/painters.png';
 import dancersImg from '../public/images/dancers.png';
 import inspireImg from '../public/images/inspire.png';
-import styles from '../styles/discover.scss';
 import { Card } from 'antd';
 import { useRoutesContext } from "../components/routeContext";
 import { data } from 'copy';
 import React, { useEffect, useState } from 'react';
-import { AppState, LoginModalDetails } from 'types/core';
+import { LoginModalDetails } from 'types/model';
+import { AppState } from 'types/states';
 
 const { Meta } = Card;
 

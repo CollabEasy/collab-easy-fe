@@ -1,7 +1,4 @@
-import { UserState } from './states/user.state';
-import { HomeState } from './states/home.state';
-import { WebRoute } from './model/web-route.model';
-
+import { WebRoute } from "./model";
 
 export interface AppRouteCreators {
   toWondorHome: () => WebRoute;
@@ -11,9 +8,4 @@ export interface AppRouteCreators {
   toArtist: () => WebRoute;
   toProfile: ({ id: string }) => WebRoute;
   toArtistProfile: (typeOfArtist: string | string [], id: string) => WebRoute;
-}
-
-export interface AppState {
-  home: HomeState;
-  user: UserState;
 }

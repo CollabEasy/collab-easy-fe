@@ -1,3 +1,3 @@
 export interface LoginModalDetails {
-    openModal: boolean;
+  openModal: boolean;
 }

@@ -1,6 +1,5 @@
 import React from 'react'
-import { FooterColumn } from 'types/model/footer.model';
-import styles from '../styles/discover.scss';
+import { FooterColumn } from 'types/model/footer';
 import { FooterColumns } from './footerColumns';
 
 export interface FooterProps {
