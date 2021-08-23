@@ -1,5 +1,5 @@
 import { combineReducers } from "redux"
-import { AppState } from "types/core";
+import { AppState } from "types/states";
 import home from "./home.reducer"
 import user from "./user.reducer";
 

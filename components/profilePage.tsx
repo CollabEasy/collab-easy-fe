@@ -1,7 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { RightCircleFilled } from '@ant-design/icons';
-import styles from '../styles/profileModal.module.scss';
 import { Form, Switch, Modal, Button, Select } from 'antd';
 import Image from 'next/image';
 import landingPageImg from '../public/images/profile.png';
@@ -84,16 +83,16 @@ class ProfileModal extends React.Component {
           width={ windowWidth > 680 ? 900:450}
           bodyStyle={{padding:0}}
         >
-          <div className={styles["container"]}>
-            <div className={styles["left-image"]}>
+          <div className="container">
+            <div className="left-image">
                 <Image 
                     src={landingPageImg} 
                     alt="Profile left"
                     layout="fill"
                 />
             </div>
-            <div className={styles["profile-form"]}>
-                <div className={styles["profile-title"]}>
+            <div className="profile-form">
+                <div className="profile-title">
                     <h1>Welcome aborad,</h1>
                     <h1>Abhishek Arora</h1>
                 </div>
@@ -157,8 +156,8 @@ class ProfileModal extends React.Component {
                         <Switch defaultChecked/>
                     </Form.Item>
                     <Form.Item noStyle={true}>
-                        <div className={styles["submit-container"]}>
-                            <p className={styles["submit-text"]}>Let’s collaborate</p>
+                        <div className="submit-container">
+                            <p className="submit-text">Let’s collaborate</p>
                             <Button 
                                 type="text" 
                                 htmlType="submit" 

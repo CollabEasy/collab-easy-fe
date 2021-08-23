@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
-import styles from '../styles/searchBar.module.scss';
+
 const Search = () => {
     const [inputVal, setInputVal] = useState('');
     
@@ -14,13 +14,13 @@ const Search = () => {
 
     return (
         <>
-            <div className={styles["search-bar"]}>
-                <button className={styles["search-bar__submit"]}>
+            <div className="search-bar">
+                <button className="search-bar__submit">
                     <SearchOutlined style={{ fontSize: '20px'}} />
                 </button>
                 <input 
                     type="text" 
-                    className={styles["search-bar__input"]} 
+                    className="search-bar__input" 
                     placeholder="search artists"
                     aria-label="search"
                     value={inputVal}
@@ -30,7 +30,7 @@ const Search = () => {
                 {
                     inputVal.length > 0 && 
                     <button 
-                        className={styles["search-bar__cross"]}
+                        className="search-bar__cross"
                         onClick={clearInput}
                     >
                         <CloseOutlined style={{ fontSize: '16px', paddingBottom: '5px'}} />

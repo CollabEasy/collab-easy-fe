@@ -1,4 +1,5 @@
-import { AppRouteCreators, WebRoute } from "../types/core";
+import { WebRoute } from '../types/model/webRoute';
+import { AppRouteCreators } from "../types/core";
 import { Config } from "./config";
 
 export const routes: AppRouteCreators = {

@@ -1,5 +1,5 @@
 import { HOME, OPEN_LOGIN_MODAL, CLOSE_LOGIN_MODAL } from "state/action";
-import { HomeState } from "types/core";
+import { HomeState } from "types/states";
 
 const initialState: HomeState = {
   homeDetails: {},

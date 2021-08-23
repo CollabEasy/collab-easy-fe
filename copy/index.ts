@@ -1,4 +1,4 @@
-import { GridData } from "types/core";
+import { GridData } from "types/model/grid";
 
 export const data: GridData[] = [
   {

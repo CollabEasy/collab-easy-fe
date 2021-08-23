@@ -1,13 +1,12 @@
 // import Link from "next/link";
 import { connect } from "react-redux";
-import styles from '../styles/navbar.module.scss';
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer';
 import Search from './search';
 import { openLoginModalAction } from "../state/action";
 import { Dispatch } from "redux";
-import { AppState } from "types/core";
 import { /* Menu, Dropdown, */ Button } from 'antd';
+import { AppState } from "types/states";
 // import { UserOutlined, SettingOutlined } from '@ant-design/icons';
 
 /* const menu = (
@@ -50,21 +49,21 @@ const NavBar: React.FC<NavBarProps> = ({
   useEffect(() => {
     const navBarElement = document.querySelector('#p-h');
     if(!inView && entry !== undefined) {
-      navBarElement.classList.add(styles['scroll-effect'])
+      navBarElement.classList.add('scroll-effect')
     }
 
     if(inView && entry !== undefined) {
-      navBarElement.classList.remove(styles['scroll-effect'])
+      navBarElement.classList.remove('scroll-effect')
     }
   }, [inView, entry])
 
   return (
     <div className="row">
-      <div id="p-h" className={"col-lg-12 col-md-12 col-sm-12 " + styles['nv-f-t']}>
-        <div className={styles.appLogo}>
+      <div id="p-h" className="col-lg-12 col-md-12 col-sm-12 nv-f-t">
+        <div className="app-logo">
           <h2>Wondor</h2>
         </div>
-        <div className={styles["navbar-search"]}>
+        <div className="navbar-search">
           <Search></Search>
         </div>
         <Button type="primary" size="large">Sign Up</Button>
@@ -82,7 +81,7 @@ const NavBar: React.FC<NavBarProps> = ({
           </Dropdown>
         </div> */}
       </div>
-      <div ref={ref} className={styles['dummy-div']}>
+      <div ref={ref} className="dummy-div">
       </div>
     </div>
   )

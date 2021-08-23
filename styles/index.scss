@@ -1,5 +1,11 @@
 //common
 @import "./common/globalStyles.scss";
+@import "discover.scss";
 @import "dynamic.artist.scss";
+@import "home.scss";
+@import "navbar.scss";
+@import "profileModal.scss";
+@import "searchBar.scss";
+
 
 .f-w-b {font-weight: $font-bolder};

@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
-import styles from '../styles/index.module.scss';
-import { FooterColumn } from 'types/model/footer.model';
+import { FooterColumn } from 'types/model';
 
 interface FooterColumnsProps {
   columns: FooterColumn[]
@@ -31,7 +30,7 @@ export const FooterColumns: FC<FooterColumnsProps> = ({ columns }) => (
   <>
     {columns.map((column, index) => (
       <div key={index} className="col-md-4 col-xl-3">
-        <ul className={styles["nav-list"]}>
+        <ul className="nav-list">
           {column.links.map((link, index) =>
             <FooterLink key={index} title={link.name} href={link.url} />
           )}

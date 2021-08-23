@@ -1,10 +1,10 @@
 @import './common/_variable';
 @import './common/_font-size';
 
-.card_rw {
+.card-rw {
 	padding-top: 10vh;
 }
-.padding {
+.custom-padding {
   padding-left: 2vw;
 	padding-right: 2vw;
 }
@@ -73,6 +73,6 @@
   }
 }
 
-.footer {
+.custom-footer {
   padding-top: 2rem;
 }
