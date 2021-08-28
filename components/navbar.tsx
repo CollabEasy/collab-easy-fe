@@ -66,7 +66,7 @@ const NavBar: React.FC<NavBarProps> = ({
         <div className="navbar-search">
           <Search></Search>
         </div>
-        <Button type="primary" size="large">Sign Up</Button>
+        <Button type="primary" size="large" onClick={openLoginModal}>Sign Up</Button>
         {/* <div className={styles["navbar-menu"]}>
           <Dropdown 
             overlay={menu} 
