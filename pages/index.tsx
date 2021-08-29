@@ -2,10 +2,9 @@ import Title from '../components/title'
 import ProfileModal from '../components/profilePage';
 import Link from "next/link";
 import { connect } from "react-redux";
-// import { useSelector } from 'react-redux'
-// import { AppState } from '../types/core';
 import Image from 'next/image';
-import landingPageImg from '../public/images/landing.png';
+import landingDesktopImg from '../public/images/landing-desktop.png';
+import landingMobileImg from '../public/images/landing-mobile.png';
 import musiciansImg from '../public/images/musicians.png';
 import singersImg from '../public/images/singers.png';
 import paintersImg from '../public/images/painters.png';
@@ -41,9 +40,14 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
       )
       }
       <div className="row">
-        <div id="discoverImg" className="col-md-12 m-0 p-0">
-          <Image src={landingPageImg} alt="Landing page" />
+        <div id="discoverDesktopImg" className="col-md-12 m-0 p-0">
+          <Image src={landingDesktopImg} alt="Landing page" />
         </div>
+        <div id="discoverMobileImg" className="col-md-12 m-0 p-0">
+          <Image src={landingMobileImg} alt="Landing page" />
+        </div>
+        <div class="top-left"><h1>Meet artists to collaborate with on your next big idea.</h1></div>
+        <div class="bottom-left">Wondor connects you with artists from around the globe.  Work with them to convert your idea into a masterpiece because we believe together we create better!</div>
       </div>
 
       <div className="row card-rw">

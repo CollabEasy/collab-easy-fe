@@ -28,6 +28,10 @@
         height: 47px;
         width: 10%;
         background: white;
+
+        &__search-icon {
+            font-size: 20px;
+        }
     }
 
     &__cross {
@@ -37,4 +41,68 @@
         background: white;
     }
 
+}
+
+// Please write media query for all screen sizes below this line.
+
+@media only screen and (max-width: 1024px) and (min-width: 993px) {
+
+} 
+
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+    .search-bar{
+        display: flex;
+        border-radius: 5px;
+        height: 35px;
+        width: 80%;
+
+        &__input {
+            font-size: 1rem;
+        }
+
+        &__submit {
+            &__search-icon {
+                font-size: 15px;
+            }
+        }
+    }
+
+} 
+
+@media only screen and (max-width: 767px) and (min-width: 601px) {
+    .search-bar{
+        display: flex;
+        border-radius: 5px;
+        height: 35px;
+        width: 80%;
+
+        &__input {
+            font-size: 1rem;
+        }
+
+        &__submit {
+            &__search-icon {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .search-bar{
+        display: flex;
+        border-radius: 5px;
+        height: 35px;
+        width: 90%;
+
+        &__input {
+            font-size: .8rem;
+        }
+
+        &__submit {
+            &__search-icon {
+                font-size: 15px;
+            }
+        }
+    }
 }

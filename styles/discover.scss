@@ -1,6 +1,10 @@
 @import './common/_variable';
 @import './common/_font-size';
 
+#discoverMobileImg {
+  display: none;
+}
+
 .card-rw {
 	padding-top: 10vh;
 }
@@ -75,4 +79,40 @@
 
 .custom-footer {
   padding-top: 2rem;
+}
+
+.top-left {
+  position: absolute;
+  left: 20px;
+  top: 40%;
+
+  width:20%;
+  word-wrap: break-word;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 38px;
+}
+
+.bottom-left {
+  position: absolute;
+  left: 20px;
+  top: 60%;
+
+  width:20%;
+  word-wrap: break-word;
+  font-size: 22px;
+  font-weight: 200;
+}
+
+/* Portrait and Landscape iPhone 4 and 4S */
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 480px)
+and (-webkit-min-device-pixel-ratio: 2) {
+  #discoverMobileImg{
+      display: block;
+  }
+  #discoverDesktopImg{
+      display: none;
+  }
 }
