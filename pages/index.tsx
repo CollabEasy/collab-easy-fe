@@ -40,14 +40,16 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
       )
       }
       <div className="row">
-        <div id="discoverDesktopImg" className="col-md-12 m-0 p-0">
+        <div id="landing-desktop-img" className="col-md-12 m-0 p-0">
           <Image src={landingDesktopImg} alt="Landing page" />
         </div>
-        <div id="discoverMobileImg" className="col-md-12 m-0 p-0">
+        <div id="landing-mobile-img" className="col-md-12 m-0 p-0">
           <Image src={landingMobileImg} alt="Landing page" />
         </div>
-        <div class="top-left"><h1>Meet artists to collaborate with on your next big idea.</h1></div>
-        <div class="bottom-left">Wondor connects you with artists from around the globe.  Work with them to convert your idea into a masterpiece because we believe together we create better!</div>
+        <div id="text-content">
+          <h1>Meet artists to collaborate with on your next big idea.</h1>
+          <p>Wondor connects you with artists from around the globe.  Work with them to convert your idea into a masterpiece because we believe together we create better!</p>
+        </div>
       </div>
 
       <div className="row card-rw">

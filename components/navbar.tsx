@@ -87,7 +87,7 @@ const NavBar: React.FC<NavBarProps> = ({
         </div>
         
         <Button id="sign-up-desktop" type="primary" >Sign Up</Button>
-        <Button id="sign-up-mobile"  type="primary" shape="circle"><MenuOutlined id="menu-icon" /></Button>
+        <MenuOutlined id="sign-up-mobile" />
 
         {/* <div className={styles["navbar-menu"]}>
           <Dropdown 
