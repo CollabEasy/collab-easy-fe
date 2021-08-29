@@ -2,8 +2,6 @@ import Title from '../components/title'
 import ProfileModal from '../components/profilePage';
 import Link from "next/link";
 import { connect } from "react-redux";
-// import { useSelector } from 'react-redux'
-// import { AppState } from '../types/core';
 import Image from 'next/image';
 import landingPageImg from '../public/images/landing.png';
 import musiciansImg from '../public/images/musicians.png';
