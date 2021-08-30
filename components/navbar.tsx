@@ -11,7 +11,7 @@ import { MenuOutlined } from '@ant-design/icons';
 import { AppState } from "types/states";
 import Image from 'next/image';
 import titleDesktopImg from '../public/images/title-desktop.svg';
-import titleMobileImg from '../public/images/title-mobile.svg';
+import titleMobileImg from '../public/images/logo.svg';
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 
@@ -87,7 +87,9 @@ const NavBar: React.FC<NavBarProps> = ({
         </div>
         
         <Button id="sign-up-desktop" type="primary" >Sign Up</Button>
-        <MenuOutlined id="sign-up-mobile" />
+        <Link href="" passHref>
+          <MenuOutlined id="sign-up-mobile" />
+        </Link>
 
         {/* <div className={styles["navbar-menu"]}>
           <Dropdown 
