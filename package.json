@@ -12,6 +12,7 @@
     "@auth0/nextjs-auth0": "^1.5.0",
     "@zeit/next-sass": "^1.0.1",
     "antd": "^4.16.9",
+    "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
     "next": "11.0.1",
     "react": "17.0.2",
