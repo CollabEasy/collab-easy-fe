@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
 import { FooterColumn } from 'types/model';
-
 interface FooterColumnsProps {
   columns: FooterColumn[]
 }

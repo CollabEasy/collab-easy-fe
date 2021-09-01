@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import Title from '../../components/title';
+import Title from 'components/title';
 import { useRouter } from 'next/router'
-import landingPageImg from '../../public/images/listing.png';
-import dancersImg from '../../public/images/dancers.png';
+import landingPageImg from 'public/images/listing.png';
+import dancersImg from 'public/images/dancers.png';
 import { Card } from 'antd';
 import Link from "next/link";
 import { useRoutesContext } from "../../components/routeContext";

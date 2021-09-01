@@ -1,6 +1,6 @@
-import { WebRoute } from '../types/model/webroute';
-import { AppRouteCreators } from "../types/core";
-import { Config } from "./config";
+import { AppRouteCreators } from 'types/core';
+import { WebRoute } from 'types/model/webroute';
+import { Config } from './config';
 
 export const routes: AppRouteCreators = {
   toWondorHome: () => ({ href: "/" }),
