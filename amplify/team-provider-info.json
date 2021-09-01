@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-wondor-dev-152658-authRole",
+      "UnauthRoleArn": "arn:aws:iam::939424107971:role/amplify-wondor-dev-152658-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::939424107971:role/amplify-wondor-dev-152658-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-wondor-dev-152658-deployment",
+      "UnauthRoleName": "amplify-wondor-dev-152658-unauthRole",
+      "StackName": "amplify-wondor-dev-152658",
+      "StackId": "arn:aws:cloudformation:us-west-2:939424107971:stack/amplify-wondor-dev-152658/6a211af0-fbbc-11eb-85df-020490609721",
+      "AmplifyAppId": "d29obdq0sqmppx"
+    }
+  }
+}

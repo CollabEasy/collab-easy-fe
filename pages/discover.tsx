@@ -1,6 +1,6 @@
 import Title from 'components/title'
 import { useSelector } from 'react-redux'
-import { AppState } from 'types/core';
+import { AppState } from 'types/states';
 
 const Login = () => {
   const myState = useSelector((state: AppState) => {

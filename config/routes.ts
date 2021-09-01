@@ -1,5 +1,6 @@
-import { AppRouteCreators, WebRoute } from "types/core";
-import { Config } from "./config";
+import { AppRouteCreators } from 'types/core';
+import { WebRoute } from 'types/model/webroute';
+import { Config } from './config';
 
 export const routes: AppRouteCreators = {
   toWondorHome: () => ({ href: "/" }),
@@ -11,6 +12,10 @@ export const routes: AppRouteCreators = {
     href: '/profile/[id]',
     as: `/profile/${id}`,
   }),
+  toArtistProfile: (artistType, id) => ({
+    href: '/artist/[id]',
+    as: `/artist/${id}?type=${artistType}`,
+  })
 };
 
 

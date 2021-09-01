@@ -1,6 +1,6 @@
 import { mockUser } from "api/user";
-import { SET_USER_DATA, SET_USER_LOGGED_IN } from "state/action/user.action";
-import { UserState } from "types/core";
+import { SET_USER_DATA, SET_USER_LOGGED_IN } from "state/action";
+import { UserState } from "types/states";
 
 const initialState: UserState = {
   user: mockUser('1234'),

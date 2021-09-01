@@ -1,5 +1,5 @@
 import { Config } from "config/config";
-import { User } from "types/core";
+import { User } from "types/model/user";
 import api from "./client";
 
 export const mockUser = (id: string): User => ({
@@ -18,11 +18,13 @@ export const mockUser = (id: string): User => ({
   gender: "Male",
   createdAt: 123,
   updatedAt: 123,
+  skills: ['skill1', 'skill2'],
+  sample: ['url1', 'url2']
 })
 
 export const getUserData = async (id: string): Promise<User> => {
   // uncomment below line to fetch data from user api
- // const result = await api.get<User>(`${Config.backendEndpoint}/user/${id}`);
+ // const result = await api.call<User>(`${Config.backendEndpoint}/user/${id}`);
   //return result;
   return mockUser(id)
 }
