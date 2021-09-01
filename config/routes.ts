@@ -1,4 +1,4 @@
-import { WebRoute } from '../types/model/webRoute';
+import { WebRoute } from '../types/model/webroute';
 import { AppRouteCreators } from "../types/core";
 import { Config } from "./config";
 
