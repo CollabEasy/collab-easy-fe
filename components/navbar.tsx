@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer';
 import Search from './search';
-import { openLoginModalAction } from "../state/action";
 import { Dispatch } from "redux";
 import { /* Menu, Dropdown, */ Button  } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
@@ -15,7 +14,7 @@ import titleMobileImg from '../public/images/logo.svg';
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 
-
+import { openLoginModalAction } from "state/action";
 // import { UserOutlined, SettingOutlined } from '@ant-design/icons';
 
 /* const menu = (

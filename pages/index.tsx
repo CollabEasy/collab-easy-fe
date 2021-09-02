@@ -1,5 +1,5 @@
-import Title from '../components/title'
-import ProfileModal from '../components/profilePage';
+import Title from 'components/title'
+import ProfileModal from 'components/profilePage';
 import Link from "next/link";
 import { connect } from "react-redux";
 import Image from 'next/image';
@@ -11,7 +11,7 @@ import paintersImg from '../public/images/painters.png';
 import dancersImg from '../public/images/dancers.png';
 import inspireImg from '../public/images/inspire.png';
 import { Card } from 'antd';
-import { useRoutesContext } from "../components/routeContext";
+import { useRoutesContext } from "components/routeContext";
 import { data } from 'copy';
 import React, { useEffect, useState } from 'react';
 import { LoginModalDetails } from 'types/model';
