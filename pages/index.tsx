@@ -3,12 +3,13 @@ import ProfileModal from 'components/profilePage';
 import Link from "next/link";
 import { connect } from "react-redux";
 import Image from 'next/image';
-import landingPageImg from 'public/images/landing.png';
-import musiciansImg from 'public/images/musicians.png';
-import singersImg from 'public/images/singers.png';
-import paintersImg from 'public/images/painters.png';
-import dancersImg from 'public/images/dancers.png';
-import inspireImg from 'public/images/inspire.png';
+import landingDesktopImg from '../public/images/landing-desktop.png';
+import landingMobileImg from '../public/images/landing-mobile.png';
+import musiciansImg from '../public/images/musicians.png';
+import singersImg from '../public/images/singers.png';
+import paintersImg from '../public/images/painters.png';
+import dancersImg from '../public/images/dancers.png';
+import inspireImg from '../public/images/inspire.png';
 import { Card } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { data } from 'copy';
@@ -39,8 +40,15 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
       )
       }
       <div className="row">
-        <div id="discoverImg" className="col-md-12 m-0 p-0">
-          <Image src={landingPageImg} alt="Landing page" />
+        <div id="landing-desktop-img" className="col-md-12 m-0 p-0">
+          <Image src={landingDesktopImg} alt="Landing page" />
+        </div>
+        <div id="landing-mobile-img" className="col-md-12 m-0 p-0">
+          <Image src={landingMobileImg} alt="Landing page" />
+        </div>
+        <div id="text-content">
+          <h1>Meet artists to collaborate with on your next big idea.</h1>
+          <p>Wondor connects you with artists from around the globe.  Work with them to convert your idea into a masterpiece because we believe together we create better!</p>
         </div>
       </div>
 

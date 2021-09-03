@@ -80,7 +80,7 @@ const Search = () => {
         <>
             <div className="search-bar">
                 <button className="search-bar__submit">
-                    <SearchOutlined style={{ fontSize: '20px'}} />
+                    <SearchOutlined className="search-bar__submit__search-icon" />
                 </button>
                 <input 
                     type="text" 
