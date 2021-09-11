@@ -6,10 +6,13 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import App  from 'components/app';
 import { routes } from 'config/routes';
-import { mainStore } from 'state/store';
 import { UserProvider } from '@auth0/nextjs-auth0';
+import createStore from '../state/index'
 
-mainStore.subscribe(() => console.log(mainStore.getState(), '<---'))
+const makeStore = (preloadedState = {}) => {
+  return createStore(routes, preloadedState)
+}
+
 class WondorApp extends NextApp {
 
   static async getInitialProps({ Component, ctx }) {
@@ -25,10 +28,10 @@ class WondorApp extends NextApp {
     const config = {
       routes,
     }
-
+    const store = makeStore({})
     return (
       <UserProvider>
-        <Provider store={mainStore}>
+        <Provider store={store}>
           <App {...config}>
             <Component {...pageProps} />
           </App>

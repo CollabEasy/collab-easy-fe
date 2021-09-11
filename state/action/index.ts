@@ -1,2 +1,2 @@
-export *  from "./home.action";
-export * from "./user.action";
+export *  from "./homeAction";
+export * from "./userAction";
