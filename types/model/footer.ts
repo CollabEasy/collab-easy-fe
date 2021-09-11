@@ -7,5 +7,6 @@ interface FooterLink {
 }
 
 export interface FooterColumn {
-    links: FooterLink[]
+    links: FooterLink[],
+    name?:string
 }

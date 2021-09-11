@@ -3,6 +3,7 @@ import { FooterColumn } from "types/model/footer";
 
 export const footerLinkColumns: FooterColumn[] = [
   {
+    name:"For designers",
     links: [
       {
         name: "Get Inspired",
@@ -13,6 +14,7 @@ export const footerLinkColumns: FooterColumn[] = [
     ],
   },
   {
+    name:"Hire designers",
     links: [
       {
         name: "Terms & Policy",
