@@ -24,6 +24,11 @@ export interface LogicDeps {
   api: typeof APIs;
   routes: AppRouteCreators;
 }
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
 
 const createNewStore = (
   routes: AppRouteCreators,
@@ -36,9 +41,10 @@ const createNewStore = (
   const logicMiddleware = createLogicMiddleware(rootLogic, logicDeps);
   const enhancers = [applyMiddleware(logicMiddleware)];
   /* eslint-disable no-underscore-dangle */
-  if (typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION__) {
+  if (typeof window !== "undefined") {
+    const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose || compose;
     /* eslint-disable no-underscore-dangle */
-    enhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__());
+    enhancers.push(composeEnhancers);
   }
 
   const configureStore = compose(...enhancers)(createStore) as StoreCreator;
