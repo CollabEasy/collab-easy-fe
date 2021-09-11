@@ -3,8 +3,8 @@ import 'antd/dist/antd.css';
 import { RightCircleFilled } from '@ant-design/icons';
 import { Form, Switch, Modal, Button, Select } from 'antd';
 import Image from 'next/image';
-import landingPageImg from '../public/images/profile.png';
-// import SubmitImg from '../public/images/submit.png';
+import landingPageImg from 'public/images/profile.png';
+// import SubmitImg from 'public/images/submit.png';
 
 const layout = {
     labelCol: {

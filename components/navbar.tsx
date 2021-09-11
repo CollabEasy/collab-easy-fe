@@ -1,12 +1,20 @@
 // import Link from "next/link";
 import { connect } from "react-redux";
+import Link from "next/link";
 import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer';
 import Search from './search';
-import { openLoginModalAction } from "../state/action";
 import { Dispatch } from "redux";
-import { /* Menu, Dropdown, */ Button } from 'antd';
+import { /* Menu, Dropdown, */ Button  } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 import { AppState } from "types/states";
+import Image from 'next/image';
+import titleDesktopImg from '../public/images/title-desktop.svg';
+import titleMobileImg from '../public/images/logo.svg';
+import { useRoutesContext } from "../components/routeContext";
+import { routeToHref } from "config/routes";
+
+import { fetchUserData, openLoginModalAction } from "state/action";
 // import { UserOutlined, SettingOutlined } from '@ant-design/icons';
 
 /* const menu = (
@@ -45,6 +53,8 @@ const NavBar: React.FC<NavBarProps> = ({
   const openLoginModal = () => {
     openLoginModalAction()
   };
+  
+  const { toWondorHome } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = document.querySelector('#p-h');
@@ -60,13 +70,26 @@ const NavBar: React.FC<NavBarProps> = ({
   return (
     <div className="row">
       <div id="p-h" className="col-lg-12 col-md-12 col-sm-12 nv-f-t">
-        <div className="app-logo">
-          <h2>Wondor</h2>
+        <div id="app-logo-desktop">
+          <Link  href={routeToHref(toWondorHome())} passHref>
+            <Image src={titleDesktopImg}  alt="Landing page" />   
+          </Link>
         </div>
+        <div id="app-logo-mobile">
+          <Link  href={routeToHref(toWondorHome())} passHref>
+            <Image src={titleMobileImg}  alt="Landing page" /> 
+          </Link>
+        </div>
+
         <div className="navbar-search">
           <Search></Search>
         </div>
-        <Button type="primary" size="large">Sign Up</Button>
+        
+        <Button id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
+        <Link href="" passHref>
+          <MenuOutlined id="sign-up-mobile" />
+        </Link>
+
         {/* <div className={styles["navbar-menu"]}>
           <Dropdown 
             overlay={menu} 
@@ -94,7 +117,7 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openLoginModalAction: () => dispatch(openLoginModalAction()),
+  openLoginModalAction: () => dispatch(fetchUserData('1234')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

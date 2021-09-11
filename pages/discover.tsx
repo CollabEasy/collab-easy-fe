@@ -1,4 +1,4 @@
-import Title from '../components/title'
+import Title from 'components/title'
 import { useSelector } from 'react-redux'
 import { AppState } from 'types/states';
 

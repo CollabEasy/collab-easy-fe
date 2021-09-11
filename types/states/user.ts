@@ -1,6 +1,6 @@
 import { User } from "types/model";
 
 export interface UserState {
-  user: User;
+  user?: User;
   isLoggedIn: boolean;
 }

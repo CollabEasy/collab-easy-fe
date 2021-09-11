@@ -1,11 +1,11 @@
-import Title from '../../components/title'
+import Title from 'components/title'
 import { useDispatch } from 'react-redux'
 import { getUserData } from 'api/user';
 import { GetServerSideProps, NextPage } from 'next'
-import { setUserData } from 'state/action/user.action';
+import { setUserData } from 'state/action/userAction';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { User } from 'types/model/user';
+import { User } from 'types/model';
 
 interface ProfilePageProps {
   userData: User
