@@ -14,7 +14,7 @@ import titleMobileImg from '../public/images/logo.svg';
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 
-import { openLoginModalAction } from "state/action";
+import { fetchUserData, openLoginModalAction } from "state/action";
 // import { UserOutlined, SettingOutlined } from '@ant-design/icons';
 
 /* const menu = (
@@ -85,7 +85,7 @@ const NavBar: React.FC<NavBarProps> = ({
           <Search></Search>
         </div>
         
-        <Button id="sign-up-desktop" type="primary" >Sign Up</Button>
+        <Button id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
         <Link href="" passHref>
           <MenuOutlined id="sign-up-mobile" />
         </Link>
@@ -117,7 +117,7 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openLoginModalAction: () => dispatch(openLoginModalAction()),
+  openLoginModalAction: () => dispatch(fetchUserData('1234')),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

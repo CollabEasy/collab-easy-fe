@@ -3,7 +3,6 @@ import { SET_USER_DATA, SET_USER_LOGGED_IN } from "state/action";
 import { UserState } from "types/states";
 
 const initialState: UserState = {
-  user: mockUser('1234'),
   isLoggedIn: false
 };
 
@@ -12,7 +11,7 @@ const userReducer = (state = initialState, action): UserState => {
     case SET_USER_DATA:
       return {
         ...state,
-        user: action.payload
+        user: action.payload.data
       };
     case SET_USER_LOGGED_IN:
       return {
