@@ -1,5 +1,4 @@
-import { Config } from "config/config";
-import { CollabRequest } from "types/model/collab";
+import { CollabRequest } from "types/model";
 import api from "./client";
 
 // http://localhost:3000/api/v1/collab/request
@@ -13,9 +12,9 @@ import api from "./client";
 //   "collabDate" : "2021-08-22T17:40:52.764762"
 // }
 
-const getOptions = (params) => {
+const getOptions = (method, params?) => {
   return {
-    method: "post",
+    method: method,
     params: {
       params,
     },
@@ -26,8 +25,8 @@ export const sendCollabRequest = async (collabRequest: CollabRequest) => {
   // uncomment below line to send collab request
   try {
     return await api.call<CollabRequest>(
-      `${Config.baseUrl}/api/v1/collab/request`,
-      getOptions(collabRequest)
+      'api/v1/collab/request',
+      getOptions('post', collabRequest)
     );
   } catch (error) {
     throw error;
@@ -38,7 +37,8 @@ export const sendCollabRequest = async (collabRequest: CollabRequest) => {
 export const rejectCollabRequest = async (id: string) => {
   try {
     return await api.call(
-      `${Config.baseUrl}/v1/collab/reject/requestId/${id}`
+      `v1/collab/reject/requestId/${id}`,
+      getOptions('get')
     );
   } catch (error) {
     throw error;
@@ -46,10 +46,11 @@ export const rejectCollabRequest = async (id: string) => {
 }
 
 // http://localhost:3000/api/v1/collab/accept/requestId/23
-export const accpetCollabeRequest = async (id: string) => {
+export const acceptCollabRequest = async (id: string) => {
   try {
     return await api.call(
-      `${Config.baseUrl}/v1/collab/accept/requestId/${id}`
+      `v1/collab/accept/requestId/${id}`,
+      getOptions('get')
     );
   } catch (error) {
     throw error;

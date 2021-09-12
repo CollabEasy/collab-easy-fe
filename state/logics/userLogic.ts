@@ -1,11 +1,12 @@
-import { AppState, FSACreatorPayload } from 'types/states'
 import { createLogic } from 'redux-logic'
-import { fetchUserData, FETCH_USER_DATA, setUserData } from 'state/action'
+import { fetchUserDataAction, FETCH_USER_DATA, setUserDataAction } from 'state/action'
 import { LogicDeps } from 'state'
+import { AppState } from 'types/states'
+import { FSACreatorPayload } from 'types/states/FSACreator'
 
 export const fetchUserDataLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof fetchUserData>,
+  FSACreatorPayload<typeof fetchUserDataAction>,
   any,
   LogicDeps
 >({
@@ -15,9 +16,9 @@ export const fetchUserDataLogic = createLogic<
     console.log(getState(), 'printing state')
     console.log('userid to fetch data', userId)
     try {
-      const userData = await api.getUserData(userId)
+      const userData = await api.userApi.getUserData(userId)
       console.log('fetched user data from api', userData)
-      dispatch(setUserData(userData))
+      dispatch(setUserDataAction(userData))
     } catch (error) {
     } finally {
       done()
