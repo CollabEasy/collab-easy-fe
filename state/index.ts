@@ -40,12 +40,12 @@ const createNewStore = (
   };
   const logicMiddleware = createLogicMiddleware(rootLogic, logicDeps);
   const enhancers = [applyMiddleware(logicMiddleware)];
-  /* eslint-disable no-underscore-dangle */
-  if (typeof window !== "undefined") {
-    const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose || compose;
-    /* eslint-disable no-underscore-dangle */
-    enhancers.push(composeEnhancers);
-  }
+  // /* eslint-disable no-underscore-dangle */
+  // if (typeof window !== "undefined") {
+  //   const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose || compose;
+  //   /* eslint-disable no-underscore-dangle */
+  //   enhancers.push(composeEnhancers);
+  // }
 
   const configureStore = compose(...enhancers)(createStore) as StoreCreator;
   return configureStore(rootReducer, preloadedState);
