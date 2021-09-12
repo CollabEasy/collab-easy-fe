@@ -1,6 +1,9 @@
-import Title from 'components/title'
-import ProfileModal from 'components/profilePage';
+import Title from '../components/title'
+import ProfileModal from '../components/profilePage';
+import LoginModal from '../components/loginModal';
 import Link from "next/link";
+import Script from 'next/script';
+import Head from 'next/head';
 import { connect } from "react-redux";
 import Image from 'next/image';
 import landingDesktopImg from '../public/images/landing-desktop.png';
@@ -29,14 +32,18 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
   const { toArtist } = useRoutesContext();
 
   useEffect(() => {
-    if (false) setShowModal(true);
+    if (loginModalDetails.openModal){
+      setShowModal(true);
+    }else{
+      setShowModal(false);
+    }
   }, [loginModalDetails]);
   
   return (
     <>
       <Title title="Wondor | meet the artists" />
       {showModal && (
-        <ProfileModal></ProfileModal>
+        <LoginModal></LoginModal>
       )
       }
       <div className="row">
@@ -126,6 +133,7 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
           </div>
         ))}
       </div>
+      {/* <Script src="https://accounts.google.com/gsi/client" async defer /> */}
     </>
   )
 }
