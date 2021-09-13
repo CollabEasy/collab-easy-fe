@@ -2,55 +2,12 @@ import Title from '../../components/title';
 import Image from 'next/image';
 import avatar from '../../public/images/avatar.png'
 import React, { useEffect } from 'react';
-import { Table, Pagination, Space } from 'antd';
+import { Pagination, Space } from 'antd';
 import { Button, Card, Avatar } from 'antd';
 
 // https://ant.design/components/card/
 const { Meta } = Card;
 
-// https://ant.design/components/table/
-const dataSource = [
-  {
-    key: '1',
-    name: 'Mike',
-    theme: "independence day",
-    description: 'collage',
-  },
-  {
-    key: '2',
-    name: 'John',
-    theme: "Black Friday",
-    description: 'lets make a movie',
-  },
-];
-
-const columns = [
-  {
-    title: 'Sender Name',
-    dataIndex: 'name',
-    key: 'name',
-  },
-  {
-    title: 'Theme',
-    dataIndex: 'theme',
-    key: 'theme',
-  },
-  {
-    title: 'Description',
-    dataIndex: 'description',
-    key: 'description',
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: () => (
-      <Space size="middle">
-        <a>Accept </a>
-        <a>Reject</a>
-      </Space>
-    ),
-  },
-];
 
 
 /**
@@ -137,24 +94,43 @@ const ArtistProfile = () => {
               </div>
               <div id="collab" className="tabcontent">
                 <h4 className="f-w-b">Pending Request</h4>
-                <Table dataSource={dataSource} columns={columns} />
-                <h4 className="f-w-b">Scheduled Request</h4>
-                <Table dataSource={dataSource} columns={columns} />
-                <h4 className="f-w-b">Completed Request</h4>
-                <Table dataSource={dataSource} columns={columns} />
-                <h4 className="f-w-b">Rejected Request</h4>
-                
                 <Card
-                // we can put this card in loop here.
-                  style={{ width: 300 }}
-                  cover={
-                    <img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"/>
-                  }
+                  style={{ width: 200 }}
                   actions={[
                     <Button type="primary">Accept</Button>,
                     <Button type="primary">Reject</Button>,
-                  ]}
-                >
+                  ]} >
+                  <Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title="Independence Day"
+                    description="Let's make a vide on it."
+                  />
+                </Card>
+                <Pagination defaultCurrent={1} total={50}/>
+                <h4 className="f-w-b">Scheduled Request</h4>
+                <Card style={{ width: 200 }}
+                  actions={[
+                    <Button type="primary">Chat</Button>,
+                  ]} >
+                  <Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title="Independence Day"
+                    description="Let's make a vide on it."
+                  />
+                </Card>
+                <Pagination defaultCurrent={1} total={50}/>
+                <h4 className="f-w-b">Completed Request</h4>
+                
+                <Card style={{ width: 200 }}>
+                  <Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title="Independence Day"
+                    description="Let's make a vide on it."
+                  />
+                </Card>
+                <Pagination defaultCurrent={1} total={50}/>
+                <h4 className="f-w-b">Rejected Request</h4>
+                <Card style={{ width: 200 }}>
                   <Meta
                     avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                     title="Independence Day"
