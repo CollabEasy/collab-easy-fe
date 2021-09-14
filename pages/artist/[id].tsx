@@ -2,6 +2,13 @@ import Title from '../../components/title';
 import Image from 'next/image';
 import avatar from '../../public/images/avatar.png'
 import React, { useEffect } from 'react';
+import { Pagination, Space } from 'antd';
+import { Button, Card, Avatar } from 'antd';
+
+// https://ant.design/components/card/
+const { Meta } = Card;
+
+
 
 /**
  * @description On Click tab active the window
@@ -70,6 +77,7 @@ const ArtistProfile = () => {
               <div className="tab">
                 <button id="about_1" className="tablinks active about" onClick={() => toggleTab('about')}>About</button>
                 <button id="sample_1" className="tablinks sample" onClick={() => toggleTab('sample')}>My sample work</button>
+                <button id="collab_1" className="tablinks collab" onClick={() => toggleTab('collab')}>Collab Requests</button>
               </div>
             </div>
             <div className="col-xl-4 col-md-4 col-sm-4">
@@ -83,6 +91,53 @@ const ArtistProfile = () => {
               <div id="sample" className="tabcontent">
                 <p className="f-w-b">Sample</p>
                 <p>Sample 1</p>
+              </div>
+              <div id="collab" className="tabcontent">
+                <h4 className="f-w-b">Pending Request</h4>
+                <Card
+                  style={{ width: 200 }}
+                  actions={[
+                    <Button type="primary">Accept</Button>,
+                    <Button type="primary">Reject</Button>,
+                  ]} >
+                  <Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title="Independence Day"
+                    description="Let's make a vide on it."
+                  />
+                </Card>
+                <Pagination defaultCurrent={1} total={50}/>
+                <h4 className="f-w-b">Scheduled Request</h4>
+                <Card style={{ width: 200 }}
+                  actions={[
+                    <Button type="primary">Chat</Button>,
+                  ]} >
+                  <Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title="Independence Day"
+                    description="Let's make a vide on it."
+                  />
+                </Card>
+                <Pagination defaultCurrent={1} total={50}/>
+                <h4 className="f-w-b">Completed Request</h4>
+                
+                <Card style={{ width: 200 }}>
+                  <Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title="Independence Day"
+                    description="Let's make a vide on it."
+                  />
+                </Card>
+                <Pagination defaultCurrent={1} total={50}/>
+                <h4 className="f-w-b">Rejected Request</h4>
+                <Card style={{ width: 200 }}>
+                  <Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title="Independence Day"
+                    description="Let's make a vide on it."
+                  />
+                </Card>
+                <Pagination defaultCurrent={1} total={50}/>
               </div>
             </div>
           </div>
