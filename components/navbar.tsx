@@ -117,7 +117,7 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openLoginModalAction: () => dispatch(fetchUserData('1234')),
+  openLoginModalAction: () => dispatch(openLoginModalAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
