@@ -23,12 +23,14 @@ import { AppState } from 'types/states';
 const { Meta } = Card;
 
 export interface HomeProps {
-  homeDetails: any
-  loginModalDetails: LoginModalDetails
+ // homeDetails: any
+  loginModalDetails: LoginModalDetails,
+  userLoginData: any
 }
 
-const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
+const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const { toArtist } = useRoutesContext();
 
   useEffect(() => {
@@ -38,13 +40,24 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
       setShowModal(false);
     }
   }, [loginModalDetails]);
+
+  useEffect(() => {
+    if ( true){
+      setShowModal(false);
+      setShowProfileModal(true);
+    }
+  }, [userLoginData])
   
   return (
     <>
       <Title title="Wondor | meet the artists" />
-      {showModal && (
-        <LoginModal></LoginModal>
-      )
+      { showModal && (
+          <LoginModal></LoginModal>
+        )
+      }
+      { showProfileModal && (
+          <ProfileModal></ProfileModal>
+        )
       }
       <div className="row">
         <div id="landing-desktop-img" className="col-md-12 m-0 p-0">
@@ -139,7 +152,8 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
 }
 
 const mapStateToProps = (state: AppState) => ({
-  loginModalDetails: state.home.loginModalDetails
+  loginModalDetails: state.home.loginModalDetails,
+  userLoginData: state.user.userLoginData
 })
 
 export default connect(mapStateToProps, null)(Home);

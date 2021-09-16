@@ -18,7 +18,7 @@ export const setUserData = (data: User) => ({
   }
 })
 
-export const setUserLoggedIn = (data: Login) => ({
+export const setUserLoggedIn = (data: any) => ({
   type: SET_USER_LOGGED_IN,
   payload: {
     data,

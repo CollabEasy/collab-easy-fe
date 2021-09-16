@@ -112,7 +112,7 @@ const NavBar: React.FC<NavBarProps> = ({
 
 const mapStateToProps = (state: AppState) => {
   return {
-    homeReducer: state.home,
+    homeReducer: state.home
   };
 };
 

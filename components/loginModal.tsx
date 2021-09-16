@@ -26,6 +26,7 @@ const LoginModal: React.FC<NavBarProps> = ({ closeLoginModalAction, fetchLoginDa
   const OnSuccessCallback = (response) => {
     let { tokenId } = response;
 		console.log("responseGoogle: ", response);
+		console.log("tokenId: ", tokenId);
 		fetchLoginData(tokenId);
 	};
 	

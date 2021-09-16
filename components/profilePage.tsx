@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
 import { RightCircleFilled } from '@ant-design/icons';
 import { Form, Switch, Modal, Button, Select } from 'antd';
 import Image from 'next/image';
 import landingPageImg from 'public/images/profile.png';
+import { connect } from "react-redux";
+import { AppState } from 'types/states';
+import { fetchArtistCategoriesData } from 'state/action/artistAction';
 // import SubmitImg from 'public/images/submit.png';
 
 const layout = {
@@ -33,52 +36,51 @@ function handleChange(value) {
   console.log(`selected ${value}`);
 }
 
-class ProfileModal extends React.Component {
-  state = {
-    loading: false,
-    visible: true,
-    windowWidth: 1000,
+const ProfileModal: React.FC<{ getArtistCategories: any }> = ({ getArtistCategories }) => {
+
+  const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const windowWidth = 1000;
+
+  const showModal = () => {
+    setVisible(true);
   };
 
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
+  const handleCancel = () => {
+    setVisible(false);
   };
 
-  handleCancel = () => {
-    this.setState({ visible: false });
-  };
-
-  onFinish = (values: any) => {
+  const onFinish = (values: any) => {
     console.log('Success:', values);
     alert(JSON.stringify(values));
-    this.handleCancel();
+    handleCancel();
   };
   
-  onFinishFailed = (errorInfo: any) => {
+  const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
   
-  getModalWidth = (): number => {
+  const getModalWidth = (): number => {
       const width = window.innerWidth;
       console.log(width);
       if (width < 680) return 450;
       return 900;
   }
-  
-  componentDidMount() {
-    
-    this.setState({ windowWidth: window.innerWidth });
-  }
-  render() {
-    const { visible, loading, windowWidth } = this.state;
+
+  useEffect(() => {
+    console.log("landed here------");
+    getArtistCategories();
+  }, [])
+
+  // useEffect(() => {
+  //   console.log("artistCategories------", artistCategories);
+  // }, [artistCategories])
     return (
       <>
         <Modal
           visible={visible}
           destroyOnClose={true}
-          onCancel={this.handleCancel}
+          onCancel={handleCancel}
           footer={null}
           width={ windowWidth > 680 ? 900:450}
           bodyStyle={{padding:0}}
@@ -102,8 +104,8 @@ class ProfileModal extends React.Component {
                 <Form 
                     {...layout} 
                     layout="vertical" 
-                    onFinish={this.onFinish}
-                    onFinishFailed={this.onFinishFailed}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
                     requiredMark={false}
                 >
                     <Form.Item 
@@ -177,7 +179,18 @@ class ProfileModal extends React.Component {
         </Modal>
       </>
     );
+
+}
+
+const mapStateToProps = (state: AppState) => {
+  console.log(state, "state")
+  return {
+   // artistCategories: state.artist.artistCategories
   }
 }
 
-export default ProfileModal;
+const mapDispatchToProps = (dispatch) => ({
+  getArtistCategories: () => dispatch(fetchArtistCategoriesData())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileModal);
