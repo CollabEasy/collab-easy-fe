@@ -1,11 +1,13 @@
 import { combineReducers } from "redux"
 import { AppState } from "types/states";
 import home from "./reducers/homeReducer"
-import user from "./reducers/userReducer";
+import user from "./reducers/userReducer"
+import collab from "./reducers/collabReducer"
 
 const rootReducer = combineReducers<AppState>({
   home,
-  user
+  user,
+  collab
 });
 
 export default rootReducer

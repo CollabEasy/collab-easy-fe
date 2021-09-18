@@ -1,25 +1,43 @@
-import { SEND_COLLAB_REQUEST, ACCEPT_COLLAB_REQUEST, REJECT_COLLAB_REQUEST } from "state/action";
-import { UserState } from "types/states";
+import {
+  SET_ACTIVE_COLLAB_REQUEST_DATA,
+  SET_COMPLETED_COLLAB_REQUEST_DATA,
+  SET_PENDING_COLLAB_REQUEST_DATA,
+  SET_REJECTED_COLLAB_REQUEST_DATA,
+} from "state/action";
+import { CollabRequestState } from "types/states/collab";
 
-const initialState: UserState = {
-  isLoggedIn: false
+const initialState: CollabRequestState = {
+  active: [],
+  pending: [],
+  rejected: [],
+  completed: [],
 };
 
-const collabReducer = (state = initialState, action): UserState => {
+const collabReducer = (state = initialState, action): CollabRequestState => {
   switch (action.type) {
-    case SEND_COLLAB_REQUEST:
+    case SET_PENDING_COLLAB_REQUEST_DATA:
       return {
         ...state,
-        user: action.payload.data
+        pending: action.payload.data,
       };
-    case REJECT_COLLAB_REQUEST:
+    case SET_ACTIVE_COLLAB_REQUEST_DATA:
       return {
         ...state,
-        isLoggedIn: true
-      }
+        active: action.payload.data,
+      };
+    case SET_COMPLETED_COLLAB_REQUEST_DATA:
+      return {
+        ...state,
+        completed: action.payload.data,
+      };
+    case SET_REJECTED_COLLAB_REQUEST_DATA:
+      return {
+        ...state,
+        rejected: action.payload.data,
+      };
     default:
-      return state
+      return state;
   }
 };
 
-export default collabReducer
+export default collabReducer;
