@@ -3,9 +3,9 @@ import { Pagination, Space, Button, Card, Avatar } from 'antd';
 import Meta from "antd/lib/card/Meta";
 import { CollabRequestData } from "types/model";
 import { AppState } from "state";
-import { getCollabRequestsAction } from "state/action";
+import { acceptCollabRequestAction, getCollabRequestsAction, rejectCollabRequestAction } from "state/action";
 import { Dispatch } from "redux";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 
 const CollabRequests: React.FC<{
   requests?: CollabRequestData[],
@@ -14,27 +14,34 @@ const CollabRequests: React.FC<{
   requests,
   requestStatus
 }) => {
-    return (
-      <>
-        <h4 className="f-w-b">{requestStatus} Request</h4>
-        {requests.map((req) => (
-          <>
-            <Card
-              style={{ width: 200 }}
-              actions={[
-                <Button key={`${req.id}-pending-accept`} type="primary">Accept</Button>,
-                <Button key={`${req.id}-pending-reject`} type="primary">Reject</Button>,
-              ]}>
-              <Meta
-                avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                title={req.request_data.collabTheme}
-                description={req.request_data.message} />
-            </Card>
-          </>
-        ))}
-        <Pagination defaultCurrent={1} total={50} />
-      </>
-    )
+  const dispatch = useDispatch()
+  const onAccept = (requestId: number) => {
+    dispatch(acceptCollabRequestAction(requestId))
+  }
+  const onReject = (requestId: number) => {
+    dispatch(rejectCollabRequestAction(requestId))
+  }
+  return (
+    <>
+      <h4 className="f-w-b">{requestStatus} Request</h4>
+      {requests.map((req) => (
+        <>
+          <Card
+            style={{ width: 200 }}
+            actions={[
+              <Button key={`${req.id}-pending-accept`} type="primary" onClick={() => onAccept(req.id)}>Accept</Button>,
+              <Button key={`${req.id}-pending-reject`} type="primary"onClick={() => onReject(req.id)}>Reject</Button>,
+            ]}>
+            <Meta
+              avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+              title={req.request_data.collabTheme}
+              description={req.request_data.message} />
+          </Card>
+        </>
+      ))}
+      <Pagination defaultCurrent={1} total={50} />
+    </>
+  )
   }
 
 const CollabRequestsTab: React.FC<{

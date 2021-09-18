@@ -13,7 +13,7 @@ const CollabRequest = () => {
   const onCollabRequestSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
     const data = {
-      receiverId: "123567",
+      receiverId: "3567",
       requestData: {
         message: message,
         collabTheme: collabTheme

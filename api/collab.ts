@@ -21,7 +21,7 @@ const getConfig = (params?: object) => {
   };
 };
 
-const postConfig = (dataToSend) => {
+const postConfig = (dataToSend?: object) => {
   return {
     method: "post",
     data: JSON.stringify(dataToSend),
@@ -44,7 +44,7 @@ export const sendCollabRequest = async (collabRequest: SendCollabRequest) => {
 // http://localhost:3000/api/v1/collab/reject/requestId/22
 export const rejectCollabRequest = async (id: string) => {
   try {
-    return await api.call(`api/v1/collab/reject/requestId/${id}`, getConfig());
+    return await api.call(`api/v1/collab/reject/requestId/${id}`, postConfig());
   } catch (error) {
     throw error;
   }
@@ -53,7 +53,7 @@ export const rejectCollabRequest = async (id: string) => {
 // http://localhost:3000/api/v1/collab/accept/requestId/23
 export const acceptCollabRequest = async (id: string) => {
   try {
-    return await api.call(`api/v1/collab/accept/requestId/${id}`, getConfig());
+    return await api.call(`api/v1/collab/accept/requestId/${id}`, postConfig());
   } catch (error) {
     throw error;
   }
