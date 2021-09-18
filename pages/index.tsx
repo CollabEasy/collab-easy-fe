@@ -1,6 +1,9 @@
-import Title from 'components/title'
-import ProfileModal from 'components/profilePage';
+import Title from '../components/title'
+import ProfileModal from '../components/profilePage';
+import LoginModal from '../components/loginModal';
 import Link from "next/link";
+import Script from 'next/script';
+import Head from 'next/head';
 import { connect } from "react-redux";
 import Image from 'next/image';
 import landingDesktopImg from '../public/images/landing-desktop.png';
@@ -20,24 +23,41 @@ import { AppState } from 'types/states';
 const { Meta } = Card;
 
 export interface HomeProps {
-  homeDetails: any
-  loginModalDetails: LoginModalDetails
+ // homeDetails: any
+  loginModalDetails: LoginModalDetails,
+  userLoginData: any
 }
 
-const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
+const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const { toArtist } = useRoutesContext();
 
   useEffect(() => {
-    if (false) setShowModal(true);
+    if (loginModalDetails.openModal){
+      setShowModal(true);
+    }else{
+      setShowModal(false);
+    }
   }, [loginModalDetails]);
+
+  useEffect(() => {
+    if ( true){
+      setShowModal(false);
+      setShowProfileModal(true);
+    }
+  }, [userLoginData])
   
   return (
     <>
       <Title title="Wondor | meet the artists" />
-      {showModal && (
-        <ProfileModal></ProfileModal>
-      )
+      { showModal && (
+          <LoginModal></LoginModal>
+        )
+      }
+      { showProfileModal && (
+          <ProfileModal></ProfileModal>
+        )
       }
       <div className="row">
         <div id="landing-desktop-img" className="col-md-12 m-0 p-0">
@@ -126,12 +146,14 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails }) => {
           </div>
         ))}
       </div>
+      {/* <Script src="https://accounts.google.com/gsi/client" async defer /> */}
     </>
   )
 }
 
 const mapStateToProps = (state: AppState) => ({
-  loginModalDetails: state.home.loginModalDetails
+  loginModalDetails: state.home.loginModalDetails,
+  userLoginData: state.user.userLoginData
 })
 
 export default connect(mapStateToProps, null)(Home);

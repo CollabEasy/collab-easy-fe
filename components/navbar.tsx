@@ -112,12 +112,12 @@ const NavBar: React.FC<NavBarProps> = ({
 
 const mapStateToProps = (state: AppState) => {
   return {
-    homeReducer: state.home,
+    homeReducer: state.home
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openLoginModalAction: () => dispatch(fetchUserData('1234')),
+  openLoginModalAction: () => dispatch(openLoginModalAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
