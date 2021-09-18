@@ -15,7 +15,7 @@ export interface LoginModalProps {
 	fetchLoginData: (token: string) => void;
 }
 
-const LoginModal: React.FC<NavBarProps> = ({ closeLoginModalAction, fetchLoginData }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ closeLoginModalAction, fetchLoginData }) => {
   const [visible, setVisible] = useState(true);
 
   const closeLoginModal = () => {
