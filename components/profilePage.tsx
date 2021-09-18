@@ -72,7 +72,7 @@ const ProfileModal: React.FC<{
   useEffect(() => {
     console.log("landed here------");
     getArtistCategories();
-  }, []);
+  }, [getArtistCategories]);
 
   useEffect(() => {
     if (artistCategories.status === "success") {

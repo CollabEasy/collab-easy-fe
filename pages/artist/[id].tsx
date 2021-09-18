@@ -97,8 +97,8 @@ const ArtistProfile = () => {
                 <Card
                   style={{ width: 200 }}
                   actions={[
-                    <Button type="primary">Accept</Button>,
-                    <Button type="primary">Reject</Button>,
+                    <Button key={1} type="primary">Accept</Button>,
+                    <Button key={2} type="primary">Reject</Button>,
                   ]} >
                   <Meta
                     avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
@@ -110,7 +110,7 @@ const ArtistProfile = () => {
                 <h4 className="f-w-b">Scheduled Request</h4>
                 <Card style={{ width: 200 }}
                   actions={[
-                    <Button type="primary">Chat</Button>,
+                    <Button key={3} type="primary">Chat</Button>,
                   ]} >
                   <Meta
                     avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
