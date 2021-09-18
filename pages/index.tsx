@@ -25,10 +25,11 @@ const { Meta } = Card;
 export interface HomeProps {
  // homeDetails: any
   loginModalDetails: LoginModalDetails,
-  userLoginData: any
+  userLoginData: any,
+  artistListData: any
 }
 
-const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData }) => {
+const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData, artistListData }) => {
   const [showModal, setShowModal] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const { toArtist } = useRoutesContext();
@@ -42,11 +43,18 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData }) => {
   }, [loginModalDetails]);
 
   useEffect(() => {
-    if ( true){
+    if ( userLoginData.newUser ){
       setShowModal(false);
       setShowProfileModal(true);
     }
   }, [userLoginData])
+
+  useEffect(() => {
+    console.log("artistListData****: ", artistListData);
+    if ( artistListData.status === "success" ){
+      setShowProfileModal(false);
+    }
+  }, [artistListData])
   
   return (
     <>
@@ -153,7 +161,8 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData }) => {
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
-  userLoginData: state.user.userLoginData
+  userLoginData: state.user.userLoginData,
+  artistListData: state.home.artistListDetails
 })
 
 export default connect(mapStateToProps, null)(Home);
