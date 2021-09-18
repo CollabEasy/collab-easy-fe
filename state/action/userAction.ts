@@ -1,4 +1,4 @@
-import { User } from "types/model/user";
+import { User, Login } from "types/model/user";
 
 export const FETCH_USER_DATA = 'USER/FETCH_USER_DATA'
 export const SET_USER_DATA = 'USER/SET_USER_DATA'
@@ -18,9 +18,9 @@ export const setUserDataAction = (data: User) => ({
   }
 })
 
-export const setUserLoggedInAction = (id: string) => ({
+export const setUserLoggedIn = (data: any) => ({
   type: SET_USER_LOGGED_IN,
   payload: {
-    id,
+    data,
   },
 });
