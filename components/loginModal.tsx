@@ -15,7 +15,7 @@ export interface LoginModalProps {
 	fetchLoginData: (token: string) => void;
 }
 
-const LoginModal: React.FC<NavBarProps> = ({ closeLoginModalAction, fetchLoginData }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ closeLoginModalAction, fetchLoginData }) => {
   const [visible, setVisible] = useState(true);
 
   const closeLoginModal = () => {
@@ -81,7 +81,7 @@ const LoginModal: React.FC<NavBarProps> = ({ closeLoginModalAction, fetchLoginDa
               <div className="policy-container">
                 <span className="f-14 md-cop000">
                   By continuing, you agree to WonDor’s Terms of Service and
-                  acknowledge you've read our Privacy Policy.
+                  acknowledge you`@apos;`ve read our Privacy Policy.
                 </span>
               </div>
             </div>
