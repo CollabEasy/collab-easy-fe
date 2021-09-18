@@ -15,10 +15,8 @@ export const fetchLoginDataLogic = createLogic<
     try {
       const loginData = await api.login.getLoginData(token)
       console.log('fetched user data from api', loginData);
-      if ( loginData?.status === "SUCCESS" ){
-        console.log("inside heree!!!");
-        dispatch(setUserLoggedIn(loginData));
-      }
+      console.log("inside heree!!!");
+      dispatch(setUserLoggedIn(loginData));
     } catch (error) {
     } finally {
       done()

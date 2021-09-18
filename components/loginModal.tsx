@@ -81,7 +81,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeLoginModalAction, fetchLog
               <div className="policy-container">
                 <span className="f-14 md-cop000">
                   By continuing, you agree to WonDor’s Terms of Service and
-                  acknowledge you've read our Privacy Policy.
+                  acknowledge you`@apos;`ve read our Privacy Policy.
                 </span>
               </div>
             </div>
