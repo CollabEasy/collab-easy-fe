@@ -6,7 +6,8 @@ const getConfig = (query) => {
     return {
         method: 'get',
         params: {
-            query,
+            // query,
+            postId: 1,
         }
     }
 }
@@ -14,8 +15,8 @@ const getConfig = (query) => {
 export const getSearchResult = async (query: string) => {
   const config = getConfig(query);
   try {
-    /* replace url with actual url */
-    const result = await api.call('http://localhost:8080/api/v1/search', config);
+    // http://localhost:8080/api/v1/search
+    const result = await api.call('https://jsonplaceholder.typicode.com/comments', config);
     return result;
   } catch (error) {
     throw error;
