@@ -1,7 +1,7 @@
 // import Link from "next/link";
 import { connect } from "react-redux";
 import Link from "next/link";
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
 import Search from './search';
 import { Dispatch } from "redux";
@@ -39,20 +39,25 @@ import { fetchUserData, openLoginModalAction } from "state/action";
   </Menu>
 ); */
 export interface NavBarProps {
-  openLoginModalAction: () => void
+  openLoginModalAction: () => void,
+  userReducer: any
 }
 
 const NavBar: React.FC<NavBarProps> = ({ 
   openLoginModalAction, 
+  userReducer
 }) => {
   const [ref, inView, entry] = useInView({
     root: null,
     rootMargin: '-20px 0px 0px 0px',
   });
 
+  const [hideSignUp, setHideSignUp] = useState(false);
+
   const openLoginModal = () => {
     openLoginModalAction()
   };
+  
   
   const { toWondorHome } = useRoutesContext();
 
@@ -66,6 +71,12 @@ const NavBar: React.FC<NavBarProps> = ({
       navBarElement.classList.remove('scroll-effect')
     }
   }, [inView, entry])
+
+  useEffect(() => {
+    if( userReducer.isLoggedIn ){
+      setHideSignUp(true);
+    }
+  }, [userReducer]);
 
   return (
     <div className="row">
@@ -84,8 +95,10 @@ const NavBar: React.FC<NavBarProps> = ({
         <div className="navbar-search">
           <Search></Search>
         </div>
-        
-        <Button id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
+        { !hideSignUp && (
+            <Button id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
+          )
+        }
         <Link href="" passHref>
           <MenuOutlined id="sign-up-mobile" />
         </Link>
@@ -113,11 +126,12 @@ const NavBar: React.FC<NavBarProps> = ({
 const mapStateToProps = (state: AppState) => {
   return {
     homeReducer: state.home,
+    userReducer: state.user
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openLoginModalAction: () => dispatch(fetchUserData('1234')),
+  openLoginModalAction: () => dispatch(openLoginModalAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

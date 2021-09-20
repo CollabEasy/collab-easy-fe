@@ -1,4 +1,4 @@
-import { HOME, OPEN_LOGIN_MODAL, CLOSE_LOGIN_MODAL } from "state/action";
+import { HOME, OPEN_LOGIN_MODAL, CLOSE_LOGIN_MODAL, UPDATE_ARTIST_ART_SUCCESS } from "state/action";
 import { HomeState } from "types/states";
 
 const initialState: HomeState = {
@@ -6,6 +6,7 @@ const initialState: HomeState = {
   loginModalDetails: {
     openModal: false,
   },
+  artistListDetails: {}
 };
 
 const homeReducer = (state = initialState, action): HomeState => {
@@ -26,6 +27,8 @@ const homeReducer = (state = initialState, action): HomeState => {
       return { ...state, loginModalDetails: { openModal: true } };
     case CLOSE_LOGIN_MODAL:
       return { ...state, loginModalDetails: { openModal: false } };
+    case UPDATE_ARTIST_ART_SUCCESS:
+      return { ...state, artistListDetails: action.payload.data };
     default:
       return state;
   }

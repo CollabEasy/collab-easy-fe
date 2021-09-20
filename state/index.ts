@@ -11,6 +11,8 @@ import rootReducer from "./rootReducer";
 import { AppState as ImportedAppState } from "types/states";
 import { getUserData } from "api/user";
 import { getSearchResult } from "api/search";
+import * as login from "api/login"
+import * as artist from "api/artist-user"
 import { AppRouteCreators } from "types/core";
 
 export type AppState = ImportedAppState;
@@ -18,6 +20,8 @@ export type AppState = ImportedAppState;
 export const APIs = {
   getUserData,
   getSearchResult,
+  login,
+  artist
 };
 
 export interface LogicDeps {
@@ -40,7 +44,7 @@ const createNewStore = (
   };
   const logicMiddleware = createLogicMiddleware(rootLogic, logicDeps);
   const enhancers = [applyMiddleware(logicMiddleware)];
-  // /* eslint-disable no-underscore-dangle */
+  /* eslint-disable no-underscore-dangle */
   // if (typeof window !== "undefined") {
   //   const composeEnhancers = window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose || compose;
   //   /* eslint-disable no-underscore-dangle */
