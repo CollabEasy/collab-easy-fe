@@ -81,7 +81,7 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData, artistLis
       </div>
 
       <div className="row card-rw">
-        <div className="container">
+        <div>
           <h2 className="custom-padding">Popular categories</h2>
           <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
