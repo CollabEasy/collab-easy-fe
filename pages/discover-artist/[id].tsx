@@ -18,8 +18,8 @@ const DiscoverArtist = () => {
   return (
     <>
       <Title title="Discover Artist" />
-      <div className="container fluid dynamic-artist-page">
-        <div className="row" style={{ paddingTop: '3rem' }}>
+      <div className="fluid dynamic-artist-page">
+        <div className="row" style={{ paddingTop: '6rem' }}>
           <Image src={landingPageImg} alt="Landing page" />
         </div>
         {/* <h1>Artist Page Dynamic <strong>{id.toUpperCase()}</strong></h1> */}
