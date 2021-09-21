@@ -9,19 +9,21 @@ import { createLogicMiddleware } from "redux-logic";
 import rootLogic from "./rootLogic";
 import rootReducer from "./rootReducer";
 import { AppState as ImportedAppState } from "types/states";
-import { getUserData } from "api/user";
-import { getSearchResult } from "api/search";
-import * as login from "api/login"
-import * as artist from "api/artist-user"
+import * as userApi from "api/user";
+import * as searchApi from "api/search"
+import * as collabApi from "api/collab"
+import * as loginApi from "api/login"
+import * as artistApi from "api/artist-user"
 import { AppRouteCreators } from "types/core";
 
 export type AppState = ImportedAppState;
 
 export const APIs = {
-  getUserData,
-  getSearchResult,
-  login,
-  artist
+  userApi,
+  searchApi,
+  collabApi,
+  loginApi,
+  artistApi
 };
 
 export interface LogicDeps {

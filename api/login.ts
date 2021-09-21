@@ -19,8 +19,7 @@ export const getLoginData = async (token: string) => {
     // });
   try {
     /* replace url with actual url */
-    const result = await api.call('https://4a14-106-215-145-86.ngrok.io/api/login', config);
-    // const result = await api.call('https://reqres.in/api/users', dummy);
+    const result = await api.call('api/login', config);
     console.log("result: ", result);
     return result;
   } catch (error) {
