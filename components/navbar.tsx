@@ -14,7 +14,7 @@ import titleMobileImg from '../public/images/logo.svg';
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 
-import { fetchUserData, openLoginModalAction } from "state/action";
+import { fetchUserDataAction, openLoginModalAction } from "state/action";
 // import { UserOutlined, SettingOutlined } from '@ant-design/icons';
 
 /* const menu = (

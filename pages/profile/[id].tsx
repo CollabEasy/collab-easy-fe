@@ -2,7 +2,7 @@ import Title from 'components/title'
 import { useDispatch } from 'react-redux'
 import { getUserData } from 'api/user';
 import { GetServerSideProps, NextPage } from 'next'
-import { setUserData } from 'state/action/userAction';
+import { setUserDataAction } from 'state/action/userAction';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { User } from 'types/model';
@@ -13,7 +13,7 @@ interface ProfilePageProps {
 
 const ProfilePage: NextPage<ProfilePageProps> = ({ userData }) => {
   const dispatch = useDispatch()
-  dispatch(setUserData(userData))
+  dispatch(setUserDataAction(userData))
 
   return (
     <div className='container'>

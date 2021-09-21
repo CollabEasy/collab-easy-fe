@@ -24,7 +24,7 @@ export const mockUser = (id: string): User => ({
 
 export const getUserData = async (id: string): Promise<User> => {
   // uncomment below line to fetch data from user api
- // const result = await api.call<User>(`${Config.backendEndpoint}/user/${id}`);
+  // const result = await api.call<User>(`${Config.backendEndpoint}/user/${id}`);
   //return result;
   return mockUser(id)
 }
