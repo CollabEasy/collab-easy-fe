@@ -7,11 +7,11 @@ import { Button, Card, Avatar } from 'antd';
 import Link from "next/link";
 import { routeToHref } from "config/routes";
 import { useRoutesContext } from "components/routeContext";
+import CollabRequest from 'components/collabRequestSend';
+import CollabRequestTab from 'components/collabRequestTab';
 
 // https://ant.design/components/card/
 const { Meta } = Card;
-
-
 
 /**
  * @description On Click tab active the window
@@ -41,17 +41,7 @@ const ArtistProfile = () => {
       <div className="artist-profile-page container">
         <div className="absolute-div">
           <div className="col-xl-5 col-md-5 col-sm-5">
-            <div className="wrapper">
-              <div className="grouped">
-                <input className="input" placeholder="Theme" type="text" />
-              </div>
-              <div className="grouped">
-                <textarea placeholder="Note" name="w3review" rows={4} cols={32}></textarea>
-              </div>
-              <div className="grouped">
-                <button className="btn btn-success" type="button">Send Collab Request</button>
-              </div>
-            </div>
+            <CollabRequest />
           </div>
         </div>
         <div className="row">
@@ -104,53 +94,7 @@ const ArtistProfile = () => {
                 <p className="f-w-b">Sample</p>
                 <p>Sample 1</p>
               </div>
-              <div id="collab" className="tabcontent">
-                <h4 className="f-w-b">Pending Request</h4>
-                <Card
-                  style={{ width: 200 }}
-                  actions={[
-                    <Button key={1} type="primary">Accept</Button>,
-                    <Button key={2} type="primary">Reject</Button>,
-                  ]} >
-                  <Meta
-                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                    title="Independence Day"
-                    description="Let's make a vide on it."
-                  />
-                </Card>
-                <Pagination defaultCurrent={1} total={50} />
-                <h4 className="f-w-b">Scheduled Request</h4>
-                <Card style={{ width: 200 }}
-                  actions={[
-                    <Button key={3} type="primary">Chat</Button>,
-                  ]} >
-                  <Meta
-                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                    title="Independence Day"
-                    description="Let's make a vide on it."
-                  />
-                </Card>
-                <Pagination defaultCurrent={1} total={50} />
-                <h4 className="f-w-b">Completed Request</h4>
-
-                <Card style={{ width: 200 }}>
-                  <Meta
-                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                    title="Independence Day"
-                    description="Let's make a vide on it."
-                  />
-                </Card>
-                <Pagination defaultCurrent={1} total={50} />
-                <h4 className="f-w-b">Rejected Request</h4>
-                <Card style={{ width: 200 }}>
-                  <Meta
-                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                    title="Independence Day"
-                    description="Let's make a vide on it."
-                  />
-                </Card>
-                <Pagination defaultCurrent={1} total={50} />
-              </div>
+              <CollabRequestTab />
             </div>
           </div>
         </div>
