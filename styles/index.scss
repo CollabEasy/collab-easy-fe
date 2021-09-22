@@ -7,8 +7,11 @@
 @import "profileModal.scss";
 @import "searchBar.scss";
 @import "./components/loginModal.scss";
+@import "./editProfile.scss";
 
-
+.cursor-pointer {
+    cursor: pointer;
+}
 .f-w-b {font-weight: $font-bolder};
 #footer-social span {
     margin: 0px 1em;

@@ -4,6 +4,9 @@ import avatar from '../../public/images/avatar.png'
 import React, { useEffect } from 'react';
 import { Pagination, Space } from 'antd';
 import { Button, Card, Avatar } from 'antd';
+import Link from "next/link";
+import { routeToHref } from "config/routes";
+import { useRoutesContext } from "components/routeContext";
 
 // https://ant.design/components/card/
 const { Meta } = Card;
@@ -31,6 +34,7 @@ const toggleTab = (actionName) => {
 };
 
 const ArtistProfile = () => {
+  const { toEditProfile } = useRoutesContext();
   return (
     <>
       <Title title="Artist Profile" />
@@ -58,7 +62,13 @@ const ArtistProfile = () => {
           </div>
           <div className="col-xl-12 col-md-12 col-sm-12">
             <div className="_artist">
-              <span className="f-20">Rahul Gupta</span>
+              <span className="f-20">Rahul Gupta
+                <>
+                  <Link href={routeToHref(toEditProfile("123"))} passHref>
+                    <em className="fa fa-pencil cursor-pointer px-2"></em>
+                  </Link>
+                </>
+              </span>
               <span className="f-12">painter, Singer</span>
             </div>
           </div>
@@ -106,7 +116,7 @@ const ArtistProfile = () => {
                     description="Let's make a vide on it."
                   />
                 </Card>
-                <Pagination defaultCurrent={1} total={50}/>
+                <Pagination defaultCurrent={1} total={50} />
                 <h4 className="f-w-b">Scheduled Request</h4>
                 <Card style={{ width: 200 }}
                   actions={[
@@ -118,9 +128,9 @@ const ArtistProfile = () => {
                     description="Let's make a vide on it."
                   />
                 </Card>
-                <Pagination defaultCurrent={1} total={50}/>
+                <Pagination defaultCurrent={1} total={50} />
                 <h4 className="f-w-b">Completed Request</h4>
-                
+
                 <Card style={{ width: 200 }}>
                   <Meta
                     avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
@@ -128,7 +138,7 @@ const ArtistProfile = () => {
                     description="Let's make a vide on it."
                   />
                 </Card>
-                <Pagination defaultCurrent={1} total={50}/>
+                <Pagination defaultCurrent={1} total={50} />
                 <h4 className="f-w-b">Rejected Request</h4>
                 <Card style={{ width: 200 }}>
                   <Meta
@@ -137,7 +147,7 @@ const ArtistProfile = () => {
                     description="Let's make a vide on it."
                   />
                 </Card>
-                <Pagination defaultCurrent={1} total={50}/>
+                <Pagination defaultCurrent={1} total={50} />
               </div>
             </div>
           </div>
