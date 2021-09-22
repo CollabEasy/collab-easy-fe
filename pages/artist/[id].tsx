@@ -63,11 +63,6 @@ const ArtistProfile = () => {
           <div className="col-xl-12 col-md-12 col-sm-12">
             <div className="_artist">
               <span className="f-20">Rahul Gupta
-                <>
-                  <Link href={routeToHref(toEditProfile("123"))} passHref>
-                    <em className="fa fa-pencil cursor-pointer px-2"></em>
-                  </Link>
-                </>
               </span>
               <span className="f-12">painter, Singer</span>
             </div>
@@ -79,6 +74,13 @@ const ArtistProfile = () => {
               </span>
               <span className="">
                 <a>Message</a>
+              </span>
+              <span>
+                <>
+                  <Link href={routeToHref(toEditProfile("123"))} passHref>
+                  <a>Edit</a>
+                  </Link>
+                </>
               </span>
             </div>
           </div>
