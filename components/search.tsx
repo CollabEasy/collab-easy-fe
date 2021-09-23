@@ -11,6 +11,10 @@ const Search = () => {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [noResults, setNoResults] = useState(false);
+    const [focused, setFocused] = useState(false);
+
+    const onFocus = () => setFocused(true);
+    const onBlur = () => setFocused(false);
 
     const setSearchState = (
         data: Array<object>, loading: boolean, errorMessage: string, noResults: boolean
@@ -74,6 +78,7 @@ const Search = () => {
 
     const clearInput = () => {
         setInputVal('');
+        setSearchState([], false, '', false);
     }
 
     return (
@@ -89,6 +94,8 @@ const Search = () => {
                     aria-label="search"
                     value={inputVal}
                     onChange={handleTextChange}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
                 >
                 </input>
                 {
@@ -101,6 +108,19 @@ const Search = () => {
                     </button> 
                 }
             </div>
+            {   
+                
+                searchData.length > 0 && focused && ( <div className="typeahead-container"> 
+                { 
+                    searchData.map((data, i) => {
+                        return <div className="typeahead-item" key={i}>
+                            <span className="typeahead-item__name">{data.email}</span>
+                            <span className="typeahead-item__category">{data.name}</span>
+                        </div>
+                    })
+                }
+                </div>
+            )}
         </>
     );
 }
