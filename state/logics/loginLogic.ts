@@ -1,6 +1,6 @@
 import { AppState, FSACreatorPayload } from 'types/states'
 import { createLogic } from 'redux-logic'
-import { fetchLoginData, FETCH_LOGIN_DATA, setUserData, setUserLoggedIn, SET_USER_LOGGED_IN } from 'state/action'
+import { fetchLoginData, FETCH_LOGIN_DATA, setUserLoggedIn, SET_USER_LOGGED_IN } from 'state/action'
 import { LogicDeps } from 'state'
 
 export const fetchLoginDataLogic = createLogic<
@@ -13,7 +13,7 @@ export const fetchLoginDataLogic = createLogic<
   async process({ action, api, getState, routes }, dispatch, done) {
     const { token } = action.payload
     try {
-      const loginData = await api.login.getLoginData(token)
+      const loginData = await api.loginApi.getLoginData(token)
       console.log('fetched user data from api', loginData);
       console.log("inside heree!!!");
       dispatch(setUserLoggedIn(loginData));

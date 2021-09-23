@@ -11,6 +11,8 @@ import { useRoutesContext } from "components/routeContext";
 // https://ant.design/components/card/
 const { Meta } = Card;
 
+import CollabRequest from 'components/collabRequestSend';
+import CollabRequestTab from 'components/collabRequestTab';
 
 
 /**
@@ -41,17 +43,7 @@ const ArtistProfile = () => {
       <div className="artist-profile-page container">
         <div className="absolute-div">
           <div className="col-xl-5 col-md-5 col-sm-5">
-            <div className="wrapper">
-              <div className="grouped">
-                <input className="input" placeholder="Theme" type="text" />
-              </div>
-              <div className="grouped">
-                <textarea placeholder="Note" name="w3review" rows={4} cols={32}></textarea>
-              </div>
-              <div className="grouped">
-                <button className="btn btn-success" type="button">Send Collab Request</button>
-              </div>
-            </div>
+            <CollabRequest />
           </div>
         </div>
         <div className="row">
@@ -151,6 +143,7 @@ const ArtistProfile = () => {
                 </Card>
                 <Pagination defaultCurrent={1} total={50} />
               </div>
+              <CollabRequestTab />
             </div>
           </div>
         </div>

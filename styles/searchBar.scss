@@ -1,7 +1,7 @@
 .search-bar{
     border: 1px solid #DDDDDD;
     display: flex;
-    border-radius: 15px;
+    border-radius: 5px;
     height: 55px;
     width: 50%;
     padding: 3px;
@@ -41,6 +41,31 @@
         background: white;
     }
 
+}
+
+.typeahead-container {
+    border: solid 1px black;
+    border-bottom: 0;
+    position: absolute;
+    top: 55px;
+    width: 49.7%;
+}
+
+.typeahead-item {
+    background-color: white;
+    padding: 10px;
+    border-bottom: 1px solid grey;
+    position: relative;
+
+    &:hover {
+        background: #eee;
+    }
+
+    &__category {
+        position: absolute;
+        right: 0;
+        padding-right: 10px
+    }
 }
 
 // Please write media query for all screen sizes below this line.
