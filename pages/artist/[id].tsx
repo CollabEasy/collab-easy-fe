@@ -7,13 +7,11 @@ import { Button, Card, Avatar } from 'antd';
 import Link from "next/link";
 import { routeToHref } from "config/routes";
 import { useRoutesContext } from "components/routeContext";
-
-// https://ant.design/components/card/
-const { Meta } = Card;
-
 import CollabRequest from 'components/collabRequestSend';
 import CollabRequestTab from 'components/collabRequestTab';
 
+// https://ant.design/components/card/
+const { Meta } = Card;
 
 /**
  * @description On Click tab active the window
@@ -70,7 +68,7 @@ const ArtistProfile = () => {
               <span>
                 <>
                   <Link href={routeToHref(toEditProfile("123"))} passHref>
-                  <a>Edit</a>
+                    <a>Edit</a>
                   </Link>
                 </>
               </span>
