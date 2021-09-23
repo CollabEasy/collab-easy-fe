@@ -1,4 +1,4 @@
-import { SearchCollab, SendCollabRequest } from "types/model";
+import { CollabRequestData, SearchCollab, SendCollabRequest } from "types/model";
 import api from "./client";
 
 // http://localhost:3000/api/v1/collab/request
@@ -61,7 +61,7 @@ export const acceptCollabRequest = async (id: string) => {
 
 export const getCollabRequest = async (searchCollab: SearchCollab) => {
   try {
-    return await api.call(`api/v1/collab/search`, postConfig(searchCollab));
+    return await api.call<{data: CollabRequestData}>(`api/v1/collab/search`, postConfig(searchCollab));
   } catch (error) {
     throw error;
   }
