@@ -2,8 +2,16 @@ import Title from '../../components/title';
 import Image from 'next/image';
 import avatar from '../../public/images/avatar.png'
 import React, { useEffect } from 'react';
+import { Pagination, Space } from 'antd';
+import { Button, Card, Avatar } from 'antd';
+import Link from "next/link";
+import { routeToHref } from "config/routes";
+import { useRoutesContext } from "components/routeContext";
 import CollabRequest from 'components/collabRequestSend';
 import CollabRequestTab from 'components/collabRequestTab';
+
+// https://ant.design/components/card/
+const { Meta } = Card;
 
 /**
  * @description On Click tab active the window
@@ -26,6 +34,7 @@ const toggleTab = (actionName) => {
 };
 
 const ArtistProfile = () => {
+  const { toEditProfile } = useRoutesContext();
   return (
     <>
       <Title title="Artist Profile" />
@@ -43,7 +52,8 @@ const ArtistProfile = () => {
           </div>
           <div className="col-xl-12 col-md-12 col-sm-12">
             <div className="_artist">
-              <span className="f-20">Rahul Gupta</span>
+              <span className="f-20">Rahul Gupta
+              </span>
               <span className="f-12">painter, Singer</span>
             </div>
           </div>
@@ -54,6 +64,13 @@ const ArtistProfile = () => {
               </span>
               <span className="">
                 <a>Message</a>
+              </span>
+              <span>
+                <>
+                  <Link href={routeToHref(toEditProfile("123"))} passHref>
+                    <a>Edit</a>
+                  </Link>
+                </>
               </span>
             </div>
           </div>
@@ -76,6 +93,53 @@ const ArtistProfile = () => {
               <div id="sample" className="tabcontent">
                 <p className="f-w-b">Sample</p>
                 <p>Sample 1</p>
+              </div>
+              <div id="collab" className="tabcontent">
+                <h4 className="f-w-b">Pending Request</h4>
+                <Card
+                  style={{ width: 200 }}
+                  actions={[
+                    <Button key={1} type="primary">Accept</Button>,
+                    <Button key={2} type="primary">Reject</Button>,
+                  ]} >
+                  <Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title="Independence Day"
+                    description="Let's make a vide on it."
+                  />
+                </Card>
+                <Pagination defaultCurrent={1} total={50} />
+                <h4 className="f-w-b">Scheduled Request</h4>
+                <Card style={{ width: 200 }}
+                  actions={[
+                    <Button key={3} type="primary">Chat</Button>,
+                  ]} >
+                  <Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title="Independence Day"
+                    description="Let's make a vide on it."
+                  />
+                </Card>
+                <Pagination defaultCurrent={1} total={50} />
+                <h4 className="f-w-b">Completed Request</h4>
+
+                <Card style={{ width: 200 }}>
+                  <Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title="Independence Day"
+                    description="Let's make a vide on it."
+                  />
+                </Card>
+                <Pagination defaultCurrent={1} total={50} />
+                <h4 className="f-w-b">Rejected Request</h4>
+                <Card style={{ width: 200 }}>
+                  <Meta
+                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                    title="Independence Day"
+                    description="Let's make a vide on it."
+                  />
+                </Card>
+                <Pagination defaultCurrent={1} total={50} />
               </div>
               <CollabRequestTab />
             </div>
