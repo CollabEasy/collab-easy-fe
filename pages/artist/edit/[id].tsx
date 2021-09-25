@@ -124,7 +124,22 @@ const EditProfile: React.FC<ProfilePageProps> = ({ userData }) => {
                         <Button id="image-upload" type="primary" onClick={openLoginModal}>Upload a sample</Button>
                     </TabPane>
                     <TabPane tab="Settings" key="3">
-                        Content of Tab 3
+                        <>
+                            <Form
+                                labelCol={{ span: 4 }}
+                                wrapperCol={{ span: 14 }}
+                                layout="horizontal"
+                                initialValues={{ size: componentSize }}
+                                onValuesChange={onFormLayoutChange}
+                                size={componentSize as SizeType}
+                            >
+                                <Form.Item label="Send notification email" valuePropName="checked">
+                                    <Switch />
+                                </Form.Item>
+
+                            </Form>
+                        </>
+
                     </TabPane>
                 </Tabs>
             </>
