@@ -19,7 +19,7 @@ export const getLoginData = async (token: string) => {
     // });
   try {
     /* replace url with actual url */
-    const result = await api.call('api/login', config);
+    const result = await api.call('api/v1/artist/login', config);
     console.log("result: ", result);
     return result;
   } catch (error) {
