@@ -15,7 +15,11 @@ export const routes: AppRouteCreators = {
   toArtistProfile: (artistType, id) => ({
     href: '/artist/[id]',
     as: `/artist/${id}?type=${artistType}`,
-  })
+  }),
+  toEditProfile: (id) => ({
+    href: '/artist/edit/[id]',
+    as: `/artist/edit/${id}`,
+  }),
 };
 
 
