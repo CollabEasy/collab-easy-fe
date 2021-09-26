@@ -1,8 +1,10 @@
-import { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import { SendCollabRequest as CollabRequestModel } from "types/model"
-import DatePicker from "react-datepicker";
 import { useDispatch } from "react-redux";
 import { sendCollabRequestAction } from "state/action";
+import {
+  DatePicker,
+} from 'antd';
 
 const CollabRequest = () => {
   const [collabTheme, setCollabTheme] = useState('');
@@ -23,6 +25,10 @@ const CollabRequest = () => {
     dispatch(sendCollabRequestAction(data))
   }
 
+  const onDateChange = (date) => {
+    setCollabDate(date)
+  }
+
   return (
     <form
       method="POST"
@@ -36,8 +42,8 @@ const CollabRequest = () => {
         <div className="grouped">
           <input className="input" placeholder="Message" value={message} onChange={e => setMessage(e.target.value)}></input>
         </div>
-        <div className="groupes">
-        <DatePicker selected={collabDate} onChange={(date) => setCollabDate(date)} />
+        <div className="grouped">
+        <DatePicker onChange={onDateChange} />
         </div>
         <div className="grouped">
           <button className="btn btn-success" type="submit">Send Collab Request</button>
