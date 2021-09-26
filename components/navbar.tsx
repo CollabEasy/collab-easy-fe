@@ -14,7 +14,7 @@ import titleMobileImg from '../public/images/logo.svg';
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 
-import { fetchUserDataAction, openLoginModalAction } from "state/action";
+import { openLoginModalAction } from "state/action";
 // import { UserOutlined, SettingOutlined } from '@ant-design/icons';
 
 /* const menu = (
@@ -40,12 +40,12 @@ import { fetchUserDataAction, openLoginModalAction } from "state/action";
 ); */
 export interface NavBarProps {
   openLoginModalAction: () => void,
-  userReducer: any
+  isLoggedIn: boolean
 }
 
 const NavBar: React.FC<NavBarProps> = ({ 
   openLoginModalAction, 
-  userReducer
+  isLoggedIn
 }) => {
   const [ref, inView, entry] = useInView({
     root: null,
@@ -79,11 +79,11 @@ const NavBar: React.FC<NavBarProps> = ({
   }, [inView, entry])
 
   useEffect(() => {
-    console.log("userReducer: ", userReducer);
-    if( userReducer.isLoggedIn ){
+    console.log("isLoggedIn: ", isLoggedIn);
+    if( isLoggedIn ){
       setHideSignUp(true);
     }
-  }, [userReducer]);
+  }, [isLoggedIn]);
 
   return (
     <div className="row">
@@ -149,12 +149,9 @@ const NavBar: React.FC<NavBarProps> = ({
   )
 }
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    homeReducer: state.home,
-    userReducer: state.user
-  };
-};
+const mapStateToProps = (state: AppState) => ({
+  isLoggedIn: state.user.isLoggedIn
+})
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   openLoginModalAction: () => dispatch(openLoginModalAction()),

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Pagination, Space, Button, Card, Avatar } from 'antd';
+import React, { useEffect } from "react";
+import { Pagination, Button, Card, Avatar } from 'antd';
 import Meta from "antd/lib/card/Meta";
 import { CollabRequestData } from "types/model";
 import { AppState } from "state";

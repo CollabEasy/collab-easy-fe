@@ -1,8 +1,6 @@
-import Link from "next/link";
-import { useRoutesContext } from "./routeContext";
 import { connect } from "react-redux";
-import React, { useEffect, useState } from "react";
-import { Form, Switch, Modal, Button, Select } from "antd";
+import React, { useState } from "react";
+import { Modal } from "antd";
 import Image from "next/image";
 import profileImageImg from "../public/images/profile.png";
 import { closeLoginModalAction, fetchLoginData } from "../state/action";

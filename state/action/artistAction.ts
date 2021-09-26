@@ -1,5 +1,3 @@
-// import { User, Login } from "types/model/user";
-
 export const FETCH_ARTIST_CATEGORIES_DATA = 'ARTIST/FETCH_ARTIST_DATA'
 export const SET_ARTIST_CATEGORIES_DATA = 'ARTIST/SET_ARTIST_CATEGORIES_DATA'
 export const UPDATE_ARTIST_ART = 'UPDATE_ARTIST_ART'

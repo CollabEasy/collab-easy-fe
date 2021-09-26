@@ -13,7 +13,6 @@ import {
   setCompletedCollabRequestsAction,
   setPendingCollabRequestsAction,
 } from "state/action";
-import { CollabRequestData } from "types/model";
 import { AppState } from "types/states";
 import { FSACreatorPayload } from "types/states/FSACreator";
 

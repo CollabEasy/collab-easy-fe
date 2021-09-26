@@ -27,13 +27,6 @@ export const WondorFooterDetails: React.FC<{}> = ({ }) => {
           <span><em className="fa fa-twitter"></em></span>
           <span><em className="fa fa-pinterest"></em></span>
         </p>
-        {/* <dl className="contact-list">
-          <dd><a href="mailto:#">dkstudioin@gmail.com</a></dd>
-        </dl>
-        <dl className="contact-list">
-          <dd><a href="tel:#">https://karosearch.com</a> <span>or</span> <a href="tel:#">https://karosearch.com</a>
-          </dd>
-        </dl> */}
       </div>
     </div>
   )
