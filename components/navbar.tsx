@@ -53,10 +53,16 @@ const NavBar: React.FC<NavBarProps> = ({
   });
 
   const [hideSignUp, setHideSignUp] = useState(false);
+  const [showLoginOptions, setShowLoginOptions] = useState(false);
+  // const [isMobileVersion, setIsMobileVersion] = useState(false);
 
   const openLoginModal = () => {
     openLoginModalAction()
   };
+
+  const checkDevice = () => {
+    return window.matchMedia("only screen and (max-width: 767px)").matches;
+  }
   
   
   const { toWondorHome } = useRoutesContext();
@@ -73,6 +79,7 @@ const NavBar: React.FC<NavBarProps> = ({
   }, [inView, entry])
 
   useEffect(() => {
+    console.log("userReducer: ", userReducer);
     if( userReducer.isLoggedIn ){
       setHideSignUp(true);
     }
@@ -95,13 +102,32 @@ const NavBar: React.FC<NavBarProps> = ({
         <div className="navbar-search">
           <Search></Search>
         </div>
-        { !hideSignUp && (
+        { !hideSignUp ? (
             <Button id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
+          ) : (
+            <div className="login-menu-container">
+              <MenuOutlined className={`menu-icon ${showLoginOptions ? 'hide-icon' : ''}`} onClick={() => setShowLoginOptions(!showLoginOptions)} />
+              { checkDevice() && showLoginOptions && (
+                  <div className="sidebar-mask" onClick={() => setShowLoginOptions(false)}></div>
+                )
+              }
+              { showLoginOptions && (
+                  <div className="login-options-container">
+                    <div className="common-login-option settings-option">
+                      <span className="f-14">Settings</span>
+                    </div>
+                    <div className="common-login-option profile-option">
+                      <span className="f-14">Profile</span>
+                    </div>
+                    <div className="common-login-option logout-option">
+                      <span className="f-14">Logout</span>
+                    </div>
+                  </div>
+                )
+              }
+            </div>
           )
         }
-        <Link href="" passHref>
-          <MenuOutlined id="sign-up-mobile" />
-        </Link>
 
         {/* <div className={styles["navbar-menu"]}>
           <Dropdown 

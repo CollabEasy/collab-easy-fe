@@ -43,9 +43,14 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData, artistLis
   }, [loginModalDetails]);
 
   useEffect(() => {
-    if ( userLoginData.newUser ){
-      setShowModal(false);
-      setShowProfileModal(true);
+    console.log("userLoginData: ", userLoginData);
+    if ( userLoginData ){
+      if ( userLoginData.new_user ){
+        setShowModal(false);
+        setShowProfileModal(true);
+      }else{
+        setShowModal(false);
+      }
     }
   }, [userLoginData])
 

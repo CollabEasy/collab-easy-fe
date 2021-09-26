@@ -24,15 +24,9 @@ const postConfig = (dataToSend) => {
 
 export const getArtistCategoryData = async () => {
   const config = getConfig();
-    // const dummy = postConfig({
-    //     "name": "morpheus",
-    //     "job": "leader"
-    // });
   try {
     /* replace url with actual url */
     const categories = await api.call('api/v1/artist/categories', config);
-   // const result = await api.call('https://reqres.in/api/users', dummy);
-   // const categories = {"data":["DANCING","PAINTING","CRAFT","MUSIC","VIDEO EDITING"],"status":"success"};
     console.log("categories: ", categories);
     return categories;
   } catch (error) {
