@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pagination, Space, Button, Card, Avatar } from 'antd';
 import Meta from "antd/lib/card/Meta";
 import { CollabRequestData } from "types/model";
@@ -34,8 +34,8 @@ const CollabRequests: React.FC<{
             ]}>
             <Meta
               avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-              title={req.request_data.collabTheme}
-              description={req.request_data.message} />
+              title={req.requestData.collabTheme}
+              description={req.requestData.message} />
           </Card>
         </>
       ))}

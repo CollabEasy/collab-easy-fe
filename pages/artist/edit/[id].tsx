@@ -88,7 +88,7 @@ const EditProfile: React.FC<ProfilePageProps> = ({ userData }) => {
                                     <Select>
                                         <Select.Option value="male">Male</Select.Option>
                                         <Select.Option value="female">Female</Select.Option>
-                                        <Select.Option value="none">Don't wamt to disclose</Select.Option>
+                                        <Select.Option value="none">Don`@apos`t want to disclose</Select.Option>
                                     </Select>
                                 </Form.Item>
                                 <Form.Item label="Country">

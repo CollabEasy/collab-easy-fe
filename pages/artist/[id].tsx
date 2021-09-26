@@ -94,53 +94,6 @@ const ArtistProfile = () => {
                 <p className="f-w-b">Sample</p>
                 <p>Sample 1</p>
               </div>
-              <div id="collab" className="tabcontent">
-                <h4 className="f-w-b">Pending Request</h4>
-                <Card
-                  style={{ width: 200 }}
-                  actions={[
-                    <Button key={1} type="primary">Accept</Button>,
-                    <Button key={2} type="primary">Reject</Button>,
-                  ]} >
-                  <Meta
-                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                    title="Independence Day"
-                    description="Let's make a vide on it."
-                  />
-                </Card>
-                <Pagination defaultCurrent={1} total={50} />
-                <h4 className="f-w-b">Scheduled Request</h4>
-                <Card style={{ width: 200 }}
-                  actions={[
-                    <Button key={3} type="primary">Chat</Button>,
-                  ]} >
-                  <Meta
-                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                    title="Independence Day"
-                    description="Let's make a vide on it."
-                  />
-                </Card>
-                <Pagination defaultCurrent={1} total={50} />
-                <h4 className="f-w-b">Completed Request</h4>
-
-                <Card style={{ width: 200 }}>
-                  <Meta
-                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                    title="Independence Day"
-                    description="Let's make a vide on it."
-                  />
-                </Card>
-                <Pagination defaultCurrent={1} total={50} />
-                <h4 className="f-w-b">Rejected Request</h4>
-                <Card style={{ width: 200 }}>
-                  <Meta
-                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                    title="Independence Day"
-                    description="Let's make a vide on it."
-                  />
-                </Card>
-                <Pagination defaultCurrent={1} total={50} />
-              </div>
               <CollabRequestTab />
             </div>
           </div>

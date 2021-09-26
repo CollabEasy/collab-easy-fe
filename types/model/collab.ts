@@ -16,14 +16,14 @@ export interface SearchCollab {
 
 export interface CollabRequestData {
   id: number
-  sender_id: string
-  receiver_id: string
-  collab_date: Date
-  request_data: {
+  senderId: string
+  receiverId: string
+  collabDate: Date
+  requestData: {
     message: string
     collabTheme: string
   },
   status: string
-  created_at: Date
-  updated_at: Date
+  createdAt: Date
+  updatedAt: Date
 }

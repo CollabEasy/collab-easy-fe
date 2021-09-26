@@ -25,7 +25,9 @@ const postConfig = (dataToSend?: object) => {
   return {
     method: "post",
     data: JSON.stringify(dataToSend),
-    headers: { "content-type": "application/json" },
+    headers: { 
+      "content-type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem('token')}` },
   };
 };
 
