@@ -63,7 +63,7 @@ const CollabRequestsTab: React.FC<{
       getCollabRequests('Completed')
       getCollabRequests('Rejected')
       getCollabRequests('Active')
-    }, [])
+    }, [getCollabRequests])
 
     return (
       <div id="collab" className="tabcontent">
