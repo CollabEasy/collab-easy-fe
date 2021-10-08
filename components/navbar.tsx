@@ -1,7 +1,7 @@
 // import Link from "next/link";
 import { connect } from "react-redux";
 import Link from "next/link";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
 import Search from './search';
 import { Dispatch } from "redux";
@@ -54,6 +54,8 @@ const NavBar: React.FC<NavBarProps> = ({
 
   const [hideSignUp, setHideSignUp] = useState(false);
   const [showLoginOptions, setShowLoginOptions] = useState(false);
+  const dropdown = useRef(null);
+
   // const [isMobileVersion, setIsMobileVersion] = useState(false);
 
   const openLoginModal = () => {
@@ -79,11 +81,23 @@ const NavBar: React.FC<NavBarProps> = ({
   }, [inView, entry])
 
   useEffect(() => {
-    console.log("isLoggedIn: ", isLoggedIn);
     if( isLoggedIn ){
       setHideSignUp(true);
     }
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    // only add the event listener when the dropdown is opened
+    if (!showLoginOptions) return;
+    function handleClick(event) {
+      if (dropdown.current && !dropdown.current.contains(event.target)) {
+        setShowLoginOptions(false);
+      }
+    }
+    window.addEventListener("click", handleClick);
+    // clean up
+    return () => window.removeEventListener("click", handleClick);
+  }, [showLoginOptions]);
 
   return (
     <div className="row">
@@ -112,7 +126,7 @@ const NavBar: React.FC<NavBarProps> = ({
                 )
               }
               { showLoginOptions && (
-                  <div className="login-options-container">
+                  <div className="login-options-container" ref={dropdown}>
                     <div className="common-login-option settings-option">
                       <span className="f-14">Settings</span>
                     </div>
