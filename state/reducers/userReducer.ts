@@ -1,5 +1,5 @@
 import { mockUser } from "api/user";
-import { SET_USER_DATA, SET_USER_LOGGED_IN } from "state/action";
+import { SET_USER_DATA, SET_USER_LOGGED_IN, RESET_USER_LOGGED_IN } from "state/action";
 import { UserState } from "types/states";
 
 const initialState: UserState = {
@@ -19,6 +19,12 @@ const userReducer = (state = initialState, action): UserState => {
         ...state,
         isLoggedIn: true,
         userLoginData: action.payload.data?.data || {}
+      }
+    case RESET_USER_LOGGED_IN:
+      return {
+        ...state,
+        isLoggedIn: false,
+        userLoginData: {}
       }
     default:
       return state

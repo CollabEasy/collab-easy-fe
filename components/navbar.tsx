@@ -1,12 +1,12 @@
 // import Link from "next/link";
 import { connect } from "react-redux";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
 import Search from './search';
 import { Dispatch } from "redux";
 import { /* Menu, Dropdown, */ Button  } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+import { UserOutlined } from '@ant-design/icons';
 import { AppState } from "types/states";
 import Image from 'next/image';
 import titleDesktopImg from '../public/images/title-desktop.svg';
@@ -14,7 +14,7 @@ import titleMobileImg from '../public/images/logo.svg';
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 
-import { openLoginModalAction } from "state/action";
+import { openLoginModalAction, resetUserLoggedIn } from "state/action";
 // import { UserOutlined, SettingOutlined } from '@ant-design/icons';
 
 /* const menu = (
@@ -40,12 +40,16 @@ import { openLoginModalAction } from "state/action";
 ); */
 export interface NavBarProps {
   openLoginModalAction: () => void,
-  isLoggedIn: boolean
+  isLoggedIn: boolean,
+  userLoginData: any,
+  resetUserLoggedIn: () => void
 }
 
 const NavBar: React.FC<NavBarProps> = ({ 
   openLoginModalAction, 
-  isLoggedIn
+  isLoggedIn,
+  userLoginData,
+  resetUserLoggedIn
 }) => {
   const [ref, inView, entry] = useInView({
     root: null,
@@ -54,9 +58,9 @@ const NavBar: React.FC<NavBarProps> = ({
 
   const [hideSignUp, setHideSignUp] = useState(false);
   const [showLoginOptions, setShowLoginOptions] = useState(false);
-  const dropdown = useRef(null);
-
+  const [profilePic, setProfilePic] = useState("");
   // const [isMobileVersion, setIsMobileVersion] = useState(false);
+  
 
   const openLoginModal = () => {
     openLoginModalAction()
@@ -67,7 +71,7 @@ const NavBar: React.FC<NavBarProps> = ({
   }
   
   
-  const { toWondorHome } = useRoutesContext();
+  const { toWondorHome, toArtistProfile, toEditProfile } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = document.querySelector('#p-h');
@@ -81,23 +85,21 @@ const NavBar: React.FC<NavBarProps> = ({
   }, [inView, entry])
 
   useEffect(() => {
+    console.log("isLoggedIn: ", isLoggedIn);
     if( isLoggedIn ){
       setHideSignUp(true);
     }
   }, [isLoggedIn]);
 
   useEffect(() => {
-    // only add the event listener when the dropdown is opened
-    if (!showLoginOptions) return;
-    function handleClick(event) {
-      if (dropdown.current && !dropdown.current.contains(event.target)) {
-        setShowLoginOptions(false);
-      }
-    }
-    window.addEventListener("click", handleClick);
-    // clean up
-    return () => window.removeEventListener("click", handleClick);
-  }, [showLoginOptions]);
+    if( userLoginData?.profile_pic_url ) setProfilePic(userLoginData.profile_pic_url);
+  }, [userLoginData]);
+
+  const logoutUser = () => {
+    localStorage.removeItem('token');
+    resetUserLoggedIn();
+    setShowLoginOptions(false);
+  }
 
   return (
     <div className="row">
@@ -120,22 +122,37 @@ const NavBar: React.FC<NavBarProps> = ({
             <Button id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
           ) : (
             <div className="login-menu-container">
-              <MenuOutlined className={`menu-icon ${showLoginOptions ? 'hide-icon' : ''}`} onClick={() => setShowLoginOptions(!showLoginOptions)} />
+              <div className={`menu-icon ${showLoginOptions ? 'hide-icon' : ''}`}
+                   onClick={() => setShowLoginOptions(!showLoginOptions)}
+              >
+                { profilePic  ? (
+                    <img src={profilePic}/>
+                  ) : (
+                    <div className="default-profile">
+                      <UserOutlined className="user-icon" />
+                    </div>
+                  )
+                }
+              </div>
               { checkDevice() && showLoginOptions && (
                   <div className="sidebar-mask" onClick={() => setShowLoginOptions(false)}></div>
                 )
               }
               { showLoginOptions && (
-                  <div className="login-options-container" ref={dropdown}>
-                    <div className="common-login-option settings-option">
-                      <span className="f-14">Settings</span>
-                    </div>
-                    <div className="common-login-option profile-option">
-                      <span className="f-14">Profile</span>
-                    </div>
-                    <div className="common-login-option logout-option">
+                  <div className="login-options-container">
+                    <Link href={routeToHref(toEditProfile('123'))} passHref>
+                      <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(false)}>
+                        <span className="f-14">Settings</span>
+                      </div>
+                    </Link>
+                    <Link href={routeToHref(toArtistProfile('artist', '1'))} passHref>
+                      <div className="common-login-option profile-option" onClick={() => setShowLoginOptions(false)}>
+                        <span className="f-14">Profile</span>
+                      </div>
+                    </Link>
+                    <div className="common-login-option logout-option" onClick={logoutUser}>
                       <span className="f-14">Logout</span>
-                    </div>
+                    </div>                 
                   </div>
                 )
               }
@@ -164,11 +181,13 @@ const NavBar: React.FC<NavBarProps> = ({
 }
 
 const mapStateToProps = (state: AppState) => ({
-  isLoggedIn: state.user.isLoggedIn
+  isLoggedIn: state.user.isLoggedIn,
+  userLoginData: state.user.userLoginData,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   openLoginModalAction: () => dispatch(openLoginModalAction()),
+  resetUserLoggedIn: () => dispatch(resetUserLoggedIn())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
