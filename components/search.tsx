@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import { getSearchResult } from 'api/search'; 
 import { 
-    debounceTime, tap, distinctUntilChanged, switchMap, map, filter,
+    debounceTime, distinctUntilChanged, switchMap, map, filter,
  } from 'rxjs/operators';
 import { Subject, merge, of } from 'rxjs';
+import { useRouter } from 'next/router'
+import { useRoutesContext } from "components/routeContext";
 const Search = () => {
     const [inputVal, setInputVal] = useState('');
     const [searchData, setSearchData] = useState([]);
@@ -27,11 +29,21 @@ const Search = () => {
 
     const [onSearch$] = useState(() => new Subject());
     
+    const resetState = () => setSearchState([], false, '', false);
+    
+    const clearInput = () => {
+        setInputVal('');
+        resetState();
+    }
+
     const handleTextChange = async (event) => {
+        resetState();
         setInputVal(event.target.value);
         onSearch$.next(event.target.value);
     }
 
+    const router = useRouter();
+    const { toArtist, toArtistProfile } = useRoutesContext();
     const callSearchAPI = async (val:string) => {
         try {
             /* Type 'any' is of type Array<object> but getting some error */
@@ -74,11 +86,13 @@ const Search = () => {
         return () => {
             subscription.unsubscribe()
         }
-      }, [onSearch$]);
+    }, [onSearch$]);
 
-    const clearInput = () => {
-        setInputVal('');
-        setSearchState([], false, '', false);
+    const handleSearchClick = (href) => (e) => {
+        resetState();
+
+        e.preventDefault();
+        router.push(href);
     }
 
     return (
@@ -113,10 +127,30 @@ const Search = () => {
                 searchData.length > 0 && focused && ( <div className="typeahead-container"> 
                 { 
                     searchData.map((data, i) => {
-                        return <div className="typeahead-item" key={i}>
-                            <span className="typeahead-item__name">{data.email}</span>
-                            <span className="typeahead-item__category">{data.name}</span>
-                        </div>
+                        const { entityType, id, name } = data;
+                        const href = entityType === 'ART' 
+                            ? toArtist().href + data.slug
+                            : toArtistProfile('dancer', id).as /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
+                            
+                        const searchRow = entityType === 'ART' 
+                            ? (
+                                <div key = {i} className="typeahead-item">
+                                    <div onMouseDown={handleSearchClick(href)}>
+                                        <span className="typeahead-item__name">{name}</span>
+                                        <span className="typeahead-item__category">{entityType}</span>
+                                    </div>
+                                </div>
+                                
+                            )
+                            : (
+                                <div key = {i} className="typeahead-item">
+                                    <div onMouseDown={handleSearchClick(href)}>
+                                        <span className="typeahead-item__name">{name}</span>
+                                        <span className="typeahead-item__category">{entityType}</span>
+                                    </div>
+                                </div>
+                            )
+                        return searchRow;
                     })
                 }
                 </div>
