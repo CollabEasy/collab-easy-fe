@@ -36,7 +36,7 @@ export const updateArtistCategories = async (data: any) => {
 	console.log("updateArtistCategories-----: ", data);
 	const config = postConfig(data);
 	try {
-		const categories = await api.call('api/v1/artist/categories', config);
+		const categories = await api.call('api/v1/artist/arts', config);
 		const artistList = {"data":[{"id":5,"artistId":"433250de-6ec4-4c6e-82be-3619e412e7c5","artId":2},{"id":6,"artistId":"433250de-6ec4-4c6e-82be-3619e412e7c5","artId":3}],"status":"success"};
 		console.log("artistList: ", artistList);
 		return artistList;
