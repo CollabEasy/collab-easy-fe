@@ -35,13 +35,15 @@ const { Option } = Select;
 const ProfileModal: React.FC<{
   getArtistCategories: any;
   artistCategories: any;
-  postArtistArt: any
-}> = ({ getArtistCategories, artistCategories, postArtistArt }) => {
+  postArtistArt: any;
+  userLoginData: any;
+}> = ({ getArtistCategories, artistCategories, postArtistArt, userLoginData }) => {
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(true);
   const [categoriesArr, setCategoriesArr] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState("");
   const [collaborationCheck, setCollaborationCheck] = useState(false);
+  const [userName, setUserName] = useState("");
   const windowWidth = 1000;
 
   const showModal = () => {
@@ -80,6 +82,13 @@ const ProfileModal: React.FC<{
     }
   }, [artistCategories]);
 
+  useEffect(() => {
+    if(userLoginData?.first_name){
+      let name = `${userLoginData?.first_name} ${userLoginData?.last_name}`;
+      setUserName(name);
+    }
+  }, [userLoginData]);
+
   function handleChange(value) {
     setSelectedCategories(value);
   }
@@ -116,7 +125,7 @@ const ProfileModal: React.FC<{
           <div className="profile-form">
             <div className="profile-title">
               <h1>Welcome aborad,</h1>
-              <h1>Abhishek Arora</h1>
+              <h1>{userName}</h1>
             </div>
             <p>
               You are just one step away from collaborating with the artists on
@@ -194,6 +203,7 @@ const mapStateToProps = (state: AppState) => {
   console.log(state, "------state----");
   return {
     artistCategories: state.artist.artistCategories,
+    userLoginData: state.user.userLoginData,
   };
 };
 
