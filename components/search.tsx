@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import { getSearchResult } from 'api/search'; 
 import { 
-    debounceTime, tap, distinctUntilChanged, switchMap, map, filter,
+    debounceTime, distinctUntilChanged, switchMap, map, filter,
  } from 'rxjs/operators';
 import { Subject, merge, of } from 'rxjs';
+import { useRouter } from 'next/router'
+import { useRoutesContext } from "components/routeContext";
 const Search = () => {
     const [inputVal, setInputVal] = useState('');
     const [searchData, setSearchData] = useState([]);
@@ -32,6 +34,8 @@ const Search = () => {
         onSearch$.next(event.target.value);
     }
 
+    const router = useRouter();
+    const { toArtist, toArtistProfile } = useRoutesContext();
     const callSearchAPI = async (val:string) => {
         try {
             /* Type 'any' is of type Array<object> but getting some error */
@@ -81,6 +85,12 @@ const Search = () => {
         setSearchState([], false, '', false);
     }
 
+    const handleSearchClick = (href) => (e) => {
+        e.preventDefault();
+        setSearchState([], false, '', false);
+        router.push(href);
+    }
+
     return (
         <>
             <div className="search-bar">
@@ -113,10 +123,30 @@ const Search = () => {
                 searchData.length > 0 && focused && ( <div className="typeahead-container"> 
                 { 
                     searchData.map((data, i) => {
-                        return <div className="typeahead-item" key={i}>
-                            <span className="typeahead-item__name">{data.email}</span>
-                            <span className="typeahead-item__category">{data.name}</span>
-                        </div>
+                        const { entity_type, id } = data;
+                        const href = entity_type === 'ART' 
+                            ? toArtist().href + data.slug
+                            : toArtistProfile('dancer', id).as
+                            
+                        const searchRow = data.entity_type === 'ART' 
+                            ? (
+                                <div key = {i} className="typeahead-item">
+                                    <div onMouseDown={handleSearchClick(href)}>
+                                        <span className="typeahead-item__name">{data.name}</span>
+                                        <span className="typeahead-item__category">{data.entity_type}</span>
+                                    </div>
+                                </div>
+                                
+                            )
+                            : (
+                                <div key = {i} className="typeahead-item">
+                                    <div onMouseDown={handleSearchClick(href)}>
+                                        <span className="typeahead-item__name">{data.name}</span>
+                                        <span className="typeahead-item__category">{data.entity_type}</span>
+                                    </div>
+                                </div>
+                            )
+                        return searchRow;
                     })
                 }
                 </div>
