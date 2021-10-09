@@ -76,11 +76,13 @@ const NavBar: React.FC<NavBarProps> = ({
   useEffect(() => {
     const navBarElement = document.querySelector('#p-h');
     if(!inView && entry !== undefined) {
-      navBarElement.classList.add('scroll-effect')
+      navBarElement.classList.add('scroll-effect');
+      navBarElement.classList.add('animate__fadeInDown');
     }
 
     if(inView && entry !== undefined) {
-      navBarElement.classList.remove('scroll-effect')
+      navBarElement.classList.remove('scroll-effect');
+      navBarElement.classList.remove('animate__fadeInDown');
     }
   }, [inView, entry])
 
@@ -103,7 +105,7 @@ const NavBar: React.FC<NavBarProps> = ({
 
   return (
     <div className="row">
-      <div id="p-h" className="col-lg-12 col-md-12 col-sm-12 nv-f-t">
+      <div id="p-h" className="col-lg-12 col-md-12 col-sm-12 nv-f-t animate__animated">
         <div id="app-logo-desktop">
           <Link  href={routeToHref(toWondorHome())} passHref>
             <Image src={titleDesktopImg}  alt="Landing page" />   
@@ -139,7 +141,7 @@ const NavBar: React.FC<NavBarProps> = ({
                 )
               }
               { showLoginOptions && (
-                  <div className="login-options-container">
+                  <div className={`login-options-container ${checkDevice() ? 'animate__animated animate__slideInRight' : ''}`}>
                     <Link href={routeToHref(toEditProfile('123'))} passHref>
                       <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(false)}>
                         <span className="f-14">Settings</span>

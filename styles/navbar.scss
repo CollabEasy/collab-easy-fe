@@ -1,6 +1,13 @@
 @import '../styles/common/_variable';
 @import '../styles/common/_font-size';
 
+.animate__animated.animate__slideInRight {
+  --animate-duration: 0.7s;
+}
+.animate__animated.animate__fadeInDown {
+  --animate-duration: 0.7s;
+}
+
 .nv-f-t {
   position: absolute;
   display: flex;
@@ -57,7 +64,7 @@
     position: absolute;
     background: #fff;
     border-radius: 4px;
-    right: 0px;
+    right: 18px;
     width: 120px;
     box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
   }
@@ -244,6 +251,7 @@
     position: static;
     .login-options-container{
       top: 0px;
+      right: 0px;
       bottom: 0px;
       position: fixed;
       border-radius: 0px;
