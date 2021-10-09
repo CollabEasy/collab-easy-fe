@@ -29,7 +29,15 @@ const Search = () => {
 
     const [onSearch$] = useState(() => new Subject());
     
+    const resetState = () => setSearchState([], false, '', false);
+    
+    const clearInput = () => {
+        setInputVal('');
+        resetState();
+    }
+
     const handleTextChange = async (event) => {
+        resetState();
         setInputVal(event.target.value);
         onSearch$.next(event.target.value);
     }
@@ -78,16 +86,12 @@ const Search = () => {
         return () => {
             subscription.unsubscribe()
         }
-      }, [onSearch$]);
-
-    const clearInput = () => {
-        setInputVal('');
-        setSearchState([], false, '', false);
-    }
+    }, [onSearch$]);
 
     const handleSearchClick = (href) => (e) => {
+        resetState();
+
         e.preventDefault();
-        setSearchState([], false, '', false);
         router.push(href);
     }
 
@@ -123,17 +127,17 @@ const Search = () => {
                 searchData.length > 0 && focused && ( <div className="typeahead-container"> 
                 { 
                     searchData.map((data, i) => {
-                        const { entity_type, id } = data;
-                        const href = entity_type === 'ART' 
+                        const { entityType, id, name } = data;
+                        const href = entityType === 'ART' 
                             ? toArtist().href + data.slug
-                            : toArtistProfile('dancer', id).as
+                            : toArtistProfile('dancer', id).as /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
                             
-                        const searchRow = data.entity_type === 'ART' 
+                        const searchRow = entityType === 'ART' 
                             ? (
                                 <div key = {i} className="typeahead-item">
                                     <div onMouseDown={handleSearchClick(href)}>
-                                        <span className="typeahead-item__name">{data.name}</span>
-                                        <span className="typeahead-item__category">{data.entity_type}</span>
+                                        <span className="typeahead-item__name">{name}</span>
+                                        <span className="typeahead-item__category">{entityType}</span>
                                     </div>
                                 </div>
                                 
@@ -141,8 +145,8 @@ const Search = () => {
                             : (
                                 <div key = {i} className="typeahead-item">
                                     <div onMouseDown={handleSearchClick(href)}>
-                                        <span className="typeahead-item__name">{data.name}</span>
-                                        <span className="typeahead-item__category">{data.entity_type}</span>
+                                        <span className="typeahead-item__name">{name}</span>
+                                        <span className="typeahead-item__category">{entityType}</span>
                                     </div>
                                 </div>
                             )
