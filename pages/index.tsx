@@ -74,7 +74,7 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData, artistLis
       }
       <div className="row">
         <div id="landing-desktop-img" className="col-md-12 m-0 p-0">
-          <Image src={landingDesktopImg} alt="Landing page" />
+          <Image src={landingDesktopImg} layout="responsive" alt="Landing page" />
         </div>
         <div id="landing-mobile-img" className="col-md-12 m-0 p-0">
           <Image src={landingMobileImg} alt="Landing page" />

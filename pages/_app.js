@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "styles/index.scss";
+import 'animate.css';
 import NextApp from "next/app";
 import { withRouter } from "next/router";
 import React from "react";

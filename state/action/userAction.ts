@@ -4,6 +4,7 @@ export const FETCH_USER_DATA = 'USER/FETCH_USER_DATA'
 export const SET_USER_DATA = 'USER/SET_USER_DATA'
 export const SET_USER_LOGGED_IN = 'USER/SET_USER_LOGGED_IN'
 export const UPDATE_ARTIST_PROFILE = 'ARTIST/UPDATE_ARTIST_PROFILE'
+export const RESET_USER_LOGGED_IN = 'RESET_USER_LOGGED_IN'
 
 export const fetchUserDataAction = (id: string) => ({
   type: FETCH_USER_DATA,
@@ -32,3 +33,7 @@ export const updateArtistProfile = (data: User) => ({
     data
   }
 })
+
+export const resetUserLoggedIn = (data: any) => ({
+  type: RESET_USER_LOGGED_IN
+});
