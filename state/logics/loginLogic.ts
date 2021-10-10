@@ -10,7 +10,7 @@ export const fetchLoginDataLogic = createLogic<
   LogicDeps
 >({
   type: [FETCH_LOGIN_DATA],
-  async process({ action, api, getState, routes }, dispatch, done) {
+  async process({ action, api }, dispatch, done) {
     const { token } = action.payload
     try {
       const loginData = await api.loginApi.getLoginData(token)
@@ -31,11 +31,13 @@ export const setUserLoginDataLogic = createLogic<
   LogicDeps
 >({
   type: [SET_USER_LOGGED_IN],
-  async process({ action, api, getState, routes }, dispatch, done) {
+  async process({ action }, dispatch, done) {
     console.log("here-----", action.payload);
     const { data } = action.payload
     try {
       localStorage.setItem('token', data.data.token)
+      // To-Do we need to set token in cookies
+     // Cookies.set('token', data.data.token)
         } catch (error) {
     } finally {
       done()

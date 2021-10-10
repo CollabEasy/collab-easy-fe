@@ -3918,3 +3918,11 @@ export const GENDERS = [
 'Female',
 'Don\'t want to disclose'
 ]
+
+export enum CollabRequestStatus {
+  ACTIVE = 'Active',
+  PENDING = 'Pending',
+  SCHEDULED ='Scheduled',
+  COMPLETED = 'Completed',
+  REJECTED = 'Rejected'
+}

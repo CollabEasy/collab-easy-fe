@@ -70,7 +70,7 @@ const NavBar: React.FC<NavBarProps> = ({
     return window.matchMedia("only screen and (max-width: 767px)").matches;
   }
   
-  
+
   const { toWondorHome, toArtistProfile, toEditProfile } = useRoutesContext();
 
   useEffect(() => {
@@ -128,7 +128,8 @@ const NavBar: React.FC<NavBarProps> = ({
                    onClick={() => setShowLoginOptions(!showLoginOptions)}
               >
                 { profilePic  ? (
-                    <img src={profilePic}/>
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={profilePic} alt="profile-pic"/>
                   ) : (
                     <div className="default-profile">
                       <UserOutlined className="user-icon" />
@@ -142,7 +143,7 @@ const NavBar: React.FC<NavBarProps> = ({
               }
               { showLoginOptions && (
                   <div className={`login-options-container ${checkDevice() ? 'animate__animated animate__slideInRight' : ''}`}>
-                    <Link href={routeToHref(toEditProfile('123'))} passHref>
+                    <Link href={routeToHref(toEditProfile(userLoginData.artist_id))} passHref>
                       <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(false)}>
                         <span className="f-14">Settings</span>
                       </div>

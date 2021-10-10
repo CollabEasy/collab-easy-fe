@@ -1,6 +1,6 @@
 import { User } from 'types/model';
 import { InputNumber, Tabs } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Form,
     Input,
@@ -10,7 +10,6 @@ import {
     Switch,
 } from 'antd';
 import { openLoginModalAction, updateArtistProfile } from "state/action";
-import { NextPageContext } from 'next';
 import { COUNTRIES, GENDERS, TIME_ZONES } from 'config/constants';
 import { useDispatch } from 'react-redux';
 import { getArtistData } from 'api/artist-user';
@@ -41,18 +40,37 @@ const openLoginModal = () => {
 interface ProfilePageProps {
     userData: User
 }
-const EditProfile: React.FC<ProfilePageProps> = ({ userData }) => {
+const EditProfile: React.FC<ProfilePageProps> = () => {
+    let userData: User;
+
+    useEffect(() => {
+        async function fetchData() {
+            userData = await getArtistData();
+            console.log(userData, 'user')
+            setFirstName(userData.firstName)
+            setLastName(userData.lastName)
+            setBio(userData.bio)
+            setEmail(userData.email)
+            setPhoneNumber(userData.phoneNumber)
+            setAge(userData.age)
+            setGender(userData.gender)
+            setCountry(userData.country)
+            setTimeZone(userData.timezone)
+        }
+        fetchData();
+      }, []);
+
     console.log(userData)
     const [componentSize, setComponentSize] = useState<SizeType | 'default'>('default');
-    const [firstName, setFirstName] = useState<string>(userData.firstName)
-    const [lastName, setLastName] = useState<string>(userData.lastName)
-    const [bio, setBio] = useState<string>(userData.bio)
-    const [email, setEmail] = useState<string>(userData.email)
-    const [phoneNumber, setPhoneNumber] = useState<number>(userData.phoneNumber)
-    const [age, setAge] = useState<number>(userData.age)
-    const [gender, setGender] = useState<string>(userData.gender)
-    const [country, setCountry] = useState<string>(userData.country)
-    const [timezone, setTimeZone] = useState<string>(userData.timezone)
+    const [firstName, setFirstName] = useState<string>(userData?.firstName)
+    const [lastName, setLastName] = useState<string>(userData?.lastName)
+    const [bio, setBio] = useState<string>(userData?.bio)
+    const [email, setEmail] = useState<string>(userData?.email)
+    const [phoneNumber, setPhoneNumber] = useState<number>(userData?.phoneNumber)
+    const [age, setAge] = useState<number>(userData?.age)
+    const [gender, setGender] = useState<string>(userData?.gender)
+    const [country, setCountry] = useState<string>(userData?.country)
+    const [timezone, setTimeZone] = useState<string>(userData?.timezone)
     //  const [dob, setDOB] = useState(userData.dob ? userData.dob ? new Date())
 
     const dispatch = useDispatch()
@@ -200,14 +218,15 @@ const EditProfile: React.FC<ProfilePageProps> = ({ userData }) => {
     );
 }
 
-export const getServerSideProps = async () => {
-    const user = await getArtistData()
-    return {
-        props: {
-            userData: user
-        } as ProfilePageProps,
-    }
-}
+// To Do: - need to fetch data using below function, need to fix the issue of localstorage object not available at server side
+// export const getServerSideProps = async () => {
+//     const user = await getArtistData()
+//     return {
+//         props: {
+//             userData: user
+//         } as ProfilePageProps,
+//     }
+// }
 
 
 export default EditProfile;

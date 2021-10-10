@@ -9,6 +9,8 @@ import { routeToHref } from "config/routes";
 import { useRoutesContext } from "components/routeContext";
 import CollabRequest from 'components/collabRequestSend';
 import CollabRequestTab from 'components/collabRequestTab';
+import { AppState } from 'state';
+import { connect } from 'react-redux';
 
 // https://ant.design/components/card/
 const { Meta } = Card;
@@ -33,7 +35,7 @@ const toggleTab = (actionName) => {
   document.getElementById(`${actionName}_1`).classList.add('active');
 };
 
-const ArtistProfile = () => {
+const ArtistProfile = ({ user }) => {
   const { toEditProfile } = useRoutesContext();
   return (
     <>
@@ -67,7 +69,7 @@ const ArtistProfile = () => {
               </span>
               <span>
                 <>
-                  <Link href={routeToHref(toEditProfile("123"))} passHref>
+                  <Link href={routeToHref(toEditProfile(user.artist_id))} passHref>
                     <a>Edit</a>
                   </Link>
                 </>
@@ -103,4 +105,8 @@ const ArtistProfile = () => {
   )
 }
 
-export default ArtistProfile;
+const mapStateToProps = (state: AppState) => ({
+  user: state.user.userLoginData
+})
+
+export default connect(mapStateToProps, null)(ArtistProfile);

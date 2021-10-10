@@ -34,6 +34,6 @@ export const updateArtistProfile = (data: User) => ({
   }
 })
 
-export const resetUserLoggedIn = (data: any) => ({
+export const resetUserLoggedIn = () => ({
   type: RESET_USER_LOGGED_IN
 });
