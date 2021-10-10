@@ -14,7 +14,7 @@ import {
     Switch,
 } from 'antd';
 import { fetchUserDataAction, openLoginModalAction } from "state/action";
-
+import { useRouter } from 'next/router'
 
 const { TabPane } = Tabs;
 
@@ -46,12 +46,15 @@ const EditProfile: React.FC<ProfilePageProps> = ({ userData }) => {
     const onFormLayoutChange = ({ size }: { size: SizeType }) => {
         setComponentSize(size);
     };
-
+    const router = useRouter();
+    const tab: string = router.query?.tab ? '3' : '1';
+    const [activeTabKey, setActiveTabKey] = useState(tab);
+    const onTabClick = (e) => setActiveTabKey(e);
     return (
         <div className="edit-profile" style={{ padding: 200 }}>
             <h1>Edit Profile User</h1>
             <>
-                <Tabs tabPosition={'left'}>
+                <Tabs tabPosition={'left'}  activeKey={activeTabKey} onTabClick={onTabClick}>
                     <TabPane tab="Basic Information" key="1">
                         <>
                             <Form

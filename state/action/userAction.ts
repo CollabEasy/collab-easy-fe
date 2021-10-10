@@ -26,6 +26,6 @@ export const setUserLoggedIn = (data: any) => ({
   },
 });
 
-export const resetUserLoggedIn = (data: any) => ({
+export const resetUserLoggedIn = () => ({
   type: RESET_USER_LOGGED_IN
 });

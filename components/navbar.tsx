@@ -1,7 +1,7 @@
 // import Link from "next/link";
 import { connect } from "react-redux";
 import Link from "next/link";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef} from 'react'
 import { useInView } from 'react-intersection-observer';
 import Search from './search';
 import { Dispatch } from "redux";
@@ -13,7 +13,7 @@ import titleDesktopImg from '../public/images/title-desktop.svg';
 import titleMobileImg from '../public/images/logo.svg';
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
-
+import avatar from '../public/images/avatar.png';
 import { openLoginModalAction, resetUserLoggedIn } from "state/action";
 // import { UserOutlined, SettingOutlined } from '@ant-design/icons';
 
@@ -59,6 +59,7 @@ const NavBar: React.FC<NavBarProps> = ({
   const [hideSignUp, setHideSignUp] = useState(false);
   const [showLoginOptions, setShowLoginOptions] = useState(false);
   const [profilePic, setProfilePic] = useState("");
+  const dropdown = useRef(null);
   // const [isMobileVersion, setIsMobileVersion] = useState(false);
   
 
@@ -94,8 +95,21 @@ const NavBar: React.FC<NavBarProps> = ({
   }, [isLoggedIn]);
 
   useEffect(() => {
-    if( userLoginData?.profile_pic_url ) setProfilePic(userLoginData.profile_pic_url);
+    ( userLoginData?.profile_pic_url ) ? setProfilePic(userLoginData.profile_pic_url) : setProfilePic(avatar);
   }, [userLoginData]);
+
+  useEffect(() => {
+    // only add the event listener when the dropdown is opened
+    if (!showLoginOptions) return;
+    function handleClick(event) {
+      if (dropdown.current && !dropdown.current.contains(event.target)) {
+        setShowLoginOptions(false);
+      }
+    }
+    window.addEventListener("click", handleClick);
+    // clean up
+    return () => window.removeEventListener("click", handleClick);
+  }, [showLoginOptions]);
 
   const logoutUser = () => {
     localStorage.removeItem('token');
@@ -123,7 +137,7 @@ const NavBar: React.FC<NavBarProps> = ({
         { !hideSignUp ? (
             <Button id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
           ) : (
-            <div className="login-menu-container">
+            <div className="login-menu-container" ref={dropdown}>
               <div className={`menu-icon ${showLoginOptions ? 'hide-icon' : ''}`}
                    onClick={() => setShowLoginOptions(!showLoginOptions)}
               >
@@ -142,12 +156,12 @@ const NavBar: React.FC<NavBarProps> = ({
               }
               { showLoginOptions && (
                   <div className={`login-options-container ${checkDevice() ? 'animate__animated animate__slideInRight' : ''}`}>
-                    <Link href={routeToHref(toEditProfile('123'))} passHref>
+                    <Link href={routeToHref(toEditProfile('123','setting'))} passHref>
                       <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(false)}>
                         <span className="f-14">Settings</span>
                       </div>
                     </Link>
-                    <Link href={routeToHref(toArtistProfile('artist', '1'))} passHref>
+                    <Link href={routeToHref(toArtistProfile('artist'))} passHref>
                       <div className="common-login-option profile-option" onClick={() => setShowLoginOptions(false)}>
                         <span className="f-14">Profile</span>
                       </div>
