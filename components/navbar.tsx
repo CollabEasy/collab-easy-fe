@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
 import Search from './search';
 import { Dispatch } from "redux";
-import { /* Menu, Dropdown, */ Button  } from 'antd';
+import { /* Menu, Dropdown, */ Button } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { AppState } from "types/states";
 import Image from 'next/image';
@@ -43,15 +43,15 @@ export interface NavBarProps {
   isLoggedIn: boolean
 }
 
-const NavBar: React.FC<NavBarProps> = ({ 
-  openLoginModalAction, 
+const NavBar: React.FC<NavBarProps> = ({
+  openLoginModalAction,
   isLoggedIn
 }) => {
   const [ref, inView, entry] = useInView({
     root: null,
     rootMargin: '-20px 0px 0px 0px',
   });
-
+  const { toArtistProfile } = useRoutesContext();
   const [hideSignUp, setHideSignUp] = useState(false);
   const [showLoginOptions, setShowLoginOptions] = useState(false);
   const dropdown = useRef(null);
@@ -65,23 +65,23 @@ const NavBar: React.FC<NavBarProps> = ({
   const checkDevice = () => {
     return window.matchMedia("only screen and (max-width: 767px)").matches;
   }
-  
-  
-  const { toWondorHome } = useRoutesContext();
+
+
+  const { toWondorHome,toEditProfile } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = document.querySelector('#p-h');
-    if(!inView && entry !== undefined) {
+    if (!inView && entry !== undefined) {
       navBarElement.classList.add('scroll-effect')
     }
 
-    if(inView && entry !== undefined) {
+    if (inView && entry !== undefined) {
       navBarElement.classList.remove('scroll-effect')
     }
   }, [inView, entry])
 
   useEffect(() => {
-    if( isLoggedIn ){
+    if (isLoggedIn) {
       setHideSignUp(true);
     }
   }, [isLoggedIn]);
@@ -103,44 +103,49 @@ const NavBar: React.FC<NavBarProps> = ({
     <div className="row">
       <div id="p-h" className="col-lg-12 col-md-12 col-sm-12 nv-f-t">
         <div id="app-logo-desktop">
-          <Link  href={routeToHref(toWondorHome())} passHref>
-            <Image src={titleDesktopImg}  alt="Landing page" />   
+          <Link href={routeToHref(toWondorHome())} passHref>
+            <Image src={titleDesktopImg} alt="Landing page" />
           </Link>
         </div>
         <div id="app-logo-mobile">
-          <Link  href={routeToHref(toWondorHome())} passHref>
-            <Image src={titleMobileImg}  alt="Landing page" /> 
+          <Link href={routeToHref(toWondorHome())} passHref>
+            <Image src={titleMobileImg} alt="Landing page" />
           </Link>
         </div>
 
         <div className="navbar-search">
           <Search></Search>
         </div>
-        { !hideSignUp ? (
-            <Button id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
-          ) : (
-            <div className="login-menu-container">
-              <MenuOutlined className={`menu-icon ${showLoginOptions ? 'hide-icon' : ''}`} onClick={() => setShowLoginOptions(!showLoginOptions)} />
-              { checkDevice() && showLoginOptions && (
-                  <div className="sidebar-mask" onClick={() => setShowLoginOptions(false)}></div>
-                )
-              }
-              { showLoginOptions && (
-                  <div className="login-options-container" ref={dropdown}>
-                    <div className="common-login-option settings-option">
-                      <span className="f-14">Settings</span>
-                    </div>
-                    <div className="common-login-option profile-option">
-                      <span className="f-14">Profile</span>
-                    </div>
-                    <div className="common-login-option logout-option">
-                      <span className="f-14">Logout</span>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
-          )
+        {!hideSignUp ? (
+          <Button id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
+        ) : (
+          <div className="login-menu-container">
+            <MenuOutlined className={`menu-icon ${showLoginOptions ? 'hide-icon' : ''}`} onClick={() => setShowLoginOptions(!showLoginOptions)} />
+            {checkDevice() && showLoginOptions && (
+              <div className="sidebar-mask" onClick={() => setShowLoginOptions(false)}></div>
+            )
+            }
+            {showLoginOptions && (
+              <div className="login-options-container" ref={dropdown}>
+                <Link href={routeToHref(toEditProfile("123",'settings'))} passHref>
+                  <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(!showLoginOptions)}>
+                    <span className="f-14">Settings</span>
+                  </div>                  
+                </Link>
+                
+                <Link href={routeToHref(toArtistProfile("2"))} passHref>
+                <div className="common-login-option profile-option" onClick={() => setShowLoginOptions(!showLoginOptions)}>
+                  <span className="f-14">Profile</span>
+                </div>
+                </Link>
+                <div className="common-login-option logout-option">
+                  <span className="f-14">Logout</span>
+                </div>
+              </div>
+            )
+            }
+          </div>
+        )
         }
 
         {/* <div className={styles["navbar-menu"]}>

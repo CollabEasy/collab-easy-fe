@@ -12,9 +12,7 @@ const { Meta } = Card;
 const DiscoverArtist = () => {
   const { toArtistProfile } = useRoutesContext();
   const router = useRouter()
-  const { id: typeOfArtist } = router.query;
   const array = Array(7).fill(new Date().getDate())
-  console.log(typeOfArtist, '<--- typeOfArtist');
   return (
     <>
       <Title title="Discover Artist" />
@@ -26,7 +24,7 @@ const DiscoverArtist = () => {
         <div className="row" style={{ paddingTop: '2rem' }}>
           {array.map((item, index) => (
             <div key={index} className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3" style={{ padding: '1rem' }}>
-              <Link key={index} href={routeToHref(toArtistProfile(typeOfArtist, item))} passHref>
+              <Link key={index} href={routeToHref(toArtistProfile(item))} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={dancersImg} alt="cards" />}>
                   <Meta title="Dancers" />
                 </Card>
@@ -40,3 +38,4 @@ const DiscoverArtist = () => {
 }
 
 export default DiscoverArtist;
+ 
