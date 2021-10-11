@@ -2,12 +2,12 @@ import api from "./client";
 import { SearchResult } from "types/model/searchResult";
 
 const getConfig = (query) => {
-    return {
-        method: 'get',
-        params: {
-             query,
-        }
+  return {
+    method: 'get',
+    params: {
+      query,
     }
+  }
 }
 
 export const getSearchResult = async (query: string) => {

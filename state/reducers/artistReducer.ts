@@ -1,5 +1,4 @@
-import { mockUser } from "api/user";
-import { UserState, ArtistCategoriesState } from "types/states";
+import { ArtistCategoriesState } from "types/states";
 import { SET_ARTIST_CATEGORIES_DATA } from "state/action/artistAction";
 
 const initialState: ArtistCategoriesState = {

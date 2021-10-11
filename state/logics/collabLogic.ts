@@ -1,3 +1,4 @@
+import { CollabRequestStatus } from "config/constants";
 import { createLogic } from "redux-logic";
 import { LogicDeps } from "state";
 import {
@@ -27,6 +28,10 @@ export const sendCollabRequestLogic = createLogic<
     const { data: collabRequest } = action.payload;
     try {
       const request = await api.collabApi.sendCollabRequest(collabRequest);
+      dispatch(getCollabRequestsAction({status: CollabRequestStatus.ACTIVE}))
+      dispatch(getCollabRequestsAction({status: CollabRequestStatus.PENDING}))
+      dispatch(getCollabRequestsAction({status: CollabRequestStatus.SCHEDULED}))
+      dispatch(getCollabRequestsAction({status: CollabRequestStatus.REJECTED}))
     } catch (error) {
     } finally {
       done()

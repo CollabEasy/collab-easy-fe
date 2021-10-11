@@ -1,14 +1,15 @@
 import Title from '../../components/title';
 import Image from 'next/image';
 import avatar from '../../public/images/avatar.png'
-import React, { useEffect } from 'react';
-import { Pagination, Space } from 'antd';
-import { Button, Card, Avatar } from 'antd';
+import React from 'react';
+import { Card } from 'antd';
 import Link from "next/link";
 import { routeToHref } from "config/routes";
 import { useRoutesContext } from "components/routeContext";
 import CollabRequest from 'components/collabRequestSend';
 import CollabRequestTab from 'components/collabRequestTab';
+import { AppState } from 'state';
+import { connect } from 'react-redux';
 
 // https://ant.design/components/card/
 const { Meta } = Card;
@@ -33,7 +34,8 @@ const toggleTab = (actionName) => {
   document.getElementById(`${actionName}_1`).classList.add('active');
 };
 
-const ArtistProfile = () => {
+const ArtistProfile = ({ userLoginData }) => {
+  console.log(userLoginData, 'login')
   const { toEditProfile } = useRoutesContext();
   return (
     <>
@@ -47,7 +49,7 @@ const ArtistProfile = () => {
         <div className="row">
           <div className="col-xl-12 col-md-12 col-sm-12">
             <div className="avtr">
-              <Image src={avatar} alt="Landing page" className="rounded mx-auto d-block" />
+              <Image src={userLoginData.profile_pic_url} alt="Landing page" className="rounded mx-auto d-block" width='100px' height='100px' />
             </div>
           </div>
           <div className="col-xl-12 col-md-12 col-sm-12">
@@ -67,7 +69,7 @@ const ArtistProfile = () => {
               </span>
               <span>
                 <>
-                  <Link href={routeToHref(toEditProfile("123"))} passHref>
+                  <Link href={routeToHref(toEditProfile(userLoginData.artist_id, 'setting'))} passHref>
                     <a>Edit</a>
                   </Link>
                 </>
@@ -103,4 +105,8 @@ const ArtistProfile = () => {
   )
 }
 
-export default ArtistProfile;
+const mapStateToProps = (state: AppState) => ({
+  userLoginData: state.user.userLoginData
+})
+
+export default connect(mapStateToProps, null)(ArtistProfile);

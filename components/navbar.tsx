@@ -14,7 +14,7 @@ import titleMobileImg from '../public/images/logo.svg';
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 import avatar from '../public/images/avatar.png';
-import { openLoginModalAction, resetUserLoggedIn } from "state/action";
+import { openLoginModalAction, resetUserLoggedInAction } from "state/action";
 // import { UserOutlined, SettingOutlined } from '@ant-design/icons';
 
 /* const menu = (
@@ -71,7 +71,7 @@ const NavBar: React.FC<NavBarProps> = ({
     return window.matchMedia("only screen and (max-width: 767px)").matches;
   }
   
-  
+
   const { toWondorHome, toArtistProfile, toEditProfile } = useRoutesContext();
 
   useEffect(() => {
@@ -142,7 +142,8 @@ const NavBar: React.FC<NavBarProps> = ({
                    onClick={() => setShowLoginOptions(!showLoginOptions)}
               >
                 { profilePic  ? (
-                    <img src={profilePic}/>
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={profilePic} alt="profile-pic"/>
                   ) : (
                     <div className="default-profile">
                       <UserOutlined className="user-icon" />
@@ -156,12 +157,12 @@ const NavBar: React.FC<NavBarProps> = ({
               }
               { showLoginOptions && (
                   <div className={`login-options-container ${checkDevice() ? 'animate__animated animate__slideInRight' : ''}`}>
-                    <Link href={routeToHref(toEditProfile('123','setting'))} passHref>
+                    <Link href={routeToHref(toEditProfile(userLoginData.artist_id, 'setting'))} passHref>
                       <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(false)}>
                         <span className="f-14">Settings</span>
                       </div>
                     </Link>
-                    <Link href={routeToHref(toArtistProfile('artist'))} passHref>
+                    <Link href={routeToHref(toArtistProfile('artist', userLoginData.artist_id))} passHref>
                       <div className="common-login-option profile-option" onClick={() => setShowLoginOptions(false)}>
                         <span className="f-14">Profile</span>
                       </div>
@@ -203,7 +204,7 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   openLoginModalAction: () => dispatch(openLoginModalAction()),
-  resetUserLoggedIn: () => dispatch(resetUserLoggedIn())
+  resetUserLoggedIn: () => dispatch(resetUserLoggedInAction())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
