@@ -3,6 +3,7 @@ import { User } from "types/model/user";
 export const FETCH_USER_DATA = 'USER/FETCH_USER_DATA'
 export const SET_USER_DATA = 'USER/SET_USER_DATA'
 export const SET_USER_LOGGED_IN = 'USER/SET_USER_LOGGED_IN'
+export const UPDATE_ARTIST_PROFILE = 'ARTIST/UPDATE_ARTIST_PROFILE'
 export const RESET_USER_LOGGED_IN = 'RESET_USER_LOGGED_IN'
 
 export const fetchUserDataAction = (id: string) => ({
@@ -26,6 +27,13 @@ export const setUserLoggedIn = (data: any) => ({
   },
 });
 
-export const resetUserLoggedIn = (data: any) => ({
+export const updateArtistProfile = (data: User) => ({
+  type: UPDATE_ARTIST_PROFILE,
+  payload: {
+    data
+  }
+})
+
+export const resetUserLoggedIn = () => ({
   type: RESET_USER_LOGGED_IN
 });

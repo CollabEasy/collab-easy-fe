@@ -1,4 +1,3 @@
-import { mockUser } from "api/user";
 import { SET_USER_DATA, SET_USER_LOGGED_IN, RESET_USER_LOGGED_IN } from "state/action";
 import { UserState } from "types/states";
 

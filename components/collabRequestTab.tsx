@@ -6,6 +6,7 @@ import { AppState } from "state";
 import { acceptCollabRequestAction, getCollabRequestsAction, rejectCollabRequestAction } from "state/action";
 import { Dispatch } from "redux";
 import { connect, useDispatch } from "react-redux";
+import { CollabRequestStatus } from "config/constants";
 
 const CollabRequests: React.FC<{
   requests?: CollabRequestData[],
@@ -63,14 +64,14 @@ const CollabRequestsTab: React.FC<{
       getCollabRequests('Completed')
       getCollabRequests('Rejected')
       getCollabRequests('Active')
-    }, [])
+    }, [getCollabRequests])
 
     return (
       <div id="collab" className="tabcontent">
-        <CollabRequests requests={pendingRequests} requestStatus={'Pending'} />
-        <CollabRequests requests={activeRequests} requestStatus={'Scheduled'} />
-        <CollabRequests requests={completedRequest} requestStatus={'Completed'} />
-        <CollabRequests requests={rejectedRequest} requestStatus={'Rejected'} />
+        <CollabRequests requests={pendingRequests} requestStatus={CollabRequestStatus.ACTIVE} />
+        <CollabRequests requests={activeRequests} requestStatus={CollabRequestStatus.SCHEDULED} />
+        <CollabRequests requests={completedRequest} requestStatus={CollabRequestStatus.COMPLETED} />
+        <CollabRequests requests={rejectedRequest} requestStatus={CollabRequestStatus.REJECTED} />
       </div>
     )
   }

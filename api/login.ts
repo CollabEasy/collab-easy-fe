@@ -1,11 +1,11 @@
 import api from "./client";
 
 const postConfig = (dataToSend) => {
-    return {
-        method: 'post',
-        data: JSON.stringify(dataToSend),
-        headers: {'content-type': 'application/json'}
-    }
+  return {
+    method: 'post',
+    data: JSON.stringify(dataToSend),
+    headers: {'content-type': 'application/json'}
+  }
 }
 
 export const getLoginData = async (token: string) => {

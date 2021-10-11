@@ -1,24 +1,24 @@
-import { Config } from "config/config";
+import { User } from "types/model";
 import api from "./client";
 
 const getConfig = () => {
-    return {
-        method: 'get',
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
-        }
+  return {
+    method: 'get',
+    headers: {
+        "Authorization": `Bearer ${localStorage.getItem('token')}`,
     }
+  }   
 }
 
 const postConfig = (dataToSend) => {
-    return {
-        method: 'post',
-        data: JSON.stringify(dataToSend),
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
-            'content-type': 'application/json'
-        }
+  return {
+    method: 'post',
+    data: JSON.stringify(dataToSend),
+    headers: {
+        "Authorization": `Bearer ${localStorage.getItem('token')}`,
+        'content-type': 'application/json'
     }
+  }
 }
 
 export const getArtistCategoryData = async () => {
@@ -43,4 +43,23 @@ export const updateArtistCategories = async (data: any) => {
 	} catch (error) {
 		throw error;
 	}
+}
+
+
+export const updateArtistProfile = async (data: User) => {
+	console.log("updateArtistProfile-----: ", data);
+	const config = postConfig(data);
+	try {
+		const result = await api.call('api/v1/artist/update', config);
+		console.log("artistList: ", result);
+		return result;
+	} catch (error) {
+		throw error;
+	}
+}
+
+
+export const getArtistData = async (): Promise<User> => {
+  const result = await api.call<User>('api/v1/artist/details', getConfig());
+  return result;
 }

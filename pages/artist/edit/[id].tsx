@@ -1,19 +1,18 @@
 import { User } from 'types/model';
-import { Tabs } from 'antd';
-import React, { useState } from 'react';
+import { InputNumber, Tabs } from 'antd';
+import React, { useEffect, useState } from 'react';
 import {
     Form,
     Input,
     Button,
-    Radio,
     Select,
-    Cascader,
     DatePicker,
-    InputNumber,
-    TreeSelect,
     Switch,
 } from 'antd';
-import { fetchUserDataAction, openLoginModalAction } from "state/action";
+import { openLoginModalAction, updateArtistProfile } from "state/action";
+import { COUNTRIES, GENDERS, TIME_ZONES } from 'config/constants';
+import { useDispatch } from 'react-redux';
+import { getArtistData } from 'api/artist-user';
 
 
 const { TabPane } = Tabs;
@@ -23,13 +22,13 @@ type SizeType = Parameters<typeof Form>[0]['size'];
 const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
 };
-const { Option } = Select;
 
 const prefixSelector = (
     <Form.Item name="prefix" noStyle>
-        <Select style={{ width: 70 }}>
-            <Option value="86">+86</Option>
-            <Option value="87">+87</Option>
+        <Select defaultValue={"🇺🇸United States"} style={{ width: 150 }}>
+            {COUNTRIES.map(country => (
+                <Select.Option key={country.Iso2} value={country.Dial}>{country.Unicode} {country.Name}</Select.Option>
+            ))}
         </Select>
     </Form.Item>
 );
@@ -41,15 +40,84 @@ const openLoginModal = () => {
 interface ProfilePageProps {
     userData: User
 }
-const EditProfile: React.FC<ProfilePageProps> = ({ userData }) => {
+const EditProfile: React.FC<ProfilePageProps> = () => {
+    let userData: User;
+
+    useEffect(() => {
+        async function fetchData() {
+            userData = await getArtistData();
+            console.log(userData, 'user')
+            setFirstName(userData.firstName)
+            setLastName(userData.lastName)
+            setBio(userData.bio)
+            setEmail(userData.email)
+            setPhoneNumber(userData.phoneNumber)
+            setAge(userData.age)
+            setGender(userData.gender)
+            setCountry(userData.country)
+            setTimeZone(userData.timezone)
+        }
+        fetchData();
+      }, []);
+
+    console.log(userData)
     const [componentSize, setComponentSize] = useState<SizeType | 'default'>('default');
+    const [firstName, setFirstName] = useState<string>(userData?.firstName)
+    const [lastName, setLastName] = useState<string>(userData?.lastName)
+    const [bio, setBio] = useState<string>(userData?.bio)
+    const [email, setEmail] = useState<string>(userData?.email)
+    const [phoneNumber, setPhoneNumber] = useState<number>(userData?.phoneNumber)
+    const [age, setAge] = useState<number>(userData?.age)
+    const [gender, setGender] = useState<string>(userData?.gender)
+    const [country, setCountry] = useState<string>(userData?.country)
+    const [timezone, setTimeZone] = useState<string>(userData?.timezone)
+    //  const [dob, setDOB] = useState(userData.dob ? userData.dob ? new Date())
+
+    const dispatch = useDispatch()
+    const onCountryCodeChange = (e) => {
+        console.log(e)
+    }
+
+    const onDOBChange = (date) => {
+        //  setDOB(date)
+    }
+
+    const resetData = () => {
+        setFirstName(userData.firstName)
+        setLastName(userData.lastName)
+        setBio(userData.bio)
+        setEmail(userData.email)
+        setPhoneNumber(userData.phoneNumber)
+        setAge(userData.age)
+        setGender(userData.gender)
+        setCountry(userData.country)
+        setTimeZone(userData.timezone)
+        //  setDOB(userData.)
+    }
+
     const onFormLayoutChange = ({ size }: { size: SizeType }) => {
         setComponentSize(size);
     };
 
+    const submitForm = () => {
+        console.log('form submit')
+        const user: User = {
+            firstName: firstName,
+            lastName: lastName,
+            bio: bio,
+            email: email,
+            phoneNumber: phoneNumber,
+            age: age,
+            gender: gender,
+            country: country,
+            timezone: timezone
+        }
+        dispatch(updateArtistProfile(user))
+    }
+
     return (
         <div className="edit-profile" style={{ padding: 200 }}>
-            <h1>Edit Profile User</h1>
+            <h1>Edit Profile</h1>
             <>
                 <Tabs tabPosition={'left'}>
                     <TabPane tab="Basic Information" key="1">
@@ -61,59 +129,60 @@ const EditProfile: React.FC<ProfilePageProps> = ({ userData }) => {
                                 initialValues={{ size: componentSize }}
                                 onValuesChange={onFormLayoutChange}
                                 size={componentSize as SizeType}
+                                onFinish={submitForm}
                             >
                                 <Form.Item label="First Name">
-                                    <Input />
+                                    <Input value={firstName} onChange={e => setFirstName(e.target.value)} />
                                 </Form.Item>
                                 <Form.Item label="Last Name">
-                                    <Input />
+                                    <Input value={lastName} onChange={e => setLastName(e.target.value)} />
                                 </Form.Item>
                                 <Form.Item label="Email">
-                                    <Input />
+                                    <Input value={email} onChange={e => setEmail(e.target.value)} />
                                 </Form.Item>
                                 <Form.Item
                                     name="phone"
                                     label="Phone Number"
                                     rules={[{ required: true, message: 'Please input your phone number!' }]}
                                 >
-                                    <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+                                    <Input addonBefore={prefixSelector} style={{ width: '100%' }} value={phoneNumber} onChange={e => setPhoneNumber(e.target.value as unknown as number)} />
                                 </Form.Item>
                                 <Form.Item label="Age">
-                                    <InputNumber />
+                                    <InputNumber value={age} onChange={e => setAge(e)} />
                                 </Form.Item>
                                 <Form.Item label="Date of birth">
-                                    <DatePicker />
+                                    <DatePicker onChange={onDOBChange} />
                                 </Form.Item>
                                 <Form.Item label="Gender">
-                                    <Select>
-                                        <Select.Option value="male">Male</Select.Option>
-                                        <Select.Option value="female">Female</Select.Option>
-                                        <Select.Option value="none">Don`@apos`t want to disclose</Select.Option>
+                                    <Select defaultValue={gender} onChange={e => setGender(e)}>
+                                        {GENDERS.map(gen => (
+                                            <Select.Option key={gen} value={gen}>{gen}</Select.Option>
+                                        ))}
                                     </Select>
                                 </Form.Item>
                                 <Form.Item label="Country">
-                                    <Select>
-                                        <Select.Option value="Usa">USA</Select.Option>
-                                        <Select.Option value="India">India</Select.Option>
+                                    <Select defaultValue={country} onChange={e => setCountry(e)}>
+                                        {COUNTRIES.map(country => (
+                                            <Select.Option key={country.Iso2} value={country.Name}>{country.Unicode} {country.Name}</Select.Option>
+                                        ))}
                                     </Select>
                                 </Form.Item>
                                 <Form.Item label="Time zone">
-                                    <Select>
-                                        <Select.Option value="Usa">CST</Select.Option>
-                                        <Select.Option value="India">IST</Select.Option>
+                                    <Select defaultValue={timezone} onChange={e => setTimeZone(e)}>
+                                        {
+                                            TIME_ZONES.map(zone => (
+                                                <Select.Option key={zone.abbr} value={zone.abbr}>{zone.value}</Select.Option>
+                                            ))}
                                     </Select>
                                 </Form.Item>
                                 <Form.Item label="Bio">
-                                    <Input />
-                                </Form.Item>
-                                <Form.Item label="Up for collab" valuePropName="checked">
-                                    <Switch />
+                                    <Input value={bio} onChange={e => setBio(e.target.value)} />
                                 </Form.Item>
                                 <Form.Item {...tailLayout}>
                                     <Button type="primary" htmlType="submit">
-                                        Submit
+                                        Save
                                     </Button>
-                                    <Button htmlType="button" >
+                                    <Button htmlType="button" onClick={resetData}>
                                         Reset
                                     </Button>
                                 </Form.Item>
@@ -136,7 +205,9 @@ const EditProfile: React.FC<ProfilePageProps> = ({ userData }) => {
                                 <Form.Item label="Send notification email" valuePropName="checked">
                                     <Switch />
                                 </Form.Item>
-
+                                <Form.Item label="Up for collab" valuePropName="checked">
+                                    <Switch />
+                                </Form.Item>
                             </Form>
                         </>
 
@@ -146,5 +217,16 @@ const EditProfile: React.FC<ProfilePageProps> = ({ userData }) => {
         </div>
     );
 }
+
+// To Do: - need to fetch data using below function, need to fix the issue of localstorage object not available at server side
+// export const getServerSideProps = async () => {
+//     const user = await getArtistData()
+//     return {
+//         props: {
+//             userData: user
+//         } as ProfilePageProps,
+//     }
+// }
+
 
 export default EditProfile;
