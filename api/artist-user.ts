@@ -60,6 +60,6 @@ export const updateArtistProfile = async (data: User) => {
 
 
 export const getArtistData = async (): Promise<User> => {
-  const result = await api.call<User>('api/v1/artist/details', getConfig());
-  return result;
+  const result = await api.call<any>('api/v1/artist/details', getConfig());
+  return result.data as User;
 }
