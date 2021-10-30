@@ -1,3 +1,32 @@
 .edit-profile {
-    
+	.sample-file-container{
+		padding-bottom: 15px;
+	}
+}
+.upload-sample-container{
+	.upload-sample-heading{
+		padding: 20px;
+		border: 1px solid #ccc;
+    margin-bottom: 15px;
+	}
+	.custom-file-upload{
+		position: relative;
+		padding: 0;
+		border: 1px dashed #ccc;
+		cursor: pointer;
+		height: 200px;
+		width: 200px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 0;
+	}
+	.sample-file-container{
+		display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+		padding: 10px 20px;
+		width: 750px;
+    margin: 0 auto;
+	}
 }
