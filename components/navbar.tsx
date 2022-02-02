@@ -1,5 +1,5 @@
 // import Link from "next/link";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import Link from "next/link";
 import React, { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
@@ -38,24 +38,35 @@ import { openLoginModalAction, resetUserLoggedIn } from "state/action";
     </Menu.Item>}
   </Menu>
 ); */
-export interface NavBarProps {
-  openLoginModalAction: () => void,
-  isLoggedIn: boolean,
-  userLoginData: any,
-  resetUserLoggedIn: () => void
+
+const mapStateToProps = (state: AppState) => {
+  const isLoggedIn = state.user.isLoggedIn;
+  const user =  state.user.user;
+  return { isLoggedIn, user }
 }
 
-const NavBar: React.FC<NavBarProps> = ({ 
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  openLoginModalAction: () => dispatch(openLoginModalAction()),
+  resetUserLoggedIn: () => dispatch(resetUserLoggedIn())
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type Props = {
+} & ConnectedProps<typeof connector>;
+
+const NavBar = ({ 
   openLoginModalAction, 
   isLoggedIn,
-  userLoginData,
+  user,
   resetUserLoggedIn
-}) => {
+} : Props) => {
   const [ref, inView, entry] = useInView({
     root: null,
     rootMargin: '-20px 0px 0px 0px',
   });
 
+  console.log("nav first");
   const [hideSignUp, setHideSignUp] = useState(false);
   const [showLoginOptions, setShowLoginOptions] = useState(false);
   const [profilePic, setProfilePic] = useState("");
@@ -94,8 +105,8 @@ const NavBar: React.FC<NavBarProps> = ({
   }, [isLoggedIn]);
 
   useEffect(() => {
-    if( userLoginData?.profile_pic_url ) setProfilePic(userLoginData.profile_pic_url);
-  }, [userLoginData]);
+    if( user?.profile_pic_url ) setProfilePic(user.profile_pic_url);
+  }, [user]);
 
   const logoutUser = () => {
     localStorage.removeItem('token');
@@ -127,7 +138,7 @@ const NavBar: React.FC<NavBarProps> = ({
               <div className={`menu-icon ${showLoginOptions ? 'hide-icon' : ''}`}
                    onClick={() => setShowLoginOptions(!showLoginOptions)}
               >
-                { profilePic  ? (
+                { user?.profile_pic_url ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={profilePic} alt="profile-pic"/>
                   ) : (
@@ -143,7 +154,7 @@ const NavBar: React.FC<NavBarProps> = ({
               }
               { showLoginOptions && (
                   <div className={`login-options-container ${checkDevice() ? 'animate__animated animate__slideInRight' : ''}`}>
-                    <Link href={routeToHref(toEditProfile(userLoginData.artist_id))} passHref>
+                    <Link href={routeToHref(toEditProfile(user.artist_id))} passHref>
                       <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(false)}>
                         <span className="f-14">Settings</span>
                       </div>
@@ -182,15 +193,5 @@ const NavBar: React.FC<NavBarProps> = ({
     </div>
   )
 }
-
-const mapStateToProps = (state: AppState) => ({
-  isLoggedIn: state.user.isLoggedIn,
-  userLoginData: state.user.userLoginData,
-})
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openLoginModalAction: () => dispatch(openLoginModalAction()),
-  resetUserLoggedIn: () => dispatch(resetUserLoggedIn())
-});
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

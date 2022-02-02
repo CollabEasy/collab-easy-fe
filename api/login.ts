@@ -18,3 +18,17 @@ export const getLoginData = async (token: string) => {
     throw error;
   }
 }
+
+export const getArtistDetails = async (token: string) => {
+  const config = {
+    method: 'get',
+    headers: {'Authorization': 'Bearer ' + token}
+  }
+  try {
+    const result = await api.call('api/v1/artist/details', config);
+    console.log("result: ", result);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}

@@ -36,8 +36,8 @@ const ProfileModal: React.FC<{
   getArtistCategories: any;
   artistCategories: any;
   postArtistArt: any;
-  userLoginData: any;
-}> = ({ getArtistCategories, artistCategories, postArtistArt, userLoginData }) => {
+  user: any;
+}> = ({ getArtistCategories, artistCategories, postArtistArt, user }) => {
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(true);
   const [categoriesArr, setCategoriesArr] = useState([]);
@@ -83,11 +83,11 @@ const ProfileModal: React.FC<{
   }, [artistCategories]);
 
   useEffect(() => {
-    if(userLoginData?.first_name){
-      let name = `${userLoginData?.first_name} ${userLoginData?.last_name}`;
+    if(user?.first_name){
+      let name = `${user?.first_name} ${user?.last_name}`;
       setUserName(name);
     }
-  }, [userLoginData]);
+  }, [user]);
 
   function handleChange(value) {
     setSelectedCategories(value);
@@ -203,7 +203,7 @@ const mapStateToProps = (state: AppState) => {
   console.log(state, "------state----");
   return {
     artistCategories: state.artist.artistCategories,
-    userLoginData: state.user.userLoginData,
+    user: state.user.user,
   };
 };
 

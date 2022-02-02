@@ -6,6 +6,7 @@ const App = ({ children, routes }) => {
   const props = {
     children,
   };
+
   return (
     <>
       <RoutesContext.Provider value={routes}>
@@ -15,4 +16,4 @@ const App = ({ children, routes }) => {
   );
 };
 
-export default App
+export default App;

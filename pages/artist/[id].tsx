@@ -37,6 +37,8 @@ const toggleTab = (actionName) => {
 
 const ArtistProfile = ({ user }) => {
   const { toEditProfile } = useRoutesContext();
+  console.log("user : ", user)
+  if (Object.keys(user).length === 0) return <p className='artist-profile-page-empty'>Redirecting</p>
   return (
     <>
       <Title title="Artist Profile" />
@@ -106,7 +108,7 @@ const ArtistProfile = ({ user }) => {
 }
 
 const mapStateToProps = (state: AppState) => ({
-  user: state.user.userLoginData
+  user: state.user.user
 })
 
 export default connect(mapStateToProps, null)(ArtistProfile);
