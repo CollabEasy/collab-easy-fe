@@ -28,7 +28,7 @@ export const FooterLink: React.FC<FooterLinkProps> = ({
 export const FooterColumns: FC<FooterColumnsProps> = ({ columns }) => (
   <>
     {columns.map((column, index) => (
-      <div key={index} className="col-md-3 col-xl-3">
+      <div key={index} className="col-md-2 col-xl-2">
         <h6 className="clm-name">{column.name}</h6>
         <ul className="nav-list ul-css">
           {column.links.map((link, index) =>

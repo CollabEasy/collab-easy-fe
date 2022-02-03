@@ -20,13 +20,12 @@ export const WondorFooterDetails: React.FC<{}> = ({ }) => {
         <Link  href={routeToHref(toWondorHome())} passHref>
             <Image src={titleDesktopImg}  alt="Landing page" className="footer-image" />   
         </Link>
-        <p>We are an award-winning creative agency, dedicated to the best result in web design, promotion, business consulting, and marketing.</p>
-        <p id="footer-social">
+        {/* <p id="footer-social">
           <span><em className="fa fa-facebook-official"></em></span>
           <span><em className="fa fa-instagram"></em></span>
           <span><em className="fa fa-twitter"></em></span>
           <span><em className="fa fa-pinterest"></em></span>
-        </p>
+        </p> */}
       </div>
     </div>
   )
@@ -42,11 +41,11 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="row row-30">
           <WondorFooterDetails />
           <FooterColumns columns={footerLinkColumns} />
-          <div className="row">
+          {/* <div className="row">
             <div className="col-xls-12 col-md-12 col-sm-12 rights-div">
               <p className="rights"><span>©  </span><span className="copyright-year">2018</span><span> </span><span>Waves</span><span>. </span><span>All Rights Reserved.</span></p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
