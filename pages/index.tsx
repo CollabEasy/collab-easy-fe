@@ -134,32 +134,6 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData, artistLis
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="container">
-          <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
-            <div className="col-12">
-              <Image className="searchbox custom-padding" src={inspireImg} alt="Landing page" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col-12" >
-          <h2 className="custom-padding">Featured artists</h2>
-        </div>
-      </div>
-
-      {/* look at gallery options here: https://freefrontend.com/bootstrap-galleries/ , https://thetuteur.com/react-image-gallery-with-masonry-js/, https://codepen.io/rperry1886/pen/KKwbQNP*/}
-      <div className="grid-container">
-        {data.map((image) => (
-          <div key={image.id}>
-            <Image className={`grid-item grid-item-${image}`} src={image.src} alt={image.alt} width='500' height='500' placeholder='blur' blurDataURL={image.src} />
-            <p>{image.description}</p>
-          </div>
-        ))}
-      </div>
-      {/* <Script src="https://accounts.google.com/gsi/client" async defer /> */}
     </>
   )
 }
