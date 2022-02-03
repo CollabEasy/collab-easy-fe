@@ -130,7 +130,7 @@ const Search = () => {
                         const { entityType, id, name } = data;
                         const href = entityType === 'ART' 
                             ? toArtist().href + data.slug
-                            : toArtistProfile('dancer', id).as /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
+                            : toArtistProfile().as /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
                             
                         const searchRow = entityType === 'ART' 
                             ? (

@@ -4,6 +4,7 @@ import { LogicDeps } from 'state'
 import { AppState } from 'types/states'
 import { FSACreatorPayload } from 'types/states/FSACreator'
 import { FETCH_ARTIST_CATEGORIES_DATA, setArtistCategoriesData, fetchArtistCategoriesData, UPDATE_ARTIST_ART, updateArtistArt } from 'state/action/artistAction'
+import { updateArtistProfileSuccess } from 'state/action'
 
 export const fetchUserDataLogic = createLogic<
   AppState,
@@ -76,8 +77,10 @@ export const updateArtistProfileLogic = createLogic<
   async process({ action, api }, dispatch, done) {
     try {
       const { data } = action.payload
+      console.log("updated data : ", data);
       const result = await api.artistApi.updateArtistProfile(data)
       console.log('artist profile update success: ', result)
+      dispatch(updateArtistProfileSuccess(data))
       // TO-DO need to all get artist details action
     } catch (error) {
     } finally {

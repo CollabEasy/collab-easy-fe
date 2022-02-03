@@ -154,12 +154,12 @@ const NavBar = ({
               }
               { showLoginOptions && (
                   <div className={`login-options-container ${checkDevice() ? 'animate__animated animate__slideInRight' : ''}`}>
-                    <Link href={routeToHref(toEditProfile(user.artist_id))} passHref>
+                    <Link href={routeToHref(toEditProfile())} passHref>
                       <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(false)}>
                         <span className="f-14">Settings</span>
                       </div>
                     </Link>
-                    <Link href={routeToHref(toArtistProfile('artist', '1'))} passHref>
+                    <Link href={routeToHref(toArtistProfile())} passHref>
                       <div className="common-login-option profile-option" onClick={() => setShowLoginOptions(false)}>
                         <span className="f-14">Profile</span>
                       </div>

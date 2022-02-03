@@ -4,6 +4,7 @@ import {
   RESET_USER_LOGGED_IN,
   USER_LOGIN_FAILURE,
   USER_LOGIN_REQUEST,
+  USER_DETAILS_UPDATED,
 } from "state/action";
 import { UserState } from "types/states";
 
@@ -48,6 +49,12 @@ const userReducer = (state = initialState, action): UserState => {
         isLoggedIn: false,
         errors: {},
       };
+    case USER_DETAILS_UPDATED:
+      console.log("updating user : ", action.payload.data)
+      return {
+        ...state,
+        user: action.payload.data,
+      }
     default:
       return state;
   }
