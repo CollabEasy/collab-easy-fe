@@ -4,7 +4,7 @@ import { RightCircleFilled } from "@ant-design/icons";
 import { Form, Switch, Modal, Button, Select } from "antd";
 import Image from "next/image";
 import landingPageImg from "public/images/profile.png";
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
 import { fetchArtistCategoriesData, updateArtistArt } from "state/action/artistAction";
 // import SubmitImg from 'public/images/submit.png';
@@ -32,12 +32,25 @@ const layout = {
 
 const { Option } = Select;
 
-const ProfileModal: React.FC<{
-  getArtistCategories: any;
-  artistCategories: any;
-  postArtistArt: any;
-  user: any;
-}> = ({ getArtistCategories, artistCategories, postArtistArt, user }) => {
+const mapStateToProps = (state: AppState) => {
+  console.log(state, "------state----");
+  return {
+    artistCategories: state.artist.artistCategories,
+    user: state.user.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  getArtistCategories: () => dispatch(fetchArtistCategoriesData()),
+  postArtistArt: (data: any) => dispatch(updateArtistArt(data))
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type Props = {
+} & ConnectedProps<typeof connector>;
+
+const ProfileModal = ({ getArtistCategories, artistCategories, postArtistArt, user } : Props) => {
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(true);
   const [categoriesArr, setCategoriesArr] = useState([]);
@@ -96,6 +109,7 @@ const ProfileModal: React.FC<{
   const handleSubmit = () => {
     console.log("selectedCategories: ", selectedCategories);
     let dataToSend = {
+      "initial": user.new_user,
       "artNames": selectedCategories,
       "upForCollaboration": collaborationCheck
     };
@@ -199,17 +213,4 @@ const ProfileModal: React.FC<{
   );
 };
 
-const mapStateToProps = (state: AppState) => {
-  console.log(state, "------state----");
-  return {
-    artistCategories: state.artist.artistCategories,
-    user: state.user.user,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  getArtistCategories: () => dispatch(fetchArtistCategoriesData()),
-  postArtistArt: (data: any) => dispatch(updateArtistArt(data))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileModal);
+export default connector(ProfileModal);

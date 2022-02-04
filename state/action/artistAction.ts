@@ -19,7 +19,7 @@ export const setArtistCategoriesData = (data: any) => ({
 export const updateArtistArt = (data: any) => ({
 	type: UPDATE_ARTIST_ART,
 	payload: {
-			data
+		data
 	},
 });
 
