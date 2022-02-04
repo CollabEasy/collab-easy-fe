@@ -10,25 +10,27 @@ import { AppState } from "types/states";
 import { Dispatch } from "redux";
 import RoutesContext from "./routeContext";
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails))
+const mapStateToProps = (state: AppState) => ({
+  user: state.user.user,
 });
 
-const connector = connect(null, mapDispatchToProps);
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
   children: any
 } & ConnectedProps<typeof connector>;
 
-const Layout = ({ children, updateLoggedInData }: Props) => {
+const Layout = ({ user, children, updateLoggedInData } : Props) => {
   const ISSERVER = typeof window === "undefined";
   const router = useRouter();
   let accessToken = null;
 
-  if (!ISSERVER) {
-    console.log("is not server")
+  if (!ISSERVER && (user === undefined || Object.keys(user).length === 0)) {
     if (localStorage.getItem("token") === null) {
-      console.log("to login")
       if (router.pathname !== '/') router.push("/");
     } else {
       accessToken = localStorage.getItem('token');

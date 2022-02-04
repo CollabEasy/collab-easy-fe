@@ -8,6 +8,7 @@ export const RESET_USER_LOGGED_IN = 'RESET_USER_LOGGED_IN'
 export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE'
 export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST'
 export const USER_DETAILS_UPDATED = 'USER_DETAILS_UPDATED'
+export const USER_SKILLS_FETCHED = 'USER_SKILLS_FETCHED'
 
 export const fetchUserDataAction = (id: string) => ({
   type: FETCH_USER_DATA,
@@ -50,6 +51,13 @@ export const updateArtistProfile = (data: User) => ({
 
 export const updateArtistProfileSuccess = (data: User) => ({
   type: USER_DETAILS_UPDATED,
+  payload: {
+    data
+  }
+});
+
+export const fetchArtistSkillSuccess = (data: any) => ({
+  type: USER_SKILLS_FETCHED,
   payload: {
     data
   }

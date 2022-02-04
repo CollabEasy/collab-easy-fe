@@ -1,7 +1,7 @@
-import Title from "../../components/title";
+import Title from "@/components/title";
 import Image from "next/image";
-import avatar from "../../public/images/avatar.png";
-import React, { useEffect } from "react";
+import avatar from "../../../public/images/avatar.png";
+import React, { useEffect, useState } from "react";
 import { Pagination, Space } from "antd";
 import { Button, Card, Avatar } from "antd";
 import Link from "next/link";
@@ -10,7 +10,11 @@ import { useRoutesContext } from "components/routeContext";
 import CollabRequest from "components/collabRequestSend";
 import CollabRequestTab from "components/collabRequestTab";
 import { AppState } from "state";
-import { connect } from "react-redux";
+import { connect, ConnectedProps, useStore } from "react-redux";
+import { route } from "next/dist/next-server/server/router";
+import router from "next/router";
+import { Dispatch } from "redux";
+import { fetchArtistSkills } from "state/action";
 
 // https://ant.design/components/card/
 const { Meta } = Card;
@@ -18,6 +22,14 @@ const { Meta } = Card;
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
 });
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+});
+  
+const connector = connect(mapStateToProps, mapDispatchToProps);
+  
+type Props = {
+} & ConnectedProps<typeof connector>;
 
 /**
  * @description On Click tab active the window
@@ -39,20 +51,30 @@ const toggleTab = (actionName) => {
   document.getElementById(`${actionName}_1`).classList.add("active");
 };
 
-const ArtistProfile = ({ user }) => {
+const ArtistProfile = ({ user } : Props) => {
   const { toEditProfile } = useRoutesContext();
-  console.log("user : ", user);
+  const [isSelf, setIsSelf] = useState(false);
+  console.log("skills : ", user.skills);
+
+  useEffect(() => {
+    const { id: slug } = router.query;
+    if (user.slug === slug) setIsSelf(true);
+  }, [user.slug])
+
   if (Object.keys(user).length === 0)
     return <p className="artist-profile-page-empty">Redirecting</p>;
   return (
     <>
       <Title title="Artist Profile" />
       <div className="artist-profile-page container">
-        <div className="absolute-div">
-          <div className="col-xl-5 col-md-5 col-sm-5">
-            <CollabRequest />
+        {!isSelf && (
+          <div className="absolute-div">
+            <div className="col-xl-5 col-md-5 col-sm-5">
+              <CollabRequest />
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="row">
           <div className="col-xl-12 col-md-12 col-sm-12">
             <div className="artistID_userContainer">
@@ -68,8 +90,10 @@ const ArtistProfile = ({ user }) => {
 
               <div className="col-xl-12 col-md-12 col-sm-12">
                 <div className="artistID_artistDetailContainer">
-                  <span className="f-20">{user.first_name + " " + user.last_name}</span>
-                  <span className="f-12">painter, Singer</span>
+                  <span className="f-20">
+                    {user.first_name + " " + user.last_name}
+                  </span>
+                  <span className="f-12">{user.skills && user.skills.length > 0 ? user.skills[0] : ""}</span>
                 </div>
               </div>
             </div>
@@ -84,10 +108,7 @@ const ArtistProfile = ({ user }) => {
               </span>
               <span>
                 <>
-                  <Link
-                    href={routeToHref(toEditProfile())}
-                    passHref
-                  >
+                  <Link href={routeToHref(toEditProfile())} passHref>
                     <a>Edit</a>
                   </Link>
                 </>
@@ -128,21 +149,17 @@ const ArtistProfile = ({ user }) => {
               >
                 <b className="artistId__descriptionText">Description</b>
                 <form className="flex flex-col">
-                  <p
-                    className="artistID_bioContainer"
-                  >
-                    {user.bio}
-                  </p>
+                  <p className="artistID_bioContainer">{user.bio}</p>
                 </form>
                 <p className="f-w-b">My Skills</p>
-                <p>Painter, Singer, Song Writing </p>
+                <p>{user.skills ? user.skills.toString() : ""} </p>
               </div>
 
               <div id="sample" className="tabcontent">
                 <p className="f-w-b">Sample</p>
                 <p>Sample 1</p>
               </div>
-              <CollabRequestTab />
+                <CollabRequestTab />
             </div>
           </div>
         </div>
@@ -151,4 +168,4 @@ const ArtistProfile = ({ user }) => {
   );
 };
 
-export default connect(mapStateToProps, null)(ArtistProfile);
+export default connector(ArtistProfile);

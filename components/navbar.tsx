@@ -111,6 +111,7 @@ const NavBar = ({
   const logoutUser = () => {
     localStorage.removeItem('token');
     resetUserLoggedIn();
+    setHideSignUp(false);
     setShowLoginOptions(false);
   }
 
@@ -159,7 +160,7 @@ const NavBar = ({
                         <span className="f-14">Settings</span>
                       </div>
                     </Link>
-                    <Link href={routeToHref(toArtistProfile())} passHref>
+                    <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
                       <div className="common-login-option profile-option" onClick={() => setShowLoginOptions(false)}>
                         <span className="f-14">Profile</span>
                       </div>

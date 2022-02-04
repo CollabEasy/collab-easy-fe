@@ -33,7 +33,7 @@ const mapStateToProps = (state: AppState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails))
+  updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -55,7 +55,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       if ( user.new_user ){
         setShowProfileModal(true);
       }
-    }
+    } 
   }, [user])
 
   useEffect(() => {

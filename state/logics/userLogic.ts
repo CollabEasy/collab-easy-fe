@@ -1,10 +1,25 @@
-import { createLogic } from 'redux-logic'
-import { fetchUserDataAction, FETCH_USER_DATA, setUserDataAction, updateArtistArtSuccess, updateArtistProfile, UPDATE_ARTIST_PROFILE } from 'state/action'
-import { LogicDeps } from 'state'
-import { AppState } from 'types/states'
-import { FSACreatorPayload } from 'types/states/FSACreator'
-import { FETCH_ARTIST_CATEGORIES_DATA, setArtistCategoriesData, fetchArtistCategoriesData, UPDATE_ARTIST_ART, updateArtistArt } from 'state/action/artistAction'
-import { updateArtistProfileSuccess } from 'state/action'
+import { createLogic } from "redux-logic";
+import {
+  fetchUserDataAction,
+  fetchArtistSkills,
+  FETCH_USER_DATA,
+  setUserDataAction,
+  updateArtistArtSuccess,
+  updateArtistProfile,
+  UPDATE_ARTIST_PROFILE,
+} from "state/action";
+import { LogicDeps } from "state";
+import { AppState } from "types/states";
+import { FSACreatorPayload } from "types/states/FSACreator";
+import {
+  FETCH_ARTIST_CATEGORIES_DATA,
+  FETCH_ARTIST_SKILLS,
+  setArtistCategoriesData,
+  fetchArtistCategoriesData,
+  UPDATE_ARTIST_ART,
+  updateArtistArt,
+} from "state/action/artistAction";
+import { updateArtistProfileSuccess, fetchArtistSkillSuccess } from "state/action";
 
 export const fetchUserDataLogic = createLogic<
   AppState,
@@ -14,19 +29,19 @@ export const fetchUserDataLogic = createLogic<
 >({
   type: [FETCH_USER_DATA],
   async process({ action, api, getState }, dispatch, done) {
-    const { id: userId } = action.payload
-    console.log(getState(), 'printing state')
-    console.log('userid to fetch data', userId)
+    const { id: userId } = action.payload;
+    console.log(getState(), "printing state");
+    console.log("userid to fetch data", userId);
     try {
-      const userData = await api.artistApi.getArtistData()
-      console.log('fetched user data from api', userData)
-      dispatch(setUserDataAction(userData))
+      const userData = await api.artistApi.getArtistData();
+      console.log("fetched user data from api", userData);
+      dispatch(setUserDataAction(userData));
     } catch (error) {
     } finally {
-      done()
+      done();
     }
   },
-})
+});
 
 export const fetchArtistCategoriesLogic = createLogic<
   AppState,
@@ -37,15 +52,15 @@ export const fetchArtistCategoriesLogic = createLogic<
   type: [FETCH_ARTIST_CATEGORIES_DATA],
   async process({ api }, dispatch, done) {
     try {
-      const categoriesData = await api.artistApi.getArtistCategoryData()
-      console.log('artist data: ', categoriesData)
-      dispatch(setArtistCategoriesData(categoriesData))
+      const categoriesData = await api.artistApi.getArtistCategoryData();
+      console.log("artist data: ", categoriesData);
+      dispatch(setArtistCategoriesData(categoriesData));
     } catch (error) {
     } finally {
-      done()
+      done();
     }
   },
-})
+});
 
 export const updateArtistArtLogic = createLogic<
   AppState,
@@ -56,16 +71,16 @@ export const updateArtistArtLogic = createLogic<
   type: [UPDATE_ARTIST_ART],
   async process({ action, api }, dispatch, done) {
     try {
-      const { data } = action.payload
-      const result = await api.artistApi.updateArtistCategories(data)
-      console.log('artist update sucess: ', result)
-      dispatch(updateArtistArtSuccess(result))
+      const { data } = action.payload;
+      const result = await api.artistApi.updateArtistCategories(data);
+      console.log("artist update sucess: ", result);
+      dispatch(updateArtistArtSuccess(result));
     } catch (error) {
     } finally {
-      done()
+      done();
     }
   },
-})
+});
 
 export const updateArtistProfileLogic = createLogic<
   AppState,
@@ -76,15 +91,36 @@ export const updateArtistProfileLogic = createLogic<
   type: [UPDATE_ARTIST_PROFILE],
   async process({ action, api }, dispatch, done) {
     try {
-      const { data } = action.payload
+      const { data } = action.payload;
       console.log("updated data : ", data);
-      const result = await api.artistApi.updateArtistProfile(data)
-      console.log('artist profile update success: ', result)
-      dispatch(updateArtistProfileSuccess(data))
+      const result = await api.artistApi.updateArtistProfile(data);
+      console.log("artist profile update success: ", result);
+      dispatch(updateArtistProfileSuccess(data));
       // TO-DO need to all get artist details action
     } catch (error) {
     } finally {
-      done()
+      done();
     }
   },
-})
+});
+
+export const fetchArtistSkillsLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof fetchArtistSkills>,
+  any,
+  LogicDeps
+>({
+  type: [FETCH_ARTIST_SKILLS],
+  async process({ action, api }, dispatch, done) {
+    try {
+      console.log("calling api now")
+      const result = await api.artistApi.fetchArtistSkillsAPI();
+      console.log("artist profile update success: ", result);
+      dispatch(fetchArtistSkillSuccess(result));
+      // TO-DO need to all get artist details action
+    } catch (error) {
+    } finally {
+      done();
+    }
+  },
+});

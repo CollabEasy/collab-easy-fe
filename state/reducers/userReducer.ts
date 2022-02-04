@@ -4,6 +4,7 @@ import {
   RESET_USER_LOGGED_IN,
   USER_LOGIN_FAILURE,
   USER_LOGIN_REQUEST,
+  USER_SKILLS_FETCHED,
   USER_DETAILS_UPDATED,
 } from "state/action";
 import { UserState } from "types/states";
@@ -50,11 +51,19 @@ const userReducer = (state = initialState, action): UserState => {
         errors: {},
       };
     case USER_DETAILS_UPDATED:
-      console.log("updating user : ", action.payload.data)
+      console.log("updating user : ", action.payload.data);
       return {
         ...state,
         user: action.payload.data,
-      }
+      };
+    case USER_SKILLS_FETCHED:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          skills: action.payload.data.data,
+        },
+      };
     default:
       return state;
   }

@@ -11,6 +11,7 @@ import {
   resetUserLoggedIn,
   userLoginRequest,
   closeLoginModalAction,
+  fetchArtistSkills,
 } from "state/action";
 import { LogicDeps } from "state";
 
@@ -75,6 +76,7 @@ export const setuserLogic = createLogic<
     const { data } = action.payload;
     try {
       localStorage.setItem("token", data.data.token);
+      dispatch(fetchArtistSkills());
       // To-Do we need to set token in cookies
       // Cookies.set('token', data.data.token)
     } catch (error) {

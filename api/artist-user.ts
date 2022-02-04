@@ -58,6 +58,16 @@ export const updateArtistProfile = async (data: User) => {
 	}
 }
 
+export const fetchArtistSkillsAPI = async () => {
+	const config = getConfig();
+	try {
+		const result = await api.call('api/v1/artist/arts', config);
+		console.log("art list: ", result);
+		return result;
+	} catch (error) {
+		throw error;
+	}
+}
 
 export const getArtistData = async (): Promise<User> => {
   const result = await api.call<any>('api/v1/artist/details', getConfig());

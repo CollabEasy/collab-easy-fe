@@ -10,9 +10,9 @@ export const routes: AppRouteCreators = {
     href: '/profile',
     as: `/profile/`,
   }),
-  toArtistProfile: () => ({
-    href: '/artist/profile',
-    as: `/artist/profile`,
+  toArtistProfile: (id) => ({
+    href: '/artist/profile/[id]',
+    as: `/artist/profile/${id}`,
   }),
   toEditProfile: () => ({
     href: '/artist/edit/',
