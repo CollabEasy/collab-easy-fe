@@ -54,7 +54,6 @@ const toggleTab = (actionName) => {
 const ArtistProfile = ({ user } : Props) => {
   const { toEditProfile } = useRoutesContext();
   const [isSelf, setIsSelf] = useState(false);
-  console.log("skills : ", user.skills);
 
   useEffect(() => {
     const { id: slug } = router.query;

@@ -6,7 +6,11 @@ import Image from "next/image";
 import landingPageImg from "public/images/profile.png";
 import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
-import { fetchArtistCategoriesData, updateArtistArt } from "state/action/artistAction";
+import {
+  fetchArtistCategoriesData,
+  updateArtistArt,
+  updateArtistPreference,
+} from "state/action/artistAction";
 // import SubmitImg from 'public/images/submit.png';
 
 const layout = {
@@ -33,7 +37,6 @@ const layout = {
 const { Option } = Select;
 
 const mapStateToProps = (state: AppState) => {
-  console.log(state, "------state----");
   return {
     artistCategories: state.artist.artistCategories,
     user: state.user.user,
@@ -42,15 +45,21 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getArtistCategories: () => dispatch(fetchArtistCategoriesData()),
-  postArtistArt: (data: any) => dispatch(updateArtistArt(data))
+  postArtistArt: (data: any) => dispatch(updateArtistArt(data)),
+  updateArtistPreference: (key: string, value: any) => dispatch(updateArtistPreference(key, value)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {
-} & ConnectedProps<typeof connector>;
+type Props = {} & ConnectedProps<typeof connector>;
 
-const ProfileModal = ({ getArtistCategories, artistCategories, postArtistArt, user } : Props) => {
+const ProfileModal = ({
+  user,
+  artistCategories,
+  postArtistArt,
+  getArtistCategories,
+  updateArtistPreference,
+}: Props) => {
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(true);
   const [categoriesArr, setCategoriesArr] = useState([]);
@@ -64,11 +73,10 @@ const ProfileModal = ({ getArtistCategories, artistCategories, postArtistArt, us
   };
 
   const handleCancel = () => {
-    setVisible(false);
+    setVisible(true);
   };
 
   const onFinish = (values: any) => {
-    console.log("Success:", values);
     alert(JSON.stringify(values));
     handleCancel();
   };
@@ -79,13 +87,11 @@ const ProfileModal = ({ getArtistCategories, artistCategories, postArtistArt, us
 
   const getModalWidth = (): number => {
     const width = window.innerWidth;
-    console.log(width);
     if (width < 680) return 450;
     return 900;
   };
 
   useEffect(() => {
-    console.log("landed here------");
     getArtistCategories();
   }, [getArtistCategories]);
 
@@ -96,7 +102,7 @@ const ProfileModal = ({ getArtistCategories, artistCategories, postArtistArt, us
   }, [artistCategories]);
 
   useEffect(() => {
-    if(user?.first_name){
+    if (user?.first_name) {
       let name = `${user?.first_name} ${user?.last_name}`;
       setUserName(name);
     }
@@ -107,20 +113,18 @@ const ProfileModal = ({ getArtistCategories, artistCategories, postArtistArt, us
   }
 
   const handleSubmit = () => {
-    console.log("selectedCategories: ", selectedCategories);
     let dataToSend = {
-      "initial": user.new_user,
-      "artNames": selectedCategories,
-      "upForCollaboration": collaborationCheck
+      initial: user.new_user,
+      artNames: selectedCategories,
     };
-    console.log("dataToSend: ", dataToSend);
+
     postArtistArt(dataToSend);
-  }
+    updateArtistPreference("upForCollaboration", collaborationCheck);
+  };
 
   const onChange = (val) => {
     setCollaborationCheck(val);
-  }
-  
+  };
 
   return (
     <>

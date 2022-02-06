@@ -34,7 +34,6 @@ export const fetchLoginDataLogic = createLogic<
       dispatch(closeLoginModalAction());
       dispatch(setUserLoggedIn(loginData));
     } catch (error) {
-      console.log("error : ", error);
       dispatch(userLoginFailure(error));
     } finally {
       done();
@@ -56,7 +55,6 @@ export const updateLoginDataLogic = createLogic<
       loginData['data']['token'] = token; 
       dispatch(setUserLoggedIn(loginData));
     } catch (error) {
-      console.log("error : ", error);
       dispatch(userLoginFailure(error));
     } finally {
       done();
@@ -72,7 +70,6 @@ export const setuserLogic = createLogic<
 >({
   type: [SET_USER_LOGGED_IN],
   async process({ action }, dispatch, done) {
-    console.log("here-----", action.payload);
     const { data } = action.payload;
     try {
       localStorage.setItem("token", data.data.token);

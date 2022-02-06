@@ -14,10 +14,18 @@ export const routes: AppRouteCreators = {
     href: '/artist/profile/[id]',
     as: `/artist/profile/${id}`,
   }),
-  toEditProfile: () => ({
-    href: '/artist/edit/',
-    as: `/artist/edit/`,
+  toEditProfile: (action) => ({
+    href: '/artist/settings/[action]',
+    as: `/artist/settings/${action}`,
   }),
+  // toSampleUpload: () => ({
+  //   href: '/artist/settings/',
+  //   as: `/artist/settings/samples`,
+  // }),
+  // toPreferences: () => ({
+  //   href: '/artist/settings/',
+  //   as: `/artist/settings/preferences`,
+  // }),
 };
 
 

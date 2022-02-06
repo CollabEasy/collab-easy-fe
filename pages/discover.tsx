@@ -7,7 +7,6 @@ const Login = () => {
     return state.home
   });
 
-  console.log(myState, '<==== ');
   return (
     <div className='container'>
       <Title title="Discover" />

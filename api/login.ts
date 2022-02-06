@@ -12,7 +12,6 @@ export const getLoginData = async (token: string) => {
   const config = postConfig({"idToken": token});
   try {
     const result = await api.call('api/v1/artist/login', config);
-    console.log("result: ", result);
     return result;
   } catch (error) {
     throw error;
@@ -26,7 +25,6 @@ export const getArtistDetails = async (token: string) => {
   }
   try {
     const result = await api.call('api/v1/artist/details', config);
-    console.log("result: ", result);
     return result;
   } catch (error) {
     throw error;

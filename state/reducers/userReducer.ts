@@ -6,12 +6,15 @@ import {
   USER_LOGIN_REQUEST,
   USER_SKILLS_FETCHED,
   USER_DETAILS_UPDATED,
+  UPDATE_ARTIST_PREFERENCE_SUCCESS,
+  FETCH_ARTIST_PREFERENCES_SUCCESS,
 } from "state/action";
 import { UserState } from "types/states";
 
 const initialState: UserState = {
-  user: {},
+  user: {new_user: false},
   isLoggedIn: false,
+  preferences: {},
   errors: {},
 };
 
@@ -31,7 +34,6 @@ const userReducer = (state = initialState, action): UserState => {
         user: action.payload.data?.data || {},
       };
     case USER_LOGIN_FAILURE:
-      console.log("errors : ", action.payload.data);
       return {
         ...state,
         isLoggedIn: false,
@@ -41,17 +43,17 @@ const userReducer = (state = initialState, action): UserState => {
       return {
         ...state,
         isLoggedIn: false,
-        user: {},
+        user: {new_user: false},
         errors: {},
       };
     case USER_LOGIN_REQUEST:
       return {
-        user: {},
+        ...state,
+        user: {new_user: false},
         isLoggedIn: false,
         errors: {},
       };
     case USER_DETAILS_UPDATED:
-      console.log("updating user : ", action.payload.data);
       return {
         ...state,
         user: action.payload.data,
@@ -64,6 +66,23 @@ const userReducer = (state = initialState, action): UserState => {
           skills: action.payload.data.data,
         },
       };
+    case UPDATE_ARTIST_PREFERENCE_SUCCESS:
+      
+      const prefKey = action.payload.key;
+      const prefVal = action.payload.value;
+
+      return {
+        ...state,
+        preferences: {
+          ...state.preferences,
+          [prefKey]: prefVal
+        }
+      };
+    case FETCH_ARTIST_PREFERENCES_SUCCESS:
+      return {
+        ...state,
+        preferences: action.payload.data.data['preferences'] !== undefined ? action.payload.data.data.preferences: {},
+      }
     default:
       return state;
   }

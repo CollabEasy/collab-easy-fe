@@ -10,7 +10,6 @@ import { GoogleLogin } from "react-google-login";
 import { User } from "types/model";
 
 const mapStateToProps = (state: AppState) => {
-  console.log("state in loginModal: ", state);
   const user = state.user;
   const loginModalDetails = state.home.loginModalDetails;
 
@@ -37,8 +36,6 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
 
   const OnSuccessCallback = (response) => {
     let { tokenId } = response;
-    console.log("responseGoogle: ", response);
-    console.log("tokenId: ", tokenId);
     fetchLoginData(tokenId);
   };
 
