@@ -5,6 +5,10 @@ export const SET_USER_DATA = 'USER/SET_USER_DATA'
 export const SET_USER_LOGGED_IN = 'USER/SET_USER_LOGGED_IN'
 export const UPDATE_ARTIST_PROFILE = 'ARTIST/UPDATE_ARTIST_PROFILE'
 export const RESET_USER_LOGGED_IN = 'RESET_USER_LOGGED_IN'
+export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE'
+export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST'
+export const USER_DETAILS_UPDATED = 'USER_DETAILS_UPDATED'
+export const USER_SKILLS_FETCHED = 'USER_SKILLS_FETCHED'
 
 export const fetchUserDataAction = (id: string) => ({
   type: FETCH_USER_DATA,
@@ -27,12 +31,37 @@ export const setUserLoggedIn = (data: any) => ({
   },
 });
 
+export const userLoginFailure = (data: any) => ({
+  type: USER_LOGIN_FAILURE,
+  payload: {
+    data,
+  }
+})
+
+export const userLoginRequest = () => ({
+  type: USER_LOGIN_REQUEST,
+})
+
 export const updateArtistProfile = (data: User) => ({
   type: UPDATE_ARTIST_PROFILE,
   payload: {
     data
   }
-})
+});
+
+export const updateArtistProfileSuccess = (data: User) => ({
+  type: USER_DETAILS_UPDATED,
+  payload: {
+    data
+  }
+});
+
+export const fetchArtistSkillSuccess = (data: any) => ({
+  type: USER_SKILLS_FETCHED,
+  payload: {
+    data
+  }
+});
 
 export const resetUserLoggedIn = () => ({
   type: RESET_USER_LOGGED_IN

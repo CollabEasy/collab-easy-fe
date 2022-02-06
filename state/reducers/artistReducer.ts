@@ -6,7 +6,6 @@ const initialState: ArtistCategoriesState = {
 };
 
 const artistReducer = (state = initialState, action): any => {
-  console.log(action.payload)
   switch (action.type) {
     case SET_ARTIST_CATEGORIES_DATA:
       return {

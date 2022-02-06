@@ -1,5 +1,5 @@
-import { connect } from "react-redux";
-import React, { useState } from "react";
+import { connect, ConnectedProps } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
 import Image from "next/image";
 import profileImageImg from "../public/images/profile.png";
@@ -7,14 +7,28 @@ import { closeLoginModalAction, fetchLoginData } from "../state/action";
 import { Dispatch } from "redux";
 import { AppState } from "types/states";
 import { GoogleLogin } from "react-google-login";
+import { User } from "types/model";
 
-export interface LoginModalProps {
-	closeLoginModalAction: () => void;
-	fetchLoginData: (token: string) => void;
-}
+const mapStateToProps = (state: AppState) => {
+  console.log("state in loginModal: ", state);
+  const user = state.user;
+  const loginModalDetails = state.home.loginModalDetails;
 
-const LoginModal: React.FC<LoginModalProps> = ({ closeLoginModalAction, fetchLoginData }) => {
+  return { loginModalDetails, user };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  closeLoginModalAction: () => dispatch(closeLoginModalAction()),
+  fetchLoginData: (token: string) => dispatch(fetchLoginData(token)),
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type Props = {} & ConnectedProps<typeof connector>;
+
+const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
   const [visible, setVisible] = useState(true);
+  const [errorMessageVisible, setErrorMessageVisible] = useState(false);
 
   const closeLoginModal = () => {
     setVisible(false);
@@ -23,14 +37,14 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeLoginModalAction, fetchLog
 
   const OnSuccessCallback = (response) => {
     let { tokenId } = response;
-		console.log("responseGoogle: ", response);
-		console.log("tokenId: ", tokenId);
-		fetchLoginData(tokenId);
-	};
-	
-	const OnFailureCallback = (response) => {
-		console.log("failed: ", response);
-	}
+    console.log("responseGoogle: ", response);
+    console.log("tokenId: ", tokenId);
+    fetchLoginData(tokenId);
+  };
+
+  const OnFailureCallback = (response) => {
+    setErrorMessageVisible(true);
+  };
 
   return (
     <Modal
@@ -69,6 +83,11 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeLoginModalAction, fetchLog
                   cookiePolicy={"single_host_origin"}
                 />
               </div>
+              {(Object.keys(user.errors).length !== 0) && (
+                <p className="error-message">
+                  Something&apos;s not right. Please try after sometime.
+                </p>
+              )}
               <div className="policy-container">
                 <span className="f-14 md-cop000">
                   By continuing, you agree to WonDor’s Terms of Service and
@@ -83,13 +102,4 @@ const LoginModal: React.FC<LoginModalProps> = ({ closeLoginModalAction, fetchLog
   );
 };
 
-const mapStateToProps = (state: AppState) => ({
-  loginModalDetails: state.home.loginModalDetails,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-	closeLoginModalAction: () => dispatch(closeLoginModalAction()),
-	fetchLoginData: (token: string) => dispatch(fetchLoginData(token))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);
+export default connector(LoginModal);

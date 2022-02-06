@@ -15,7 +15,7 @@ const makeStore = (preloadedState = {}) => {
 
 class WondorApp extends NextApp {
   static async getInitialProps({ Component, ctx }) {
-    const pageProps = Component.getInitialProps
+   const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(ctx)
       : {};
 
@@ -29,9 +29,11 @@ class WondorApp extends NextApp {
     };
     const store = makeStore({});
     return (
+
       <Provider store={store}>
+              
         <App {...config}>
-          <Component {...pageProps} />
+            <Component {...pageProps} />
         </App>
       </Provider>
     );

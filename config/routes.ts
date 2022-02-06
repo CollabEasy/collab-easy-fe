@@ -6,17 +6,17 @@ export const routes: AppRouteCreators = {
   toWondorHome: () => ({ href: "/" }),
   toDiscover: () => ({ href: "/" }),
   toArtist: () => ({ href: "/discover-artist/" }),
-  toProfile: ({ id }) => ({
-    href: '/profile/[id]',
-    as: `/profile/${id}`,
+  toProfile: () => ({
+    href: '/profile',
+    as: `/profile/`,
   }),
-  toArtistProfile: (artistType, id) => ({
-    href: '/artist/[id]',
-    as: `/artist/${id}?type=${artistType}`,
+  toArtistProfile: (id) => ({
+    href: '/artist/profile/[id]',
+    as: `/artist/profile/${id}`,
   }),
-  toEditProfile: (id) => ({
-    href: '/artist/edit/[id]',
-    as: `/artist/edit/${id}`,
+  toEditProfile: () => ({
+    href: '/artist/edit/',
+    as: `/artist/edit/`,
   }),
 };
 
