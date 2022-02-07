@@ -45,7 +45,7 @@ const ArtistProfile = ({ user }: Props) => {
       setIsSelf(true);
     } else {
       setShowLoader(true);
-      setIsSelf(false);
+    setIsSelf(false);
       fetchMyAPI();
 
     }
