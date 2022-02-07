@@ -1,8 +1,8 @@
-import "styles/index.scss";
-import 'animate.css';
 import "bootstrap/dist/css/bootstrap.css";
+import '../styles/index.scss'
+import 'animate.css';
 import NextApp from "next/app";
-import { withRouter } from "next/router";
+import { withRouter, Router } from "next/router";
 import React from "react";
 import { Provider } from "react-redux";
 import App from "components/app";
@@ -29,9 +29,7 @@ class WondorApp extends NextApp {
     };
     const store = makeStore({});
     return (
-
       <Provider store={store}>
-              
         <App {...config}>
             <Component {...pageProps} />
         </App>

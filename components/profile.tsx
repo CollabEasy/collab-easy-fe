@@ -9,6 +9,7 @@ import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { fetchArtistSkills } from "state/action";
 import { User } from "types/model";
+import Title from "./title";
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -42,6 +43,7 @@ const Profile = ({ user, isSelf }: Props) => {
 
   return (
     <>
+      <Title title={user.first_name + " " + user.last_name} />
       <div className="artistProfile__profileContainer">
         <div className="artistProfile__userContainer">
           <div className="artistProfile__profilePicContainer">
