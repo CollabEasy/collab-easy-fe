@@ -42,9 +42,9 @@ const Layout = ({ user, children, updateLoggedInData, fetchArtistPreferences } :
   }
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid layout__layoutContainer">
       <Navbar />
-      <main>{children}</main>
+        <main>{children}</main>
       <Footer footerLinkColumns={footerLinkColumns} />
     </div>
   );

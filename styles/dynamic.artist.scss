@@ -4,6 +4,13 @@
     }
 }
 
+.artistProfile__profileContainer {
+  display: flex;
+  padding: 200px;
+  flex-direction: column;
+  width: 100%;
+}
+
 .artist-profile-page-empty {
   font-size: 50px;
   margin-left: 40%;
@@ -11,13 +18,14 @@
   margin-bottom: 200px;
 }
 
-.artistID_userContainer {
+.artistProfile__userContainer {
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
 }
 
-.artistID_profilePicContainer {
+.artistProfile__profilePicContainer {
   height: 150px;
   width: 150px;
   overflow: hidden;
@@ -25,47 +33,69 @@
   margin: 0 auto;
 }
 
-.artistID_artistDetailContainer {
+.artistProfile__editCollabButton {
+  margin-top: 16px;
+  border: 2px solid orange;
+  width: fit-content;
+  border-radius: 12px;
+  background: var(--bs-yellow);
+}
+
+.artistProfile__artistDetailContainer {
   margin-top: 16px;
   display: flex;
   flex-direction: column;
 }
 
 .artistId__descriptionText {
-  margin-bottom: 4px;
+
 }
 
-.artistID_bioContainer {
+.artistProfile__tabContainer {
+  padding: 24px;
+}
+
+.artistProfile__tabPane {
+  display: flex;
+  flex-grow: 1;
+  margin-right: 0px;
+  width: 100%;
+}
+
+.ant-tabs {
+  &-nav {
+    display: flex;
+
+    .ant-tabs-tab {
+      flex-grow: 1;
+      margin-right: 0px;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+.artistProfile__bioContainer {
   height: 100px;
   width: 320px;
-  margin-bottom: 24px;
 }
 
-.artist-profile-page {
-    .row {
-        padding-top: 12em;
-    }
-    
-    ._connect {
-        display: block;
-        margin: auto;
-        text-align: center;
-        margin-top: 16px;
-        padding-top: 1em;
-        span {
-            padding: 0em 1em;
-            a {
-                text-decoration: none;
-                background-color: $gray3;
-                color: $white;
-                padding: 7px 19px;
-                border-radius: 16px;
-            }
-        }
-    }
+.artistProfile__tabs {
+  margin-top: 48px;
 
-    ._tab-p {
-        padding-top: 3em;
+  .ant-tabs {
+    &-nav {
+      display: flex;
+  
+      .ant-tabs-tab {
+        flex-grow: 1;
+        margin-right: 0px;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+}
    
 /* Style the tab */
 .tab {
@@ -102,66 +132,4 @@
     // border: 1px solid #ccc;
     border-top: none;
   }
-    }
-}
-.artist-profile-page {
-    .absolute-div{
-    .wrapper {
-        background-color: #FFF;
-        border: 1px solid $gray_light_border;
-        border-radius: 2px;
-        box-shadow: 0px 2px 1px 0px #DDD;
-        box-sizing: border-box;
-        height: 270px;
-        right: 10%;
-        // margin: -150px 0 0 -150px;
-        position: fixed;
-        top: 30%;
-        width: 300px;
-
-        .grouped {
-            padding-top: 3em;
-            textarea {
-                resize: none;
-            }
-
-            button{ 
-                margin-left: 4em;
-            }
-            .input, textarea {
-                background-color: transparent;
-                border: none;
-                border-bottom: 1px solid #CCC;
-                color: #555;
-                box-sizing: border-box;
-                font-family: 'Arvo';
-                font-size: 18px;
-                height: 50px;
-                left: 50%;
-                margin: -25px 0 0 -100px;
-                padding: 10px 0px;
-                position: relative;
-                top: 20%;
-                width: 200px;
-              
-                &:focus {
-                  outline: none;    
-                }
-              }
-              
-              textarea, input::-webkit-input-placeholder {
-                color: #555 ;
-              }
-              
-             input:focus::-webkit-input-placeholder {
-                color: dodgerblue;
-              }
-              
-              .input:focus+.underline {
-                transform: scale(1);
-              }
-        }
-      }
-    }
-}
 

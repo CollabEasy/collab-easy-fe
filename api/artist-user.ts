@@ -81,6 +81,16 @@ export const fetchArtistSkillsAPI = async () => {
 	}
 }
 
+export const fetchUserByHandle = async (handle: string) => {
+	const config = getConfig();
+	try {
+		const result = await api.call('api/v1/artist/details?handle=' + handle);
+		return result;
+	} catch (error) {
+		return error;
+	}
+}
+
 export const getArtistData = async (): Promise<User> => {
   const result = await api.call<any>('api/v1/artist/details', getConfig());
   return result.data as User;

@@ -14,7 +14,7 @@ export interface User {
   gender?: string;
   created_at?: number;
   updated_at?: number;
-  new_user: boolean;
+  new_user?: boolean;
   skills?: string[];
   sample?: string[];
 }

@@ -13,6 +13,7 @@ import { UserState } from "types/states";
 
 const initialState: UserState = {
   user: {new_user: false},
+  otherUser: {},
   isLoggedIn: false,
   preferences: {},
   errors: {},
@@ -79,6 +80,7 @@ const userReducer = (state = initialState, action): UserState => {
         }
       };
     case FETCH_ARTIST_PREFERENCES_SUCCESS:
+      console.log("state : ", state, action);
       return {
         ...state,
         preferences: action.payload.data.data['preferences'] !== undefined ? action.payload.data.data.preferences: {},

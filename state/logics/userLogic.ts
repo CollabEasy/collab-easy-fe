@@ -16,6 +16,9 @@ import {
   FETCH_ARTIST_PREFERENCES,
   FETCH_ARTIST_PREFERENCES_SUCCESS,
   UPDATE_ARTIST_PREFERENCE,
+  FETCH_USER_BY_HANDLE,
+  fetchUserByHandle,
+  fetchUserByHandleSuccess,
 } from "state/action";
 import { LogicDeps } from "state";
 import { AppState } from "types/states";
@@ -154,6 +157,25 @@ export const fetchArtistSkillsLogic = createLogic<
       const result = await api.artistApi.fetchArtistSkillsAPI();
       dispatch(fetchArtistSkillSuccess(result));
       // TO-DO need to all get artist details action
+    } catch (error) {
+    } finally {
+      done();
+    }
+  },
+});
+
+export const fetchUserByHandleLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof fetchUserByHandle>,
+  any,
+  LogicDeps
+>({
+  type: [FETCH_USER_BY_HANDLE],
+  async process({ action, api }, dispatch, done) {
+    try {
+      const handle = action.payload.data;
+      const result = await api.artistApi.fetchUserByHandle(handle);
+      dispatch(fetchUserByHandleSuccess(result));
     } catch (error) {
     } finally {
       done();

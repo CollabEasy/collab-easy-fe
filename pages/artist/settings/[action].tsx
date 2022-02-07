@@ -9,7 +9,6 @@ import {
 } from "state/action";
 import { COUNTRIES, GENDERS, TIME_ZONES } from "config/constants";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
-import { getArtistData } from "api/artist-user";
 import { AppState } from "types/states";
 import { Dispatch } from "redux";
 import { useRouter } from "next/router";
