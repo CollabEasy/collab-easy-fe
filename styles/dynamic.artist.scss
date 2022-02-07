@@ -82,19 +82,6 @@
 
 .artistProfile__tabs {
   margin-top: 48px;
-
-  .ant-tabs {
-    &-nav {
-      display: flex;
-  
-      .ant-tabs-tab {
-        flex-grow: 1;
-        margin-right: 0px;
-        width: 100%;
-        text-align: center;
-      }
-    }
-  }
 }
    
 /* Style the tab */
