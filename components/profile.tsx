@@ -1,22 +1,15 @@
 import Image from "next/image";
 import avatar from "../public/images/avatar.png";
 import React, { useEffect, useState } from "react";
-import { Pagination, Space, Tabs } from "antd";
-import { Button, Card, Avatar } from "antd";
-import Link from "next/link";
-import { routeToHref } from "config/routes";
-import { useRoutesContext } from "components/routeContext";
-import CollabRequest from "components/collabRequestSend";
+import { Card, Avatar, Pagination, Space, Tabs } from "antd";
 import CollabRequestTab from "components/collabRequestTab";
 import { AppState } from "state";
 import { connect, ConnectedProps, useStore } from "react-redux";
-import { route } from "next/dist/next-server/server/router";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { fetchArtistSkills } from "state/action";
 import { User } from "types/model";
 
-// https://ant.design/components/card/
 const { Meta } = Card;
 const { TabPane } = Tabs;
 
@@ -69,7 +62,7 @@ const Profile = ({ user, isSelf }: Props) => {
               {getUserSkills(false)}
             </h3>
           </div>
-          <Button
+          <button
             className="artistProfile__editCollabButton"
             onClick={() => {
               if (isSelf) {
@@ -80,11 +73,12 @@ const Profile = ({ user, isSelf }: Props) => {
             }}
           >
             {isSelf ? "Edit Profile" : "Collaborate"}
-          </Button>
+          </button>
         </div>
 
-        <Tabs className="artistProfile__tabs" defaultActiveKey="1" type="card" size={"large"}>
-          <TabPane className="artistProfile__tabPane" tab="About" key="1">
+        <div className="artistProfile__tabsContainer">
+        <Tabs defaultActiveKey="1" type="card" size={"large"}>
+          <TabPane tab="About" key="1">
             <div className="artistProfile__tabContainer">
               <b className="f-16 mb4 artistId__descriptionText">Description</b>
               <p className="mt4 artistProfile__bioContainer">{user.bio}</p>
@@ -92,20 +86,21 @@ const Profile = ({ user, isSelf }: Props) => {
               <p className="mt4">{getUserSkills(true)} </p>
             </div>
           </TabPane>
-          <TabPane className="artistProfile__tabPane" tab="Samples" key="2">
+          <TabPane tab="Samples" key="2">
             <div className="artistProfile__tabContainer"></div>
           </TabPane>
           {isSelf && (
-            <TabPane className="artistProfile__tabPane" tab="Collab Requests" key="3">
+            <TabPane tab="Collab Requests" key="3">
               <div className="artistProfile__tabContainer">
                 <CollabRequestTab />
               </div>
             </TabPane>
           )}
-          <TabPane className="artistProfile__tabPane" tab="Social Prospectus" key="2">
+          <TabPane tab="Social Prospectus" key="2">
             <div className="artistProfile__tabContainer"></div>
           </TabPane>
         </Tabs>
+        </div>
       </div>
     </>
   );

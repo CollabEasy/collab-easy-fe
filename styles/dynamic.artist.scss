@@ -34,6 +34,7 @@
 }
 
 .artistProfile__editCollabButton {
+  padding: 4px 8px;
   margin-top: 16px;
   border: 2px solid orange;
   width: fit-content;
@@ -62,25 +63,12 @@
   width: 100%;
 }
 
-.ant-tabs {
-  &-nav {
-    display: flex;
-
-    .ant-tabs-tab {
-      flex-grow: 1;
-      margin-right: 0px;
-      width: 100%;
-      text-align: center;
-    }
-  }
-}
-
 .artistProfile__bioContainer {
   height: 100px;
   width: 320px;
 }
 
-.artistProfile__tabs {
+.artistProfile__tabsContainer {
   margin-top: 48px;
 }
    
