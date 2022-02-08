@@ -142,7 +142,6 @@ const Search = () => {
                             ? toArtist().href + data.slug
                             : toArtistProfile(data.slug).as /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
                             
-                        console.log("search data : ", data);
                         const searchRow = entityType === 'ART' 
                             ? (
                                 <div key = {i} className="typeahead-item">

@@ -4,6 +4,7 @@ export const UPDATE_ARTIST_ART = 'UPDATE_ARTIST_ART'
 export const UPDATE_ARTIST_ART_SUCCESS = 'UPDATE_ARTIST_ART_SUCCESS'
 export const FETCH_ARTIST_SKILLS = 'FETCH_ARTIST_SKILLS'
 export const UPDATE_ARTIST_PREFERENCE = 'UPDATE_ARTIST_PREFERENCE'
+export const UPDATE_ARTIST_PREFERENCE_REQUEST = 'UPDATE_ARTIST_PREFERENCE_REQUEST'
 export const UPDATE_ARTIST_PREFERENCE_SUCCESS = 'UPDATE_ARTIST_PREFERENCE_SUCCESS'
 export const FETCH_ARTIST_PREFERENCES = 'FETCH_ARTIST_PREFERENCES';
 export const FETCH_ARTIST_PREFERENCES_SUCCESS = 'FETCH_ARTIST_PREFERENCES_SUCCESS'
@@ -50,6 +51,13 @@ export const fetchArtistPreferencesSuccess = (data: any) => ({
 		data
 	},
 })
+
+export const updateArtistPreferenceRequest = (key: string) => ({
+	type: UPDATE_ARTIST_PREFERENCE_REQUEST,
+	payload: {
+		key, 
+	}
+});
 
 export const updateArtistPreference = (key: string, value: any) => ({
 	type: UPDATE_ARTIST_PREFERENCE,

@@ -19,6 +19,7 @@ import {
   FETCH_USER_BY_HANDLE,
   fetchUserByHandle,
   fetchUserByHandleSuccess,
+  updateArtistProfileRequest,
 } from "state/action";
 import { LogicDeps } from "state";
 import { AppState } from "types/states";
@@ -30,6 +31,7 @@ import {
   fetchArtistCategoriesData,
   UPDATE_ARTIST_ART,
   updateArtistArt,
+  updateArtistPreferenceRequest,
 } from "state/action/artistAction";
 
 export const fetchUserDataLogic = createLogic<
@@ -98,6 +100,7 @@ export const updateArtistPreferenceLogic = createLogic<
   async process({ action, api }, dispatch, done) {
     try {
       const { key, value } = action.payload;
+      dispatch(updateArtistPreferenceRequest(key));
       const result = await api.artistApi.updateArtistPreference(key, value);
       dispatch(updateArtistPreferenceSuccess(key, value));
     } catch (error) {
@@ -134,6 +137,7 @@ export const updateArtistProfileLogic = createLogic<
   type: [UPDATE_ARTIST_PROFILE],
   async process({ action, api }, dispatch, done) {
     try {
+      dispatch(updateArtistProfileRequest());
       const { data } = action.payload;
       const result = await api.artistApi.updateArtistProfile(data);
       dispatch(updateArtistProfileSuccess(data));

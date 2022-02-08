@@ -1,4 +1,5 @@
 import { User } from "types/model";
+import moment from "moment";
 import { InputNumber, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Select, DatePicker, Switch } from "antd";
@@ -11,8 +12,10 @@ import { COUNTRIES, GENDERS, TIME_ZONES } from "config/constants";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { AppState } from "types/states";
 import { Dispatch } from "redux";
-import { useRouter } from "next/router";
 import { useRoutesContext } from "components/routeContext";
+import State from "state";
+import { useRouter } from "next/router";
+import { useCallback } from "react";
 
 const { TabPane } = Tabs;
 
@@ -40,6 +43,8 @@ const openLoginModal = () => {
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
+  isUpdatingProfile: state.user.isUpdatingProfile,
+  isUpdatingPrefs: state.user.isUpdatingPrefs,
   preferences: state.user.preferences,
 });
 
@@ -55,9 +60,12 @@ type Props = {} & ConnectedProps<typeof connector>;
 const EditProfile = ({
   user,
   preferences,
+  isUpdatingProfile,
+  isUpdatingPrefs,
   updateArtistProfile,
   updateArtistPreference,
 }: Props) => {
+  const [activeTabKey, setActiveTabKey] = useState('1');
   const [upForCollaboration, setUpForCollaboration] = useState(false);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
@@ -70,19 +78,10 @@ const EditProfile = ({
 
   const router = useRouter();
   const { action } = router.query;
-  const getActiveTab = () => {
-    switch (action) {
-      case "edit":
-        return "1";
-      case "sample":
-        return "2";
-      case "preferences":
-        return "3";
-      default:
-        router.push("/artist/settings/edit");
-        return "1";
-    }
-  };
+
+  if (typeof window !== "undefined" && action !== 'edit' && action !== 'sample') {
+    router.push("/artist/settings/edit");
+  }
 
   const getHeading = () => {
     switch (action) {
@@ -90,8 +89,6 @@ const EditProfile = ({
         return "Edit Profile";
       case "sample":
         return "Upload Samples";
-      case "preferences":
-        return "Update Preferences";
       default:
         return "Edit Profile";
     }
@@ -101,8 +98,6 @@ const EditProfile = ({
     let action = "edit";
     if (tabIndex === "2") {
       action = "sample";
-    } else if (tabIndex === "3") {
-      action = "preferences";
     }
 
     router.push("/artist/settings/" + action);
@@ -114,10 +109,6 @@ const EditProfile = ({
     setUserDataCached(user);
   }, [user]);
 
-  const onDOBChange = (date) => {
-    //  setDOB(date)
-  };
-
   const resetData = () => {};
 
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
@@ -128,7 +119,9 @@ const EditProfile = ({
     updateArtistProfile(userDataCached);
   };
 
+  const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0) return <p>Redirecting</p>;
+  
   return (
     <div className="edit-profile" style={{ padding: 200 }}>
       <h1>{getHeading()}</h1>
@@ -138,11 +131,11 @@ const EditProfile = ({
           onChange={(key: string) => {
             redirect(key);
           }}
-          activeKey={getActiveTab()}
         >
           <TabPane tab="Basic Information" key="1">
-            <>
+            <div className="settings__basicProfileCard">
               <Form
+                className="settings__basicProfileForm"
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 14 }}
                 layout="horizontal"
@@ -187,12 +180,6 @@ const EditProfile = ({
                 <Form.Item
                   name="phone"
                   label="Phone Number"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your phone number!",
-                    },
-                  ]}
                 >
                   <Input
                     addonBefore={prefixSelector}
@@ -206,23 +193,24 @@ const EditProfile = ({
                     }}
                   />
                 </Form.Item>
-                <Form.Item label="Age">
-                  <InputNumber
-                    value={userDataCached ? userDataCached.age : 0}
+                <Form.Item label="Date of birth">
+                  <DatePicker
+                    clearIcon={null}
+                    disabledDate={ d => !d
+                      || d.isAfter(currentDate)
+                      || currentDate >= moment().endOf('day')}
+                    format="DD/MM/YYYY"
+                    value={moment(userDataCached.date_of_birth)} 
                     onChange={(e) => {
                       setUserDataCached((prevState) => ({
                         ...prevState,
-                        phone_number: e,
-                      }));
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item label="Date of birth">
-                  <DatePicker onChange={onDOBChange} />
+                        date_of_birth: e.toDate(),
+                      }))
+                  }} />
                 </Form.Item>
                 <Form.Item label="Gender">
                   <Select
-                    defaultValue={userDataCached ? userDataCached.gender : ""}
+                    value={userDataCached ? userDataCached.gender : ""}
                     onChange={(e) => {
                       setUserDataCached((prevState) => ({
                         ...prevState,
@@ -239,7 +227,8 @@ const EditProfile = ({
                 </Form.Item>
                 <Form.Item label="Country">
                   <Select
-                    defaultValue={userDataCached ? userDataCached.country : ""}
+                    showSearch
+                    value={userDataCached ? userDataCached.country : ""}
                     onChange={(e) => {
                       setUserDataCached((prevState) => ({
                         ...prevState,
@@ -278,24 +267,22 @@ const EditProfile = ({
                   />
                 </Form.Item>
                 <Form.Item {...tailLayout}>
-                  <Button type="primary" htmlType="submit" onClick={submitForm}>
-                    Save
+                  <div className="settings__basicProfileSubmitContainer">
+                  <Button type="primary" htmlType="submit" onClick={submitForm} loading={isUpdatingProfile}>
+                    {isUpdatingProfile ? "Saving..." : "Save"}
                   </Button>
                   <Button htmlType="button" onClick={resetData}>
                     Reset
                   </Button>
+                  </div>
                 </Form.Item>
               </Form>
-            </>
-          </TabPane>
-          <TabPane tab="Samples" key="2">
-            <Button id="image-upload" type="primary" onClick={openLoginModal}>
-              Upload a sample
-            </Button>
-          </TabPane>
-          <TabPane tab="Preferences" key="3">
-            <>
+            </div>
+
+            <div className="settings__basicProfileCardSecond">
+              <h2 className="f-20 ">Preferences</h2>
               <Form
+                className="settings__basicProfileForm"
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 14 }}
                 layout="horizontal"
@@ -304,12 +291,12 @@ const EditProfile = ({
                 size={componentSize as SizeType}
               >
                 <Form.Item
-                  label="Send notification email"
+                  label="Notification Emails"
                   valuePropName="checked"
                 >
-                  <Switch />
+                  <Switch checkedChildren="enabled" unCheckedChildren="disabled"/>
                 </Form.Item>
-                <Form.Item label="Up for collab" valuePropName="checked">
+                <Form.Item label="Ready for Collab" valuePropName="checked">
                   <Switch
                     onChange={() => {
                       updateArtistPreference(
@@ -318,11 +305,19 @@ const EditProfile = ({
                       );
                       setUpForCollaboration(!upForCollaboration);
                     }}
+                    loading={isUpdatingPrefs === 'upForCollaboration'}
                     checked={upForCollaboration}
+                    checkedChildren="active"
+                    unCheckedChildren="inactive"
                   />
                 </Form.Item>
               </Form>
-            </>
+            </div>
+          </TabPane>
+          <TabPane tab="Samples" key="2">
+            <Button id="image-upload" type="primary" onClick={openLoginModal}>
+              Upload a sample
+            </Button>
           </TabPane>
         </Tabs>
       </>

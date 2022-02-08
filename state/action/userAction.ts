@@ -8,6 +8,7 @@ export const RESET_USER_LOGGED_IN = 'RESET_USER_LOGGED_IN'
 export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE'
 export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST'
 export const USER_DETAILS_UPDATED = 'USER_DETAILS_UPDATED'
+export const UPDATE_ARTIST_PROFILE_REQUEST = 'UPDATE_ARTIST_PROFILE_REQUEST'
 export const USER_SKILLS_FETCHED = 'USER_SKILLS_FETCHED'
 export const FETCH_USER_BY_HANDLE = 'FETCH_USER_BY_HANDLE'
 export const FETCH_USER_BY_HANDLE_SUCCESS = 'FETCH_USER_BY_HANDLE_SUCCESS'
@@ -50,6 +51,11 @@ export const updateArtistProfile = (data: User) => ({
     data
   }
 });
+
+export const updateArtistProfileRequest = () => ({
+  type: UPDATE_ARTIST_PROFILE_REQUEST,
+  payload: {},
+})
 
 export const updateArtistProfileSuccess = (data: User) => ({
   type: USER_DETAILS_UPDATED,
