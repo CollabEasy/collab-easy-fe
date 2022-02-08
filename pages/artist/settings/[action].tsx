@@ -131,7 +131,7 @@ const EditProfile = ({
   if (user && Object.keys(user).length === 0) return <p>Redirecting</p>;
   return (
     <div className="edit-profile" style={{ padding: 200 }}>
-      <h1>{getHeading()}</h1>
+      <h1 style={{ textAlign: 'center'}}>{getHeading()}</h1>
       <>
         <Tabs
           tabPosition={"left"}
