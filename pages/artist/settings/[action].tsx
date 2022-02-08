@@ -176,6 +176,7 @@ const EditProfile = ({
                 <Form.Item label="Email">
                   <Input
                     value={userDataCached ? userDataCached.email : ""}
+                    disabled={true}
                     onChange={(e) => {
                       setUserDataCached((prevState) => ({
                         ...prevState,
@@ -187,12 +188,6 @@ const EditProfile = ({
                 <Form.Item
                   name="phone"
                   label="Phone Number"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your phone number!",
-                    },
-                  ]}
                 >
                   <Input
                     addonBefore={prefixSelector}
@@ -267,7 +262,7 @@ const EditProfile = ({
                   </Select>
                 </Form.Item> */}
                 <Form.Item label="Bio">
-                  <Input
+                  <Input.TextArea
                     value={userDataCached ? userDataCached.bio : ""}
                     onChange={(e) => {
                       setUserDataCached((prevState) => ({

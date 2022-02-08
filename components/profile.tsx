@@ -74,7 +74,7 @@ const Profile = ({ user, isSelf }: Props) => {
         </div>
 
         <div className="artistProfile__tabsContainer">
-          <Tabs defaultActiveKey="1" type="card" size={"large"}>
+          <Tabs defaultActiveKey="1" type="card" size={"large"} centered>
             <TabPane tab="About" key="1">
               <div className="artistProfile__tabContainer">
                 <b className="f-16 mb4 artistId__descriptionText">
@@ -95,7 +95,7 @@ const Profile = ({ user, isSelf }: Props) => {
                 </div>
               </TabPane>
             )}
-            <TabPane tab="Social Prospectus" key="2">
+            <TabPane tab="Social Prospectus" key="4">
               <div className="artistProfile__tabContainer"></div>
             </TabPane>
           </Tabs>
