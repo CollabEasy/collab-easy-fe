@@ -124,7 +124,7 @@ const EditProfile = ({
   
   return (
     <div className="edit-profile" style={{ padding: 200 }}>
-      <h1>{getHeading()}</h1>
+      <h1 style={{ textAlign: 'center'}}>{getHeading()}</h1>
       <>
         <Tabs
           tabPosition={"left"}
@@ -169,6 +169,7 @@ const EditProfile = ({
                 <Form.Item label="Email">
                   <Input
                     value={userDataCached ? userDataCached.email : ""}
+                    disabled={true}
                     onChange={(e) => {
                       setUserDataCached((prevState) => ({
                         ...prevState,
@@ -256,7 +257,7 @@ const EditProfile = ({
                   </Select>
                 </Form.Item> */}
                 <Form.Item label="Bio">
-                  <Input
+                  <Input.TextArea
                     value={userDataCached ? userDataCached.bio : ""}
                     onChange={(e) => {
                       setUserDataCached((prevState) => ({
