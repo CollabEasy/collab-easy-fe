@@ -1,7 +1,7 @@
-import { User, Login } from "types/model";
+import { User } from "types/model";
 
 export interface UserState {
   user?: User;
+  errors: any;
   isLoggedIn: boolean;
-  userLoginData: any;
 }

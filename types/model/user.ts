@@ -1,24 +1,25 @@
 export interface User {
-  userId?: string;
-  userHandle?: string;
-  firstName?: string;
-  lastName?: string;
+  user_id?: string;
+  slug?: string;
+  first_name?: string;
+  last_name?: string;
   email?: string;
-  phoneNumber?: number;
+  phone_number?: number;
   country?: string;
-  profilePicUrl?: string;
+  profile_pic_url?: string;
   timezone?: string;
   bio?: string;
   age?: number;
-  lastActive?: number;
+  last_active?: number;
   gender?: string;
-  createdAt?: number;
-  updatedAt?: number;
+  created_at?: number;
+  updated_at?: number;
+  new_user: boolean;
   skills?: string[];
   sample?: string[];
 }
 
-export interface Login{
+export interface Artist {
   artistId: string,
   artistHandle: string,
   slug: string,

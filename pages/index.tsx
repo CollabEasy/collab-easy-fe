@@ -4,7 +4,8 @@ import LoginModal from '../components/loginModal';
 import Link from "next/link";
 import Script from 'next/script';
 import Head from 'next/head';
-import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { connect, ConnectedProps } from "react-redux";
 import Image from 'next/image';
 import landingDesktopImg from '../public/images/landing-desktop.png';
 import landingMobileImg from '../public/images/landing-mobile.png';
@@ -16,60 +17,63 @@ import inspireImg from '../public/images/inspire.png';
 import { Card } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { data } from 'copy';
+import { updateLoginData } from 'state/action';
 import React, { useEffect, useState } from 'react';
 import { LoginModalDetails } from 'types/model';
 import { AppState } from 'types/states';
+import { getLoginDetails } from 'helpers/helper';
 
 const { Meta } = Card;
 
-export interface HomeProps {
- // homeDetails: any
-  loginModalDetails: LoginModalDetails,
-  userLoginData: any,
-  artistListData: any
-}
+const mapStateToProps = (state: AppState) => ({
+  loginModalDetails: state.home.loginModalDetails,
+  user: state.user.user,
+  artistListData: state.home.artistListDetails,
+  isLoggedIn: state.user.isLoggedIn
+})
 
-const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData, artistListData }) => {
-  const [showModal, setShowModal] = useState(false);
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type Props = {
+  loginModalDetails: LoginModalDetails,
+  user: any,
+  artistListData: any
+} & ConnectedProps<typeof connector>;
+
+const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
+  console.log("index first ")
   const { toArtist } = useRoutesContext();
 
+  console.log("user: ", user);
   useEffect(() => {
-    if (loginModalDetails.openModal){
-      setShowModal(true);
-    }else{
-      setShowModal(false);
-    }
-  }, [loginModalDetails]);
-
-  useEffect(() => {
-    console.log("userLoginData: ", userLoginData);
-    if ( userLoginData ){
-      if ( userLoginData.new_user ){
-        setShowModal(false);
+    if ( user ){
+      if ( user.new_user ){
         setShowProfileModal(true);
-      }else{
-        setShowModal(false);
       }
-    }
-  }, [userLoginData])
+    } 
+  }, [user])
 
   useEffect(() => {
     console.log("artistListData****: ", artistListData);
     if ( artistListData.status === "success" ){
       setShowProfileModal(false);
     }
-  }, [artistListData])
+  }, [artistListData]);
   
   return (
     <>
       <Title title="Wondor | meet the artists" />
-      { showModal && (
-          <LoginModal></LoginModal>
+      { loginModalDetails.openModal && !user.new_user && (
+          <LoginModal />
         )
       }
       { showProfileModal && (
-          <ProfileModal></ProfileModal>
+          <ProfileModal />
         )
       }
       <div className="row">
@@ -134,40 +138,8 @@ const Home: React.FC<HomeProps> = ({ loginModalDetails, userLoginData, artistLis
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="container">
-          <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
-            <div className="col-12">
-              <Image className="searchbox custom-padding" src={inspireImg} alt="Landing page" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="row">
-        <div className="col-12" >
-          <h2 className="custom-padding">Featured artists</h2>
-        </div>
-      </div>
-
-      {/* look at gallery options here: https://freefrontend.com/bootstrap-galleries/ , https://thetuteur.com/react-image-gallery-with-masonry-js/, https://codepen.io/rperry1886/pen/KKwbQNP*/}
-      <div className="grid-container">
-        {data.map((image) => (
-          <div key={image.id}>
-            <Image className={`grid-item grid-item-${image}`} src={image.src} alt={image.alt} width='500' height='500' placeholder='blur' blurDataURL={image.src} />
-            <p>{image.description}</p>
-          </div>
-        ))}
-      </div>
-      {/* <Script src="https://accounts.google.com/gsi/client" async defer /> */}
     </>
   )
 }
 
-const mapStateToProps = (state: AppState) => ({
-  loginModalDetails: state.home.loginModalDetails,
-  userLoginData: state.user.userLoginData,
-  artistListData: state.home.artistListDetails
-})
-
-export default connect(mapStateToProps, null)(Home);
+export default connector(Home);
