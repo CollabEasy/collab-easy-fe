@@ -10,11 +10,12 @@ import { Dispatch } from "redux";
 import { fetchArtistSkills } from "state/action";
 import { User } from "types/model";
 import Title from "./title";
+import landingDesktopImg from '../public/images/landing-desktop.png';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
 
-const mapStateToProps = (state: AppState) => {};
+const mapStateToProps = (state: AppState) => { };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({});
 
@@ -44,16 +45,16 @@ const Profile = ({ user, isSelf }: Props) => {
   return (
     <>
       <Title title={user.first_name + " " + user.last_name} />
-      <div className="artistProfile__profileContainer">
+      <div className="artistProfile__profileContainer" style={{ marginTop: "10%", marginBottom: "5%" }}>
         <div className="artistProfile__userContainer">
           <div className="artistProfile__profilePicContainer">
             <Image
-              src={user.profile_pic_url ? user.profile_pic_url : avatar}
-              width="150px"
-              height="150px"
-              alt="Landing page"
-              className="artistProfile__profilePicContainer"
-            />
+                src={user.profile_pic_url ? user.profile_pic_url : avatar}
+                width="150px"
+                height="150px"
+                alt="Landing page"
+                className="artistProfile__profilePicContainer"
+              />
           </div>
           <div className="artistProfile__artistDetailContainer">
             <h2 className="f-20">{user.first_name + " " + user.last_name}</h2>
