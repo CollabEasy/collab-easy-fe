@@ -66,7 +66,6 @@ const NavBar = ({
     rootMargin: '-20px 0px 0px 0px',
   });
 
-  console.log("nav first");
   const [hideSignUp, setHideSignUp] = useState(false);
   const [showLoginOptions, setShowLoginOptions] = useState(false);
   const [profilePic, setProfilePic] = useState("");
@@ -98,7 +97,6 @@ const NavBar = ({
   }, [inView, entry])
 
   useEffect(() => {
-    console.log("isLoggedIn: ", isLoggedIn);
     if( isLoggedIn ){
       setHideSignUp(true);
     }
@@ -120,12 +118,12 @@ const NavBar = ({
       <div id="p-h" className="col-lg-12 col-md-12 col-sm-12 nv-f-t animate__animated">
         <div id="app-logo-desktop">
           <Link  href={routeToHref(toWondorHome())} passHref>
-            <Image src={titleDesktopImg}  alt="Landing page" />   
+            <Image src={titleDesktopImg}  alt="Landing page" onClick={() => setShowLoginOptions(false)} />   
           </Link>
         </div>
         <div id="app-logo-mobile">
           <Link  href={routeToHref(toWondorHome())} passHref>
-            <Image src={titleMobileImg}  alt="Landing page" /> 
+            <Image src={titleMobileImg}  alt="Landing page" onClick={() => setShowLoginOptions(false)} /> 
           </Link>
         </div>
 
@@ -155,7 +153,7 @@ const NavBar = ({
               }
               { showLoginOptions && (
                   <div className={`login-options-container ${checkDevice() ? 'animate__animated animate__slideInRight' : ''}`}>
-                    <Link href={routeToHref(toEditProfile())} passHref>
+                    <Link href={routeToHref(toEditProfile("preferences"))} passHref>
                       <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(false)}>
                         <span className="f-14">Settings</span>
                       </div>

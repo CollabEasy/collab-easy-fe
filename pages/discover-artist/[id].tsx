@@ -14,7 +14,6 @@ const DiscoverArtist = () => {
   const router = useRouter()
   const { id: typeOfArtist } = router.query;
   const array = Array(7).fill(new Date().getDate())
-  console.log(typeOfArtist, '<--- typeOfArtist');
   return (
     <>
       <Title title="Discover Artist" />

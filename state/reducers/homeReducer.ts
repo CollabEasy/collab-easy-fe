@@ -23,7 +23,6 @@ const homeReducer = (state = initialState, action): HomeState => {
         },
       };
     case OPEN_LOGIN_MODAL:
-      console.log("OPEN_LOGIN_MODAL reducer");
       return { ...state, loginModalDetails: { openModal: true } };
     case CLOSE_LOGIN_MODAL:
       return { ...state, loginModalDetails: { openModal: false } };

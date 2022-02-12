@@ -4,4 +4,5 @@ export interface UserState {
   user?: User;
   errors: any;
   isLoggedIn: boolean;
+  preferences: any;
 }

@@ -6,5 +6,5 @@ export interface AppRouteCreators {
   toArtist: () => WebRoute;
   toProfile: () => WebRoute;
   toArtistProfile: (id: string) => WebRoute;
-  toEditProfile: () => WebRoute;
+  toEditProfile: (action: string) => WebRoute;
 }

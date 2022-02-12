@@ -46,10 +46,8 @@ type Props = {
 
 const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
-  console.log("index first ")
   const { toArtist } = useRoutesContext();
 
-  console.log("user: ", user);
   useEffect(() => {
     if ( user ){
       if ( user.new_user ){
@@ -59,7 +57,6 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
   }, [user])
 
   useEffect(() => {
-    console.log("artistListData****: ", artistListData);
     if ( artistListData.status === "success" ){
       setShowProfileModal(false);
     }

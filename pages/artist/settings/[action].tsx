@@ -2,12 +2,18 @@ import { User } from "types/model";
 import { InputNumber, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Select, DatePicker, Switch } from "antd";
-import { openLoginModalAction, updateArtistProfile } from "state/action";
+import {
+  openLoginModalAction,
+  updateArtistProfile,
+  updateArtistPreference,
+} from "state/action";
 import { COUNTRIES, GENDERS, TIME_ZONES } from "config/constants";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { getArtistData } from "api/artist-user";
 import { AppState } from "types/states";
 import { Dispatch } from "redux";
+import { useRouter } from "next/router";
+import { useRoutesContext } from "components/routeContext";
 
 const { TabPane } = Tabs;
 
@@ -35,26 +41,79 @@ const openLoginModal = () => {
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
+  preferences: state.user.preferences,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
+  updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
+  updateArtistPreference: (key: string, value: any) => dispatch(updateArtistPreference(key, value)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const EditProfile = ({ user, updateArtistProfile } : Props) => {
+const EditProfile = ({
+  user,
+  preferences,
+  updateArtistProfile,
+  updateArtistPreference,
+}: Props) => {
+  const [upForCollaboration, setUpForCollaboration] = useState(false);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
   );
-  console.log("user : ", user)
+
+  useEffect(() => {
+    if (preferences["upForCollaboration"] === 'true' || preferences['upForCollaboration'] === true) 
+      setUpForCollaboration(true)
+  }, [preferences])
+
+  const router = useRouter();
+  const { action } = router.query;
+  const getActiveTab = () => {
+    switch (action) {
+      case "edit":
+        return "1";
+      case "sample":
+        return "2";
+      case "preferences":
+        return "3";
+      default:
+        router.push("/artist/settings/edit");
+        return "1";
+    }
+  };
+
+  const getHeading = () => {
+    switch (action) {
+      case "edit":
+        return "Edit Profile";
+      case "sample":
+        return "Upload Samples";
+      case "preferences":
+        return "Update Preferences";
+      default:
+        return "Edit Profile";
+    }
+  };
+
+  const redirect = (tabIndex: string) => {
+    let action = "edit";
+    if (tabIndex === "2") {
+      action = "sample";
+    } else if (tabIndex === "3") {
+      action = "preferences";
+    }
+
+    router.push("/artist/settings/" + action);
+  };
+
   const [userDataCached, setUserDataCached] = useState<User>(user);
 
   useEffect(() => {
-      setUserDataCached(user);
-  }, [user])
+    setUserDataCached(user);
+  }, [user]);
 
   const onDOBChange = (date) => {
     //  setDOB(date)
@@ -67,17 +126,21 @@ const EditProfile = ({ user, updateArtistProfile } : Props) => {
   };
 
   const submitForm = () => {
-    console.log("form submit");
     updateArtistProfile(userDataCached);
   };
 
-  if (user && Object.keys(user).length === 0) return <p>Redirecting</p>
-  console.log("userDataCached ", userDataCached)
+  if (user && Object.keys(user).length === 0) return <p>Redirecting</p>;
   return (
     <div className="edit-profile" style={{ padding: 200 }}>
-      <h1>Edit Profile</h1>
+      <h1>{getHeading()}</h1>
       <>
-        <Tabs tabPosition={"left"}>
+        <Tabs
+          tabPosition={"left"}
+          onChange={(key: string) => {
+            redirect(key);
+          }}
+          activeKey={getActiveTab()}
+        >
           <TabPane tab="Basic Information" key="1">
             <>
               <Form
@@ -93,10 +156,10 @@ const EditProfile = ({ user, updateArtistProfile } : Props) => {
                   <Input
                     value={userDataCached ? userDataCached.first_name : ""}
                     onChange={(e) => {
-                        setUserDataCached((prevState) => ({
-                            ...prevState,
-                            first_name: e.target.value
-                        }))
+                      setUserDataCached((prevState) => ({
+                        ...prevState,
+                        first_name: e.target.value,
+                      }));
                     }}
                   />
                 </Form.Item>
@@ -104,21 +167,21 @@ const EditProfile = ({ user, updateArtistProfile } : Props) => {
                   <Input
                     value={userDataCached ? userDataCached.last_name : ""}
                     onChange={(e) => {
-                        setUserDataCached((prevState) => ({
-                            ...prevState,
-                            last_name: e.target.value
-                        }))
+                      setUserDataCached((prevState) => ({
+                        ...prevState,
+                        last_name: e.target.value,
+                      }));
                     }}
                   />
                 </Form.Item>
                 <Form.Item label="Email">
-                <Input
+                  <Input
                     value={userDataCached ? userDataCached.email : ""}
                     onChange={(e) => {
-                        setUserDataCached((prevState) => ({
-                            ...prevState,
-                            email: e.target.value
-                        }))
+                      setUserDataCached((prevState) => ({
+                        ...prevState,
+                        email: e.target.value,
+                      }));
                     }}
                   />
                 </Form.Item>
@@ -137,34 +200,35 @@ const EditProfile = ({ user, updateArtistProfile } : Props) => {
                     style={{ width: "100%" }}
                     value={userDataCached ? userDataCached.phone_number : ""}
                     onChange={(e) => {
-                        setUserDataCached((prevState) => ({
-                            ...prevState,
-                            phone_number: (e.target.value as unknown as number)
-                        }))
+                      setUserDataCached((prevState) => ({
+                        ...prevState,
+                        phone_number: e.target.value as unknown as number,
+                      }));
                     }}
                   />
                 </Form.Item>
                 <Form.Item label="Age">
-                  <InputNumber value={userDataCached ? userDataCached.age : 0} 
-                   onChange={(e) => {
-                    setUserDataCached((prevState) => ({
+                  <InputNumber
+                    value={userDataCached ? userDataCached.age : 0}
+                    onChange={(e) => {
+                      setUserDataCached((prevState) => ({
                         ...prevState,
-                        phone_number: e
-                    }))
-                   }} 
+                        phone_number: e,
+                      }));
+                    }}
                   />
                 </Form.Item>
                 <Form.Item label="Date of birth">
                   <DatePicker onChange={onDOBChange} />
                 </Form.Item>
                 <Form.Item label="Gender">
-                  <Select 
-                    defaultValue={userDataCached ? userDataCached.gender : ""} 
+                  <Select
+                    defaultValue={userDataCached ? userDataCached.gender : ""}
                     onChange={(e) => {
-                        setUserDataCached((prevState) => ({
-                            ...prevState,
-                            gender: e
-                        }))
+                      setUserDataCached((prevState) => ({
+                        ...prevState,
+                        gender: e,
+                      }));
                     }}
                   >
                     {GENDERS.map((gen) => (
@@ -178,10 +242,10 @@ const EditProfile = ({ user, updateArtistProfile } : Props) => {
                   <Select
                     defaultValue={userDataCached ? userDataCached.country : ""}
                     onChange={(e) => {
-                        setUserDataCached((prevState) => ({
-                            ...prevState,
-                            country: e
-                        }))
+                      setUserDataCached((prevState) => ({
+                        ...prevState,
+                        country: e,
+                      }));
                     }}
                   >
                     {COUNTRIES.map((country) => (
@@ -204,13 +268,15 @@ const EditProfile = ({ user, updateArtistProfile } : Props) => {
                   </Select>
                 </Form.Item> */}
                 <Form.Item label="Bio">
-                  <Input value={userDataCached ? userDataCached.bio : ""} onChange={(e) => {
+                  <Input
+                    value={userDataCached ? userDataCached.bio : ""}
+                    onChange={(e) => {
                       setUserDataCached((prevState) => ({
                         ...prevState,
-                        bio: e.target.value
-                    }))
-                   }} 
-                />
+                        bio: e.target.value,
+                      }));
+                    }}
+                  />
                 </Form.Item>
                 <Form.Item {...tailLayout}>
                   <Button type="primary" htmlType="submit" onClick={submitForm}>
@@ -228,7 +294,7 @@ const EditProfile = ({ user, updateArtistProfile } : Props) => {
               Upload a sample
             </Button>
           </TabPane>
-          <TabPane tab="Settings" key="3">
+          <TabPane tab="Preferences" key="3">
             <>
               <Form
                 labelCol={{ span: 4 }}
@@ -245,7 +311,16 @@ const EditProfile = ({ user, updateArtistProfile } : Props) => {
                   <Switch />
                 </Form.Item>
                 <Form.Item label="Up for collab" valuePropName="checked">
-                  <Switch />
+                  <Switch
+                    onChange={() => {
+                      updateArtistPreference(
+                        "upForCollaboration",
+                        !upForCollaboration
+                      );
+                      setUpForCollaboration(!upForCollaboration);
+                    }}
+                    checked={upForCollaboration}
+                  />
                 </Form.Item>
               </Form>
             </>
