@@ -2,8 +2,8 @@ import { User } from "types/model";
 import moment from "moment";
 import { InputNumber, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
-import { Upload, Form, Input, Button, Select, DatePicker, Switch } from "antd";
-import { UploadOutlined } from '@ant-design/icons';
+import { Upload, Form, Input, Button, Select, Space, DatePicker, Switch } from "antd";
+import { UploadOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   openLoginModalAction,
   updateArtistProfile,
@@ -381,6 +381,66 @@ const EditProfile = ({
                     <Button icon={<UploadOutlined />}>Click to upload</Button>
                   </Upload>
                 </Form.Item>
+                <Form.Item {...tailLayout}>
+                  <div className="settings__basicProfileSubmitContainer">
+                    <Button type="primary" htmlType="submit" onClick={submitForm} loading={isUpdatingProfile}>
+                      {isUpdatingProfile ? "Saving..." : "Save"}
+                    </Button>
+                    <Button htmlType="button" onClick={resetData}>
+                      Reset
+                    </Button>
+                  </div>
+                </Form.Item>
+              </Form>
+            </div>
+            <div className="settings__basicProfileCardFourth">
+              <h2 className="f-20 ">Social Media Prospectus</h2>
+              <Form className="settings__basicProfileForm" name="dynamic_form_nest_item" autoComplete="off">
+                <Form.List name="sights">
+                  {(fields, { add, remove }) => (
+                    <>
+                      {fields.map(field => (
+                        <Space key={field.key} align="baseline">
+                          <Form.Item
+                            noStyle
+                            shouldUpdate={(prevValues, curValues) =>
+                              prevValues.area !== curValues.area || prevValues.sights !== curValues.sights
+                            }
+                          >
+                            {() => (
+                              <Form.Item
+                                {...field}
+                                label="Platform"
+                                name={[field.name, 'sight']}
+                                rules={[{ required: true, message: 'Missing sight' }]}
+                              >
+                                <Select style={{ width: 130 }}>
+
+                                </Select>
+                              </Form.Item>
+                            )}
+                          </Form.Item>
+                          <Form.Item
+                            {...field}
+                            label="Handle"
+                            name={[field.name, 'price']}
+                            rules={[{ required: true, message: 'Missing price' }]}
+                          >
+                            <Input />
+                          </Form.Item>
+
+                          <MinusCircleOutlined onClick={() => remove(field.name)} />
+                        </Space>
+                      ))}
+
+                      <Form.Item>
+                        <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                          Add social media handle
+                        </Button>
+                      </Form.Item>
+                    </>
+                  )}
+                </Form.List>
                 <Form.Item {...tailLayout}>
                   <div className="settings__basicProfileSubmitContainer">
                     <Button type="primary" htmlType="submit" onClick={submitForm} loading={isUpdatingProfile}>
