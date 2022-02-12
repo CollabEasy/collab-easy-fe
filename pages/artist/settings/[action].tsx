@@ -2,7 +2,8 @@ import { User } from "types/model";
 import moment from "moment";
 import { InputNumber, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
-import { Form, Input, Button, Select, DatePicker, Switch } from "antd";
+import { Upload, Form, Input, Button, Select, DatePicker, Switch } from "antd";
+import { UploadOutlined } from '@ant-design/icons';
 import {
   openLoginModalAction,
   updateArtistProfile,
@@ -53,6 +54,14 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateArtistPreference: (key: string, value: any) => dispatch(updateArtistPreference(key, value)),
 });
 
+const normFile = (e: any) => {
+  console.log('Upload event:', e);
+  if (Array.isArray(e)) {
+    return e;
+  }
+  return e && e.fileList;
+};
+
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
@@ -66,13 +75,17 @@ const EditProfile = ({
   updateArtistPreference,
 }: Props) => {
   const [activeTabKey, setActiveTabKey] = useState('1');
+  const [selectedCategories, setSelectedCategories] = useState("");
+  const [categoriesArr, setCategoriesArr] = useState([]);
   const [upForCollaboration, setUpForCollaboration] = useState(false);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
   );
 
+  const { Option } = Select;
+
   useEffect(() => {
-    if (preferences["upForCollaboration"] === 'true' || preferences['upForCollaboration'] === true) 
+    if (preferences["upForCollaboration"] === 'true' || preferences['upForCollaboration'] === true)
       setUpForCollaboration(true)
   }, [preferences])
 
@@ -83,21 +96,14 @@ const EditProfile = ({
     router.push("/artist/settings/edit");
   }
 
-  const getHeading = () => {
-    switch (action) {
-      case "edit":
-        return "Edit Profile";
-      case "sample":
-        return "Upload Samples";
-      default:
-        return "Edit Profile";
-    }
-  };
+  function handleChange(value) {
+    setSelectedCategories(value);
+  }
 
   const redirect = (tabIndex: string) => {
     let action = "edit";
     if (tabIndex === "2") {
-      action = "sample";
+      action = "settings";
     }
 
     router.push("/artist/settings/" + action);
@@ -109,7 +115,7 @@ const EditProfile = ({
     setUserDataCached(user);
   }, [user]);
 
-  const resetData = () => {};
+  const resetData = () => { };
 
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
@@ -121,10 +127,10 @@ const EditProfile = ({
 
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0) return <p>Redirecting</p>;
-  
+
   return (
     <div className="edit-profile" style={{ padding: 200 }}>
-      <h1 style={{ textAlign: 'center'}}>{getHeading()}</h1>
+      {/* <h1 style={{ textAlign: 'center' }}>{getHeading()}</h1> */}
       <>
         <Tabs
           tabPosition={"left"}
@@ -132,8 +138,9 @@ const EditProfile = ({
             redirect(key);
           }}
         >
-          <TabPane tab="Basic Information" key="1">
+          <TabPane tab="Artist's Information" key="1">
             <div className="settings__basicProfileCard">
+              <h2 className="f-20 ">Personal Information</h2>
               <Form
                 className="settings__basicProfileForm"
                 labelCol={{ span: 4 }}
@@ -197,17 +204,17 @@ const EditProfile = ({
                 <Form.Item label="Date of birth">
                   <DatePicker
                     clearIcon={null}
-                    disabledDate={ d => !d
+                    disabledDate={d => !d
                       || d.isAfter(currentDate)
                       || currentDate >= moment().endOf('day')}
                     format="DD/MM/YYYY"
-                    value={moment(userDataCached.date_of_birth)} 
+                    value={moment(userDataCached.date_of_birth)}
                     onChange={(e) => {
                       setUserDataCached((prevState) => ({
                         ...prevState,
                         date_of_birth: e.toDate(),
                       }))
-                  }} />
+                    }} />
                 </Form.Item>
                 <Form.Item label="Gender">
                   <Select
@@ -269,12 +276,12 @@ const EditProfile = ({
                 </Form.Item>
                 <Form.Item {...tailLayout}>
                   <div className="settings__basicProfileSubmitContainer">
-                  <Button type="primary" htmlType="submit" onClick={submitForm} loading={isUpdatingProfile}>
-                    {isUpdatingProfile ? "Saving..." : "Save"}
-                  </Button>
-                  <Button htmlType="button" onClick={resetData}>
-                    Reset
-                  </Button>
+                    <Button type="primary" htmlType="submit" onClick={submitForm} loading={isUpdatingProfile}>
+                      {isUpdatingProfile ? "Saving..." : "Save"}
+                    </Button>
+                    <Button htmlType="button" onClick={resetData}>
+                      Reset
+                    </Button>
                   </div>
                 </Form.Item>
               </Form>
@@ -291,13 +298,7 @@ const EditProfile = ({
                 onValuesChange={onFormLayoutChange}
                 size={componentSize as SizeType}
               >
-                <Form.Item
-                  label="Notification Emails"
-                  valuePropName="checked"
-                >
-                  <Switch checkedChildren="enabled" unCheckedChildren="disabled"/>
-                </Form.Item>
-                <Form.Item label="Ready for Collab" valuePropName="checked">
+                <Form.Item label="Collaborate with others" valuePropName="checked">
                   <Switch
                     onChange={() => {
                       updateArtistPreference(
@@ -312,13 +313,132 @@ const EditProfile = ({
                     unCheckedChildren="inactive"
                   />
                 </Form.Item>
+
+                <Form.Item
+                  name="art"
+                  label="Art Styles"
+                  rules={[
+                    {
+                      validator(_, value) {
+                        if (value === undefined) {
+                          return Promise.reject();
+                        }
+                        if (value.length > 3) {
+                          return Promise.reject(
+                            "You can select maximum 3 art styles"
+                          );
+                        }
+                        return Promise.resolve();
+                      },
+                    },
+                  ]}
+                >
+                  <Select
+                    mode="multiple"
+                    style={{ width: "100%" }}
+                    placeholder="select atleast one art style"
+                    onChange={handleChange}
+                    optionLabelProp="label"
+                  >
+                    {categoriesArr.length > 0 &&
+                      categoriesArr.map((category, index) => (
+                        <Option value={category} label={category} key={index}>
+                          <div className="demo-option-label-item">{category}</div>
+                        </Option>
+                      ))}
+                  </Select>
+                </Form.Item>
+                <Form.Item {...tailLayout}>
+                  <div className="settings__basicProfileSubmitContainer">
+                    <Button type="primary" htmlType="submit" onClick={submitForm} loading={isUpdatingProfile}>
+                      {isUpdatingProfile ? "Saving..." : "Save"}
+                    </Button>
+                    <Button htmlType="button" onClick={resetData}>
+                      Reset
+                    </Button>
+                  </div>
+                </Form.Item>
+              </Form>
+            </div>
+            <div className="settings__basicProfileCardThird">
+              <h2 className="f-20 ">Art Samples</h2>
+              <Form
+                className="settings__basicProfileForm"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 14 }}
+                layout="horizontal"
+                initialValues={{ size: componentSize }}
+                onValuesChange={onFormLayoutChange}
+                size={componentSize as SizeType}
+              >
+                <Form.Item
+                  name="upload"
+                  label="Upload"
+                  valuePropName="fileList"
+                  getValueFromEvent={normFile}
+                >
+                  <Upload name="logo" action="/upload.do" listType="picture">
+                    <Button icon={<UploadOutlined />}>Click to upload</Button>
+                  </Upload>
+                </Form.Item>
+                <Form.Item {...tailLayout}>
+                  <div className="settings__basicProfileSubmitContainer">
+                    <Button type="primary" htmlType="submit" onClick={submitForm} loading={isUpdatingProfile}>
+                      {isUpdatingProfile ? "Saving..." : "Save"}
+                    </Button>
+                    <Button htmlType="button" onClick={resetData}>
+                      Reset
+                    </Button>
+                  </div>
+                </Form.Item>
               </Form>
             </div>
           </TabPane>
-          <TabPane tab="Samples" key="2">
-            <Button id="image-upload" type="primary" onClick={openLoginModal}>
-              Upload a sample
-            </Button>
+          <TabPane tab="Account Settings" key="2">
+            <div className="settings__basicProfileCard">
+              <h2 className="f-20 ">Communication</h2>
+              <Form
+                className="settings__basicProfileForm"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 14 }}
+                layout="horizontal"
+                initialValues={{ size: componentSize }}
+                onValuesChange={onFormLayoutChange}
+                size={componentSize as SizeType}
+              >
+                <Form.Item
+                  label="Notification Emails"
+                  valuePropName="checked"
+                >
+                  <Switch checkedChildren="enabled" unCheckedChildren="disabled" />
+                </Form.Item>
+              </Form>
+            </div>
+            <div className="settings__basicProfileCardSecond">
+              <h2 className="f-20 ">Account Management</h2>
+              <Form
+                className="settings__basicProfileForm"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 14 }}
+                layout="horizontal"
+                initialValues={{ size: componentSize }}
+                onValuesChange={onFormLayoutChange}
+                size={componentSize as SizeType}
+              >
+                <Form.Item
+                  label="Disable Account"
+                  valuePropName="checked"
+                >
+                  <Switch checkedChildren="enabled" unCheckedChildren="disabled" />
+                </Form.Item>
+                <Form.Item
+                  label="Delete Account"
+                  valuePropName="checked"
+                >
+                  <Switch checkedChildren="enabled" unCheckedChildren="disabled" />
+                </Form.Item>
+              </Form>
+            </div>
           </TabPane>
         </Tabs>
       </>
