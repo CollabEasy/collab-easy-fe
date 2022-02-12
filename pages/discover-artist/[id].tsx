@@ -17,7 +17,7 @@ const DiscoverArtist = () => {
   return (
     <>
       <Title title="Discover Artist" />
-      <div className="fluid dynamic-artist-page">
+      <div className="fluid dynamic-artist-page artistProfile__profileContainer" style={{ marginTop: "10%", marginBottom: "5%" }}>
         <div className="row" style={{ paddingTop: '6rem' }}>
           <Image src={landingPageImg} alt="Landing page" />
         </div>
