@@ -46,20 +46,22 @@ const Profile = ({ user, isSelf }: Props) => {
     <>
       <Title title={user.first_name + " " + user.last_name} />
       <div className="artistProfile__profileContainer" style={{ marginTop: "10%", marginBottom: "5%" }}>
-        <div className="artistProfile__userContainer">
-          <div className="artistProfile__profilePicContainer">
+        <div className="container">
+          <div className="artistProfile__profileCoverContainer">
+            <div className="graph"></div>
+          </div>
+          <div className="artistProfile__profileDpContainer">
             <Image
-                src={user.profile_pic_url ? user.profile_pic_url : avatar}
-                width="150px"
-                height="150px"
-                alt="Landing page"
-                className="artistProfile__profilePicContainer"
-              />
+              src={user.profile_pic_url ? user.profile_pic_url : avatar}
+              width="150px"
+              height="150px"
+              alt="Landing page"
+            />
           </div>
-          <div className="artistProfile__artistDetailContainer">
-            <h2 className="f-20">{user.first_name + " " + user.last_name}</h2>
-            <h3 className="f-12">{getUserSkills(false)}</h3>
-          </div>
+        </div>
+        <div className="artistProfile__artistDetailContainer">
+          <h2 className="f-20">{user.first_name + " " + user.last_name}</h2>
+          <h3 className="f-12">{getUserSkills(false)}</h3>
           <button
             className="artistProfile__editCollabButton"
             onClick={() => {
@@ -73,7 +75,6 @@ const Profile = ({ user, isSelf }: Props) => {
             {isSelf ? "Edit Profile" : "Collaborate"}
           </button>
         </div>
-
         <div className="artistProfile__tabsContainer">
           <Tabs defaultActiveKey="1" type="card" size={"large"} centered>
             <TabPane tab="About" key="1">
