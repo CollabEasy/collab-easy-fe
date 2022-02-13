@@ -92,7 +92,7 @@ const EditProfile = ({
   const router = useRouter();
   const { action } = router.query;
 
-  if (typeof window !== "undefined" && action !== 'edit' && action !== 'sample') {
+  if (typeof window !== "undefined" && action !== 'edit' && action !== 'settings') {
     router.push("/artist/settings/edit");
   }
 
@@ -100,6 +100,12 @@ const EditProfile = ({
     setSelectedCategories(value);
   }
 
+  const getActiveTab = () => {
+    let active = '1';
+    if (action === "settings") active = '2';
+
+    return active;
+  }
   const redirect = (tabIndex: string) => {
     let action = "edit";
     if (tabIndex === "2") {
@@ -137,6 +143,7 @@ const EditProfile = ({
           onChange={(key: string) => {
             redirect(key);
           }}
+          activeKey={getActiveTab()}
         >
           <TabPane tab="Artist's Information" key="1">
             <div className="settings__basicProfileCard">
