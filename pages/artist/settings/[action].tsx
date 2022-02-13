@@ -2,8 +2,21 @@ import { User } from "types/model";
 import moment from "moment";
 import { InputNumber, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
-import { Upload, Form, Input, Button, Select, Space, DatePicker, Switch } from "antd";
-import { UploadOutlined, MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import {
+  Upload,
+  Form,
+  Input,
+  Button,
+  Select,
+  Space,
+  DatePicker,
+  Switch,
+} from "antd";
+import {
+  UploadOutlined,
+  MinusCircleOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
 import {
   openLoginModalAction,
   updateArtistProfile,
@@ -51,11 +64,12 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
-  updateArtistPreference: (key: string, value: any) => dispatch(updateArtistPreference(key, value)),
+  updateArtistPreference: (key: string, value: any) =>
+    dispatch(updateArtistPreference(key, value)),
 });
 
 const normFile = (e: any) => {
-  console.log('Upload event:', e);
+  console.log("Upload event:", e);
   if (Array.isArray(e)) {
     return e;
   }
@@ -74,7 +88,7 @@ const EditProfile = ({
   updateArtistProfile,
   updateArtistPreference,
 }: Props) => {
-  const [activeTabKey, setActiveTabKey] = useState('1');
+  const [activeTabKey, setActiveTabKey] = useState("1");
   const [selectedCategories, setSelectedCategories] = useState("");
   const [categoriesArr, setCategoriesArr] = useState([]);
   const [upForCollaboration, setUpForCollaboration] = useState(false);
@@ -85,14 +99,21 @@ const EditProfile = ({
   const { Option } = Select;
 
   useEffect(() => {
-    if (preferences["upForCollaboration"] === 'true' || preferences['upForCollaboration'] === true)
-      setUpForCollaboration(true)
-  }, [preferences])
+    if (
+      preferences["upForCollaboration"] === "true" ||
+      preferences["upForCollaboration"] === true
+    )
+      setUpForCollaboration(true);
+  }, [preferences]);
 
   const router = useRouter();
   const { action } = router.query;
 
-  if (typeof window !== "undefined" && action !== 'edit' && action !== 'settings') {
+  if (
+    typeof window !== "undefined" &&
+    action !== "edit" &&
+    action !== "settings"
+  ) {
     router.push("/artist/settings/edit");
   }
 
@@ -101,11 +122,11 @@ const EditProfile = ({
   }
 
   const getActiveTab = () => {
-    let active = '1';
-    if (action === "settings") active = '2';
+    let active = "1";
+    if (action === "settings") active = "2";
 
     return active;
-  }
+  };
   const redirect = (tabIndex: string) => {
     let action = "edit";
     if (tabIndex === "2") {
@@ -121,7 +142,7 @@ const EditProfile = ({
     setUserDataCached(user);
   }, [user]);
 
-  const resetData = () => { };
+  const resetData = () => {};
 
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
@@ -146,119 +167,133 @@ const EditProfile = ({
           activeKey={getActiveTab()}
         >
           <TabPane tab="Artist's Information" key="1">
-            <div className="settings__basicProfileCard">
-              <h2 className="f-20 ">Personal Information</h2>
-              <Form
-                className="settings__basicProfileForm"
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-                initialValues={{ size: componentSize }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize as SizeType}
-                onFinish={submitForm}
-              >
-                <Form.Item label="First Name">
-                  <Input
-                    value={userDataCached ? userDataCached.first_name : ""}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        first_name: e.target.value,
-                      }));
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item label="Last Name">
-                  <Input
-                    value={userDataCached ? userDataCached.last_name : ""}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        last_name: e.target.value,
-                      }));
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item label="Email">
-                  <Input
-                    value={userDataCached ? userDataCached.email : ""}
-                    disabled={true}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        email: e.target.value,
-                      }));
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="phone"
-                  label="Phone Number"
-                >
-                  <Input
-                    addonBefore={prefixSelector}
-                    style={{ width: "100%" }}
-                    value={userDataCached ? userDataCached.phone_number : ""}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        phone_number: e.target.value as unknown as number,
-                      }));
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item label="Date of birth">
-                  <DatePicker
-                    clearIcon={null}
-                    disabledDate={d => !d
-                      || d.isAfter(currentDate)
-                      || currentDate >= moment().endOf('day')}
-                    format="DD/MM/YYYY"
-                    value={moment(userDataCached.date_of_birth)}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        date_of_birth: e.toDate(),
-                      }))
-                    }} />
-                </Form.Item>
-                <Form.Item label="Gender">
-                  <Select
-                    value={userDataCached ? userDataCached.gender : ""}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        gender: e,
-                      }));
-                    }}
+            <Tabs
+              type="card"
+            // tabPosition={"left"}
+            // onChange={(key: string) => {
+            //   redirect(key);
+            // }}
+            // activeKey={getActiveTab()}
+            >
+              <TabPane tab="Profile" key="1">
+                <div className="settings__basicProfileCard">
+                  <h2 className="f-20 ">Personal Information</h2>
+                  <Form
+                    className="settings__basicProfileForm"
+                    labelCol={{ span: 4 }}
+                    wrapperCol={{ span: 14 }}
+                    layout="horizontal"
+                    initialValues={{ size: componentSize }}
+                    onValuesChange={onFormLayoutChange}
+                    size={componentSize as SizeType}
+                    onFinish={submitForm}
                   >
-                    {GENDERS.map((gen) => (
-                      <Select.Option key={gen} value={gen}>
-                        {gen}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-                <Form.Item label="Country">
-                  <Select
-                    showSearch
-                    value={userDataCached ? userDataCached.country : ""}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        country: e,
-                      }));
-                    }}
-                  >
-                    {COUNTRIES.map((country) => (
-                      <Select.Option key={country.Iso2} value={country.Name}>
-                        {country.Unicode} {country.Name}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-                {/* <Form.Item label="Time zone">
+                    <Form.Item label="First Name">
+                      <Input
+                        value={userDataCached ? userDataCached.first_name : ""}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            first_name: e.target.value,
+                          }));
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Last Name">
+                      <Input
+                        value={userDataCached ? userDataCached.last_name : ""}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            last_name: e.target.value,
+                          }));
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Email">
+                      <Input
+                        value={userDataCached ? userDataCached.email : ""}
+                        disabled={true}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            email: e.target.value,
+                          }));
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item name="phone" label="Phone Number">
+                      <Input
+                        addonBefore={prefixSelector}
+                        style={{ width: "100%" }}
+                        value={
+                          userDataCached ? userDataCached.phone_number : ""
+                        }
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            phone_number: e.target.value as unknown as number,
+                          }));
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Date of birth">
+                      <DatePicker
+                        clearIcon={null}
+                        disabledDate={(d) =>
+                          !d ||
+                          d.isAfter(currentDate) ||
+                          currentDate >= moment().endOf("day")
+                        }
+                        format="DD/MM/YYYY"
+                        value={moment(userDataCached.date_of_birth)}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            date_of_birth: e.toDate(),
+                          }));
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Gender">
+                      <Select
+                        value={userDataCached ? userDataCached.gender : ""}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            gender: e,
+                          }));
+                        }}
+                      >
+                        {GENDERS.map((gen) => (
+                          <Select.Option key={gen} value={gen}>
+                            {gen}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item label="Country">
+                      <Select
+                        showSearch
+                        value={userDataCached ? userDataCached.country : ""}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            country: e,
+                          }));
+                        }}
+                      >
+                        {COUNTRIES.map((country) => (
+                          <Select.Option
+                            key={country.Iso2}
+                            value={country.Name}
+                          >
+                            {country.Unicode} {country.Name}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    {/* <Form.Item label="Time zone">
                   <Select
                     defaultValue={timezone}
                     onChange={(e) => setTimeZone(e)}
@@ -270,196 +305,255 @@ const EditProfile = ({
                     ))}
                   </Select>
                 </Form.Item> */}
-                <Form.Item label="Bio">
-                  <Input.TextArea
-                    value={userDataCached ? userDataCached.bio : ""}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        bio: e.target.value,
-                      }));
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item {...tailLayout}>
-                  <div className="settings__basicProfileSubmitContainer">
-                    <Button type="primary" htmlType="submit" onClick={submitForm} loading={isUpdatingProfile}>
-                      {isUpdatingProfile ? "Saving..." : "Save"}
-                    </Button>
-                    <Button htmlType="button" onClick={resetData}>
-                      Reset
-                    </Button>
-                  </div>
-                </Form.Item>
-              </Form>
-            </div>
-
-            <div className="settings__basicProfileCardSecond">
-              <h2 className="f-20 ">Preferences</h2>
-              <Form
-                className="settings__basicProfileForm"
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-                initialValues={{ size: componentSize }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize as SizeType}
-              >
-                <Form.Item label="Collaborate with others" valuePropName="checked">
-                  <Switch
-                    onChange={() => {
-                      updateArtistPreference(
-                        "upForCollaboration",
-                        !upForCollaboration
-                      );
-                      setUpForCollaboration(!upForCollaboration);
-                    }}
-                    loading={isUpdatingPrefs === 'upForCollaboration'}
-                    checked={upForCollaboration}
-                    checkedChildren="active"
-                    unCheckedChildren="inactive"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name="art"
-                  label="Art Styles"
-                  rules={[
-                    {
-                      validator(_, value) {
-                        if (value === undefined) {
-                          return Promise.reject();
-                        }
-                        if (value.length > 3) {
-                          return Promise.reject(
-                            "You can select maximum 3 art styles"
-                          );
-                        }
-                        return Promise.resolve();
-                      },
-                    },
-                  ]}
-                >
-                  <Select
-                    mode="multiple"
-                    style={{ width: "100%" }}
-                    placeholder="select atleast one art style"
-                    onChange={handleChange}
-                    optionLabelProp="label"
+                    <Form.Item label="Bio">
+                      <Input.TextArea
+                        value={userDataCached ? userDataCached.bio : ""}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            bio: e.target.value,
+                          }));
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item {...tailLayout}>
+                      <div className="settings__basicProfileSubmitContainer">
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                          onClick={submitForm}
+                          loading={isUpdatingProfile}
+                        >
+                          {isUpdatingProfile ? "Saving..." : "Save"}
+                        </Button>
+                        <Button htmlType="button" onClick={resetData}>
+                          Reset
+                        </Button>
+                      </div>
+                    </Form.Item>
+                  </Form>
+                </div>
+              </TabPane>
+              <TabPane tab="Preferences" key="2">
+                <div className="settings__basicProfileCardSecond">
+                  <h2 className="f-20 ">Preferences</h2>
+                  <Form
+                    className="settings__basicProfileForm"
+                    labelCol={{ span: 4 }}
+                    wrapperCol={{ span: 14 }}
+                    layout="horizontal"
+                    initialValues={{ size: componentSize }}
+                    onValuesChange={onFormLayoutChange}
+                    size={componentSize as SizeType}
                   >
-                    {categoriesArr.length > 0 &&
-                      categoriesArr.map((category, index) => (
-                        <Option value={category} label={category} key={index}>
-                          <div className="demo-option-label-item">{category}</div>
-                        </Option>
-                      ))}
-                  </Select>
-                </Form.Item>
-                <Form.Item {...tailLayout}>
-                  <div className="settings__basicProfileSubmitContainer">
-                    <Button type="primary" htmlType="submit" onClick={submitForm} loading={isUpdatingProfile}>
-                      {isUpdatingProfile ? "Saving..." : "Save"}
-                    </Button>
-                    <Button htmlType="button" onClick={resetData}>
-                      Reset
-                    </Button>
-                  </div>
-                </Form.Item>
-              </Form>
-            </div>
-            <div className="settings__basicProfileCardThird">
-              <h2 className="f-20 ">Art Samples</h2>
-              <Form
-                className="settings__basicProfileForm"
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-                initialValues={{ size: componentSize }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize as SizeType}
-              >
-                <Form.Item
-                  name="upload"
-                  label="Upload"
-                  valuePropName="fileList"
-                  getValueFromEvent={normFile}
-                >
-                  <Upload name="logo" action="/upload.do" listType="picture">
-                    <Button icon={<UploadOutlined />}>Click to upload</Button>
-                  </Upload>
-                </Form.Item>
-                <Form.Item {...tailLayout}>
-                  <div className="settings__basicProfileSubmitContainer">
-                    <Button type="primary" htmlType="submit" onClick={submitForm} loading={isUpdatingProfile}>
-                      {isUpdatingProfile ? "Saving..." : "Save"}
-                    </Button>
-                    <Button htmlType="button" onClick={resetData}>
-                      Reset
-                    </Button>
-                  </div>
-                </Form.Item>
-              </Form>
-            </div>
-            <div className="settings__basicProfileCardFourth">
-              <h2 className="f-20 ">Social Media Prospectus</h2>
-              <Form className="settings__basicProfileForm" name="dynamic_form_nest_item" autoComplete="off">
-                <Form.List name="sights">
-                  {(fields, { add, remove }) => (
-                    <>
-                      {fields.map(field => (
-                        <Space key={field.key} align="baseline">
-                          <Form.Item
-                            noStyle
-                            shouldUpdate={(prevValues, curValues) =>
-                              prevValues.area !== curValues.area || prevValues.sights !== curValues.sights
+                    <Form.Item
+                      label="Collaborate with others"
+                      valuePropName="checked"
+                    >
+                      <Switch
+                        onChange={() => {
+                          updateArtistPreference(
+                            "upForCollaboration",
+                            !upForCollaboration
+                          );
+                          setUpForCollaboration(!upForCollaboration);
+                        }}
+                        loading={isUpdatingPrefs === "upForCollaboration"}
+                        checked={upForCollaboration}
+                        checkedChildren="active"
+                        unCheckedChildren="inactive"
+                      />
+                    </Form.Item>
+
+                    <Form.Item
+                      name="art"
+                      label="Art Styles"
+                      rules={[
+                        {
+                          validator(_, value) {
+                            if (value === undefined) {
+                              return Promise.reject();
                             }
-                          >
-                            {() => (
+                            if (value.length > 3) {
+                              return Promise.reject(
+                                "You can select maximum 3 art styles"
+                              );
+                            }
+                            return Promise.resolve();
+                          },
+                        },
+                      ]}
+                    >
+                      <Select
+                        mode="multiple"
+                        style={{ width: "100%" }}
+                        placeholder="select atleast one art style"
+                        onChange={handleChange}
+                        optionLabelProp="label"
+                      >
+                        {categoriesArr.length > 0 &&
+                          categoriesArr.map((category, index) => (
+                            <Option
+                              value={category}
+                              label={category}
+                              key={index}
+                            >
+                              <div className="demo-option-label-item">
+                                {category}
+                              </div>
+                            </Option>
+                          ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item {...tailLayout}>
+                      <div className="settings__basicProfileSubmitContainer">
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                          onClick={submitForm}
+                          loading={isUpdatingProfile}
+                        >
+                          {isUpdatingProfile ? "Saving..." : "Save"}
+                        </Button>
+                        <Button htmlType="button" onClick={resetData}>
+                          Reset
+                        </Button>
+                      </div>
+                    </Form.Item>
+                  </Form>
+                </div>
+              </TabPane>
+              <TabPane tab="Samples" key="3">
+                <div className="settings__basicProfileCardThird">
+                  <h2 className="f-20 ">Art Samples</h2>
+                  <Form
+                    className="settings__basicProfileForm"
+                    labelCol={{ span: 4 }}
+                    wrapperCol={{ span: 14 }}
+                    layout="horizontal"
+                    initialValues={{ size: componentSize }}
+                    onValuesChange={onFormLayoutChange}
+                    size={componentSize as SizeType}
+                  >
+                    <Form.Item
+                      name="upload"
+                      label="Upload"
+                      valuePropName="fileList"
+                      getValueFromEvent={normFile}
+                    >
+                      <Upload
+                        name="logo"
+                        action="/upload.do"
+                        listType="picture"
+                      >
+                        <Button icon={<UploadOutlined />}>
+                          Click to upload
+                        </Button>
+                      </Upload>
+                    </Form.Item>
+                    <Form.Item {...tailLayout}>
+                      <div className="settings__basicProfileSubmitContainer">
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                          onClick={submitForm}
+                          loading={isUpdatingProfile}
+                        >
+                          {isUpdatingProfile ? "Saving..." : "Save"}
+                        </Button>
+                        <Button htmlType="button" onClick={resetData}>
+                          Reset
+                        </Button>
+                      </div>
+                    </Form.Item>
+                  </Form>
+                </div>
+              </TabPane>
+              <TabPane tab="Social" key="4">
+                <div className="settings__basicProfileCardFourth">
+                  <h2 className="f-20 ">Social Media Prospectus</h2>
+                  <Form
+                    className="settings__basicProfileForm"
+                    name="dynamic_form_nest_item"
+                    autoComplete="off"
+                  >
+                    <Form.List name="sights">
+                      {(fields, { add, remove }) => (
+                        <>
+                          {fields.map((field) => (
+                            <Space key={field.key} align="baseline">
+                              <Form.Item
+                                noStyle
+                                shouldUpdate={(prevValues, curValues) =>
+                                  prevValues.area !== curValues.area ||
+                                  prevValues.sights !== curValues.sights
+                                }
+                              >
+                                {() => (
+                                  <Form.Item
+                                    {...field}
+                                    label="Platform"
+                                    name={[field.name, "sight"]}
+                                    rules={[
+                                      {
+                                        required: true,
+                                        message: "Missing sight",
+                                      },
+                                    ]}
+                                  >
+                                    <Select style={{ width: 130 }}></Select>
+                                  </Form.Item>
+                                )}
+                              </Form.Item>
                               <Form.Item
                                 {...field}
-                                label="Platform"
-                                name={[field.name, 'sight']}
-                                rules={[{ required: true, message: 'Missing sight' }]}
+                                label="Handle"
+                                name={[field.name, "price"]}
+                                rules={[
+                                  { required: true, message: "Missing price" },
+                                ]}
                               >
-                                <Select style={{ width: 130 }}>
-
-                                </Select>
+                                <Input />
                               </Form.Item>
-                            )}
-                          </Form.Item>
-                          <Form.Item
-                            {...field}
-                            label="Handle"
-                            name={[field.name, 'price']}
-                            rules={[{ required: true, message: 'Missing price' }]}
-                          >
-                            <Input />
-                          </Form.Item>
 
-                          <MinusCircleOutlined onClick={() => remove(field.name)} />
-                        </Space>
-                      ))}
+                              <MinusCircleOutlined
+                                onClick={() => remove(field.name)}
+                              />
+                            </Space>
+                          ))}
 
-                      <Form.Item>
-                        <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                          Add social media handle
+                          <Form.Item>
+                            <Button
+                              type="dashed"
+                              onClick={() => add()}
+                              block
+                              icon={<PlusOutlined />}
+                            >
+                              Add social media handle
+                            </Button>
+                          </Form.Item>
+                        </>
+                      )}
+                    </Form.List>
+                    <Form.Item {...tailLayout}>
+                      <div className="settings__basicProfileSubmitContainer">
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                          onClick={submitForm}
+                          loading={isUpdatingProfile}
+                        >
+                          {isUpdatingProfile ? "Saving..." : "Save"}
                         </Button>
-                      </Form.Item>
-                    </>
-                  )}
-                </Form.List>
-                <Form.Item {...tailLayout}>
-                  <div className="settings__basicProfileSubmitContainer">
-                    <Button type="primary" htmlType="submit" onClick={submitForm} loading={isUpdatingProfile}>
-                      {isUpdatingProfile ? "Saving..." : "Save"}
-                    </Button>
-                    <Button htmlType="button" onClick={resetData}>
-                      Reset
-                    </Button>
-                  </div>
-                </Form.Item>
-              </Form>
-            </div>
+                        <Button htmlType="button" onClick={resetData}>
+                          Reset
+                        </Button>
+                      </div>
+                    </Form.Item>
+                  </Form>
+                </div>
+              </TabPane>
+            </Tabs>
           </TabPane>
           <TabPane tab="Account Settings" key="2">
             <div className="settings__basicProfileCard">
@@ -473,11 +567,11 @@ const EditProfile = ({
                 onValuesChange={onFormLayoutChange}
                 size={componentSize as SizeType}
               >
-                <Form.Item
-                  label="Notification Emails"
-                  valuePropName="checked"
-                >
-                  <Switch checkedChildren="enabled" unCheckedChildren="disabled" />
+                <Form.Item label="Notification Emails" valuePropName="checked">
+                  <Switch
+                    checkedChildren="enabled"
+                    unCheckedChildren="disabled"
+                  />
                 </Form.Item>
               </Form>
             </div>
@@ -492,17 +586,17 @@ const EditProfile = ({
                 onValuesChange={onFormLayoutChange}
                 size={componentSize as SizeType}
               >
-                <Form.Item
-                  label="Disable Account"
-                  valuePropName="checked"
-                >
-                  <Switch checkedChildren="enabled" unCheckedChildren="disabled" />
+                <Form.Item label="Disable Account" valuePropName="checked">
+                  <Switch
+                    checkedChildren="enabled"
+                    unCheckedChildren="disabled"
+                  />
                 </Form.Item>
-                <Form.Item
-                  label="Delete Account"
-                  valuePropName="checked"
-                >
-                  <Switch checkedChildren="enabled" unCheckedChildren="disabled" />
+                <Form.Item label="Delete Account" valuePropName="checked">
+                  <Switch
+                    checkedChildren="enabled"
+                    unCheckedChildren="disabled"
+                  />
                 </Form.Item>
               </Form>
             </div>
