@@ -2,7 +2,8 @@ import Image from "next/image";
 import avatar from "../public/images/avatar.png";
 import React, { useEffect, useState } from "react";
 import { Card, Avatar, Pagination, Space, Tabs } from "antd";
-import CollabRequestTab from "components/collabRequestTab";
+import CollabRequestTab from "./collabRequestTab";
+import SamplePage from "./samplePage";
 import { AppState } from "state";
 import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
@@ -28,7 +29,12 @@ type Props = {
 
 const Profile = ({ user, isSelf }: Props) => {
   const router = useRouter();
+  const [userSamples, setUserSamples] = useState([]);
   const [showCollabModal, setShowCollabModal] = useState(false);
+
+  useEffect(() => {
+    // TODO : get artist samples
+  })
 
   const getUserSkills = (all: boolean) => {
     var skills = "";
@@ -88,7 +94,9 @@ const Profile = ({ user, isSelf }: Props) => {
               </div>
             </TabPane>
             <TabPane tab="Samples" key="2">
-              <div className="artistProfile__tabContainer"></div>
+              <div className="artistProfile__tabContainer">
+                <SamplePage user={user} samples={userSamples}/>
+              </div>
             </TabPane>
             {isSelf && (
               <TabPane tab="Collab Requests" key="3">

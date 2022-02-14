@@ -43,3 +43,11 @@ export interface Artist {
   isNewUser: string,
   token: string
 }
+
+export interface UserSample {
+  original_url: string;
+  thumbnail_url: string;
+  file_type: string;
+  caption: string;
+  created_at: Date;
+}

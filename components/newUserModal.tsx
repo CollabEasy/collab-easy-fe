@@ -6,11 +6,7 @@ import Image from "next/image";
 import landingPageImg from "public/images/profile.png";
 import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
-import {
-  fetchArtistCategoriesData,
-  updateArtistArt,
-  updateArtistPreference,
-} from "state/action/artistAction";
+import * as actions from "../state/action";
 // import SubmitImg from 'public/images/submit.png';
 
 const layout = {
@@ -44,9 +40,9 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getArtistCategories: () => dispatch(fetchArtistCategoriesData()),
-  postArtistArt: (data: any) => dispatch(updateArtistArt(data)),
-  updateArtistPreference: (key: string, value: any) => dispatch(updateArtistPreference(key, value)),
+  getArtistCategories: () => dispatch(actions.fetchArtistCategoriesData()),
+  postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
+  updateArtistPreference: (key: string, value: any) => dispatch(actions.updateArtistPreference(key, value)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
