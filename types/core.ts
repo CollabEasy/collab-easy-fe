@@ -7,4 +7,9 @@ export interface AppRouteCreators {
   toProfile: () => WebRoute;
   toArtistProfile: (id: string) => WebRoute;
   toEditProfile: (action: string) => WebRoute;
+  toAboutUs: () => WebRoute;
+  toFAQ: () => WebRoute;
+  toTerms: () => WebRoute;
+  toPrivacy: () => WebRoute;
+  toContactUs: () => WebRoute;
 }
