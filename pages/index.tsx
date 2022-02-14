@@ -1,5 +1,5 @@
 import Title from '../components/title'
-import ProfileModal from '../components/profilePage';
+import NewUserModal from '../components/newUserModal';
 import LoginModal from '../components/loginModal';
 import Link from "next/link";
 import Script from 'next/script';
@@ -70,7 +70,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         )
       }
       { showProfileModal && (
-          <ProfileModal />
+          <NewUserModal />
         )
       }
       <div className="row">

@@ -53,7 +53,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const ProfileModal = ({
+const NewUserModal = ({
   user,
   artistCategories,
   postArtistArt,
@@ -217,4 +217,4 @@ const ProfileModal = ({
   );
 };
 
-export default connector(ProfileModal);
+export default connector(NewUserModal);

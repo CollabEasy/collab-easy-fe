@@ -1,90 +1,145 @@
 import { User } from "types/model/user";
+import * as actionType from '../actionTypes/userActionTypes';
 
-export const FETCH_USER_DATA = 'USER/FETCH_USER_DATA'
-export const SET_USER_DATA = 'USER/SET_USER_DATA'
-export const SET_USER_LOGGED_IN = 'USER/SET_USER_LOGGED_IN'
-export const UPDATE_ARTIST_PROFILE = 'ARTIST/UPDATE_ARTIST_PROFILE'
-export const RESET_USER_LOGGED_IN = 'RESET_USER_LOGGED_IN'
-export const USER_LOGIN_FAILURE = 'USER_LOGIN_FAILURE'
-export const USER_LOGIN_REQUEST = 'USER_LOGIN_REQUEST'
-export const USER_DETAILS_UPDATED = 'USER_DETAILS_UPDATED'
-export const UPDATE_ARTIST_PROFILE_REQUEST = 'UPDATE_ARTIST_PROFILE_REQUEST'
-export const USER_SKILLS_FETCHED = 'USER_SKILLS_FETCHED'
-export const FETCH_USER_BY_HANDLE = 'FETCH_USER_BY_HANDLE'
-export const FETCH_USER_BY_HANDLE_SUCCESS = 'FETCH_USER_BY_HANDLE_SUCCESS'
 
 export const fetchUserDataAction = (id: string) => ({
-  type: FETCH_USER_DATA,
+  type: actionType.FETCH_USER_DATA,
   payload: {
     id,
   },
 });
 
 export const setUserDataAction = (data: User) => ({
-  type: SET_USER_DATA,
+  type: actionType.SET_USER_DATA,
   payload: {
     data
   }
 })
 
 export const setUserLoggedIn = (data: any) => ({
-  type: SET_USER_LOGGED_IN,
+  type: actionType.SET_USER_LOGGED_IN,
   payload: {
     data,
   },
 });
 
 export const userLoginFailure = (data: any) => ({
-  type: USER_LOGIN_FAILURE,
+  type: actionType.USER_LOGIN_FAILURE,
   payload: {
     data,
   }
 })
 
 export const userLoginRequest = () => ({
-  type: USER_LOGIN_REQUEST,
+  type: actionType.USER_LOGIN_REQUEST,
 })
 
 export const updateArtistProfile = (data: User) => ({
-  type: UPDATE_ARTIST_PROFILE,
+  type: actionType.UPDATE_ARTIST_PROFILE,
   payload: {
     data
   }
 });
 
 export const updateArtistProfileRequest = () => ({
-  type: UPDATE_ARTIST_PROFILE_REQUEST,
+  type: actionType.UPDATE_ARTIST_PROFILE_REQUEST,
   payload: {},
 })
 
 export const updateArtistProfileSuccess = (data: User) => ({
-  type: USER_DETAILS_UPDATED,
+  type: actionType.USER_DETAILS_UPDATED,
   payload: {
     data
   }
 });
 
 export const fetchArtistSkillSuccess = (data: any) => ({
-  type: USER_SKILLS_FETCHED,
+  type: actionType.USER_SKILLS_FETCHED,
   payload: {
     data
   }
 });
 
 export const fetchUserByHandle = (handle: string) => ({
-  type: FETCH_USER_BY_HANDLE,
+  type: actionType.FETCH_USER_BY_HANDLE,
   payload: {
     data: handle,
   }
 });
 
 export const fetchUserByHandleSuccess = (data: User) => ({
-  type: FETCH_USER_BY_HANDLE_SUCCESS,
+  type: actionType.FETCH_USER_BY_HANDLE_SUCCESS,
   payload: {
     data,
   }
 })
 
 export const resetUserLoggedIn = () => ({
-  type: RESET_USER_LOGGED_IN
+  type: actionType.RESET_USER_LOGGED_IN
+});
+
+export const fetchArtistCategoriesData = () => ({
+  type: actionType.FETCH_ARTIST_CATEGORIES_DATA,
+  payload: {},
+});
+
+export const setArtistCategoriesData = (data: any) => ({
+  type: actionType.SET_ARTIST_CATEGORIES_DATA,
+  payload: {
+    data
+  }
+})
+
+export const updateArtistArt = (data: any) => ({
+	type: actionType.UPDATE_ARTIST_ART,
+	payload: {
+		data
+	},
+});
+
+export const updateArtistArtSuccess = (data: any) => ({
+	type: actionType.UPDATE_ARTIST_ART_SUCCESS,
+	payload: {
+			data
+	},
+});
+
+export const fetchArtistSkills = () => ({
+	type: actionType.FETCH_ARTIST_SKILLS,
+	payload: {},
+});
+
+export const fetchArtistPreferences = () => ({
+	type: actionType.FETCH_ARTIST_PREFERENCES,
+	payload: {},
+});
+
+export const fetchArtistPreferencesSuccess = (data: any) => ({
+	type: actionType.FETCH_ARTIST_PREFERENCES_SUCCESS,
+	payload: {
+		data
+	},
+})
+
+export const updateArtistPreferenceRequest = (key: string) => ({
+	type: actionType.UPDATE_ARTIST_PREFERENCE_REQUEST,
+	payload: {
+		key, 
+	}
+});
+
+export const updateArtistPreference = (key: string, value: any) => ({
+	type: actionType.UPDATE_ARTIST_PREFERENCE,
+	payload: {
+		key, 
+		value,
+	}
+});
+
+export const updateArtistPreferenceSuccess = (key: string, value: any) => ({
+	type: actionType.UPDATE_ARTIST_PREFERENCE_SUCCESS,
+	payload: {
+		key, 
+		value,
+	}
 });

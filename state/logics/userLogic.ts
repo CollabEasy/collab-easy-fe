@@ -1,51 +1,88 @@
 import { createLogic } from "redux-logic";
-import {
-  fetchUserDataAction,
-  fetchArtistSkills,
-  FETCH_USER_DATA,
-  setUserDataAction,
-  updateArtistArtSuccess,
-  updateArtistProfile,
-  fetchArtistSkillSuccess,
-  updateArtistProfileSuccess,
-  UPDATE_ARTIST_PROFILE,
-  updateArtistPreference,
-  updateArtistPreferenceSuccess,
-  fetchArtistPreferences,
-  fetchArtistPreferencesSuccess,
-  FETCH_ARTIST_PREFERENCES,
-  FETCH_ARTIST_PREFERENCES_SUCCESS,
-  UPDATE_ARTIST_PREFERENCE,
-  FETCH_USER_BY_HANDLE,
-  fetchUserByHandle,
-  fetchUserByHandleSuccess,
-  updateArtistProfileRequest,
-} from "state/action";
+import * as actions from "../action/userAction";
+import * as homeActions from "../action/homeAction";
 import { LogicDeps } from "state";
 import { AppState } from "types/states";
 import { FSACreatorPayload } from "types/states/FSACreator";
-import {
-  FETCH_ARTIST_CATEGORIES_DATA,
-  FETCH_ARTIST_SKILLS,
-  setArtistCategoriesData,
-  fetchArtistCategoriesData,
-  UPDATE_ARTIST_ART,
-  updateArtistArt,
-  updateArtistPreferenceRequest,
-} from "state/action/artistAction";
+import * as actionType from '../actionTypes/userActionTypes';
+import * as homeActionTypes from '../actionTypes/homeActionTypes';
 
-export const fetchUserDataLogic = createLogic<
+export const fetchLoginDataLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof fetchUserDataAction>,
+  FSACreatorPayload<typeof homeActions.fetchLoginData>,
   any,
   LogicDeps
 >({
-  type: [FETCH_USER_DATA],
+  type: [homeActionTypes.FETCH_LOGIN_DATA],
+  async process({ action, api }, dispatch, done) {
+    const { token } = action.payload;
+    try {
+      dispatch(actions.userLoginRequest());
+      const loginData = await api.loginApi.getLoginData(token);
+      dispatch(homeActions.closeLoginModalAction());
+      dispatch(actions.setUserLoggedIn(loginData));
+    } catch (error) {
+      dispatch(actions.userLoginFailure(error));
+    } finally {
+      done();
+    }
+  },
+});
+
+export const updateLoginDataLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof homeActions.updateLoginData>,
+  any,
+  LogicDeps
+>({
+  type: [homeActionTypes.UPDATE_LOGIN_DATA],
+  async process({ action, api }, dispatch, done) {
+    try {
+      const token = localStorage.getItem('token');
+      const loginData = await api.loginApi.getArtistDetails(token)
+      loginData['data']['token'] = token; 
+      dispatch(actions.setUserLoggedIn(loginData));
+    } catch (error) {
+      dispatch(actions.userLoginFailure(error));
+    } finally {
+      done();
+    }
+  },
+});
+
+export const setuserLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.setUserLoggedIn>,
+  any,
+  LogicDeps
+>({
+  type: [actionType.SET_USER_LOGGED_IN],
+  async process({ action }, dispatch, done) {
+    const { data } = action.payload;
+    try {
+      localStorage.setItem("token", data.data.token);
+      dispatch(actions.fetchArtistSkills());
+      // To-Do we need to set token in cookies
+      // Cookies.set('token', data.data.token)
+    } catch (error) {
+    } finally {
+      done();
+    }
+  },
+});
+
+export const fetchUserDataLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.fetchUserDataAction>,
+  any,
+  LogicDeps
+>({
+  type: [actionType.FETCH_USER_DATA],
   async process({ action, api, getState }, dispatch, done) {
     const { id: userId } = action.payload;
     try {
       const userData = await api.artistApi.getArtistData();
-      dispatch(setUserDataAction(userData));
+      dispatch(actions.setUserDataAction(userData));
     } catch (error) {
     } finally {
       done();
@@ -55,15 +92,15 @@ export const fetchUserDataLogic = createLogic<
 
 export const fetchArtistCategoriesLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof fetchArtistCategoriesData>,
+  FSACreatorPayload<typeof actions.fetchArtistCategoriesData>,
   any,
   LogicDeps
 >({
-  type: [FETCH_ARTIST_CATEGORIES_DATA],
+  type: [actionType.FETCH_ARTIST_CATEGORIES_DATA],
   async process({ api }, dispatch, done) {
     try {
       const categoriesData = await api.artistApi.getArtistCategoryData();
-      dispatch(setArtistCategoriesData(categoriesData));
+      dispatch(actions.setArtistCategoriesData(categoriesData));
     } catch (error) {
     } finally {
       done();
@@ -73,16 +110,16 @@ export const fetchArtistCategoriesLogic = createLogic<
 
 export const updateArtistArtLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof updateArtistArt>,
+  FSACreatorPayload<typeof actions.updateArtistArt>,
   any,
   LogicDeps
 >({
-  type: [UPDATE_ARTIST_ART],
+  type: [actionType.UPDATE_ARTIST_ART],
   async process({ action, api }, dispatch, done) {
     try {
       const { data } = action.payload;
       const result = await api.artistApi.updateArtistCategories(data);
-      dispatch(updateArtistArtSuccess(result));
+      dispatch(actions.updateArtistArtSuccess(result));
     } catch (error) {
     } finally {
       done();
@@ -92,17 +129,17 @@ export const updateArtistArtLogic = createLogic<
 
 export const updateArtistPreferenceLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof updateArtistPreference>,
+  FSACreatorPayload<typeof actions.updateArtistPreference>,
   any,
   LogicDeps
 >({
-  type: [UPDATE_ARTIST_PREFERENCE],
+  type: [actionType.UPDATE_ARTIST_PREFERENCE],
   async process({ action, api }, dispatch, done) {
     try {
       const { key, value } = action.payload;
-      dispatch(updateArtistPreferenceRequest(key));
+      dispatch(actions.updateArtistPreferenceRequest(key));
       const result = await api.artistApi.updateArtistPreference(key, value);
-      dispatch(updateArtistPreferenceSuccess(key, value));
+      dispatch(actions.updateArtistPreferenceSuccess(key, value));
     } catch (error) {
     } finally {
       done();
@@ -112,15 +149,15 @@ export const updateArtistPreferenceLogic = createLogic<
 
 export const fetchArtistPreferencesLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof fetchArtistPreferences>,
+  FSACreatorPayload<typeof actions.fetchArtistPreferences>,
   any,
   LogicDeps
 >({
-  type: [FETCH_ARTIST_PREFERENCES],
+  type: [actionType.FETCH_ARTIST_PREFERENCES],
   async process({ action, api }, dispatch, done) {
     try {
       const result = await api.artistApi.fetchArtistPreferencesAPI();
-      dispatch(fetchArtistPreferencesSuccess(result));
+      dispatch(actions.fetchArtistPreferencesSuccess(result));
     } catch (error) {
     } finally {
       done();
@@ -130,17 +167,17 @@ export const fetchArtistPreferencesLogic = createLogic<
 
 export const updateArtistProfileLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof updateArtistProfile>,
+  FSACreatorPayload<typeof actions.updateArtistProfile>,
   any,
   LogicDeps
 >({
-  type: [UPDATE_ARTIST_PROFILE],
+  type: [actionType.UPDATE_ARTIST_PROFILE],
   async process({ action, api }, dispatch, done) {
     try {
-      dispatch(updateArtistProfileRequest());
+      dispatch(actions.updateArtistProfileRequest());
       const { data } = action.payload;
       const result = await api.artistApi.updateArtistProfile(data);
-      dispatch(updateArtistProfileSuccess(data));
+      dispatch(actions.updateArtistProfileSuccess(data));
       // TO-DO need to all get artist details action
     } catch (error) {
     } finally {
@@ -151,15 +188,15 @@ export const updateArtistProfileLogic = createLogic<
 
 export const fetchArtistSkillsLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof fetchArtistSkills>,
+  FSACreatorPayload<typeof actions.fetchArtistSkills>,
   any,
   LogicDeps
 >({
-  type: [FETCH_ARTIST_SKILLS],
+  type: [actionType.FETCH_ARTIST_SKILLS],
   async process({ action, api }, dispatch, done) {
     try {
       const result = await api.artistApi.fetchArtistSkillsAPI();
-      dispatch(fetchArtistSkillSuccess(result));
+      dispatch(actions.fetchArtistSkillSuccess(result));
       // TO-DO need to all get artist details action
     } catch (error) {
     } finally {
@@ -170,16 +207,16 @@ export const fetchArtistSkillsLogic = createLogic<
 
 export const fetchUserByHandleLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof fetchUserByHandle>,
+  FSACreatorPayload<typeof actions.fetchUserByHandle>,
   any,
   LogicDeps
 >({
-  type: [FETCH_USER_BY_HANDLE],
+  type: [actionType.FETCH_USER_BY_HANDLE],
   async process({ action, api }, dispatch, done) {
     try {
       const handle = action.payload.data;
       const result = await api.artistApi.fetchUserByHandle(handle);
-      dispatch(fetchUserByHandleSuccess(result));
+      dispatch(actions.fetchUserByHandleSuccess(result));
     } catch (error) {
     } finally {
       done();
