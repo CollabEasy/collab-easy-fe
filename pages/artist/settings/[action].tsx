@@ -594,8 +594,8 @@ const EditProfile = ({
                 </Form.Item>
                 <Form.Item label="Delete Account" valuePropName="checked">
                   <Switch
-                    checkedChildren="enabled"
-                    unCheckedChildren="disabled"
+                    checkedChildren="active"
+                    unCheckedChildren="deleted"
                   />
                 </Form.Item>
               </Form>
