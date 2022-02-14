@@ -6,5 +6,4 @@ export interface AppState {
   home: HomeState;
   user: UserState;
   collab: CollabRequestState
-  artist: ArtistCategoriesState;
 }

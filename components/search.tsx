@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import { getSearchResult } from 'api/search'; 
 import { 
     debounceTime, distinctUntilChanged, switchMap, map, filter,
  } from 'rxjs/operators';
+import { debounce } from 'lodash';
 import { Subject, merge, of } from 'rxjs';
 import { useRouter } from 'next/router'
 import { useRoutesContext } from "components/routeContext";
@@ -36,11 +37,16 @@ const Search = () => {
         resetState();
     }
 
-    const handleTextChange = async (event) => {
-        resetState();
-        setInputVal(event.target.value);
-        onSearch$.next(event.target.value);
-    }
+    const handleTextChange = useCallback(
+        debounce((searchQuery: string) => {
+            console.log("event : ", searchQuery);
+            onSearch$.next(searchQuery);
+    }, 1000), []);
+
+    // const handleTextChange = async (event) => {
+        
+    //     onSearch$.next(event.target.value);
+    // }
 
     const router = useRouter();
     const { toArtist, toArtistProfile } = useRoutesContext();
@@ -107,7 +113,11 @@ const Search = () => {
                     placeholder="search artists"
                     aria-label="search"
                     value={inputVal}
-                    onChange={handleTextChange}
+                    onChange={(event) => {
+                        resetState();
+                        setInputVal(event.target.value);
+                        handleTextChange(event.target.value)
+                    }}
                     onFocus={onFocus}
                     onBlur={onBlur}
                 >
@@ -130,7 +140,7 @@ const Search = () => {
                         const { entityType, id, name } = data;
                         const href = entityType === 'ART' 
                             ? toArtist().href + data.slug
-                            : toArtistProfile().as /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
+                            : toArtistProfile(data.slug).as /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
                             
                         const searchRow = entityType === 'ART' 
                             ? (

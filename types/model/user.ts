@@ -14,7 +14,8 @@ export interface User {
   gender?: string;
   created_at?: number;
   updated_at?: number;
-  new_user: boolean;
+  date_of_birth?: Date;
+  new_user?: boolean;
   skills?: string[];
   sample?: string[];
 }
@@ -41,4 +42,12 @@ export interface Artist {
   detailsUpdated: string,
   isNewUser: string,
   token: string
+}
+
+export interface UserSample {
+  original_url: string;
+  thumbnail_url: string;
+  file_type: string;
+  caption: string;
+  created_at: Date;
 }

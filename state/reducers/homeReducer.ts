@@ -1,4 +1,5 @@
-import { HOME, OPEN_LOGIN_MODAL, CLOSE_LOGIN_MODAL, UPDATE_ARTIST_ART_SUCCESS } from "state/action";
+import * as userActionTypes from '../actionTypes/userActionTypes';
+import * as actionTypes from '../actionTypes/homeActionTypes';
 import { HomeState } from "types/states";
 
 const initialState: HomeState = {
@@ -11,7 +12,7 @@ const initialState: HomeState = {
 
 const homeReducer = (state = initialState, action): HomeState => {
   switch (action.type) {
-    case HOME:
+    case actionTypes.HOME:
       return {
         ...state,
         homeDetails: {
@@ -22,11 +23,11 @@ const homeReducer = (state = initialState, action): HomeState => {
           ],
         },
       };
-    case OPEN_LOGIN_MODAL:
+    case actionTypes.OPEN_LOGIN_MODAL:
       return { ...state, loginModalDetails: { openModal: true } };
-    case CLOSE_LOGIN_MODAL:
+    case actionTypes.CLOSE_LOGIN_MODAL:
       return { ...state, loginModalDetails: { openModal: false } };
-    case UPDATE_ARTIST_ART_SUCCESS:
+    case userActionTypes.UPDATE_ARTIST_ART_SUCCESS:
       return { ...state, artistListDetails: action.payload.data };
     default:
       return state;

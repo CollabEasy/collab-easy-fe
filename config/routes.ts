@@ -6,6 +6,11 @@ export const routes: AppRouteCreators = {
   toWondorHome: () => ({ href: "/" }),
   toDiscover: () => ({ href: "/" }),
   toArtist: () => ({ href: "/discover-artist/" }),
+  toAboutUs: () => ({ href: "/about-us"}),
+  toFAQ: () => ({ href: "faq"}),
+  toPrivacy: () => ({ href: "/privacy" }),
+  toContactUs: () => ({ href: "/contact-us" }),
+  toTerms: () => ({ href: "/terms-and-policy" }),
   toProfile: () => ({
     href: '/profile',
     as: `/profile/`,
