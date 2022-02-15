@@ -11,7 +11,7 @@ import { AppState } from "state";
 import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
-import { User, userSocialProspectus } from "types/model";
+import { User, UserSocialProspectus } from "types/model";
 import Title from "./title";
 
 const { Meta } = Card;
@@ -25,7 +25,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
   user: User;
-  socialProspectus: userSocialProspectus[];
+  socialProspectus: UserSocialProspectus[];
 } & ConnectedProps<typeof connector>;
 
 const SamplePage = ({ user, socialProspectus }: Props) => {

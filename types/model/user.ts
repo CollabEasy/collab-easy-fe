@@ -51,3 +51,9 @@ export interface UserSample {
   caption: string;
   created_at: Date;
 }
+
+export interface UserSocialProspectus {
+  platform: string;
+  user_handle: string;
+  created_at: Date;
+}
