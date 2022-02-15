@@ -109,7 +109,7 @@ const Profile = ({ user, isSelf }: Props) => {
             )}
             <TabPane tab="Social Prospectus" key="4">
               <div className="artistProfile__tabContainer">
-              <SocialProspectusPage user={user} samples={userSocialProspectus}/>
+              <SocialProspectusPage user={user} socialProspectus={userSocialProspectus}/>
               </div>
             </TabPane>
           </Tabs>
