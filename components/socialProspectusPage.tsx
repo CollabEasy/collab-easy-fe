@@ -11,7 +11,7 @@ import { AppState } from "state";
 import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
-import { User, UserSample } from "types/model";
+import { User, UserSocialProspectus } from "types/model";
 import Title from "./title";
 
 const { Meta } = Card;
@@ -25,10 +25,10 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
   user: User;
-  samples: UserSample[];
+  socialProspectus: UserSocialProspectus[];
 } & ConnectedProps<typeof connector>;
 
-const SamplePage = ({ user, samples }: Props) => {
+const SamplePage = ({ user, socialProspectus }: Props) => {
   const router = useRouter();
   const [showCollabModal, setShowCollabModal] = useState(false);
 
@@ -48,8 +48,8 @@ const SamplePage = ({ user, samples }: Props) => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-        {samples.length === 0 && (
-          <h2 className="text-center">🥺 Such emptiness 🥺.</h2>
+        {socialProspectus.length === 0 && (
+          <h2 className="text-center">🥺 Let everyone know 🥺.</h2>
         )}
       </div>
       <div style={{
@@ -57,13 +57,12 @@ const SamplePage = ({ user, samples }: Props) => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-        {samples.length === 0 && (
+        {socialProspectus.length === 0 && (
           <Button
-            icon={<UploadOutlined />}
             shape="round"
             //size="large"
             type="primary"
-          >Upload Some
+          >Add more profiles.
           </Button>
         )}
       </div>

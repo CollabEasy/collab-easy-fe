@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Avatar, Pagination, Space, Tabs } from "antd";
 import CollabRequestTab from "./collabRequestTab";
 import SamplePage from "./samplePage";
+import SocialProspectusPage from "./socialProspectusPage";
 import { AppState } from "state";
 import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
@@ -30,6 +31,7 @@ type Props = {
 const Profile = ({ user, isSelf }: Props) => {
   const router = useRouter();
   const [userSamples, setUserSamples] = useState([]);
+  const [userSocialProspectus, setUserSocialProspectus] = useState([]);
   const [showCollabModal, setShowCollabModal] = useState(false);
 
   useEffect(() => {
@@ -106,7 +108,9 @@ const Profile = ({ user, isSelf }: Props) => {
               </TabPane>
             )}
             <TabPane tab="Social Prospectus" key="4">
-              <div className="artistProfile__tabContainer"></div>
+              <div className="artistProfile__tabContainer">
+              <SocialProspectusPage user={user} socialProspectus={userSocialProspectus}/>
+              </div>
             </TabPane>
           </Tabs>
         </div>
