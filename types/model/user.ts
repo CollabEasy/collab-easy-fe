@@ -45,11 +45,11 @@ export interface Artist {
 }
 
 export interface UserSample {
-  original_url: string;
-  thumbnail_url: string;
-  file_type: string;
+  originalUrl: string;
+  thumbnailUrl: string;
+  fileType: string;
   caption: string;
-  created_at: Date;
+  createdAt: Date;
 }
 
 export interface UserSocialProspectus {

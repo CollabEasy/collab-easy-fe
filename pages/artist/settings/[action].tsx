@@ -22,12 +22,14 @@ import {
   updateArtistProfile,
   updateArtistPreference,
 } from "state/action";
+import SamplePage from "../../../components/samplePage";
 import { COUNTRIES, GENDERS, TIME_ZONES } from "config/constants";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { AppState } from "types/states";
 import { Dispatch } from "redux";
 import { useRoutesContext } from "components/routeContext";
 import State from "state";
+import * as actions from "state/action";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 
@@ -60,12 +62,15 @@ const mapStateToProps = (state: AppState) => ({
   isUpdatingProfile: state.user.isUpdatingProfile,
   isUpdatingPrefs: state.user.isUpdatingPrefs,
   preferences: state.user.preferences,
+  samples: state.sample.samples,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
   updateArtistPreference: (key: string, value: any) =>
     dispatch(updateArtistPreference(key, value)),
+  fetchArtistSamples: (slug: string) =>
+    dispatch(actions.fetchArtistSamples(slug)),
 });
 
 const normFile = (e: any) => {
@@ -82,10 +87,12 @@ type Props = {} & ConnectedProps<typeof connector>;
 
 const EditProfile = ({
   user,
+  samples,
   preferences,
   isUpdatingProfile,
   isUpdatingPrefs,
   updateArtistProfile,
+  fetchArtistSamples,
   updateArtistPreference,
 }: Props) => {
   const [activeTabKey, setActiveTabKey] = useState("1");
@@ -142,6 +149,10 @@ const EditProfile = ({
     setUserDataCached(user);
   }, [user]);
 
+  useEffect(() => {
+    fetchArtistSamples(user.slug);
+  }, [fetchArtistSamples, user.slug]);
+
   const resetData = () => {};
 
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
@@ -169,11 +180,11 @@ const EditProfile = ({
           <TabPane tab="Artist's Information" key="1">
             <Tabs
               type="card"
-            // tabPosition={"left"}
-            // onChange={(key: string) => {
-            //   redirect(key);
-            // }}
-            // activeKey={getActiveTab()}
+              // tabPosition={"left"}
+              // onChange={(key: string) => {
+              //   redirect(key);
+              // }}
+              // activeKey={getActiveTab()}
             >
               <TabPane tab="Profile" key="1">
                 <div className="settings__basicProfileCard">
@@ -425,48 +436,7 @@ const EditProfile = ({
               </TabPane>
               <TabPane tab="Samples" key="3">
                 <div className="settings__basicProfileCardThird">
-                  <h2 className="f-20 ">Art Samples</h2>
-                  <Form
-                    className="settings__basicProfileForm"
-                    labelCol={{ span: 4 }}
-                    wrapperCol={{ span: 14 }}
-                    layout="horizontal"
-                    initialValues={{ size: componentSize }}
-                    onValuesChange={onFormLayoutChange}
-                    size={componentSize as SizeType}
-                  >
-                    <Form.Item
-                      name="upload"
-                      label="Upload"
-                      valuePropName="fileList"
-                      getValueFromEvent={normFile}
-                    >
-                      <Upload
-                        name="logo"
-                        action="/upload.do"
-                        listType="picture"
-                      >
-                        <Button icon={<UploadOutlined />}>
-                          Click to upload
-                        </Button>
-                      </Upload>
-                    </Form.Item>
-                    <Form.Item {...tailLayout}>
-                      <div className="settings__basicProfileSubmitContainer">
-                        <Button
-                          type="primary"
-                          htmlType="submit"
-                          onClick={submitForm}
-                          loading={isUpdatingProfile}
-                        >
-                          {isUpdatingProfile ? "Saving..." : "Save"}
-                        </Button>
-                        <Button htmlType="button" onClick={resetData}>
-                          Reset
-                        </Button>
-                      </div>
-                    </Form.Item>
-                  </Form>
+                  <SamplePage samples={samples} user={user} />
                 </div>
               </TabPane>
               <TabPane tab="Social" key="4">

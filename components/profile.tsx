@@ -12,14 +12,20 @@ import { Dispatch } from "redux";
 import { fetchArtistSkills } from "state/action";
 import { User } from "types/model";
 import Title from "./title";
-import landingDesktopImg from '../public/images/landing-desktop.png';
+import * as action from '../state/action';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
 
-const mapStateToProps = (state: AppState) => { };
+const mapStateToProps = (state: AppState) => { 
+  console.log('state : ', state);
+  const userSamples = state.sample.samples;
+  return { userSamples };
+};
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({});
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchArtistSamples: (slug: string) => dispatch(action.fetchArtistSamples(slug)),
+});
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
@@ -28,15 +34,14 @@ type Props = {
   user: User;
 } & ConnectedProps<typeof connector>;
 
-const Profile = ({ user, isSelf }: Props) => {
+const Profile = ({ user, isSelf, userSamples, fetchArtistSamples }: Props) => {
   const router = useRouter();
-  const [userSamples, setUserSamples] = useState([]);
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);
   const [showCollabModal, setShowCollabModal] = useState(false);
 
   useEffect(() => {
-    // TODO : get artist samples
-  })
+    fetchArtistSamples(user.slug);
+  }, [fetchArtistSamples, user.slug])
 
   const getUserSkills = (all: boolean) => {
     var skills = "";

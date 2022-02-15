@@ -1,0 +1,23 @@
+.samplePage__imageTileContainer {
+  width: 250px;
+  min-height: 200px;
+  padding: 1px;
+  border-radius: 12px;
+  box-shadow: 0px 1px 2px rgb(0 0 0 / 8%), 0px 4px 12px rgb(0 0 0 / 5%);
+}
+.samplePage__imageTile {
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 0px 1px 2px rgb(0 0 0 / 8%), 0px 4px 12px rgb(0 0 0 / 5%);
+  width: 100%;
+}
+
+.samplePage__grid {
+  display: grid;
+  grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+  background: #fff;
+  grid-gap: 32px;
+  min-height: 0;  /* NEW */
+  min-width: 0;  
+}

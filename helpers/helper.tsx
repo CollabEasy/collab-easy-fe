@@ -15,3 +15,33 @@ function parseJwt(token: string) {
 
     return JSON.parse(jsonPayload);
 };
+
+export function allowedFileTypes() {
+    const allowed = [
+        "image/jpeg",
+        "image/jpg",
+        "image/gif",
+        "image/png",
+        "image/bmp",
+        "video/mp4",
+        "video/avi",
+        "video/webm",
+        "video/mpeg",
+        "video/mpg",
+        "video/mov",
+        "video/flv",
+        "video/3gp",
+        "video/wmv",
+        "video/f4v",
+        "video/quicktime",
+        "image/mp4",
+        "image/mp3",
+        "image/wma",
+        "image/wav",
+        "image/acc",
+        "image/m4a",
+        "image/flac",
+    ];
+
+    return allowed;
+}

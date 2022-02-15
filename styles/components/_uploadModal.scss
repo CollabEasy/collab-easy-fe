@@ -1,0 +1,54 @@
+.uploadModal__container {
+    display: flex;
+    border-radius: 12px;
+    padding: 16px 32px;
+    gap: 16px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.uploadModal__imageFrame {
+    border-radius: 12px;
+    border: 3px solid #ccc;
+    background: #eee;
+    margin: auto;
+    padding: 3px 2px;
+}
+
+.uploadModal__image {
+    border-radius: 12px;
+    box-shadow: 0px 1px 2px rgb(0 0 0 / 8%), 0px 4px 12px rgb(0 0 0 / 5%);
+    width: 100%;
+    height: auto;
+}
+
+.uploadModal__video {
+    border-radius: 12px;
+    box-shadow: 0px 1px 2px rgb(0 0 0 / 8%), 0px 4px 12px rgb(0 0 0 / 5%);
+    width: 450px;
+    height: auto;
+}
+
+.uploadModal__player {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.uploadModal__uploadButton {
+    border-radius: 8px;
+    margin-top: 12px;
+    
+}
+
+.uploadModal__captionContainer {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.uploadModal__captionText {
+    margin-bottom: 8px;
+    margin-left: 2px;
+    font-style: italic;
+    font-weight: bolder;
+    font-size: 14px;
+}
