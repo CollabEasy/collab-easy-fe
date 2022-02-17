@@ -9,7 +9,7 @@ const postConfig = (dataToSend) => {
 }
 
 export const getLoginData = async (token: string) => {
-  const config = postConfig({"idToken": token});
+  const config = postConfig({"id_token": token});
   try {
     const result = await api.call('api/v1/artist/login', config);
     return result;
