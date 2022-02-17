@@ -49,3 +49,25 @@ export const fetchSampleLogic = createLogic<
     }
   },
 });
+
+
+export const deleteSampleLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.deleteSample>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.DELETE_SAMPLE_WORK],
+  async process({ action, api }, dispatch, done) {
+    const { data } = action.payload;
+    try {
+      dispatch(actions.deleteArtistSampleRequest());
+      const result = await sampleApi.deleteSampleAPI(data);
+      dispatch(actions.deleteArtistSampleSuccess(data));
+    } catch (error) {
+      console.log("error : ", error);
+    } finally {
+      done();
+    }
+  },
+});

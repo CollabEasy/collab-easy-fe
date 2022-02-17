@@ -16,15 +16,24 @@ import { Dispatch } from "redux";
 import { User, UserSample } from "types/model";
 import * as action from "../state/action";
 import UploadModal from "./UploadModal";
+import SampleTile from "./sampleTile";
+import ConfirmationModal from "./confirmationModal";
 
 const { Meta } = Card;
 
 const { TabPane } = Tabs;
 
-const mapStateToProps = (state: AppState) => {};
+const mapStateToProps = (state: AppState) => {
+  const isDeleting = state.sample.isDeleting;
+  const isDeleted = state.sample.isDeleted;
+
+  return { isDeleting, isDeleted }
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   clearUploadSampleState: () => dispatch(action.clearUploadSampleState()),
+  clearDeleteSampleState: () => dispatch(action.clearDeleteSampleState()),
+  deleteSample: (sample: UserSample) => dispatch(action.deleteSample(sample)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -39,7 +48,11 @@ const SamplePage = ({
   user,
   isSelf,
   samples,
+  isDeleting,
+  isDeleted,
+  deleteSample,
   clearUploadSampleState,
+  clearDeleteSampleState,
 }: Props) => {
   const router = useRouter();
   const [caption, setCaption] = useState("");
@@ -49,6 +62,8 @@ const SamplePage = ({
   const [uploadFile, setUploadFile] = useState(null);
   const [fileType, setFileType] = useState("");
   const [showUploadModal, setShowUploadModal] = useState(false);
+  const [selectedSample, setSelectedSample] = useState(undefined);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   const resetState = () => {
     setImageUrl("");
@@ -121,11 +136,11 @@ const SamplePage = ({
 
     if (isSelf) {
       sampleTiles.push(
-        <div className="samplePage__imageTileContainer">
+        <div className="sampleTile__imageTileContainer">
           <Upload
             name="avatar"
             listType="picture-card"
-            className="samplePage__imageTile"
+            className="sampleTile__imageTile"
             showUploadList={false}
             beforeUpload={beforeUpload}
             onChange={handleChange}
@@ -138,20 +153,25 @@ const SamplePage = ({
 
     samples.forEach((sample, index) => {
       sampleTiles.push(
-        <div className="samplePage__imageTileContainer">
-          <img
-            onClick={(e) => {
-              setFileType(sample.fileType);
-              setImageUrl(sample.originalUrl);
-              setCaption(sample.caption);
-              setEditable(false);
-              setShowUploadModal(true);
-            }}
-            className="samplePage__imageTile"
-            src={sample.thumbnailUrl}
-            alt=""
-          />
-        </div>
+        <SampleTile 
+          user={user}
+          isSelf={isSelf}
+          sample={sample}
+          onClick={() => {
+            console.log("is on clik");
+            clearUploadSampleState();
+            setFileType(sample.fileType);
+            setImageUrl(sample.originalUrl);
+            setCaption(sample.caption);
+            setEditable(false);
+            setShowUploadModal(true);
+          }}
+          onClickDelete={() => {
+            clearDeleteSampleState();
+            setSelectedSample(sample);
+            setShowConfirmationModal(true);
+          }}
+        />
       );
     });
     return sampleTiles;
@@ -186,6 +206,24 @@ const SamplePage = ({
             file={uploadFile}
             imageUrl={imageUrl}
             onCancel={resetState}
+          />
+        )}
+        {showConfirmationModal && (
+          <ConfirmationModal
+            buttonLoading={isDeleting}
+            show={!isDeleted}
+            user={user}
+            headerText={"Delete Sample"}
+            confirmationText="Are you sure you want to delete the sample file?"
+            actionButtonText="Yes, delete"
+            onAction={() => {
+              deleteSample(selectedSample);
+              setSelectedSample(undefined);
+            }}
+            onCancel={() => {
+              setShowConfirmationModal(false);
+            }}
+
           />
         )}
         <div className="samplePage__grid">{getSamples()}</div>

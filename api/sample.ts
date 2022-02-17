@@ -1,3 +1,4 @@
+import { UserSample } from "types/model";
 import api from "./client";
 
 const postConfig = (dataToSend) => {
@@ -40,3 +41,13 @@ export const fetchSampleApi = async (slug: string) => {
     throw error;
   }
 };
+
+export const deleteSampleAPI = async (data: UserSample) => {
+  const config = postConfig(data);
+  try {
+    const result = await api.call("api/v1/artist/sample/delete", config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}

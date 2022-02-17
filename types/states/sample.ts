@@ -4,5 +4,7 @@ export interface UserSampleState {
     isUploading: boolean;
     isUploaded: boolean;
     isFetchingSamples: boolean;
+    isDeleting: boolean;
+    isDeleted: boolean;
     samples: UserSample[];
 }

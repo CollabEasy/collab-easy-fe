@@ -1,0 +1,20 @@
+.confirmationModal__container {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.confirmationModal__buttonContainer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.confirmationModal__actionButton {
+    border-radius: 12px;
+}
+
+.confirmationModal__cancelButton {
+    border-radius: 12px;
+}
