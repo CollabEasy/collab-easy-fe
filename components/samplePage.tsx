@@ -14,7 +14,7 @@ import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { User, UserSample } from "types/model";
-import * as action from '../state/action';
+import * as action from "../state/action";
 import UploadModal from "./UploadModal";
 
 const { Meta } = Card;
@@ -24,21 +24,27 @@ const { TabPane } = Tabs;
 const mapStateToProps = (state: AppState) => {};
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  clearUploadSampleState: () => dispatch(action.clearUploadSampleState()), 
+  clearUploadSampleState: () => dispatch(action.clearUploadSampleState()),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
   user: User;
+  isSelf: boolean;
   samples: UserSample[];
 } & ConnectedProps<typeof connector>;
 
-const SamplePage = ({ user, samples, clearUploadSampleState }: Props) => {
+const SamplePage = ({
+  user,
+  isSelf,
+  samples,
+  clearUploadSampleState,
+}: Props) => {
   const router = useRouter();
   const [caption, setCaption] = useState("");
   const [loading, setLoading] = useState(false);
-  const [editable, setEditable] = useState(true); 
+  const [editable, setEditable] = useState(true);
   const [imageUrl, setImageUrl] = useState("");
   const [uploadFile, setUploadFile] = useState(null);
   const [fileType, setFileType] = useState("");
@@ -68,7 +74,12 @@ const SamplePage = ({ user, samples, clearUploadSampleState }: Props) => {
 
   function beforeUpload(file) {
     const isAllowed = allowedFileTypes();
-    const isValidFile = isAllowed.includes(file.type);
+    let isValidFile = false;
+    isAllowed.forEach((allowedFileTypes, index) => {
+      if (file.type.includes(allowedFileTypes)) {
+        isValidFile = true;
+      }
+    });
     if (!isValidFile) {
       message.error("Invalid File type!");
     }
@@ -93,7 +104,7 @@ const SamplePage = ({ user, samples, clearUploadSampleState }: Props) => {
       getBase64(info.file.originFileObj).then((imageUrl: string) =>
         setImageUrl(imageUrl)
       );
-      
+
       setUploadFile(info.file.originFileObj);
       setFileType(info.file.originFileObj.type);
       setShowUploadModal(true);
@@ -108,22 +119,24 @@ const SamplePage = ({ user, samples, clearUploadSampleState }: Props) => {
   const getSamples = () => {
     const sampleTiles: JSX.Element[] = [];
 
-    sampleTiles.push(
-      <div className="samplePage__imageTileContainer">
-        <Upload
-          name="avatar"
-          listType="picture-card"
-          className="samplePage__imageTile"
-          showUploadList={false}
-          beforeUpload={beforeUpload}
-          onChange={handleChange}
-        >
-          {samples.length >= 9 ? null : uploadButton}
-        </Upload>
-      </div>
-    );
+    if (isSelf) {
+      sampleTiles.push(
+        <div className="samplePage__imageTileContainer">
+          <Upload
+            name="avatar"
+            listType="picture-card"
+            className="samplePage__imageTile"
+            showUploadList={false}
+            beforeUpload={beforeUpload}
+            onChange={handleChange}
+          >
+            {samples.length >= 9 ? null : uploadButton}
+          </Upload>
+        </div>
+      );
+    }
+
     samples.forEach((sample, index) => {
-      console.log("sampe : ", sample.thumbnailUrl);
       sampleTiles.push(
         <div className="samplePage__imageTileContainer">
           <img
@@ -141,11 +154,8 @@ const SamplePage = ({ user, samples, clearUploadSampleState }: Props) => {
         </div>
       );
     });
-    console.log("tile : ", sampleTiles);
     return sampleTiles;
   };
-
-  console.log("samples : ", samples);
 
   return (
     <>
@@ -178,9 +188,7 @@ const SamplePage = ({ user, samples, clearUploadSampleState }: Props) => {
             onCancel={resetState}
           />
         )}
-        <div className="samplePage__grid">
-          {getSamples()}
-        </div>
+        <div className="samplePage__grid">{getSamples()}</div>
       </div>
     </>
   );

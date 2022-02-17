@@ -53,7 +53,7 @@ const ArtistProfile = ({ user }: Props) => {
   }, [otherUser, router.query, user.slug]);
 
   if (showLoader || (isSelf && Object.keys(user).length === 1) ||
-      (!isSelf && Object.keys(otherUser).length === 0))
+      (!isSelf && (!otherUser || Object.keys(otherUser).length === 0)))
     return <p className="artist-profile-page-empty">Redirecting</p>;
 
   return (
