@@ -5,7 +5,7 @@ import { Config } from './config';
 export const routes: AppRouteCreators = {
   toWondorHome: () => ({ href: "/" }),
   toDiscover: () => ({ href: "/" }),
-  toArtist: () => ({ href: "/discover-artist/" }),
+  toArtist: (slug: string) => ({ href: "/discover-artist/" }),
   toAboutUs: () => ({ href: "/about-us"}),
   toFAQ: () => ({ href: "faq"}),
   toPrivacy: () => ({ href: "/privacy" }),

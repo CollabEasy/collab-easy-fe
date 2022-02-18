@@ -35,7 +35,7 @@ const ArtistProfile = ({ user }: Props) => {
   const [otherUser, setOtherUser] = useState<User>({});
 
   useEffect(() => {
-    async function fetchMyAPI() {
+    async function fetchOtherUser() {
       let res = await artistApi.fetchUserByHandle(slug.toString())
       setOtherUser(res.data);
     }
@@ -45,12 +45,11 @@ const ArtistProfile = ({ user }: Props) => {
       setIsSelf(true);
     } else {
       setShowLoader(true);
-    setIsSelf(false);
-      fetchMyAPI();
-
+      setIsSelf(false);
+      fetchOtherUser();
     }
     setShowLoader(false);
-  }, [otherUser, router.query, user.slug]);
+  }, [router.query, user.slug]);
 
   if (showLoader || (isSelf && Object.keys(user).length === 1) ||
       (!isSelf && (!otherUser || Object.keys(otherUser).length === 0)))

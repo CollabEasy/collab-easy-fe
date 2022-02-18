@@ -158,7 +158,6 @@ const SamplePage = ({
           isSelf={isSelf}
           sample={sample}
           onClick={() => {
-            console.log("is on clik");
             clearUploadSampleState();
             setFileType(sample.fileType);
             setImageUrl(sample.originalUrl);
