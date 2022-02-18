@@ -58,6 +58,7 @@ const openLoginModal = () => {
 };
 
 const mapStateToProps = (state: AppState) => ({
+  artistCategories: state.artist.artistCategories,
   user: state.user.user,
   isUpdatingProfile: state.user.isUpdatingProfile,
   isUpdatingPrefs: state.user.isUpdatingPrefs,
@@ -66,6 +67,7 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+  getArtistCategories: () => dispatch(actions.fetchArtistCategoriesData()),
   updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
   updateArtistPreference: (key: string, value: any) =>
     dispatch(updateArtistPreference(key, value)),
@@ -81,6 +83,8 @@ const normFile = (e: any) => {
   return e && e.fileList;
 };
 
+const { Option } = Select;
+
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
@@ -91,6 +95,8 @@ const EditProfile = ({
   preferences,
   isUpdatingProfile,
   isUpdatingPrefs,
+  artistCategories,
+  getArtistCategories,
   updateArtistProfile,
   fetchArtistSamples,
   updateArtistPreference,
@@ -103,7 +109,15 @@ const EditProfile = ({
     "default"
   );
 
-  const { Option } = Select;
+  useEffect(() => {
+    getArtistCategories();
+  }, [getArtistCategories]);
+  
+  useEffect(() => {
+    if (artistCategories.status === "success") {
+      setCategoriesArr(artistCategories.data);
+    }
+  }, [artistCategories]);
 
   useEffect(() => {
     if (
@@ -336,9 +350,9 @@ const EditProfile = ({
                         >
                           {isUpdatingProfile ? "Saving..." : "Save"}
                         </Button>
-                        <Button htmlType="button" onClick={resetData}>
+                        {/* <Button htmlType="button" onClick={resetData}>
                           Reset
-                        </Button>
+                        </Button> */}
                       </div>
                     </Form.Item>
                   </Form>
@@ -425,9 +439,9 @@ const EditProfile = ({
                         >
                           {isUpdatingProfile ? "Saving..." : "Save"}
                         </Button>
-                        <Button htmlType="button" onClick={resetData}>
+                        {/* <Button htmlType="button" onClick={resetData}>
                           Reset
-                        </Button>
+                        </Button> */}
                       </div>
                     </Form.Item>
                   </Form>
@@ -514,9 +528,9 @@ const EditProfile = ({
                         >
                           {isUpdatingProfile ? "Saving..." : "Save"}
                         </Button>
-                        <Button htmlType="button" onClick={resetData}>
+                        {/* <Button htmlType="button" onClick={resetData}>
                           Reset
-                        </Button>
+                        </Button> */}
                       </div>
                     </Form.Item>
                   </Form>
