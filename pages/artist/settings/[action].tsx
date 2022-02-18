@@ -58,7 +58,7 @@ const openLoginModal = () => {
 };
 
 const mapStateToProps = (state: AppState) => ({
-  artistCategories: state.artist.artistCategories,
+  artistCategories: " ",//state.artist.artistCategories,
   user: state.user.user,
   isUpdatingProfile: state.user.isUpdatingProfile,
   isUpdatingPrefs: state.user.isUpdatingPrefs,

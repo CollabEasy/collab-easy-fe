@@ -134,23 +134,6 @@ const SamplePage = ({
   const getSamples = () => {
     const sampleTiles: JSX.Element[] = [];
 
-    if (isSelf) {
-      sampleTiles.push(
-        <div className="sampleTile__imageTileContainer">
-          <Upload
-            name="avatar"
-            listType="picture-card"
-            className="sampleTile__imageTile"
-            showUploadList={false}
-            beforeUpload={beforeUpload}
-            onChange={handleChange}
-          >
-            {samples.length >= 9 ? null : uploadButton}
-          </Upload>
-        </div>
-      );
-    }
-
     samples.forEach((sample, index) => {
       sampleTiles.push(
         <SampleTile 
@@ -174,6 +157,24 @@ const SamplePage = ({
         />
       );
     });
+
+    if (isSelf) {
+      sampleTiles.push(
+        <div className="sampleTile__imageTileContainer">
+          <Upload
+            name="avatar"
+            listType="picture-card"
+            className="sampleTile__imageTile"
+            showUploadList={false}
+            beforeUpload={beforeUpload}
+            onChange={handleChange}
+          >
+            {samples.length >= 9 ? null : uploadButton}
+          </Upload>
+        </div>
+      );
+    }
+    
     return sampleTiles;
   };
 
