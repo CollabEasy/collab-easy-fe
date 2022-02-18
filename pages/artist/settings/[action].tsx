@@ -165,7 +165,6 @@ const EditProfile = ({
 
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0) return <p>Redirecting</p>;
-
   return (
     <div className="edit-profile" style={{ padding: 200 }}>
       {/* <h1 style={{ textAlign: 'center' }}>{getHeading()}</h1> */}
@@ -233,12 +232,12 @@ const EditProfile = ({
                         }}
                       />
                     </Form.Item>
-                    <Form.Item name="phone" label="Phone Number">
+                    <Form.Item label="Phone Number">
                       <Input
                         addonBefore={prefixSelector}
                         style={{ width: "100%" }}
                         value={
-                          userDataCached ? userDataCached.phone_number : ""
+                          userDataCached.phone_number ? userDataCached.phone_number : ""
                         }
                         onChange={(e) => {
                           setUserDataCached((prevState) => ({
@@ -257,7 +256,7 @@ const EditProfile = ({
                           currentDate >= moment().endOf("day")
                         }
                         format="DD/MM/YYYY"
-                        value={moment(userDataCached.date_of_birth)}
+                        value={moment(userDataCached.date_of_birth ?  userDataCached.date_of_birth : currentDate)}
                         onChange={(e) => {
                           setUserDataCached((prevState) => ({
                             ...prevState,
