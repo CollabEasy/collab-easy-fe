@@ -32,16 +32,16 @@
         cursor: pointer;
       }
     }
-  
+    
+    & #app-logo-mobile {
+      display: none;
+    }
+
     & #sign-up-desktop {
       width: 100px;
       height: 40px;
       border-radius: 20px;
       font-size: 16px;
-    }
-  
-    & #app-logo-mobile {
-      display: none;
     }
   
     & #sign-up-mobile {
@@ -229,7 +229,11 @@
         width: 90%;
         justify-content: center;
       }
-  
+      
+      & #app-logo-desktop{
+        display: none;
+      }
+      
       & #app-logo-mobile{
           display: block;
           width: 40px;
@@ -241,10 +245,6 @@
       }
   
       & #sign-up-desktop {
-        display: none;
-      }
-  
-      & #app-logo-desktop{
         display: none;
       }
     }
