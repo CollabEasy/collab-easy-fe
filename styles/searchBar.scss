@@ -75,101 +75,12 @@
 
 @media only screen and (max-width: 1024px) and (min-width: 993px) {
     .search-bar{
-        display: flex;
-        border-radius: 5px;
-        height: 35px;
-        width: 80%;
-
-        &__input {
-            font-size: 1rem;
-        }
-
-        &__submit {
-            &__search-icon {
-                font-size: 15px;
-            }
-        }
-    }
-
-    .typeahead-container {
-        border: solid 1px black;
-        border-bottom: 0;
-        position: absolute;
-        top: 55px;
-        width: 49.7%;
-    }
-    
-    .typeahead-item {
-        background-color: white;
-        padding: 10px;
-        border-bottom: 1px solid grey;
-        position: relative;
-        cursor: pointer;
-    
-        &:hover {
-            background: #eee;
-        }
-    
-        &__category {
-            position: absolute;
-            right: 0;
-            padding-right: 10px
-        }
-    }
-} 
-
-@media only screen and (max-width: 992px) and (min-width: 768px) {
-    .search-bar{
-        display: flex;
-        border-radius: 5px;
-        height: 35px;
-        width: 80%;
-
-        &__input {
-            font-size: 1rem;
-        }
-
-        &__submit {
-            &__search-icon {
-                font-size: 15px;
-            }
-        }
-    }
-
-    .typeahead-container {
-        border: solid 1px black;
-        border-bottom: 0;
-        position: absolute;
-        top: 55px;
-        width: 49.7%;
-    }
-    
-    .typeahead-item {
-        background-color: white;
-        padding: 10px;
-        border-bottom: 1px solid grey;
-        position: relative;
-        cursor: pointer;
-    
-        &:hover {
-            background: #eee;
-        }
-    
-        &__category {
-            position: absolute;
-            right: 0;
-            padding-right: 10px
-        }
-    }
-} 
-
-@media only screen and (max-width: 767px) and (min-width: 601px) {
-    .search-bar{
         height: 35px;
         width: 90%;
 
         &__input {
             font-size: 1rem;
+            padding-bottom: 8px;
         }
 
         &__submit {
@@ -188,16 +99,53 @@
 
     .typeahead-container {
         border-bottom:white;
-        top: 35px;
+        top: 25px;
         width: 90%;
     }
     
     .typeahead-item {
-        font-size: .8rem;
+        font-size: .6rem;
         height: 20px;
         padding-left: 10px;
-        padding-top: 4px;
-        padding-bottom: 21px;
+        padding-top: 2px;
+    }
+} 
+
+@media only screen and (max-width: 992px) and (min-width: 601px) {
+    .search-bar{
+        height: 35px;
+        width: 90%;
+
+        &__input {
+            font-size: 1rem;
+            padding-bottom: 8px;
+        }
+
+        &__submit {
+            &__search-icon {
+                font-size: 13px;
+                padding-bottom: 8px;
+            }
+        }
+        &__cross {
+            &__cross-icon {
+                font-size: 13px;
+                padding-bottom: 8px;
+            }
+        }
+    }
+
+    .typeahead-container {
+        border-bottom:white;
+        top: 25px;
+        width: 90%;
+    }
+    
+    .typeahead-item {
+        font-size: .6rem;
+        height: 20px;
+        padding-left: 10px;
+        padding-top: 2px;
     }
 }
 
