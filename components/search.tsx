@@ -137,18 +137,18 @@ const Search = ({ setSelectedArtId } : Props) => {
                 >
                 </input>
                 {
-                    inputVal.length > 0 && 
+                    // inputVal.length > 0 && 
                     <button 
                         className="search-bar__cross"
                         onClick={clearInput}
                     >
-                        <CloseOutlined style={{ fontSize: '16px', paddingBottom: '5px'}} />
+                        <CloseOutlined className="search-bar__cross__cross-icon" />
                     </button> 
                 }
             </div>
             {   
                 
-                searchData.length > 0 && focused && ( <div className="typeahead-container"> 
+                 ( <div className="typeahead-container"> 
                 { 
                     searchData.map((data, i) => {
                         const { entityType, id, name } = data;
