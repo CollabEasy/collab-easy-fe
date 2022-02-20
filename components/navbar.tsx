@@ -140,25 +140,42 @@ const NavBar = ({
             }
             {showLoginOptions && (
               <div className={`login-options-container ${checkDevice() ? 'animate__animated animate__slideInRight' : ''}`}>
-                <Link href={routeToHref(toEditProfile("settings"))} passHref>
-                  <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(false)}>
-                    <span className="f-14">Settings</span>
-                  </div>
-                </Link>
+
+                <div className={"login-mobile-userdetails"}>
+                  {user?.profile_pic_url ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={profilePic} alt="profile-pic" />
+                  ) : (
+                    <div className="default-profile">
+                      <UserOutlined className="user-icon" />
+                    </div>
+                  )}
+                  <h3
+                    style={{
+                      paddingTop: "10px",
+                      width: "100%",
+                      marginLeft: "0",
+                    }}
+                  >Hello {user.first_name} !</h3>
+                  <hr></hr>
+                </div>
                 <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
                   <div className="common-login-option profile-option" onClick={() => setShowLoginOptions(false)}>
                     <span className="f-14">Profile</span>
+                  </div>
+                </Link>
+                <Link href={routeToHref(toEditProfile("settings"))} passHref>
+                  <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(false)}>
+                    <span className="f-14">Settings</span>
                   </div>
                 </Link>
                 <div className="common-login-option logout-option" onClick={logoutUser}>
                   <span className="f-14">Logout</span>
                 </div>
               </div>
-            )
-            }
+            )}
           </div>
-        )
-        }
+        )}
       </div>
     </div>
   )
