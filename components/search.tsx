@@ -137,7 +137,7 @@ const Search = ({ setSelectedArtId } : Props) => {
                 >
                 </input>
                 {
-                    // inputVal.length > 0 && 
+                    inputVal.length > 0 && 
                     <button 
                         className="search-bar__cross"
                         onClick={clearInput}
@@ -148,7 +148,7 @@ const Search = ({ setSelectedArtId } : Props) => {
             </div>
             {   
                 
-                 ( <div className="typeahead-container"> 
+                searchData.length > 0 && focused && ( <div className="typeahead-container"> 
                 { 
                     searchData.map((data, i) => {
                         const { entityType, id, name } = data;
