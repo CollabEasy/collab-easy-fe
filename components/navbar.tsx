@@ -150,27 +150,25 @@ const NavBar = ({
                       <UserOutlined className="user-icon" />
                     </div>
                   )}
-                  <h3
-                    style={{
-                      paddingTop: "10px",
-                      width: "100%",
-                      marginLeft: "0",
-                    }}
-                  >Hello {user.first_name} !</h3>
-                  <hr></hr>
+                  <div className="login-mobile-username">
+                    <h3> {user.first_name} </h3>
+                    <hr></hr>
+                  </div>
                 </div>
+                <div className="common-login-option">
                 <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
-                  <div className="common-login-option profile-option" onClick={() => setShowLoginOptions(false)}>
+                  <div className="selected-option-shadow profile-option" onClick={() => setShowLoginOptions(false)}>
                     <span className="f-14">Profile</span>
                   </div>
                 </Link>
                 <Link href={routeToHref(toEditProfile("settings"))} passHref>
-                  <div className="common-login-option settings-option" onClick={() => setShowLoginOptions(false)}>
+                  <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
                     <span className="f-14">Settings</span>
                   </div>
                 </Link>
-                <div className="common-login-option logout-option" onClick={logoutUser}>
+                <div className="selected-option-shadow logout-option" onClick={logoutUser}>
                   <span className="f-14">Logout</span>
+                </div>
                 </div>
               </div>
             )}
