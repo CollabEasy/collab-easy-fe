@@ -15,12 +15,6 @@ export const Footer: React.FC<FooterProps> = ({
     <footer >
       <div className="footer-basic">
         <footer>
-          {/* <div className="social">
-              <a href="#"><i className="icon ion-social-instagram"></i></a>
-              <a href="#"><i className="icon ion-social-snapchat"></i></a>
-              <a href="#"><i className="icon ion-social-twitter"></i></a>
-              <a href="#"><i className="icon ion-social-facebook"></i></a>
-            </div> */}
           <p className="copyright">Wondor © 2022</p>
           <ul className="list-inline">
             <li className="list-inline-item"><Link href={toAboutUs().href} passHref>About</Link></li>
