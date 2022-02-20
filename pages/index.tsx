@@ -92,7 +92,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'musician'} passHref>
-                <Card hoverable style={{ width: '100%', borderRadius: '20px' }} cover={<Image src={musiciansImg} alt="cards" />}>
+                <Card hoverable style={{ width: '100%' }} cover={<Image src={musiciansImg} alt="cards" />}>
                   <Meta title="Musicians" />
                 </Card>
               </Link>

@@ -12,6 +12,8 @@ import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { useEffect } from "react";
 import * as action from "../../state/action/categoryAction";
+import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+
 const { Meta } = Card;
 
 const mapStateToProps = (state: AppState) => {
@@ -54,7 +56,9 @@ const DiscoverArtist = ({
           <div
             key={index}
             className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3"
-            style={{ padding: "1rem" }}
+            style={{ 
+              padding: "2rem"
+            }}
           >
             <Link
               key={index}
@@ -63,17 +67,27 @@ const DiscoverArtist = ({
             >
               <Card
                 hoverable
-                style={{ height: "100%" }}
+                // className="discoverArtists__artistsContainer"
+                style={{ 
+                  height: "100%",
+                  //borderRadius: "15px",
+                  textAlign: "center",
+                  alignItems: "center",
+                  backgroundColor: "rgb(0 0 0 / 2%)",
+                }}
                 cover={
                 <Image 
                   src={artist?.profile_pic_url} 
                   alt="cards" 
-                  height={328}
+                  height={228}
                   width={242}
                   />
                 }
               >
-                <Meta title={artist.first_name} />
+                <Meta 
+                  title={artist.first_name} 
+                  description={artist.bio}
+                />
               </Card>
             </Link>
           </div>
@@ -87,14 +101,17 @@ const DiscoverArtist = ({
   return (
     <>
       <Title title="Discover Artist" />
-      <div className="fluid dynamic-artist-page">
-        <div className="row" style={{ paddingTop: "6rem" }}>
-          <Image src={landingPageImg} alt="Landing page" />
-        </div>
-        {/* <h1>Artist Page Dynamic <strong>{id.toUpperCase()}</strong></h1> */}
-        <div className="row" style={{ paddingTop: "2rem" }}>
-          {getArtists()}
-        </div>
+      <div className="fluid discoverArtists__listingContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
+          <div className="discoverArtists__coverContainer">
+            <Image 
+              layout="responsive" 
+              objectFit="contain"
+              src={landingPageImg} 
+              alt="Landing page" />
+          </div>
+          <div className="row">
+            {getArtists()}
+          </div>
       </div>
     </>
   );

@@ -64,16 +64,17 @@
     position: absolute;
     background: #fff;
     border-radius: 4px;
-    right: 18px;
+    top: 60px;
+    right: 0px;
     width: 120px;
     box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
   }
-  .common-login-option{
+  .common-login-option .selected-option-shadow {
     padding: 5px 10px;
-    border-bottom: 1px solid #e1e1e1;
+    font-size: 20px;
     cursor: pointer;
     &:hover{
-      background-color: #e6f7ff;
+      background: #e6f7ff;
     }
     &:last-child{
       border-bottom: none;
@@ -122,6 +123,9 @@
   padding: 1rem;
 }
 
+.login-mobile-userdetails {
+  display: none;
+}
 // Please write media query for all screen sizes below this line.
 @media only screen and (max-width: 1024px) and (min-width: 993px) {
   .nv-f-t {
@@ -217,6 +221,10 @@
 }
 
 @media only screen and (max-width: 399px) {
+  .animate__animated.animate__slideInRight {
+    width: 50%;
+  }
+
   .nv-f-t {
     padding: 1rem;
 
@@ -247,6 +255,46 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .animate__animated.animate__slideInRight {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+  }
+
+  .login-mobile-userdetails {
+    display: block;
+    margin: auto;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px -5px, rgb(0 0 0 / 4%) 0px 10px 10px -5px;
+    img{
+      max-width: 100%;
+      border-radius: 50px;
+    }
+    .default-profile{
+      height: 100%;
+      text-align: center;
+      padding: 10px 0px;
+      background: white;
+      border-radius: 50%;
+      .user-icon{
+        font-size: 20px;
+      }
+    }
+    .login-mobile-username {
+      padding-top:10px;
+      width: 100%;
+      h3 {
+        font-size: 15px;
+        text-align: left;
+      }
+      hr {
+        max-width: 140%;
+      }
+    }
+  }
   .login-menu-container{
     position: static;
     .login-options-container{
@@ -255,6 +303,12 @@
       bottom: 0px;
       position: fixed;
       border-radius: 0px;
+      padding-top: 50px;
+    }
+    .common-login-option {
+      margin-top: 50px;
+      padding-top: 10px;
+      font-size: 40px;
     }
     .hide-icon{
       display: none;

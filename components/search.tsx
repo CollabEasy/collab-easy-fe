@@ -142,7 +142,7 @@ const Search = ({ setSelectedArtId } : Props) => {
                         className="search-bar__cross"
                         onClick={clearInput}
                     >
-                        <CloseOutlined style={{ fontSize: '16px', paddingBottom: '5px'}} />
+                        <CloseOutlined className="search-bar__cross__cross-icon" />
                     </button> 
                 }
             </div>

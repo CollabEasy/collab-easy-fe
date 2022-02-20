@@ -87,7 +87,7 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
               )}
               <div className="policy-container">
                 <span className="f-14 md-cop000">
-                  By continuing, you agree to WonDor’s Terms of Service and
+                  By continuing, you agree to Wondor’s Terms of Service and
                   acknowledge you&apos;ve read our Privacy Policy.
                 </span>
               </div>
