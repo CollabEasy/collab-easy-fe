@@ -175,6 +175,8 @@ const NavBar = ({
           </div>
         )}
       </div>
+      <div ref={ref} className="dummy-div">
+      </div>
     </div>
   )
 }
