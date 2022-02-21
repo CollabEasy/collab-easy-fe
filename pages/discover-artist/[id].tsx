@@ -12,7 +12,7 @@ import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { useEffect } from "react";
 import * as action from "../../state/action/categoryAction";
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { CloseOutlined, PictureOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
@@ -53,50 +53,53 @@ const DiscoverArtist = ({
       if (artist !== null) {
         console.log("pp url : ", artist.profile_pic_url);
         resultArtists.push(
-          <div className="card">
-            <div className="card-body">
-              <div className="row">
-                <div className="col-12 col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                  <Image
-                    src={artist?.profile_pic_url}
-                    alt="cards"
-                    className="mx-auto img-fluid company-logo img-thumbnail rounded"
-                    height={150}
-                    width={150}
-                  />
-                </div>
-                <div className="col-12 col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                  <h2 className="mb-0 font-weight-bold">{artist.first_name} {artist?.last_name}</h2>
-                  <h6 className="font-weight-normal">Dance, Singing, Poetry</h6>
-                  <p className="font-weight-normal">{artist.bio}</p>
-                </div>
-                <div className="col-12 col-lg-2 col-md-2 col-sm-12 detail">
-                  <Button>
-                    <Link
-                      key={index}
-                      href={routeToHref(toArtistProfile(artist.slug))}
-                      passHref
-                    > Profile </Link>
-                  </Button>
-                </div>
-                <div className="col-12 col-lg-2 col-md-2 text-center text-wrap detail">
-                    {/* <img *ngIf="item.payload.doc.data().price == 4" class="detail-icon" src="../../assets/images/extra/40.svg"> */}
-                    <p>Number of Collabs</p>
-                </div>
+          //https://bbbootstrap.com/snippets/bootstrap-ecommerce-category-product-list-page-93685579
+          <div className="row p-2 bg-white border rounded artits-card">
+            <div className="col-md-3 mt-1">
+              <Image
+                src={artist?.profile_pic_url}
+                alt="cards"
+                //className="mx-auto img-fluid company-logo img-thumbnail rounded"
+                className="img-fluid img-responsive rounded product-image"
+                height={150}
+                width={150}
+              />
+            </div>
 
-                <div className="col-12 col-lg-2 col-md-2 col-sm-12 text-center text-wrap detail">
-                    {/* <img class="detail-icon" src="../../assets/images/extra/delivery.svg"> */}
-                    {/* <p *ngIf="item.payload.doc.data()['med delivery']">Delivery Available</p>
-                    <p *ngIf="!item.payload.doc.data()['med delivery']">Delivery Not Available</p> */}
-                     <p>Up for collab</p>
-                </div>
+            <div className="col-md-6 mt-1">
+              <h5>{artist.first_name} {artist?.last_name}</h5>
+              <div className="mt-1 mb-1 spec-1">
+                <span>Painter</span>
+                <span className="dot"></span>
+                <span>Poet</span>
+                <span className="dot"></span>
+                <span>Dance<br></br></span>
+              </div>
+              <p className="text-justify para mb-0  break-word">{artist.bio}<br></br><br></br></p>
+              {/* <div className="mt-1 mb-1 spec-1">
+                <span><CloseOutlined /> Available to collab </span>
+                <span><PictureOutlined /> Sample work uploaded</span>
+              </div> */}
+            </div>
 
-                <div className="col-12 col-lg-2 col-md-2 col-sm-12 text-center text-wrap detail">
-                    {/* <img class="detail-icon" src="../../assets/images/extra/medical-insurance.svg"> */}
-                    {/* <p *ngIf="item.payload.doc.data().insurance">Insurance Accepted</p>
-                    <p *ngIf="!item.payload.doc.data().insurance">Insurance Not Accepted</p> */}
-                     <p>Price Range</p>
-                </div>
+            <div className="align-items-center align-content-center col-md-3 border-left mt-1">
+              <div className="d-flex flex-column mt-4">
+                <Button block type="primary" ghost style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                  <Link
+                    key={index}
+                    href={routeToHref(toArtistProfile(artist.slug))}
+                    passHref
+                  > Profile </Link>
+
+                </Button>
+
+                <Button block type="primary" style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                  <Link
+                    key={index}
+                    href={routeToHref(toArtistProfile(artist.slug))}
+                    passHref
+                  >Send collab request</Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -111,14 +114,23 @@ const DiscoverArtist = ({
     <>
       <Title title="Discover Artist" />
       <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
-        <div className="discoverArtists__coverContainer">
+        <div className="discoverArtists__desktopCoverContainer">
           <Image
             layout="responsive"
             objectFit="contain"
             src={landingPageImg}
             alt="Landing page" />
+          
         </div>
-        <div className="col-12 listingContainer">
+        <div className="discoverArtists__mobileCoverContainer">
+          <h1>
+            Singers to work with on your next big hit.
+          </h1>
+          <p>
+            send them a request to see if they are available.
+          </p>
+        </div>
+        <div className="col-md-12 listingContainer">
           {getArtists()}
         </div>
       </div>
