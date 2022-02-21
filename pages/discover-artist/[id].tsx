@@ -12,7 +12,7 @@ import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { useEffect } from "react";
 import * as action from "../../state/action/categoryAction";
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { CloseOutlined, PictureOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
@@ -53,43 +53,55 @@ const DiscoverArtist = ({
       if (artist !== null) {
         console.log("pp url : ", artist.profile_pic_url);
         resultArtists.push(
-          <div
-            key={index}
-            className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3"
-            style={{
-              padding: "2rem"
-            }}
-          >
-            <Link
-              key={index}
-              href={routeToHref(toArtistProfile(artist.slug))}
-              passHref
-            >
-              <Card
-                hoverable
-                // className="discoverArtists__artistsContainer"
-                style={{
-                  height: "100%",
-                  //borderRadius: "15px",
-                  textAlign: "center",
-                  alignItems: "center",
-                  backgroundColor: "rgb(0 0 0 / 2%)",
-                }}
-                cover={
-                  <Image
-                    src={artist?.profile_pic_url}
-                    alt="cards"
-                    height={228}
-                    width={242}
-                  />
-                }
-              >
-                <Meta
-                  title={artist.first_name}
-                  description={artist.bio}
-                />
-              </Card>
-            </Link>
+          //https://bbbootstrap.com/snippets/bootstrap-ecommerce-category-product-list-page-93685579
+          <div className="row p-2 bg-white border rounded artits-card">
+            <div className="col-md-3 mt-1 artist-profile-picture">
+              <Image
+                src={artist?.profile_pic_url}
+                alt="cards"
+                //className="mx-auto img-fluid company-logo img-thumbnail rounded"
+                className="img-fluid img-responsive rounded"
+                height={150}
+                width={150}
+              />
+            </div>
+
+            <div className="col-md-6 mt-1">
+              <h5>{artist.first_name} {artist?.last_name}</h5>
+              <div className="mt-1 mb-1 spec-1">
+                <span>Painter</span>
+                <span className="dot"></span>
+                <span>Poet</span>
+                <span className="dot"></span>
+                <span>Dance<br></br></span>
+              </div>
+              <p className="text-justify para mb-0  break-word">{artist.bio}<br></br><br></br></p>
+              {/* <div className="mt-1 mb-1 spec-1">
+                <span><CloseOutlined /> Available to collab </span>
+                <span><PictureOutlined /> Sample work uploaded</span>
+              </div> */}
+            </div>
+
+            <div className="align-items-center align-content-center col-md-3 border-left mt-1">
+              <div className="d-flex flex-column mt-4">
+                <Button block type="primary" ghost style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                  <Link
+                    key={index}
+                    href={routeToHref(toArtistProfile(artist.slug))}
+                    passHref
+                  > Profile </Link>
+
+                </Button>
+
+                <Button block type="primary" style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                  <Link
+                    key={index}
+                    href={routeToHref(toArtistProfile(artist.slug))}
+                    passHref
+                  >Send collab request</Link>
+                </Button>
+              </div>
+            </div>
           </div>
         );
       }
@@ -101,15 +113,24 @@ const DiscoverArtist = ({
   return (
     <>
       <Title title="Discover Artist" />
-      <div className="fluid discoverArtists__listingContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
-        <div className="discoverArtists__coverContainer">
+      <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
+        <div className="discoverArtists__desktopCoverContainer">
           <Image
             layout="responsive"
             objectFit="contain"
             src={landingPageImg}
             alt="Landing page" />
+          
         </div>
-        <div className="row">
+        <div className="discoverArtists__mobileCoverContainer">
+          <h1>
+            Singers to work with on your next big hit.
+          </h1>
+          <p>
+            send them a request to see if they are available.
+          </p>
+        </div>
+        <div className="col-md-12 listingContainer">
           {getArtists()}
         </div>
       </div>
