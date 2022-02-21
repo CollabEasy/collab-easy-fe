@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
 import { Dispatch } from "redux";
-import { getSearchResult } from 'api/search'; 
-import { 
+import { getSearchResult } from 'api/search';
+import Image from 'next/image';
+import {
     debounceTime, distinctUntilChanged, switchMap, map, filter,
- } from 'rxjs/operators';
+} from 'rxjs/operators';
 import { debounce } from 'lodash';
 import { Subject, merge, of } from 'rxjs';
 import { useRouter } from 'next/router'
@@ -12,17 +13,18 @@ import { useRoutesContext } from "components/routeContext";
 import { AppState } from 'state';
 import * as action from '../state/action/categoryAction';
 import { connect, ConnectedProps } from 'react-redux';
+import avatarImg from '../public/images/avatar.png';
 
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     setSelectedArtId: (id: number) => dispatch(action.setSelectedId(id)),
 });
-  
+
 const connector = connect(null, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const Search = ({ setSelectedArtId } : Props) => {
+const Search = ({ setSelectedArtId }: Props) => {
     const [inputVal, setInputVal] = useState('');
     const [searchData, setSearchData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -43,9 +45,9 @@ const Search = ({ setSelectedArtId } : Props) => {
     };
 
     const [onSearch$] = useState(() => new Subject());
-    
+
     const resetState = () => setSearchState([], false, '', false);
-    
+
     const clearInput = () => {
         setInputVal('');
         resetState();
@@ -55,16 +57,16 @@ const Search = ({ setSelectedArtId } : Props) => {
         debounce((searchQuery: string) => {
             console.log("event : ", searchQuery);
             onSearch$.next(searchQuery);
-    }, 1000), []);
+        }, 1000), []);
 
     // const handleTextChange = async (event) => {
-        
+
     //     onSearch$.next(event.target.value);
     // }
 
     const router = useRouter();
     const { toArtist, toArtistProfile } = useRoutesContext();
-    const callSearchAPI = async (val:string) => {
+    const callSearchAPI = async (val: string) => {
         try {
             /* Type 'any' is of type Array<object> but getting some error */
             const res: any = await getSearchResult(val);
@@ -73,7 +75,7 @@ const Search = ({ setSelectedArtId } : Props) => {
                 loading: false,
                 noResults: res.length === 0,
             };
-        } catch(err) {
+        } catch (err) {
             return {
                 data: [],
                 loading: false,
@@ -84,13 +86,13 @@ const Search = ({ setSelectedArtId } : Props) => {
 
     useEffect(() => {
         const subscription = onSearch$.pipe(
-            map((val:string) => val.trim()),
+            map((val: string) => val.trim()),
             distinctUntilChanged(),
             filter(val => val.length >= 2),
             debounceTime(400),
-            switchMap((val:string) => 
+            switchMap((val: string) =>
                 merge(
-                    of({data: [], loading: true, errorMessage: '', noResults: false}),
+                    of({ data: [], loading: true, errorMessage: '', noResults: false }),
                     callSearchAPI(val),
                 )
             ),
@@ -121,9 +123,9 @@ const Search = ({ setSelectedArtId } : Props) => {
                 <button className="search-bar__submit">
                     <SearchOutlined className="search-bar__submit__search-icon" />
                 </button>
-                <input 
-                    type="text" 
-                    className="search-bar__input" 
+                <input
+                    type="text"
+                    className="search-bar__input"
                     placeholder="search artists"
                     aria-label="search"
                     value={inputVal}
@@ -137,48 +139,58 @@ const Search = ({ setSelectedArtId } : Props) => {
                 >
                 </input>
                 {
-                    inputVal.length > 0 && 
-                    <button 
+                    inputVal.length > 0 &&
+                    <button
                         className="search-bar__cross"
                         onClick={clearInput}
                     >
                         <CloseOutlined className="search-bar__cross__cross-icon" />
-                    </button> 
+                    </button>
                 }
             </div>
-            {   
-                
-                searchData.length > 0 && focused && ( <div className="typeahead-container"> 
-                { 
-                    searchData.map((data, i) => {
-                        const { entityType, id, name } = data;
-                        const href = entityType === 'ART' 
-                            ? toArtist().href + data.slug
-                            : toArtistProfile(data.slug).as /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
-                            
-                        const searchRow = entityType === 'ART' 
-                            ? (
-                                <div key = {i} className="typeahead-item">
-                                    <div onMouseDown={handleSearchClick(href, data)}>
-                                        <span className="typeahead-item__name">{name}</span>
-                                        <span className="typeahead-item__category">{entityType}</span>
+            {
+
+                 (<div className="typeahead-container">
+                    {
+                        searchData.map((data, i) => {
+                            const { entityType, id, name } = data;
+                            const href = entityType === 'ART'
+                                ? toArtist().href + data.slug
+                                : toArtistProfile(data.slug).as /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
+
+                            const searchRow = entityType === 'ART'
+                                ? (
+                                    <div key={i} className="typeahead-item">
+                                        <div onMouseDown={handleSearchClick(href, data)}>
+                                            <span>
+                                                <Image width='20px' height='20px' className="typeahead-item__icon" src={avatarImg} alt="profile-pic" />
+                                            </span>
+                                            <span className="typeahead-item__name">{name}</span>
+                                            <span className="typeahead-item__category">{entityType}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                            )
-                            : (
-                                <div key = {i} className="typeahead-item">
-                                    <div onMouseDown={handleSearchClick(href, data)}>
-                                        <span className="typeahead-item__name">{name}</span>
-                                        <span className="typeahead-item__category">{entityType}</span>
+
+                                )
+                                : (
+                                    <div key={i} className="typeahead-item">
+                                        <div onMouseDown={handleSearchClick(href, data)}>
+                                            <span className="typehead-item__icon">
+                                                <Image
+                                                    className="profile-image"
+                                                    src={avatarImg}
+                                                    alt="typehead icon"
+                                                />
+                                            </span>
+                                            <span className="typeahead-item__name">{name}</span>
+                                            <span className="typeahead-item__category">{entityType}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        return searchRow;
-                    })
-                }
+                                )
+                            return searchRow;
+                        })
+                    }
                 </div>
-            )}
+                )}
         </>
     );
 }
