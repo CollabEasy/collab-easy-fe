@@ -27,5 +27,6 @@ html, body {
 .f-w-b {font-weight: $font-bolder};
 
 .page-content {
+  margin-top: -10px;
   min-height: calc(100vh - 70px);
 }
