@@ -55,12 +55,12 @@ const DiscoverArtist = ({
         resultArtists.push(
           //https://bbbootstrap.com/snippets/bootstrap-ecommerce-category-product-list-page-93685579
           <div className="row p-2 bg-white border rounded artits-card">
-            <div className="col-md-3 mt-1">
+            <div className="col-md-3 mt-1 artist-profile-picture">
               <Image
                 src={artist?.profile_pic_url}
                 alt="cards"
                 //className="mx-auto img-fluid company-logo img-thumbnail rounded"
-                className="img-fluid img-responsive rounded product-image"
+                className="img-fluid img-responsive rounded"
                 height={150}
                 width={150}
               />

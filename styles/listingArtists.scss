@@ -35,12 +35,7 @@
 
             // .artits-card:hover {
             //     box-shadow: 0 0 10px grey
-            // }
-
-            .product-image {
-                width: 100%
-            }
-            
+            // }  
             .dot {
                 height: 7px;
                 width: 7px;
@@ -68,8 +63,8 @@
     }
 }
   
-  /* mobile/tablet css starts from here  */  
-  @media only screen and (max-width: 767px) and (min-width: 601px) {
+/* mobile/tablet css starts from here  */  
+@media only screen and (max-width: 767px) and (min-width: 601px) {
     
     .discoverArtists__listingPageContainer {
         width: 90%;
@@ -102,8 +97,11 @@
                 height: 90%;
                 border: black;
                 background-color: #fafafa;
-                .product-image {
-                    width: 100%;
+                .artist-profile-picture {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 30%;
                 }
                 .dot {
                     height: 8px;
@@ -161,8 +159,11 @@
                 height: 90%;
                 border: black;
                 background-color: #fafafa;
-                .product-image {
-                    width: 100%;
+                .artist-profile-picture {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 35%;
                 }
                 .dot {
                     height: 8px;
@@ -220,8 +221,11 @@
                 height: 90%;
                 border: black;
                 background-color: #fafafa;
-                .product-image {
-                    width: 100%;
+                .artist-profile-picture {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 50%;
                 }
                 .dot {
                     height: 5px;
