@@ -12,74 +12,20 @@
 @import "./components/sampleTile.scss";
 @import "./components/confirmationModal.scss";
 @import "listingArtists.scss";
+@import "./footer.scss";
 
 html, body {
   max-width: 100%;
+  min-height: 100%;
   overflow-x: hidden;
 }
 
 .cursor-pointer {
     cursor: pointer;
 }
+
 .f-w-b {font-weight: $font-bolder};
-#footer-social span {
-    margin: 0px 1em;
-    display: inline-block;
-}
 
-#footer-social span em {
-    font-size: 2em;
-    cursor: pointer;
-}
-
-.ul-css {
-    list-style-type: none;
-}
-.clm-name {
-    padding-left: 2em;
-}
-
-.rights-div {
-    padding-top: 3em;
-}
-
-// https://www.web-eau.net/blog/10-best-footer-html-css-snippets
-.footer-basic {
-  position: absolute;
-  width: 100%;  
-  padding-top:3px;
-  padding-bottom: 1px;
-}
-
-.footer-basic ul {
-  list-style:none;
-  text-align:center;
-  font-size:12px;
-}
-
-.footer-basic li {
-  padding:0 20px;
-}
-
-.footer-basic ul a {
-  color:inherit;
-  text-decoration:none;
-  opacity:0.8;
-}
-
-.footer-basic ul a:hover {
-  opacity:1;
-}
-
-.footer-basic .social > a:hover {
-  opacity:0.9;
-}
-
-.footer-basic .copyright {
-  margin-top:15px;
-  text-align:center;
-  font-size:13px;
-  color:#aaa;
-  margin-bottom:0;
-  font-family: 'pacifico';
+.page-content {
+  min-height: calc(100vh - 70px);
 }
