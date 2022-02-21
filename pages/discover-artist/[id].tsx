@@ -53,52 +53,43 @@ const DiscoverArtist = ({
       if (artist !== null) {
         console.log("pp url : ", artist.profile_pic_url);
         resultArtists.push(
-          <div className="card">
-            <div className="card-body">
-              <div className="row">
-                <div className="col-12 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+          <div
+            key={index}
+            className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3"
+            style={{
+              padding: "2rem"
+            }}
+          >
+            <Link
+              key={index}
+              href={routeToHref(toArtistProfile(artist.slug))}
+              passHref
+            >
+              <Card
+                hoverable
+                // className="discoverArtists__artistsContainer"
+                style={{
+                  height: "100%",
+                  //borderRadius: "15px",
+                  textAlign: "center",
+                  alignItems: "center",
+                  backgroundColor: "rgb(0 0 0 / 2%)",
+                }}
+                cover={
                   <Image
                     src={artist?.profile_pic_url}
                     alt="cards"
-                    className="mx-auto img-fluid company-logo img-thumbnail rounded"
-                    height={150}
-                    width={150}
+                    height={228}
+                    width={242}
                   />
-                </div>
-                <div className="col-12 col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                  <h2 className="mb-0 font-weight-bold">{artist.first_name} {artist?.last_name}</h2>
-                  <h6 className="font-weight-normal">Dance, Singing, Poetry</h6>
-                  <p className="font-weight-normal">{artist.bio}</p>
-                </div>
-                <div className="col-12 col-lg-2 col-md-2 col-sm-12 detail">
-                  <Button>
-                    <Link
-                      key={index}
-                      href={routeToHref(toArtistProfile(artist.slug))}
-                      passHref
-                    > Profile </Link>
-                  </Button>
-                </div>
-                <div className="col-12 col-lg-2 col-md-2 text-center text-wrap detail">
-                    {/* <img *ngIf="item.payload.doc.data().price == 4" class="detail-icon" src="../../assets/images/extra/40.svg"> */}
-                    <p>Number of Collabs</p>
-                </div>
-
-                <div className="col-12 col-lg-2 col-md-2 col-sm-12 text-center text-wrap detail">
-                    {/* <img class="detail-icon" src="../../assets/images/extra/delivery.svg"> */}
-                    {/* <p *ngIf="item.payload.doc.data()['med delivery']">Delivery Available</p>
-                    <p *ngIf="!item.payload.doc.data()['med delivery']">Delivery Not Available</p> */}
-                     <p>Up for collab</p>
-                </div>
-
-                <div className="col-12 col-lg-2 col-md-2 col-sm-12 text-center text-wrap detail">
-                    {/* <img class="detail-icon" src="../../assets/images/extra/medical-insurance.svg"> */}
-                    {/* <p *ngIf="item.payload.doc.data().insurance">Insurance Accepted</p>
-                    <p *ngIf="!item.payload.doc.data().insurance">Insurance Not Accepted</p> */}
-                     <p>Price Range</p>
-                </div>
-              </div>
-            </div>
+                }
+              >
+                <Meta
+                  title={artist.first_name}
+                  description={artist.bio}
+                />
+              </Card>
+            </Link>
           </div>
         );
       }
@@ -110,7 +101,7 @@ const DiscoverArtist = ({
   return (
     <>
       <Title title="Discover Artist" />
-      <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
+      <div className="fluid discoverArtists__listingContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
         <div className="discoverArtists__coverContainer">
           <Image
             layout="responsive"
@@ -118,7 +109,7 @@ const DiscoverArtist = ({
             src={landingPageImg}
             alt="Landing page" />
         </div>
-        <div className="col-12 listingContainer">
+        <div className="row">
           {getArtists()}
         </div>
       </div>

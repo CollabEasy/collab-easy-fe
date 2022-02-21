@@ -1,174 +1,25 @@
-.discoverArtists__listingPageContainer {
+.discoverArtists__listingContainer {
     //display: flex;
     //padding: 200px;
     position: relative;
     margin: auto;
-    //flex-direction: column;
+    flex-direction: column;
     width: 70%;
-    //transition: 0.3s;
-    //border-radius: 5px; 
-    overflow-x: hidden;
-    overflow-y: scroll;
-
-    .discoverArtists__coverContainer { 
-        width: '100%';
-        height: '100%';
-        border: 1px solid rgb(0 0 0 / 10%);
-        //border-radius: 5px;
-    }
-    .listingContainer {
-        padding-top: 20px;
-        padding-left: 10px;
-        padding-right: 10px;
-    
-        .card {
-            width: 100%;
-            height: 90%;
-            transition: box-shadow .1s;
-            border: black;
-            background-color: #fafafa;
-            //padding-top: 10px;
-            //padding-bottom: 100px;
-            margin-bottom: 15px;
-        }
-        
-        .card:hover {
-            box-shadow: 0 0 10px grey
-        }
-        
-        .row h2 {
-            font-size: 2em;
-            padding-bottom: 10px;
-        }
-        .row h6 {
-            font-size: 1.2em;
-            padding-bottom: 5px;
-           
-        }
-
-        .row p {
-            font-size: 1em;
-            text-align: justify;
-        }
-        
-        .detail-icon {
-            height:30px;
-        }
-    
-        .detail {
-            margin-top:1rem;
-        }
-        
-        .card .detail a {
-            width:67%;
-        }
-    }
+    transition: 0.3s;
+    border-radius: 5px;  
 }
 
+.discoverArtists__coverContainer { 
+    width: '100%';
+    height: '100%';
+    border: 1px solid rgb(0 0 0 / 10%);
+    border-radius: 5px;
+}
 
-  
-//   /* mobile/tablet css starts from here  */
-//   @media only screen and (max-width: 1024px) and (min-width: 993px) {
-//     .card .detail a {
-//       width:80%;
-//     }
-//   } 
-  
-//   @media only screen and (max-width: 992px) and (min-width: 768px) {
-//     .card .detail a {
-//       width:100%;
-//     }
-//   } 
-  
-//   @media only screen and (max-width: 767px) and (min-width: 601px) {
-    
-//     .search-result-header h1 {
-//       font-size: 100%;
-//       width:110%;
-//     }
-    
-//     .card {
-//       width: 100%;
-//       height: 98%;
-//       text-align: center;
-//       margin: 0 auto;
-//       float: none;
-//       margin-bottom: 1rem;
-//     }
-
-//     .row h2 {
-//       padding: .5rem;
-//       font-size: 130%;
-//     }
-  
-//     .row h6 {
-//       text-align: center;
-//       font-size: 70%;
-//     }
-  
-//     .card .btn {
-  
-//       margin-bottom: 1rem;
-//     }
-  
-//     .row p {
-//       font-size: 70%;
-//     }
-//   }
-  
-//   @media only screen and (max-width: 600px) {
-  
-//     .container {
-//       margin-top: 3rem;
-//     }
-  
-//     .company-logo {
-//       float: none;
-//     }
-  
-//     .card {
-//       width: 70%;
-//       height: 98%;
-//       text-align: center;
-//       margin: 0 auto;
-//       float: none;
-//       margin-bottom: 1rem;
-//     }
-  
-//     .search-result-header h1 {
-//       width:80%;
-//       text-align: center;
-//       font-size: 80%;
-//       word-wrap: break-word;
-//     }
-   
-//     .card .detail a {
-//       width:80%;
-//     }
-  
-//     .row h2 {
-//       padding: .5rem;
-//       font-size: 130%;
-//     }
-  
-//     .row h6 {
-//       text-align: center;
-//       font-size: 70%;
-//     }
-  
-//     .card .btn {
-//       margin-bottom: 1rem;
-//     }
-  
-//     .row p {
-//       font-size: 70%;
-//     }
-//   }
-
-// .discoverArtists__artistsContainer {
-//     height: "100%";
-//     border-radius: "15px";
-//     text-align: "center";
-//     align-items: "center";
-//     background-color: "grey";
-// }
+.discoverArtists__artistsContainer {
+    height: "100%";
+    border-radius: "15px";
+    text-align: "center";
+    align-items: "center";
+    background-color: "grey";
+} 
