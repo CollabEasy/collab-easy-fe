@@ -17,10 +17,10 @@ export const Footer: React.FC<FooterProps> = ({
         <footer>
           <p className="copyright">Wondor © 2022</p>
           <ul className="list-inline">
-            <li className="list-inline-item"><Link href={toAboutUs().href} passHref>About</Link></li>
-            <li className="list-inline-item"><Link href={toFAQ().href} passHref>FAQs</Link></li>
+            <li className="list-inline-item"><Link href={toAboutUs().href} passHref>About Us</Link></li>
+            {/* <li className="list-inline-item"><Link href={toFAQ().href} passHref>FAQs</Link></li> */}
             <li className="list-inline-item"><Link href={toTerms().href} passHref>Terms</Link></li>
-            <li className="list-inline-item"><Link href={toPrivacy().href} passHref>Privacy Policy</Link></li>
+            <li className="list-inline-item"><Link href={toPrivacy().href} passHref>Privacy</Link></li>
             <li className="list-inline-item"><Link href={toContactUs().href} passHref>Contact Us</Link></li>
           </ul>
         </footer>
