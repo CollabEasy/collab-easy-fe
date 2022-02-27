@@ -50,7 +50,7 @@
     margin: auto;
     flex-direction: column;
     width: 70%;
-    border: 1px solid rgb(0 0 0 / 10%);
+    //border: 1px solid rgb(0 0 0 / 10%);
     transition: 0.3s;
     border-radius: 5px;
     margin-top: 10%;
@@ -62,41 +62,106 @@
     height: '100%';
     border: 1px solid rgb(0 0 0 / 10%);
 }
-.footer_aboutUsHeaderTextContainer {
-    margin-top: 2%;
+.footer_aboutUsBodyTextContainer {
+    margin-top: 48px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
 }
 
-// .card-header {
-//   background-color: grey;
-//   color:white;
-// }
+.footer_aboutUsButtonContainer {
+    display: flex;  
+    justify-content: center;  
+    align-items: center; 
+}
 
-// .card {
-//   margin-bottom: 3rem;
-//   border:none;
-//   background-color: #fafafa;
-//   text-align: left
-// }
+/* mobile css starts from here  */
+@media only screen and (max-width: 1600px) and (min-width: 1201px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 10rem;
+        margin-bottom: 5%;
+    }
 
-// .row {
-//   margin-top: 3rem;
-// }
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+}
 
-// .btn {
-//   color:white;
-//   background-color: #E1C303;
-//   border: none;
-// }
+@media only screen and (max-width: 1200px) and (min-width: 993px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 9rem;
+        margin-bottom: 5%;
+    }
 
-// @media only screen and (max-width: 600px) {
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+} 
 
-//     /* mobile css starts from here  */
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 8rem;
+        margin-bottom: 5%;
+    }
 
-//     .card {
-//       margin: 1rem;
-//     }
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+} 
 
-//     .btn {
-//       margin-left: 1rem;
-//     }
-//   }
+@media only screen and (max-width: 767px) and (min-width: 601px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 7rem;
+        margin-bottom: 5%;
+    }
+
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 400px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 6rem;
+        margin-bottom: 5%;
+    }
+
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 399px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 5rem;
+        margin-bottom: 5%;
+    }
+
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+}
