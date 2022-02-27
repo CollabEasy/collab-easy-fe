@@ -18,7 +18,7 @@ const GetInspired: NextPage<{}> = () => {
       <div className="footer_aboutUsBodyTextContainer">
         <div>
           <h5 className="text-center">What is Wondor?</h5>
-          <p className="">
+          <p>
             Content creators are spread out on various social media platforms - some on instagram, others on youtube,
             and we are here to help you discover these creators so that you can work with them on your next big thing.
             Search for the art category to find the artists whose work most inpire you to work with them.<br></br><br></br>
