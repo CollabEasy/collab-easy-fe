@@ -93,7 +93,7 @@ const DiscoverArtist = ({
 
                 </Button>
 
-                <Button block style={{ color: 'white',  backgroundColor: 'rgb(172, 206, 180)', whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                <Button block type="primary" style={{ color: 'white',  borderColor: 'rgb(172, 206, 180)', backgroundColor: 'rgb(172, 206, 180)', whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
                     key={index}
                     href={routeToHref(toArtistProfile(artist.slug))}
