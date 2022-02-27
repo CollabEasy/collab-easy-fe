@@ -13,7 +13,10 @@ import musiciansImg from '../public/images/musicians.png';
 import singersImg from '../public/images/singers.png';
 import paintersImg from '../public/images/painters.png';
 import dancersImg from '../public/images/dancers.png';
+import guitaristImg from '../public/images/guitarist.png';
+import writerImg from '../public/images/writer.png';
 import inspireImg from '../public/images/inspire.png';
+import howtoImg from '../public/images/howto.png';
 import { Card } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { data } from 'copy';
@@ -49,29 +52,29 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
   const { toArtist } = useRoutesContext();
 
   useEffect(() => {
-    if ( user ){
-      if ( user.new_user ){
+    if (user) {
+      if (user.new_user) {
         setShowProfileModal(true);
       }
-    } 
+    }
   }, [user])
 
   useEffect(() => {
-    if ( artistListData.status === "success" ){
+    if (artistListData.status === "success") {
       setShowProfileModal(false);
     }
   }, [artistListData]);
-  
+
   return (
     <>
       <Title title="Wondor | meet the artists" />
-      { loginModalDetails.openModal && !user.new_user && (
-          <LoginModal />
-        )
+      {loginModalDetails.openModal && !user.new_user && (
+        <LoginModal />
+      )
       }
-      { showProfileModal && (
-          <NewUserModal />
-        )
+      {showProfileModal && (
+        <NewUserModal />
+      )
       }
       <div className="row">
         <div id="landing-desktop-img" className="col-md-12 m-0 p-0">
@@ -91,49 +94,65 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           <h2 className="custom-padding">Popular categories</h2>
           <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'musician'} passHref>
+              <Link href={toArtist().href + 'music'} passHref>
                 <Card hoverable style={{ width: '100%' }} cover={<Image src={musiciansImg} alt="cards" />}>
-                  <Meta title="Musicians" />
+                  <Meta title="Musician" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'singer'} passHref>
+              <Link href={toArtist().href + 'vocals'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={singersImg} alt="cards" />}>
-                  <Meta title="Singers" />
+                  <Meta title="Singer" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'painter'} passHref>
+              <Link href={toArtist().href + 'paint'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={paintersImg} alt="cards" />}>
-                  <Meta title="Painters" />
+                  <Meta title="Painter" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'dancer'} passHref>
+              <Link href={toArtist().href + 'dance'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={dancersImg} alt="cards" />}>
-                  <Meta title="Dancers" />
+                  <Meta title="Choreographer" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'dancer'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={dancersImg} alt="cards" />}>
-                  <Meta title="Dancers" />
+              <Link href={toArtist().href + 'music'} passHref>
+                <Card hoverable style={{ height: '100%' }} cover={<Image src={guitaristImg} alt="cards" />}>
+                  <Meta title="Guitarist" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'dancer'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={dancersImg} alt="cards" />}>
-                  <Meta title="Dancers" />
+              <Link href={toArtist().href + 'write'} passHref>
+                <Card hoverable style={{ height: '100%' }} cover={<Image src={writerImg} alt="cards" />}>
+                  <Meta title="Writer" />
                 </Card>
               </Link>
             </div>
           </div>
         </div>
+        {/* <div>
+          <div className="row custom-padding">
+            <div className="col-12 col-sm-12 col-md-6 col-xl-6">
+              <Link href={toArtist().href + 'music'} passHref>
+                <Card hoverable style={{ height: '100%' }} cover={<Image src={howtoImg} alt="cards" />}>
+                </Card>
+              </Link>
+            </div>
+            <div className="col-12 col-sm-12 col-md-6 col-xl-6">
+              <Link href={toArtist().href + 'music'} passHref>
+                <Card hoverable style={{ height: '100%' }} cover={<Image src={inspireImg} alt="cards" />}>
+                </Card>
+              </Link>
+            </div>
+          </div>
+        </div> */}
       </div>
     </>
   )
