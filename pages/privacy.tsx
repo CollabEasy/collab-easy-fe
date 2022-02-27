@@ -7,8 +7,8 @@ const Privacy: NextPage<{}> = () => {
       <div className="footer_privacySectionContainer">
         <h1>Terms & Conditions</h1>
         <p>
-          Dworks AU Pty Ltd built VisaList for Commercial purpose. 
-          This SERVICE is provided by VisaList and is intended for use as is. <br></br>
+          We built Wondor for commercial purpose. 
+          This SERVICE is provided by Wondor and is intended for use as is. <br></br>
           This page is used to inform website visitors regarding my policies with the collection, use, 
           and disclosure of Personal Information if anyone decided to use my Service.<br></br>
           If you choose to use my Service, then you agree to the collection and use of information in relation to this policy. 
