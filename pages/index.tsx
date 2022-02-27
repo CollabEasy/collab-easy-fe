@@ -137,7 +137,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             </div>
           </div>
         </div>
-        <div>
+        {/* <div>
           <div className="row custom-padding">
             <div className="col-12 col-sm-12 col-md-6 col-xl-6">
               <Link href={toArtist().href + 'music'} passHref>
@@ -147,14 +147,12 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             </div>
             <div className="col-12 col-sm-12 col-md-6 col-xl-6">
               <Link href={toArtist().href + 'music'} passHref>
-                {/* <Card hoverable style={{ height: '100%' }} cover={<Image src={inspireImg} alt="cards" />}>
-                </Card> */}
-                <Card  cover={<Image src={inspireImg} alt="cards"/>}>
+                <Card hoverable style={{ height: '100%' }} cover={<Image src={inspireImg} alt="cards" />}>
                 </Card>
               </Link>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   )
