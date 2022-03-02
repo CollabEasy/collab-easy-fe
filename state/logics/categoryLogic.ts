@@ -27,3 +27,22 @@ export const fetchArtistsByCategoryLogic = createLogic<
     }
   },
 });
+
+export const fetchArtistCategoriesLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.getAllCategories>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.FETCH_ALL_CATEGORIES],
+  async process({ api }, dispatch, done) {
+    try {
+      dispatch(actions.getAllCategoriesRequest())
+      const categoriesData = await categoryApi.getAllCategories();
+      dispatch(actions.getAllCategoriesSuccess(categoriesData));
+    } catch (error) {
+    } finally {
+      done();
+    }
+  },
+});

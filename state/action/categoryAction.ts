@@ -27,3 +27,22 @@ export const fetchArtistsByCategorySuccess = (data: any) => ({
   }
 })
 
+export const getAllCategories = () => ({
+  type: actionType.FETCH_ALL_CATEGORIES,
+  payload: {},
+});
+
+
+export const getAllCategoriesRequest = () => ({
+  type: actionType.FETCH_ALL_CATEGORIES_REQUEST,
+  payload: {},
+});
+
+export const getAllCategoriesSuccess = (data: any) => ({
+  type: actionType.FETCH_ALL_CATEGORIES_SUCCESS,
+  payload: {
+    data
+  },
+});
+
+
