@@ -8,11 +8,12 @@ import { Dispatch } from "redux";
 import { AppState } from "types/states";
 import { GoogleLogin } from "react-google-login";
 import { User } from "types/model";
+import { useRoutesContext } from "../components/routeContext";
+import Link from 'next/link';
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user;
   const loginModalDetails = state.home.loginModalDetails;
-
   return { loginModalDetails, user };
 };
 
@@ -22,13 +23,11 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
-
 type Props = {} & ConnectedProps<typeof connector>;
 
 const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
   const [visible, setVisible] = useState(true);
   const [errorMessageVisible, setErrorMessageVisible] = useState(false);
-
   const closeLoginModal = () => {
     setVisible(false);
     closeLoginModalAction();
@@ -42,6 +41,8 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
   const OnFailureCallback = (response) => {
     setErrorMessageVisible(true);
   };
+
+  const { toTerms, toPrivacy } = useRoutesContext()
 
   return (
     <Modal
@@ -87,8 +88,9 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
               )}
               <div className="policy-container">
                 <span className="f-14 md-cop000">
-                  By continuing, you agree to Wondor’s Terms of Service and
-                  acknowledge you&apos;ve read our Privacy Policy.
+                  By continuing, you agree to Wondor’s 
+                  <a target="_blank" href={toPrivacy().href} rel="noopener noreferrer">Terms of Service</a> and
+                  acknowledge you&apos;ve read our <Link href={toPrivacy().href} passHref>Privacy Policy</Link>.
                 </span>
               </div>
             </div>
