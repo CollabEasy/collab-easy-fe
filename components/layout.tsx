@@ -8,6 +8,7 @@ import { updateLoginData, fetchArtistPreferences } from "state/action";
 import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
 import { Dispatch } from "redux";
+import { getPublicRoutes } from "helpers/helper";
 import RoutesContext from "./routeContext";
 
 const mapStateToProps = (state: AppState) => ({
@@ -29,10 +30,11 @@ const Layout = ({ user, children, updateLoggedInData, fetchArtistPreferences } :
   const ISSERVER = typeof window === "undefined";
   const router = useRouter();
   let accessToken = null;
+  const publicRoutes = getPublicRoutes();
 
   if (!ISSERVER && (user === undefined || Object.keys(user).length === 1)) {
     if (localStorage.getItem("token") === null) {
-      if (router.pathname !== '/') router.push("/");
+      if (router.pathname !== '/' && !publicRoutes.includes(router.pathname)) router.push("/");
     } else {
       accessToken = localStorage.getItem('token');
       const user = getLoginDetails();

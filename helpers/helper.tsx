@@ -28,3 +28,12 @@ export function allowedFileTypes() {
 
     return allowed;
 }
+
+export function getPublicRoutes() {
+    return [
+        '/about-us',
+        '/terms-and-policy',
+        '/privacy',
+        '/contact-us',
+    ]
+}
