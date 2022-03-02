@@ -85,7 +85,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         </div>
         <div id="text-content">
           <h1>Meet artists to collaborate with on your next big idea.</h1>
-          <p>Wondor connects you with artists from around the globe.  Work with them to convert your idea into a masterpiece because we believe together we create better!</p>
+          <p>Wondor connects artists from around the globe. Work with others to convert your idea into a masterpiece because we believe together you create better!</p>
         </div>
       </div>
 
