@@ -2,9 +2,13 @@ import { NextPage } from 'next'
 import Image from "next/image";
 import { Button } from "antd";
 import Link from "next/link";
+import { useRoutesContext } from "components/routeContext";
 import headerImg from "public/images/aboutUsheader.png";
+import { routeToHref } from "config/routes";
 
 const GetInspired: NextPage<{}> = () => {
+  const { toDiscover } = useRoutesContext();
+
   return (
     <div className="footer_aboutUsContainer">
       <div className="footer_aboutUsHeaderPictureContainer">
@@ -46,7 +50,7 @@ const GetInspired: NextPage<{}> = () => {
       <div className="footer_aboutUsButtonContainer">
         <Button type="primary">
           <Link
-            href=""
+            href={routeToHref(toDiscover())}
             passHref
           >Lets Collaborate</Link>
         </Button>
