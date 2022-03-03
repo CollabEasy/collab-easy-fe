@@ -3,11 +3,12 @@ import Image from "next/image";
 import { Button } from "antd";
 import Link from "next/link";
 import headerImg from "public/images/contactUs.png";
+import { useRoutesContext } from "components/routeContext";
+import { routeToHref } from "config/routes";
 
 const ContactUs: NextPage<{}> = () => {
+  const { toDiscover } = useRoutesContext();
   return (
-
-
     <div className="footer_contactUsContainer">
       <div className="footer_contactUsSectionContainer">
         <div className="footer_contactUsImage">
@@ -42,7 +43,7 @@ const ContactUs: NextPage<{}> = () => {
           <div className="footer_contactUsButtonContainer">
           <Button type="primary">
             <Link
-              href=""
+              href={routeToHref(toDiscover())}
               passHref
             >Explore Wondor</Link>
           </Button>
