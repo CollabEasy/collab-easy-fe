@@ -138,14 +138,15 @@ const EditProfile = ({
   function handleChange(value) {
     console.log("Rabbal ", value);
     setSelectedCategories(value);
+  }
 
-    // let dataToSend = {
-    //   initial: user.new_user,
-    //   artNames: selectedCategories,
-    // };
+  const handleSubmit = () => {
+    let dataToSend = {
+      artNames: selectedCategories,
+    };
 
-    // postArtistArt(dataToSend);
-    // updateArtistPreference("upForCollaboration", upForCollaboration);
+    postArtistArt(dataToSend);
+    updateArtistPreference("upForCollaboration", upForCollaboration);
   }
 
   const getActiveTab = () => {
@@ -441,7 +442,7 @@ const EditProfile = ({
                         <Button
                           type="primary"
                           htmlType="submit"
-                          onClick={submitForm}
+                          onClick={handleSubmit}
                           loading={isUpdatingProfile}
                         >
                           {isUpdatingProfile ? "Saving..." : "Save"}
