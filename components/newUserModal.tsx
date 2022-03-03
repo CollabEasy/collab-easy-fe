@@ -34,13 +34,13 @@ const { Option } = Select;
 
 const mapStateToProps = (state: AppState) => {
   return {
-    artistCategories: state.artist.artistCategories,
+    categories: state.category.categories,
     user: state.user.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getArtistCategories: () => dispatch(actions.fetchArtistCategoriesData()),
+  getAllCategories: () => dispatch(actions.getAllCategories()),
   postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistPreference: (key: string, value: any) => dispatch(actions.updateArtistPreference(key, value)),
 });
@@ -51,14 +51,13 @@ type Props = {} & ConnectedProps<typeof connector>;
 
 const NewUserModal = ({
   user,
-  artistCategories,
+  categories,
   postArtistArt,
-  getArtistCategories,
+  getAllCategories,
   updateArtistPreference,
 }: Props) => {
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(true);
-  const [categoriesArr, setCategoriesArr] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState("");
   const [collaborationCheck, setCollaborationCheck] = useState(false);
   const [userName, setUserName] = useState("");
@@ -88,14 +87,8 @@ const NewUserModal = ({
   };
 
   useEffect(() => {
-    getArtistCategories();
-  }, [getArtistCategories]);
-
-  useEffect(() => {
-    if (artistCategories.status === "success") {
-      setCategoriesArr(artistCategories.data);
-    }
-  }, [artistCategories]);
+    if (categories.length === 0) getAllCategories();
+  }, [categories.length, getAllCategories]);
 
   useEffect(() => {
     if (user?.first_name) {
@@ -179,8 +172,8 @@ const NewUserModal = ({
                   onChange={handleChange}
                   optionLabelProp="label"
                 >
-                  {categoriesArr.length > 0 &&
-                    categoriesArr.map((category, index) => (
+                  {categories.length > 0 &&
+                    categories.map((category, index) => (
                       <Option value={category} label={category} key={index}>
                         <div className="demo-option-label-item">{category}</div>
                       </Option>

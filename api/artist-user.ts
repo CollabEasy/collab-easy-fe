@@ -21,16 +21,6 @@ const postConfig = (dataToSend) => {
   }
 }
 
-export const getArtistCategoryData = async () => {
-  const config = getConfig();
-  try {
-    const categories = await api.call('api/v1/artist/categories', config);
-    return categories;
-  } catch (error) {
-    throw error;
-  }
-}
-
 export const updateArtistCategories = async (data: any) => {
 	const config = postConfig(data);
 	try {

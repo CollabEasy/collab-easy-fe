@@ -21,11 +21,24 @@ const getConfig = () => {
 };
 
 export const getArtistsByCategoryAPI = async (id: number) => {
-    const config = getConfig();
-    try {
-      const result = await api.call(`api/v1/artist/category/${id}/artists`, config);
-      return result;
-    } catch (error) {
-      throw error;
-    }
+  const config = getConfig();
+  try {
+    const result = await api.call(
+      `api/v1/artist/category/${id}/artists`,
+      config
+    );
+    return result;
+  } catch (error) {
+    throw error;
   }
+};
+
+export const getAllCategories = async () => {
+  const config = getConfig();
+  try {
+    const categories = await api.call("api/v1/artist/categories", config);
+    return categories;
+  } catch (error) {
+    throw error;
+  }
+};

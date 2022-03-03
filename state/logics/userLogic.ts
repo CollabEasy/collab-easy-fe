@@ -90,24 +90,6 @@ export const fetchUserDataLogic = createLogic<
   },
 });
 
-export const fetchArtistCategoriesLogic = createLogic<
-  AppState,
-  FSACreatorPayload<typeof actions.fetchArtistCategoriesData>,
-  any,
-  LogicDeps
->({
-  type: [actionType.FETCH_ARTIST_CATEGORIES_DATA],
-  async process({ api }, dispatch, done) {
-    try {
-      const categoriesData = await api.artistApi.getArtistCategoryData();
-      dispatch(actions.setArtistCategoriesData(categoriesData));
-    } catch (error) {
-    } finally {
-      done();
-    }
-  },
-});
-
 export const updateArtistArtLogic = createLogic<
   AppState,
   FSACreatorPayload<typeof actions.updateArtistArt>,

@@ -4,6 +4,8 @@ import { CategoryState } from "types/states/category";
 const initialState : CategoryState = {
     selectedId: -1,
     isFetchingArtists: false,
+    isFetchingCategories: false,
+    categories: [],
     artists: [],
 }
 
@@ -25,6 +27,18 @@ const categoryReducer = (state = initialState, action): CategoryState => {
                 ...state,
                 artists: action.payload.data.data,
                 isFetchingArtists: false,
+            }
+            case actionType.FETCH_ALL_CATEGORIES_REQUEST:
+                return {
+                    ...state,
+                    isFetchingCategories: true,
+                }
+        case actionType.FETCH_ALL_CATEGORIES_SUCCESS:
+            console.log("data: ", action.payload);
+            return {
+                ...state,
+                isFetchingCategories: false,
+                categories: action.payload.data.data,
             }
         default:
             return state;
