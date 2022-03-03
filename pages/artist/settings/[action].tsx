@@ -107,7 +107,6 @@ const EditProfile = ({
 }: Props) => {
   const [activeTabKey, setActiveTabKey] = useState("1");
   const [selectedCategories, setSelectedCategories] = useState("");
-  const [categoriesArr, setCategoriesArr] = useState([]);
   const [upForCollaboration, setUpForCollaboration] = useState(false);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"

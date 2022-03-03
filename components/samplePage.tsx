@@ -1,4 +1,3 @@
-
 /* eslint-disable @next/next/no-img-element */
 import avatar from "../public/images/avatar.png";
 import React, { ReactElement, useEffect, useState } from "react";
