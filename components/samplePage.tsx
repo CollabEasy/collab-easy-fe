@@ -172,6 +172,7 @@ const SamplePage = ({
         </div>
       );
     }
+
     return sampleTiles;
   };
 
