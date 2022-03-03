@@ -1,0 +1,258 @@
+.discoverArtists__listingPageContainer {
+    //display: flex;
+    //padding: 200px;
+    position: relative;
+    margin: auto;
+  //  flex-direction: column;
+    width: 70%;
+    //transition: 0.3s;
+    //border-radius: 5px; 
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    .discoverArtists__desktopCoverContainer { 
+        width: '100%';
+        height: '100%';
+        border: 1px solid rgb(0 0 0 / 10%);
+        //border-radius: 5px;
+    }
+    .discoverArtists__mobileCoverContainer {
+        display: none;
+    }
+    .listingContainer {
+        padding-top: 20px;
+        padding-left: 20px;
+
+        .artits-card {
+            width: 100%;
+            height: 90%;
+            transition: box-shadow .1s;
+            border: black;
+            background-color: #fafafa;
+            //padding-top: 10px;
+            //padding-bottom: 100px;
+            margin-bottom: 15px;
+
+            // .artits-card:hover {
+            //     box-shadow: 0 0 10px grey
+            // }  
+            &:hover {
+                //border-color: coral;
+                //transform: translateY(-5px);
+                box-shadow: 2px 2px 2px rgba(63, 63, 63, 0.3);
+                transition: all .25s ease-in-out;
+              }
+            .dot {
+                height: 7px;
+                width: 7px;
+                margin-left: 6px;
+                margin-right: 6px;
+                margin-top: 3px;
+                background-color: rgb(172, 206, 180);
+                border-radius: 50%;
+                display: inline-block
+            }
+            
+            .spec-1 {
+                color: #938787;
+                font-size: 15px
+            }
+            
+            h5 {
+                font-weight: 400
+            }
+            
+            .para {
+                font-size: 16px
+            }
+        }
+    }
+}
+  
+/* mobile/tablet css starts from here  */  
+@media only screen and (max-width: 767px) and (min-width: 601px) {
+    
+    .discoverArtists__listingPageContainer {
+        width: 90%;
+    
+        .discoverArtists__desktopCoverContainer { 
+            display: none;
+        }
+        .discoverArtists__mobileCoverContainer {
+            background-color: rgb(179, 201, 119);
+            display: block;
+            margin-top: 50px;
+            padding-top: 10px;
+            text-align: center;
+            h1 {
+                font-size: small;
+            }
+            p {
+                font-size: x-small;
+                padding-left: 10%;
+                padding-right: 10%;
+                padding-bottom: 2%;
+            }
+        }
+
+        .listingContainer {
+            padding-top: 10px;
+            padding-left: 20px;
+            .artits-card {
+                width: 100%;
+                height: 90%;
+                border: black;
+                background-color: #fafafa;
+                .artist-profile-picture {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 30%;
+                }
+                .dot {
+                    height: 8px;
+                    width: 8px;
+                }
+                
+                h5 {
+                    font-size: 20px;
+                    text-align: center;
+                }
+
+                .spec-1 {
+                    font-size: 18px;
+                    text-align: center;
+                }
+
+                .para {
+                    font-size: 15px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+  }
+
+@media only screen and (max-width: 600px) and  (min-width: 400px) {
+    .discoverArtists__listingPageContainer {
+        width: 90%;
+    
+        .discoverArtists__desktopCoverContainer { 
+            display: none;
+        }
+        .discoverArtists__mobileCoverContainer {
+            background-color: rgb(179, 201, 119);
+            display: block;
+            margin-top: 50px;
+            padding-top: 10px;
+            text-align: center;
+            h1 {
+                font-size: small;
+            }
+            p {
+                font-size: x-small;
+                padding-left: 10%;
+                padding-right: 10%;
+                padding-bottom: 2%;
+            }
+        }
+
+        .listingContainer {
+            padding-top: 10px;
+            padding-left: 20px;
+            .artits-card {
+                width: 100%;
+                height: 90%;
+                border: black;
+                background-color: #fafafa;
+                .artist-profile-picture {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 35%;
+                }
+                .dot {
+                    height: 8px;
+                    width: 8px;
+                }
+                
+                h5 {
+                    font-size: 20px;
+                    text-align: center;
+                }
+
+                .spec-1 {
+                    font-size: 15px;
+                    text-align: center;
+                }
+
+                .para {
+                    font-size: 12px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+  
+@media only screen and (max-width: 399px) {
+    .discoverArtists__listingPageContainer {
+        width: 90%;
+    
+        .discoverArtists__desktopCoverContainer { 
+            display: none;
+        }
+        .discoverArtists__mobileCoverContainer {
+            background-color: rgb(179, 201, 119);
+            display: block;
+            margin-top: 50px;
+            padding-top: 10px;
+            text-align: center;
+            h1 {
+                font-size: small;
+            }
+            p {
+                font-size: x-small;
+                padding-left: 10%;
+                padding-right: 10%;
+                padding-bottom: 2%;
+            }
+        }
+
+        .listingContainer {
+            padding-top: 10px;
+            padding-left: 20px;
+            .artits-card {
+                width: 100%;
+                height: 90%;
+                border: black;
+                background-color: #fafafa;
+                .artist-profile-picture {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 50%;
+                }
+                .dot {
+                    height: 5px;
+                    width: 5px;
+                }
+                
+                h5 {
+                    font-size: 15px;
+                    text-align: center;
+                }
+
+                .spec-1 {
+                    font-size: 12px;
+                    text-align: center;
+                }
+
+                .para {
+                    font-size: 10px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

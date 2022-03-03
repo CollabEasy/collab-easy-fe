@@ -8,7 +8,7 @@
 #text-content {
   position: absolute;
   margin-left: 100px;
-  top: 35%;
+  top: 20%;
   width:30%;
   word-wrap: break-word;
 
@@ -192,6 +192,12 @@
       font-size: 8px;
     }
   }
+
+  .card-rw {
+    h2 {
+      font-size: 18px;
+    }
+  }
 }
 
 @media only screen and (max-width: 399px) {
@@ -204,6 +210,11 @@
     p {
       margin: 3px 0;
       font-size: 4px;
+    }
+  }
+  .card-rw {
+    h2 {
+      font-size: 18px;
     }
   }
 }

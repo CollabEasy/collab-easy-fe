@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { SearchOutlined, CloseOutlined } from '@ant-design/icons';
+import { Dispatch } from "redux";
 import { getSearchResult } from 'api/search'; 
 import { 
     debounceTime, distinctUntilChanged, switchMap, map, filter,
@@ -8,7 +9,20 @@ import { debounce } from 'lodash';
 import { Subject, merge, of } from 'rxjs';
 import { useRouter } from 'next/router'
 import { useRoutesContext } from "components/routeContext";
-const Search = () => {
+import { AppState } from 'state';
+import * as action from '../state/action/categoryAction';
+import { connect, ConnectedProps } from 'react-redux';
+
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    setSelectedArtId: (id: number) => dispatch(action.setSelectedId(id)),
+});
+  
+const connector = connect(null, mapDispatchToProps);
+
+type Props = {} & ConnectedProps<typeof connector>;
+
+const Search = ({ setSelectedArtId } : Props) => {
     const [inputVal, setInputVal] = useState('');
     const [searchData, setSearchData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -94,9 +108,9 @@ const Search = () => {
         }
     }, [onSearch$]);
 
-    const handleSearchClick = (href) => (e) => {
+    const handleSearchClick = (href, data) => (e) => {
         resetState();
-
+        if (data.entityType === 'ART') setSelectedArtId(data.id)
         e.preventDefault();
         router.push(href);
     }
@@ -110,7 +124,7 @@ const Search = () => {
                 <input 
                     type="text" 
                     className="search-bar__input" 
-                    placeholder="search artists"
+                    placeholder="Search artist, art category etc."
                     aria-label="search"
                     value={inputVal}
                     onChange={(event) => {
@@ -128,7 +142,7 @@ const Search = () => {
                         className="search-bar__cross"
                         onClick={clearInput}
                     >
-                        <CloseOutlined style={{ fontSize: '16px', paddingBottom: '5px'}} />
+                        <CloseOutlined className="search-bar__cross__cross-icon" />
                     </button> 
                 }
             </div>
@@ -145,7 +159,7 @@ const Search = () => {
                         const searchRow = entityType === 'ART' 
                             ? (
                                 <div key = {i} className="typeahead-item">
-                                    <div onMouseDown={handleSearchClick(href)}>
+                                    <div onMouseDown={handleSearchClick(href, data)}>
                                         <span className="typeahead-item__name">{name}</span>
                                         <span className="typeahead-item__category">{entityType}</span>
                                     </div>
@@ -154,7 +168,7 @@ const Search = () => {
                             )
                             : (
                                 <div key = {i} className="typeahead-item">
-                                    <div onMouseDown={handleSearchClick(href)}>
+                                    <div onMouseDown={handleSearchClick(href, data)}>
                                         <span className="typeahead-item__name">{name}</span>
                                         <span className="typeahead-item__category">{entityType}</span>
                                     </div>
@@ -169,4 +183,4 @@ const Search = () => {
     );
 }
 
-export default Search;
+export default connector(Search);

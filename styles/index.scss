@@ -11,95 +11,22 @@
 @import "./components/samplePage.scss";
 @import "./components/sampleTile.scss";
 @import "./components/confirmationModal.scss";
+@import "listingArtists.scss";
+@import "./footer.scss";
+
+html, body {
+  max-width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
 
 .cursor-pointer {
     cursor: pointer;
 }
+
 .f-w-b {font-weight: $font-bolder};
-#footer-social span {
-    margin: 0px 1em;
-    display: inline-block;
-}
 
-#footer-social span em {
-    font-size: 2em;
-    cursor: pointer;
-}
-
-.ul-css {
-    list-style-type: none;
-}
-.clm-name {
-    padding-left: 2em;
-}
-
-.rights-div {
-    padding-top: 3em;
-}
-
-// https://www.web-eau.net/blog/10-best-footer-html-css-snippets
-.footer-basic {
-  position: absolute;
-  width: 100%;  
-  // padding-top:3px;
-  // padding-bottom: 1px;
-  padding-top:3px;
-  padding-bottom: 1px;
-  background-color:#e2e4e6;
-  color:#343232;
-}
-
-.footer-basic ul {
-  //padding:0;
-  list-style:none;
-  text-align:center;
-  font-size:12px;
-  //margin-bottom:0;
-  //line-height:1.6;
-}
-
-.footer-basic li {
-  padding:0 20px;
-}
-
-.footer-basic ul a {
-  color:inherit;
-  text-decoration:none;
-  opacity:0.8;
-}
-
-.footer-basic ul a:hover {
-  opacity:1;
-}
-
-
-// .footer-basic .social {
-//   text-align:center;
-//   padding-bottom:25px;
-// }
-
-// .footer-basic .social > a {
-//   font-size:24px;
-//   width:40px;
-//   height:40px;
-//   line-height:40px;
-//   display:inline-block;
-//   text-align:center;
-//   border-radius:50%;
-//   border:1px solid #ccc;
-//   margin:0 8px;
-//   color:inherit;
-//   opacity:0.75;
-// }
-
-.footer-basic .social > a:hover {
-  opacity:0.9;
-}
-
-.footer-basic .copyright {
-  margin-top:15px;
-  text-align:center;
-  font-size:13px;
-  color:#aaa;
-  margin-bottom:0;
+.page-content {
+  margin-top: -10px;
+  min-height: calc(100vh - 70px);
 }

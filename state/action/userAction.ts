@@ -78,13 +78,8 @@ export const resetUserLoggedIn = () => ({
   type: actionType.RESET_USER_LOGGED_IN
 });
 
-export const fetchArtistCategoriesData = () => ({
-  type: actionType.FETCH_ARTIST_CATEGORIES_DATA,
-  payload: {},
-});
-
 export const setArtistCategoriesData = (data: any) => ({
-  type: actionType.SET_ARTIST_CATEGORIES_DATA,
+  type: actionType.SET_ALL_CATEGORIES_DATA,
   payload: {
     data
   }

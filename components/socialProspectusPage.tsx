@@ -24,11 +24,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({});
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
+  isSelf: boolean;
   user: User;
   socialProspectus: UserSocialProspectus[];
 } & ConnectedProps<typeof connector>;
 
-const SamplePage = ({ user, socialProspectus }: Props) => {
+const SamplePage = ({ user, isSelf, socialProspectus }: Props) => {
   const router = useRouter();
   const [showCollabModal, setShowCollabModal] = useState(false);
 
@@ -57,7 +58,7 @@ const SamplePage = ({ user, socialProspectus }: Props) => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-        {socialProspectus.length === 0 && (
+        {socialProspectus.length === 0 && isSelf && (
           <Button
             shape="round"
             //size="large"

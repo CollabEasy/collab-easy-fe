@@ -1,15 +1,16 @@
 .container {
     display: flex;
-    width: 100%;
+    max-width: 100%;
+    padding-left: 0px;
 }
 
 .left-image {
-    width: 55%;
+    width: 60%;
     position: relative;
 }
 
 .profile-form {
-    width: 45%;
+    width: 40%;
     padding: 50px 25px;
     p {
       margin-bottom: 25px;  
@@ -26,7 +27,29 @@
     }
 }
 
-@media (max-width: 600px) {
+// Please write media query for all screen sizes below this line.
+@media only screen and (max-width: 1024px) and (min-width: 993px) {
+} 
+  
+@media only screen and (max-width: 992px) and (min-width: 681px) {
+}
+
+@media only screen and (max-width: 680px) and (min-width: 601px) {
+    .container {
+        flex-direction: column-reverse;
+      }
+      .profile-form {
+          width: 100%;
+          p {
+              text-align: center;
+            }
+      }
+      .profile-title {
+          text-align: center;
+      }
+}
+  
+@media only screen and (max-width: 600px) and  (min-width: 400px) {
     .container {
       flex-direction: column-reverse;
     }
@@ -39,4 +62,19 @@
     .profile-title {
         text-align: center;
     }
-  }
+}
+
+@media only screen and (max-width: 399px) {
+    .container {
+        flex-direction: column-reverse;
+      }
+      .profile-form {
+          width: 100%;
+          p {
+              text-align: center;
+            }
+      }
+      .profile-title {
+          text-align: center;
+      }
+}

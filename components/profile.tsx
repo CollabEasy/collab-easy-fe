@@ -114,7 +114,7 @@ const Profile = ({ user, isSelf, userSamples, fetchArtistSamples }: Props) => {
             )}
             <TabPane tab="Social Prospectus" key="4">
               <div className="artistProfile__tabContainer">
-              <SocialProspectusPage user={user} socialProspectus={userSocialProspectus}/>
+              <SocialProspectusPage isSelf={isSelf} user={user} socialProspectus={userSocialProspectus}/>
               </div>
             </TabPane>
           </Tabs>
