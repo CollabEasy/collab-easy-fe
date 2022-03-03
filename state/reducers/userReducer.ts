@@ -1,14 +1,15 @@
-import * as actionType from '../actionTypes/userActionTypes'
+import * as actionType from "../actionTypes/userActionTypes";
 import { UserState } from "types/states";
 
 const initialState: UserState = {
-  user: {new_user: false},
+  user: { new_user: false },
   otherUser: {},
   isUpdatingProfile: false,
   isUpdatingPrefs: "",
   isLoggedIn: false,
   preferences: {},
   errors: {},
+  artCategories: []
 };
 
 const userReducer = (state = initialState, action): UserState => {
@@ -36,13 +37,13 @@ const userReducer = (state = initialState, action): UserState => {
       return {
         ...state,
         isLoggedIn: false,
-        user: {new_user: false},
+        user: { new_user: false },
         errors: {},
       };
     case actionType.USER_LOGIN_REQUEST:
       return {
         ...state,
-        user: {new_user: false},
+        user: { new_user: false },
         isLoggedIn: false,
         errors: {},
       };
@@ -50,7 +51,7 @@ const userReducer = (state = initialState, action): UserState => {
       return {
         ...state,
         isUpdatingProfile: true,
-      }
+      };
     case actionType.USER_DETAILS_UPDATED:
       return {
         ...state,
@@ -71,7 +72,6 @@ const userReducer = (state = initialState, action): UserState => {
         isUpdatingPrefs: action.payload.key,
       };
     case actionType.UPDATE_ARTIST_PREFERENCE_SUCCESS:
-      
       const prefKey = action.payload.key;
       const prefVal = action.payload.value;
 
@@ -80,15 +80,30 @@ const userReducer = (state = initialState, action): UserState => {
         isUpdatingPrefs: "",
         preferences: {
           ...state.preferences,
-          [prefKey]: prefVal
-        }
+          [prefKey]: prefVal,
+        },
       };
     case actionType.FETCH_ARTIST_PREFERENCES_SUCCESS:
       return {
         ...state,
         isUpdatingPrefs: "",
-        preferences: action.payload.data.data['preferences'] !== undefined ? action.payload.data.data.preferences: {},
-      }
+        preferences:
+          action.payload.data.data["preferences"] !== undefined
+            ? action.payload.data.data.preferences
+            : {},
+      };
+    case actionType.UPDATE_ARTIST_ART_REQUEST:
+      return {
+        ...state,
+        isUpdatingProfile: true,
+      };
+    case actionType.UPDATE_ARTIST_ART_SUCCESS:
+      console.log("action data : ", action.payload.data);
+      return {
+        ...state,
+        isUpdatingProfile: false,
+        artCategories: action.payload.data,
+      };
     default:
       return state;
   }

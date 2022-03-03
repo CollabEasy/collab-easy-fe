@@ -92,6 +92,11 @@ export const updateArtistArt = (data: any) => ({
 	},
 });
 
+export const updateArtistArtRequest = () => ({
+  type: actionType.UPDATE_ARTIST_ART_REQUEST,
+  payload: {},
+})
+
 export const updateArtistArtSuccess = (data: any) => ({
 	type: actionType.UPDATE_ARTIST_ART_SUCCESS,
 	payload: {
