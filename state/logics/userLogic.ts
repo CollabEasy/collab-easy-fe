@@ -99,6 +99,7 @@ export const updateArtistArtLogic = createLogic<
   type: [actionType.UPDATE_ARTIST_ART],
   async process({ action, api }, dispatch, done) {
     try {
+      dispatch(actions.updateArtistArtRequest());
       const { data } = action.payload;
       const result = await api.artistApi.updateArtistCategories(data);
       dispatch(actions.updateArtistArtSuccess(result));

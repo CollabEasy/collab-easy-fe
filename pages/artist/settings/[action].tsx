@@ -1,6 +1,6 @@
 import { User } from "types/model";
 import moment from "moment";
-import { InputNumber, Tabs } from "antd";
+import { InputNumber, message, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import {
   Upload,
@@ -32,6 +32,7 @@ import State from "state";
 import * as actions from "state/action";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
+import { getAllCategories } from "api/category";
 
 const { TabPane } = Tabs;
 
@@ -63,6 +64,7 @@ const mapStateToProps = (state: AppState) => ({
   isUpdatingPrefs: state.user.isUpdatingPrefs,
   preferences: state.user.preferences,
   samples: state.sample.samples,
+  categories: state.category.categories,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -71,10 +73,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(updateArtistPreference(key, value)),
   fetchArtistSamples: (slug: string) =>
     dispatch(actions.fetchArtistSamples(slug)),
+  getAllCategories: () => dispatch(actions.getAllCategories()),
+  fetchArtistSkills: () => dispatch(actions.fetchArtistSkills()),
+  updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data))
 });
 
 const normFile = (e: any) => {
-  console.log("Upload event:", e);
   if (Array.isArray(e)) {
     return e;
   }
@@ -89,21 +93,34 @@ const EditProfile = ({
   user,
   samples,
   preferences,
+  categories,
   isUpdatingProfile,
   isUpdatingPrefs,
+  getAllCategories,
+  fetchArtistSkills,
+  updateArtistSkills,
   updateArtistProfile,
   fetchArtistSamples,
   updateArtistPreference,
 }: Props) => {
   const [activeTabKey, setActiveTabKey] = useState("1");
-  const [selectedCategories, setSelectedCategories] = useState("");
-  const [categoriesArr, setCategoriesArr] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [upForCollaboration, setUpForCollaboration] = useState(false);
+  const [userDataCached, setUserDataCached] = useState<User>(user);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
   );
+  const [showSkillValidationError, setShowSkillValidationError] = useState(false);
 
   const { Option } = Select;
+
+  useEffect(() => {
+    if (categories.length === 0) {
+      getAllCategories();
+    }
+    fetchArtistSamples(user.slug);
+    fetchArtistSkills();
+  }, []);
 
   useEffect(() => {
     if (
@@ -111,7 +128,10 @@ const EditProfile = ({
       preferences["upForCollaboration"] === true
     )
       setUpForCollaboration(true);
-  }, [preferences]);
+    
+    setUserDataCached(user);
+    setSelectedCategories(user.skills);
+  }, [preferences, user])
 
   const router = useRouter();
   const { action } = router.query;
@@ -125,7 +145,9 @@ const EditProfile = ({
   }
 
   function handleChange(value) {
-    setSelectedCategories(value);
+    if (value.length <= 3) {
+      setSelectedCategories(value);
+    }
   }
 
   const getActiveTab = () => {
@@ -143,16 +165,6 @@ const EditProfile = ({
     router.push("/artist/settings/" + action);
   };
 
-  const [userDataCached, setUserDataCached] = useState<User>(user);
-
-  useEffect(() => {
-    setUserDataCached(user);
-  }, [user]);
-
-  useEffect(() => {
-    fetchArtistSamples(user.slug);
-  }, [fetchArtistSamples, user.slug]);
-
   const resetData = () => {};
 
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
@@ -162,6 +174,14 @@ const EditProfile = ({
   const submitForm = () => {
     updateArtistProfile(userDataCached);
   };
+
+  const saveArtistSkills = () => {
+    if (selectedCategories.length === 0) {
+      message.error("You need to select atleast one art style.")
+    } else {
+      updateArtistSkills({artNames: selectedCategories});
+    }
+  }
 
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0) return <p>Redirecting</p>;
@@ -237,7 +257,9 @@ const EditProfile = ({
                         addonBefore={prefixSelector}
                         style={{ width: "100%" }}
                         value={
-                          userDataCached.phone_number ? userDataCached.phone_number : ""
+                          userDataCached.phone_number
+                            ? userDataCached.phone_number
+                            : ""
                         }
                         onChange={(e) => {
                           setUserDataCached((prevState) => ({
@@ -256,7 +278,11 @@ const EditProfile = ({
                           currentDate >= moment().endOf("day")
                         }
                         format="DD/MM/YYYY"
-                        value={moment(userDataCached.date_of_birth ?  userDataCached.date_of_birth : currentDate)}
+                        value={moment(
+                          userDataCached.date_of_birth
+                            ? userDataCached.date_of_birth
+                            : currentDate
+                        )}
                         onChange={(e) => {
                           setUserDataCached((prevState) => ({
                             ...prevState,
@@ -303,18 +329,6 @@ const EditProfile = ({
                         ))}
                       </Select>
                     </Form.Item>
-                    {/* <Form.Item label="Time zone">
-                  <Select
-                    defaultValue={timezone}
-                    onChange={(e) => setTimeZone(e)}
-                  >
-                    {TIME_ZONES.map((zone) => (
-                      <Select.Option key={zone.abbr} value={zone.abbr}>
-                        {zone.value}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item> */}
                     <Form.Item label="Bio">
                       <Input.TextArea
                         value={userDataCached ? userDataCached.bio : ""}
@@ -384,11 +398,6 @@ const EditProfile = ({
                             if (value === undefined) {
                               return Promise.reject();
                             }
-                            if (value.length > 3) {
-                              return Promise.reject(
-                                "You can select maximum 3 art styles"
-                              );
-                            }
                             return Promise.resolve();
                           },
                         },
@@ -398,15 +407,23 @@ const EditProfile = ({
                         mode="multiple"
                         style={{ width: "100%" }}
                         placeholder="select atleast one art style"
-                        onChange={handleChange}
+                        onChange={value => {
+                          if (value?.length > 3) {
+                            value.pop();
+                            message.error("You can select maximum 3 art styles")
+                          } else {
+                            handleChange(value);
+                          }
+                        }}
                         optionLabelProp="label"
+                        defaultValue={user.skills}
                       >
-                        {categoriesArr.length > 0 &&
-                          categoriesArr.map((category, index) => (
+                        {categories.length > 0 &&
+                          categories.map((category, index) => (
                             <Option
                               value={category}
                               label={category}
-                              key={index}
+                              key={category}
                             >
                               <div className="demo-option-label-item">
                                 {category}
@@ -420,13 +437,10 @@ const EditProfile = ({
                         <Button
                           type="primary"
                           htmlType="submit"
-                          onClick={submitForm}
+                          onClick={saveArtistSkills}
                           loading={isUpdatingProfile}
                         >
                           {isUpdatingProfile ? "Saving..." : "Save"}
-                        </Button>
-                        <Button htmlType="button" onClick={resetData}>
-                          Reset
                         </Button>
                       </div>
                     </Form.Item>

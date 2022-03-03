@@ -9,7 +9,6 @@ import { AppState } from "state";
 import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
-import { fetchArtistSkills } from "state/action";
 import { User } from "types/model";
 import Title from "./title";
 import * as action from '../state/action';

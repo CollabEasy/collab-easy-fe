@@ -8,4 +8,5 @@ export interface UserState {
   isUpdatingProfile: boolean;
   isUpdatingPrefs: string;
   preferences: any;
+  artCategories: string[];
 }

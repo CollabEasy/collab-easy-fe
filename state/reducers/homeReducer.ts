@@ -27,8 +27,6 @@ const homeReducer = (state = initialState, action): HomeState => {
       return { ...state, loginModalDetails: { openModal: true } };
     case actionTypes.CLOSE_LOGIN_MODAL:
       return { ...state, loginModalDetails: { openModal: false } };
-    case userActionTypes.UPDATE_ARTIST_ART_SUCCESS:
-      return { ...state, artistListDetails: action.payload.data };
     default:
       return state;
   }
