@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import { RightCircleFilled } from "@ant-design/icons";
-import { Form, Switch, Modal, Button, Select } from "antd";
+import { Form, Switch, Modal, Button, Select, message } from "antd";
 import Image from "next/image";
 import landingPageImg from "public/images/profile.png";
 import { connect, ConnectedProps } from "react-redux";
@@ -42,7 +42,8 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = (dispatch) => ({
   getAllCategories: () => dispatch(actions.getAllCategories()),
   postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
-  updateArtistPreference: (key: string, value: any) => dispatch(actions.updateArtistPreference(key, value)),
+  updateArtistPreference: (key: string, value: any) =>
+    dispatch(actions.updateArtistPreference(key, value)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -102,6 +103,10 @@ const NewUserModal = ({
   }
 
   const handleSubmit = () => {
+    if (selectedCategories.length === 0) {
+      message.error("You need to select atleast one art style.")
+      return;
+    }
     let dataToSend = {
       initial: user.new_user,
       artNames: selectedCategories,
@@ -148,17 +153,12 @@ const NewUserModal = ({
             >
               <Form.Item
                 name="art"
-                label="Your art style includes"
+                label="Art Styles"
                 rules={[
                   {
                     validator(_, value) {
                       if (value === undefined) {
                         return Promise.reject();
-                      }
-                      if (value.length > 3) {
-                        return Promise.reject(
-                          "You can select maximum 3 art styles"
-                        );
                       }
                       return Promise.resolve();
                     },
@@ -169,12 +169,19 @@ const NewUserModal = ({
                   mode="multiple"
                   style={{ width: "100%" }}
                   placeholder="select atleast one art style"
-                  onChange={handleChange}
+                  onChange={(value) => {
+                    if (value?.length > 3) {
+                      value.pop();
+                      message.error("You can select maximum 3 art styles");
+                    } else {
+                      handleChange(value);
+                    }
+                  }}
                   optionLabelProp="label"
                 >
                   {categories.length > 0 &&
                     categories.map((category, index) => (
-                      <Option value={category} label={category} key={index}>
+                      <Option value={category} label={category} key={category}>
                         <div className="demo-option-label-item">{category}</div>
                       </Option>
                     ))}
