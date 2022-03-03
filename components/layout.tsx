@@ -32,6 +32,7 @@ const Layout = ({ user, children, updateLoggedInData, fetchArtistPreferences } :
   let accessToken = null;
   const publicRoutes = getPublicRoutes();
 
+  console.log("Rabbal path ", router.pathname);
   if (!ISSERVER && (user === undefined || Object.keys(user).length === 1)) {
     if (localStorage.getItem("token") === null) {
       if (router.pathname !== '/' && !publicRoutes.includes(router.pathname)) router.push("/");

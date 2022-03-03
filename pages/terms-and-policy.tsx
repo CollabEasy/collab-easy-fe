@@ -1,7 +1,12 @@
 import { NextPage } from 'next'
+import { Button } from "antd";
+import Link from "next/link";
+import { useRoutesContext } from "components/routeContext";
+import { routeToHref } from "config/routes";
 import Title from 'components/title'
 
 const TermsAndPolicy: NextPage<{}> = () => {
+  const { toDiscover } = useRoutesContext();
   return (
     <div className='footer_termsContainer'>
       <div className="footer_termsSectionContainer">
@@ -75,7 +80,16 @@ const TermsAndPolicy: NextPage<{}> = () => {
       <div className="footer_termsSectionContainer">
         <h5>Contact Us</h5>
         <p>
+          If you have any questions or suggestions about my Privacy Policy, do not hesitate to Contact Us.
         </p>
+      </div>
+      <div className="footer_termsSectionContainer">
+        <Button type="primary">
+          <Link
+            href={routeToHref(toDiscover())}
+            passHref
+          >Explore Wondor</Link>
+        </Button>
       </div>
     </div>
   )

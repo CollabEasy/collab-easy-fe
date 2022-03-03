@@ -35,5 +35,6 @@ export function getPublicRoutes() {
         '/terms-and-policy',
         '/privacy',
         '/contact-us',
+        '/discover-artist/[id]',
     ]
 }
