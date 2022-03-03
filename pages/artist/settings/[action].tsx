@@ -58,8 +58,9 @@ const openLoginModal = () => {
 };
 
 const mapStateToProps = (state: AppState) => ({
-  artistCategories: " ",//state.artist.artistCategories,
   user: state.user.user,
+  categories: state.category.categories,
+  artistCategories: state.user.user.skills,
   isUpdatingProfile: state.user.isUpdatingProfile,
   isUpdatingPrefs: state.user.isUpdatingPrefs,
   preferences: state.user.preferences,
@@ -67,7 +68,8 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getArtistCategories: () => dispatch(actions.fetchArtistCategoriesData()),
+  getAllCategories: () => dispatch(actions.getAllCategories()),
+  postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
   updateArtistPreference: (key: string, value: any) =>
     dispatch(updateArtistPreference(key, value)),
@@ -93,10 +95,12 @@ const EditProfile = ({
   user,
   samples,
   preferences,
+  categories,
   isUpdatingProfile,
   isUpdatingPrefs,
   artistCategories,
-  getArtistCategories,
+  postArtistArt,
+  getAllCategories,
   updateArtistProfile,
   fetchArtistSamples,
   updateArtistPreference,
@@ -108,16 +112,10 @@ const EditProfile = ({
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
   );
-
-  useEffect(() => {
-    getArtistCategories();
-  }, [getArtistCategories]);
   
   useEffect(() => {
-    if (artistCategories.status === "success") {
-      setCategoriesArr(artistCategories.data);
-    }
-  }, [artistCategories]);
+    if (categories.length === 0) getAllCategories();
+  }, [categories.length, getAllCategories]);
 
   useEffect(() => {
     if (
@@ -139,7 +137,16 @@ const EditProfile = ({
   }
 
   function handleChange(value) {
+    console.log("Rabbal ", value);
     setSelectedCategories(value);
+
+    // let dataToSend = {
+    //   initial: user.new_user,
+    //   artNames: selectedCategories,
+    // };
+
+    // postArtistArt(dataToSend);
+    // updateArtistPreference("upForCollaboration", upForCollaboration);
   }
 
   const getActiveTab = () => {
@@ -414,9 +421,10 @@ const EditProfile = ({
                         placeholder="select atleast one art style"
                         onChange={handleChange}
                         optionLabelProp="label"
+                        defaultValue={artistCategories}
                       >
-                        {categoriesArr.length > 0 &&
-                          categoriesArr.map((category, index) => (
+                        {categories.length > 0 &&
+                          categories.map((category, index) => (
                             <Option
                               value={category}
                               label={category}
