@@ -10,14 +10,26 @@
     overflow-x: hidden;
     overflow-y: scroll;
 
-    .discoverArtists__desktopCoverContainer { 
+    .discoverArtists__listingPageCoverContainer { 
         width: '100%';
         height: '100%';
         border: 1px solid rgb(0 0 0 / 10%);
         //border-radius: 5px;
-    }
-    .discoverArtists__mobileCoverContainer {
-        display: none;
+        margin-top: 50px;
+
+        .discoverArtists_desktopCoverTextContainer {
+            padding: 20px;
+            h1 {
+                font-size: 35px;
+                text-align: left;
+            }
+            h3 {
+                font-size: 30px;
+                text-align: left;
+                padding-right: 10%;
+                padding-bottom: 2%;
+            }
+        }
     }
     .listingContainer {
         padding-top: 20px;
@@ -70,28 +82,47 @@
 }
   
 /* mobile/tablet css starts from here  */  
+
+@media only screen and (max-width: 900px) and (min-width: 766px) {
+    
+    .discoverArtists__listingPageContainer {
+        width: 90%;
+    
+        .discoverArtists__listingPageCoverContainer {
+            margin-top: 50px;
+            text-align: left;
+            .discoverArtists_desktopCoverTextContainer {
+                padding: 20px;
+                h1 {
+                    font-size: medium;
+                }
+                h3 {
+                    font-size: small;
+                    padding-right: 10%;
+                    padding-bottom: 2%;
+                }
+            }
+        }
+    }
+  }
+
 @media only screen and (max-width: 767px) and (min-width: 601px) {
     
     .discoverArtists__listingPageContainer {
         width: 90%;
     
-        .discoverArtists__desktopCoverContainer { 
-            display: none;
-        }
-        .discoverArtists__mobileCoverContainer {
-            background-color: rgb(179, 201, 119);
-            display: block;
+        .discoverArtists__listingPageCoverContainer {
             margin-top: 50px;
-            padding-top: 10px;
-            text-align: center;
-            h1 {
-                font-size: small;
-            }
-            p {
-                font-size: x-small;
-                padding-left: 10%;
-                padding-right: 10%;
-                padding-bottom: 2%;
+            text-align: left;
+            .discoverArtists_desktopCoverTextContainer {
+                h1 {
+                    font-size: small;
+                }
+                h3 {
+                    font-size: x-small;       
+                    padding-right: 10%;
+                    padding-bottom: 2%;
+                }
             }
         }
 
@@ -136,24 +167,21 @@
 @media only screen and (max-width: 600px) and  (min-width: 400px) {
     .discoverArtists__listingPageContainer {
         width: 90%;
-    
-        .discoverArtists__desktopCoverContainer { 
-            display: none;
-        }
-        .discoverArtists__mobileCoverContainer {
-            background-color: rgb(179, 201, 119);
-            display: block;
+        .discoverArtists__listingPageCoverContainer {
             margin-top: 50px;
-            padding-top: 10px;
             text-align: center;
-            h1 {
-                font-size: small;
-            }
-            p {
-                font-size: x-small;
-                padding-left: 10%;
-                padding-right: 10%;
-                padding-bottom: 2%;
+            .discoverArtists_desktopCoverTextContainer {
+                h1 {
+                    font-size: small;
+                    text-align: center;
+                }
+                h3 {
+                    font-size: x-small;
+                    text-align: center;
+                    padding-left: 10%;
+                    padding-right: 10%;
+                    padding-bottom: 2%;
+                }
             }
         }
 
@@ -198,24 +226,20 @@
 @media only screen and (max-width: 399px) {
     .discoverArtists__listingPageContainer {
         width: 90%;
-    
-        .discoverArtists__desktopCoverContainer { 
-            display: none;
-        }
-        .discoverArtists__mobileCoverContainer {
-            background-color: rgb(179, 201, 119);
-            display: block;
+        .discoverArtists__listingPageCoverContainer { 
             margin-top: 50px;
-            padding-top: 10px;
-            text-align: center;
-            h1 {
-                font-size: small;
-            }
-            p {
-                font-size: x-small;
-                padding-left: 10%;
-                padding-right: 10%;
-                padding-bottom: 2%;
+            .discoverArtists_desktopCoverTextContainer {
+                h1 {
+                    font-size: smaller;
+                    text-align: center;
+                }
+                h3 {
+                    font-size: x-small;
+                    text-align: center;
+                    padding-left: 10%;
+                    padding-right: 10%;
+                    padding-bottom: 2%;
+                }
             }
         }
 

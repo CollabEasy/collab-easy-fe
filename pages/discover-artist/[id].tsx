@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Title from "components/title";
 import { useRouter } from "next/router";
-import landingPageImg from "public/images/listing.png";
-import dancersImg from "public/images/dancers.png";
+import landingdanceImg from "public/images/listing-dance.png";
 import { Card, Button } from "antd";
 import Link from "next/link";
 import { useRoutesContext } from "../../components/routeContext";
@@ -93,7 +92,7 @@ const DiscoverArtist = ({
 
                 </Button>
 
-                <Button block type="primary" style={{ color: 'white',  borderColor: 'rgb(172, 206, 180)', backgroundColor: 'rgb(172, 206, 180)', whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                <Button block type="primary" style={{ color: 'white', borderColor: 'rgb(172, 206, 180)', backgroundColor: 'rgb(172, 206, 180)', whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
                     key={index}
                     href={routeToHref(toArtistProfile(artist.slug))}
@@ -114,21 +113,26 @@ const DiscoverArtist = ({
     <>
       <Title title="Discover Artist" />
       <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
-        <div className="discoverArtists__desktopCoverContainer">
-          <Image
-            layout="responsive"
-            objectFit="contain"
-            src={landingPageImg}
-            alt="Landing page" />
-          
-        </div>
-        <div className="discoverArtists__mobileCoverContainer">
-          <h1>
-            Singers to work with on your next big hit.
-          </h1>
-          <p>
-            send them a request to see if they are available.
-          </p>
+        <div className="discoverArtists__listingPageCoverContainer">
+          <div className="row ">
+            <div className="col-sm-6" style={{ backgroundColor: "#BBE7C5" }}>
+              <div className="discoverArtists_desktopCoverTextContainer">
+                <h1>
+                  Singers to work with on your next big hit..<br></br>
+                </h1>
+                <h3>
+                  send them a request to see if they are available.
+                </h3>
+              </div>
+            </div>
+            <div className="col-sm-6" style={{ backgroundColor: "#BBE7C5" }}>
+              <Image
+                layout="responsive"
+                objectFit="contain"
+                src={landingdanceImg}
+                alt="Landing page" />
+            </div>
+          </div>
         </div>
         <div className="col-md-12 listingContainer">
           {getArtists()}
