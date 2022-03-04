@@ -22,7 +22,7 @@ const ContactUs: NextPage<{}> = () => {
         <div className="footer_contactUsTextContainer">
           <h3>Contact us</h3>
           <p>
-            We can be reached at: 
+            We can be reached at:
             <strong> collabeasyforyou@gmail.com</strong>
             <br></br>
             Please classify your email in one of the categories, and we will gladly get back to you.
@@ -41,13 +41,13 @@ const ContactUs: NextPage<{}> = () => {
             <p className="card-text">If you want to say Hi or anything else.</p>
           </div>
           <div className="footer_contactUsButtonContainer">
-          <Button type="primary">
-            <Link
-              href={routeToHref(toDiscover())}
-              passHref
-            >Explore Wondor</Link>
-          </Button>
-        </div>
+            <Button type="primary">
+              <Link
+                href={routeToHref(toDiscover())}
+                passHref
+              >Explore Wondor</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </div>
