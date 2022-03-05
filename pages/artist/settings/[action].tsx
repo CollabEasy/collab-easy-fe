@@ -449,6 +449,7 @@ const EditProfile = ({
               </TabPane>
               <TabPane tab="Samples" key="3">
                 <div className="settings__basicProfileCardThird">
+                  <h2 className="f-20 ">Work Samples</h2>
                   <SamplePage isSelf samples={samples} user={user} />
                 </div>
               </TabPane>
