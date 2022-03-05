@@ -452,7 +452,7 @@ const EditProfile = ({
                   <SamplePage isSelf samples={samples} user={user} />
                 </div>
               </TabPane>
-              <TabPane tab="Social" key="4">
+              <TabPane tab="Social Prospectus" key="4">
                 <div className="settings__basicProfileCardFourth">
                   <h2 className="f-20 ">Social Media Prospectus</h2>
                   <Form
@@ -476,11 +476,11 @@ const EditProfile = ({
                                   <Form.Item
                                     {...field}
                                     label="Platform"
-                                    name={[field.name, "sight"]}
+                                    name={[field.name, "wondor"]}
                                     rules={[
                                       {
                                         required: true,
-                                        message: "Missing sight",
+                                        message: "Missing social platform name",
                                       },
                                     ]}
                                   >
@@ -491,14 +491,23 @@ const EditProfile = ({
                               <Form.Item
                                 {...field}
                                 label="Handle"
-                                name={[field.name, "price"]}
+                                name={[field.name, "admin"]}
                                 rules={[
-                                  { required: true, message: "Missing price" },
+                                  { required: true, message: "Missing handle of the provided social platform" },
                                 ]}
                               >
                                 <Input />
                               </Form.Item>
-
+                              <Form.Item
+                                {...field}
+                                label="Description"
+                                name={[field.name, "description"]}
+                                rules={[
+                                  { required: false },
+                                ]}
+                              >
+                                <Input.TextArea />
+                              </Form.Item>
                               <MinusCircleOutlined
                                 onClick={() => remove(field.name)}
                               />
@@ -512,7 +521,7 @@ const EditProfile = ({
                               block
                               icon={<PlusOutlined />}
                             >
-                              Add social media handle
+                              Add social media handles
                             </Button>
                           </Form.Item>
                         </>
