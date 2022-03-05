@@ -55,12 +55,7 @@ const Search = ({ setSelectedArtId } : Props) => {
         debounce((searchQuery: string) => {
             console.log("event : ", searchQuery);
             onSearch$.next(searchQuery);
-    }, 1000), []);
-
-    // const handleTextChange = async (event) => {
-        
-    //     onSearch$.next(event.target.value);
-    // }
+    }, 500), []);
 
     const router = useRouter();
     const { toArtist, toArtistProfile } = useRoutesContext();
@@ -87,7 +82,7 @@ const Search = ({ setSelectedArtId } : Props) => {
             map((val:string) => val.trim()),
             distinctUntilChanged(),
             filter(val => val.length >= 2),
-            debounceTime(400),
+            debounceTime(300),
             switchMap((val:string) => 
                 merge(
                     of({data: [], loading: true, errorMessage: '', noResults: false}),
@@ -148,37 +143,53 @@ const Search = ({ setSelectedArtId } : Props) => {
             </div>
             {   
                 
-                searchData.length > 0 && focused && ( <div className="typeahead-container"> 
-                { 
-                    searchData.map((data, i) => {
-                        const { entityType, id, name } = data;
-                        const href = entityType === 'ART' 
-                            ? toArtist().href + data.slug
-                            : toArtistProfile(data.slug).as /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
-                            
-                        const searchRow = entityType === 'ART' 
-                            ? (
-                                <div key = {i} className="typeahead-item">
-                                    <div onMouseDown={handleSearchClick(href, data)}>
-                                        <span className="typeahead-item__name">{name}</span>
-                                        <span className="typeahead-item__category">{entityType}</span>
-                                    </div>
-                                </div>
+                searchData.length > 0 && 
+                ( <div className="typeahead-container"> 
+                    { 
+                        searchData.map((data, i) => {
+                            const { entityType, id, name } = data;
+                            const href = entityType === 'ART' 
+                                ? toArtist().href + data.slug
+                                : toArtistProfile(data.slug).as /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
                                 
-                            )
-                            : (
-                                <div key = {i} className="typeahead-item">
-                                    <div onMouseDown={handleSearchClick(href, data)}>
-                                        <span className="typeahead-item__name">{name}</span>
-                                        <span className="typeahead-item__category">{entityType}</span>
+                            const searchRow = entityType === 'ART' 
+                                ? (
+                                    <div key = {i} className="typeahead-item">
+                                        <div onMouseDown={handleSearchClick(href, data)}>
+                                            <span className="typeahead-item__name">{name}</span>
+                                            <span className="typeahead-item__category">{entityType}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        return searchRow;
-                    })
-                }
-                </div>
-            )}
+                                    
+                                )
+                                : (
+                                    <div key = {i} className="typeahead-item">
+                                        <div onMouseDown={handleSearchClick(href, data)}>
+                                            <span className="typeahead-item__name">{name}</span>
+                                            <span className="typeahead-item__category">{entityType}</span>
+                                        </div>
+                                    </div>
+                                )
+                            return searchRow;
+                        })
+                    }
+                    </div>
+                )
+            }
+
+            {
+                !loading && noResults && 
+                ( <div className="typeahead-container"> 
+                    { 
+                         <div key = {1} className="typeahead-item">
+                            <div>
+                                <span className="typeahead-item__name">No Result Found</span>
+                            </div>
+                        </div>
+                    }
+                    </div>
+                )
+            }
         </>
     );
 }
