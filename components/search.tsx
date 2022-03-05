@@ -183,7 +183,7 @@ const Search = ({ setSelectedArtId } : Props) => {
                     { 
                          <div key = {1} className="typeahead-item">
                             <div>
-                                <span className="typeahead-item__name">No Result Found</span>
+                                <span className="typeahead-item__name">Oops, no result found. Try something else.</span>
                             </div>
                         </div>
                     }

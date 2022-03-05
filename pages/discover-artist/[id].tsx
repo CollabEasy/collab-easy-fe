@@ -121,7 +121,7 @@ const DiscoverArtist = ({
                   Singers to work with on your next big hit..<br></br>
                 </h1>
                 <h3>
-                  send them a request to see if they are available.
+                  send them a collab request to see if they are available.
                 </h3>
               </div>
             </div>
