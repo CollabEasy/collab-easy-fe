@@ -40,20 +40,22 @@ const ScratchpadPage = ({
 
     const [isViewMode, setViewMode] = useState(true);
     const [editorState, setEditorState] = useState(
+        //I think we should not be creating empty everytime. 
+        // If user has previous scratchpad, use that else make a new one.
         () => EditorState.createEmpty(),
     );
 
     // we have to fetch data from backend set it to convertedContent.
     const [convertedContent, setConvertedContent] = useState(null);
 
-    function clearEditor() {
-        console.log("Clearing Editor")
+    function resetEditor() {
+        console.log("Resetting Editor");
         setEditorState(EditorState.createEmpty())
         convertContentToHTML();
     }
 
     function saveBlog() {
-        console.log("Saving")
+        console.log("Saving");
         console.log(editorState.getCurrentContent());
         setViewMode(true);
     }
@@ -83,9 +85,7 @@ const ScratchpadPage = ({
                         <Button type="primary" onClick={setWritingMode}>Edit</Button>
                     </div>
                 </div>
-
             ) : (
-
                 <div className="scractchpad_previewContainer">
                     <div className="scratchpad_editorContainer">
                         <Editor
@@ -99,13 +99,12 @@ const ScratchpadPage = ({
                             <Button
                                 type="primary"
                                 htmlType="submit"
-                              onClick={saveBlog}
+                                onClick={saveBlog}
                             > Save
                             </Button>
                             <Button htmlType="button"
-                            //onClick={}
-                            >
-                                Reset
+                               onClick={resetEditor}
+                            > Reset
                             </Button>
                         </div>
                     </div>
@@ -114,7 +113,6 @@ const ScratchpadPage = ({
                         <div className="scractchpad_previewText" dangerouslySetInnerHTML={createMarkup(convertedContent)}></div>
                     </div>
                 </div>
-
             )}
         </div>
     )
