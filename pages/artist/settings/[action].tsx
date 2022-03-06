@@ -23,6 +23,7 @@ import {
   updateArtistPreference,
 } from "state/action";
 import SamplePage from "../../../components/samplePage";
+import ScratchpadPade from "../../../components/scratchpad";
 import { COUNTRIES, GENDERS, TIME_ZONES } from "config/constants";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { AppState } from "types/states";
@@ -574,7 +575,8 @@ const EditProfile = ({
               </TabPane>
               <TabPane tab="Scratchpad" key="1.5">
                 <div className="settings__basicProfileCardThird">
-                  <h2 className="f-20 ">Your Space to take notes</h2>             
+                  <h2 className="f-20 ">Your Space to take notes</h2>  
+                  <ScratchpadPade user={user} />         
                 </div>
               </TabPane >
             </Tabs>
