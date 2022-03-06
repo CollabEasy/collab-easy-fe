@@ -16,10 +16,10 @@ import { CloseOutlined, PictureOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
 const mapStateToProps = (state: AppState) => {
-  const loggedInUserId = state.user.user?.slug;
+  const loggedInUserSlug = state.user.user?.slug;
   const selectedId = state.category.selectedId;
   const artists = state.category.artists;
-  return { selectedId, artists,  loggedInUserId};
+  return { selectedId, artists,  loggedInUserSlug};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -34,7 +34,7 @@ type Props = {} & ConnectedProps<typeof connector>;
 const DiscoverArtist = ({
   artists,
   selectedId,
-  loggedInUserId,
+  loggedInUserSlug,
   fetchArtistsByCategory,
 }: Props) => {
   const { toArtistProfile } = useRoutesContext();
@@ -93,7 +93,7 @@ const DiscoverArtist = ({
 
                 </Button>
 
-                <Button block type="primary" disabled={loggedInUserId == artist.slug} style={{ color: 'white', borderColor: 'rgb(172, 206, 180)', backgroundColor: 'rgb(172, 206, 180)', whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                <Button block type="primary" disabled={loggedInUserSlug == artist.slug} style={{ color: 'white', borderColor: 'rgb(172, 206, 180)', backgroundColor: 'rgb(172, 206, 180)', whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
                     key={index}
                     href={routeToHref(toArtistProfile(artist.slug))}
