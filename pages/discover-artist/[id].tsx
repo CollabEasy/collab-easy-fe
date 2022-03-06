@@ -16,9 +16,10 @@ import { CloseOutlined, PictureOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
 const mapStateToProps = (state: AppState) => {
+  const loggedInUserId = state.user.user?.slug;
   const selectedId = state.category.selectedId;
   const artists = state.category.artists;
-  return { selectedId, artists };
+  return { selectedId, artists,  loggedInUserId};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -33,6 +34,7 @@ type Props = {} & ConnectedProps<typeof connector>;
 const DiscoverArtist = ({
   artists,
   selectedId,
+  loggedInUserId,
   fetchArtistsByCategory,
 }: Props) => {
   const { toArtistProfile } = useRoutesContext();
@@ -48,7 +50,6 @@ const DiscoverArtist = ({
     const resultArtists: JSX.Element[] = [];
     console.log("artists : ", artists);
     artists.forEach((artist, index) => {
-      console.log(artist);
       if (artist !== null) {
         console.log("pp url : ", artist.profile_pic_url);
         resultArtists.push(
@@ -92,7 +93,7 @@ const DiscoverArtist = ({
 
                 </Button>
 
-                <Button block type="primary" style={{ color: 'white', borderColor: 'rgb(172, 206, 180)', backgroundColor: 'rgb(172, 206, 180)', whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                <Button block type="primary" disabled={loggedInUserId == artist.slug} style={{ color: 'white', borderColor: 'rgb(172, 206, 180)', backgroundColor: 'rgb(172, 206, 180)', whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
                     key={index}
                     href={routeToHref(toArtistProfile(artist.slug))}
