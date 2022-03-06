@@ -23,7 +23,7 @@ import {
   updateArtistPreference,
 } from "state/action";
 import SamplePage from "../../../components/samplePage";
-import ScratchpadPade from "../../../components/scratchpad";
+import ScratchpadPade from "../../../components/ScratchpadPage";
 import { COUNTRIES, GENDERS, TIME_ZONES } from "config/constants";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { AppState } from "types/states";
@@ -135,7 +135,6 @@ const EditProfile = ({
   }, [preferences, user])
 
   const router = useRouter();
-  console.log("Rabaal router ", router.query);
   const { action, tab } = router.query;
 
   if (
@@ -154,10 +153,31 @@ const EditProfile = ({
 
   const getActiveTab = () => {
     let active = "1";
+
+    // if (action === "profile" && tab === "preferences") {
+    //   active = "1.2";
+    // }
+    // else if (action === "profile" && tab === "samples") {
+    //   active = "1.3";
+    // }
+    // else if (action === "profile" && tab === "social-prospectus") {
+    //   active = "1.4";
+    // }
+    // else if (action === "profile" && tab === "scratchpad") {
+    //   active = "1.5";
+    // }
+    // else if (action === "account" && tab === "communication") {
+    //   active = "2";
+    // }
+    // else if (action === "account" && tab === "account-management") {
+    //   active = "2.2";
+    // }
     if (action === "account") active = "2";
 
+    console.log("rabbal active is ", active);
     return active;
   };
+
   const redirect = (tabIndex: string) => {
 
     let action = "profile";
