@@ -166,7 +166,7 @@ const NavBar = ({
                       <span className="f-14">Scratchpad</span>
                     </div>
                   </Link>
-                  <Link href={routeToHref(toEditProfile("account", "account-information"))} passHref>
+                  <Link href={routeToHref(toEditProfile("account", "communication"))} passHref>
                     <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
                       <span className="f-14">Settings</span>
                     </div>

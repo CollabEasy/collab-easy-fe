@@ -179,7 +179,15 @@ const EditProfile = ({
     }
     else if (tabIndex === "2") {
       action = "account";
-      tab = "account-information"
+      tab = "communicaton"
+    }
+    else if (tabIndex === "2.1") {
+      action = "account";
+      tab = "communicaton";
+    }
+    else if (tabIndex === "2.2") {
+      action = "account";
+      tab = "account-management";
     }
 
     router.push("/artist/settings/" + action + "?tab=" + tab);
@@ -572,50 +580,61 @@ const EditProfile = ({
             </Tabs>
           </TabPane>
           <TabPane tab="Account Settings" key="2">
-            <div className="settings__basicProfileCard">
-              <h2 className="f-20 ">Communication</h2>
-              <Form
-                className="settings__basicProfileForm"
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-                initialValues={{ size: componentSize }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize as SizeType}
-              >
-                <Form.Item label="Notification Emails" valuePropName="checked">
-                  <Switch
-                    checkedChildren="enabled"
-                    unCheckedChildren="disabled"
-                  />
-                </Form.Item>
-              </Form>
-            </div>
-            <div className="settings__basicProfileCardSecond">
-              <h2 className="f-20 ">Account Management</h2>
-              <Form
-                className="settings__basicProfileForm"
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-                initialValues={{ size: componentSize }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize as SizeType}
-              >
-                <Form.Item label="Disable Account" valuePropName="checked">
-                  <Switch
-                    checkedChildren="enabled"
-                    unCheckedChildren="disabled"
-                  />
-                </Form.Item>
-                <Form.Item label="Delete Account" valuePropName="checked">
-                  <Switch
-                    checkedChildren="enabled"
-                    unCheckedChildren="disabled"
-                  />
-                </Form.Item>
-              </Form>
-            </div>
+          <Tabs
+              type="card"
+              onChange={(key: string) => {
+                redirect(key);
+              }}
+            >
+              <TabPane tab="Communication" key="2.1">
+                  <div className="settings__basicProfileCard">
+                    <h2 className="f-20 ">Communication</h2>
+                    <Form
+                      className="settings__basicProfileForm"
+                      labelCol={{ span: 4 }}
+                      wrapperCol={{ span: 14 }}
+                      layout="horizontal"
+                      initialValues={{ size: componentSize }}
+                      onValuesChange={onFormLayoutChange}
+                      size={componentSize as SizeType}
+                    >
+                      <Form.Item label="Notification Emails" valuePropName="checked">
+                        <Switch
+                          checkedChildren="enabled"
+                          unCheckedChildren="disabled"
+                        />
+                      </Form.Item>
+                    </Form>
+                  </div>
+              </TabPane>
+              <TabPane tab="Account management" key="2.2">
+                <div className="settings__basicProfileCardSecond">
+                  <h2 className="f-20 ">Account Management</h2>
+                  <Form
+                    className="settings__basicProfileForm"
+                    labelCol={{ span: 4 }}
+                    wrapperCol={{ span: 14 }}
+                    layout="horizontal"
+                    initialValues={{ size: componentSize }}
+                    onValuesChange={onFormLayoutChange}
+                    size={componentSize as SizeType}
+                  >
+                    <Form.Item label="Disable Account" valuePropName="checked">
+                      <Switch
+                        checkedChildren="enabled"
+                        unCheckedChildren="disabled"
+                      />
+                    </Form.Item>
+                    <Form.Item label="Delete Account" valuePropName="checked">
+                      <Switch
+                        checkedChildren="enabled"
+                        unCheckedChildren="disabled"
+                      />
+                    </Form.Item>
+                  </Form>
+                </div>
+              </TabPane>
+            </Tabs>
           </TabPane>
         </Tabs>
       </>
