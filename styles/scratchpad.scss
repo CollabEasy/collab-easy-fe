@@ -1,10 +1,10 @@
-.preview {
+.scractchpad_previewContainer {
     padding-top: 10px;
     width: 100%;
     padding-bottom: 10px;
 }
 
-.preview-text {
+.scractchpad_previewText {
     padding: 1rem;
     margin-top: 1rem;
     border: 1px dashed #ccc;
@@ -12,6 +12,7 @@
 
 .scratchpad__buttonContainer {
     margin-top: 12px;
+    margin-bottom: 12px;
     display: flex;
     gap: 12px;
 }

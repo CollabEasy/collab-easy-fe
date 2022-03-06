@@ -12,7 +12,6 @@ import DOMPurify from 'dompurify';
 import { convertToHTML } from 'draft-convert';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import moment from "moment";
-import { InputNumber, message, Tabs } from "antd";
 import { Button } from "antd";
 import {
     openLoginModalAction,
@@ -39,19 +38,13 @@ const ScratchpadPage = ({
     user,
 }: Props) => {
 
-    const [testMessage, setTestMessage] = useState(null)
+    const [isViewMode, setViewMode] = useState(true);
     const [editorState, setEditorState] = useState(
         () => EditorState.createEmpty(),
     );
+
+    // we have to fetch data from backend set it to convertedContent.
     const [convertedContent, setConvertedContent] = useState(null);
-
-    function fetchTestMessage() {
-        setTestMessage("This is the blog");
-    }
-
-    useEffect(() => {
-        fetchTestMessage()
-    }, [])
 
     function clearEditor() {
         console.log("Clearing Editor")
@@ -62,6 +55,7 @@ const ScratchpadPage = ({
     function saveBlog() {
         console.log("Saving")
         console.log(editorState.getCurrentContent());
+        setViewMode(true);
     }
 
     const handleEditorChange = (state) => {
@@ -77,36 +71,51 @@ const ScratchpadPage = ({
             __html: DOMPurify.sanitize(html)
         }
     }
-
+    const setWritingMode = () => {
+        setViewMode(false);    
+    }
     return (
         <div>
-            <div>
-                <Editor
-                    editorState={editorState}
-                    onEditorStateChange={handleEditorChange}
-                    wrapperClassName="wrapper-class"
-                    editorClassName="editor-class"
-                    toolbarClassName="toolbar-class"
-                />
-                <div className="scratchpad__buttonContainer">
-                    <Button
-                        type="primary"
-                        htmlType="submit"
-                    //   onClick={}
-                    //   loading={}
-                    > Save
-                    </Button>
-                    <Button htmlType="button"
-                    //onClick={}
-                    >
-                        Reset
-                    </Button>
+            {isViewMode ? (
+                <div>
+                    <p>This is just a placeholder text. It should be replaced with text obtained from the backend.</p>
+                    <div className="scratchpad__buttonContainer">
+                        <Button type="primary" onClick={setWritingMode}>Edit</Button>
+                    </div>
                 </div>
-            </div>
-            <div className="preview">
-                <h2 className="f-20 ">Preview</h2>
-                <div className="preview-text" dangerouslySetInnerHTML={createMarkup(convertedContent)}></div>
-            </div>
+
+            ) : (
+
+                <div className="scractchpad_previewContainer">
+                    <div className="scratchpad_editorContainer">
+                        <Editor
+                            editorState={editorState}
+                            onEditorStateChange={handleEditorChange}
+                            wrapperClassName="wrapper-class"
+                            editorClassName="editor-class"
+                            toolbarClassName="toolbar-class"
+                        />
+                        <div className="scratchpad__buttonContainer">
+                            <Button
+                                type="primary"
+                                htmlType="submit"
+                              onClick={saveBlog}
+                            > Save
+                            </Button>
+                            <Button htmlType="button"
+                            //onClick={}
+                            >
+                                Reset
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="scractchpad_previewContainer">
+                        <h2 className="f-20 ">Preview</h2>
+                        <div className="scractchpad_previewText" dangerouslySetInnerHTML={createMarkup(convertedContent)}></div>
+                    </div>
+                </div>
+
+            )}
         </div>
     )
 };
