@@ -134,14 +134,15 @@ const EditProfile = ({
   }, [preferences, user])
 
   const router = useRouter();
-  const { action } = router.query;
+  console.log("Rabaal router ", router.query);
+  const { action, tab } = router.query;
 
   if (
     typeof window !== "undefined" &&
     action !== "edit" &&
     action !== "settings"
   ) {
-    router.push("/artist/settings/edit");
+    router.push("/artist/settings/edit?tab=personal-information");
   }
 
   function handleChange(value) {
@@ -157,12 +158,31 @@ const EditProfile = ({
     return active;
   };
   const redirect = (tabIndex: string) => {
+
     let action = "edit";
-    if (tabIndex === "2") {
+    let tab = "personal-information";
+    if (tabIndex === "1.2") {
+      action = "edit";
+      tab = "preferences";
+    }
+    else if (tabIndex === "1.3") {
+      action = "edit";
+      tab = "samples";
+    }
+    else if (tabIndex === "1.4") {
+      action = "edit";
+      tab = "social-prospectus";
+    }
+    else if (tabIndex === "1.5") {
+      action = "edit";
+      tab = "scratchpad";
+    }
+    else if (tabIndex === "2") {
       action = "settings";
+      tab = "account-information"
     }
 
-    router.push("/artist/settings/" + action);
+    router.push("/artist/settings/" + action + "?tab=" + tab);
   };
 
   const resetData = () => {};
@@ -199,13 +219,11 @@ const EditProfile = ({
           <TabPane tab="Artist's Information" key="1">
             <Tabs
               type="card"
-              // tabPosition={"left"}
-              // onChange={(key: string) => {
-              //   redirect(key);
-              // }}
-              // activeKey={getActiveTab()}
+              onChange={(key: string) => {
+                redirect(key);
+              }}
             >
-              <TabPane tab="Profile" key="1">
+              <TabPane tab="Profile" key="1.1">
                 <div className="settings__basicProfileCard">
                   <h2 className="f-20 ">Personal Information</h2>
                   <Form
@@ -358,7 +376,7 @@ const EditProfile = ({
                   </Form>
                 </div>
               </TabPane>
-              <TabPane tab="Preferences" key="2">
+              <TabPane tab="Preferences" key="1.2">
                 <div className="settings__basicProfileCardSecond">
                   <h2 className="f-20 ">Preferences</h2>
                   <Form
@@ -447,13 +465,13 @@ const EditProfile = ({
                   </Form>
                 </div>
               </TabPane>
-              <TabPane tab="Samples" key="3">
+              <TabPane tab="Samples" key="1.3">
                 <div className="settings__basicProfileCardThird">
                   <h2 className="f-20 ">Work Samples</h2>
                   <SamplePage isSelf samples={samples} user={user} />
                 </div>
               </TabPane>
-              <TabPane tab="Social Prospectus" key="4">
+              <TabPane tab="Social Prospectus" key="1.4">
                 <div className="settings__basicProfileCardFourth">
                   <h2 className="f-20 ">Social Media Prospectus</h2>
                   <Form
