@@ -564,6 +564,11 @@ const EditProfile = ({
                   </Form>
                 </div>
               </TabPane>
+              <TabPane tab="Scratchpad" key="1.5">
+                <div className="settings__basicProfileCardThird">
+                  <h2 className="f-20 ">Your Space to take notes</h2>             
+                </div>
+              </TabPane >
             </Tabs>
           </TabPane>
           <TabPane tab="Account Settings" key="2">
