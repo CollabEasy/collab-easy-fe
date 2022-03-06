@@ -139,10 +139,10 @@ const EditProfile = ({
 
   if (
     typeof window !== "undefined" &&
-    action !== "edit" &&
-    action !== "settings"
+    action !== "profile" &&
+    action !== "account"
   ) {
-    router.push("/artist/settings/edit?tab=personal-information");
+    router.push("/artist/settings/profile?tab=personal-information");
   }
 
   function handleChange(value) {
@@ -153,32 +153,32 @@ const EditProfile = ({
 
   const getActiveTab = () => {
     let active = "1";
-    if (action === "settings") active = "2";
+    if (action === "account") active = "2";
 
     return active;
   };
   const redirect = (tabIndex: string) => {
 
-    let action = "edit";
+    let action = "profile";
     let tab = "personal-information";
     if (tabIndex === "1.2") {
-      action = "edit";
+      action = "profile";
       tab = "preferences";
     }
     else if (tabIndex === "1.3") {
-      action = "edit";
+      action = "profile";
       tab = "samples";
     }
     else if (tabIndex === "1.4") {
-      action = "edit";
+      action = "profile";
       tab = "social-prospectus";
     }
     else if (tabIndex === "1.5") {
-      action = "edit";
+      action = "profile";
       tab = "scratchpad";
     }
     else if (tabIndex === "2") {
-      action = "settings";
+      action = "account";
       tab = "account-information"
     }
 
