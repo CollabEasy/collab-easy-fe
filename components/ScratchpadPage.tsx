@@ -50,12 +50,15 @@ const ScratchpadPage = ({
     user,
 }: Props) => {
     const [isViewMode, setViewMode] = useState(true);
+    // set blogText to what is saved in database. if nothing, set it to null.
     const [blogText, setBlogText] = useState(null);
     const saveBlog = () => {
         console.log("Rabbal is saving ", blogText);
         // Here instead of saving to local storage, we have to send it to backend.
         localStorage.setItem('content', serialize(blogText));
-        setViewMode(true);
+        
+        // After saving the blog. We have to get back to viewing mode but for some reason setViewMode(true) is not working :(
+        // setViewMode(true);
     }
 
     const editor = useMemo(() => withReact(createEditor()), [])
