@@ -1,26 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useCallback, ReactElement, useEffect, useState } from "react";
-import { AppState, State } from "state";
+import React, { useState } from "react";
+import { AppState } from "state";
 import { connect, ConnectedProps, useStore } from "react-redux";
-import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { User } from "types/model";
-import * as action from "../state/action";
-import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import DOMPurify from 'dompurify';
-import { convertToHTML } from 'draft-convert';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import moment from "moment";
+import { useMemo } from 'react'
+import { Editable, withReact, Slate } from 'slate-react'
+import { createEditor } from 'slate';
 import { Button } from "antd";
-import {
-    openLoginModalAction,
-    updateArtistProfile,
-    updateArtistPreference,
-} from "state/action";
-import { useRoutesContext } from "components/routeContext";
 
-// Better alternative : https://docs.slatejs.org/walkthroughs/01-installing-slate
+const serialize = value => {
+    let finalString = "";
+    for (var i = 0; i < value.length; i++) {
+        finalString = finalString + value[i]['children'][0]['text'];
+        if (i !== value.length - 1) {
+            finalString += "\n";
+        }
+    }
+    return finalString;
+}
+
+const deserialize = value => {
+    let finalData = []
+    let blogData = value.split("\n");
+    for (var i = 0; i < blogData.length; i++) {
+        var object = {
+            type: 'paragraph',
+            children: [{ text: blogData[i] }]
+        }
+        finalData.push(object);
+    }
+    return finalData;
+}
+
 const mapStateToProps = (state: AppState) => {
     return {}
 };
@@ -37,83 +49,48 @@ type Props = {
 const ScratchpadPage = ({
     user,
 }: Props) => {
-
     const [isViewMode, setViewMode] = useState(true);
-    const [editorState, setEditorState] = useState(
-        //I think we should not be creating empty everytime. 
-        // If user has previous scratchpad, use that else make a new one.
-        () => EditorState.createEmpty(),
-    );
-
-    // we have to fetch data from backend set it to convertedContent.
-    const [convertedContent, setConvertedContent] = useState(null);
-
-    function resetEditor() {
-        console.log("Resetting Editor");
-        setEditorState(EditorState.createEmpty())
-        convertContentToHTML();
-    }
-
-    function saveBlog() {
-        console.log("Saving");
-        console.log(editorState.getCurrentContent());
+    const [blogText, setBlogText] = useState(null);
+    const saveBlog = () => {
+        // Here instead of saving to local storage, we have to send it to backend.
+        localStorage.setItem('content', serialize(blogText));
         setViewMode(true);
     }
 
-    const handleEditorChange = (state) => {
-        setEditorState(state);
-        convertContentToHTML();
-    }
-    const convertContentToHTML = () => {
-        let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
-        setConvertedContent(currentContentAsHTML);
-    }
-    const createMarkup = (html) => {
-        return {
-            __html: DOMPurify.sanitize(html)
-        }
-    }
+    const editor = useMemo(() => withReact(createEditor()), [])
+    const [value, setValue] = useState(
+        // Here instead of reading from local storage, we have to get it from backend.
+        localStorage.getItem('content') !== null ? deserialize(localStorage.getItem('content')) :
+            [
+                {
+                    type: 'paragraph',
+                    children: [{ text: 'A line of text in a paragraph.' }],
+                },
+            ]
+    )
+
     const setWritingMode = () => {
         setViewMode(false);    
     }
+
     return (
-        <div>
-            {isViewMode ? (
-                <div>
-                    <p>This is just a placeholder text. It should be replaced with text obtained from the backend.</p>
-                    <div className="scratchpad__buttonContainer">
-                        <Button type="primary" onClick={setWritingMode}>Edit</Button>
-                    </div>
-                </div>
-            ) : (
-                <div className="scractchpad_previewContainer">
-                    <div className="scratchpad_editorContainer">
-                        <Editor
-                            editorState={editorState}
-                            onEditorStateChange={handleEditorChange}
-                            wrapperClassName="wrapper-class"
-                            editorClassName="editor-class"
-                            toolbarClassName="toolbar-class"
-                        />
-                        <div className="scratchpad__buttonContainer">
-                            <Button
-                                type="primary"
-                                htmlType="submit"
-                                onClick={saveBlog}
-                            > Save
-                            </Button>
-                            <Button htmlType="button"
-                               onClick={resetEditor}
-                            > Reset
-                            </Button>
-                        </div>
-                    </div>
-                    <div className="scractchpad_previewContainer">
-                        <h2 className="f-20 ">Preview</h2>
-                        <div className="scractchpad_previewText" dangerouslySetInnerHTML={createMarkup(convertedContent)}></div>
-                    </div>
-                </div>
-            )}
+        <div className="scratchpad_container">
+            <div className="scratchpad_editorContainer">
+                <Slate
+                    editor={editor}
+                    value={value}
+                    onChange={value => {
+                        setBlogText(value)
+                    }}
+                >
+                    <Editable />
+                </Slate>
+            </div>
+            <div className="scratchpad__buttonContainer">
+                <Button type="primary" onClick={saveBlog}>
+                    Save
+                </Button>
+            </div>
         </div>
     )
 };
