@@ -78,7 +78,7 @@ const ScratchpadPage = ({
         <div>
             {isViewMode ? (
                 <div>
-                    <p>This is just a placeholder text. It should be replaced with text obtained from the backend.</p>
+                    <p>{serialize(blogText)}</p>
                     <div className="scratchpad__buttonContainer">
                         <Button type="primary" onClick={setWritingMode}>Edit</Button>
                     </div>
