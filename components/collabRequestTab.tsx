@@ -67,7 +67,7 @@ const CollabRequestsTab: React.FC<{
     }, [getCollabRequests])
 
     return (
-      <div id="collab" className="tabcontent">
+      <div className="artistProfile_collabRequestContainer">
         <CollabRequests requests={pendingRequests} requestStatus={CollabRequestStatus.ACTIVE} />
         <CollabRequests requests={activeRequests} requestStatus={CollabRequestStatus.SCHEDULED} />
         <CollabRequests requests={completedRequest} requestStatus={CollabRequestStatus.COMPLETED} />
