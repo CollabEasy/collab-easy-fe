@@ -52,6 +52,7 @@ const ScratchpadPage = ({
     const [isViewMode, setViewMode] = useState(true);
     const [blogText, setBlogText] = useState(null);
     const saveBlog = () => {
+        console.log("Rabbal is saving ", blogText);
         // Here instead of saving to local storage, we have to send it to backend.
         localStorage.setItem('content', serialize(blogText));
         setViewMode(true);
@@ -70,27 +71,38 @@ const ScratchpadPage = ({
     )
 
     const setWritingMode = () => {
-        setViewMode(false);    
+        setViewMode(false);
     }
 
     return (
-        <div className="scratchpad_container">
-            <div className="scratchpad_editorContainer">
-                <Slate
-                    editor={editor}
-                    value={value}
-                    onChange={value => {
-                        setBlogText(value)
-                    }}
-                >
-                    <Editable />
-                </Slate>
-            </div>
-            <div className="scratchpad__buttonContainer">
-                <Button type="primary" onClick={saveBlog}>
-                    Save
-                </Button>
-            </div>
+        <div>
+            {isViewMode ? (
+                <div>
+                    <p>This is just a placeholder text. It should be replaced with text obtained from the backend.</p>
+                    <div className="scratchpad__buttonContainer">
+                        <Button type="primary" onClick={setWritingMode}>Edit</Button>
+                    </div>
+                </div>
+            ) : (
+                <div className="scratchpad_container">
+                    <div className="scratchpad_editorContainer">
+                        <Slate
+                            editor={editor}
+                            value={value}
+                            onChange={value => {
+                                setBlogText(value)
+                            }}
+                        >
+                            <Editable />
+                        </Slate>
+                    </div>
+                    <div className="scratchpad__buttonContainer">
+                        <Button type="primary" onClick={saveBlog}>
+                            Save
+                        </Button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 };
