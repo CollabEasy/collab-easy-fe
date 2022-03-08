@@ -22,13 +22,13 @@ const categoryReducer = (state = initialState, action): CategoryState => {
                 ...state,
                 selectedCategorySlug: action.payload.slug
             }
-        case actionType.FETCH_ARTIST_BY_CATEGORY_REQUEST:
+        case actionType.FETCH_ARTIST_BY_CATEGORY_ID_REQUEST:
             return {
                 ...state,
                 artists: [],
                 isFetchingArtists: true,
             }
-        case actionType.FETCH_ARTIST_BY_CATEGORY_SUCCESS:
+        case actionType.FETCH_ARTIST_BY_CATEGORY_ID_SUCCESS:
             return {
                 ...state,
                 artists: action.payload.data.data,

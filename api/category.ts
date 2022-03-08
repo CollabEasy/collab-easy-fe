@@ -20,7 +20,7 @@ const getConfig = () => {
   };
 };
 
-export const getArtistsByCategoryAPI = async (id: number) => {
+export const getArtistsByCategoryIdAPI = async (id: number) => {
   const config = getConfig();
   try {
     const result = await api.call(

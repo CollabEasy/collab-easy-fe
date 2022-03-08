@@ -15,20 +15,20 @@ export const setSelectedCategorySlug = (slug: string) => ({
   },
 })
 
-export const fetchArtistsByCategory = (id: number) => ({
-  type: actionType.FETCH_ARTIST_BY_CATEGORY,
+export const fetchArtistsByCategoryId = (id: number) => ({
+  type: actionType.FETCH_ARTIST_BY_CATEGORY_ID,
   payload: {
     id,
   }
 })
 
-export const fetchArtistsByCategoryRequest = () => ({
-  type: actionType.FETCH_ARTIST_BY_CATEGORY_REQUEST,
+export const fetchArtistsByCategoryIdRequest = () => ({
+  type: actionType.FETCH_ARTIST_BY_CATEGORY_ID_REQUEST,
   payload: {}
 })
 
-export const fetchArtistsByCategorySuccess = (data: any) => ({
-  type: actionType.FETCH_ARTIST_BY_CATEGORY_SUCCESS,
+export const fetchArtistsByCategoryIdSuccess = (data: any) => ({
+  type: actionType.FETCH_ARTIST_BY_CATEGORY_ID_SUCCESS,
   payload: {
     data
   }

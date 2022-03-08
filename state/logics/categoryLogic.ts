@@ -6,20 +6,20 @@ import * as categoryApi from "../../api/category";
 import * as actions from "../action/categoryAction";
 import * as actionTypes from "../actionTypes/categoryActionTypes";
 
-export const fetchArtistsByCategoryLogic = createLogic<
+export const fetchArtistsByCategoryIdLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof actions.fetchArtistsByCategory>,
+  FSACreatorPayload<typeof actions.fetchArtistsByCategoryId>,
   any,
   LogicDeps
 >({
-  type: [actionTypes.FETCH_ARTIST_BY_CATEGORY],
+  type: [actionTypes.FETCH_ARTIST_BY_CATEGORY_ID],
   async process({ action, api }, dispatch, done) {
     const { id } = action.payload;
     try {
       console.log("calling api in logic");
-      dispatch(actions.fetchArtistsByCategoryRequest());
-      const result = await categoryApi.getArtistsByCategoryAPI(id);
-      dispatch(actions.fetchArtistsByCategorySuccess(result));
+      dispatch(actions.fetchArtistsByCategoryIdRequest());
+      const result = await categoryApi.getArtistsByCategoryIdAPI(id);
+      dispatch(actions.fetchArtistsByCategoryIdSuccess(result));
     } catch (error) {
       console.log("error : ", error);
     } finally {
