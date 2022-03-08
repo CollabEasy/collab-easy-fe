@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Title from "components/title";
 import { useRouter } from "next/router";
+import { LISTING_BANNERS } from "../../config/constants";
 import landingdanceImg from "public/images/listing-dance.png";
 import { Card, Button } from "antd";
 import Link from "next/link";
@@ -17,9 +18,10 @@ const { Meta } = Card;
 
 const mapStateToProps = (state: AppState) => {
   const loggedInUserSlug = state.user.user?.slug;
-  const selectedId = state.category.selectedId;
+  const selectedCategoryId = state.category.selectedCategoryId;
+  const selectedCategorySlug = state.category.selectedCategorySlug;
   const artists = state.category.artists;
-  return { selectedId, artists,  loggedInUserSlug};
+  return { selectedCategoryId, selectedCategorySlug, artists, loggedInUserSlug };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -31,9 +33,20 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
+const getListingHeaderData = (selectedCategorySlug) => {
+  for (var i = 0; i < LISTING_BANNERS.length; i++) {
+    if (LISTING_BANNERS[i]["slug"] == selectedCategorySlug) {
+      return LISTING_BANNERS[i];
+    }
+  }
+  return {};
+}
+
+
 const DiscoverArtist = ({
   artists,
-  selectedId,
+  selectedCategoryId,
+  selectedCategorySlug,
   loggedInUserSlug,
   fetchArtistsByCategory,
 }: Props) => {
@@ -42,9 +55,9 @@ const DiscoverArtist = ({
   const { id: typeOfArtist } = router.query;
 
   useEffect(() => {
-    console.log("calling api: ", selectedId);
-    fetchArtistsByCategory(selectedId);
-  }, [fetchArtistsByCategory, selectedId]);
+    console.log("calling api: ", selectedCategoryId, selectedCategorySlug);
+    fetchArtistsByCategory(selectedCategoryId);
+  }, [fetchArtistsByCategory, selectedCategoryId]);
 
   const getArtists = () => {
     const resultArtists: JSX.Element[] = [];
@@ -118,18 +131,32 @@ const DiscoverArtist = ({
           <div className="row ">
             <div className="col-sm-6" style={{ backgroundColor: "#BBE7C5" }}>
               <div className="discoverArtists_desktopCoverTextContainer">
-                <h1>
-                  Singers to work with on your next big hit..<br></br>
-                </h1>
-                <h3>
-                  send them a collab request to see if they are available.
-                </h3>
+                {Object.keys(getListingHeaderData(selectedCategorySlug)).length !== 0 ? (
+                  <div>
+                    <h1>
+                      {getListingHeaderData(selectedCategorySlug)["heading"]}<br></br>
+                    </h1>
+                    <h3>
+                      {getListingHeaderData(selectedCategorySlug)["sub-heading"]}
+                    </h3>
+                  </div>
+                ) : (
+                  <div>
+                    <h1>
+                      Artists to work with on your next big hit.<br></br>
+                    </h1>
+                    <h3>
+                      send them a collab request to see if they are available.
+                    </h3>
+                  </div>
+                )}
               </div>
             </div>
             <div className="col-sm-6" style={{ backgroundColor: "#BBE7C5" }}>
               <Image
                 layout="responsive"
                 objectFit="contain"
+                // we have to update the src to use dynamic image instead of fixed image.
                 src={landingdanceImg}
                 alt="Landing page" />
             </div>

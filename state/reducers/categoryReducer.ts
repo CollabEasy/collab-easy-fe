@@ -2,7 +2,8 @@ import * as actionType from '../actionTypes/categoryActionTypes';
 import { CategoryState } from "types/states/category";
 
 const initialState : CategoryState = {
-    selectedId: -1,
+    selectedCategoryId: -1,
+    selectedCategorySlug: "",
     isFetchingArtists: false,
     isFetchingCategories: false,
     categories: [],
@@ -11,10 +12,15 @@ const initialState : CategoryState = {
 
 const categoryReducer = (state = initialState, action): CategoryState => {
     switch (action.type) {
-        case actionType.SET_SELETECTED_ID:
+        case actionType.SET_SELETECTED_CATEGORY_ID:
             return {
                 ...state,
-                selectedId: action.payload.id
+                selectedCategoryId: action.payload.id
+            }
+        case actionType.SET_SELETECTED_CATEGORY_SLUG:
+            return {
+                ...state,
+                selectedCategorySlug: action.payload.slug
             }
         case actionType.FETCH_ARTIST_BY_CATEGORY_REQUEST:
             return {

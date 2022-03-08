@@ -1,9 +1,11 @@
 import { User
  } from "types/model";
 export interface CategoryState {
-    selectedId: number;
+    selectedCategoryId: number;
+    selectedCategorySlug: string;
     isFetchingArtists: boolean;
     isFetchingCategories: boolean;
     categories: any[];
     artists: User[];
+
 }
