@@ -25,8 +25,8 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchArtistsByCategory: (id: number) =>
-    dispatch(action.fetchArtistsByCategory(id)),
+  fetchArtistsByCategoryId: (id: number) =>
+    dispatch(action.fetchArtistsByCategoryId(id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -48,7 +48,7 @@ const DiscoverArtist = ({
   selectedCategoryId,
   selectedCategorySlug,
   loggedInUserSlug,
-  fetchArtistsByCategory,
+  fetchArtistsByCategoryId,
 }: Props) => {
   const { toArtistProfile } = useRoutesContext();
   const router = useRouter();
@@ -56,8 +56,8 @@ const DiscoverArtist = ({
 
   useEffect(() => {
     console.log("calling api: ", selectedCategoryId, selectedCategorySlug);
-    fetchArtistsByCategory(selectedCategoryId);
-  }, [fetchArtistsByCategory, selectedCategoryId]);
+    fetchArtistsByCategoryId(selectedCategoryId);
+  }, [fetchArtistsByCategoryId, selectedCategoryId]);
 
   const getArtists = () => {
     const resultArtists: JSX.Element[] = [];
