@@ -25,8 +25,8 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchArtistsByCategoryId: (id: number) =>
-    dispatch(action.fetchArtistsByCategoryId(id)),
+  fetchArtistsByCategorySlug: (slug: string) =>
+    dispatch(action.fetchArtistsByCategorySlug(slug)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -48,16 +48,17 @@ const DiscoverArtist = ({
   selectedCategoryId,
   selectedCategorySlug,
   loggedInUserSlug,
-  fetchArtistsByCategoryId,
+  fetchArtistsByCategorySlug,
 }: Props) => {
   const { toArtistProfile } = useRoutesContext();
   const router = useRouter();
-  const { id: typeOfArtist } = router.query;
+  const { id: artSlug } = router.query;
 
+  console.log("Rabbal lets print ", artSlug);
   useEffect(() => {
     console.log("calling api: ", selectedCategoryId, selectedCategorySlug);
-    fetchArtistsByCategoryId(selectedCategoryId);
-  }, [fetchArtistsByCategoryId, selectedCategoryId]);
+    fetchArtistsByCategorySlug(selectedCategorySlug);
+  }, [fetchArtistsByCategorySlug, selectedCategorySlug]);
 
   const getArtists = () => {
     const resultArtists: JSX.Element[] = [];

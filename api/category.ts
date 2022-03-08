@@ -24,7 +24,7 @@ export const getArtistsByCategoryIdAPI = async (id: number) => {
   const config = getConfig();
   try {
     const result = await api.call(
-      `api/v1/artist/category/${id}/artists`,
+      `api/v1/artist/category/id/${id}/artists`,
       config
     );
     return result;
@@ -37,7 +37,7 @@ export const getArtistsByCategorySlugAPI = async (slug: string) => {
   const config = getConfig();
   try {
     const result = await api.call(
-      `api/v1/artist/category/${slug}/artists`,
+      `api/v1/artist/category/slug/${slug}/artists`,
       config
     );
     return result;
