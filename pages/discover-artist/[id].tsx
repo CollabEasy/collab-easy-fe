@@ -12,16 +12,14 @@ import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { useEffect } from "react";
 import * as action from "../../state/action/categoryAction";
-import { CloseOutlined, PictureOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
 const mapStateToProps = (state: AppState) => {
   const loggedInUserSlug = state.user.user?.slug;
-  const selectedCategoryId = state.category.selectedCategoryId;
   const selectedCategorySlug = state.category.selectedCategorySlug;
   const artists = state.category.artists;
-  return { selectedCategoryId, selectedCategorySlug, artists, loggedInUserSlug };
+  return { selectedCategorySlug, artists, loggedInUserSlug };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -45,7 +43,6 @@ const getListingHeaderData = (selectedCategorySlug) => {
 
 const DiscoverArtist = ({
   artists,
-  selectedCategoryId,
   selectedCategorySlug,
   loggedInUserSlug,
   fetchArtistsByCategorySlug,
@@ -53,19 +50,17 @@ const DiscoverArtist = ({
   const { toArtistProfile } = useRoutesContext();
   const router = useRouter();
   const { id: artSlug } = router.query;
-
-  console.log("Rabbal lets print ", artSlug);
   useEffect(() => {
-    console.log("calling api: ", selectedCategoryId, selectedCategorySlug);
-    fetchArtistsByCategorySlug(selectedCategorySlug);
-  }, [fetchArtistsByCategorySlug, selectedCategorySlug]);
+    // we are not using selectedcategorySlug here because if a user is coming directly from a URL, 
+    // the value of selectedCatgeorySlug is empty.
+    fetchArtistsByCategorySlug(artSlug);
+  }, [fetchArtistsByCategorySlug, artSlug]);
 
   const getArtists = () => {
     const resultArtists: JSX.Element[] = [];
-    console.log("artists : ", artists);
+    console.log("Total artists fetched : ", artists.length);
     artists.forEach((artist, index) => {
       if (artist !== null) {
-        console.log("pp url : ", artist.profile_pic_url);
         resultArtists.push(
           //https://bbbootstrap.com/snippets/bootstrap-ecommerce-category-product-list-page-93685579
           <div className="row p-2 bg-white border rounded artits-card">
