@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Title from "components/title";
 import { useRouter } from "next/router";
+import { LISTING_BANNERS } from "config/constants";
 import landingdanceImg from "public/images/listing-dance.png";
 import { Card, Button } from "antd";
 import Link from "next/link";
@@ -17,9 +18,10 @@ const { Meta } = Card;
 
 const mapStateToProps = (state: AppState) => {
   const loggedInUserSlug = state.user.user?.slug;
-  const selectedId = state.category.selectedId;
+  const selectedCategoryId = state.category.selectedCategoryId;
+  const selectedCategorySlug = state.category.selectedCategorySlug;
   const artists = state.category.artists;
-  return { selectedId, artists,  loggedInUserSlug};
+  return { selectedCategoryId, selectedCategorySlug, artists, loggedInUserSlug};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -33,7 +35,8 @@ type Props = {} & ConnectedProps<typeof connector>;
 
 const DiscoverArtist = ({
   artists,
-  selectedId,
+  selectedCategoryId,
+  selectedCategorySlug,
   loggedInUserSlug,
   fetchArtistsByCategory,
 }: Props) => {
@@ -42,9 +45,9 @@ const DiscoverArtist = ({
   const { id: typeOfArtist } = router.query;
 
   useEffect(() => {
-    console.log("calling api: ", selectedId);
-    fetchArtistsByCategory(selectedId);
-  }, [fetchArtistsByCategory, selectedId]);
+    console.log("calling api: ", selectedCategoryId, selectedCategorySlug);
+    fetchArtistsByCategory(selectedCategoryId);
+  }, [fetchArtistsByCategory, selectedCategoryId]);
 
   const getArtists = () => {
     const resultArtists: JSX.Element[] = [];

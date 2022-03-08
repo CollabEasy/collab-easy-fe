@@ -1,11 +1,18 @@
 import { User } from 'types/model';
 import * as actionType from '../actionTypes/categoryActionTypes';
 
-export const setSelectedId = (id: number) => ({
-    type: actionType.SET_SELETECTED_ID,
+export const setSelectedCategoryId = (id: number) => ({
+    type: actionType.SET_SELETECTED_CATEGORY_ID,
     payload: {
       id,
     },
+})
+
+export const setSelectedCategorySlug = (slug: string) => ({
+  type: actionType.SET_SELETECTED_CATEGORY_SLUG,
+  payload: {
+    slug,
+  },
 })
 
 export const fetchArtistsByCategory = (id: number) => ({
