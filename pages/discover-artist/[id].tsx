@@ -127,13 +127,13 @@ const DiscoverArtist = ({
           <div className="row ">
             <div className="col-sm-6" style={{ backgroundColor: "#BBE7C5" }}>
               <div className="discoverArtists_desktopCoverTextContainer">
-                {Object.keys(getListingHeaderData(selectedCategorySlug)).length !== 0 ? (
+                {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
                   <div>
                     <h1>
-                      {getListingHeaderData(selectedCategorySlug)["heading"]}<br></br>
+                      {getListingHeaderData(artSlug)["heading"]}<br></br>
                     </h1>
                     <h3>
-                      {getListingHeaderData(selectedCategorySlug)["sub-heading"]}
+                      {getListingHeaderData(artSlug)["sub-heading"]}
                     </h3>
                   </div>
                 ) : (
