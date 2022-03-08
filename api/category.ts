@@ -33,6 +33,19 @@ export const getArtistsByCategoryIdAPI = async (id: number) => {
   }
 };
 
+export const getArtistsByCategorySlugAPI = async (slug: string) => {
+  const config = getConfig();
+  try {
+    const result = await api.call(
+      `api/v1/artist/category/${slug}/artists`,
+      config
+    );
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getAllCategories = async () => {
   const config = getConfig();
   try {

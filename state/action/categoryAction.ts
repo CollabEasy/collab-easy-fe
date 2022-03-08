@@ -34,6 +34,25 @@ export const fetchArtistsByCategoryIdSuccess = (data: any) => ({
   }
 })
 
+export const fetchArtistsByCategorySlug = (slug: string) => ({
+  type: actionType.FETCH_ARTIST_BY_CATEGORY_SLUG,
+  payload: {
+    slug,
+  }
+})
+
+export const fetchArtistsByCategorySlugRequest = () => ({
+  type: actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_REQUEST,
+  payload: {}
+})
+
+export const fetchArtistsByCategorySlugSuccess = (data: any) => ({
+  type: actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_SUCCESS,
+  payload: {
+    data
+  }
+})
+
 export const getAllCategories = () => ({
   type: actionType.FETCH_ALL_CATEGORIES,
   payload: {},

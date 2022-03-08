@@ -34,7 +34,19 @@ const categoryReducer = (state = initialState, action): CategoryState => {
                 artists: action.payload.data.data,
                 isFetchingArtists: false,
             }
-            case actionType.FETCH_ALL_CATEGORIES_REQUEST:
+        case actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_REQUEST:
+            return {
+                ...state,
+                artists: [],
+                isFetchingArtists: true,
+            }
+        case actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_SUCCESS:
+            return {
+                ...state,
+                artists: action.payload.data.data,
+                isFetchingArtists: false,
+            }
+        case actionType.FETCH_ALL_CATEGORIES_REQUEST:
                 return {
                     ...state,
                     isFetchingCategories: true,

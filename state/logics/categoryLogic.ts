@@ -28,6 +28,28 @@ export const fetchArtistsByCategoryIdLogic = createLogic<
   },
 });
 
+export const fetchArtistsByCategorySlugLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.fetchArtistsByCategorySlug>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.FETCH_ARTIST_BY_CATEGORY_SLUG],
+  async process({ action, api }, dispatch, done) {
+    const { slug } = action.payload;
+    try {
+      console.log("calling api in logic");
+      dispatch(actions.fetchArtistsByCategorySlugRequest());
+      const result = await categoryApi.getArtistsByCategorySlugAPI(slug);
+      dispatch(actions.fetchArtistsByCategorySlugSuccess(result));
+    } catch (error) {
+      console.log("error : ", error);
+    } finally {
+      done();
+    }
+  },
+});
+
 export const fetchArtistCategoriesLogic = createLogic<
   AppState,
   FSACreatorPayload<typeof actions.getAllCategories>,
