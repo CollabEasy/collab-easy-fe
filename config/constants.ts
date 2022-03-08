@@ -3933,13 +3933,20 @@ export const LISTING_BANNERS = [
     "category": "Dance",
     "heading": "Choreographers to work with on your next big hit",
     "sub-heading": "Send a collab request to see if they are available",
-    "image": "listing-dance.png",
+    "image": "public/images/listing-dance.png",
   },
   {
-    "slug": "dance",
-    "category": "Dance",
-    "heading": "Choreographers to work with on your next big hit",
+    "slug": "singer",
+    "category": "Singers",
+    "heading": "Singers to work with on your next big hit",
     "sub-heading": "Send a collab request to see if they are available",
-    "image": "listing-singer.png",
+    "image": "public/images/listing-singer.png",
+  },
+  {
+    "slug": "write",
+    "category": "Writers",
+    "heading": "Writers to work with on your next big hit",
+    "sub-heading": "Send a collab request to see if they are available",
+    "image": "public/images/listing-writer.png",
   }
 ]
