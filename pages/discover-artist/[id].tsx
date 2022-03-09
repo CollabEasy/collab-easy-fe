@@ -53,7 +53,7 @@ const DiscoverArtist = ({
   useEffect(() => {
     // we are not using selectedcategorySlug here because if a user is coming directly from a URL, 
     // the value of selectedCatgeorySlug is empty.
-    fetchArtistsByCategorySlug(artSlug.toString());
+    fetchArtistsByCategorySlug(artSlug);
   }, [fetchArtistsByCategorySlug, artSlug]);
 
   const getArtists = () => {

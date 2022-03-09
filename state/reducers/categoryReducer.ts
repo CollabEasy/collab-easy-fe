@@ -2,7 +2,8 @@ import * as actionType from "../actionTypes/categoryActionTypes";
 import { CategoryState } from "types/states/category";
 
 const initialState: CategoryState = {
-  selectedId: -1,
+  selectedCategoryId: -1,
+  selectedCategorySlug: "",
   isFetchingArtists: false,
   isFetchingCategories: false,
   categories: [],
@@ -11,24 +12,41 @@ const initialState: CategoryState = {
 
 const categoryReducer = (state = initialState, action): CategoryState => {
   switch (action.type) {
-    case actionType.SET_SELETECTED_ID:
+    case actionType.SET_SELETECTED_CATEGORY_ID:
       return {
         ...state,
-        selectedId: action.payload.id,
+        selectedCategoryId: action.payload.id,
       };
-    case actionType.FETCH_ARTIST_BY_CATEGORY_REQUEST:
+    case actionType.FETCH_ARTIST_BY_CATEGORY_ID_REQUEST:
       return {
         ...state,
         artists: [],
         isFetchingArtists: true,
       };
-    case actionType.FETCH_ARTIST_BY_CATEGORY_SUCCESS:
+    case actionType.FETCH_ARTIST_BY_CATEGORY_ID_SUCCESS:
       return {
         ...state,
         artists: action.payload.data.data,
         isFetchingArtists: false,
       };
-    case actionType.FETCH_ARTIST_BY_CATEGORY_FAILURE:
+    case actionType.FETCH_ARTIST_BY_CATEGORY_ID_FAILURE:
+      return {
+        ...state,
+        isFetchingArtists: false,
+      };
+    case actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_REQUEST:
+      return {
+        ...state,
+        artists: [],
+        isFetchingArtists: true,
+      };
+    case actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_SUCCESS:
+      return {
+        ...state,
+        artists: action.payload.data.data,
+        isFetchingArtists: false,
+      };
+    case actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_FAILURE:
       return {
         ...state,
         isFetchingArtists: false,
