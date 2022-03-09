@@ -9,4 +9,5 @@ export interface UserState {
   isUpdatingPrefs: string;
   preferences: any;
   artCategories: string[];
+  isFetchingUser: boolean;
 }

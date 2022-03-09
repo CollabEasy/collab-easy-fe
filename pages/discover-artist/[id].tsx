@@ -42,16 +42,13 @@ const DiscoverArtist = ({
   const { id: typeOfArtist } = router.query;
 
   useEffect(() => {
-    console.log("calling api: ", selectedId);
     fetchArtistsByCategory(selectedId);
   }, [fetchArtistsByCategory, selectedId]);
 
   const getArtists = () => {
     const resultArtists: JSX.Element[] = [];
-    console.log("artists : ", artists);
     artists.forEach((artist, index) => {
       if (artist !== null) {
-        console.log("pp url : ", artist.profile_pic_url);
         resultArtists.push(
           //https://bbbootstrap.com/snippets/bootstrap-ecommerce-category-product-list-page-93685579
           <div className="row p-2 bg-white border rounded artits-card">

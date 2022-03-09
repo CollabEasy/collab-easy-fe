@@ -24,7 +24,6 @@ const getConfig = () => {
 export const uploadSampleApi = async (data: FormData) => {
   const config = postConfig(data);
   try {
-    console.log("api called");
     const result = await api.call("api/v1/artist/sample/upload", config);
     return result;
   } catch (error) {

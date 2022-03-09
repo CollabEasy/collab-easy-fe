@@ -16,7 +16,6 @@ export const fetchArtistsByCategoryLogic = createLogic<
   async process({ action, api }, dispatch, done) {
     const { id } = action.payload;
     try {
-      console.log("calling api in logic");
       dispatch(actions.fetchArtistsByCategoryRequest());
       const result = await categoryApi.getArtistsByCategoryAPI(id);
       dispatch(actions.fetchArtistsByCategorySuccess(result));

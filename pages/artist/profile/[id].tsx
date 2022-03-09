@@ -10,6 +10,7 @@ import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import * as artistApi from "api/artist-user"
 import { User } from "types/model";
+import Loader from "@/components/loader";
 
 // https://ant.design/components/card/
 const { Meta } = Card;
@@ -53,7 +54,7 @@ const ArtistProfile = ({ user }: Props) => {
 
   if (showLoader || (isSelf && Object.keys(user).length === 1) ||
       (!isSelf && (!otherUser || Object.keys(otherUser).length === 0)))
-    return <p className="artist-profile-page-empty">Redirecting</p>;
+    return <Loader />;
 
   return (
     <Profile 

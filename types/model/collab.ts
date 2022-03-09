@@ -8,14 +8,27 @@ export interface SendCollabRequest {
 }
 
 export interface SearchCollab {
-  collabRequestId?: number
+  collabRequestId?: string
   status?: string
-  senderId?: string
-  receiverId?: string
+  otherUserId?: string
 }
 
+export interface CollabResponse {
+  sent: {
+    active: CollabRequestData[];
+    pending: CollabRequestData[];
+    completed: CollabRequestData[];
+    rejected: CollabRequestData[];
+  },
+  received: {
+    active: CollabRequestData[];
+    pending: CollabRequestData[];
+    completed: CollabRequestData[];
+    rejected: CollabRequestData[];
+  }
+}
 export interface CollabRequestData {
-  id: number
+  id: string
   senderId: string
   receiverId: string
   collabDate: Date

@@ -1,8 +1,8 @@
-import { CollabRequestData } from "types/model";
+import { CollabRequestData, CollabResponse } from "types/model";
 
 export interface CollabRequestState {
-  active: CollabRequestData[]
-  pending: CollabRequestData[]
-  rejected: CollabRequestData[]
-  completed: CollabRequestData[]
+  collabDetails: CollabResponse;
+  showCollabModal: boolean;
+  isSendingRequest: boolean;
+  isFetchingCollabDetails: boolean;
 }

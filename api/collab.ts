@@ -22,6 +22,14 @@ export const sendCollabRequest = async (collabRequest: SendCollabRequest) => {
   }
 };
 
+export const updateCollabRequest = async (collabRequest: CollabRequestData) => {
+  try {
+    return await api.call("api/v1/collab/request/update", postConfig(collabRequest));
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const rejectCollabRequest = async (id: string) => {
   try {
     return await api.call(`api/v1/collab/reject/requestId/${id}`, postConfig());
@@ -38,9 +46,9 @@ export const acceptCollabRequest = async (id: string) => {
   }
 };
 
-export const getCollabRequest = async (searchCollab: SearchCollab) => {
+export const getCollabRequest = async (searchCollabData: SearchCollab) => {
   try {
-    return await api.call<{data: CollabRequestData}>(`api/v1/collab/search`, postConfig(searchCollab));
+    return await api.call(`api/v1/collab/search`, postConfig(searchCollabData));
   } catch (error) {
     throw error;
   }

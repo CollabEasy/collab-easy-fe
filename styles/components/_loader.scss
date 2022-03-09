@@ -1,0 +1,19 @@
+.loader__parent {
+    position: relative;
+    height: 500px;
+}
+
+.loader__container {
+    text-align: center;
+    position: absolute;
+    top: 50%; 
+    left: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.loader__spinner {
+    margin-bottom: 32px;
+}
+

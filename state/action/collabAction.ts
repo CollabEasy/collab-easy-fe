@@ -8,6 +8,52 @@ export const sendCollabRequestAction = (data: SendCollabRequest) => ({
     },
 })
 
+export const sendCollabRequestSuccess = (data: SendCollabRequest) => ({
+  type: actionTypes.SEND_COLLAB_REQUEST_SUCCESS,
+  payload: {
+    data
+  },
+})
+
+export const sendCollabRequestFailure = () => ({
+  type: actionTypes.SEND_COLLAB_REQUEST_FAILURE,
+  payload: {},
+})
+
+export const sendCollabRequestRequest = () => ({
+  type: actionTypes.SEND_COLLAB_REQUEST_REQUEST,
+  payload: {}
+})
+
+
+export const updateCollabRequest = (data: CollabRequestData) => ({
+  type: actionTypes.UPDATE_COLLAB_REQUEST,
+  payload: {
+    data
+  }
+})
+
+export const updateCollabRequestRequest = () => ({
+  type: actionTypes.UPDATE_COLLAB_REQUEST_REQUEST,
+  payload: {
+    
+  }
+})
+
+export const updateCollabRequestSuccess = (data: CollabRequestData) => ({
+  type: actionTypes.UPDATE_COLLAB_REQUEST_SUCCESS,
+  payload: {
+    data
+  }
+})
+
+export const updateCollabRequestFailure = () => ({
+  type: actionTypes.UPDATE_COLLAB_REQUEST_FAILURE,
+  payload: {
+    
+  }
+})
+
 export const acceptCollabRequestAction = (id: number) => ({
   type: actionTypes.ACCEPT_COLLAB_REQUEST,
   payload: {
@@ -29,6 +75,34 @@ export const getCollabRequestsAction = (data: SearchCollab) => ({
     data,
   },
 });
+
+export const getCollabRequestsActionRequest = () => ({
+  type: actionTypes.SEARCH_COLLAB_REQUEST_REQUEST,
+  payload: {
+    
+  },
+});
+
+export const getCollabRequestsActionSuccess = (data: CollabRequestData) => ({
+  type: actionTypes.SEARCH_COLLAB_REQUEST_SUCCESS,
+  payload: {
+    data
+  },
+});
+
+export const getCollabRequestsActionFailure = () => ({
+  type: actionTypes.SEARCH_COLLAB_REQUEST_FAILURE,
+  payload: {
+    
+  },
+});
+
+export const setShowCollabModalState = (show: boolean) => ({
+  type: actionTypes.SET_SHOW_COLLAB_MODAL_STATUS,
+  payload: {
+    show
+  }
+})
 
 export const setPendingCollabRequestsAction = (data: CollabRequestData) => ({
   type: actionTypes.SET_PENDING_COLLAB_REQUEST_DATA,

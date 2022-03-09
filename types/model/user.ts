@@ -1,5 +1,5 @@
 export interface User {
-  user_id?: string;
+  artist_id?: string;
   slug?: string;
   first_name?: string;
   last_name?: string;

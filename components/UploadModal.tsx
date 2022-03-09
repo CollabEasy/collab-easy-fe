@@ -70,13 +70,13 @@ const UploadModal = ({
     formData.append("caption", fileCaption);
     formData.append("filetype", getFileType());
 
-    console.log("form data done");
     uploadSample(formData);
   };
 
   return (
     <>
       <Modal
+        className="uploadModal__modal"
         visible={!isUploaded}
         centered
         destroyOnClose={true}

@@ -1,3 +1,7 @@
+.uploadModal__modal .ant-modal-content {
+    border-radius: 18px;
+}
+
 .uploadModal__container {
     display: flex;
     border-radius: 12px;
@@ -37,7 +41,6 @@
 .uploadModal__uploadButton {
     border-radius: 8px;
     margin-top: 12px;
-    
 }
 
 .uploadModal__captionContainer {

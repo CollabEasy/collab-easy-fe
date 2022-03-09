@@ -45,6 +45,7 @@ const ConfirmationModal = ({
   const router = useRouter();
   return (
     <Modal
+      className="confirmationModal__modal"
       visible={show}
       centered
       destroyOnClose={true}
