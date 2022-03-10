@@ -19,8 +19,10 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   sendCollabRequestAction: (data: SendCollabRequest) =>
     dispatch(action.sendCollabRequestAction(data)),
-  updateCollabRequest: (data: CollabRequestData) => dispatch(action.updateCollabRequest(data)),
-  acceptCollabRequest: (requestId: string) => dispatch(action.acceptCollabRequestAction(requestId)),
+  updateCollabRequest: (data: CollabRequestData) =>
+    dispatch(action.updateCollabRequest(data)),
+  acceptCollabRequest: (requestId: string) =>
+    dispatch(action.acceptCollabRequestAction(requestId)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -47,8 +49,10 @@ const SendCollabRequestModal = ({
   const [collabDataCached, setCollabDataCached] =
     useState<CollabRequestData>(collabDetails);
   const [editable, setEditable] = useState(
-    isNewCollab
-    || (user.artist_id === collabDetails.senderId && collabDetails.status === "PENDING" ));
+    isNewCollab ||
+      (user.artist_id === collabDetails.senderId &&
+        collabDetails.status === "PENDING")
+  );
 
   const sendCollabRequest = () => {
     if (isNewCollab) {
@@ -144,7 +148,7 @@ const SendCollabRequestModal = ({
           >
             Send
           </Button>
-        ) : (
+        ) : collabDetails.status === "PENDING" ? (
           <div className="sendCollabRequestModal__acceptRejectContainer">
             <Button
               size="large"
@@ -152,7 +156,7 @@ const SendCollabRequestModal = ({
               disabled={isRejectingRequest}
               loading={isAcceptingRequest}
               onClick={() => {
-                acceptCollabRequest(collabDetails.id)
+                acceptCollabRequest(collabDetails.id);
               }}
             >
               Accept
@@ -164,12 +168,14 @@ const SendCollabRequestModal = ({
               disabled={isAcceptingRequest}
               loading={isRejectingRequest}
               onClick={() => {
-                rejectCollabRequest(collabDetails.id)
+                rejectCollabRequest(collabDetails.id);
               }}
             >
               Reject
             </Button>
           </div>
+        ) : (
+          <></>
         )}
       </div>
     </Modal>
