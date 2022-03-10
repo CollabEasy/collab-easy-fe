@@ -90,7 +90,7 @@ const Profile = ({
       setHasPendingCollab(true);
     } else if (collab.collabDetails.received.pending.length > 0 || collab.collabDetails.received.pending.length > 0) {
       setHasPendingCollab(true);
-      setCollabRequestDetails(collab.collabDetails.received.pending[0]);
+      setCollabRequestDetails(collab.collabDetails.received.active[0]);
     } else {
       setHasPendingCollab(false);
       setCollabRequestDetails(emptyCollabDetails);
