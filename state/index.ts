@@ -13,6 +13,7 @@ import * as searchApi from "api/search"
 import * as collabApi from "api/collab"
 import * as loginApi from "api/login"
 import * as artistApi from "api/artist-user"
+import * as scratchpadApi from "api/scratchpad"
 import { AppRouteCreators } from "types/core";
 
 export type AppState = ImportedAppState;
@@ -21,7 +22,8 @@ export const APIs = {
   searchApi,
   collabApi,
   loginApi,
-  artistApi
+  artistApi,
+  scratchpadApi
 };
 
 export interface LogicDeps {

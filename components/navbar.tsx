@@ -156,19 +156,24 @@ const NavBar = ({
                   </div>
                 </div>
                 <div className="common-login-option">
-                <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
-                  <div className="selected-option-shadow profile-option" onClick={() => setShowLoginOptions(false)}>
-                    <span className="f-14">Profile</span>
+                  <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
+                    <div className="selected-option-shadow profile-option" onClick={() => setShowLoginOptions(false)}>
+                      <span className="f-14">Profile</span>
+                    </div>
+                  </Link>
+                  <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref>
+                    <div className="selected-option-shadow profile-option" onClick={() => setShowLoginOptions(false)}>
+                      <span className="f-14">Scratchpad</span>
+                    </div>
+                  </Link>
+                  <Link href={routeToHref(toEditProfile("account", "communication"))} passHref>
+                    <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
+                      <span className="f-14">Settings</span>
+                    </div>
+                  </Link>
+                  <div className="selected-option-shadow logout-option" onClick={logoutUser}>
+                    <span className="f-14">Logout</span>
                   </div>
-                </Link>
-                <Link href={routeToHref(toEditProfile("settings"))} passHref>
-                  <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
-                    <span className="f-14">Settings</span>
-                  </div>
-                </Link>
-                <div className="selected-option-shadow logout-option" onClick={logoutUser}>
-                  <span className="f-14">Logout</span>
-                </div>
                 </div>
               </div>
             )}

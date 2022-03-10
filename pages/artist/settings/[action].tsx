@@ -23,6 +23,7 @@ import {
   updateArtistPreference,
 } from "state/action";
 import SamplePage from "../../../components/samplePage";
+import ScratchpadPade from "../../../components/ScratchpadPage";
 import { COUNTRIES, GENDERS, TIME_ZONES } from "config/constants";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { AppState } from "types/states";
@@ -137,14 +138,14 @@ const EditProfile = ({
   }, [preferences, user])
 
   const router = useRouter();
-  const { action } = router.query;
+  const { action, tab } = router.query;
 
   if (
     typeof window !== "undefined" &&
-    action !== "edit" &&
-    action !== "settings"
+    action !== "profile" &&
+    action !== "account"
   ) {
-    router.push("/artist/settings/edit");
+    router.push("/artist/settings/profile?tab=personal-information");
   }
 
   function handleChange(value) {
@@ -155,17 +156,65 @@ const EditProfile = ({
 
   const getActiveTab = () => {
     let active = "1";
-    if (action === "settings") active = "2";
 
+    // if (action === "profile" && tab === "preferences") {
+    //   active = "1.2";
+    // }
+    // else if (action === "profile" && tab === "samples") {
+    //   active = "1.3";
+    // }
+    // else if (action === "profile" && tab === "social-prospectus") {
+    //   active = "1.4";
+    // }
+    // else if (action === "profile" && tab === "scratchpad") {
+    //   active = "1.5";
+    // }
+    // else if (action === "account" && tab === "communication") {
+    //   active = "2";
+    // }
+    // else if (action === "account" && tab === "account-management") {
+    //   active = "2.2";
+    // }
+    if (action === "account") active = "2";
+
+    console.log("rabbal active is ", active);
     return active;
   };
+
   const redirect = (tabIndex: string) => {
-    let action = "edit";
-    if (tabIndex === "2") {
-      action = "settings";
+
+    let action = "profile";
+    let tab = "personal-information";
+    if (tabIndex === "1.2") {
+      action = "profile";
+      tab = "preferences";
+    }
+    else if (tabIndex === "1.3") {
+      action = "profile";
+      tab = "samples";
+    }
+    else if (tabIndex === "1.4") {
+      action = "profile";
+      tab = "social-prospectus";
+    }
+    else if (tabIndex === "1.5") {
+      action = "profile";
+      tab = "scratchpad";
+    }
+    else if (tabIndex === "2") {
+      action = "account";
+      tab = "communicaton"
+    }
+    else if (tabIndex === "2.1") {
+      action = "account";
+      tab = "communicaton";
+    }
+    else if (tabIndex === "2.2") {
+      action = "account";
+      tab = "account-management";
     }
 
-    router.push("/artist/settings/" + action);
+    router.push("/artist/settings/" + action + "?tab=" + tab);
   };
 
   const resetData = () => {};
@@ -202,13 +251,11 @@ const EditProfile = ({
           <TabPane tab="Artist's Information" key="1">
             <Tabs
               type="card"
-              // tabPosition={"left"}
-              // onChange={(key: string) => {
-              //   redirect(key);
-              // }}
-              // activeKey={getActiveTab()}
+              onChange={(key: string) => {
+                redirect(key);
+              }}
             >
-              <TabPane tab="Profile" key="1">
+              <TabPane tab="Profile" key="1.1">
                 <div className="settings__basicProfileCard">
                   <h2 className="f-20 ">Personal Information</h2>
                   <Form
@@ -361,7 +408,7 @@ const EditProfile = ({
                   </Form>
                 </div>
               </TabPane>
-              <TabPane tab="Preferences" key="2">
+              <TabPane tab="Preferences" key="1.2">
                 <div className="settings__basicProfileCardSecond">
                   <h2 className="f-20 ">Preferences</h2>
                   <Form
@@ -450,13 +497,13 @@ const EditProfile = ({
                   </Form>
                 </div>
               </TabPane>
-              <TabPane tab="Samples" key="3">
+              <TabPane tab="Samples" key="1.3">
                 <div className="settings__basicProfileCardThird">
                   <h2 className="f-20 ">Work Samples</h2>
                   <SamplePage isSelf samples={samples} user={user} showLoader={isFetchingSamples} />
                 </div>
               </TabPane>
-              <TabPane tab="Social Prospectus" key="4">
+              <TabPane tab="Social Prospectus" key="1.4">
                 <div className="settings__basicProfileCardFourth">
                   <h2 className="f-20 ">Social Media Prospectus</h2>
                   <Form
@@ -549,53 +596,70 @@ const EditProfile = ({
                   </Form>
                 </div>
               </TabPane>
+              <TabPane tab="Scratchpad" key="1.5">
+                <div className="settings__basicProfileCardThird">
+                  <h2 className="f-20 ">Your Space to take notes</h2>  
+                  <ScratchpadPade user={user} />         
+                </div>
+              </TabPane >
             </Tabs>
           </TabPane>
           <TabPane tab="Account Settings" key="2">
-            <div className="settings__basicProfileCard">
-              <h2 className="f-20 ">Communication</h2>
-              <Form
-                className="settings__basicProfileForm"
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-                initialValues={{ size: componentSize }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize as SizeType}
-              >
-                <Form.Item label="Notification Emails" valuePropName="checked">
-                  <Switch
-                    checkedChildren="enabled"
-                    unCheckedChildren="disabled"
-                  />
-                </Form.Item>
-              </Form>
-            </div>
-            <div className="settings__basicProfileCardSecond">
-              <h2 className="f-20 ">Account Management</h2>
-              <Form
-                className="settings__basicProfileForm"
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-                initialValues={{ size: componentSize }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize as SizeType}
-              >
-                <Form.Item label="Disable Account" valuePropName="checked">
-                  <Switch
-                    checkedChildren="enabled"
-                    unCheckedChildren="disabled"
-                  />
-                </Form.Item>
-                <Form.Item label="Delete Account" valuePropName="checked">
-                  <Switch
-                    checkedChildren="enabled"
-                    unCheckedChildren="disabled"
-                  />
-                </Form.Item>
-              </Form>
-            </div>
+          <Tabs
+              type="card"
+              onChange={(key: string) => {
+                redirect(key);
+              }}
+            >
+              <TabPane tab="Communication" key="2.1">
+                  <div className="settings__basicProfileCard">
+                    <h2 className="f-20 ">Communication</h2>
+                    <Form
+                      className="settings__basicProfileForm"
+                      labelCol={{ span: 4 }}
+                      wrapperCol={{ span: 14 }}
+                      layout="horizontal"
+                      initialValues={{ size: componentSize }}
+                      onValuesChange={onFormLayoutChange}
+                      size={componentSize as SizeType}
+                    >
+                      <Form.Item label="Notification Emails" valuePropName="checked">
+                        <Switch
+                          checkedChildren="enabled"
+                          unCheckedChildren="disabled"
+                        />
+                      </Form.Item>
+                    </Form>
+                  </div>
+              </TabPane>
+              <TabPane tab="Account management" key="2.2">
+                <div className="settings__basicProfileCardSecond">
+                  <h2 className="f-20 ">Account Management</h2>
+                  <Form
+                    className="settings__basicProfileForm"
+                    labelCol={{ span: 4 }}
+                    wrapperCol={{ span: 14 }}
+                    layout="horizontal"
+                    initialValues={{ size: componentSize }}
+                    onValuesChange={onFormLayoutChange}
+                    size={componentSize as SizeType}
+                  >
+                    <Form.Item label="Disable Account" valuePropName="checked">
+                      <Switch
+                        checkedChildren="enabled"
+                        unCheckedChildren="disabled"
+                      />
+                    </Form.Item>
+                    <Form.Item label="Delete Account" valuePropName="checked">
+                      <Switch
+                        checkedChildren="enabled"
+                        unCheckedChildren="disabled"
+                      />
+                    </Form.Item>
+                  </Form>
+                </div>
+              </TabPane>
+            </Tabs>
           </TabPane>
         </Tabs>
       </>

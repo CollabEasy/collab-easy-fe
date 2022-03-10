@@ -19,9 +19,9 @@ export const routes: AppRouteCreators = {
     href: '/artist/profile/[id]',
     as: `/artist/profile/${id}`,
   }),
-  toEditProfile: (action) => ({
-    href: '/artist/settings/[action]',
-    as: `/artist/settings/${action}`,
+  toEditProfile: (action, tab) => ({
+    href: '/artist/settings/[action]?tab=[tab]',
+    as: `/artist/settings/${action}?tab=${tab}`,
   }),
   // toSampleUpload: () => ({
   //   href: '/artist/settings/',
