@@ -85,12 +85,12 @@ const Profile = ({
   }, [fetchArtistSamples, getCollabRequestsAction, isSelf, user.slug, user.artist_id]);
 
   useEffect(() => {
-    if (collab.collabDetails.sent.pending.length > 0) {
+    if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {
       setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
       setHasPendingCollab(true);
-    } else if (collab.collabDetails.received.pending.length > 0) {
+    } else if (collab.collabDetails.received.pending.length > 0 || collab.collabDetails.received.active.length > 0) {
       setHasPendingCollab(true);
-      setCollabRequestDetails(collab.collabDetails.received.pending[0]);
+      setCollabRequestDetails(collab.collabDetails.received.active[0]);
     } else {
       setHasPendingCollab(false);
       setCollabRequestDetails(emptyCollabDetails);
@@ -171,7 +171,6 @@ const Profile = ({
               <TabPane tab="Collab Requests" key="3">
                 <div className="artistProfile__tabContainer">
                   <CollabRequestTab 
-                    showUser={isSelf}
                     otherUser={user.artist_id}
                     collabRequests={collab.collabDetails}
                     onClickCollabRequest={(collabDetails: CollabRequestData) => {
