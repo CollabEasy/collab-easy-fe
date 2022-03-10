@@ -23,13 +23,11 @@ const getConfig = () => {
 
 export const fetchScratchpadByArtistIdAPI = async () => {
   const config = getConfig();
-  console.log("Rabbal is inside scratchpad API calls")
   try {
     const result = await api.call(
       `api/v1/artist/scratchpad/`,
       config
     );
-    console.log("rabbal data recieved ", result);
     return result;
   } catch (error) {
     throw error;
@@ -37,8 +35,9 @@ export const fetchScratchpadByArtistIdAPI = async () => {
 };
 
 
-export const addArtistScratchpad = async (data: string) => {
+export const updateArtistScratchpad = async (data: any) => {
 	const config = postConfig(data);
+  console.log("Rabbal is inside saving scratchpad API ", data);
 	try {
 		const result = await api.call('api/v1/artist/scratchpad', config);
 		return result;

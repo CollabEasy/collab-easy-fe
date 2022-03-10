@@ -16,3 +16,22 @@ export const fetchScratchpadByArtistIdSuccess = (data: any) => ({
     data
   }
 })
+
+export const updateArtistScratchpad = (data: string) => ({
+	type: actionType.UPDATE_ARTIST_SCRATCHPAD,
+	payload: {
+		data
+	},
+});
+
+export const updateArtistScratchpadRequest = () => ({
+  type: actionType.UPDATE_ARTIST_SCRATCHPAD_REQUEST,
+  payload: {},
+})
+
+export const updateArtistScratchpadSuccess = (data: string) => ({
+	type: actionType.UPDATE_ARTIST_SCRATCHPAD_SUCCESS,
+	payload: {
+			data
+	},
+});

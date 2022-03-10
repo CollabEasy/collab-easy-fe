@@ -1,4 +1,7 @@
 export interface ScratchpadState {
    isFetchingScratchpad: boolean;
-   scratchpad: string;
+   isUpdatingScratchpad: boolean;
+   scratchpad: {
+      content: string;
+   };
 }

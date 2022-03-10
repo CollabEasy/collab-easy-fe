@@ -15,13 +15,32 @@ export const fetchScratchpadByArtistIdLogic = createLogic<
   type: [actionTypes.FETCH_SCRATCHPAD_BY_ARTIST_ID],
   async process({ action, api }, dispatch, done) {
     try {
-      console.log("calling scratchpad api in logic");
       dispatch(actions.fetchScratchpadByArtistIdRequest());
       const result = await scratchpadApi.fetchScratchpadByArtistIdAPI();
-      console.log("Rabbal data recieved in logic : " , result);
       dispatch(actions.fetchScratchpadByArtistIdSuccess(result));
     } catch (error) {
       console.log("error : ", error);
+    } finally {
+      done();
+    }
+  },
+});
+
+export const updateArtistScratchpadLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.updateArtistScratchpad>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.UPDATE_ARTIST_SCRATCHPAD],
+  async process({ action, api }, dispatch, done) {
+    console.log("Rabbal is inside save scratchpad logic", action.payload);
+    try {
+      dispatch(actions.updateArtistScratchpadRequest());
+      const { data } = action.payload;
+      const result = await api.scratchpadApi.updateArtistScratchpad(data);
+      dispatch(actions.updateArtistScratchpadSuccess(result));
+    } catch (error) {
     } finally {
       done();
     }

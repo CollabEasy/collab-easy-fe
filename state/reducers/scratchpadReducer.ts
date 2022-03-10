@@ -3,7 +3,10 @@ import { ScratchpadState } from "types/states/scratchpad";
 
 const initialState: ScratchpadState = {
     isFetchingScratchpad: false,
-    scratchpad: "",
+    isUpdatingScratchpad: false,
+    scratchpad: {
+      content: ""
+    }
 };
 
 const scratchpadReducer = (state = initialState, action): ScratchpadState => {
@@ -11,12 +14,10 @@ const scratchpadReducer = (state = initialState, action): ScratchpadState => {
     case actionType.FETCH_SCRATCHPAD_BY_ARTIST_ID:
       return {
         ...state,
-        scratchpad: "",
+        scratchpad: {content: ""},
         isFetchingScratchpad: true,
       };
     case actionType.FETCH_SCRATCHPAD_BY_ARTIST_ID_SUCCESS:
-      console.log("Rabbal is scratchpad reducer ");
-      console.log(action.payload);
       return {
         ...state,
         scratchpad: action.payload.data.data,
@@ -26,6 +27,18 @@ const scratchpadReducer = (state = initialState, action): ScratchpadState => {
       return {
         ...state,
         isFetchingScratchpad: false,
+      };
+    
+    case actionType.UPDATE_ARTIST_SCRATCHPAD_REQUEST:
+      return {
+        ...state,
+        isUpdatingScratchpad: true,
+      };
+    case actionType.UPDATE_ARTIST_SCRATCHPAD_SUCCESS:
+      return {
+        ...state,
+        isUpdatingScratchpad: false,
+        scratchpad: action.payload.data,
       };
     default:
       return state;

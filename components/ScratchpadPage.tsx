@@ -8,6 +8,7 @@ import { Editable, withReact, Slate } from 'slate-react'
 import { createEditor } from 'slate';
 import { Button } from "antd";
 import { useEffect } from "react";
+import Loader from "./loader";
 import * as action from "state/action/scratchpadAction";
   
 const serialize = value => {
@@ -37,14 +38,17 @@ const deserialize = value => {
 
 
 const mapStateToProps = (state: AppState) => {
-    console.log("Rabbal lets print state : ", state);
-    const loggedInUserScratchpad = state.scratchpad;
-    return {loggedInUserScratchpad}
+    const isFetchingScratchpad = state.scratchpad.scratchpad.isFetchingScratchpad;
+    const isUpdatingScratchpad = state.scratchpad.scratchpad.isUpdatingScratchpad;
+    const loggedInUserScratchpad = state.scratchpad.scratchpad;
+    console.log("Rabbal lets print state : ", loggedInUserScratchpad);
+    return {isFetchingScratchpad, isUpdatingScratchpad, loggedInUserScratchpad}
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     fetchScratchpadByArtistId: () =>
       dispatch(action.fetchScratchpadByArtistId()),
+    updateArtistScratchpad: (data: string) => dispatch(action.updateArtistScratchpad(data))
   });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -53,30 +57,27 @@ type Props = {
 } & ConnectedProps<typeof connector>;
 
 const ScratchpadPage = ({
-    fetchScratchpadByArtistId
+    isFetchingScratchpad,
+    isUpdatingScratchpad,
+    loggedInUserScratchpad,
+    fetchScratchpadByArtistId,
+    updateArtistScratchpad,
 }: Props) => {
-
     useEffect(() => {
         fetchScratchpadByArtistId();
-    }, [fetchScratchpadByArtistId]);
+    }, []);
 
       
     const [isViewMode, setViewMode] = useState(true);
     // set blogText to what is saved in database. if nothing, set it to null.
     const [blogText, setBlogText] = useState(null);
     const saveBlog = () => {
-        console.log("Rabbal is saving ", blogText);
-        // Here instead of saving to local storage, we have to send it to backend.
-        localStorage.setItem('content', serialize(blogText));
-        
-        // After saving the blog. We have to get back to viewing mode but for some reason setViewMode(true) is not working :(
-        // setViewMode(true);
+        console.log("Rabbal is saving ", serialize(blogText));
+        updateArtistScratchpad(serialize(blogText));
     }
-
     const editor = useMemo(() => withReact(createEditor()), [])
     const [value, setValue] = useState(
-        // Here instead of reading from local storage, we have to get it from backend.
-        localStorage.getItem('content') !== null ? deserialize(localStorage.getItem('content')) :
+        loggedInUserScratchpad.content.length !== 0 ? deserialize(loggedInUserScratchpad.content) :
             [
                 {
                     type: 'paragraph',
@@ -91,31 +92,37 @@ const ScratchpadPage = ({
 
     return (
         <div>
-            {isViewMode ? (
-                <div>
-                    <p>This is a placeholder text. We have to replace it with text obtained from backend.</p>
-                    <div className="scratchpad__buttonContainer">
-                        <Button type="primary" onClick={setWritingMode}>Edit</Button>
-                    </div>
-                </div>
+            {isFetchingScratchpad ? (
+                <Loader />
             ) : (
-                <div className="scratchpad_container">
-                    <div className="scratchpad_editorContainer">
-                        <Slate
-                            editor={editor}
-                            value={value}
-                            onChange={value => {
-                                setBlogText(value)
-                            }}
-                        >
-                            <Editable />
-                        </Slate>
-                    </div>
-                    <div className="scratchpad__buttonContainer">
-                        <Button type="primary" onClick={saveBlog}>
-                            Save
-                        </Button>
-                    </div>
+                <div>
+                    {isViewMode ? (
+                        <div>
+                            <p>{loggedInUserScratchpad.content}</p>
+                            <div className="scratchpad__buttonContainer">
+                                <Button type="primary" onClick={setWritingMode}>Edit</Button>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="scratchpad_container">
+                            <div className="scratchpad_editorContainer">
+                                <Slate
+                                    editor={editor}
+                                    value={deserialize(loggedInUserScratchpad.content)}
+                                    onChange={value => {
+                                        setBlogText(value)
+                                    }}
+                                >
+                                    <Editable />
+                                </Slate>
+                            </div>
+                            <div className="scratchpad__buttonContainer">
+                                <Button type="primary" onClick={saveBlog}>
+                                    Save
+                                </Button>
+                            </div>
+                        </div>
+                    )}
                 </div>
             )}
         </div>

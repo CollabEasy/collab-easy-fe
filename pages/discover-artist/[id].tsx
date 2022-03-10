@@ -16,7 +16,6 @@ import * as action from "../../state/action/categoryAction";
 const { Meta } = Card;
 
 const mapStateToProps = (state: AppState) => {
-  console.log("rabbal logegd in user ", state.user);
   const loggedInUserSlug = state.user.user?.slug;
   const selectedCategorySlug = state.category.selectedCategorySlug;
   const artists = state.category.artists;
