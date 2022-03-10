@@ -7,16 +7,20 @@ import { Dispatch } from "redux";
 import { AppState } from "state";
 import * as action from "./../state/action";
 import { CollabRequestData, SendCollabRequest } from "types/model";
+import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
   isSendingRequest: state.collab.isSendingRequest,
+  isAcceptingRequest: state.collab.isAcceptingRequest,
+  isRejectingRequest: state.collab.isRejectingRequest,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   sendCollabRequestAction: (data: SendCollabRequest) =>
     dispatch(action.sendCollabRequestAction(data)),
   updateCollabRequest: (data: CollabRequestData) => dispatch(action.updateCollabRequest(data)),
+  acceptCollabRequest: (requestId: string) => dispatch(action.acceptCollabRequestAction(requestId)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -32,6 +36,8 @@ const SendCollabRequestModal = ({
   otherUser,
   collabDetails,
   isSendingRequest,
+  isAcceptingRequest,
+  isRejectingRequest,
   onCancel,
   updateCollabRequest,
   sendCollabRequestAction,
@@ -126,7 +132,7 @@ const SendCollabRequestModal = ({
             }}
           />
         </div>
-        {editable && (
+        {editable ? (
           <Button
             size="large"
             className="sendCollabRequestModal__button"
@@ -136,6 +142,32 @@ const SendCollabRequestModal = ({
           >
             Send
           </Button>
+        ) : (
+          <div className="sendCollabRequestModal__acceptRejectContainer">
+            <Button
+              size="large"
+              className="collabDetailCard__acceptButton"
+              disabled={isRejectingRequest}
+              loading={isAcceptingRequest}
+              onClick={() => {
+                acceptCollabRequest(collabDetails.id)
+              }}
+            >
+              Accept
+            </Button>
+
+            <Button
+              size="large"
+              className="collabDetailCard__rejectButton"
+              disabled={isAcceptingRequest}
+              loading={isRejectingRequest}
+              onClick={() => {
+                rejectCollabRequest(collabDetails.id)
+              }}
+            >
+              Reject
+            </Button>
+          </div>
         )}
       </div>
     </Modal>

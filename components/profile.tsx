@@ -167,10 +167,11 @@ const Profile = ({
                 <SamplePage isSelf={isSelf} user={user} samples={userSamples} showLoader={isFetchingSamples} />
               </div>
             </TabPane>
-            {isSelf && (
+            {/* {isSelf && ( */}
               <TabPane tab="Collab Requests" key="3">
                 <div className="artistProfile__tabContainer">
                   <CollabRequestTab 
+                    showUser={isSelf}
                     otherUser={user.artist_id}
                     collabRequests={collab.collabDetails}
                     onClickCollabRequest={(collabDetails: CollabRequestData) => {
@@ -180,7 +181,7 @@ const Profile = ({
                   />
                 </div>
               </TabPane>
-            )}
+            {/* )} */}
             <TabPane tab="Social Prospectus" key="4">
               <div className="artistProfile__tabContainer">
                 <SocialProspectusPage

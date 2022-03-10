@@ -2,6 +2,15 @@
 
 }
 
+.collabRequestTab__antFilter .ant-select-selector {
+    border-radius: 12px;
+}
+
+.collabRequestTab__filter {
+    width: 150px;
+    border-radius: 12px;
+}
+
 .collabRequestTab__filterContainer {
     display: flex;
     gap: 48px;

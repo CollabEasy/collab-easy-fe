@@ -58,7 +58,6 @@ const DiscoverArtist = ({
 
   const getArtists = () => {
     const resultArtists: JSX.Element[] = [];
-    console.log("Total artists fetched : ", artists.length);
     artists.forEach((artist, index) => {
       if (artist !== null) {
         resultArtists.push(
