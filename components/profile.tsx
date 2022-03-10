@@ -88,7 +88,7 @@ const Profile = ({
     if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {
       setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
       setHasPendingCollab(true);
-    } else if (collab.collabDetails.received.pending.length > 0 || collab.collabDetails.received.pending.length > 0) {
+    } else if (collab.collabDetails.received.pending.length > 0 || collab.collabDetails.received.active.length > 0) {
       setHasPendingCollab(true);
       setCollabRequestDetails(collab.collabDetails.received.active[0]);
     } else {
