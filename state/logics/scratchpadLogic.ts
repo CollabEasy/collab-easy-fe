@@ -15,9 +15,10 @@ export const fetchScratchpadByArtistIdLogic = createLogic<
   type: [actionTypes.FETCH_SCRATCHPAD_BY_ARTIST_ID],
   async process({ action, api }, dispatch, done) {
     try {
-      //console.log("calling api in logic");
+      console.log("calling scratchpad api in logic");
       dispatch(actions.fetchScratchpadByArtistIdRequest());
       const result = await scratchpadApi.fetchScratchpadByArtistIdAPI();
+      console.log("Rabbal data recieved in logic : " , result);
       dispatch(actions.fetchScratchpadByArtistIdSuccess(result));
     } catch (error) {
       console.log("error : ", error);

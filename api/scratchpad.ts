@@ -23,11 +23,13 @@ const getConfig = () => {
 
 export const fetchScratchpadByArtistIdAPI = async () => {
   const config = getConfig();
+  console.log("Rabbal is inside scratchpad API calls")
   try {
     const result = await api.call(
       `api/v1/artist/scratchpad/`,
       config
     );
+    console.log("rabbal data recieved ", result);
     return result;
   } catch (error) {
     throw error;
