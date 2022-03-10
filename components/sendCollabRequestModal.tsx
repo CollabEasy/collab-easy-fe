@@ -40,7 +40,7 @@ const SendCollabRequestModal = ({
   const isNewCollab = collabDetails.id === "";
   const [collabDataCached, setCollabDataCached] =
     useState<CollabRequestData>(collabDetails);
-  const [editable, setEditable] = useState(collabDetails.status === "PENDING" && (user.artist_id === collabDetails.senderId || isNewCollab));
+  const [editable, setEditable] = useState( isNewCollab || (user.artist_id === collabDetails.senderId && collabDetails.status === "PENDING" ));
 
   const sendCollabRequest = () => {
     if (isNewCollab) {
