@@ -39,7 +39,7 @@ export const updateArtistScratchpadLogic = createLogic<
       dispatch(actions.updateArtistScratchpadRequest());
       const { data } = action.payload;
       const result = await api.scratchpadApi.updateArtistScratchpad(data);
-      dispatch(actions.updateArtistScratchpadSuccess(result));
+      dispatch(actions.updateArtistScratchpadSuccess(data));
     } catch (error) {
     } finally {
       done();
