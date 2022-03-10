@@ -18,6 +18,7 @@ import * as action from "../state/action";
 import UploadModal from "./UploadModal";
 import SampleTile from "./sampleTile";
 import ConfirmationModal from "./confirmationModal";
+import Loader from "./loader";
 
 const { Meta } = Card;
 
@@ -41,6 +42,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type Props = {
   user: User;
   isSelf: boolean;
+  showLoader: boolean;
   samples: UserSample[];
 } & ConnectedProps<typeof connector>;
 
@@ -50,6 +52,7 @@ const SamplePage = ({
   samples,
   isDeleting,
   isDeleted,
+  showLoader,
   deleteSample,
   clearUploadSampleState,
   clearDeleteSampleState,
@@ -176,6 +179,8 @@ const SamplePage = ({
     return sampleTiles;
   };
 
+  if (showLoader) return <Loader />
+  
   return (
     <>
       <div

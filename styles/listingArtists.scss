@@ -35,12 +35,15 @@
     .listingContainer {
         padding-top: 20px;
         padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
         .artits-card {
             width: 100%;
             height: 90%;
-            transition: box-shadow .1s;
-            border: black;
+            box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
+            transition: 0.3s;
             background-color: #fafafa;
             //padding-top: 10px;
             //padding-bottom: 100px;

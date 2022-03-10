@@ -15,7 +15,6 @@ export const uploadSampleLogic = createLogic<
   type: [actionTypes.UPLOAD_SAMPLE_WORK],
   async process({ action, api }, dispatch, done) {
     const { data } = action.payload;
-    console.log("data : ", data);
     try {
       dispatch(actions.uploadSampleWorkRequest());
       const result = await sampleApi.uploadSampleApi(data);

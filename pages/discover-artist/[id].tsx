@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Title from "components/title";
 import { useRouter } from "next/router";
+import { LISTING_BANNERS } from "../../config/constants";
 import landingdanceImg from "public/images/listing-dance.png";
 import { Card, Button } from "antd";
 import Link from "next/link";
@@ -11,47 +12,55 @@ import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { useEffect } from "react";
 import * as action from "../../state/action/categoryAction";
-import { CloseOutlined, PictureOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 
 const mapStateToProps = (state: AppState) => {
   const loggedInUserSlug = state.user.user?.slug;
-  const selectedId = state.category.selectedId;
+  const selectedCategorySlug = state.category.selectedCategorySlug;
   const artists = state.category.artists;
-  return { selectedId, artists,  loggedInUserSlug};
+  return { selectedCategorySlug, artists, loggedInUserSlug };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchArtistsByCategory: (id: number) =>
-    dispatch(action.fetchArtistsByCategory(id)),
+  fetchArtistsByCategorySlug: (slug: string) =>
+    dispatch(action.fetchArtistsByCategorySlug(slug)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
+const getListingHeaderData = (selectedCategorySlug) => {
+  for (var i = 0; i < LISTING_BANNERS.length; i++) {
+    if (LISTING_BANNERS[i]["slug"] == selectedCategorySlug) {
+      return LISTING_BANNERS[i];
+    }
+  }
+  return {};
+}
+
+
 const DiscoverArtist = ({
   artists,
-  selectedId,
+  selectedCategorySlug,
   loggedInUserSlug,
-  fetchArtistsByCategory,
+  fetchArtistsByCategorySlug,
 }: Props) => {
   const { toArtistProfile } = useRoutesContext();
   const router = useRouter();
-  const { id: typeOfArtist } = router.query;
-
+  const { id: artSlug } = router.query;
   useEffect(() => {
-    console.log("calling api: ", selectedId);
-    fetchArtistsByCategory(selectedId);
-  }, [fetchArtistsByCategory, selectedId]);
+    // we are not using selectedcategorySlug here because if a user is coming directly from a URL, 
+    // the value of selectedCatgeorySlug is empty.
+    fetchArtistsByCategorySlug(artSlug);
+  }, [fetchArtistsByCategorySlug, artSlug]);
 
   const getArtists = () => {
     const resultArtists: JSX.Element[] = [];
-    console.log("artists : ", artists);
+    console.log("Total artists fetched : ", artists.length);
     artists.forEach((artist, index) => {
       if (artist !== null) {
-        console.log("pp url : ", artist.profile_pic_url);
         resultArtists.push(
           //https://bbbootstrap.com/snippets/bootstrap-ecommerce-category-product-list-page-93685579
           <div className="row p-2 bg-white border rounded artits-card">
@@ -118,18 +127,32 @@ const DiscoverArtist = ({
           <div className="row ">
             <div className="col-sm-6" style={{ backgroundColor: "#BBE7C5" }}>
               <div className="discoverArtists_desktopCoverTextContainer">
-                <h1>
-                  Singers to work with on your next big hit..<br></br>
-                </h1>
-                <h3>
-                  send them a collab request to see if they are available.
-                </h3>
+                {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
+                  <div>
+                    <h1>
+                      {getListingHeaderData(artSlug)["heading"]}<br></br>
+                    </h1>
+                    <h3>
+                      {getListingHeaderData(artSlug)["sub-heading"]}
+                    </h3>
+                  </div>
+                ) : (
+                  <div>
+                    <h1>
+                      Artists to work with on your next big hit.<br></br>
+                    </h1>
+                    <h3>
+                      send them a collab request to see if they are available.
+                    </h3>
+                  </div>
+                )}
               </div>
             </div>
             <div className="col-sm-6" style={{ backgroundColor: "#BBE7C5" }}>
               <Image
                 layout="responsive"
                 objectFit="contain"
+                // we have to update the src to use dynamic image instead of fixed image.
                 src={landingdanceImg}
                 alt="Landing page" />
             </div>

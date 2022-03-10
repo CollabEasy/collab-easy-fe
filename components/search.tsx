@@ -15,14 +15,15 @@ import { connect, ConnectedProps } from 'react-redux';
 
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    setSelectedArtId: (id: number) => dispatch(action.setSelectedId(id)),
+    setSelectedArtId: (id: number) => dispatch(action.setSelectedCategoryId(id)),
+    setSelectedArtSlug: (slug: string) => dispatch(action.setSelectedCategorySlug(slug)),
 });
   
 const connector = connect(null, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const Search = ({ setSelectedArtId } : Props) => {
+const Search = ({ setSelectedArtId, setSelectedArtSlug } : Props) => {
     const [inputVal, setInputVal] = useState('');
     const [searchData, setSearchData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -105,7 +106,10 @@ const Search = ({ setSelectedArtId } : Props) => {
 
     const handleSearchClick = (href, data) => (e) => {
         resetState();
-        if (data.entityType === 'ART') setSelectedArtId(data.id)
+        if (data.entityType === 'ART') {
+            setSelectedArtId(data.id)
+            setSelectedArtSlug(data.slug)
+        }
         e.preventDefault();
         router.push(href);
     }

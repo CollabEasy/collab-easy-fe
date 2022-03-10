@@ -7,6 +7,7 @@ const initialState: HomeState = {
   loginModalDetails: {
     openModal: false,
   },
+  isLoading: true,
   artistListDetails: {}
 };
 
@@ -25,8 +26,10 @@ const homeReducer = (state = initialState, action): HomeState => {
       };
     case actionTypes.OPEN_LOGIN_MODAL:
       return { ...state, loginModalDetails: { openModal: true } };
-    case actionTypes.CLOSE_LOGIN_MODAL:
+  case actionTypes.CLOSE_LOGIN_MODAL:
       return { ...state, loginModalDetails: { openModal: false } };
+    case actionTypes.SET_IS_LOADING:
+      return { ...state, isLoading: action.payload.isLoading}
     default:
       return state;
   }

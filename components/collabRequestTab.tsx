@@ -1,90 +1,118 @@
-import React, { useEffect } from "react";
-import { Pagination, Button, Card, Avatar } from 'antd';
+import React, { useEffect, useState } from "react";
+import { Pagination, Button, Card, Avatar, Select } from "antd";
 import Meta from "antd/lib/card/Meta";
-import { CollabRequestData } from "types/model";
+import {
+  CollabRequestData,
+  CollabResponse,
+  SendCollabRequest,
+} from "types/model";
 import { AppState } from "state";
-import { acceptCollabRequestAction, getCollabRequestsAction, rejectCollabRequestAction } from "state/action";
+import {
+  acceptCollabRequestAction,
+  getCollabRequestsAction,
+  rejectCollabRequestAction,
+} from "state/action";
 import { Dispatch } from "redux";
-import { connect, useDispatch } from "react-redux";
+import { connect, ConnectedProps, useDispatch } from "react-redux";
+import * as action from "./../state/action";
 import { CollabRequestStatus } from "config/constants";
+import CollabDetailCard from "./collabDetailCard";
+import Loader from "./loader";
 
-const CollabRequests: React.FC<{
-  requests?: CollabRequestData[],
-  requestStatus: string
-}> = ({
-  requests,
-  requestStatus
-}) => {
-  const dispatch = useDispatch()
-  const onAccept = (requestId: number) => {
-    dispatch(acceptCollabRequestAction(requestId))
-  }
-  const onReject = (requestId: number) => {
-    dispatch(rejectCollabRequestAction(requestId))
-  }
-  return (
-    <>
-      <h4 className="f-w-b">{requestStatus} Request</h4>
-      {requests.map((req) => (
-        <>
-          <Card
-            style={{ width: 200 }}
-            actions={[
-              <Button key={`${req.id}-pending-accept`} type="primary" onClick={() => onAccept(req.id)}>Accept</Button>,
-              <Button key={`${req.id}-pending-reject`} type="primary"onClick={() => onReject(req.id)}>Reject</Button>,
-            ]}>
-            <Meta
-              avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-              title={req.requestData.collabTheme}
-              description={req.requestData.message} />
-          </Card>
-        </>
-      ))}
-      <Pagination defaultCurrent={1} total={50} />
-    </>
-  )
-  }
-
-const CollabRequestsTab: React.FC<{
-  getCollabRequests: (status: string) => void
-  pendingRequests: CollabRequestData[]
-  activeRequests: CollabRequestData[]
-  completedRequest: CollabRequestData[]
-  rejectedRequest: CollabRequestData[]
-}> = ({
-  getCollabRequests,
-  pendingRequests,
-  activeRequests,
-  completedRequest,
-  rejectedRequest
-}) => {
-
-    useEffect(() => {
-      getCollabRequests('Pending')
-      getCollabRequests('Completed')
-      getCollabRequests('Rejected')
-      getCollabRequests('Active')
-    }, [getCollabRequests])
-
-    return (
-      <div id="collab" className="tabcontent">
-        <CollabRequests requests={pendingRequests} requestStatus={CollabRequestStatus.ACTIVE} />
-        <CollabRequests requests={activeRequests} requestStatus={CollabRequestStatus.SCHEDULED} />
-        <CollabRequests requests={completedRequest} requestStatus={CollabRequestStatus.COMPLETED} />
-        <CollabRequests requests={rejectedRequest} requestStatus={CollabRequestStatus.REJECTED} />
-      </div>
-    )
-  }
+const { Option } = Select;
 
 const mapStateToProps = (state: AppState) => ({
-  pendingRequests: state.collab.pending,
-  activeRequests: state.collab.active,
-  completedRequest: state.collab.completed,
-  rejectedRequest: state.collab.rejected
-})
+  user: state.user.user,
+  isFetchingCollabDetails: state.collab.isFetchingCollabDetails,
+});
 
-const mapDisPatchToProps = (dispatch: Dispatch) => ({
-  getCollabRequests: (status: string) => dispatch(getCollabRequestsAction({ status: status }))
-})
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  sendCollabRequestAction: (data: SendCollabRequest) =>
+    dispatch(action.sendCollabRequestAction(data)),
+});
 
-export default connect(mapStateToProps, mapDisPatchToProps)(CollabRequestsTab)
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type Props = {
+  otherUser: string;
+  collabRequests: CollabResponse;
+  onClickCollabRequest: (collabRequest: CollabRequestData) => void;
+} & ConnectedProps<typeof connector>;
+
+export const CollabRequestTab = ({
+  user,
+  otherUser,
+  collabRequests,
+  isFetchingCollabDetails,
+  onClickCollabRequest,
+}: Props) => {
+  const dispatch = useDispatch();
+  const [sentReceivedStatus, setSentReceivedStatus] = useState("received");
+  const [collabStatusFilter, setCollabStatusFilter] = useState("pending");
+
+  const onAccept = (requestId: number) => {
+    dispatch(acceptCollabRequestAction(requestId));
+  };
+  const onReject = (requestId: number) => {
+    dispatch(rejectCollabRequestAction(requestId));
+  };
+
+  const getCollabRequestCards = () => {
+    const requestsToShow =
+      collabRequests[sentReceivedStatus][collabStatusFilter];
+    const htmlElement: JSX.Element[] = [];
+    requestsToShow.forEach((request: CollabRequestData, index: number) => {
+      htmlElement.push(
+        <div
+          style={request.status !== "COMPLETED" ? { cursor: "pointer" } : {}}
+          onClick={() => {
+            if (request.status !== "COMPLETED") onClickCollabRequest(request);
+          }}
+        >
+          <CollabDetailCard collabDetails={request} />
+        </div>
+      );
+    });
+
+    return htmlElement;
+  };
+
+  return (
+    <>
+      <div className="collabRequestTab__container">
+        <div className="collabRequestTab__filterContainer">
+          <Select
+            defaultValue="Received"
+            onChange={(value) => {
+              setSentReceivedStatus(value);
+            }}
+          >
+            <Option value="sent">Sent</Option>
+            <Option value="received">Received</Option>
+          </Select>
+          <Select
+            defaultValue="pending"
+            onChange={(value) => {
+              setCollabStatusFilter(value);
+            }}
+          >
+            <Option value="active">Active</Option>
+            <Option value="pending">Pending</Option>
+            <Option value="rejected">Rejected</Option>
+            <Option value="completed">Completed</Option>
+          </Select>
+        </div>
+      </div>
+
+      {isFetchingCollabDetails ? (
+        <Loader />
+      ) : (
+        <div className="collabRequestTab__collabListContainer">
+          {getCollabRequestCards()}
+        </div>
+      )}
+    </>
+  );
+};
+
+export default connector(CollabRequestTab);

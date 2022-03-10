@@ -159,3 +159,4 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
 }
 
 export default connector(Home);
+      

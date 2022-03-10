@@ -19,6 +19,11 @@ function parseJwt(token: string) {
     return JSON.parse(jsonPayload);
 };
 
+export function getCurrentUserId() {
+    const loginDetails = getLoginDetails();
+    return loginDetails.id;
+}
+
 export function allowedFileTypes() {
     const allowed = [
         "image",

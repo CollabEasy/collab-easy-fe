@@ -9,21 +9,30 @@ const initialState: UserState = {
   isLoggedIn: false,
   preferences: {},
   errors: {},
-  artCategories: []
+  artCategories: [],
+  isFetchingUser: true,
 };
 
 const userReducer = (state = initialState, action): UserState => {
   switch (action.type) {
+    
+    case actionType.SET_IS_FETCHING_USER:
+      return {
+        ...state,
+        isFetchingUser: action.payload.value,
+      }
     case actionType.SET_USER_DATA:
       return {
         ...state,
         errors: {},
+        isFetchingUser: false,
         user: action.payload.data,
       };
     case actionType.SET_USER_LOGGED_IN:
       return {
         ...state,
         errors: {},
+        isFetchingUser: false,
         isLoggedIn: true,
         user: action.payload.data?.data || {},
       };
@@ -43,6 +52,7 @@ const userReducer = (state = initialState, action): UserState => {
     case actionType.USER_LOGIN_REQUEST:
       return {
         ...state,
+        isFetchingUser: false,
         user: { new_user: false },
         isLoggedIn: false,
         errors: {},
@@ -98,7 +108,6 @@ const userReducer = (state = initialState, action): UserState => {
         isUpdatingProfile: true,
       };
     case actionType.UPDATE_ARTIST_ART_SUCCESS:
-      console.log("action data : ", action.payload.data);
       return {
         ...state,
         isUpdatingProfile: false,

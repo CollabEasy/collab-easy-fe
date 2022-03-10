@@ -34,6 +34,7 @@ import * as actions from "state/action";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { getAllCategories } from "api/category";
+import Loader from "@/components/loader";
 
 const { TabPane } = Tabs;
 
@@ -66,6 +67,7 @@ const mapStateToProps = (state: AppState) => ({
   preferences: state.user.preferences,
   samples: state.sample.samples,
   categories: state.category.categories,
+  isFetchingSamples: state.sample.isFetchingSamples,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -97,6 +99,7 @@ const EditProfile = ({
   categories,
   isUpdatingProfile,
   isUpdatingPrefs,
+  isFetchingSamples,
   getAllCategories,
   fetchArtistSkills,
   updateArtistSkills,
@@ -233,7 +236,7 @@ const EditProfile = ({
   }
 
   const currentDate = moment(new Date());
-  if (user && Object.keys(user).length === 0) return <p>Redirecting</p>;
+  if (user && Object.keys(user).length === 0) return <Loader />;
   return (
     <div className="edit-profile" style={{ padding: 200 }}>
       {/* <h1 style={{ textAlign: 'center' }}>{getHeading()}</h1> */}
@@ -497,7 +500,7 @@ const EditProfile = ({
               <TabPane tab="Samples" key="1.3">
                 <div className="settings__basicProfileCardThird">
                   <h2 className="f-20 ">Work Samples</h2>
-                  <SamplePage isSelf samples={samples} user={user} />
+                  <SamplePage isSelf samples={samples} user={user} showLoader={isFetchingSamples} />
                 </div>
               </TabPane>
               <TabPane tab="Social Prospectus" key="1.4">

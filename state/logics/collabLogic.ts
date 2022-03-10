@@ -16,12 +16,34 @@ export const sendCollabRequestLogic = createLogic<
   async process({ action, api, getState, routes }, dispatch, done) {
     const { data: collabRequest } = action.payload;
     try {
+      dispatch(actions.sendCollabRequestRequest());
       const request = await api.collabApi.sendCollabRequest(collabRequest);
-      dispatch(actions.getCollabRequestsAction({status: CollabRequestStatus.ACTIVE}))
-      dispatch(actions.getCollabRequestsAction({status: CollabRequestStatus.PENDING}))
-      dispatch(actions.getCollabRequestsAction({status: CollabRequestStatus.SCHEDULED}))
-      dispatch(actions.getCollabRequestsAction({status: CollabRequestStatus.REJECTED}))
+      dispatch(actions.setShowCollabModalState(false));
+      dispatch(actions.sendCollabRequestSuccess(collabRequest));
     } catch (error) {
+      dispatch(actions.sendCollabRequestFailure());
+    } finally {
+      done()
+    }
+  },
+});
+
+export const updatedCollabRequestLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.updateCollabRequest>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.UPDATE_COLLAB_REQUEST],
+  async process({ action, api, getState, routes }, dispatch, done) {
+    const { data: collabRequest } = action.payload;
+    try {
+      dispatch(actions.updateCollabRequestRequest());
+      const request = await api.collabApi.updateCollabRequest(collabRequest);
+      dispatch(actions.setShowCollabModalState(false));
+      dispatch(actions.updateCollabRequestSuccess(collabRequest));
+    } catch (error) {
+      dispatch(actions.updateCollabRequestFailure());
     } finally {
       done()
     }
@@ -76,28 +98,15 @@ export const getCollabRequestsLogic = createLogic<
 >({
   type: [actionTypes.SEARCH_COLLAB_REQUEST],
   async process({ action, api }, dispatch, done) {
-    const {
-      data: { status },
-    } = action.payload
+    const { data } = action.payload
     try {
-      const request = await api.collabApi.getCollabRequest({ status: status });
-      switch (status) {
-        case "Pending":
-          dispatch(actions.setPendingCollabRequestsAction(request.data))
-          break
-        case "Active":
-          dispatch(actions.setActiveCollabRequestsAction(request.data))
-          break
-        case "Completed":
-          dispatch(actions.setCompletedCollabRequestsAction(request.data))
-          break
-        case "Rejected":
-          dispatch(actions.setCompletedCollabRequestsAction(request.data))
-          break
-        default:
-          break
+      dispatch(actions.getCollabRequestsActionRequest())
+      const response = await api.collabApi.getCollabRequest(data);
+      if (response['data'] !== undefined) {
+        dispatch(actions.getCollabRequestsActionSuccess(response['data']));
       }
     } catch (error) {
+      dispatch(actions.getCollabRequestsActionFailure());
     } finally {
       done();
     }

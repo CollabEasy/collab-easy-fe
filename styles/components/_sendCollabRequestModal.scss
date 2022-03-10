@@ -1,0 +1,17 @@
+.sendCollabRequestModal__modal .ant-modal-content {
+    border-radius: 18px;
+}
+
+.sendCollabRequestModal__container {
+    display: flex;
+    gap: 32px;
+    border-radius: 12px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sendCollabRequestModal__button {
+    width: auto;
+    border-radius: 12px;
+    align-self: center;
+}

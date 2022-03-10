@@ -19,3 +19,10 @@ export const updateLoginData = (loginData: any) => ({
 		loginData,
 	},
 });
+
+export const setIsLoading = (isLoading: boolean) => ({
+	type: actionTypes.SET_IS_LOADING,
+	payload: {
+		isLoading,
+	}
+})
