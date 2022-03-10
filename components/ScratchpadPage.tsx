@@ -23,6 +23,7 @@ const serialize = value => {
 }
 
 const deserialize = value => {
+    console.log("val : ", value);
     let finalData = []
     let blogData = value.split("\n");
     for (var i = 0; i < blogData.length; i++) {
@@ -38,10 +39,9 @@ const deserialize = value => {
 
 
 const mapStateToProps = (state: AppState) => {
-    const isFetchingScratchpad = state.scratchpad.scratchpad.isFetchingScratchpad;
-    const isUpdatingScratchpad = state.scratchpad.scratchpad.isUpdatingScratchpad;
+    const isFetchingScratchpad = state.scratchpad.isFetchingScratchpad;
+    const isUpdatingScratchpad = state.scratchpad.isUpdatingScratchpad;
     const loggedInUserScratchpad = state.scratchpad.scratchpad;
-    console.log("Rabbal lets print state : ", loggedInUserScratchpad);
     return {isFetchingScratchpad, isUpdatingScratchpad, loggedInUserScratchpad}
 };
 
@@ -74,6 +74,7 @@ const ScratchpadPage = ({
     const saveBlog = () => {
         console.log("Rabbal is saving ", serialize(blogText));
         updateArtistScratchpad(serialize(blogText));
+        setViewMode(true);
     }
     const editor = useMemo(() => withReact(createEditor()), [])
     const [value, setValue] = useState(
@@ -117,7 +118,7 @@ const ScratchpadPage = ({
                                 </Slate>
                             </div>
                             <div className="scratchpad__buttonContainer">
-                                <Button type="primary" onClick={saveBlog}>
+                                <Button loading={isUpdatingScratchpad} type="primary" onClick={saveBlog}>
                                     Save
                                 </Button>
                             </div>

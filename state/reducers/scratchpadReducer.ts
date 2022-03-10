@@ -2,11 +2,11 @@ import * as actionType from "../actionTypes/scratchpadActionTypes";
 import { ScratchpadState } from "types/states/scratchpad";
 
 const initialState: ScratchpadState = {
-    isFetchingScratchpad: false,
-    isUpdatingScratchpad: false,
-    scratchpad: {
-      content: ""
-    }
+  isFetchingScratchpad: false,
+  isUpdatingScratchpad: false,
+  scratchpad: {
+    content: "",
+  },
 };
 
 const scratchpadReducer = (state = initialState, action): ScratchpadState => {
@@ -14,13 +14,19 @@ const scratchpadReducer = (state = initialState, action): ScratchpadState => {
     case actionType.FETCH_SCRATCHPAD_BY_ARTIST_ID:
       return {
         ...state,
-        scratchpad: {content: ""},
+        scratchpad: { content: "" },
         isFetchingScratchpad: true,
       };
     case actionType.FETCH_SCRATCHPAD_BY_ARTIST_ID_SUCCESS:
+      const content =
+        (action.payload.data.data == null || action.payload.data.data.content === null)
+          ? ""
+          : action.payload.data.data.content;
       return {
         ...state,
-        scratchpad: action.payload.data.data,
+        scratchpad: {
+          content: content,
+        },
         isFetchingScratchpad: false,
       };
     case actionType.FETCH_SCRATCHPAD_BY_ARTIST_ID_FAILURE:
@@ -28,7 +34,7 @@ const scratchpadReducer = (state = initialState, action): ScratchpadState => {
         ...state,
         isFetchingScratchpad: false,
       };
-    
+
     case actionType.UPDATE_ARTIST_SCRATCHPAD_REQUEST:
       return {
         ...state,
@@ -38,7 +44,9 @@ const scratchpadReducer = (state = initialState, action): ScratchpadState => {
       return {
         ...state,
         isUpdatingScratchpad: false,
-        scratchpad: action.payload.data,
+        scratchpad: {
+          content: action.payload.data,
+        },
       };
     default:
       return state;
