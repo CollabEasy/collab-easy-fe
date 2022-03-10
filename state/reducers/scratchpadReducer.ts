@@ -16,6 +16,7 @@ const scratchpadReducer = (state = initialState, action): ScratchpadState => {
         isFetchingScratchpad: true,
       };
     case actionType.FETCH_SCRATCHPAD_BY_ARTIST_ID_SUCCESS:
+      console.log(action.payload);
       return {
         ...state,
         scratchpad: action.payload.data.data,

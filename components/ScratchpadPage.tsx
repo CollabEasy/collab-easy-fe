@@ -1,14 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import { AppState } from "state";
-import { connect, ConnectedProps, useStore } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
-import { User } from "types/model";
 import { useMemo } from 'react'
 import { Editable, withReact, Slate } from 'slate-react'
 import { createEditor } from 'slate';
 import { Button } from "antd";
-
+import { useEffect } from "react";
+import * as action from "state/action/scratchpadAction";
+  
 const serialize = value => {
     let finalString = "";
     for (var i = 0; i < value.length; i++) {
@@ -33,22 +34,32 @@ const deserialize = value => {
     return finalData;
 }
 
+
+
 const mapStateToProps = (state: AppState) => {
-    return {}
+    const loggedInUserScratchpad = state.scratchpad;
+    return {loggedInUserScratchpad}
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-});
+    fetchScratchpadByArtistId: () =>
+      dispatch(action.fetchScratchpadByArtistId()),
+  });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
-    user: User;
 } & ConnectedProps<typeof connector>;
 
 const ScratchpadPage = ({
-    user,
+    fetchScratchpadByArtistId
 }: Props) => {
+
+    useEffect(() => {
+        fetchScratchpadByArtistId();
+    }, [fetchScratchpadByArtistId]);
+
+      
     const [isViewMode, setViewMode] = useState(true);
     // set blogText to what is saved in database. if nothing, set it to null.
     const [blogText, setBlogText] = useState(null);
