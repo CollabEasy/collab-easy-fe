@@ -48,14 +48,7 @@ export const CollabRequestTab = ({
 }: Props) => {
   const dispatch = useDispatch();
   const [sentReceivedStatus, setSentReceivedStatus] = useState("received");
-  const [collabStatusFilter, setCollabStatusFilter] = useState("pending");
-
-  const onAccept = (requestId: number) => {
-    dispatch(acceptCollabRequestAction(requestId));
-  };
-  const onReject = (requestId: number) => {
-    dispatch(rejectCollabRequestAction(requestId));
-  };
+  const [collabStatusFilter, setCollabStatusFilter] = useState("all");
 
   const getCollabRequestCards = () => {
     const requestsToShow =
@@ -69,7 +62,7 @@ export const CollabRequestTab = ({
             if (request.status !== "COMPLETED") onClickCollabRequest(request);
           }}
         >
-          <CollabDetailCard collabDetails={request} />
+          <CollabDetailCard showUser={user.artist_id === otherUser} collabDetails={request} />
         </div>
       );
     });
@@ -82,6 +75,7 @@ export const CollabRequestTab = ({
       <div className="collabRequestTab__container">
         <div className="collabRequestTab__filterContainer">
           <Select
+            className="collabRequestTab__filter collabRequestTab__antFilter"
             defaultValue="Received"
             onChange={(value) => {
               setSentReceivedStatus(value);
@@ -91,11 +85,13 @@ export const CollabRequestTab = ({
             <Option value="received">Received</Option>
           </Select>
           <Select
-            defaultValue="pending"
+            className="collabRequestTab__filter collabRequestTab__antFilter"
+            defaultValue="all"
             onChange={(value) => {
               setCollabStatusFilter(value);
             }}
           >
+            <Option value="all">All</Option>
             <Option value="active">Active</Option>
             <Option value="pending">Pending</Option>
             <Option value="rejected">Rejected</Option>

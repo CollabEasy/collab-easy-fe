@@ -8,7 +8,7 @@ export const sendCollabRequestAction = (data: SendCollabRequest) => ({
     },
 })
 
-export const sendCollabRequestSuccess = (data: SendCollabRequest) => ({
+export const sendCollabRequestSuccess = (data: CollabRequestData) => ({
   type: actionTypes.SEND_COLLAB_REQUEST_SUCCESS,
   payload: {
     data
@@ -54,17 +54,85 @@ export const updateCollabRequestFailure = () => ({
   }
 })
 
-export const acceptCollabRequestAction = (id: number) => ({
+export const acceptCollabRequestAction = (id: string) => ({
   type: actionTypes.ACCEPT_COLLAB_REQUEST,
   payload: {
     id,
   },
 });
 
-export const rejectCollabRequestAction = (id: number) => ({
+export const acceptCollabRequestActionRequest = () => ({
+  type: actionTypes.ACCEPT_COLLAB_REQUEST_REQUEST,
+  payload: {
+  },
+});
+
+export const acceptCollabRequestActionSuccess = (id: string) => ({
+  type: actionTypes.ACCEPT_COLLAB_REQUEST_SUCCESS,
+  payload: {
+    id
+  },
+});
+
+export const acceptCollabRequestActionFailure = () => ({
+  type: actionTypes.ACCEPT_COLLAB_REQUEST_FAILURE,
+  payload: {
+  },
+});
+
+export const rejectCollabRequestAction = (id: string) => ({
   type: actionTypes.REJECT_COLLAB_REQUEST,
   payload: {
     id,
+  },
+});
+
+export const rejectCollabRequestActionRequest = () => ({
+  type: actionTypes.REJECT_COLLAB_REQUEST_REQUEST,
+  payload: {
+    
+  },
+});
+
+export const rejectCollabRequestActionSuccess = (id: string) => ({
+  type: actionTypes.REJECT_COLLAB_REQUEST_SUCCESS,
+  payload: {
+    id
+  },
+});
+
+export const rejectCollabRequestActionFailure = () => ({
+  type: actionTypes.REJECT_COLLAB_REQUEST_FAILURE,
+  payload: {
+    
+  },
+});
+
+export const cancelCollabRequestAction = (id: string) => ({
+  type: actionTypes.CANCEL_COLLAB_REQUEST,
+  payload: {
+    id,
+  },
+});
+
+export const cancelCollabRequestActionRequest = () => ({
+  type: actionTypes.CANCEL_COLLAB_REQUEST_REQUEST,
+  payload: {
+    
+  },
+});
+
+export const cancelCollabRequestActionSuccess = (id: string) => ({
+  type: actionTypes.CANCEL_COLLAB_REQUEST_SUCCESS,
+  payload: {
+    id
+  },
+});
+
+export const cancelCollabRequestActionFailure = () => ({
+  type: actionTypes.CANCEL_COLLAB_REQUEST_FAILURE,
+  payload: {
+    
   },
 });
 

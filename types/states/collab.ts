@@ -4,5 +4,8 @@ export interface CollabRequestState {
   collabDetails: CollabResponse;
   showCollabModal: boolean;
   isSendingRequest: boolean;
+  isAcceptingRequest: boolean;
+  isRejectingRequest: boolean;
+  isCancellingRequest: boolean;
   isFetchingCollabDetails: boolean;
 }
