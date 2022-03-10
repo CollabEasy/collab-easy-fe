@@ -73,6 +73,7 @@ const ScratchpadPage = ({
     const [blogText, setBlogText] = useState(null);
     const saveBlog = () => {
         if (blogText != null) {
+            isUpdatingScratchpad = false;
             updateArtistScratchpad(serialize(blogText));
         }
         setViewMode(true);
