@@ -10,7 +10,7 @@ import { Button } from "antd";
 import { useEffect } from "react";
 import Loader from "./loader";
 import * as action from "state/action/scratchpadAction";
-  
+
 const serialize = value => {
     let finalString = "";
     for (var i = 0; i < value.length; i++) {
@@ -42,14 +42,14 @@ const mapStateToProps = (state: AppState) => {
     const isFetchingScratchpad = state.scratchpad.isFetchingScratchpad;
     const isUpdatingScratchpad = state.scratchpad.isUpdatingScratchpad;
     const loggedInUserScratchpad = state.scratchpad.scratchpad;
-    return {isFetchingScratchpad, isUpdatingScratchpad, loggedInUserScratchpad}
+    return { isFetchingScratchpad, isUpdatingScratchpad, loggedInUserScratchpad }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     fetchScratchpadByArtistId: () =>
-      dispatch(action.fetchScratchpadByArtistId()),
+        dispatch(action.fetchScratchpadByArtistId()),
     updateArtistScratchpad: (data: string) => dispatch(action.updateArtistScratchpad(data))
-  });
+});
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
@@ -67,12 +67,14 @@ const ScratchpadPage = ({
         fetchScratchpadByArtistId();
     }, []);
 
-      
+
     const [isViewMode, setViewMode] = useState(true);
     // set blogText to what is saved in database. if nothing, set it to null.
     const [blogText, setBlogText] = useState(null);
     const saveBlog = () => {
-        updateArtistScratchpad(serialize(blogText));
+        if (blogText != null) {
+            updateArtistScratchpad(serialize(blogText));
+        }
         setViewMode(true);
     }
     const editor = useMemo(() => withReact(createEditor()), [])
@@ -103,11 +105,11 @@ const ScratchpadPage = ({
                     {isViewMode ? (
                         <div>
                             <div>
-                                { loggedInUserScratchpad.content.length == 0 ? (
+                                {loggedInUserScratchpad.content.length == 0 ? (
                                     <div>
                                         <p>Write what is on your mind !</p>
                                     </div>
-                                ): ( 
+                                ) : (
                                     <div>
                                         <p>{loggedInUserScratchpad.content}</p>
                                     </div>
@@ -135,7 +137,7 @@ const ScratchpadPage = ({
                                 <Button loading={isUpdatingScratchpad} type="primary" onClick={saveBlog}>
                                     Save
                                 </Button>
-                                <Button loading={isUpdatingScratchpad} type="primary" onClick={doNotSaveBlog}>
+                                <Button type="primary" onClick={doNotSaveBlog}>
                                     Cancel
                                 </Button>
                             </div>
