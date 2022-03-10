@@ -10,6 +10,4 @@ export interface UserState {
   preferences: any;
   artCategories: string[];
   isFetchingUser: boolean;
-  isFetchingScratchpad: boolean;
-  scratchpad: string;
 }

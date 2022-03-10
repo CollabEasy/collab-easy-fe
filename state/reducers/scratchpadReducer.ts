@@ -8,7 +8,6 @@ const initialState: ScratchpadState = {
 
 const scratchpadReducer = (state = initialState, action): ScratchpadState => {
   switch (action.type) {
-
     case actionType.FETCH_SCRATCHPAD_BY_ARTIST_ID:
       return {
         ...state,

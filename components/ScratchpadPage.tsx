@@ -37,6 +37,7 @@ const deserialize = value => {
 
 
 const mapStateToProps = (state: AppState) => {
+    console.log("Rabbal lets print state : ", state);
     const loggedInUserScratchpad = state.scratchpad;
     return {loggedInUserScratchpad}
 };
