@@ -40,16 +40,29 @@
 }
 
 .collabDetailCard__buttonContainer {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+    margin-right: 18px;
+    flex-direction: column;
+}
 
+.collabDetailCard__cancelButton {
+    width: auto;
+    border-radius: 12px;
+    background-color: yellow;
 }
 
 .collabDetailCard__acceptButton {
-
+    width: auto;
+    border-radius: 12px;
+    background-color: greenyellow;
 }
 
 .collabDetailCard__rejectButton {
-
-
+    width: auto;
+    border-radius: 12px;
+    background-color: orangered;
 }
 
 
@@ -64,4 +77,22 @@
 .collabDetailCard__messageHeading {
     font-weight: bolder;
     font-size: 10px;
+}
+
+.collabDetailCard__imageNameContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.collabDetailCard__artistNameLink {
+    font-size: 14px;
+    margin-bottom: 0px;
+    
+
+    :hover {
+        text-decoration: underline;
+    }
 }

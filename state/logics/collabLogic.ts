@@ -17,9 +17,9 @@ export const sendCollabRequestLogic = createLogic<
     const { data: collabRequest } = action.payload;
     try {
       dispatch(actions.sendCollabRequestRequest());
-      const request = await api.collabApi.sendCollabRequest(collabRequest);
+      const response = await api.collabApi.sendCollabRequest(collabRequest);
       dispatch(actions.setShowCollabModalState(false));
-      dispatch(actions.sendCollabRequestSuccess(collabRequest));
+      dispatch(actions.sendCollabRequestSuccess(response['data']));
     } catch (error) {
       dispatch(actions.sendCollabRequestFailure());
     } finally {
@@ -58,13 +58,39 @@ export const acceptCollabRequestLogic = createLogic<
 >({
   type: [actionTypes.ACCEPT_COLLAB_REQUEST],
   async process({ action, api, getState, routes }, dispatch, done) {
-    const { id: requestId } = action.payload;
+    const { id } = action.payload;
     try {
-      const request = await api.collabApi.acceptCollabRequest(
-        String(requestId)
-      );
+      dispatch(actions.acceptCollabRequestActionRequest());
+      const request = await api.collabApi.acceptCollabRequest(id);
+      dispatch(actions.acceptCollabRequestActionSuccess(id))
+      dispatch(actions.setShowCollabModalState(false));
     } catch (error) {
+      dispatch(actions.acceptCollabRequestActionFailure())
     } finally {
+      
+      done();
+    }
+  },
+});
+
+export const cancelCollabRequestLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.cancelCollabRequestAction>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.CANCEL_COLLAB_REQUEST],
+  async process({ action, api, getState, routes }, dispatch, done) {
+    const { id } = action.payload;
+    try {
+      dispatch(actions.cancelCollabRequestActionRequest());
+      const request = await api.collabApi.cancelCollabRequest(id);
+      dispatch(actions.cancelCollabRequestActionSuccess(id))
+      dispatch(actions.setShowCollabModalState(false));
+    } catch (error) {
+      dispatch(actions.cancelCollabRequestActionFailure())
+    } finally {
+      
       done();
     }
   },
@@ -78,12 +104,14 @@ export const rejectCollabRequestLogic = createLogic<
 >({
   type: [actionTypes.REJECT_COLLAB_REQUEST],
   async process({ action, api, getState, routes }, dispatch, done) {
-    const { id: requestId } = action.payload;
+    const { id } = action.payload;
     try {
-      const request = await api.collabApi.rejectCollabRequest(
-        String(requestId)
-      );
+      dispatch(actions.rejectCollabRequestActionRequest());
+      const request = await api.collabApi.rejectCollabRequest(id);
+      dispatch(actions.rejectCollabRequestActionSuccess(id))
+      dispatch(actions.setShowCollabModalState(false));
     } catch (error) {
+      dispatch(actions.rejectCollabRequestActionFailure());
     } finally {
       done();
     }

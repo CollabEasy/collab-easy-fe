@@ -15,22 +15,30 @@ export interface SearchCollab {
 
 export interface CollabResponse {
   sent: {
+    all: CollabRequestData[];
     active: CollabRequestData[];
     pending: CollabRequestData[];
     completed: CollabRequestData[];
     rejected: CollabRequestData[];
   },
   received: {
+    all: CollabRequestData[];
     active: CollabRequestData[];
     pending: CollabRequestData[];
     completed: CollabRequestData[];
     rejected: CollabRequestData[];
   }
 }
-export interface CollabRequestData {
+export interface CollabRequestData {  
   id: string
   senderId: string
   receiverId: string
+  senderName: string
+  receiverName: string
+  senderSlug: string
+  receiverSlug: string
+  senderProfilePicUrl: string
+  receiverProfilePicUrl: string
   collabDate: Date
   requestData: {
     message: string
