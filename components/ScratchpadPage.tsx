@@ -72,7 +72,6 @@ const ScratchpadPage = ({
     // set blogText to what is saved in database. if nothing, set it to null.
     const [blogText, setBlogText] = useState(null);
     const saveBlog = () => {
-        console.log("Rabbal is saving ", serialize(blogText));
         updateArtistScratchpad(serialize(blogText));
         setViewMode(true);
     }
@@ -82,13 +81,17 @@ const ScratchpadPage = ({
             [
                 {
                     type: 'paragraph',
-                    children: [{ text: 'A line of text in a paragraph.' }],
+                    children: [{ text: 'Write what is on your mind !' }],
                 },
             ]
     )
 
     const setWritingMode = () => {
         setViewMode(false);
+    }
+
+    const doNotSaveBlog = () => {
+        setViewMode(true);
     }
 
     return (
@@ -99,7 +102,18 @@ const ScratchpadPage = ({
                 <div>
                     {isViewMode ? (
                         <div>
-                            <p>{loggedInUserScratchpad.content}</p>
+                            <div>
+                                { loggedInUserScratchpad.content.length == 0 ? (
+                                    <div>
+                                        <p>Write what is on your mind !</p>
+                                    </div>
+                                ): ( 
+                                    <div>
+                                        <p>{loggedInUserScratchpad.content}</p>
+                                    </div>
+                                )}
+
+                            </div>
                             <div className="scratchpad__buttonContainer">
                                 <Button type="primary" onClick={setWritingMode}>Edit</Button>
                             </div>
@@ -120,6 +134,9 @@ const ScratchpadPage = ({
                             <div className="scratchpad__buttonContainer">
                                 <Button loading={isUpdatingScratchpad} type="primary" onClick={saveBlog}>
                                     Save
+                                </Button>
+                                <Button loading={isUpdatingScratchpad} type="primary" onClick={doNotSaveBlog}>
+                                    Cancel
                                 </Button>
                             </div>
                         </div>
