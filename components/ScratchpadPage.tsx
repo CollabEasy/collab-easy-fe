@@ -74,6 +74,7 @@ const ScratchpadPage = ({
     const saveBlog = () => {
         console.log("Rabbal is saving ", serialize(blogText));
         updateArtistScratchpad(serialize(blogText));
+        setViewMode(true);
     }
     const editor = useMemo(() => withReact(createEditor()), [])
     const [value, setValue] = useState(
