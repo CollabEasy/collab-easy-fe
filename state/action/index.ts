@@ -4,3 +4,4 @@ export * from "./collabAction";
 export * from "./sampleAction";
 export * from "./categoryAction";
 export * from "./scratchpadAction";
+export * from "./socialProspectusAction";

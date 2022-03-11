@@ -6,6 +6,7 @@ import collab from "./reducers/collabReducer";
 import sample from "./reducers/sampleReducer";
 import category from "./reducers/categoryReducer";
 import scratchpad from "./reducers/scratchpadReducer";
+import socialProspectus from "./reducers/socialProspectusReducer";
 
 const rootReducer = combineReducers<AppState>({
   home,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers<AppState>({
   sample,
   category,
   scratchpad,
+  socialProspectus,
 });
 
 export default rootReducer

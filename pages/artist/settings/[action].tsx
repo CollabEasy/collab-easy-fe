@@ -23,8 +23,8 @@ import {
   updateArtistPreference,
 } from "state/action";
 import SamplePage from "../../../components/samplePage";
-import ScratchpadPade from "../../../components/ScratchpadPage";
-import { COUNTRIES, GENDERS, TIME_ZONES } from "config/constants";
+import ScratchpadPage from "../../../components/ScratchpadPage";
+import { COUNTRIES, GENDERS, SOCIAL_PLATFORMS } from "config/constants";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { AppState } from "types/states";
 import { Dispatch } from "redux";
@@ -62,23 +62,28 @@ const openLoginModal = () => {
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
-  isUpdatingProfile: state.user.isUpdatingProfile,
-  isUpdatingPrefs: state.user.isUpdatingPrefs,
   preferences: state.user.preferences,
   samples: state.sample.samples,
   categories: state.category.categories,
+  socialProspectus: state.socialProspectus,
+
   isFetchingSamples: state.sample.isFetchingSamples,
+  isFetchingSocialProspectus: state.socialProspectus?.isFetchingProspectus,
+  isUpdatingSocialProspectus: state.socialProspectus?.isUpdatingProspectus,
+  isUpdatingProfile: state.user.isUpdatingProfile,
+  isUpdatingPrefs: state.user.isUpdatingPrefs,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
-  updateArtistPreference: (key: string, value: any) =>
-    dispatch(updateArtistPreference(key, value)),
-  fetchArtistSamples: (slug: string) =>
-    dispatch(actions.fetchArtistSamples(slug)),
+  fetchArtistSamples: (slug: string) => dispatch(actions.fetchArtistSamples(slug)),
   getAllCategories: () => dispatch(actions.getAllCategories()),
   fetchArtistSkills: () => dispatch(actions.fetchArtistSkills()),
-  updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data))
+  fetchArtistSocialProspectus: () => dispatch(actions.fetchArtistSocialProspectus()),
+
+  updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data)),
+  updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
+  updateArtistPreference: (key: string, value: any) => dispatch(updateArtistPreference(key, value)),
+  updateArtistSocialProspectus: (data: []) => dispatch(actions.updateArtistSocialProspectus(data)),
 });
 
 const normFile = (e: any) => {
@@ -97,18 +102,23 @@ const EditProfile = ({
   samples,
   preferences,
   categories,
+  socialProspectus,
   isUpdatingProfile,
   isUpdatingPrefs,
   isFetchingSamples,
   getAllCategories,
   fetchArtistSkills,
+  fetchArtistSamples,
+  fetchArtistSocialProspectus,
+  updateArtistPreference,
   updateArtistSkills,
   updateArtistProfile,
-  fetchArtistSamples,
-  updateArtistPreference,
+  updateArtistSocialProspectus,
 }: Props) => {
   const [activeTabKey, setActiveTabKey] = useState("1");
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [userSocialProspectus, setUserSocialProspectus] = useState([]);
+  console.log("Rabbal is here in pros ", userSocialProspectus);
   const [upForCollaboration, setUpForCollaboration] = useState(false);
   const [userDataCached, setUserDataCached] = useState<User>(user);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
@@ -124,6 +134,7 @@ const EditProfile = ({
     }
     fetchArtistSamples(user.slug);
     fetchArtistSkills();
+    fetchArtistSocialProspectus();
   }, []);
 
   useEffect(() => {
@@ -132,10 +143,12 @@ const EditProfile = ({
       preferences["upForCollaboration"] === true
     )
       setUpForCollaboration(true);
-    
+
     setUserDataCached(user);
     setSelectedCategories(user.skills);
-  }, [preferences, user])
+    console.log("Rabbal is setting user prospectus ", socialProspectus);
+    setUserSocialProspectus(socialProspectus);
+  }, [preferences, user, socialProspectus])
 
   const router = useRouter();
   const { action, tab } = router.query;
@@ -217,7 +230,7 @@ const EditProfile = ({
     router.push("/artist/settings/" + action + "?tab=" + tab);
   };
 
-  const resetData = () => {};
+  const resetData = () => { };
 
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
@@ -231,8 +244,14 @@ const EditProfile = ({
     if (selectedCategories.length === 0) {
       message.error("You need to select atleast one art style.")
     } else {
-      updateArtistSkills({artNames: selectedCategories});
+      updateArtistSkills({ artNames: selectedCategories });
     }
+  }
+
+  const submitArtistSocialProspectus =  (values) => {
+    console.log("User social prospectus", values["social prospectus"]);
+    setUserSocialProspectus(values["social prospectus"]);
+    updateArtistSocialProspectus(userSocialProspectus);
   }
 
   const currentDate = moment(new Date());
@@ -510,8 +529,9 @@ const EditProfile = ({
                     className="settings__basicProfileForm"
                     name="dynamic_form_nest_item"
                     autoComplete="off"
+                    onFinish={submitArtistSocialProspectus}
                   >
-                    <Form.List name="sights">
+                    <Form.List name="social prospectus">
                       {(fields, { add, remove }) => (
                         <>
                           {fields.map((field) => (
@@ -527,24 +547,30 @@ const EditProfile = ({
                                   <Form.Item
                                     {...field}
                                     label="Platform"
-                                    name={[field.name, "wondor"]}
+                                    name={[field.name, "platform"]}
                                     rules={[
                                       {
                                         required: true,
-                                        message: "Missing social platform name",
+                                        message: "Missing social platform name.",
                                       },
                                     ]}
                                   >
-                                    <Select style={{ width: 130 }}></Select>
+                                    <Select style={{ width: 130 }}>
+                                      {SOCIAL_PLATFORMS.map((platform) => (
+                                        <Select.Option key={platform.name} value={platform.name}>
+                                          {platform.name}
+                                        </Select.Option>
+                                      ))}
+                                    </Select>
                                   </Form.Item>
                                 )}
                               </Form.Item>
                               <Form.Item
                                 {...field}
                                 label="Handle"
-                                name={[field.name, "admin"]}
+                                name={[field.name, "handle"]}
                                 rules={[
-                                  { required: true, message: "Missing handle of the provided social platform" },
+                                  { required: true, message: "Missing handle of the provided social platform." },
                                 ]}
                               >
                                 <Input />
@@ -583,13 +609,9 @@ const EditProfile = ({
                         <Button
                           type="primary"
                           htmlType="submit"
-                          onClick={submitForm}
                           loading={isUpdatingProfile}
                         >
                           {isUpdatingProfile ? "Saving..." : "Save"}
-                        </Button>
-                        <Button htmlType="button" onClick={resetData}>
-                          Reset
                         </Button>
                       </div>
                     </Form.Item>
@@ -598,39 +620,39 @@ const EditProfile = ({
               </TabPane>
               <TabPane tab="Scratchpad" key="1.5">
                 <div className="settings__basicProfileCardThird">
-                  <h2 className="f-20 ">Your Space to take notes</h2>  
-                  <ScratchpadPade user={user} />         
+                  <h2 className="f-20 ">Your Space to take notes</h2>
+                  <ScratchpadPage user={user} />
                 </div>
               </TabPane >
             </Tabs>
           </TabPane>
           <TabPane tab="Account Settings" key="2">
-          <Tabs
+            <Tabs
               type="card"
               onChange={(key: string) => {
                 redirect(key);
               }}
             >
               <TabPane tab="Communication" key="2.1">
-                  <div className="settings__basicProfileCard">
-                    <h2 className="f-20 ">Communication</h2>
-                    <Form
-                      className="settings__basicProfileForm"
-                      labelCol={{ span: 4 }}
-                      wrapperCol={{ span: 14 }}
-                      layout="horizontal"
-                      initialValues={{ size: componentSize }}
-                      onValuesChange={onFormLayoutChange}
-                      size={componentSize as SizeType}
-                    >
-                      <Form.Item label="Notification Emails" valuePropName="checked">
-                        <Switch
-                          checkedChildren="enabled"
-                          unCheckedChildren="disabled"
-                        />
-                      </Form.Item>
-                    </Form>
-                  </div>
+                <div className="settings__basicProfileCard">
+                  <h2 className="f-20 ">Communication</h2>
+                  <Form
+                    className="settings__basicProfileForm"
+                    labelCol={{ span: 4 }}
+                    wrapperCol={{ span: 14 }}
+                    layout="horizontal"
+                    initialValues={{ size: componentSize }}
+                    onValuesChange={onFormLayoutChange}
+                    size={componentSize as SizeType}
+                  >
+                    <Form.Item label="Notification Emails" valuePropName="checked">
+                      <Switch
+                        checkedChildren="enabled"
+                        unCheckedChildren="disabled"
+                      />
+                    </Form.Item>
+                  </Form>
+                </div>
               </TabPane>
               <TabPane tab="Account management" key="2.2">
                 <div className="settings__basicProfileCardSecond">

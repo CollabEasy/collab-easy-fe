@@ -5,3 +5,4 @@ export * from "./collab";
 export * from "./FSACreator";
 export * from "./artistCategories";
 export * from "./scratchpad";
+export * from "./socialProspectus";

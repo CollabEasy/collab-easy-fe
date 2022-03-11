@@ -3950,3 +3950,24 @@ export const LISTING_BANNERS = [
     "image": "public/images/listing-writer.png",
   }
 ]
+
+export const SOCIAL_PLATFORMS = [
+  {
+    "name": "Instagram",
+    "description": "Social media platform for sharing pictures and video.",
+    "approved": 1,
+    "base_url": "https://www.instagram.com",
+  },
+  {
+    "name": "Facebook",
+    "description": "Social media platform for sharing pictures and video.",
+    "approved": 1,
+    "base_url": "https://www.facebook.com",
+  },
+  {
+    "name": "Tik Tok",
+    "description": "Social media platform for sharing pictures and video.",
+    "approved": 1,
+    "base_url": "https://www.tiktok.com",
+  }
+]
