@@ -16,6 +16,7 @@ export const fetchArtistSocialProspectusLogic = createLogic<
   async process({ action, api }, dispatch, done) {
     try {
       dispatch(actions.fetchArtistSocialProspectusRequest());
+      console.log("I'm here and now going to make  acall");
       const result = await socialProspectusApi.fetchArtistSocialProspectusAPI();
       dispatch(actions.fetchArtistSocialProspectusSuccess([result]));
     } catch (error) {
@@ -34,7 +35,7 @@ export const updateArtistSocialProspectusLogi = createLogic<
 >({
   type: [actionTypes.UPDATE_ARTIST_SOCIAL_PROSPECTUS],
   async process({ action, api }, dispatch, done) {
-    console.log("Rabbal is inside save scratchpad logic", action.payload);
+    console.log("Rabbal is inside save social prospectus logic", action);
     try {
       dispatch(actions.updateArtistSocialProspectusRequest());
       const { data } = action.payload;

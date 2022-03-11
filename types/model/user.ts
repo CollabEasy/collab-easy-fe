@@ -57,5 +57,4 @@ export interface UserSocialProspectus {
   social_platform_id: number;
   handle: string;
   description: string;
-  created_at: Date;
 }

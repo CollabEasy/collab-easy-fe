@@ -26,7 +26,7 @@ export const fetchArtistSocialProspectusAPI = async () => {
   console.log("Rabbal is inside fetching social prospectus API ");
   try {
     const result = await api.call(
-      `api/v1/artist/social-prospectus/`,
+      `api/v1/artist/social-prospectus/all`,
       config
     );
     return result;
@@ -40,7 +40,7 @@ export const updateArtistSocialProspectusAPI = async (data: any) => {
     const config = postConfig(data);
     console.log("Rabbal is inside saving social prospectus API ", data);
 	try {
-		const result = await api.call('api/v1/artist/social-prospectus', config);
+		const result = await api.call('api/v1/artist/social-prospectus/update', config);
 		return result;
 	} catch (error) {
 		throw error;

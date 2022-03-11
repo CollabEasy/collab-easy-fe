@@ -118,7 +118,6 @@ const EditProfile = ({
   const [activeTabKey, setActiveTabKey] = useState("1");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);
-  console.log("Rabbal is here in pros ", userSocialProspectus);
   const [upForCollaboration, setUpForCollaboration] = useState(false);
   const [userDataCached, setUserDataCached] = useState<User>(user);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
@@ -146,8 +145,7 @@ const EditProfile = ({
 
     setUserDataCached(user);
     setSelectedCategories(user.skills);
-    console.log("Rabbal is setting user prospectus ", socialProspectus);
-    setUserSocialProspectus(socialProspectus);
+    setUserSocialProspectus(socialProspectus.socialProspectus);
   }, [preferences, user, socialProspectus])
 
   const router = useRouter();
@@ -186,7 +184,7 @@ const EditProfile = ({
     // }
     if (action === "account") active = "2";
 
-    console.log("rabbal active is ", active);
+    //console.log("rabbal active is ", active);
     return active;
   };
 
@@ -244,11 +242,14 @@ const EditProfile = ({
   }
 
   const submitArtistSocialProspectus =  (values) => {
-    console.log("User social prospectus", values["social prospectus"]);
-    setUserSocialProspectus(values["social prospectus"]);
-    updateArtistSocialProspectus(userSocialProspectus);
+    console.log("User social prospectus before setting is ", values["social-prospectus"]);
+    updateArtistSocialProspectus(values["social-prospectus"]);
+    form.setFieldsValue({ sights:  userSocialProspectus});
   }
 
+  const [form] = Form.useForm();
+
+  console.log("Rabbal user social prospectus is ", userSocialProspectus);
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0) return <Loader />;
   return (
@@ -521,12 +522,14 @@ const EditProfile = ({
                 <div className="settings__basicProfileCardFourth">
                   <h2 className="f-20 ">Social Media Prospectus</h2>
                   <Form
+                    form={form}
                     className="settings__basicProfileForm"
                     name="dynamic_form_nest_item"
                     autoComplete="off"
+                    onChange={handleLolaChange}
                     onFinish={submitArtistSocialProspectus}
                   >
-                    <Form.List name="social prospectus">
+                    <Form.List name="social-prospectus">
                       {(fields, { add, remove }) => (
                         <>
                           {fields.map((field) => (
