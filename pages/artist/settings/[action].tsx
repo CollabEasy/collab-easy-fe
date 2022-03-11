@@ -83,7 +83,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
   updateArtistPreference: (key: string, value: any) => dispatch(updateArtistPreference(key, value)),
-  updateArtistSocialProspectus: (data: []) => dispatch(actions.updateArtistSocialProspectus(data)),
+  updateArtistSocialProspectus: (data: any[]) => dispatch(actions.updateArtistSocialProspectus(data)),
 });
 
 const normFile = (e: any) => {
@@ -153,11 +153,7 @@ const EditProfile = ({
   const router = useRouter();
   const { action, tab } = router.query;
 
-  if (
-    typeof window !== "undefined" &&
-    action !== "profile" &&
-    action !== "account"
-  ) {
+  if ( typeof window !== "undefined" && action !== "profile" && action !== "account") {
     router.push("/artist/settings/profile?tab=personal-information");
   }
 
@@ -195,7 +191,6 @@ const EditProfile = ({
   };
 
   const redirect = (tabIndex: string) => {
-
     let action = "profile";
     let tab = "personal-information";
     if (tabIndex === "1.2") {

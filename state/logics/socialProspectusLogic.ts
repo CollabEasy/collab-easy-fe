@@ -6,7 +6,7 @@ import * as socialProspectusApi from "../../api/social-prospectus";
 import * as actions from "../action/";
 import * as actionTypes from "../actionTypes/socialProspectusActionTypes";
 
-export const fetchScratchpadByArtistIdLogic = createLogic<
+export const fetchArtistSocialProspectusLogic = createLogic<
   AppState,
   FSACreatorPayload<typeof actions.fetchArtistSocialProspectus>,
   any,
@@ -17,7 +17,7 @@ export const fetchScratchpadByArtistIdLogic = createLogic<
     try {
       dispatch(actions.fetchArtistSocialProspectusRequest());
       const result = await socialProspectusApi.fetchArtistSocialProspectusAPI();
-      dispatch(actions.fetchArtistSocialProspectusSuccess(result));
+      dispatch(actions.fetchArtistSocialProspectusSuccess([result]));
     } catch (error) {
       console.log("error : ", error);
     } finally {
@@ -26,7 +26,7 @@ export const fetchScratchpadByArtistIdLogic = createLogic<
   },
 });
 
-export const updateArtistScratchpadLogic = createLogic<
+export const updateArtistSocialProspectusLogi = createLogic<
   AppState,
   FSACreatorPayload<typeof actions.updateArtistSocialProspectus>,
   any,

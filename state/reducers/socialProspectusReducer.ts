@@ -7,7 +7,7 @@ const initialState: SocialProspectusState = {
   socialProspectus: [],
 };
 
-const scratchpadReducer = (state = initialState, action): SocialProspectusState => {
+const socialProspectusReducer = (state = initialState, action): SocialProspectusState => {
   switch (action.type) {
     case actionType.FETCH_ARTIST_SOCIAL_PROSPECTUS:
       return {
@@ -45,4 +45,4 @@ const scratchpadReducer = (state = initialState, action): SocialProspectusState 
   }
 };
 
-export default scratchpadReducer;
+export default socialProspectusReducer;

@@ -10,14 +10,14 @@ export const fetchArtistSocialProspectusRequest = () => ({
   payload: {}
 })
 
-export const fetchArtistSocialProspectusSuccess = (data: []) => ({
+export const fetchArtistSocialProspectusSuccess = (data: any[]) => ({
   type: actionType.FETCH_ARTIST_SOCIAL_PROSPECTUS_SUCCESS,
   payload: {
     data
   }
 })
 
-export const updateArtistSocialProspectus = (data: []) => ({
+export const updateArtistSocialProspectus = (data: any[]) => ({
 	type: actionType.UPDATE_ARTIST_SOCIAL_PROSPECTUS,
 	payload: {
 		data
@@ -29,7 +29,7 @@ export const updateArtistSocialProspectusRequest = () => ({
   payload: {},
 })
 
-export const updateArtistSocialProspectusSuccess = (data: []) => ({
+export const updateArtistSocialProspectusSuccess = (data: any[]) => ({
 	type: actionType.UPDATE_ARTIST_SOCIAL_PROSPECTUS_SUCCESS,
 	payload: {
 		data
