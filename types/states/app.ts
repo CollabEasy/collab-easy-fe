@@ -4,6 +4,7 @@ import { ArtistCategoriesState } from "./artistCategories";
 import { UserSampleState } from "./sample";
 import { CategoryState } from "./category";
 import { ScratchpadState } from "./scratchpad";
+import { SocialProspectusState } from "./socialProspectus";
 
 export interface AppState {
   home: HomeState;
@@ -12,4 +13,5 @@ export interface AppState {
   sample: UserSampleState;
   category: CategoryState;
   scratchpad: ScratchpadState;
+  socialProspectus: SocialProspectusState;
 }

@@ -53,7 +53,7 @@ export interface UserSample {
 }
 
 export interface UserSocialProspectus {
-  platform: string;
-  user_handle: string;
-  created_at: Date;
+  social_platform_name: string;
+  handle: string;
+  description: string;
 }

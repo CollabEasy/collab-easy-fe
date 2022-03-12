@@ -11,6 +11,7 @@ import {
   Space,
   DatePicker,
   Switch,
+  Table,
 } from "antd";
 import {
   UploadOutlined,
@@ -23,8 +24,8 @@ import {
   updateArtistPreference,
 } from "state/action";
 import SamplePage from "../../../components/samplePage";
-import ScratchpadPade from "../../../components/ScratchpadPage";
-import { COUNTRIES, GENDERS, TIME_ZONES } from "config/constants";
+import ScratchpadPage from "../../../components/ScratchpadPage";
+import { COUNTRIES, GENDERS, SOCIAL_PLATFORMS } from "config/constants";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { AppState } from "types/states";
 import { Dispatch } from "redux";
@@ -35,6 +36,7 @@ import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { getAllCategories } from "api/category";
 import Loader from "@/components/loader";
+import ArtistSocialProspectusModal from "../../../components/ArtistSocialProspectusModal";
 
 const { TabPane } = Tabs;
 
@@ -62,23 +64,32 @@ const openLoginModal = () => {
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
-  isUpdatingProfile: state.user.isUpdatingProfile,
-  isUpdatingPrefs: state.user.isUpdatingPrefs,
   preferences: state.user.preferences,
   samples: state.sample.samples,
   categories: state.category.categories,
+  socialProspectus: state.socialProspectus,
+
   isFetchingSamples: state.sample.isFetchingSamples,
+  isFetchingSocialProspectus: state.socialProspectus?.isFetchingProspectus,
+  isUpdatingProfile: state.user.isUpdatingProfile,
+  isUpdatingPrefs: state.user.isUpdatingPrefs,
+
+  isDeletingProspectus: state.socialProspectus?.isDeletingProspectus,
+  hasDeletedProspectus: state.socialProspectus?.hasDeletedProspectus,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
-  updateArtistPreference: (key: string, value: any) =>
-    dispatch(updateArtistPreference(key, value)),
-  fetchArtistSamples: (slug: string) =>
-    dispatch(actions.fetchArtistSamples(slug)),
+  fetchArtistSamples: (slug: string) => dispatch(actions.fetchArtistSamples(slug)),
   getAllCategories: () => dispatch(actions.getAllCategories()),
   fetchArtistSkills: () => dispatch(actions.fetchArtistSkills()),
-  updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data))
+  fetchArtistSocialProspectus: () => dispatch(actions.fetchArtistSocialProspectus()),
+
+  updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data)),
+  updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
+  updateArtistPreference: (key: string, value: any) => dispatch(updateArtistPreference(key, value)),
+  updateArtistSocialProspectus: (data: any[]) => dispatch(actions.updateArtistSocialProspectus(data)),
+
+  deleteArtistSocialProspectus: (data: number) => dispatch(actions.deleteArtistSocialProspectus(data)),
 });
 
 const normFile = (e: any) => {
@@ -97,18 +108,25 @@ const EditProfile = ({
   samples,
   preferences,
   categories,
+  socialProspectus,
   isUpdatingProfile,
   isUpdatingPrefs,
   isFetchingSamples,
+  isFetchingSocialProspectus,
+  isDeletingProspectus,
+  hasDeletedProspectus,
   getAllCategories,
   fetchArtistSkills,
+  fetchArtistSamples,
+  fetchArtistSocialProspectus,
+  updateArtistPreference,
   updateArtistSkills,
   updateArtistProfile,
-  fetchArtistSamples,
-  updateArtistPreference,
+  deleteArtistSocialProspectus,
 }: Props) => {
   const [activeTabKey, setActiveTabKey] = useState("1");
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [userSocialProspectus, setUserSocialProspectus] = useState([]);
   const [upForCollaboration, setUpForCollaboration] = useState(false);
   const [userDataCached, setUserDataCached] = useState<User>(user);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
@@ -124,6 +142,7 @@ const EditProfile = ({
     }
     fetchArtistSamples(user.slug);
     fetchArtistSkills();
+    fetchArtistSocialProspectus();
   }, []);
 
   useEffect(() => {
@@ -132,19 +151,16 @@ const EditProfile = ({
       preferences["upForCollaboration"] === true
     )
       setUpForCollaboration(true);
-    
+
     setUserDataCached(user);
     setSelectedCategories(user.skills);
-  }, [preferences, user])
+    setUserSocialProspectus(socialProspectus.socialProspectus);
+  }, [preferences, user, socialProspectus])
 
   const router = useRouter();
   const { action, tab } = router.query;
 
-  if (
-    typeof window !== "undefined" &&
-    action !== "profile" &&
-    action !== "account"
-  ) {
+  if (typeof window !== "undefined" && action !== "profile" && action !== "account") {
     router.push("/artist/settings/profile?tab=personal-information");
   }
 
@@ -177,12 +193,11 @@ const EditProfile = ({
     // }
     if (action === "account") active = "2";
 
-    console.log("rabbal active is ", active);
+    //console.log("rabbal active is ", active);
     return active;
   };
 
   const redirect = (tabIndex: string) => {
-
     let action = "profile";
     let tab = "personal-information";
     if (tabIndex === "1.2") {
@@ -217,7 +232,7 @@ const EditProfile = ({
     router.push("/artist/settings/" + action + "?tab=" + tab);
   };
 
-  const resetData = () => {};
+  const resetData = () => { };
 
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
@@ -227,19 +242,80 @@ const EditProfile = ({
     updateArtistProfile(userDataCached);
   };
 
+  const [isViewMode, setViewMode] = useState(false);
+
+  const ShowProspectusEntryModal = () => {
+    setViewMode(true);
+  }
+
+  const deleteUserProspectus = (entry) => {
+    deleteArtistSocialProspectus(getSocialPlatformId(entry.name));
+  }
+
+  const HideProspectusEntryModal = () => {
+    setViewMode(false);
+  }
+
   const saveArtistSkills = () => {
     if (selectedCategories.length === 0) {
       message.error("You need to select atleast one art style.")
     } else {
-      updateArtistSkills({artNames: selectedCategories});
+      updateArtistSkills({ artNames: selectedCategories });
     }
+  }
+
+  const columns = [
+    { title: 'Platform', dataIndex: 'name', key: 'name'},
+    { title: 'Handle', dataIndex: 'handle', key: 'handle' },
+    { title: 'Description', dataIndex: 'description', key: 'description' },
+    {
+      title: 'Action',
+      key: 'key',
+      dataIndex: 'key',
+      render: (text, record) => (
+       <Button onClick={()=> deleteUserProspectus(record)}>
+         Delete
+       </Button>
+      ),
+    },,
+  ];
+
+  const getSocialPlatformId = (name) => {
+    for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
+        if (SOCIAL_PLATFORMS[i].name === name) {
+            return SOCIAL_PLATFORMS[i].id;
+        }
+    }
+    return 1;
+  };
+
+  const getSocialPlatformName = (id) => {
+    for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
+      if (SOCIAL_PLATFORMS[i].id === id) {
+        return SOCIAL_PLATFORMS[i].name;
+      }
+    }
+    return "";
+  };
+
+  const getCurrentSocialProspectus = () => {
+    let data = userSocialProspectus.length != 0 ? userSocialProspectus[0].data : [];
+    let updatedData = []
+    data.forEach(element => {
+      let obj = {
+        "name": getSocialPlatformName(element.socialPlatformId),
+        "handle": element.handle,
+        "description": element.description,
+      }
+      updatedData.push(obj);
+    });
+    return <Table columns={columns} dataSource={updatedData} />
   }
 
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0) return <Loader />;
   return (
     <div className="edit-profile" style={{ padding: 200 }}>
-      {/* <h1 style={{ textAlign: 'center' }}>{getHeading()}</h1> */}
       <>
         <Tabs
           tabPosition={"left"}
@@ -506,131 +582,54 @@ const EditProfile = ({
               <TabPane tab="Social Prospectus" key="1.4">
                 <div className="settings__basicProfileCardFourth">
                   <h2 className="f-20 ">Social Media Prospectus</h2>
-                  <Form
-                    className="settings__basicProfileForm"
-                    name="dynamic_form_nest_item"
-                    autoComplete="off"
-                  >
-                    <Form.List name="sights">
-                      {(fields, { add, remove }) => (
-                        <>
-                          {fields.map((field) => (
-                            <Space key={field.key} align="baseline">
-                              <Form.Item
-                                noStyle
-                                shouldUpdate={(prevValues, curValues) =>
-                                  prevValues.area !== curValues.area ||
-                                  prevValues.sights !== curValues.sights
-                                }
-                              >
-                                {() => (
-                                  <Form.Item
-                                    {...field}
-                                    label="Platform"
-                                    name={[field.name, "wondor"]}
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message: "Missing social platform name",
-                                      },
-                                    ]}
-                                  >
-                                    <Select style={{ width: 130 }}></Select>
-                                  </Form.Item>
-                                )}
-                              </Form.Item>
-                              <Form.Item
-                                {...field}
-                                label="Handle"
-                                name={[field.name, "admin"]}
-                                rules={[
-                                  { required: true, message: "Missing handle of the provided social platform" },
-                                ]}
-                              >
-                                <Input />
-                              </Form.Item>
-                              <Form.Item
-                                {...field}
-                                label="Description"
-                                name={[field.name, "description"]}
-                                rules={[
-                                  { required: false },
-                                ]}
-                              >
-                                <Input.TextArea />
-                              </Form.Item>
-                              <MinusCircleOutlined
-                                onClick={() => remove(field.name)}
-                              />
-                            </Space>
-                          ))}
-
-                          <Form.Item>
-                            <Button
-                              type="dashed"
-                              onClick={() => add()}
-                              block
-                              icon={<PlusOutlined />}
-                            >
-                              Add social media handles
-                            </Button>
-                          </Form.Item>
-                        </>
-                      )}
-                    </Form.List>
-                    <Form.Item {...tailLayout}>
-                      <div className="settings__basicProfileSubmitContainer">
-                        <Button
-                          type="primary"
-                          htmlType="submit"
-                          onClick={submitForm}
-                          loading={isUpdatingProfile}
-                        >
-                          {isUpdatingProfile ? "Saving..." : "Save"}
-                        </Button>
-                        <Button htmlType="button" onClick={resetData}>
-                          Reset
-                        </Button>
-                      </div>
-                    </Form.Item>
-                  </Form>
+                  <div>
+                    {!isFetchingSocialProspectus && (
+                      <div>{getCurrentSocialProspectus()}</div>
+                    )}
+                  </div>
+                  <div className="socialProspectus__buttonContainer">
+                    <Button
+                      type="primary"
+                      onClick={ShowProspectusEntryModal}
+                    >Add</Button>
+                  </div>
                 </div>
               </TabPane>
               <TabPane tab="Scratchpad" key="1.5">
                 <div className="settings__basicProfileCardThird">
-                  <h2 className="f-20 ">Your Space to take notes</h2>  
-                  <ScratchpadPade user={user} />         
+                  <h2 className="f-20 ">Your Space to take notes</h2>
+                  <ScratchpadPage user={user} />
                 </div>
               </TabPane >
             </Tabs>
           </TabPane>
           <TabPane tab="Account Settings" key="2">
-          <Tabs
+            <Tabs
               type="card"
               onChange={(key: string) => {
                 redirect(key);
               }}
             >
               <TabPane tab="Communication" key="2.1">
-                  <div className="settings__basicProfileCard">
-                    <h2 className="f-20 ">Communication</h2>
-                    <Form
-                      className="settings__basicProfileForm"
-                      labelCol={{ span: 4 }}
-                      wrapperCol={{ span: 14 }}
-                      layout="horizontal"
-                      initialValues={{ size: componentSize }}
-                      onValuesChange={onFormLayoutChange}
-                      size={componentSize as SizeType}
-                    >
-                      <Form.Item label="Notification Emails" valuePropName="checked">
-                        <Switch
-                          checkedChildren="enabled"
-                          unCheckedChildren="disabled"
-                        />
-                      </Form.Item>
-                    </Form>
-                  </div>
+                <div className="settings__basicProfileCard">
+                  <h2 className="f-20 ">Communication</h2>
+                  <Form
+                    className="settings__basicProfileForm"
+                    labelCol={{ span: 4 }}
+                    wrapperCol={{ span: 14 }}
+                    layout="horizontal"
+                    initialValues={{ size: componentSize }}
+                    onValuesChange={onFormLayoutChange}
+                    size={componentSize as SizeType}
+                  >
+                    <Form.Item label="Notification Emails" valuePropName="checked">
+                      <Switch
+                        checkedChildren="enabled"
+                        unCheckedChildren="disabled"
+                      />
+                    </Form.Item>
+                  </Form>
+                </div>
               </TabPane>
               <TabPane tab="Account management" key="2.2">
                 <div className="settings__basicProfileCardSecond">
@@ -663,18 +662,17 @@ const EditProfile = ({
           </TabPane>
         </Tabs>
       </>
+      <div>
+        {isViewMode && (
+          <ArtistSocialProspectusModal
+            onCancel={() => {
+              HideProspectusEntryModal();
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };
-
-// To Do: - need to fetch data using below function, need to fix the issue of localstorage object not available at server side
-// export const getServerSideProps = async () => {
-//     const user = await getArtistData()
-//     return {
-//         props: {
-//             userData: user
-//         } as ProfilePageProps,
-//     }
-// }
 
 export default connector(EditProfile);
