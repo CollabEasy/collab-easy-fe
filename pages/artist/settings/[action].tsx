@@ -1,9 +1,8 @@
 import { User } from "types/model";
 import moment from "moment";
-import { InputNumber, message, Tabs } from "antd";
+import { message, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import {
-  Upload,
   Form,
   Input,
   Button,
@@ -13,7 +12,6 @@ import {
   Switch,
 } from "antd";
 import {
-  UploadOutlined,
   MinusCircleOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
@@ -24,16 +22,12 @@ import {
 } from "state/action";
 import SamplePage from "../../../components/samplePage";
 import ScratchpadPade from "../../../components/ScratchpadPage";
-import { COUNTRIES, GENDERS, TIME_ZONES } from "config/constants";
-import { connect, ConnectedProps, useDispatch } from "react-redux";
+import { COUNTRIES, GENDERS } from "config/constants";
+import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
 import { Dispatch } from "redux";
-import { useRoutesContext } from "components/routeContext";
-import State from "state";
 import * as actions from "state/action";
 import { useRouter } from "next/router";
-import { useCallback } from "react";
-import { getAllCategories } from "api/category";
 import Loader from "@/components/loader";
 
 const { TabPane } = Tabs;
@@ -72,13 +66,12 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
-  updateArtistPreference: (key: string, value: any) =>
-    dispatch(updateArtistPreference(key, value)),
-  fetchArtistSamples: (slug: string) =>
-    dispatch(actions.fetchArtistSamples(slug)),
-  getAllCategories: () => dispatch(actions.getAllCategories()),
+  updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data)),
+  updateArtistPreference: (key: string, value: any) => dispatch(updateArtistPreference(key, value)),
+  
+  fetchArtistSamples: (slug: string) => dispatch(actions.fetchArtistSamples(slug)),
+  fetchAllCategories: () => dispatch(actions.fetchAllCategories()),
   fetchArtistSkills: () => dispatch(actions.fetchArtistSkills()),
-  updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data))
 });
 
 const normFile = (e: any) => {
@@ -100,11 +93,11 @@ const EditProfile = ({
   isUpdatingProfile,
   isUpdatingPrefs,
   isFetchingSamples,
-  getAllCategories,
+  fetchAllCategories,
   fetchArtistSkills,
+  fetchArtistSamples,
   updateArtistSkills,
   updateArtistProfile,
-  fetchArtistSamples,
   updateArtistPreference,
 }: Props) => {
   const [activeTabKey, setActiveTabKey] = useState("1");
@@ -120,7 +113,8 @@ const EditProfile = ({
 
   useEffect(() => {
     if (categories.length === 0) {
-      getAllCategories();
+      console.log("Rabbal categories are empty");
+      fetchAllCategories();
     }
     fetchArtistSamples(user.slug);
     fetchArtistSkills();
@@ -131,8 +125,7 @@ const EditProfile = ({
       preferences["upForCollaboration"] === "true" ||
       preferences["upForCollaboration"] === true
     )
-      setUpForCollaboration(true);
-    
+    setUpForCollaboration(true);
     setUserDataCached(user);
     setSelectedCategories(user.skills);
   }, [preferences, user])
@@ -177,7 +170,7 @@ const EditProfile = ({
     // }
     if (action === "account") active = "2";
 
-    console.log("rabbal active is ", active);
+    // console.log("rabbal active is ", active);
     return active;
   };
 
@@ -235,6 +228,7 @@ const EditProfile = ({
     }
   }
 
+  //console.log("Rabbal missing categories ", categories);
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0) return <Loader />;
   return (

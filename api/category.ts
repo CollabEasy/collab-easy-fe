@@ -49,6 +49,7 @@ export const getArtistsByCategorySlugAPI = async (slug: string) => {
 export const getAllCategories = async () => {
   const config = getConfig();
   try {
+    console.log("Rabbal you have come here");
     const categories = await api.call("api/v1/artist/categories", config);
     return categories;
   } catch (error) {

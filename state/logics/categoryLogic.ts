@@ -50,18 +50,20 @@ export const fetchArtistsByCategorySlugLogic = createLogic<
   },
 });
 
-export const fetchArtistCategoriesLogic = createLogic<
+export const fetchAllCategoriesLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof actions.getAllCategories>,
+  FSACreatorPayload<typeof actions.fetchAllCategories>,
   any,
   LogicDeps
 >({
   type: [actionTypes.FETCH_ALL_CATEGORIES],
-  async process({ api }, dispatch, done) {
+  async process({ }, dispatch, done) {
     try {
-      dispatch(actions.getAllCategoriesRequest())
+      console.log("Rabbal you are in logic");
+      dispatch(actions.fetchAllCategoriesRequest())
+      console.log("Rabbal is in the API to fetch all categories");
       const categoriesData = await categoryApi.getAllCategories();
-      dispatch(actions.getAllCategoriesSuccess(categoriesData));
+      dispatch(actions.fetchAllCategoriesSuccess(categoriesData));
     } catch (error) {
     } finally {
       done();
