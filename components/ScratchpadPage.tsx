@@ -97,6 +97,20 @@ const ScratchpadPage = ({
         setViewMode(true);
     }
 
+    const getBlogFormattedContent = (content) => {
+        let sentences = content.split("\n");
+        const formattedContent: JSX.Element[] = [];
+        sentences.forEach(senetence => {
+            formattedContent.push(
+                <div>
+                    <p>{senetence}</p>
+                </div>
+            )
+        });
+        return formattedContent;
+    }
+
+    
     return (
         <div>
             {isFetchingScratchpad ? (
@@ -112,7 +126,7 @@ const ScratchpadPage = ({
                                     </div>
                                 ) : (
                                     <div>
-                                        <p>{loggedInUserScratchpad.content}</p>
+                                        <p>{getBlogFormattedContent(loggedInUserScratchpad.content)}</p>
                                     </div>
                                 )}
 
