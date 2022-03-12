@@ -46,3 +46,15 @@ export const addArtistSocialProspectusAPI = async (data: any) => {
 		throw error;
 	}
 }
+
+
+export const deleteArtistSocialProspectusAPI = async (data: any) => {
+  const config = postConfig(data);
+  console.log("Rabbal is inside delete social prospectus API ", data);
+  try {
+    const result = await api.call('api/v1/artist/social-prospectus/delete', config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}

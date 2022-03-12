@@ -73,6 +73,9 @@ const mapStateToProps = (state: AppState) => ({
   isFetchingSocialProspectus: state.socialProspectus?.isFetchingProspectus,
   isUpdatingProfile: state.user.isUpdatingProfile,
   isUpdatingPrefs: state.user.isUpdatingPrefs,
+
+  isDeletingProspectus: state.socialProspectus?.isDeletingProspectus,
+  hasDeletedProspectus: state.socialProspectus?.hasDeletedProspectus,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -85,6 +88,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
   updateArtistPreference: (key: string, value: any) => dispatch(updateArtistPreference(key, value)),
   updateArtistSocialProspectus: (data: any[]) => dispatch(actions.updateArtistSocialProspectus(data)),
+
+  deleteArtistSocialProspectus: (data: number) => dispatch(actions.deleteArtistSocialProspectus(data)),
 });
 
 const normFile = (e: any) => {
@@ -107,6 +112,9 @@ const EditProfile = ({
   isUpdatingProfile,
   isUpdatingPrefs,
   isFetchingSamples,
+  isFetchingSocialProspectus,
+  isDeletingProspectus,
+  hasDeletedProspectus,
   getAllCategories,
   fetchArtistSkills,
   fetchArtistSamples,
@@ -114,6 +122,7 @@ const EditProfile = ({
   updateArtistPreference,
   updateArtistSkills,
   updateArtistProfile,
+  deleteArtistSocialProspectus,
 }: Props) => {
   const [activeTabKey, setActiveTabKey] = useState("1");
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -240,8 +249,7 @@ const EditProfile = ({
   }
 
   const deleteUserProspectus = (entry) => {
-    console.log("Rabbal is deleting ", entry);
-    //deleteUserProspectus()
+    deleteArtistSocialProspectus(getSocialPlatformId(entry.name));
   }
 
   const HideProspectusEntryModal = () => {
@@ -271,6 +279,15 @@ const EditProfile = ({
       ),
     },,
   ];
+
+  const getSocialPlatformId = (name) => {
+    for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
+        if (SOCIAL_PLATFORMS[i].name === name) {
+            return SOCIAL_PLATFORMS[i].id;
+        }
+    }
+    return 1;
+  };
 
   const getSocialPlatformName = (id) => {
     for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
@@ -566,7 +583,9 @@ const EditProfile = ({
                 <div className="settings__basicProfileCardFourth">
                   <h2 className="f-20 ">Social Media Prospectus</h2>
                   <div>
-                    {getCurrentSocialProspectus()}
+                    {!isFetchingSocialProspectus && (
+                      <div>{getCurrentSocialProspectus()}</div>
+                    )}
                   </div>
                   <div className="socialProspectus__buttonContainer">
                     <Button
@@ -655,15 +674,5 @@ const EditProfile = ({
     </div>
   );
 };
-
-// To Do: - need to fetch data using below function, need to fix the issue of localstorage object not available at server side
-// export const getServerSideProps = async () => {
-//     const user = await getArtistData()
-//     return {
-//         props: {
-//             userData: user
-//         } as ProfilePageProps,
-//     }
-// }
 
 export default connector(EditProfile);

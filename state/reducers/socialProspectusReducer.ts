@@ -4,6 +4,8 @@ import { SocialProspectusState } from "types/states/socialProspectus";
 const initialState: SocialProspectusState = {
   isFetchingProspectus: false,
   isUpdatingProspectus: false,
+  isDeletingProspectus: false,
+  hasDeletedProspectus: false,
   socialProspectus: [],
 };
 
@@ -29,7 +31,6 @@ const socialProspectusReducer = (state = initialState, action): SocialProspectus
       };
 
     case actionType.UPDATE_ARTIST_SOCIAL_PROSPECTUS_REQUEST:
-      console.log("Rabbal is in prospectus reducer " );
       return {
         ...state,
         isUpdatingProspectus: true,
@@ -39,6 +40,31 @@ const socialProspectusReducer = (state = initialState, action): SocialProspectus
         ...state,
         isUpdatingProspectus: false,
         socialProspectus: action.payload.data,
+      };
+    case actionType.UPDATE_ARTIST_SOCIAL_PROSPECTUS_FAILURE:
+      return {
+        ...state,
+        isUpdatingProspectus: false,
+      };
+    
+    case actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_REQUEST:
+      return {
+        ...state,
+        isDeletingProspectus: true,
+        hasDeletedProspectus: false,
+      };
+    case actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_SUCCESS:
+      return {
+        ...state,
+        isDeletingProspectus: false,
+        hasDeletedProspectus: true,
+        socialProspectus: action.payload.data,
+      };
+    case actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_FAILURE:
+      return {
+        ...state,
+        isDeletingProspectus: false,
+        hasDeletedProspectus: false,
       };
     default:
       return state;

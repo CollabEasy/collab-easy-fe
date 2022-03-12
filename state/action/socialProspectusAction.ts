@@ -36,20 +36,20 @@ export const updateArtistSocialProspectusSuccess = (data: any) => ({
 	},
 });
 
-export const updateArtistSocialProspectus = (data: any) => ({
-	type: actionType.UPDATE_ARTIST_SOCIAL_PROSPECTUS,
+export const deleteArtistSocialProspectus = (data: number) => ({
+	type: actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS,
 	payload: {
 		data
 	},
 });
 
-export const updateArtistSocialProspectusRequest = () => ({
-  type: actionType.UPDATE_ARTIST_SOCIAL_PROSPECTUS_REQUEST,
+export const deleteArtistSocialProspectusRequest = () => ({
+  type: actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_REQUEST,
   payload: {},
 })
 
-export const updateArtistSocialProspectusSuccess = (data: any) => ({
-	type: actionType.UPDATE_ARTIST_SOCIAL_PROSPECTUS_SUCCESS,
+export const deleteArtistSocialProspectusSuccess = (data: any) => ({
+	type: actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_SUCCESS,
 	payload: {
 		data
 	},

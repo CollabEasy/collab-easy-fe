@@ -27,7 +27,7 @@ export const fetchArtistSocialProspectusLogic = createLogic<
   },
 });
 
-export const updateArtistSocialProspectusLogi = createLogic<
+export const updateArtistSocialProspectusLogic = createLogic<
   AppState,
   FSACreatorPayload<typeof actions.updateArtistSocialProspectus>,
   any,
@@ -41,7 +41,29 @@ export const updateArtistSocialProspectusLogi = createLogic<
       console.log("Rabbal is inside save social prospectus logic", data);
       const result = await api.socialProspectusApi.addArtistSocialProspectusAPI(data);
       console.log("Successfully saved prospectus ", result);
-      dispatch(actions.updateArtistSocialProspectusSuccess(data));
+      dispatch(actions.updateArtistSocialProspectusSuccess(result));
+    } catch (error) {
+    } finally {
+      done();
+    }
+  },
+});
+
+export const deleteArtistSocialProspectusLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.deleteArtistSocialProspectus>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.DELETE_ARTIST_SOCIAL_PROSPECTUS],
+  async process({ action, api }, dispatch, done) {
+    try {
+      dispatch(actions.deleteArtistSocialProspectusRequest());
+      const { data } = action.payload;
+      console.log("Rabbal is inside delete social prospectus logic", data);
+      const result = await api.socialProspectusApi.deleteArtistSocialProspectusAPI(data);
+      console.log("Successfully delete prospectus ");
+      dispatch(actions.deleteArtistSocialProspectusSuccess(result));
     } catch (error) {
     } finally {
       done();
