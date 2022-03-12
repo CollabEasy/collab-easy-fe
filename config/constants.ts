@@ -3958,6 +3958,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
     "base_url": "https://www.instagram.com",
+    "image": "instagram.png",
   },
   {
     "id": 2,
@@ -3965,6 +3966,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
     "base_url": "https://www.facebook.com",
+    "image": "facebook.png",
   },
   {
     "id": 3,
@@ -3972,5 +3974,6 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
     "base_url": "https://www.tiktok.com",
+    "image": "tiktok.png",
   }
 ]
