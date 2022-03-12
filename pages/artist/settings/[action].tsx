@@ -11,6 +11,7 @@ import {
   Space,
   DatePicker,
   Switch,
+  Table,
 } from "antd";
 import {
   UploadOutlined,
@@ -35,6 +36,7 @@ import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { getAllCategories } from "api/category";
 import Loader from "@/components/loader";
+import ArtistSocialProspectusModal from "../../../components/ArtistSocialProspectusModal";
 
 const { TabPane } = Tabs;
 
@@ -69,7 +71,6 @@ const mapStateToProps = (state: AppState) => ({
 
   isFetchingSamples: state.sample.isFetchingSamples,
   isFetchingSocialProspectus: state.socialProspectus?.isFetchingProspectus,
-  isUpdatingSocialProspectus: state.socialProspectus?.isUpdatingProspectus,
   isUpdatingProfile: state.user.isUpdatingProfile,
   isUpdatingPrefs: state.user.isUpdatingPrefs,
 });
@@ -113,7 +114,6 @@ const EditProfile = ({
   updateArtistPreference,
   updateArtistSkills,
   updateArtistProfile,
-  updateArtistSocialProspectus,
 }: Props) => {
   const [activeTabKey, setActiveTabKey] = useState("1");
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -151,7 +151,7 @@ const EditProfile = ({
   const router = useRouter();
   const { action, tab } = router.query;
 
-  if ( typeof window !== "undefined" && action !== "profile" && action !== "account") {
+  if (typeof window !== "undefined" && action !== "profile" && action !== "account") {
     router.push("/artist/settings/profile?tab=personal-information");
   }
 
@@ -233,6 +233,16 @@ const EditProfile = ({
     updateArtistProfile(userDataCached);
   };
 
+  const [isViewMode, setViewMode] = useState(false);
+
+  const ShowProspectusEntryModal = () => {
+    setViewMode(true);
+  }
+
+  const HideProspectusEntryModal = () => {
+    setViewMode(false);
+  }
+
   const saveArtistSkills = () => {
     if (selectedCategories.length === 0) {
       message.error("You need to select atleast one art style.")
@@ -241,20 +251,51 @@ const EditProfile = ({
     }
   }
 
-  const submitArtistSocialProspectus =  (values) => {
-    console.log("User social prospectus before setting is ", values["social-prospectus"]);
-    updateArtistSocialProspectus(values["social-prospectus"]);
-    form.setFieldsValue({ sights:  userSocialProspectus});
-  }
+  const columns = [
+    { title: 'Platform', dataIndex: 'name', key: 'name'},
+    { title: 'Handle', dataIndex: 'handle', key: 'handle' },
+    { title: 'Description', dataIndex: 'description', key: 'description' },
+    {
+      title: 'Action',
+      key: 'key',
+      dataIndex: 'key',
+      render: (text, record) => (
+       <Button onClick={()=> console.log(record)}>
+         Delete
+       </Button>
+      ),
+    },,
+  ];
 
-  const [form] = Form.useForm();
+  const getSocialPlatformName = (id) => {
+    for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
+      if (SOCIAL_PLATFORMS[i].id === id) {
+        return SOCIAL_PLATFORMS[i].name;
+      }
+    }
+    return "";
+  };
+
+  const getCurrentSocialProspectus = () => {
+    let data = userSocialProspectus.length != 0 ? userSocialProspectus[0].data : [];
+    let updatedData = []
+    data.forEach(element => {
+      let obj = {
+        "name": getSocialPlatformName(element.id),
+        "handle": element.handle,
+        "description": element.description,
+      }
+      console.log(obj);
+      updatedData.push(obj);
+    });
+    return <Table columns={columns} dataSource={updatedData} />
+  }
 
   console.log("Rabbal user social prospectus is ", userSocialProspectus);
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0) return <Loader />;
   return (
     <div className="edit-profile" style={{ padding: 200 }}>
-      {/* <h1 style={{ textAlign: 'center' }}>{getHeading()}</h1> */}
       <>
         <Tabs
           tabPosition={"left"}
@@ -521,99 +562,12 @@ const EditProfile = ({
               <TabPane tab="Social Prospectus" key="1.4">
                 <div className="settings__basicProfileCardFourth">
                   <h2 className="f-20 ">Social Media Prospectus</h2>
-                  <Form
-                    form={form}
-                    className="settings__basicProfileForm"
-                    name="dynamic_form_nest_item"
-                    autoComplete="off"
-                    onChange={handleLolaChange}
-                    onFinish={submitArtistSocialProspectus}
-                  >
-                    <Form.List name="social-prospectus">
-                      {(fields, { add, remove }) => (
-                        <>
-                          {fields.map((field) => (
-                            <Space key={field.key} align="baseline">
-                              <Form.Item
-                                noStyle
-                                shouldUpdate={(prevValues, curValues) =>
-                                  prevValues.area !== curValues.area ||
-                                  prevValues.sights !== curValues.sights
-                                }
-                              >
-                                {() => (
-                                  <Form.Item
-                                    {...field}
-                                    label="Platform"
-                                    name={[field.name, "platform"]}
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message: "Missing social platform name.",
-                                      },
-                                    ]}
-                                  >
-                                    <Select style={{ width: 130 }}>
-                                      {SOCIAL_PLATFORMS.map((platform) => (
-                                        <Select.Option key={platform.name} value={platform.name}>
-                                          {platform.name}
-                                        </Select.Option>
-                                      ))}
-                                    </Select>
-                                  </Form.Item>
-                                )}
-                              </Form.Item>
-                              <Form.Item
-                                {...field}
-                                label="Handle"
-                                name={[field.name, "handle"]}
-                                rules={[
-                                  { required: true, message: "Missing handle of the provided social platform." },
-                                ]}
-                              >
-                                <Input />
-                              </Form.Item>
-                              <Form.Item
-                                {...field}
-                                label="Description"
-                                name={[field.name, "description"]}
-                                rules={[
-                                  { required: false },
-                                ]}
-                              >
-                                <Input.TextArea />
-                              </Form.Item>
-                              <MinusCircleOutlined
-                                onClick={() => remove(field.name)}
-                              />
-                            </Space>
-                          ))}
-
-                          <Form.Item>
-                            <Button
-                              type="dashed"
-                              onClick={() => add()}
-                              block
-                              icon={<PlusOutlined />}
-                            >
-                              Add social media handles
-                            </Button>
-                          </Form.Item>
-                        </>
-                      )}
-                    </Form.List>
-                    <Form.Item {...tailLayout}>
-                      <div className="settings__basicProfileSubmitContainer">
-                        <Button
-                          type="primary"
-                          htmlType="submit"
-                          loading={isUpdatingProfile}
-                        >
-                          {isUpdatingProfile ? "Saving..." : "Save"}
-                        </Button>
-                      </div>
-                    </Form.Item>
-                  </Form>
+                  <div>
+                    {getCurrentSocialProspectus()}
+                  </div>
+                  <Button
+                    onClick={ShowProspectusEntryModal}
+                  >Add</Button>
                 </div>
               </TabPane>
               <TabPane tab="Scratchpad" key="1.5">
@@ -683,6 +637,15 @@ const EditProfile = ({
           </TabPane>
         </Tabs>
       </>
+      <div>
+        {isViewMode && (
+          <ArtistSocialProspectusModal
+            onCancel={() => {
+              HideProspectusEntryModal();
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };
