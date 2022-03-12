@@ -36,11 +36,11 @@ export const fetchArtistSocialProspectusAPI = async () => {
 };
 
 
-export const updateArtistSocialProspectusAPI = async (data: any) => {
+export const addArtistSocialProspectusAPI = async (data: any) => {
     const config = postConfig(data);
     console.log("Rabbal is inside saving social prospectus API ", data);
 	try {
-		const result = await api.call('api/v1/artist/social-prospectus/update', config);
+		const result = await api.call('api/v1/artist/social-prospectus/add', config);
 		return result;
 	} catch (error) {
 		throw error;

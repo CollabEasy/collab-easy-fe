@@ -53,8 +53,7 @@ export interface UserSample {
 }
 
 export interface UserSocialProspectus {
-  artist_id: string;
-  social_platform_id: number;
+  social_platform_name: string;
   handle: string;
   description: string;
 }

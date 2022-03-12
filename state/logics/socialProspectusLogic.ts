@@ -35,11 +35,12 @@ export const updateArtistSocialProspectusLogi = createLogic<
 >({
   type: [actionTypes.UPDATE_ARTIST_SOCIAL_PROSPECTUS],
   async process({ action, api }, dispatch, done) {
-    console.log("Rabbal is inside save social prospectus logic", action);
     try {
       dispatch(actions.updateArtistSocialProspectusRequest());
       const { data } = action.payload;
-      const result = await api.socialProspectusApi.updateArtistSocialProspectusAPI(data);
+      console.log("Rabbal is inside save social prospectus logic", data);
+      const result = await api.socialProspectusApi.addArtistSocialProspectusAPI(data);
+      console.log("Successfully saved prospectus ", result);
       dispatch(actions.updateArtistSocialProspectusSuccess(data));
     } catch (error) {
     } finally {

@@ -239,6 +239,11 @@ const EditProfile = ({
     setViewMode(true);
   }
 
+  const deleteUserProspectus = (entry) => {
+    console.log("Rabbal is deleting ", entry);
+    //deleteUserProspectus()
+  }
+
   const HideProspectusEntryModal = () => {
     setViewMode(false);
   }
@@ -260,7 +265,7 @@ const EditProfile = ({
       key: 'key',
       dataIndex: 'key',
       render: (text, record) => (
-       <Button onClick={()=> console.log(record)}>
+       <Button onClick={()=> deleteUserProspectus(record)}>
          Delete
        </Button>
       ),
@@ -281,17 +286,15 @@ const EditProfile = ({
     let updatedData = []
     data.forEach(element => {
       let obj = {
-        "name": getSocialPlatformName(element.id),
+        "name": getSocialPlatformName(element.socialPlatformId),
         "handle": element.handle,
         "description": element.description,
       }
-      console.log(obj);
       updatedData.push(obj);
     });
     return <Table columns={columns} dataSource={updatedData} />
   }
 
-  console.log("Rabbal user social prospectus is ", userSocialProspectus);
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0) return <Loader />;
   return (
@@ -565,9 +568,12 @@ const EditProfile = ({
                   <div>
                     {getCurrentSocialProspectus()}
                   </div>
-                  <Button
-                    onClick={ShowProspectusEntryModal}
-                  >Add</Button>
+                  <div className="socialProspectus__buttonContainer">
+                    <Button
+                      type="primary"
+                      onClick={ShowProspectusEntryModal}
+                    >Add</Button>
+                  </div>
                 </div>
               </TabPane>
               <TabPane tab="Scratchpad" key="1.5">
