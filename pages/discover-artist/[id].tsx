@@ -10,13 +10,8 @@ import { routeToHref } from "config/routes";
 import { AppState } from "state";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
-import React, { useEffect, useState } from 'react';
+import { useEffect } from "react";
 import * as action from "../../state/action/categoryAction";
-
-import LoginModal from '../../components/loginModal';
-import { updateLoginData } from 'state/action';
-import { LoginModalDetails } from 'types/model';
-import NewUserModal from '../../components/newUserModal';
 
 const { Meta } = Card;
 
@@ -24,27 +19,17 @@ const mapStateToProps = (state: AppState) => {
   const loggedInUserSlug = state.user.user?.slug;
   const selectedCategorySlug = state.category.selectedCategorySlug;
   const artists = state.category.artists;
-
-  const loginModalDetails = state.home.loginModalDetails;
-  const user = state.user.user;
-  const artistListData = state.home.artistListDetails;
-  const isLoggedIn = state.user.isLoggedIn;
-  return { selectedCategorySlug, artists, loggedInUserSlug,  loginModalDetails, user, artistListData, isLoggedIn};
+  return { selectedCategorySlug, artists, loggedInUserSlug };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistsByCategorySlug: (slug: string) =>
     dispatch(action.fetchArtistsByCategorySlug(slug)),
-  updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {
-  loginModalDetails: LoginModalDetails,
-  user: any,
-  artistListData: any
-} & ConnectedProps<typeof connector>;
+type Props = {} & ConnectedProps<typeof connector>;
 
 const getListingHeaderData = (selectedCategorySlug) => {
   for (var i = 0; i < LISTING_BANNERS.length; i++) {
@@ -58,17 +43,10 @@ const getListingHeaderData = (selectedCategorySlug) => {
 
 const DiscoverArtist = ({
   artists,
-  isLoggedIn,
-  artistListData,
-  user,
-  loginModalDetails,
   selectedCategorySlug,
   loggedInUserSlug,
   fetchArtistsByCategorySlug,
-  updateLoggedInData,
 }: Props) => {
-
-  const [showProfileModal, setShowProfileModal] = useState(false);
   const { toArtistProfile } = useRoutesContext();
   const router = useRouter();
   const { id: artSlug } = router.query;
@@ -76,20 +54,7 @@ const DiscoverArtist = ({
     // we are not using selectedcategorySlug here because if a user is coming directly from a URL, 
     // the value of selectedCatgeorySlug is empty.
     fetchArtistsByCategorySlug(artSlug);
-    if (user) {
-      if (user.new_user) {
-        setShowProfileModal(true);
-      }
-    }
-  }, [fetchArtistsByCategorySlug, artSlug, user]);
-
-  useEffect(() => {
-    if (artistListData.status === "success") {
-      setShowProfileModal(false);
-    }
-  }, [artistListData]);
-
-  console.log("loginModalDetails ", loginModalDetails);
+  }, [fetchArtistsByCategorySlug, artSlug]);
 
   const getArtists = () => {
     const resultArtists: JSX.Element[] = [];
@@ -155,14 +120,6 @@ const DiscoverArtist = ({
 
   return (
     <>
-      {loginModalDetails.openModal && !user.new_user && (
-        <LoginModal />
-      )
-      }
-      {showProfileModal && (
-        <NewUserModal />
-      )
-      }
       <Title title="Discover Artist" />
       <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
         <div className="discoverArtists__listingPageCoverContainer">
