@@ -37,8 +37,7 @@ export const fetchArtistsByCategorySlugLogic = createLogic<
   type: [actionTypes.FETCH_ARTIST_BY_CATEGORY_SLUG],
   async process({ action, api }, dispatch, done) {
     const { slug } = action.payload;
-    try {
-      //console.log("calling api in logic");
+  try {
       dispatch(actions.fetchArtistsByCategorySlugRequest());
       const result = await categoryApi.getArtistsByCategorySlugAPI(slug);
       dispatch(actions.fetchArtistsByCategorySlugSuccess(result));

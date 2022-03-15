@@ -72,10 +72,11 @@ const DiscoverArtist = ({
   const { toArtistProfile } = useRoutesContext();
   const router = useRouter();
   const { id: artSlug } = router.query;
+
   useEffect(() => {
     // we are not using selectedcategorySlug here because if a user is coming directly from a URL, 
     // the value of selectedCatgeorySlug is empty.
-    fetchArtistsByCategorySlug(artSlug);
+    fetchArtistsByCategorySlug(artSlug.toString());
     if (user) {
       if (user.new_user) {
         setShowProfileModal(true);
