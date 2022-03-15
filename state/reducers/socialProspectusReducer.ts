@@ -36,17 +36,29 @@ const socialProspectusReducer = (state = initialState, action): SocialProspectus
         isUpdatingProspectus: true,
       };
     case actionType.UPDATE_ARTIST_SOCIAL_PROSPECTUS_SUCCESS:
+      // const updatedId = action.payload.data;
+      // const newProspectusData = [];
+      // const oldProspectusData = state.socialProspectus;
+      // if (oldProspectusData.length != 0) {
+      //   oldProspectusData[0].data.forEach((entry, index) => {
+      //     if (entry.socialPlatformId !== updatedId.socialPlatformId) {
+      //       newData.push(entry);
+      //     }
+      //   });
+      // }
+      // newProspectusData.push(action.payload.data);
+
       return {
         ...state,
         isUpdatingProspectus: false,
-        socialProspectus: action.payload.data,
+        socialProspectus: [{ "data": [action.payload.data.data].concat(...state.socialProspectus[0].data) }],
       };
     case actionType.UPDATE_ARTIST_SOCIAL_PROSPECTUS_FAILURE:
       return {
         ...state,
         isUpdatingProspectus: false,
       };
-    
+
     case actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_REQUEST:
       return {
         ...state,
@@ -54,11 +66,21 @@ const socialProspectusReducer = (state = initialState, action): SocialProspectus
         hasDeletedProspectus: false,
       };
     case actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_SUCCESS:
+      const deletedId = action.payload.data;
+      const newData = [];
+      const oldData = state.socialProspectus;
+      if (oldData.length != 0) {
+        oldData[0].data.forEach((entry, index) => {
+          if (entry.socialPlatformId !== deletedId) {
+            newData.push(entry);
+          }
+        });
+      }
       return {
         ...state,
         isDeletingProspectus: false,
         hasDeletedProspectus: true,
-        socialProspectus: action.payload.data,
+        socialProspectus: [{ "data": newData }],
       };
     case actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_FAILURE:
       return {

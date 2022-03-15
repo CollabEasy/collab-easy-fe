@@ -16,11 +16,9 @@ export const fetchArtistSocialProspectusLogic = createLogic<
   async process({ action, api }, dispatch, done) {
     try {
       dispatch(actions.fetchArtistSocialProspectusRequest());
-      console.log("I'm here and now going to make  acall");
       const result = await socialProspectusApi.fetchArtistSocialProspectusAPI();
       dispatch(actions.fetchArtistSocialProspectusSuccess([result]));
     } catch (error) {
-      console.log("error : ", error);
     } finally {
       done();
     }
@@ -38,9 +36,7 @@ export const updateArtistSocialProspectusLogic = createLogic<
     try {
       dispatch(actions.updateArtistSocialProspectusRequest());
       const { data } = action.payload;
-      console.log("Rabbal is inside save social prospectus logic", data);
       const result = await api.socialProspectusApi.addArtistSocialProspectusAPI(data);
-      console.log("Successfully saved prospectus ", result);
       dispatch(actions.updateArtistSocialProspectusSuccess(result));
     } catch (error) {
     } finally {
@@ -60,10 +56,8 @@ export const deleteArtistSocialProspectusLogic = createLogic<
     try {
       dispatch(actions.deleteArtistSocialProspectusRequest());
       const { data } = action.payload;
-      console.log("Rabbal is inside delete social prospectus logic", data);
       const result = await api.socialProspectusApi.deleteArtistSocialProspectusAPI(data);
-      console.log("Successfully delete prospectus ");
-      dispatch(actions.deleteArtistSocialProspectusSuccess(result));
+      dispatch(actions.deleteArtistSocialProspectusSuccess(data));
     } catch (error) {
     } finally {
       done();

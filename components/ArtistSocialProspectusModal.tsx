@@ -40,6 +40,8 @@ const ArtistSocialProspectusModal = ({
         return 1;
     };
 
+    const [isViewMode, setViewMode] = useState(true);
+
     const saveSocialProspectusEntry = () => {
         let obj = {
             "handle": prospectusData.handle,
@@ -47,74 +49,81 @@ const ArtistSocialProspectusModal = ({
             "social_platform_id": getSocialPlatformId(prospectusData.social_platform_name),
         }
         updateArtistSocialProspectus(obj);
+        setViewMode(false)
     };
 
+    
+
     return (
-        <Modal
-            closable
-            onCancel={onCancel}
-            className="sendSocialProspectus__modal"
-            visible={true}
-            footer={null}
-        >
-            <div className="sendSocialProspectus__container">
-                <h2 className="f-20 text-center">Enter the details.</h2>
-                <Form
-                    className="settings__basicProfileForm"
-                    layout="horizontal"
-                    onFinish={saveSocialProspectusEntry}
+        <>
+            {isViewMode && (
+                <Modal
+                    closable
+                    onCancel={onCancel}
+                    className="sendSocialProspectus__modal"
+                    visible={true}
+                    footer={null}
                 >
-                    <Form.Item label="Platform">
-                        <Select
-                            onChange={(e) => {
-                                console.log("selected platform ", e);
-                                setProspectusData((prevState) => ({
-                                    ...prevState,
-                                    social_platform_name: e,
-                                }));
-                            }}
+                    <div className="sendSocialProspectus__container">
+                        <h2 className="f-20 text-center">Enter the details.</h2>
+                        <Form
+                            className="settings__basicProfileForm"
+                            layout="horizontal"
+                            onFinish={saveSocialProspectusEntry}
                         >
-                            {SOCIAL_PLATFORMS.map((gen) => (
-                                <Select.Option key={gen.name} value={gen.name}>
-                                    {gen.name}
-                                </Select.Option>
-                            ))}
-                        </Select>
-                    </Form.Item>
-                    <Form.Item label="Handle">
-                        <Input
-                            onChange={(e) => {
-                                setProspectusData((prevState) => ({
-                                    ...prevState,
-                                    handle: e.target.value,
-                                }));
-                            }}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Description">
-                        <Input.TextArea
-                            onChange={(e) => {
-                                setProspectusData((prevState) => ({
-                                    ...prevState,
-                                    description: e.target.value,
-                                }));
-                            }}
-                        />
-                    </Form.Item>
-                    <Form.Item>
-                        <div className="settings__basicProfileSubmitContainer">
-                            <Button
-                                type="primary"
-                                htmlType="submit"
-                                loading={isUpdatingSocialProspectus}
-                            >
-                                {isUpdatingSocialProspectus ? "Saving..." : "Save"}
-                            </Button>
-                        </div>
-                    </Form.Item>
-                </Form>
-            </div>
-        </Modal>
+                            <Form.Item label="Platform">
+                                <Select
+                                    onChange={(e) => {
+                                        console.log("selected platform ", e);
+                                        setProspectusData((prevState) => ({
+                                            ...prevState,
+                                            social_platform_name: e,
+                                        }));
+                                    }}
+                                >
+                                    {SOCIAL_PLATFORMS.map((gen) => (
+                                        <Select.Option key={gen.name} value={gen.name}>
+                                            {gen.name}
+                                        </Select.Option>
+                                    ))}
+                                </Select>
+                            </Form.Item>
+                            <Form.Item label="Handle">
+                                <Input
+                                    onChange={(e) => {
+                                        setProspectusData((prevState) => ({
+                                            ...prevState,
+                                            handle: e.target.value,
+                                        }));
+                                    }}
+                                />
+                            </Form.Item>
+                            <Form.Item label="Description">
+                                <Input.TextArea
+                                    onChange={(e) => {
+                                        setProspectusData((prevState) => ({
+                                            ...prevState,
+                                            description: e.target.value,
+                                        }));
+                                    }}
+                                />
+                            </Form.Item>
+                            <Form.Item>
+                                <div className="settings__basicProfileSubmitContainer">
+                                    <Button
+                                        type="primary"
+                                        htmlType="submit"
+                                        loading={isUpdatingSocialProspectus}
+                                    >
+                                        {isUpdatingSocialProspectus ? "Saving..." : "Save"}
+                                    </Button>
+                                </div>
+                            </Form.Item>
+                        </Form>
+                    </div>
+                </Modal>
+            )}
+        </>
     );
 };
 
