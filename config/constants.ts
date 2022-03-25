@@ -1,3 +1,7 @@
+import DanceImage from '../public/images/listing-dance.png'
+import SingerImage from '../public/images/singers.png'
+import WriterImage from '../public/images/writer.png'
+
 export const COUNTRIES = [
   {
     "Iso2": "AF",
@@ -3933,21 +3937,21 @@ export const LISTING_BANNERS = [
     "category": "Dance",
     "heading": "Choreographers to work with on your next big hit",
     "sub-heading": "Send a collab request to see if they are available",
-    "image": "public/images/listing-dance.png",
+    "image": DanceImage,
   },
   {
     "slug": "singer",
     "category": "Singers",
     "heading": "Singers to work with on your next big hit",
     "sub-heading": "Send a collab request to see if they are available",
-    "image": "public/images/listing-singer.png",
+    "image": SingerImage,
   },
   {
     "slug": "write",
     "category": "Writers",
     "heading": "Writers to work with on your next big hit",
     "sub-heading": "Send a collab request to see if they are available",
-    "image": "public/images/listing-writer.png",
+    "image": WriterImage,
   }
 ]
 
