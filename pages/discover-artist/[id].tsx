@@ -51,7 +51,7 @@ const getListingHeaderData = (selectedCategorySlug) => {
     if (LISTING_BANNERS[i]["slug"] == selectedCategorySlug) {
       return LISTING_BANNERS[i];
     }
-  }
+  } 
   return {};
 }
 
@@ -196,7 +196,7 @@ const DiscoverArtist = ({
                 layout="responsive"
                 objectFit="contain"
                 // we have to update the src to use dynamic image instead of fixed image.
-                src={landingdanceImg}
+                src={getListingHeaderData(artSlug)["image"]}
                 alt="Landing page" />
             </div>
           </div>
