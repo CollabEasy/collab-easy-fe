@@ -42,7 +42,6 @@
         .artits-card {
             width: 100%;
             height: 90%;
-            box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
             transition: 0.3s;
             background-color: #fafafa;
             //padding-top: 10px;
@@ -55,7 +54,7 @@
             &:hover {
                 //border-color: coral;
                 //transform: translateY(-5px);
-                box-shadow: 2px 2px 2px rgba(63, 63, 63, 0.3);
+                box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
                 transition: all .25s ease-in-out;
               }
             .dot {
