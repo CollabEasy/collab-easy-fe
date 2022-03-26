@@ -81,7 +81,7 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistSamples: (slug: string) => dispatch(actions.fetchArtistSamples(slug)),
   getAllCategories: () => dispatch(actions.getAllCategories()),
-  fetchArtistSkills: () => dispatch(actions.fetchArtistSkills()),
+  fetchArtistSkills: () => dispatch(actions.fetchArtistSkills("")),
   fetchArtistSocialProspectus: () => dispatch(actions.fetchArtistSocialProspectus()),
 
   updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data)),

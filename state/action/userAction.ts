@@ -110,9 +110,11 @@ export const updateArtistArtSuccess = (data: any) => ({
 	},
 });
 
-export const fetchArtistSkills = () => ({
+export const fetchArtistSkills = (data: string) => ({
 	type: actionType.FETCH_ARTIST_SKILLS,
-	payload: {},
+	payload: {
+    data
+  },
 });
 
 export const fetchArtistPreferences = () => ({
