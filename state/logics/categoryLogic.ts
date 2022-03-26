@@ -3,7 +3,7 @@ import { AppState, LogicDeps } from "state";
 import { FSACreatorPayload } from "types/states";
 
 import * as categoryApi from "../../api/category";
-import * as actions from "../action/categoryAction";
+import * as actions from "../action/";
 import * as actionTypes from "../actionTypes/categoryActionTypes";
 
 export const fetchArtistsByCategoryIdLogic = createLogic<
@@ -22,6 +22,7 @@ export const fetchArtistsByCategoryIdLogic = createLogic<
       dispatch(actions.fetchArtistsByCategoryIdSuccess(result));
     } catch (error) {
       console.log("error : ", error);
+      dispatch(actions.fetchArtistsByCategoryIdFalilure(error));
     } finally {
       done();
     }
@@ -43,6 +44,7 @@ export const fetchArtistsByCategorySlugLogic = createLogic<
       dispatch(actions.fetchArtistsByCategorySlugSuccess(result));
     } catch (error) {
       console.log("error : ", error);
+      dispatch(actions.fetchArtistsByCategorySlugFalilure(error));
     } finally {
       done();
     }

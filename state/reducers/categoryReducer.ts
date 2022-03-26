@@ -6,6 +6,7 @@ const initialState: CategoryState = {
   selectedCategorySlug: "",
   isFetchingArtists: false,
   isFetchingCategories: false,
+  errorInFetchingArtists: false,
   categories: [],
   artists: [],
 };
@@ -22,34 +23,40 @@ const categoryReducer = (state = initialState, action): CategoryState => {
         ...state,
         artists: [],
         isFetchingArtists: true,
+        errorInFetchingArtists: false,
       };
     case actionType.FETCH_ARTIST_BY_CATEGORY_ID_SUCCESS:
       return {
         ...state,
         artists: action.payload.data.data,
         isFetchingArtists: false,
+        errorInFetchingArtists: false,
       };
     case actionType.FETCH_ARTIST_BY_CATEGORY_ID_FAILURE:
       return {
         ...state,
         isFetchingArtists: false,
+        errorInFetchingArtists: true,
       };
     case actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_REQUEST:
       return {
         ...state,
         artists: [],
         isFetchingArtists: true,
+        errorInFetchingArtists: false,
       };
     case actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_SUCCESS:
       return {
         ...state,
         artists: action.payload.data.data,
         isFetchingArtists: false,
+        errorInFetchingArtists: false,
       };
     case actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_FAILURE:
       return {
         ...state,
         isFetchingArtists: false,
+        errorInFetchingArtists: true,
       };
     case actionType.FETCH_ALL_CATEGORIES_REQUEST:
       return {

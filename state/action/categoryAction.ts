@@ -34,6 +34,13 @@ export const fetchArtistsByCategoryIdSuccess = (data: any) => ({
   }
 })
 
+export const fetchArtistsByCategoryIdFalilure = (data: any) => ({
+  type: actionType.FETCH_ARTIST_BY_CATEGORY_ID_FAILURE,
+  payload: {
+    data
+  }
+})
+
 export const fetchArtistsByCategorySlug = (slug: string) => ({
   type: actionType.FETCH_ARTIST_BY_CATEGORY_SLUG,
   payload: {
@@ -48,6 +55,13 @@ export const fetchArtistsByCategorySlugRequest = () => ({
 
 export const fetchArtistsByCategorySlugSuccess = (data: any) => ({
   type: actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_SUCCESS,
+  payload: {
+    data
+  }
+})
+
+export const fetchArtistsByCategorySlugFalilure = (data: any) => ({
+  type: actionType.FETCH_ARTIST_BY_CATEGORY_SLUG_FAILURE,
   payload: {
     data
   }

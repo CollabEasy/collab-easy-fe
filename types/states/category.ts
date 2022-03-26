@@ -7,5 +7,5 @@ export interface CategoryState {
     isFetchingCategories: boolean;
     categories: any[];
     artists: User[];
-
+    errorInFetchingArtists: boolean;
 }
