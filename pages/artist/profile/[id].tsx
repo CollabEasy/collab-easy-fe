@@ -18,6 +18,7 @@ const { TabPane } = Tabs;
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
+  console.log("rabbal user is ", user);
   return { user }
 };
 
@@ -38,6 +39,8 @@ const ArtistProfile = ({ user }: Props) => {
   useEffect(() => {
     async function fetchOtherUser() {
       let res = await artistApi.fetchUserByHandle(slug.toString())
+      let skills = await artistApi.fetchArtistSkillsAPI(slug.toString());
+      res.data["skills"] = skills?.data;
       setOtherUser(res.data);
     }
 

@@ -61,7 +61,7 @@ export const setuserLogic = createLogic<
     const { data } = action.payload;
     try {
       localStorage.setItem("token", data.data.token);
-      dispatch(actions.fetchArtistSkills());
+      dispatch(actions.fetchArtistSkills(""));
       // To-Do we need to set token in cookies
       // Cookies.set('token', data.data.token)
     } catch (error) {
@@ -178,7 +178,8 @@ export const fetchArtistSkillsLogic = createLogic<
   type: [actionType.FETCH_ARTIST_SKILLS],
   async process({ action, api }, dispatch, done) {
     try {
-      const result = await api.artistApi.fetchArtistSkillsAPI();
+      const { data } = action.payload; 
+      const result = await api.artistApi.fetchArtistSkillsAPI(data);
       dispatch(actions.fetchArtistSkillSuccess(result));
       // TO-DO need to all get artist details action
     } catch (error) {

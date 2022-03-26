@@ -61,10 +61,15 @@ export const updateArtistProfile = async (data: User) => {
 	}
 }
 
-export const fetchArtistSkillsAPI = async () => {
+export const fetchArtistSkillsAPI = async (handle: string) => {
 	const config = getConfig();
 	try {
-		const result = await api.call('api/v1/artist/arts', config);
+		let url = 'api/v1/artist/arts';
+		if (handle.length > 0) {
+			// here data is handle.
+			url += "?handle=" + handle;
+		}
+		const result = await api.call(url, config);
 		return result;
 	} catch (error) {
 		throw error;
