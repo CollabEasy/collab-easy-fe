@@ -26,11 +26,12 @@ const mapStateToProps = (state: AppState) => {
   const selectedCategorySlug = state.category.selectedCategorySlug;
   const artists = state.category.artists;
   const isFetchingArtists = state.category.isFetchingArtists;
+  const errorInFetchingArtists = state.category.errorInFetchingArtists;
   const loginModalDetails = state.home.loginModalDetails;
   const user = state.user.user;
   const artistListData = state.home.artistListDetails;
   const isLoggedIn = state.user.isLoggedIn;
-  return { selectedCategorySlug, artists, isFetchingArtists, loggedInUserSlug, loginModalDetails, user, artistListData, isLoggedIn };
+  return { errorInFetchingArtists, selectedCategorySlug, artists, isFetchingArtists, loggedInUserSlug, loginModalDetails, user, artistListData, isLoggedIn };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -65,6 +66,7 @@ const DiscoverArtist = ({
   user,
   loginModalDetails,
   selectedCategorySlug,
+  errorInFetchingArtists,
   loggedInUserSlug,
   fetchArtistsByCategorySlug,
   updateLoggedInData,
@@ -168,6 +170,10 @@ const DiscoverArtist = ({
         <Loader />
       ) : (
         <div>
+          {errorInFetchingArtists ? (
+              <LoginModal />
+          ) : (
+          <div>
           <Title title="Discover Artist" />
           <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
             <div className="discoverArtists__listingPageCoverContainer">
@@ -208,6 +214,8 @@ const DiscoverArtist = ({
               {getArtists(getListingHeaderData(artSlug)["background-color"])}
             </div>
           </div>
+          </div>
+          )}
         </div>
       )}
     </>
