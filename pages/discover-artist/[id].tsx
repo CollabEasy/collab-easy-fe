@@ -17,6 +17,7 @@ import LoginModal from '../../components/loginModal';
 import { updateLoginData } from 'state/action';
 import { LoginModalDetails } from 'types/model';
 import NewUserModal from '../../components/newUserModal';
+import Loader from "@/components/loader";
 
 const { Meta } = Card;
 
@@ -24,12 +25,12 @@ const mapStateToProps = (state: AppState) => {
   const loggedInUserSlug = state.user.user?.slug;
   const selectedCategorySlug = state.category.selectedCategorySlug;
   const artists = state.category.artists;
-
+  const isFetchingArtists = state.category.isFetchingArtists;
   const loginModalDetails = state.home.loginModalDetails;
   const user = state.user.user;
   const artistListData = state.home.artistListDetails;
   const isLoggedIn = state.user.isLoggedIn;
-  return { selectedCategorySlug, artists, loggedInUserSlug,  loginModalDetails, user, artistListData, isLoggedIn};
+  return { selectedCategorySlug, artists, isFetchingArtists, loggedInUserSlug, loginModalDetails, user, artistListData, isLoggedIn };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -51,7 +52,7 @@ const getListingHeaderData = (selectedCategorySlug) => {
     if (LISTING_BANNERS[i]["slug"] == selectedCategorySlug) {
       return LISTING_BANNERS[i];
     }
-  } 
+  }
   return {};
 }
 
@@ -60,6 +61,7 @@ const DiscoverArtist = ({
   artists,
   isLoggedIn,
   artistListData,
+  isFetchingArtists,
   user,
   loginModalDetails,
   selectedCategorySlug,
@@ -69,6 +71,7 @@ const DiscoverArtist = ({
 }: Props) => {
 
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
   const { toArtistProfile } = useRoutesContext();
   const router = useRouter();
   const { id: artSlug } = router.query;
@@ -90,9 +93,7 @@ const DiscoverArtist = ({
     }
   }, [artistListData]);
 
-  console.log("loginModalDetails ", loginModalDetails);
-
-  const getArtists = () => {
+  const getArtists = (color) => {
     const resultArtists: JSX.Element[] = [];
     artists.forEach((artist, index) => {
       if (artist !== null) {
@@ -103,7 +104,6 @@ const DiscoverArtist = ({
               <Image
                 src={artist?.profile_pic_url}
                 alt="cards"
-                //className="mx-auto img-fluid company-logo img-thumbnail rounded"
                 className="img-fluid img-responsive rounded"
                 height={150}
                 width={150}
@@ -128,7 +128,7 @@ const DiscoverArtist = ({
 
             <div className="align-items-center align-content-center col-md-3 border-left mt-1">
               <div className="d-flex flex-column mt-4">
-                <Button block type="primary" ghost style={{ color: 'rgb(82, 120, 99)', borderColor: 'rgb(82, 120, 99)', whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                <Button block type="primary" ghost style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
                     key={index}
                     href={routeToHref(toArtistProfile(artist.slug))}
@@ -137,7 +137,7 @@ const DiscoverArtist = ({
 
                 </Button>
 
-                <Button block type="primary" disabled={loggedInUserSlug == artist.slug} style={{ color: 'white', borderColor: 'rgb(172, 206, 180)', backgroundColor: 'rgb(172, 206, 180)', whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                <Button block type="primary" disabled={loggedInUserSlug == artist.slug} style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
                     key={index}
                     href={routeToHref(toArtistProfile(artist.slug))}
@@ -164,47 +164,52 @@ const DiscoverArtist = ({
         <NewUserModal />
       )
       }
-      <Title title="Discover Artist" />
-      <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
-        <div className="discoverArtists__listingPageCoverContainer">
-          <div className="row ">
-            <div className="col-sm-6" style={{ backgroundColor: "#BBE7C5" }}>
-              <div className="discoverArtists_desktopCoverTextContainer">
-                {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
-                  <div>
-                    <h1>
-                      {getListingHeaderData(artSlug)["heading"]}<br></br>
-                    </h1>
-                    <h3>
-                      {getListingHeaderData(artSlug)["sub-heading"]}
-                    </h3>
+      {isFetchingArtists ? (
+        <Loader />
+      ) : (
+        <div>
+          <Title title="Discover Artist" />
+          <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
+            <div className="discoverArtists__listingPageCoverContainer">
+              <div className="row ">
+                <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background-color"] }}>
+                  <div className="discoverArtists_desktopCoverTextContainer">
+                    {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
+                      <div>
+                        <h1>
+                          {getListingHeaderData(artSlug)["heading"]}<br></br>
+                        </h1>
+                        <h3>
+                          {getListingHeaderData(artSlug)["sub-heading"]}
+                        </h3>
+                      </div>
+                    ) : (
+                      <div>
+                        <h1>
+                          Artists to work with on your next big hit.<br></br>
+                        </h1>
+                        <h3>
+                          send them a collab request to see if they are available.
+                        </h3>
+                      </div>
+                    )}
                   </div>
-                ) : (
-                  <div>
-                    <h1>
-                      Artists to work with on your next big hit.<br></br>
-                    </h1>
-                    <h3>
-                      send them a collab request to see if they are available.
-                    </h3>
-                  </div>
-                )}
+                </div>
+                <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background-color"] }}>
+                  <Image
+                    layout="responsive"
+                    objectFit="contain"
+                    src={getListingHeaderData(artSlug)["image"]}
+                    alt="Landing page" />
+                </div>
               </div>
             </div>
-            <div className="col-sm-6" style={{ backgroundColor: "#BBE7C5" }}>
-              <Image
-                layout="responsive"
-                objectFit="contain"
-                // we have to update the src to use dynamic image instead of fixed image.
-                src={getListingHeaderData(artSlug)["image"]}
-                alt="Landing page" />
+            <div className="col-md-12 listingContainer">
+              {getArtists(getListingHeaderData(artSlug)["background-color"])}
             </div>
           </div>
         </div>
-        <div className="col-md-12 listingContainer">
-          {getArtists()}
-        </div>
-      </div>
+      )}
     </>
   );
 };

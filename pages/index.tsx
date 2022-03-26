@@ -12,7 +12,7 @@ import landingMobileImg from '../public/images/landing-mobile.png';
 import musiciansImg from '../public/images/musicians.png';
 import singersImg from '../public/images/singers.png';
 import paintersImg from '../public/images/painters.png';
-import dancersImg from '../public/images/dancers.png';
+import dancersImg from '../public/images/listing-dance.png'
 import guitaristImg from '../public/images/guitarist.png';
 import writerImg from '../public/images/writer.png';
 import inspireImg from '../public/images/inspire.png';

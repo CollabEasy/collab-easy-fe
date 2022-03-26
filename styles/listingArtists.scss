@@ -87,6 +87,29 @@
   
 /* mobile/tablet css starts from here  */  
 
+@media only screen and (max-width: 1200px) and (min-width: 1101px) {
+    
+    .discoverArtists__listingPageContainer {
+        width: 90%;
+    
+        .discoverArtists__listingPageCoverContainer {
+            margin-top: 50px;
+            text-align: left;
+            .discoverArtists_desktopCoverTextContainer {
+                padding: 4rem;
+                h1 {
+                    font-size: x-large;
+                }
+                h3 {
+                    font-size: large;
+                    padding-right: 10%;
+                    padding-bottom: 2%;
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 1100px) and (min-width: 901px) {
     
     .discoverArtists__listingPageContainer {
@@ -98,10 +121,10 @@
             .discoverArtists_desktopCoverTextContainer {
                 padding: 4rem;
                 h1 {
-                    font-size: large;
+                    font-size: x-large;
                 }
                 h3 {
-                    font-size: medium;
+                    font-size: large;
                     padding-right: 10%;
                     padding-bottom: 2%;
                 }

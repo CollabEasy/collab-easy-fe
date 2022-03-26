@@ -1,6 +1,9 @@
-import DanceImage from '../public/images/listing-dance.png'
-import SingerImage from '../public/images/singers.png'
-import WriterImage from '../public/images/writer.png'
+import dancerImage from '../public/images/listing-dance.png'
+import singerImage from '../public/images/singers.png'
+import writerImage from '../public/images/writer.png'
+import painterImage from '../public/images/painters.png'
+import musicianImage from '../public/images/musicians.png'
+import guitaristImage from '../public/images/guitarist.png'
 
 export const COUNTRIES = [
   {
@@ -3933,26 +3936,53 @@ export enum CollabRequestStatus {
 
 export const LISTING_BANNERS = [
   {
-    "slug": "dance",
-    "category": "Dance",
-    "heading": "Choreographers to work with on your next big hit",
+    "slug": "music",
+    "category": "Musician",
+    "heading": "Musicians to work with on your next big hit",
     "sub-heading": "Send a collab request to see if they are available",
-    "image": DanceImage,
+    "image": musicianImage,
+    "background-color": "#F9D8EA",
   },
   {
-    "slug": "singer",
-    "category": "Singers",
+    "slug": "vocals",
+    "category": "Singer",
     "heading": "Singers to work with on your next big hit",
     "sub-heading": "Send a collab request to see if they are available",
-    "image": SingerImage,
+    "image": singerImage,
+    "background-color": "#F5F5E5",
+  },
+  {
+    "slug": "paint",
+    "category": "Painter",
+    "heading": "Painters to work with on your next big hit",
+    "sub-heading": "Send a collab request to see if they are available",
+    "image": painterImage,
+    "background-color": "#EFDAEA",
+  },
+  {
+    "slug": "dance",
+    "category": "Choreographer",
+    "heading": "Choreographers to work with on your next big hit",
+    "sub-heading": "Send a collab request to see if they are available",
+    "image": dancerImage,
+    "background-color": "#C3E5C7",
+  },
+  {
+    "slug": "music",
+    "category": "Guitarist",
+    "heading": "Guitarist to work with on your next big hit",
+    "sub-heading": "Send a collab request to see if they are available",
+    "image": guitaristImage,
+    "background-color": "#BBE7C5",
   },
   {
     "slug": "write",
-    "category": "Writers",
+    "category": "Writer",
     "heading": "Writers to work with on your next big hit",
     "sub-heading": "Send a collab request to see if they are available",
-    "image": WriterImage,
-  }
+    "image": writerImage,
+    "background-color": "#E9D0CF",
+  },
 ]
 
 export const SOCIAL_PLATFORMS = [
