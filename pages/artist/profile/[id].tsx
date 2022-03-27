@@ -38,8 +38,6 @@ const ArtistProfile = ({ user }: Props) => {
   useEffect(() => {
     async function fetchOtherUser() {
       let res = await artistApi.fetchUserByHandle(slug.toString())
-      let skills = await artistApi.fetchArtistSkillsAPI(slug.toString());
-      res.data["skills"] = skills?.data;
       setOtherUser(res.data);
     }
 

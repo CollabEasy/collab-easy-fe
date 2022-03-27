@@ -136,7 +136,7 @@ const DiscoverArtist = ({
             <div className="col-md-6 mt-1">
               <h5>{artist.first_name} {artist?.last_name}</h5>
               <div className="mt-1 mb-1 spec-1">
-                {getUserSkills(artist.categories)}
+                {getUserSkills(artist.skills)}
               </div>
               <p className="text-justify para mb-0  break-word">{artist.bio}<br></br><br></br></p>
               <div className="mt-1 mb-1 spec-1">
