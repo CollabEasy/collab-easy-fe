@@ -39,8 +39,6 @@ type Props = {
   onClickCollabRequest: (collabRequest: CollabRequestData) => void;
 } & ConnectedProps<typeof connector>;
 
-
-
 export const CollabRequestTab = ({
   user,
   otherUser,

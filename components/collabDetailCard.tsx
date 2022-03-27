@@ -217,11 +217,11 @@ const CollabDetailCard = ({
           </div>
         )}
         <div className="collabDetailCard__collabRequestTextContainer">
-          <h1 className="collabDetailCard__messageHeading">Message</h1>
+          <h1 className="collabDetailCard__messageHeading">Theme</h1>
           <p className="collabDetailCard__messageThemeText">
             {collabDetails.requestData.message}
           </p>
-          <h1 className="collabDetailCard__messageHeading">Theme</h1>
+          <h1 className="collabDetailCard__messageHeading">Description</h1>
           <p className="collabDetailCard__messageThemeText">
             {collabDetails.requestData.collabTheme}
           </p>
