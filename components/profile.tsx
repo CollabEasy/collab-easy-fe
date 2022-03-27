@@ -1,7 +1,7 @@
 import Image from "next/image";
 import avatar from "../public/images/avatar.png";
 import React, { useEffect, useState } from "react";
-import { Card, Avatar, Pagination, Space, Tabs } from "antd";
+import { Card, Button, Avatar, Pagination, Space, Tabs } from "antd";
 import CollabRequestTab from "./collabRequestTab";
 import SamplePage from "./samplePage";
 import SocialProspectusPage from "./socialProspectusPage";
@@ -32,8 +32,8 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistSamples: (slug: string) =>
     dispatch(action.fetchArtistSamples(slug)),
-    getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
-   setShowCollabModalState: (show: boolean) => dispatch(action.setShowCollabModalState(show)),
+  getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
+  setShowCollabModalState: (show: boolean) => dispatch(action.setShowCollabModalState(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -137,18 +137,23 @@ const Profile = ({
         <div className="artistProfile__artistDetailContainer">
           <h2 className="f-20">{user.first_name + " " + user.last_name}</h2>
           <h3 className="f-12">{getUserSkills(false)}</h3>
-          <button
-            className="artistProfile__editCollabButton"
+          {isSelf ? (<Button
+            type="primary" 
+            style={{height: 'auto', marginTop: '10px' }}
             onClick={() => {
-              if (isSelf) {
-                router.push("/artist/settings/edit");
-              } else {
-                setShowCollabModalState(true);
-              }
+              router.push("/artist/settings/edit");
             }}
-          >
-            {isSelf ? "Edit Profile" : (hasPendingCollab ? "Show Pending Request" : "Collaborate")}
-          </button>
+          > Edit Profile</Button>
+
+          ) : (
+            <Button
+              type="primary" 
+              style={{height: 'auto', marginTop: '10px' }}
+              onClick={() => {
+                setShowCollabModalState(true);
+              }}
+            > {hasPendingCollab ? ("Show Pending Request") : ("Collaborate")}</Button>
+          )}
         </div>
         <div className="artistProfile__tabsContainer">
           <Tabs defaultActiveKey="1" type="card" size={"large"} centered>
@@ -168,18 +173,18 @@ const Profile = ({
               </div>
             </TabPane>
             {/* {isSelf && ( */}
-              <TabPane tab="Collab Requests" key="3">
-                <div className="artistProfile__tabContainer">
-                  <CollabRequestTab 
-                    otherUser={user.artist_id}
-                    collabRequests={collab.collabDetails}
-                    onClickCollabRequest={(collabDetails: CollabRequestData) => {
-                      setCollabRequestDetails(collabDetails);
-                      setShowCollabModalState(true);
-                    }}
-                  />
-                </div>
-              </TabPane>
+            <TabPane tab="Collab Requests" key="3">
+              <div className="artistProfile__tabContainer">
+                <CollabRequestTab
+                  otherUser={user.artist_id}
+                  collabRequests={collab.collabDetails}
+                  onClickCollabRequest={(collabDetails: CollabRequestData) => {
+                    setCollabRequestDetails(collabDetails);
+                    setShowCollabModalState(true);
+                  }}
+                />
+              </div>
+            </TabPane>
             {/* )} */}
             <TabPane tab="Social Prospectus" key="4">
               <div className="artistProfile__tabContainer">
@@ -194,12 +199,12 @@ const Profile = ({
         </div>
       </div>
       {showCollabModal && (
-        <SendCollabRequestModal 
-          otherUser={user.artist_id} 
+        <SendCollabRequestModal
+          otherUser={user.artist_id}
           onCancel={() => {
             setShowCollabModalState(false);
           }}
-          collabDetails={collabRequestDetails} 
+          collabDetails={collabRequestDetails}
         />
       )}
     </>

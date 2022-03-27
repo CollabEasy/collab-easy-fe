@@ -18,7 +18,6 @@ const { TabPane } = Tabs;
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
-  console.log("rabbal user is ", user);
   return { user }
 };
 
