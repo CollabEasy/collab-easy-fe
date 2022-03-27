@@ -150,7 +150,11 @@ const DiscoverArtist = ({
             </div>
             <div className="align-items-center align-content-center col-md-3 border-left mt-1">
               <div className="d-flex flex-column mt-4">
-                <Button block type="primary" ghost style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                <Button 
+                  block 
+                  type="primary" 
+                  ghost 
+                  style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
                     key={index}
                     href={routeToHref(toArtistProfile(artist.slug))}
@@ -162,7 +166,8 @@ const DiscoverArtist = ({
                 <Button
                   block
                   type="primary"
-                  disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false"} style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                  disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false"} 
+                  style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
                     key={index}
                     href={routeToHref(toArtistProfile(artist.slug))}
