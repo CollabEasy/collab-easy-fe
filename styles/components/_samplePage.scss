@@ -1,3 +1,15 @@
+.samplePage__container {
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+}
+.samplePage__nosample {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+  font-size: medium;
+}
+
 .samplePage__grid {
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);

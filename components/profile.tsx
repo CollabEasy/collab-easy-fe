@@ -160,10 +160,10 @@ const Profile = ({
             <TabPane tab="About" key="1">
               <div className="artistProfile__tabContainer">
                 <b className="f-16 mb4 artistId__descriptionText">
-                  Description
+                  Bio
                 </b>
                 <p className="mt4 artistProfile__bioContainer">{user.bio}</p>
-                <p className="f-16 mb4 f-w-b">My Skills</p>
+                <b className="f-16 mb4 f-w-b">Skills</b>
                 <p className="mt4">{getUserSkills(true)} </p>
               </div>
             </TabPane>
