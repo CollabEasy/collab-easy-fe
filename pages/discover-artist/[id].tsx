@@ -4,6 +4,11 @@ import { useRouter } from "next/router";
 import { LISTING_BANNERS } from "../../config/constants";
 import landingdanceImg from "public/images/listing-dance.png";
 import { Card, Button } from "antd";
+import {
+  CloseOutlined,
+  CheckOutlined,
+  PictureOutlined,
+} from "@ant-design/icons";
 import Link from "next/link";
 import { useRoutesContext } from "../../components/routeContext";
 import { routeToHref } from "config/routes";
@@ -95,9 +100,25 @@ const DiscoverArtist = ({
     }
   }, [artistListData]);
 
+  const getUserSkills = (skills: []) => {
+    const skillsHtml: JSX.Element[] = [];
+    if (skills.length > 0) {
+      skills.forEach((skill: string, index: number) => {
+        skillsHtml.push(
+          <>
+            <span>{skill}</span>
+            {index == skills.length - 1 ? (<></>) : (<span className="dot"></span>)}
+          </>
+        )
+      })
+    }
+    return skillsHtml;
+  }
+
   const getArtists = (color) => {
     const resultArtists: JSX.Element[] = [];
     artists.forEach((artist, index) => {
+
       if (artist !== null) {
         resultArtists.push(
           //https://bbbootstrap.com/snippets/bootstrap-ecommerce-category-product-list-page-93685579
@@ -115,19 +136,18 @@ const DiscoverArtist = ({
             <div className="col-md-6 mt-1">
               <h5>{artist.first_name} {artist?.last_name}</h5>
               <div className="mt-1 mb-1 spec-1">
-                <span>Painter</span>
-                <span className="dot"></span>
-                <span>Poet</span>
-                <span className="dot"></span>
-                <span>Dance<br></br></span>
+                {getUserSkills(artist.categories)}
               </div>
               <p className="text-justify para mb-0  break-word">{artist.bio}<br></br><br></br></p>
-              {/* <div className="mt-1 mb-1 spec-1">
-                <span><CloseOutlined /> Available to collab </span>
-                <span><PictureOutlined /> Sample work uploaded</span>
-              </div> */}
+              <div className="mt-1 mb-1 spec-1">
+                {artist.up_for_collab == "false" ? (
+                  <span><CloseOutlined style={{ color: 'red', margin: '5px' }} />artist not available to collab </span>
+                ) : (
+                  <span><CheckOutlined style={{ color: 'green', margin: '5px' }} />artist available to collab </span>
+                )}
+                {/* <span><PictureOutlined /> Sample work uploaded</span> */}
+              </div>
             </div>
-
             <div className="align-items-center align-content-center col-md-3 border-left mt-1">
               <div className="d-flex flex-column mt-4">
                 <Button block type="primary" ghost style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
@@ -139,7 +159,10 @@ const DiscoverArtist = ({
 
                 </Button>
 
-                <Button block type="primary" disabled={loggedInUserSlug == artist.slug} style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                <Button
+                  block
+                  type="primary"
+                  disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false"} style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
                     key={index}
                     href={routeToHref(toArtistProfile(artist.slug))}
@@ -171,50 +194,50 @@ const DiscoverArtist = ({
       ) : (
         <div>
           {errorInFetchingArtists ? (
-              <LoginModal />
+            <LoginModal />
           ) : (
-          <div>
-          <Title title="Discover Artist" />
-          <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
-            <div className="discoverArtists__listingPageCoverContainer">
-              <div className="row ">
-                <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background-color"] }}>
-                  <div className="discoverArtists_desktopCoverTextContainer">
-                    {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
-                      <div>
-                        <h1>
-                          {getListingHeaderData(artSlug)["heading"]}<br></br>
-                        </h1>
-                        <h3>
-                          {getListingHeaderData(artSlug)["sub-heading"]}
-                        </h3>
+            <div>
+              <Title title="Discover Artist" />
+              <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
+                <div className="discoverArtists__listingPageCoverContainer">
+                  <div className="row ">
+                    <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background-color"] }}>
+                      <div className="discoverArtists_desktopCoverTextContainer">
+                        {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
+                          <div>
+                            <h1>
+                              {getListingHeaderData(artSlug)["heading"]}<br></br>
+                            </h1>
+                            <h3>
+                              {getListingHeaderData(artSlug)["sub-heading"]}
+                            </h3>
+                          </div>
+                        ) : (
+                          <div>
+                            <h1>
+                              Artists to work with on your next big hit.<br></br>
+                            </h1>
+                            <h3>
+                              send them a collab request to see if they are available.
+                            </h3>
+                          </div>
+                        )}
                       </div>
-                    ) : (
-                      <div>
-                        <h1>
-                          Artists to work with on your next big hit.<br></br>
-                        </h1>
-                        <h3>
-                          send them a collab request to see if they are available.
-                        </h3>
-                      </div>
-                    )}
+                    </div>
+                    <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background-color"] }}>
+                      <Image
+                        layout="responsive"
+                        objectFit="contain"
+                        src={getListingHeaderData(artSlug)["image"]}
+                        alt="Landing page" />
+                    </div>
                   </div>
                 </div>
-                <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background-color"] }}>
-                  <Image
-                    layout="responsive"
-                    objectFit="contain"
-                    src={getListingHeaderData(artSlug)["image"]}
-                    alt="Landing page" />
+                <div className="col-md-12 listingContainer">
+                  {getArtists(getListingHeaderData(artSlug)["background-color"])}
                 </div>
               </div>
             </div>
-            <div className="col-md-12 listingContainer">
-              {getArtists(getListingHeaderData(artSlug)["background-color"])}
-            </div>
-          </div>
-          </div>
           )}
         </div>
       )}
