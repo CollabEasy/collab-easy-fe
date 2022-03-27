@@ -17,6 +17,7 @@ import { getCurrentUserId } from "helpers/helper";
 import SendCollabRequestModal from "./sendCollabRequestModal";
 import CollabRequest from "./collabRequestSend";
 import {
+  StarFilled,
   CloseOutlined,
   CheckOutlined,
   PictureOutlined,
@@ -155,20 +156,35 @@ const Profile = ({
 
           ) : (
             <>
-              <Button
-                type="primary"
-                style={{ height: 'auto', marginTop: '10px' }}
-                disabled={!upForCollab}
-                onClick={() => {
-                  setShowCollabModalState(true);
-                }}
-              > {hasPendingCollab ? ("Show Pending Request") : ("Collaborate")}</Button>
-
-              {!upForCollab ? (
-                <span><CloseOutlined style={{ color: 'red', margin: '5px' }} />artist not available to collab </span>
+              {hasPendingCollab ? (
+                <>
+                  <Button
+                    type="primary"
+                    style={{ height: 'auto', marginTop: '10px' }}
+                    onClick={() => {
+                      setShowCollabModalState(true);
+                    }}
+                  > Show Pending Request</Button>
+                  <span><StarFilled style={{ color: 'orange', margin: '5px' }} />you have a pending collab request with this artist. </span>
+                </>
               ) : (
-                <span><CheckOutlined style={{ color: 'green', margin: '5px' }} />artist available to collab </span>
+                <>
+                  <Button
+                    type="primary"
+                    style={{ height: 'auto', marginTop: '10px' }}
+                    disabled={!upForCollab}
+                    onClick={() => {
+                      setShowCollabModalState(true);
+                    }}
+                  >  Collaborate</Button>
+                  {!upForCollab ? (
+                    <span><CloseOutlined style={{ color: 'red', margin: '5px' }} />artist not available to collab </span>
+                  ) : (
+                    <span><CheckOutlined style={{ color: 'green', margin: '5px' }} />artist available to collab </span>
+                  )}
+                </>
               )}
+
             </>
 
           )}
