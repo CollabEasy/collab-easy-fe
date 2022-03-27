@@ -16,6 +16,11 @@ import Loader from "./loader";
 import { getCurrentUserId } from "helpers/helper";
 import SendCollabRequestModal from "./sendCollabRequestModal";
 import CollabRequest from "./collabRequestSend";
+import {
+  CloseOutlined,
+  CheckOutlined,
+  PictureOutlined,
+} from "@ant-design/icons";
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -40,12 +45,14 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
   isSelf: boolean;
+  upForCollab: boolean;
   user: User;
 } & ConnectedProps<typeof connector>;
 
 const Profile = ({
   user,
   isSelf,
+  upForCollab,
   userSamples,
   collab,
   showCollabModal,
@@ -72,6 +79,7 @@ const Profile = ({
   const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
 
+  console.log("rabbal collab status ", upForCollab);
   useEffect(() => {
     fetchArtistSamples(user.slug);
     if (isSelf) {
@@ -138,21 +146,31 @@ const Profile = ({
           <h2 className="f-20">{user.first_name + " " + user.last_name}</h2>
           <h3 className="f-12">{getUserSkills(false)}</h3>
           {isSelf ? (<Button
-            type="primary" 
-            style={{height: 'auto', marginTop: '10px' }}
+            type="primary"
+            style={{ height: 'auto', marginTop: '10px' }}
             onClick={() => {
               router.push("/artist/settings/edit");
             }}
           > Edit Profile</Button>
 
           ) : (
-            <Button
-              type="primary" 
-              style={{height: 'auto', marginTop: '10px' }}
-              onClick={() => {
-                setShowCollabModalState(true);
-              }}
-            > {hasPendingCollab ? ("Show Pending Request") : ("Collaborate")}</Button>
+            <>
+              <Button
+                type="primary"
+                style={{ height: 'auto', marginTop: '10px' }}
+                disabled={!upForCollab}
+                onClick={() => {
+                  setShowCollabModalState(true);
+                }}
+              > {hasPendingCollab ? ("Show Pending Request") : ("Collaborate")}</Button>
+
+              {!upForCollab ? (
+                <span><CloseOutlined style={{ color: 'red', margin: '5px' }} />artist not available to collab </span>
+              ) : (
+                <span><CheckOutlined style={{ color: 'green', margin: '5px' }} />artist available to collab </span>
+              )}
+            </>
+
           )}
         </div>
         <div className="artistProfile__tabsContainer">

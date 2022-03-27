@@ -33,12 +33,17 @@ const ArtistProfile = ({ user }: Props) => {
   const router = useRouter();
   const [showLoader, setShowLoader] = useState(true);
   const [isSelf, setIsSelf] = useState(false);
+  const [upForCollab, setCollaborationStatus] = useState(true);
   const [otherUser, setOtherUser] = useState<User>({});
 
   useEffect(() => {
     async function fetchOtherUser() {
       let res = await artistApi.fetchUserByHandle(slug.toString())
       setOtherUser(res.data);
+      console.log(res.data);
+      setCollaborationStatus(
+        res.data.up_for_collab == "true" ? true : false
+      );
     }
 
     const { id: slug } = router.query;
@@ -59,6 +64,7 @@ const ArtistProfile = ({ user }: Props) => {
   return (
     <Profile 
       isSelf={isSelf}
+      upForCollab={upForCollab}
       user={isSelf ? user : otherUser}
     />
   );
