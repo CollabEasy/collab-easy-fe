@@ -1,12 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import avatar from "../public/images/avatar.png";
 import React, { ReactElement, useEffect, useState } from "react";
-import { Card, Upload, Modal, Tabs, message } from "antd";
+import { Card, Upload, Modal, Tabs, message, Button } from "antd";
 import {
   PlusOutlined,
   LoadingOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
+import Link from "next/link";
+import { useRoutesContext } from "components/routeContext";
+import { routeToHref } from "config/routes";
 import CollabRequestTab from "components/collabRequestTab";
 import { AppState } from "state";
 import { allowedFileTypes } from "helpers/helper";
@@ -83,6 +86,8 @@ const SamplePage = ({
     });
   }
 
+  const { toEditProfile } = useRoutesContext();
+
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
@@ -139,7 +144,7 @@ const SamplePage = ({
 
     samples.forEach((sample, index) => {
       sampleTiles.push(
-        <SampleTile 
+        <SampleTile
           user={user}
           isSelf={isSelf}
           sample={sample}
@@ -175,63 +180,65 @@ const SamplePage = ({
         </div>
       );
     }
-    
+
     return sampleTiles;
   };
 
   if (showLoader) return <Loader />
-  
+
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {samples.length === 0 && (
-          <h2 className="text-center">🥺 Such emptiness 🥺</h2>
-        )}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {showUploadModal && (
-          <UploadModal
-            user={user}
-            fileType={fileType}
-            caption={caption}
-            editable={editable}
-            file={uploadFile}
-            imageUrl={imageUrl}
-            onCancel={resetState}
-          />
-        )}
-        {showConfirmationModal && (
-          <ConfirmationModal
-            buttonLoading={isDeleting}
-            show={!isDeleted}
-            user={user}
-            headerText={"Delete Sample"}
-            confirmationText="Are you sure you want to delete the sample file?"
-            actionButtonText="Yes, delete"
-            onAction={() => {
-              deleteSample(selectedSample);
-              setSelectedSample(undefined);
-            }}
-            onCancel={() => {
-              setShowConfirmationModal(false);
-            }}
+      {samples.length == 0 ? (
+        <div
+          className="samplePage__container"
+        >
+          <div className="samplePage__nosample">
+            <p>You have not uploaded any samples. Upload them now and flaunt your work!</p>
+            <Button type="primary">
+              <Link
+                href={routeToHref(toEditProfile("profile", "samples"))}
+                passHref
+              >Upload Samples</Link>
+            </Button>
 
-          />
+          </div>
+        </div>)
+        : (
+          <div
+            className="samplePage__container"
+          >
+            {showUploadModal && (
+              <UploadModal
+                user={user}
+                fileType={fileType}
+                caption={caption}
+                editable={editable}
+                file={uploadFile}
+                imageUrl={imageUrl}
+                onCancel={resetState}
+              />
+            )}
+            {showConfirmationModal && (
+              <ConfirmationModal
+                buttonLoading={isDeleting}
+                show={!isDeleted}
+                user={user}
+                headerText={"Delete Sample"}
+                confirmationText="Are you sure you want to delete the sample file?"
+                actionButtonText="Yes, delete"
+                onAction={() => {
+                  deleteSample(selectedSample);
+                  setSelectedSample(undefined);
+                }}
+                onCancel={() => {
+                  setShowConfirmationModal(false);
+                }}
+
+              />
+            )}
+            <div className="samplePage__grid">{getSamples()}</div>
+          </div>
         )}
-        <div className="samplePage__grid">{getSamples()}</div>
-      </div>
     </>
   );
 };

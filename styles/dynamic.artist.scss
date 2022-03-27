@@ -80,14 +80,15 @@
 }
 
 .artistProfile__tabsContainer {
-  margin-top: 48px;
-  padding-left: 40px;
-  padding-right: 40px;
+  margin-top: 40px;
+  padding-left: 124px;
+  padding-right: 124px;
   padding-bottom: 40px;
 }
 
 .artistProfile__tabContainer {
-  padding: 24px;
+  padding-left: 80px;
+  padding-right: 80px;
 }
 
 .artistProfile__tabPane {
@@ -135,4 +136,25 @@
 .artistProfile__bioContainer {
   height: 100px;
   width: 320px;
+}
+
+
+/* mobile/tablet css starts from here  */  
+
+@media only screen and (max-width: 1200px) and (min-width: 1101px) {
+}
+
+@media only screen and (max-width: 1100px) and (min-width: 901px) {
+}
+
+@media only screen and (max-width: 900px) and (min-width: 766px) {
+}
+
+@media only screen and (max-width: 767px) and (min-width: 601px) {
+}
+
+@media only screen and (max-width: 600px) and  (min-width: 400px) {
+}
+
+@media only screen and (max-width: 399px) {
 }
