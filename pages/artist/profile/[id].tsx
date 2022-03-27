@@ -11,6 +11,7 @@ import { Dispatch } from "redux";
 import * as artistApi from "api/artist-user"
 import { User } from "types/model";
 import Loader from "@/components/loader";
+import LoginModal from "@/components/loginModal";
 
 // https://ant.design/components/card/
 const { Meta } = Card;
@@ -18,7 +19,9 @@ const { TabPane } = Tabs;
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
-  return { user }
+  const isLoggedIn = state.user.isLoggedIn;
+  console.log("Is user logged in ", isLoggedIn);
+  return { user, isLoggedIn }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -29,18 +32,16 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const ArtistProfile = ({ user }: Props) => {
+const ArtistProfile = ({ user, isLoggedIn }: Props) => {
   const router = useRouter();
   const [showLoader, setShowLoader] = useState(true);
   const [isSelf, setIsSelf] = useState(false);
   const [upForCollab, setCollaborationStatus] = useState(true);
   const [otherUser, setOtherUser] = useState<User>({});
-
   useEffect(() => {
     async function fetchOtherUser() {
       let res = await artistApi.fetchUserByHandle(slug.toString())
       setOtherUser(res.data);
-      console.log(res.data);
       setCollaborationStatus(
         res.data.up_for_collab == "true" ? true : false
       );
@@ -58,16 +59,22 @@ const ArtistProfile = ({ user }: Props) => {
   }, [router.query, user.slug]);
 
   if (showLoader || (isSelf && Object.keys(user).length === 1) ||
-      (!isSelf && (!otherUser || Object.keys(otherUser).length === 0)))
+    (!isSelf && (!otherUser || Object.keys(otherUser).length === 0)))
     return <Loader />;
 
   return (
-    <Profile 
-      isSelf={isSelf}
-      upForCollab={upForCollab}
-      user={isSelf ? user : otherUser}
-    />
-  );
+    <>
+      {/* {!isLoggedIn ? (
+        <LoginModal />
+      ) : ( */}
+        <Profile
+          isSelf={isSelf}
+          upForCollab={upForCollab}
+          user={isSelf ? user : otherUser}
+        />
+      {/* )} */}
+    </>
+  )
 };
 
 export default connector(ArtistProfile);

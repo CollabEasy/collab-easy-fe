@@ -198,7 +198,7 @@ const DiscoverArtist = ({
         <Loader />
       ) : (
         <div>
-          {errorInFetchingArtists ? (
+          {!isLoggedIn ? (
             <LoginModal />
           ) : (
             <div>

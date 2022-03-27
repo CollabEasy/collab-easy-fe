@@ -79,8 +79,6 @@ const Profile = ({
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);
   const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
-
-  console.log("rabbal collab status ", upForCollab);
   useEffect(() => {
     fetchArtistSamples(user.slug);
     if (isSelf) {
