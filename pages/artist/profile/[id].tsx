@@ -58,15 +58,17 @@ const ArtistProfile = ({ user }: Props) => {
   }, [router.query, user.slug]);
 
   if (showLoader || (isSelf && Object.keys(user).length === 1) ||
-      (!isSelf && (!otherUser || Object.keys(otherUser).length === 0)))
+    (!isSelf && (!otherUser || Object.keys(otherUser).length === 0)))
     return <Loader />;
 
   return (
-    <Profile 
-      isSelf={isSelf}
-      upForCollab={upForCollab}
-      user={isSelf ? user : otherUser}
-    />
+    <>
+      <Profile
+        isSelf={isSelf}
+        upForCollab={upForCollab}
+        user={isSelf ? user : otherUser}
+      />
+    </>
   );
 };
 

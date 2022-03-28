@@ -128,7 +128,6 @@ const Profile = ({
       <Title title={user.first_name + " " + user.last_name} />
       <div
         className="artistProfile__profileContainer"
-        style={{ marginTop: "10%", marginBottom: "5%" }}
       >
         <div className="container">
           <div className="artistProfile__profileCoverContainer">
@@ -193,7 +192,7 @@ const Profile = ({
           <Tabs defaultActiveKey="1" type="card" size={"large"} centered>
             <TabPane tab="About" key="1">
               <div className="artistProfile__tabContainer">
-                <b className="f-16 mb4 artistId__descriptionText">
+                <b className="f-16 mb4">
                   Bio
                 </b>
                 <p className="mt4 artistProfile__bioContainer">{user.bio}</p>
