@@ -115,10 +115,16 @@ const DiscoverArtist = ({
     return skillsHtml;
   }
 
-  const getArtists = (color) => {
+  const getArtists = (color, category) => {
     const resultArtists: JSX.Element[] = [];
+    if (artists.length == 0) {
+      return <>
+            <div style={{ textAlign: "center", paddingTop: "20px" }}>
+              <h2 style={{ color: "grey" }}>Sorry, no artists found for <b>{category}!</b></h2>
+            </div>
+          </>
+    }
     artists.forEach((artist, index) => {
-
       if (artist !== null) {
         resultArtists.push(
           //https://bbbootstrap.com/snippets/bootstrap-ecommerce-category-product-list-page-93685579
@@ -150,10 +156,10 @@ const DiscoverArtist = ({
             </div>
             <div className="align-items-center align-content-center col-md-3 border-left mt-1">
               <div className="d-flex flex-column mt-4">
-                <Button 
-                  block 
-                  type="primary" 
-                  ghost 
+                <Button
+                  block
+                  type="primary"
+                  ghost
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
                     key={index}
@@ -166,7 +172,7 @@ const DiscoverArtist = ({
                 <Button
                   block
                   type="primary"
-                  disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false"} 
+                  disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false"}
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
                     key={index}
@@ -211,7 +217,7 @@ const DiscoverArtist = ({
                         {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
                           <div>
                             <h1>
-                              {getListingHeaderData(artSlug)["heading"]}<br></br>
+                            {artists.length} {getListingHeaderData(artSlug)["heading"]}<br></br>
                             </h1>
                             <h3>
                               {getListingHeaderData(artSlug)["sub-heading"]}
@@ -220,7 +226,7 @@ const DiscoverArtist = ({
                         ) : (
                           <div>
                             <h1>
-                              Artists to work with on your next big hit.<br></br>
+                            {artists.length} artists to work with on your next big hit.<br></br>
                             </h1>
                             <h3>
                               send them a collab request to see if they are available.
@@ -239,7 +245,7 @@ const DiscoverArtist = ({
                   </div>
                 </div>
                 <div className="col-md-12 listingContainer">
-                  {getArtists(getListingHeaderData(artSlug)["background-color"])}
+                  {getArtists(getListingHeaderData(artSlug)["background-color"], getListingHeaderData(artSlug)["category"])}
                 </div>
               </div>
             </div>

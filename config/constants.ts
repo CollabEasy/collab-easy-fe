@@ -3938,7 +3938,7 @@ export const LISTING_BANNERS = [
   {
     "slug": "music",
     "category": "Musician",
-    "heading": "Musicians to work with on your next big hit!",
+    "heading": "musicians to work with on your next big hit!",
     "sub-heading": "send a collab request to see if they are available.",
     "image": musicianImage,
     "background-color": "#F9D8EA",
@@ -3946,7 +3946,7 @@ export const LISTING_BANNERS = [
   {
     "slug": "vocals",
     "category": "Singer",
-    "heading": "Singers to work with on your next big hit!",
+    "heading": "singers to work with on your next big hit!",
     "sub-heading": "send a collab request to see if they are available.",
     "image": singerImage,
     "background-color": "#F5F5E5",
@@ -3954,7 +3954,7 @@ export const LISTING_BANNERS = [
   {
     "slug": "paint",
     "category": "Painter",
-    "heading": "Painters to work with on your next big hit",
+    "heading": "painters to work with on your next big hit!",
     "sub-heading": "send a collab request to see if they are available.",
     "image": painterImage,
     "background-color": "#EFDAEA",
@@ -3962,7 +3962,7 @@ export const LISTING_BANNERS = [
   {
     "slug": "dance",
     "category": "Choreographer",
-    "heading": "Choreographers to work with on your next big hit!",
+    "heading": "choreographers to work with on your next big hit!",
     "sub-heading": "send a collab request to see if they are available.",
     "image": dancerImage,
     "background-color": "#C3E5C7",
@@ -3970,7 +3970,7 @@ export const LISTING_BANNERS = [
   {
     "slug": "music",
     "category": "Guitarist",
-    "heading": "Guitarist to work with on your next big hit!",
+    "heading": "guitarist to work with on your next big hit!",
     "sub-heading": "send a collab request to see if they are available.",
     "image": guitaristImage,
     "background-color": "#BBE7C5",
@@ -3978,11 +3978,19 @@ export const LISTING_BANNERS = [
   {
     "slug": "write",
     "category": "Writer",
-    "heading": "Writers to work with on your next big hit!",
+    "heading": "writers to work with on your next big hit!",
     "sub-heading": "send a collab request to see if they are available.",
     "image": writerImage,
     "background-color": "#E9D0CF",
   },
+  {
+    "slug": "spoken-words",
+    "category": "Spoken Words",
+    "heading": "poets to work with on your next big hit!",
+    "sub-heading": "send a collab request to see if they are available.",
+    "image": writerImage,
+    "background-color": "#E9D0CF",
+  }
 ]
 
 export const SOCIAL_PLATFORMS = [

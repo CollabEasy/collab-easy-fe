@@ -193,14 +193,19 @@ const SamplePage = ({
           className="samplePage__container"
         >
           <div className="samplePage__nosample">
-            <p>You have not uploaded any samples. Upload them now and flaunt your work!</p>
-            <Button type="primary">
-              <Link
-                href={routeToHref(toEditProfile("profile", "samples"))}
-                passHref
-              >Upload Samples</Link>
-            </Button>
-
+            {!isSelf ? (
+              <p>Oops, looks like {user.first_name} has not uploaded any samples.</p>
+            ) : (
+              <>
+                <p>You have not uploaded any samples. Upload them now and flaunt your work!</p>
+                <Button type="primary">
+                  <Link
+                    href={routeToHref(toEditProfile("profile", "samples"))}
+                    passHref
+                  >Upload Samples</Link>
+                </Button>
+              </>
+            )}
           </div>
         </div>)
         : (
