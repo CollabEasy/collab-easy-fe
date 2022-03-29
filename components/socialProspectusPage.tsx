@@ -113,7 +113,7 @@ const SocialProspectusPage = ({
             <>
               {isSelf ? (
                 <div className="socialProspectus_noProfiles">
-                  <p className="text-center">{user.first_name}, add other social profiles and Let everyone know!</p>
+                  <p className="text-center">{user.first_name}, add social profiles and Let everyone know!</p>
                   <Button
                     type="primary"
                   >
@@ -124,7 +124,9 @@ const SocialProspectusPage = ({
                   </Button>
                 </div>
               ) : (
-                <p className="text-center">Oops, looks like {user.first_name} has not added any other social profile.</p>
+                <div className="socialProspectus_noProfiles">
+                  <p className="text-center">Oops, looks like {user.first_name} has not added any social profile.</p>
+                </div>
               )}
             </>
           )}
