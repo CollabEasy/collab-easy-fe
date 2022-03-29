@@ -120,11 +120,11 @@ const SocialProspectusPage = ({
                     <Link
                       href={routeToHref(toEditProfile("profile", "samples"))}
                       passHref
-                    >Add profiles.</Link>
+                    >Add profiles</Link>
                   </Button>
                 </div>
               ) : (
-                <h2 className="text-center">Oops, looks like {user.first_name} has not added any other social profile.</h2>
+                <p className="text-center">Oops, looks like {user.first_name} has not added any other social profile.</p>
               )}
             </>
           )}
