@@ -21,14 +21,16 @@ const getConfig = () => {
   };
 };
 
-export const fetchArtistSocialProspectusAPI = async () => {
+export const fetchArtistSocialProspectusAPI = async (handle: string) => {
   const config = getConfig();
-  console.log("Rabbal is inside fetching social prospectus API ");
   try {
-    const result = await api.call(
-      `api/v1/artist/social-prospectus/all`,
-      config
-    );
+
+    let url = 'api/v1/artist/social-prospectus/all';
+		if (handle.length > 0) {
+			// here data is handle.
+			url += "?handle=" + handle;
+		}
+    const result = await api.call(url, config);
     return result;
   } catch (error) {
     throw error;

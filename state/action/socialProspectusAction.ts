@@ -1,8 +1,10 @@
 import * as actionType from '../actionTypes/socialProspectusActionTypes';
 
-export const fetchArtistSocialProspectus = () => ({
+export const fetchArtistSocialProspectus = (slug: string) => ({
   type: actionType.FETCH_ARTIST_SOCIAL_PROSPECTUS,
-  payload: {}
+  payload: {
+    slug,
+  }
 })
 
 export const fetchArtistSocialProspectusRequest = () => ({

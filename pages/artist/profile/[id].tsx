@@ -10,6 +10,7 @@ import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import * as artistApi from "api/artist-user"
 import { User } from "types/model";
+import * as actions from "state/action";
 import Loader from "@/components/loader";
 
 // https://ant.design/components/card/
@@ -22,14 +23,14 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-
+  fetchArtistSocialProspectus: (slug: string) => dispatch(actions.fetchArtistSocialProspectus(slug)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const ArtistProfile = ({ user }: Props) => {
+const ArtistProfile = ({ user, fetchArtistSocialProspectus }: Props) => {
   const router = useRouter();
   const [showLoader, setShowLoader] = useState(true);
   const [isSelf, setIsSelf] = useState(false);
@@ -40,7 +41,6 @@ const ArtistProfile = ({ user }: Props) => {
     async function fetchOtherUser() {
       let res = await artistApi.fetchUserByHandle(slug.toString())
       setOtherUser(res.data);
-      console.log(res.data);
       setCollaborationStatus(
         res.data.up_for_collab == "true" ? true : false
       );
@@ -55,6 +55,7 @@ const ArtistProfile = ({ user }: Props) => {
       fetchOtherUser();
     }
     setShowLoader(false);
+    fetchArtistSocialProspectus(user.slug);
   }, [router.query, user.slug]);
 
   if (showLoader || (isSelf && Object.keys(user).length === 1) ||

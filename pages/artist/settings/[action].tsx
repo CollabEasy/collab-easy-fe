@@ -82,7 +82,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistSamples: (slug: string) => dispatch(actions.fetchArtistSamples(slug)),
   getAllCategories: () => dispatch(actions.getAllCategories()),
   fetchArtistSkills: () => dispatch(actions.fetchArtistSkills("")),
-  fetchArtistSocialProspectus: () => dispatch(actions.fetchArtistSocialProspectus()),
+  fetchArtistSocialProspectus: (slug: string) => dispatch(actions.fetchArtistSocialProspectus(slug)),
 
   updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
@@ -142,7 +142,7 @@ const EditProfile = ({
     }
     fetchArtistSamples(user.slug);
     fetchArtistSkills();
-    fetchArtistSocialProspectus();
+    fetchArtistSocialProspectus(user.slug);
   }, []);
 
   useEffect(() => {

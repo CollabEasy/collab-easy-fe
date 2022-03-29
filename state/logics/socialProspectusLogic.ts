@@ -14,10 +14,10 @@ export const fetchArtistSocialProspectusLogic = createLogic<
 >({
   type: [actionTypes.FETCH_ARTIST_SOCIAL_PROSPECTUS],
   async process({ action, api }, dispatch, done) {
+    const { slug } = action.payload;
     try {
       dispatch(actions.fetchArtistSocialProspectusRequest());
-      console.log("I'm here and now going to make  acall");
-      const result = await socialProspectusApi.fetchArtistSocialProspectusAPI();
+      const result = await socialProspectusApi.fetchArtistSocialProspectusAPI(slug);
       dispatch(actions.fetchArtistSocialProspectusSuccess([result]));
     } catch (error) {
       console.log("error : ", error);
