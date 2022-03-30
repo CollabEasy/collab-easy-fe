@@ -7,6 +7,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
 import { AppState } from "state";
 import * as action from "./../state/action";
+import {ProspectusEntry} from "types/model";
 import { UserSocialProspectus } from "types/model/user";
 
 const mapStateToProps = (state: AppState) => ({
@@ -22,10 +23,12 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
     onCancel: () => void;
+    prospectusEntryDetails: ProspectusEntry
 } & ConnectedProps<typeof connector>;
 
 const ArtistSocialProspectusModal = ({
     onCancel,
+    prospectusEntryDetails,
     isUpdatingSocialProspectus,
     updateArtistSocialProspectus,
 }: Props) => {
@@ -49,6 +52,7 @@ const ArtistSocialProspectusModal = ({
         updateArtistSocialProspectus(obj);
     };
 
+    console.log("rahul update ", prospectusEntryDetails);
     return (
         <Modal
             closable
