@@ -54,11 +54,21 @@ const socialProspectusReducer = (state = initialState, action): SocialProspectus
         hasDeletedProspectus: false,
       };
     case actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_SUCCESS:
+      const deletedProspectusEntryId = action.payload.data;
+      const newSocialProspectus = [];
+      if (state.socialProspectus.length > 0 ) {
+        const oldSocialProspectus = state.socialProspectus[0]["data"];
+        oldSocialProspectus.forEach((prospectusEntry, index) => {
+          if (prospectusEntry.socialPlatformId !== deletedProspectusEntryId) {
+            newSocialProspectus.push(prospectusEntry);
+          }
+        });
+      }
       return {
         ...state,
         isDeletingProspectus: false,
         hasDeletedProspectus: true,
-        socialProspectus: action.payload.data,
+        socialProspectus: [{"data": newSocialProspectus}]
       };
     case actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_FAILURE:
       return {
