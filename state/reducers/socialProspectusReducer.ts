@@ -40,7 +40,9 @@ const socialProspectusReducer = (state = initialState, action): SocialProspectus
       if (state.socialProspectus.length > 0 ) {
         const oldSocialProspectus = state.socialProspectus[0]["data"];
         oldSocialProspectus.forEach((prospectusEntry, index) => {
-          updatedSocialProspectus.push(prospectusEntry);
+          if (prospectusEntry.socialPlatformId !== action.payload.data.data.socialPlatformId) {
+            updatedSocialProspectus.push(prospectusEntry);
+          }
         });
       }
       updatedSocialProspectus.push(action.payload.data.data);

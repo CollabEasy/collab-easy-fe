@@ -2,6 +2,7 @@ import { User } from "types/model";
 import moment from "moment";
 import { InputNumber, message, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
+import {ProspectusEntry} from "types/model";
 import {
   Upload,
   Form,
@@ -126,6 +127,13 @@ const EditProfile = ({
   updateArtistProfile,
   deleteArtistSocialProspectus,
 }: Props) => {
+  const emptyProspectusEntryDetails: ProspectusEntry = {
+    name: "",
+    handle: "",
+    description: "",
+    upForCollab: false
+  };
+
   const [activeTabKey, setActiveTabKey] = useState("1");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);
@@ -135,6 +143,7 @@ const EditProfile = ({
     "default"
   );
   const [showSkillValidationError, setShowSkillValidationError] = useState(false);
+  const [prospectusEntryRequestDetails, setProspectusEntryDetails] = useState(emptyProspectusEntryDetails);
 
   const { Option } = Select;
 
@@ -247,9 +256,14 @@ const EditProfile = ({
   const [isViewMode, setViewMode] = useState(false);
 
   const ShowProspectusEntryModal = () => {
+    setProspectusEntryDetails(emptyProspectusEntryDetails);
     setViewMode(true);
   }
 
+  const updateUserProspectus = (entry) => {
+    setProspectusEntryDetails(entry);
+    setViewMode(true);
+  }
   const deleteUserProspectus = (entry) => {
     deleteArtistSocialProspectus(getSocialPlatformId(entry.name));
   }
@@ -267,7 +281,7 @@ const EditProfile = ({
   }
 
   const columns = [
-    { title: 'Platform', dataIndex: 'name', key: 'name'},
+    { title: 'Platform', dataIndex: 'name', key: 'name' },
     { title: 'Handle', dataIndex: 'handle', key: 'handle' },
     { title: 'Description', dataIndex: 'description', key: 'description' },
     {
@@ -275,18 +289,25 @@ const EditProfile = ({
       key: 'key',
       dataIndex: 'key',
       render: (text, record) => (
-       <Button onClick={()=> deleteUserProspectus(record)}>
-         Delete
-       </Button>
+        <>
+          <Button 
+            type="primary"
+            onClick={() => updateUserProspectus(record)}>
+            Update
+          </Button>
+          <Button onClick={() => deleteUserProspectus(record)}>
+            Delete
+          </Button>
+        </>
       ),
-    },,
+    },
   ];
 
   const getSocialPlatformId = (name) => {
     for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
-        if (SOCIAL_PLATFORMS[i].name === name) {
-            return SOCIAL_PLATFORMS[i].id;
-        }
+      if (SOCIAL_PLATFORMS[i].name === name) {
+        return SOCIAL_PLATFORMS[i].id;
+      }
     }
     return 1;
   };
@@ -670,6 +691,7 @@ const EditProfile = ({
             onCancel={() => {
               HideProspectusEntryModal();
             }}
+            prospectusEntryDetails = {prospectusEntryRequestDetails}
           />
         )}
       </div>
