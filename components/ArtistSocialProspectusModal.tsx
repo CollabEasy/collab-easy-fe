@@ -20,7 +20,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-
 type Props = {
     onCancel: () => void;
     prospectusEntryDetails: ProspectusEntry
@@ -32,16 +31,7 @@ const ArtistSocialProspectusModal = ({
     isUpdatingSocialProspectus,
     updateArtistSocialProspectus,
 }: Props) => {
-
-    const getSocialPlatformName = (id) => {
-        for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
-          if (SOCIAL_PLATFORMS[i].id === id) {
-            return SOCIAL_PLATFORMS[i].name;
-          }
-        }
-        return "";
-      };
-
+    const [isViewMode, setViewMode] = useState(true);
     const getSocialPlatformId = (name) => {
         for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
             if (SOCIAL_PLATFORMS[i].name === name) {
@@ -68,13 +58,16 @@ const ArtistSocialProspectusModal = ({
         updateArtistSocialProspectus(obj);
     };
 
-    console.log("update ", prospectusData);
+    const hideProspectusEntryModal = (isUpdatingSocialProspectus) => {
+        setViewMode(isUpdatingSocialProspectus);
+    }
+
     return (
         <Modal
             closable
             onCancel={onCancel}
             className="sendSocialProspectus__modal"
-            visible={true}
+            visible={isViewMode}
             footer={null}
         >
             <div className="sendSocialProspectus__container">
@@ -130,6 +123,9 @@ const ArtistSocialProspectusModal = ({
                                 type="primary"
                                 htmlType="submit"
                                 loading={isUpdatingSocialProspectus}
+                                onClick={() => {
+                                    hideProspectusEntryModal(isUpdatingSocialProspectus)
+                                }}
                             >
                                 {isUpdatingSocialProspectus ? "Saving..." : "Save"}
                             </Button>

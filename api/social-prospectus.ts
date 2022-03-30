@@ -54,7 +54,7 @@ export const deleteArtistSocialProspectusAPI = async (data: any) => {
   console.log("Rabbal is inside delete social prospectus API ", data);
   try {
     const result = await api.call('api/v1/artist/social-prospectus/delete', config);
-    return result;
+    return data;
   } catch (error) {
     throw error;
   }
