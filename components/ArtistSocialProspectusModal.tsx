@@ -1,4 +1,4 @@
-import { Form, Button, Input, Select } from "antd";
+import { Form, Button, Input, Select, Switch } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import moment from "moment";
 import { SOCIAL_PLATFORMS } from "config/constants";
@@ -22,16 +22,18 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
     onCancel: () => void;
+    isViewMode: boolean
     prospectusEntryDetails: ProspectusEntry
 } & ConnectedProps<typeof connector>;
 
 const ArtistSocialProspectusModal = ({
     onCancel,
+    isViewMode,
     prospectusEntryDetails,
     isUpdatingSocialProspectus,
     updateArtistSocialProspectus,
 }: Props) => {
-    const [isViewMode, setViewMode] = useState(true);
+    const [showModal, setViewModal] = useState(isViewMode);
     const getSocialPlatformId = (name) => {
         for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
             if (SOCIAL_PLATFORMS[i].name === name) {
@@ -42,9 +44,10 @@ const ArtistSocialProspectusModal = ({
     };
 
     const userSocialProspectusDetails: UserSocialProspectus = {
-        social_platform_name: prospectusEntryDetails.name,
+        socialPlaformName: prospectusEntryDetails.name,
         handle: prospectusEntryDetails.handle,
         description: prospectusEntryDetails.description,
+        upForCollab: prospectusEntryDetails.upForCollab,
     };
 
     const [prospectusData, setProspectusData] = useState<UserSocialProspectus>(userSocialProspectusDetails);
@@ -53,21 +56,23 @@ const ArtistSocialProspectusModal = ({
         let obj = {
             "handle": prospectusData.handle,
             "description": prospectusData.description,
-            "social_platform_id": getSocialPlatformId(prospectusData.social_platform_name),
+            "social_platform_id": getSocialPlatformId(prospectusData.socialPlaformName),
+            "up_for_collab": prospectusData.upForCollab
         }
+        console.log("saving ", obj);
         updateArtistSocialProspectus(obj);
     };
 
     const hideProspectusEntryModal = (isUpdatingSocialProspectus) => {
-        setViewMode(isUpdatingSocialProspectus);
+        setViewModal(isUpdatingSocialProspectus);
     }
-
+    //console.log("isViewMode ", isViewMode, "isUpdatingSocialProspectus ", isUpdatingSocialProspectus, "showModal ", showModal);
     return (
         <Modal
             closable
             onCancel={onCancel}
             className="sendSocialProspectus__modal"
-            visible={isViewMode}
+            visible={showModal}
             footer={null}
         >
             <div className="sendSocialProspectus__container">
@@ -80,7 +85,7 @@ const ArtistSocialProspectusModal = ({
                     <Form.Item label="Platform">
                         <Select
                             //disabled={prospectusData.social_platform_name != ""}
-                            value={prospectusData.social_platform_name}
+                            value={prospectusData.socialPlaformName}
                             onChange={(e) => {
                                 setProspectusData((prevState) => ({
                                     ...prevState,
@@ -117,6 +122,23 @@ const ArtistSocialProspectusModal = ({
                             }}
                         />
                     </Form.Item>
+                    <Form.Item
+                      label="Collaborate with others"
+                      valuePropName="checked"
+                    >
+                      <Switch
+                        onChange={(e) => {
+                            setProspectusData((prevState) => ({
+                                ...prevState,
+                                upForCollab: e ?  "true": "false",
+                            }));
+                        }}
+                        checked={prospectusData.upForCollab == "true"}
+                        checkedChildren="active"
+                        unCheckedChildren="inactive"
+                      />
+                    </Form.Item>
+
                     <Form.Item>
                         <div className="settings__basicProfileSubmitContainer">
                             <Button

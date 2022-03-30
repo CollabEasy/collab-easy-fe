@@ -53,7 +53,8 @@ export interface UserSample {
 }
 
 export interface UserSocialProspectus {
-  social_platform_name: string;
+  socialPlaformName: string;
   handle: string;
   description: string;
+  upForCollab: string;
 }

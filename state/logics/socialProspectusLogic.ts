@@ -38,9 +38,7 @@ export const updateArtistSocialProspectusLogic = createLogic<
     try {
       dispatch(actions.updateArtistSocialProspectusRequest());
       const { data } = action.payload;
-      console.log("Rabbal is inside save social prospectus logic", data);
       const result = await api.socialProspectusApi.addArtistSocialProspectusAPI(data);
-      console.log("Successfully saved prospectus ", result);
       dispatch(actions.updateArtistSocialProspectusSuccess(result));
     } catch (error) {
     } finally {
@@ -60,9 +58,7 @@ export const deleteArtistSocialProspectusLogic = createLogic<
     try {
       dispatch(actions.deleteArtistSocialProspectusRequest());
       const { data } = action.payload;
-      console.log("Rabbal is inside delete social prospectus logic", data);
       const result = await api.socialProspectusApi.deleteArtistSocialProspectusAPI(data);
-      console.log("Successfully delete prospectus ");
       dispatch(actions.deleteArtistSocialProspectusSuccess(result));
     } catch (error) {
     } finally {

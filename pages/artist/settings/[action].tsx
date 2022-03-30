@@ -131,7 +131,7 @@ const EditProfile = ({
     name: "",
     handle: "",
     description: "",
-    upForCollab: false
+    upForCollab: "",
   };
 
   const [activeTabKey, setActiveTabKey] = useState("1");
@@ -263,6 +263,7 @@ const EditProfile = ({
   const updateUserProspectus = (entry) => {
     setProspectusEntryDetails(entry);
     setViewMode(true);
+    console.log("isViewMode ", isViewMode);
   }
   const deleteUserProspectus = (entry) => {
     deleteArtistSocialProspectus(getSocialPlatformId(entry.name));
@@ -284,6 +285,7 @@ const EditProfile = ({
     { title: 'Platform', dataIndex: 'name', key: 'name' },
     { title: 'Handle', dataIndex: 'handle', key: 'handle' },
     { title: 'Description', dataIndex: 'description', key: 'description' },
+    { title: 'Up for collab', dataIndex: 'upForCollab', key: 'upForCollab'},
     {
       title: 'Action',
       key: 'key',
@@ -329,6 +331,7 @@ const EditProfile = ({
         "name": getSocialPlatformName(element.socialPlatformId),
         "handle": element.handle,
         "description": element.description,
+        "upForCollab" : element.upForCollab,
       }
       updatedData.push(obj);
     });
@@ -691,6 +694,7 @@ const EditProfile = ({
             onCancel={() => {
               HideProspectusEntryModal();
             }}
+            isViewMode = {true}
             prospectusEntryDetails = {prospectusEntryRequestDetails}
           />
         )}
