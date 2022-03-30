@@ -126,7 +126,7 @@ const EditProfile = ({
   deleteArtistSocialProspectus,
 }: Props) => {
   const emptyProspectusEntryDetails: ProspectusEntry = {
-    id: -1,
+    name: "",
     handle: "",
     description: "",
     upForCollab: false
@@ -254,12 +254,13 @@ const EditProfile = ({
   const [isViewMode, setViewMode] = useState(false);
 
   const ShowProspectusEntryModal = () => {
+    setProspectusEntryDetails(emptyProspectusEntryDetails);
     setViewMode(true);
   }
 
   const updateUserProspectus = (entry) => {
-    console.log("Update ", entry);
     setProspectusEntryDetails(entry);
+    setViewMode(true);
   }
   const deleteUserProspectus = (entry) => {
     deleteArtistSocialProspectus(getSocialPlatformId(entry.name));

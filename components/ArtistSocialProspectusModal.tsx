@@ -32,7 +32,15 @@ const ArtistSocialProspectusModal = ({
     isUpdatingSocialProspectus,
     updateArtistSocialProspectus,
 }: Props) => {
-    const [prospectusData, setProspectusData] = useState<UserSocialProspectus>();
+
+    const getSocialPlatformName = (id) => {
+        for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
+          if (SOCIAL_PLATFORMS[i].id === id) {
+            return SOCIAL_PLATFORMS[i].name;
+          }
+        }
+        return "";
+      };
 
     const getSocialPlatformId = (name) => {
         for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
@@ -43,6 +51,14 @@ const ArtistSocialProspectusModal = ({
         return 1;
     };
 
+    const userSocialProspectusDetails: UserSocialProspectus = {
+        social_platform_name: prospectusEntryDetails.name,
+        handle: prospectusEntryDetails.handle,
+        description: prospectusEntryDetails.description,
+    };
+
+    const [prospectusData, setProspectusData] = useState<UserSocialProspectus>(userSocialProspectusDetails);
+
     const saveSocialProspectusEntry = () => {
         let obj = {
             "handle": prospectusData.handle,
@@ -52,7 +68,7 @@ const ArtistSocialProspectusModal = ({
         updateArtistSocialProspectus(obj);
     };
 
-    console.log("rahul update ", prospectusEntryDetails);
+    console.log("update ", prospectusData);
     return (
         <Modal
             closable
@@ -70,8 +86,9 @@ const ArtistSocialProspectusModal = ({
                 >
                     <Form.Item label="Platform">
                         <Select
+                            disabled={prospectusData.social_platform_name != ""}
+                            value={prospectusData.social_platform_name}
                             onChange={(e) => {
-                                console.log("selected platform ", e);
                                 setProspectusData((prevState) => ({
                                     ...prevState,
                                     social_platform_name: e,
@@ -87,6 +104,7 @@ const ArtistSocialProspectusModal = ({
                     </Form.Item>
                     <Form.Item label="Handle">
                         <Input
+                            value={prospectusData.handle}
                             onChange={(e) => {
                                 setProspectusData((prevState) => ({
                                     ...prevState,
@@ -97,6 +115,7 @@ const ArtistSocialProspectusModal = ({
                     </Form.Item>
                     <Form.Item label="Description">
                         <Input.TextArea
+                            value={prospectusData.description}
                             onChange={(e) => {
                                 setProspectusData((prevState) => ({
                                     ...prevState,
