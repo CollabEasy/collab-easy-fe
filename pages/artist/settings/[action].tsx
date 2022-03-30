@@ -290,7 +290,9 @@ const EditProfile = ({
       dataIndex: 'key',
       render: (text, record) => (
         <>
-          <Button onClick={() => updateUserProspectus(record)}>
+          <Button 
+            type="primary"
+            onClick={() => updateUserProspectus(record)}>
             Update
           </Button>
           <Button onClick={() => deleteUserProspectus(record)}>

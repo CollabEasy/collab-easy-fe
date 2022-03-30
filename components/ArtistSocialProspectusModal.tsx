@@ -79,7 +79,7 @@ const ArtistSocialProspectusModal = ({
                 >
                     <Form.Item label="Platform">
                         <Select
-                            disabled={prospectusData.social_platform_name != ""}
+                            //disabled={prospectusData.social_platform_name != ""}
                             value={prospectusData.social_platform_name}
                             onChange={(e) => {
                                 setProspectusData((prevState) => ({
