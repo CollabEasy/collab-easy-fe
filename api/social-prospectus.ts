@@ -40,7 +40,6 @@ export const fetchArtistSocialProspectusAPI = async (handle: string) => {
 
 export const addArtistSocialProspectusAPI = async (data: any) => {
     const config = postConfig(data);
-    console.log("Rabbal is inside saving social prospectus API ", data);
 	try {
 		const result = await api.call('api/v1/artist/social-prospectus/add', config);
 		return result;

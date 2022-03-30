@@ -36,10 +36,18 @@ const socialProspectusReducer = (state = initialState, action): SocialProspectus
         isUpdatingProspectus: true,
       };
     case actionType.UPDATE_ARTIST_SOCIAL_PROSPECTUS_SUCCESS:
+      let updatedSocialProspectus = []
+      if (state.socialProspectus.length > 0 ) {
+        const oldSocialProspectus = state.socialProspectus[0]["data"];
+        oldSocialProspectus.forEach((prospectusEntry, index) => {
+          updatedSocialProspectus.push(prospectusEntry);
+        });
+      }
+      updatedSocialProspectus.push(action.payload.data.data);
       return {
         ...state,
         isUpdatingProspectus: false,
-        socialProspectus: action.payload.data,
+        socialProspectus: [{"data": updatedSocialProspectus}]
       };
     case actionType.UPDATE_ARTIST_SOCIAL_PROSPECTUS_FAILURE:
       return {
@@ -55,7 +63,7 @@ const socialProspectusReducer = (state = initialState, action): SocialProspectus
       };
     case actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_SUCCESS:
       const deletedProspectusEntryId = action.payload.data;
-      const newSocialProspectus = [];
+      let newSocialProspectus = [];
       if (state.socialProspectus.length > 0 ) {
         const oldSocialProspectus = state.socialProspectus[0]["data"];
         oldSocialProspectus.forEach((prospectusEntry, index) => {

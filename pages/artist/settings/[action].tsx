@@ -74,6 +74,7 @@ const mapStateToProps = (state: AppState) => ({
   isUpdatingProfile: state.user.isUpdatingProfile,
   isUpdatingPrefs: state.user.isUpdatingPrefs,
 
+  isUpdatingProspectus: state.socialProspectus?.isUpdatingProspectus,
   isDeletingProspectus: state.socialProspectus?.isDeletingProspectus,
   hasDeletedProspectus: state.socialProspectus?.hasDeletedProspectus,
 });
@@ -111,6 +112,7 @@ const EditProfile = ({
   socialProspectus,
   isUpdatingProfile,
   isUpdatingPrefs,
+  isUpdatingProspectus,
   isFetchingSamples,
   isFetchingSocialProspectus,
   isDeletingProspectus,

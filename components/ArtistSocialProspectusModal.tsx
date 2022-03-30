@@ -19,7 +19,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-
 type Props = {
     onCancel: () => void;
 } & ConnectedProps<typeof connector>;
@@ -29,6 +28,9 @@ const ArtistSocialProspectusModal = ({
     isUpdatingSocialProspectus,
     updateArtistSocialProspectus,
 }: Props) => {
+
+    const [isViewMode, setViewMode] = useState(true);
+
     const [prospectusData, setProspectusData] = useState<UserSocialProspectus>();
 
     const getSocialPlatformId = (name) => {
@@ -49,12 +51,16 @@ const ArtistSocialProspectusModal = ({
         updateArtistSocialProspectus(obj);
     };
 
+    const hideProspectusEntryModal = (isUpdatingSocialProspectus) => {
+        setViewMode(isUpdatingSocialProspectus);
+    }
+
     return (
         <Modal
             closable
             onCancel={onCancel}
             className="sendSocialProspectus__modal"
-            visible={true}
+            visible={isViewMode}
             footer={null}
         >
             <div className="sendSocialProspectus__container">
@@ -107,6 +113,9 @@ const ArtistSocialProspectusModal = ({
                                 type="primary"
                                 htmlType="submit"
                                 loading={isUpdatingSocialProspectus}
+                                onClick={() => {
+                                    hideProspectusEntryModal(isUpdatingSocialProspectus)
+                                }}
                             >
                                 {isUpdatingSocialProspectus ? "Saving..." : "Save"}
                             </Button>
