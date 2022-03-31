@@ -3,7 +3,7 @@ import Title from "components/title";
 import { useRouter } from "next/router";
 import { LISTING_BANNERS } from "../../config/constants";
 import landingdanceImg from "public/images/listing-dance.png";
-import { Card, Button } from "antd";
+import { Card, Button, Skeleton, Result } from "antd";
 import {
   CloseOutlined,
   CheckOutlined,
@@ -119,10 +119,10 @@ const DiscoverArtist = ({
     const resultArtists: JSX.Element[] = [];
     if (artists.length == 0) {
       return <>
-            <div style={{ textAlign: "center", paddingTop: "20px" }}>
-              <h2 style={{ color: "grey" }}>Sorry, no artists found for <b>{category}!</b></h2>
-            </div>
-          </>
+        <div style={{ textAlign: "center", paddingTop: "20px" }}>
+          <h2 style={{ color: "grey" }}>Sorry, no artists found for <b>{category}!</b></h2>
+        </div>
+      </>
     }
     artists.forEach((artist, index) => {
       if (artist !== null) {
@@ -204,8 +204,19 @@ const DiscoverArtist = ({
         <Loader />
       ) : (
         <div>
-          {errorInFetchingArtists ? (
-            <LoginModal />
+          {!isLoggedIn ? (
+            <>
+              <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
+                <div className="discoverArtists__listingPageCoverContainer">
+                  <Result
+                    title="Login to your account so see the artists you can collaborate with!"
+                    extra={
+                      <Skeleton active />
+                    }
+                  />
+                </div>
+              </div>
+            </>
           ) : (
             <div>
               <Title title="Discover Artist" />
@@ -217,7 +228,7 @@ const DiscoverArtist = ({
                         {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
                           <div>
                             <h1>
-                            {artists.length} {getListingHeaderData(artSlug)["heading"]}<br></br>
+                              {artists.length} {getListingHeaderData(artSlug)["heading"]}<br></br>
                             </h1>
                             <h3>
                               {getListingHeaderData(artSlug)["sub-heading"]}
@@ -226,7 +237,7 @@ const DiscoverArtist = ({
                         ) : (
                           <div>
                             <h1>
-                            {artists.length} artists to work with on your next big hit.<br></br>
+                              {artists.length} artists to work with on your next big hit.<br></br>
                             </h1>
                             <h3>
                               send them a collab request to see if they are available.
