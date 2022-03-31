@@ -2,7 +2,7 @@ import Image from "next/image";
 import avatar from "../../../public/images/avatar.png";
 import React, { useEffect, useState } from "react";
 import { Pagination, Space, Tabs } from "antd";
-import { Button, Card, Avatar } from "antd";
+import { Button, Card, Avatar, Result, Skeleton } from "antd";
 import Profile from "components/profile";
 import { AppState } from "state";
 import { connect, ConnectedProps, useStore } from "react-redux";
@@ -19,7 +19,8 @@ const { TabPane } = Tabs;
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
-  return { user }
+  const isLoggedIn = state.user.isLoggedIn;
+  return { user, isLoggedIn }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -30,7 +31,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const ArtistProfile = ({ user, fetchArtistSocialProspectus }: Props) => {
+const ArtistProfile = ({ user, isLoggedIn, fetchArtistSocialProspectus }: Props) => {
   const router = useRouter();
   const [showLoader, setShowLoader] = useState(true);
   const [isSelf, setIsSelf] = useState(false);
@@ -59,16 +60,32 @@ const ArtistProfile = ({ user, fetchArtistSocialProspectus }: Props) => {
   }, [router.query, user.slug]);
 
   if (showLoader || (isSelf && Object.keys(user).length === 1) ||
-    (!isSelf && (!otherUser || Object.keys(otherUser).length === 0)))
+    (!isSelf && (!otherUser || Object.keys(otherUser).length === 0))) {
     return <Loader />;
-
+  }
+  console.log("isLoggedIn ", isLoggedIn);
   return (
     <>
-      <Profile
-        isSelf={isSelf}
-        upForCollab={upForCollab}
-        user={isSelf ? user : otherUser}
-      />
+      {!isLoggedIn ? (
+        <>
+          <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
+            <div className="discoverArtists__listingPageCoverContainer">
+              <Result
+                title="Login to your account so see the artists you can collaborate with!"
+                extra={
+                  <Skeleton active />
+                }
+              />
+            </div>
+          </div>
+        </>
+      ) : (
+        <Profile
+          isSelf={isSelf}
+          upForCollab={upForCollab}
+          user={isSelf ? user : otherUser}
+        />
+      )}
     </>
   );
 };
