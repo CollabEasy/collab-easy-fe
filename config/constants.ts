@@ -4019,3 +4019,9 @@ export const SOCIAL_PLATFORMS = [
     "image": "tiktok.png",
   }
 ]
+
+export const LOADER_QUOTES = [
+  "Every artist was first an amateur. – Ralph Waldo Emerson.",
+  "Every child is an artist; the problem is staying an artist when you grow up – Pablo Picasso",
+  "Creativity is contagious, pass it on. – Albert Einstein",
+]
