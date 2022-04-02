@@ -1,8 +1,9 @@
 import Image from "next/image";
-import AvatarImg from "../public/images/avatar.png";
-import InstagramImg from "../public/images/instagram.png";
-import FacebookImg from "../public/images/facebook.png";
-import TikTokImg from "../public/images/tiktok.png";
+import {
+  CloseOutlined,
+  CheckOutlined,
+  PictureOutlined,
+} from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { Card, Tabs, Button } from "antd";
 import { AppState } from "state";
@@ -65,10 +66,18 @@ const SocialProspectusPage = ({
 
   const { toEditProfile } = useRoutesContext();
 
-  const GetSocialPlatformImage = (socialPlatformId) => {
+  const getSocialPlatformImage = (socialPlatformId) => {
     for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
       if (SOCIAL_PLATFORMS[i].id == socialPlatformId) {
         return SOCIAL_PLATFORMS[i].image;
+      }
+    }
+  }
+
+  const getSocialPlatformBaseUrl = (socialPlatformId) => {
+    for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
+      if (SOCIAL_PLATFORMS[i].id == socialPlatformId) {
+        return SOCIAL_PLATFORMS[i].base_url;
       }
     }
   }
@@ -78,69 +87,85 @@ const SocialProspectusPage = ({
     let data = userSocialProspectus.length != 0 ? userSocialProspectus[0].data : [];
     // "name": getSocialPlatformName(element.socialPlatformId),
     data.forEach(element => {
-      let iconPath = GetSocialPlatformImage(element.socialPlatformId);
+      console.log(element);
+      let iconPath = getSocialPlatformImage(element.socialPlatformId);
+      let url = getSocialPlatformBaseUrl(element.socialPlatformId).concat("/", element.handle);
       prospectusCard.push(
-        <div className="col-sm-3">
-          <div className="card" style={{ width: "18rem;" }}>
+        <div>
+        <div className="row p-2 bg-white border rounded social-card">
+          <div className="col-md-3 mt-1 social-profile-picture">
             <Image
-              width={100}
-              height={200}
-              src={InstagramImg}
+              src={iconPath}
               className="card-img-top"
               alt="social platform" />
-            <div className="card-body text-center">
-              <h4>{element.handle}</h4>
-              <p className="card-text">{element.description}</p>
+          </div>
+
+          <div className="col-md-6 mt-1">
+            <h5>{element.handle}</h5>
+            <p className="text-justify para mb-0  break-word">{element.description}<br></br><br></br></p>
+            <div>
+                {element.up_for_collab == "false" ? (
+                  <p><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />artist not available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
+                ) : (
+                  <p><CheckOutlined style={{ color: 'green', marginRight: '5px' }} />artist available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
+                )}
+            </div>
+          </div>
+          <div className="align-items-center align-content-center col-md-3 border-left mt-1">
+            <div className="d-flex flex-column mt-4">
+              <Button
+                block
+                type="primary"
+                style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                <a href={url} target="_blank" rel="noopener noreferrer">Profile</a>
+              </Button>
             </div>
           </div>
         </div>
+      </div>
       )
     });
 
     return prospectusCard;
   }
 
-  console.log(isFetchingSocialProspectus);
   return (
-
     <>
-      {isFetchingSocialProspectus? (
-        <Loader/>
+      {isFetchingSocialProspectus ? (
+        <Loader />
       ) : (
         <>
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          {(userSocialProspectus.length === 0 || userSocialProspectus[0].data.length == 0) && (
-            <>
-              {isSelf ? (
-                <div className="socialProspectus_noProfiles">
-                  <p className="text-center">{user.first_name}, add social profiles and Let everyone know!</p>
-                  <Button
-                    type="primary"
-                  >
-                    <Link
-                      href={routeToHref(toEditProfile("profile", "samples"))}
-                      passHref
-                    >Add profiles</Link>
-                  </Button>
-                </div>
-              ) : (
-                <div className="socialProspectus_noProfiles">
-                  <p className="text-center">Oops, looks like {user.first_name} has not added any social profile.</p>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          {socialProspectus.length != 0 && (
-            <div className="container">
-              <div className="row socialProspectus_viewCardContainer">
-                {getCurrentSocialProspectus()}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {(userSocialProspectus.length === 0 || userSocialProspectus[0].data.length == 0) && (
+              <>
+                {isSelf ? (
+                  <div className="socialProspectus_noProfiles">
+                    <p className="text-center">{user.first_name}, add social profiles and Let everyone know!</p>
+                    <Button
+                      type="primary"
+                    >
+                      <Link
+                        href={routeToHref(toEditProfile("profile", "samples"))}
+                        passHref
+                      >Add profiles</Link>
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="socialProspectus_noProfiles">
+                    <p className="text-center">Oops, looks like {user.first_name} has not added any social profile.</p>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {socialProspectus.length != 0 && (
+              <div className="col-md-8 socialProspectus_viewCardContainer">
+                  {getCurrentSocialProspectus()}
               </div>
-            </div>
-          )
-          }
-        </div>
+            )
+            }
+          </div>
         </>
       )}
     </>

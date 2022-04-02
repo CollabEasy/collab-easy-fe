@@ -223,7 +223,7 @@ const DiscoverArtist = ({
               <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
                 <div className="discoverArtists__listingPageCoverContainer">
                   <div className="row ">
-                    <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background-color"] }}>
+                    <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background_color"] }}>
                       <div className="discoverArtists_desktopCoverTextContainer">
                         {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
                           <div>
@@ -231,7 +231,7 @@ const DiscoverArtist = ({
                               {artists.length} {getListingHeaderData(artSlug)["heading"]}<br></br>
                             </h1>
                             <h3>
-                              {getListingHeaderData(artSlug)["sub-heading"]}
+                              {getListingHeaderData(artSlug)["sub_heading"]}
                             </h3>
                           </div>
                         ) : (
@@ -246,7 +246,7 @@ const DiscoverArtist = ({
                         )}
                       </div>
                     </div>
-                    <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background-color"] }}>
+                    <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background_color"] }}>
                       <Image
                         layout="responsive"
                         objectFit="contain"
@@ -256,7 +256,7 @@ const DiscoverArtist = ({
                   </div>
                 </div>
                 <div className="col-md-12 listingContainer">
-                  {getArtists(getListingHeaderData(artSlug)["background-color"], getListingHeaderData(artSlug)["category"])}
+                  {getArtists(getListingHeaderData(artSlug)["background_color"], getListingHeaderData(artSlug)["category"])}
                 </div>
               </div>
             </div>

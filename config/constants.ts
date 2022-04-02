@@ -4,6 +4,9 @@ import writerImage from '../public/images/writer.png'
 import painterImage from '../public/images/painters.png'
 import musicianImage from '../public/images/musicians.png'
 import guitaristImage from '../public/images/guitarist.png'
+import facebookImage from '../public/images/facebook.png'
+import instagramImage from '../public/images/instagram.png'
+import tiktokImage from '../public/images/tiktok.png'
 
 export const COUNTRIES = [
   {
@@ -3939,49 +3942,49 @@ export const LISTING_BANNERS = [
     "slug": "music",
     "category": "Musician",
     "heading": "musicians to work with on your next big hit!",
-    "sub-heading": "send a collab request to see if they are available.",
+    "sub_heading": "send a collab request to see if they are available.",
     "image": musicianImage,
-    "background-color": "#F9D8EA",
+    "background_color": "#F9D8EA",
   },
   {
     "slug": "vocals",
     "category": "Singer",
     "heading": "singers to work with on your next big hit!",
-    "sub-heading": "send a collab request to see if they are available.",
+    "sub_heading": "send a collab request to see if they are available.",
     "image": singerImage,
-    "background-color": "#F5F5E5",
+    "background_color": "#F5F5E5",
   },
   {
     "slug": "paint",
     "category": "Painter",
     "heading": "painters to work with on your next big hit!",
-    "sub-heading": "send a collab request to see if they are available.",
+    "sub_heading": "send a collab request to see if they are available.",
     "image": painterImage,
-    "background-color": "#EFDAEA",
+    "background_color": "#EFDAEA",
   },
   {
     "slug": "dance",
     "category": "Choreographer",
     "heading": "choreographers to work with on your next big hit!",
-    "sub-heading": "send a collab request to see if they are available.",
+    "sub_heading": "send a collab request to see if they are available.",
     "image": dancerImage,
-    "background-color": "#C3E5C7",
+    "background_color": "#C3E5C7",
   },
   {
     "slug": "music",
     "category": "Guitarist",
     "heading": "guitarist to work with on your next big hit!",
-    "sub-heading": "send a collab request to see if they are available.",
+    "sub_heading": "send a collab request to see if they are available.",
     "image": guitaristImage,
-    "background-color": "#BBE7C5",
+    "background_color": "#BBE7C5",
   },
   {
     "slug": "write",
     "category": "Writer",
     "heading": "writers to work with on your next big hit!",
-    "sub-heading": "send a collab request to see if they are available.",
+    "sub_heading": "send a collab request to see if they are available.",
     "image": writerImage,
-    "background-color": "#E9D0CF",
+    "background_color": "#E9D0CF",
   },
   {
     "slug": "spoken-words",
@@ -3989,7 +3992,7 @@ export const LISTING_BANNERS = [
     "heading": "poets to work with on your next big hit!",
     "sub-heading": "send a collab request to see if they are available.",
     "image": writerImage,
-    "background-color": "#E9D0CF",
+    "background_color": "#E9D0CF",
   }
 ]
 
@@ -4000,7 +4003,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
     "base_url": "https://www.instagram.com",
-    "image": "instagram.png",
+    "image": instagramImage,
   },
   {
     "id": 2,
@@ -4008,7 +4011,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
     "base_url": "https://www.facebook.com",
-    "image": "facebook.png",
+    "image":facebookImage,
   },
   {
     "id": 3,
@@ -4016,7 +4019,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
     "base_url": "https://www.tiktok.com",
-    "image": "tiktok.png",
+    "image": tiktokImage,
   }
 ]
 
