@@ -7,9 +7,9 @@ export const NotAuthorised = () => {
         <div className="discoverArtists__listingPageCoverContainer">
             <Result
             title="Login to your account to see the artists you can collaborate with!"
-            extra={
-                <Skeleton active />
-            }
+            // extra={
+            //     <Skeleton active />
+            // }
             />
         </div>
     </div>
