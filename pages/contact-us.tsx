@@ -95,7 +95,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
               <p className="card-text">If you want to say Hi or anything else.</p>
             </div>
             <div className="footer_contactUsButtonContainer">
-              <Button type="primary">
+              <Button type="primary" className="common-btn-dimension">
                 <Link
                   href={routeToHref(toDiscover())}
                   passHref

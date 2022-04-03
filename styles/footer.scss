@@ -5,11 +5,11 @@
 //      https://www.web-eau.net/blog/10-best-footer-html-css-snippets
 //      https://css-tricks.com/couple-takes-sticky-footer/
 .footer-basic {
-    position: absolute;
-    width: 100%;  
-    padding-top:3px;
-    padding-bottom: 1px;
-    height: 50px;
+    // position: absolute;
+    // width: 100%;  
+    // padding-top:3px;
+    // padding-bottom: 1px;
+    // height: 50px;
 }
   
 .footer-basic ul {
@@ -19,13 +19,14 @@
 }
 
 .footer-basic li {
-    padding:0 20px;
+    // padding:0 20px;
 }
 
 .footer-basic ul a {
     color:inherit;
     text-decoration:none;
     opacity:0.8;
+    font-size: 14px;
 }
 
 .footer-basic ul a:hover {
@@ -39,6 +40,17 @@
     color:#aaa;
     margin-bottom:0;
     font-family: 'pacifico';
+    font-size: 20px;
+}
+
+.list-inline{
+    justify-content: space-evenly;
+    display: flex;
+    background: #000;
+    color: #fff;
+    padding: 15px;
+    margin-bottom: 0px;
+    margin-top: 15px;
 }
 
 // Below is CSS for each link in footer.
@@ -301,6 +313,9 @@
     .footer_privacyContainer {
         width: 80%;
         margin-top: 7rem;
+    }
+    .footer-basic .copyright {
+        font-size: 16px;
     }
 }
 

@@ -137,7 +137,7 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
           </p>
         </div>
         <div className="footer_termsSectionContainer">
-          <Button type="primary">
+          <Button type="primary" className="common-btn-dimension">
             <Link
               href={routeToHref(toDiscover())}
               passHref
