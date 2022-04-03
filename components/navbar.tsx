@@ -111,11 +111,7 @@ const NavBar = ({
           <div>
             <Button id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
             <Button id="sign-up-mobile" shape="circle" onClick={openLoginModal}>
-              <Image
-                width="15px"
-                height="15px"
-                src={hamburgerImg}
-                alt="Landing page" />
+              <UserOutlined/>
             </Button>
           </div>
 
