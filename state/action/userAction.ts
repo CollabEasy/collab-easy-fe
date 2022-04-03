@@ -1,6 +1,13 @@
 import { User } from "types/model/user";
 import * as actionType from '../actionTypes/userActionTypes';
 
+export const setNewUser = (newUser: boolean) => ({
+  type: actionType.SET_NEW_USER_VALUE,
+  payload: {
+    newUser,
+  }
+})
+
 export const setIsFetchingUser = (value: boolean) => ({
   type: actionType.SET_IS_FETCHING_USER,
   payload: {

@@ -113,6 +113,14 @@ const userReducer = (state = initialState, action): UserState => {
         isUpdatingProfile: false,
         artCategories: action.payload.data,
       };
+    case actionType.SET_NEW_USER_VALUE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          new_user: action.payload.data,
+        }
+      }
     default:
       return state;
   }

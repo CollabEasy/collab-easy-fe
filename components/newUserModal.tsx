@@ -40,6 +40,7 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  setNewUser: (newUser: boolean) => dispatch(actions.setNewUser(newUser)),
   getAllCategories: () => dispatch(actions.getAllCategories()),
   postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistPreference: (key: string, value: any) =>
@@ -53,6 +54,7 @@ type Props = {} & ConnectedProps<typeof connector>;
 const NewUserModal = ({
   user,
   categories,
+  setNewUser,
   postArtistArt,
   getAllCategories,
   updateArtistPreference,
@@ -114,6 +116,7 @@ const NewUserModal = ({
 
     postArtistArt(dataToSend);
     updateArtistPreference("upForCollaboration", collaborationCheck);
+    setNewUser(false);
     setVisible(false);
   };
 
