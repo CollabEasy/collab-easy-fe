@@ -24,8 +24,8 @@ import {
   updateArtistProfile,
   updateArtistPreference,
 } from "state/action";
-import SamplePage from "../../../components/samplePage";
-import ScratchpadPage from "../../../components/ScratchpadPage";
+import SamplePage from "@/components/samplePage";
+import ScratchpadPage from "@/components/scratchpad";
 import { COUNTRIES, GENDERS, SOCIAL_PLATFORMS } from "config/constants";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import { AppState } from "types/states";
@@ -37,7 +37,7 @@ import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { getAllCategories } from "api/category";
 import Loader from "@/components/loader";
-import ArtistSocialProspectusModal from "../../../components/modal/ArtistSocialProspectusModal";
+import ArtistSocialProspectusModal from "@/components/modal/socialProspectusModal";
 
 const { TabPane } = Tabs;
 
@@ -261,6 +261,7 @@ const EditProfile = ({
   }
 
   const updateUserProspectus = (entry) => {
+    console.log(entry);
     setProspectusEntryDetails(entry);
     setViewMode(true);
   }

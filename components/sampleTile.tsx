@@ -9,7 +9,7 @@ import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { User, UserSample } from "types/model";
 import * as action from "../state/action";
-import UploadModal from "./modal/UploadModal";
+import UploadModal from "./modal/sampleUploadModal";
 
 const { Meta } = Card;
 

@@ -57,7 +57,7 @@ const ArtistSocialProspectusModal = ({
             "handle": prospectusData.handle,
             "description": prospectusData.description,
             "social_platform_id": getSocialPlatformId(prospectusData.socialPlaformName),
-            "up_for_collab": prospectusData.upForCollab
+            "up_for_collab": prospectusData.upForCollab == "true" ? "true" : "false",
         }
         updateArtistSocialProspectus(obj);
     };
@@ -88,7 +88,7 @@ const ArtistSocialProspectusModal = ({
                             onChange={(e) => {
                                 setProspectusData((prevState) => ({
                                     ...prevState,
-                                    social_platform_name: e,
+                                    socialPlaformName: e,
                                 }));
                             }}
                         >

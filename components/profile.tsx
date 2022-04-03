@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Button, Avatar, Pagination, Space, Tabs } from "antd";
 import CollabRequestTab from "./collabRequestTab";
 import SamplePage from "./samplePage";
-import SocialProspectusPage from "./socialProspectusPage";
+import SocialProspectusPage from "./socialProspectus";
 import { AppState } from "state";
 import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";

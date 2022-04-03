@@ -8,8 +8,8 @@ import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { User, UserSample } from "types/model";
-import * as action from "../state/action";
-import UploadModal from "./UploadModal";
+import * as action from "../../state/action";
+import UploadModal from "./sampleUploadModal";
 
 const { Meta } = Card;
 
