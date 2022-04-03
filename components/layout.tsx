@@ -40,7 +40,7 @@ const Layout = ({ user, children, isFetchingUser, updateLoggedInData, fetchArtis
   if (!ISSERVER && (user === undefined || Object.keys(user).length === 1)) {
     const userDetailsCached = getLoginDetails();
     if (localStorage.getItem("token") === null || Object.keys(userDetailsCached).length === 0) {
-      if (router.pathname !== '/' && !publicRoutes.includes(router.pathname)) router.push("/");
+      // if (router.pathname !== '/' && !publicRoutes.includes(router.pathname)) router.push("/");
       setIsFetchingUser(false);
     } else {
       accessToken = localStorage.getItem('token');
