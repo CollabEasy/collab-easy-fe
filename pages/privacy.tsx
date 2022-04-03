@@ -189,7 +189,7 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
           </p>
         </div>
         <div className="footer_privacySectionContainer">
-          <Button type="primary">
+          <Button type="primary" className="common-btn-dimension">
             <Link
               href={routeToHref(toDiscover())}
               passHref

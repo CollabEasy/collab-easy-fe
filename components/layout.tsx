@@ -51,7 +51,7 @@ const Layout = ({ user, children, isFetchingUser, updateLoggedInData, fetchArtis
   } 
 
   return (
-    <div className="container-fluid layout__layoutContainer">
+    <div className="layout__layoutContainer">
       <Navbar />
       {isFetchingUser ? (
         <Loader />

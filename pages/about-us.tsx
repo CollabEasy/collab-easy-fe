@@ -102,7 +102,7 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
           </div>
         </div>
         <div className="footer_aboutUsButtonContainer">
-          <Button type="primary">
+          <Button type="primary" className="common-btn-dimension">
             <Link
               href={routeToHref(toDiscover())}
               passHref
