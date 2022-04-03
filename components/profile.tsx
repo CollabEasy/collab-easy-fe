@@ -166,6 +166,7 @@ const Profile = ({
                     style={{ height: 'auto', marginTop: '10px' }}
                     onClick={() => {
                       setShowCollabModalState(true);
+                      setCollabRequestDetails(collab.collabDetails.sent.pending[0] ?? collab.collabDetails.sent.active[0]);
                     }}
                   > Show Pending Request</Button>
                   <span><StarFilled style={{ color: 'orange', margin: '5px' }} />you have a pending collab request with this artist. </span>
