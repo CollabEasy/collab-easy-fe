@@ -77,7 +77,7 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
         <div className="footer_aboutUsBodyTextContainer">
           <div>
-            <h5 className="text-center">What is Wondor?</h5>
+            <h5>What is Wondor?</h5>
             <p>
               Content creators are spread out on various social media platforms - some on instagram, others on youtube,
               and we are here to help you discover these creators so that you can work with them on your next big thing.
@@ -90,7 +90,7 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
             </p>
           </div>
           <div>
-            <h5 className="text-center">Why Wondor?</h5>
+            <h5>Why Wondor?</h5>
             <p>When you are a content creator, the quality of your content is one of the most important things but
               so is collaborting with other artists. By collaborating, you learn from each other and at the same time
               increase your reach. <br></br><br></br>

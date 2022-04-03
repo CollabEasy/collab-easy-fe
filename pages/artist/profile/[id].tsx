@@ -12,6 +12,7 @@ import * as artistApi from "api/artist-user"
 import { User } from "types/model";
 import * as actions from "state/action";
 import Loader from "@/components/loader";
+import NotAuthorised from "@/components/error/notAuthorised";
 
 // https://ant.design/components/card/
 const { Meta } = Card;
@@ -68,16 +69,7 @@ const ArtistProfile = ({ user, isLoggedIn, fetchArtistSocialProspectus }: Props)
     <>
       {!isLoggedIn ? (
         <>
-          <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
-            <div className="discoverArtists__listingPageCoverContainer">
-              <Result
-                title="Login to your account so see the artists you can collaborate with!"
-                extra={
-                  <Skeleton active />
-                }
-              />
-            </div>
-          </div>
+          <NotAuthorised />
         </>
       ) : (
         <Profile

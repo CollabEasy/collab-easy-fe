@@ -23,6 +23,7 @@ import { updateLoginData } from 'state/action';
 import { LoginModalDetails } from 'types/model';
 import NewUserModal from '../../components/newUserModal';
 import Loader from "@/components/loader";
+import NotAuthorised from "@/components/error/notAuthorised";
 
 const { Meta } = Card;
 
@@ -206,16 +207,7 @@ const DiscoverArtist = ({
         <div>
           {!isLoggedIn ? (
             <>
-              <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
-                <div className="discoverArtists__listingPageCoverContainer">
-                  <Result
-                    title="Login to your account so see the artists you can collaborate with!"
-                    extra={
-                      <Skeleton active />
-                    }
-                  />
-                </div>
-              </div>
+              <NotAuthorised />
             </>
           ) : (
             <div>
