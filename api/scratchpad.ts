@@ -37,7 +37,6 @@ export const fetchScratchpadByArtistIdAPI = async () => {
 
 export const updateArtistScratchpad = async (data: any) => {
 	const config = postConfig(data);
-  console.log("Rabbal is inside saving scratchpad API ", data);
 	try {
 		const result = await api.call('api/v1/artist/scratchpad', config);
 		return result;

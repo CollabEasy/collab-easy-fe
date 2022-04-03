@@ -23,7 +23,6 @@ const serialize = value => {
 }
 
 const deserialize = value => {
-    console.log("val : ", value);
     let finalData = []
     let blogData = value.split("\n");
     for (var i = 0; i < blogData.length; i++) {

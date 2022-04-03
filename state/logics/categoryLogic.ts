@@ -21,7 +21,6 @@ export const fetchArtistsByCategoryIdLogic = createLogic<
       const result = await categoryApi.getArtistsByCategoryIdAPI(id);
       dispatch(actions.fetchArtistsByCategoryIdSuccess(result));
     } catch (error) {
-      console.log("error : ", error);
       dispatch(actions.fetchArtistsByCategoryIdFalilure(error));
     } finally {
       done();

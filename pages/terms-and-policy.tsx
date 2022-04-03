@@ -51,7 +51,6 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
     }
   }, [artistListData]);
 
-  console.log("loginModalDetails ", loginModalDetails);
   return (
     <>
       {loginModalDetails.openModal && !user.new_user && (

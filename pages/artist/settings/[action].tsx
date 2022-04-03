@@ -263,7 +263,6 @@ const EditProfile = ({
   const updateUserProspectus = (entry) => {
     setProspectusEntryDetails(entry);
     setViewMode(true);
-    console.log("isViewMode ", isViewMode);
   }
   const deleteUserProspectus = (entry) => {
     deleteArtistSocialProspectus(getSocialPlatformId(entry.name));

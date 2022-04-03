@@ -53,7 +53,6 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
     }
   }, [artistListData]);
 
-  console.log("loginModalDetails ", loginModalDetails);
   return (
     <>
       {loginModalDetails.openModal && !user.new_user && (

@@ -59,7 +59,6 @@ const ArtistSocialProspectusModal = ({
             "social_platform_id": getSocialPlatformId(prospectusData.socialPlaformName),
             "up_for_collab": prospectusData.upForCollab
         }
-        console.log("saving ", obj);
         updateArtistSocialProspectus(obj);
     };
 
