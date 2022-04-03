@@ -114,6 +114,7 @@ const NewUserModal = ({
 
     postArtistArt(dataToSend);
     updateArtistPreference("upForCollaboration", collaborationCheck);
+    setVisible(false);
   };
 
   const onChange = (val) => {
