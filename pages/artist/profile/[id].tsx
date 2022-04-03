@@ -14,6 +14,12 @@ import * as actions from "state/action";
 import Loader from "@/components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
 
+
+import LoginModal from '@/components/loginModal';
+import { updateLoginData } from 'state/action';
+import { LoginModalDetails } from 'types/model';
+import NewUserModal from '@/components/newUserModal';
+
 // https://ant.design/components/card/
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -21,7 +27,9 @@ const { TabPane } = Tabs;
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
   const isLoggedIn = state.user.isLoggedIn;
-  return { user, isLoggedIn }
+  const loginModalDetails = state.home.loginModalDetails;
+  const artistListData = state.home.artistListDetails;
+  return { user, isLoggedIn, loginModalDetails, artistListData }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -32,8 +40,13 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const ArtistProfile = ({ user, isLoggedIn, fetchArtistSocialProspectus }: Props) => {
+const ArtistProfile = ({
+  user,
+  isLoggedIn,
+  loginModalDetails,
+  fetchArtistSocialProspectus }: Props) => {
   const router = useRouter();
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
   const [isSelf, setIsSelf] = useState(false);
   const [upForCollab, setCollaborationStatus] = useState(true);
@@ -67,6 +80,14 @@ const ArtistProfile = ({ user, isLoggedIn, fetchArtistSocialProspectus }: Props)
 
   return (
     <>
+      {loginModalDetails.openModal && !user.new_user && (
+        <LoginModal />
+      )
+      }
+      {showProfileModal && (
+        <NewUserModal />
+      )
+      }
       {!isLoggedIn ? (
         <>
           <NotAuthorised />
