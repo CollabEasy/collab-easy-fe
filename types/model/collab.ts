@@ -33,12 +33,12 @@ export interface CollabRequestData {
   id: string
   senderId: string
   receiverId: string
-  senderName: string
-  receiverName: string
-  senderSlug: string
-  receiverSlug: string
-  senderProfilePicUrl: string
-  receiverProfilePicUrl: string
+  senderName?: string
+  receiverName?: string
+  senderSlug?: string
+  receiverSlug?: string
+  senderProfilePicUrl?: string
+  receiverProfilePicUrl?: string
   collabDate: Date
   requestData: {
     message: string

@@ -101,7 +101,7 @@ const DiscoverArtist = ({
     }
   }, [artistListData]);
 
-  const getUserSkills = (skills: []) => {
+  const getUserSkills = (skills: string[]) => {
     const skillsHtml: JSX.Element[] = [];
     if (skills.length > 0) {
       skills.forEach((skill: string, index: number) => {

@@ -1,6 +1,7 @@
 export interface User {
   artist_id?: string;
   slug?: string;
+  up_for_collab?: string;
   first_name?: string;
   last_name?: string;
   email?: string;
