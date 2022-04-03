@@ -65,7 +65,7 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
       }
       <div className='footer_privacyContainer'>
         <div className="footer_privacySectionContainer">
-          <h1>Terms & Conditions</h1>
+          <h1>Privacy</h1>
           <p>
             We built Wondor for commercial purpose.
             This SERVICE is provided by Wondor and is intended for use as is. <br></br>
