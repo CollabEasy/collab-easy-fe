@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import avatar from "../public/images/avatar.png";
 import React, { useEffect, useState } from "react";
 import { Card, Button, Avatar, Pagination, Space, Tabs } from "antd";
@@ -16,12 +17,14 @@ import Loader from "./loader";
 import { getCurrentUserId } from "helpers/helper";
 import SendCollabRequestModal from "./sendCollabRequestModal";
 import CollabRequest from "./collabRequestSend";
+import { routeToHref } from "config/routes";
 import {
   StarFilled,
   CloseOutlined,
   CheckOutlined,
   PictureOutlined,
 } from "@ant-design/icons";
+import { useRoutesContext } from "components/routeContext";
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -79,6 +82,8 @@ const Profile = ({
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);
   const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
+
+  const { toEditProfile } = useRoutesContext();
 
   useEffect(() => {
     fetchArtistSamples(user.slug);
@@ -201,7 +206,30 @@ const Profile = ({
             </TabPane>
             <TabPane tab="Samples" key="2">
               <div className="artistProfile__tabContainer">
-                <SamplePage isSelf={isSelf} user={user} samples={userSamples} showLoader={isFetchingSamples} />
+                {userSamples.length == 0 ? (
+                  <div
+                    className="samplePage__container"
+                  >
+                    <div className="samplePage__nosample">
+                      {!isSelf ? (
+                        <p>Oops, looks like {user.first_name} has not uploaded any samples.</p>
+                      ) : (
+                        <>
+                          <p>You have not uploaded any samples. You can upload 6 of them now and flaunt your best work to others!</p>
+                          <Button type="primary">
+                            <Link
+                              href={routeToHref(toEditProfile("profile", "samples"))}
+                              passHref
+                            >Upload Samples</Link>
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                  </div>) : (
+                  <>
+                    <SamplePage isSelf={isSelf} user={user} samples={userSamples} showLoader={isFetchingSamples} />
+                  </>
+                )}
               </div>
             </TabPane>
             {/* {isSelf && ( */}

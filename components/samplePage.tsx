@@ -188,62 +188,38 @@ const SamplePage = ({
 
   return (
     <>
-      {samples.length == 0 ? (
-        <div
-          className="samplePage__container"
-        >
-          <div className="samplePage__nosample">
-            {!isSelf ? (
-              <p>Oops, looks like {user.first_name} has not uploaded any samples.</p>
-            ) : (
-              <>
-                <p>You have not uploaded any samples. Upload them now and flaunt your work!</p>
-                <Button type="primary">
-                  <Link
-                    href={routeToHref(toEditProfile("profile", "samples"))}
-                    passHref
-                  >Upload Samples</Link>
-                </Button>
-              </>
-            )}
-          </div>
-        </div>)
-        : (
-          <div
-            className="samplePage__container"
-          >
-            {showUploadModal && (
-              <UploadModal
-                user={user}
-                fileType={fileType}
-                caption={caption}
-                editable={editable}
-                file={uploadFile}
-                imageUrl={imageUrl}
-                onCancel={resetState}
-              />
-            )}
-            {showConfirmationModal && (
-              <ConfirmationModal
-                buttonLoading={isDeleting}
-                show={!isDeleted}
-                user={user}
-                headerText={"Delete Sample"}
-                confirmationText="Are you sure you want to delete the sample file?"
-                actionButtonText="Yes, delete"
-                onAction={() => {
-                  deleteSample(selectedSample);
-                  setSelectedSample(undefined);
-                }}
-                onCancel={() => {
-                  setShowConfirmationModal(false);
-                }}
-
-              />
-            )}
-            <div className="samplePage__grid">{getSamples()}</div>
-          </div>
+      <div className="samplePage__container">
+        {showUploadModal && (
+          <UploadModal
+            user={user}
+            fileType={fileType}
+            caption={caption}
+            editable={editable}
+            file={uploadFile}
+            imageUrl={imageUrl}
+            onCancel={resetState}
+          />
         )}
+        {showConfirmationModal && (
+          <ConfirmationModal
+            buttonLoading={isDeleting}
+            show={!isDeleted}
+            user={user}
+            headerText={"Delete Sample"}
+            confirmationText="Are you sure you want to delete the sample file?"
+            actionButtonText="Yes, delete"
+            onAction={() => {
+              deleteSample(selectedSample);
+              setSelectedSample(undefined);
+            }}
+            onCancel={() => {
+              setShowConfirmationModal(false);
+            }}
+
+          />
+        )}
+        <div className="samplePage__grid">{getSamples()}</div>
+      </div>
     </>
   );
 };

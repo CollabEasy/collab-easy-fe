@@ -601,6 +601,7 @@ const EditProfile = ({
               <TabPane tab="Samples" key="1.3">
                 <div className="settings__basicProfileCardThird">
                   <h2 className="f-20 ">Work Samples</h2>
+                  <p>You can upload 6 of them now and flaunt your best work to others!</p> 
                   <SamplePage isSelf samples={samples} user={user} showLoader={isFetchingSamples} />
                 </div>
               </TabPane>

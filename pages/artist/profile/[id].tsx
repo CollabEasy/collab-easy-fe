@@ -64,7 +64,7 @@ const ArtistProfile = ({ user, isLoggedIn, fetchArtistSocialProspectus }: Props)
     (!isSelf && (!otherUser || Object.keys(otherUser).length === 0))) {
     return <Loader />;
   }
-  console.log("isLoggedIn ", isLoggedIn);
+
   return (
     <>
       {!isLoggedIn ? (
