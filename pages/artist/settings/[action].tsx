@@ -37,7 +37,7 @@ import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { getAllCategories } from "api/category";
 import Loader from "@/components/loader";
-import ArtistSocialProspectusModal from "../../../components/ArtistSocialProspectusModal";
+import ArtistSocialProspectusModal from "../../../components/modal/ArtistSocialProspectusModal";
 
 const { TabPane } = Tabs;
 

@@ -1,5 +1,5 @@
 import Title from '../components/title'
-import NewUserModal from '../components/newUserModal';
+import NewUserModal from '../components/modal/newUserModal';
 import LoginModal from '../components/loginModal';
 import Link from "next/link";
 import Script from 'next/script';

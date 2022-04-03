@@ -13,7 +13,7 @@ import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { User, UserSample } from "types/model";
-import * as actions from "../state/action";
+import * as actions from "../../state/action";
 import image from "next/image";
 
 const { Meta } = Card;

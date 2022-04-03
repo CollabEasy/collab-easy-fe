@@ -6,7 +6,7 @@ import Image from "next/image";
 import landingPageImg from "public/images/profile.png";
 import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
-import * as actions from "../state/action";
+import * as actions from "../../state/action";
 // import SubmitImg from 'public/images/submit.png';
 
 const layout = {

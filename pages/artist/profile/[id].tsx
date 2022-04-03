@@ -18,7 +18,7 @@ import NotAuthorised from "@/components/error/notAuthorised";
 import LoginModal from '@/components/loginModal';
 import { updateLoginData } from 'state/action';
 import { LoginModalDetails } from 'types/model';
-import NewUserModal from '@/components/newUserModal';
+import NewUserModal from '@/components/modal/newUserModal';
 
 // https://ant.design/components/card/
 const { Meta } = Card;

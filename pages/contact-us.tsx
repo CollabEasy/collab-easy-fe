@@ -13,7 +13,7 @@ import { updateLoginData } from 'state/action';
 import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
-import NewUserModal from '../components/newUserModal';
+import NewUserModal from '../components/modal/newUserModal';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,

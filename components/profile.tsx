@@ -15,7 +15,7 @@ import Title from "./title";
 import * as action from "../state/action";
 import Loader from "./loader";
 import { getCurrentUserId } from "helpers/helper";
-import SendCollabRequestModal from "./sendCollabRequestModal";
+import SendCollabRequestModal from "./modal/sendCollabRequestModal";
 import CollabRequest from "./collabRequestSend";
 import { routeToHref } from "config/routes";
 import {

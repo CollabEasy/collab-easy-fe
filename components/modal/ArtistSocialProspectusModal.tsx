@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
 import { AppState } from "state";
-import * as action from "./../state/action";
+import * as action from "../../state/action";
 import {ProspectusEntry} from "types/model";
 import { UserSocialProspectus } from "types/model/user";
 
