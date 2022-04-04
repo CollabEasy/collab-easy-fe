@@ -162,7 +162,7 @@ const NavBar = ({
                       <span className="f-14 common-text-style">Scratchpad</span>
                     </div>
                   </Link>
-                  <Link href={routeToHref(toEditProfile("account", "communication"))} passHref>
+                  <Link href={routeToHref(toEditProfile("account", "profile"))} passHref>
                     <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
                       <span className="f-14 common-text-style">Settings</span>
                     </div>

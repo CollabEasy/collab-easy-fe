@@ -182,27 +182,30 @@ const EditProfile = ({
   }
 
   const getActiveTab = () => {
-    let active = "1";
+    let active = "1.1";
 
-    // if (action === "profile" && tab === "preferences") {
-    //   active = "1.2";
-    // }
-    // else if (action === "profile" && tab === "samples") {
-    //   active = "1.3";
-    // }
-    // else if (action === "profile" && tab === "social-prospectus") {
-    //   active = "1.4";
-    // }
-    // else if (action === "profile" && tab === "scratchpad") {
-    //   active = "1.5";
-    // }
+    if (action === "profile" && tab === "profile") {
+      active = "1.1";
+    }
+    if (action === "profile" && tab === "preferences") {
+      active = "1.2";
+    }
+    else if (action === "profile" && tab === "samples") {
+      active = "1.3";
+    }
+    else if (action === "profile" && tab === "social-prospectus") {
+      active = "1.4";
+    }
+    else if (action === "profile" && tab === "scratchpad") {
+      active = "1.5";
+    }
     // else if (action === "account" && tab === "communication") {
     //   active = "2";
     // }
     // else if (action === "account" && tab === "account-management") {
     //   active = "2.2";
     // }
-    if (action === "account") active = "2";
+    // if (action === "account") active = "2";
 
     //console.log("rabbal active is ", active);
     return active;
@@ -211,6 +214,9 @@ const EditProfile = ({
   const redirect = (tabIndex: string) => {
     let action = "profile";
     let tab = "personal-information";
+    if (tabIndex== "1.1") {
+      // do nothing
+    }
     if (tabIndex === "1.2") {
       action = "profile";
       tab = "preferences";
@@ -227,18 +233,18 @@ const EditProfile = ({
       action = "profile";
       tab = "scratchpad";
     }
-    else if (tabIndex === "2") {
-      action = "account";
-      tab = "communicaton"
-    }
-    else if (tabIndex === "2.1") {
-      action = "account";
-      tab = "communicaton";
-    }
-    else if (tabIndex === "2.2") {
-      action = "account";
-      tab = "account-management";
-    }
+    // else if (tabIndex === "2") {
+    //   action = "account";
+    //   tab = "communicaton"
+    // }
+    // else if (tabIndex === "2.1") {
+    //   action = "account";
+    //   tab = "communicaton";
+    // }
+    // else if (tabIndex === "2.2") {
+    //   action = "account";
+    //   tab = "account-management";
+    // }
 
     router.push("/artist/settings/" + action + "?tab=" + tab);
   };
@@ -343,19 +349,20 @@ const EditProfile = ({
   return (
     <div className="edit-profile" style={{ padding: 200 }}>
       <>
-        <Tabs
+        {/* <Tabs
           tabPosition={"left"}
           onChange={(key: string) => {
             redirect(key);
           }}
           activeKey={getActiveTab()}
         >
-          <TabPane tab="Artist's Information" key="1">
+          <TabPane tab="Artist's Information" key="1"> */}
             <Tabs
               type="card"
               onChange={(key: string) => {
                 redirect(key);
               }}
+              activeKey={getActiveTab()}
             >
               <TabPane tab="Profile" key="1.1">
                 <div className="settings__basicProfileCard">
@@ -629,8 +636,8 @@ const EditProfile = ({
                 </div>
               </TabPane >
             </Tabs>
-          </TabPane>
-          <TabPane tab="Account Settings" key="2">
+          {/* </TabPane> */}
+          {/* <TabPane tab="Account Settings" key="2">
             <Tabs
               type="card"
               onChange={(key: string) => {
@@ -686,8 +693,8 @@ const EditProfile = ({
                 </div>
               </TabPane>
             </Tabs>
-          </TabPane>
-        </Tabs>
+          </TabPane> */}
+        {/* </Tabs> */}
       </>
       <div>
         {isViewMode && (
