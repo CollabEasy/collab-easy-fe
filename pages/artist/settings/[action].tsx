@@ -359,6 +359,7 @@ const EditProfile = ({
           <TabPane tab="Artist's Information" key="1"> */}
             <Tabs
               type="card"
+              centered
               onChange={(key: string) => {
                 redirect(key);
               }}
