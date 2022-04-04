@@ -4,7 +4,7 @@ import { Skeleton, Result } from "antd";
 export const NotAuthorised = () => {
   return (
     <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
-        <div className="discoverArtists__listingPageCoverContainer">
+        <div className="discoverArtists__listingPageCoverContainer common-text-style">
             <Result
             title="Login to your account to see the artists you can collaborate with!"
             // extra={

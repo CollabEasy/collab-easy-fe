@@ -75,8 +75,8 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
         <div className="footer_aboutUsBodyTextContainer">
           <div>
-            <h5>What is Wondor?</h5>
-            <p>
+            <h5 className="common-h5-style">What is Wondor?</h5>
+            <p className="common-p-style">
               Content creators are spread out on various social media platforms - some on instagram, others on youtube,
               and we are here to help you discover these creators so that you can work with them on your next big thing.
               Search for the art category to find the artists whose work most inpire you to work with them.<br></br><br></br>
@@ -88,8 +88,8 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
             </p>
           </div>
           <div>
-            <h5>Why Wondor?</h5>
-            <p>When you are a content creator, the quality of your content is one of the most important things but
+            <h5 className="common-h5-style">Why Wondor?</h5>
+            <p className="common-p-style">When you are a content creator, the quality of your content is one of the most important things but
               so is collaborting with other artists. By collaborating, you learn from each other and at the same time
               increase your reach. <br></br><br></br>
               Today, artists are everywhere and it makes it difficult to find the right one for yourself to collaborate
@@ -102,7 +102,7 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
           </div>
         </div>
         <div className="footer_aboutUsButtonContainer">
-          <Button type="primary" className="common-btn-dimension">
+          <Button type="primary" className="common-btn-dimension common-text-style">
             <Link
               href={routeToHref(toDiscover())}
               passHref

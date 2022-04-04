@@ -65,8 +65,8 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
       }
       <div className='footer_privacyContainer'>
         <div className="footer_privacySectionContainer">
-          <h1>Privacy</h1>
-          <p>
+          <h1 className="common-h1-style">Privacy</h1>
+          <p className="common-p-style">
             We built Wondor for commercial purpose.
             This SERVICE is provided by Wondor and is intended for use as is. <br></br>
             This page is used to inform website visitors regarding my policies with the collection, use,
@@ -80,8 +80,8 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
 
         <div className="footer_privacySectionContainer">
-          <h5>Information Collection and Use</h5>
-          <p>
+          <h5 className="common-h5-style">Information Collection and Use</h5>
+          <p className="common-p-style">
             For a better experience, while using our Service, I may require you to provide us with certain personally
             identifiable information. The information that I request is retained on your device and is not collected
             by me in any way <br></br>
@@ -92,8 +92,8 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
 
         <div className="footer_privacySectionContainer">
-          <h5>Log Data</h5>
-          <p>
+          <h5 className="common-h5-style">Log Data</h5>
+          <p className="common-p-style">
             I want to inform you that whenever you use my Service, in a case of an error in the web app
             I collect data and information (through third party products) on your phone called Log Data.
             This Log Data may include information such as your device Internet Protocol (“IP”) address,
@@ -103,8 +103,8 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
 
         <div className="footer_privacySectionContainer">
-          <h5>Cookies</h5>
-          <p>
+          <h5 className="common-h5-style">Cookies</h5>
+          <p className="common-p-style">
             Cookies are files with small amount of data that is commonly used an anonymous unique identifier.
             These are sent to your browser from the website that you visit and are stored on your device internal memory.<br></br>
 
@@ -116,8 +116,8 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
 
         <div className="footer_privacySectionContainer">
-          <h5>Service Providers </h5>
-          <p>
+          <h5 className="common-h5-style">Service Providers </h5>
+          <p className="common-p-style">
             I may employ third-party companies and individuals due to the following reasons:<br></br>
 
             To facilitate our Service;<br></br>
@@ -132,8 +132,8 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
 
         <div className="footer_privacySectionContainer">
-          <h5>Security</h5>
-          <p>
+          <h5 className="common-h5-style">Security</h5>
+          <p className="common-p-style">
             I value your trust in providing us your Personal Information, thus we are striving to use commercially
             acceptable means of protecting it. But remember that no method of transmission over the internet,
             or method of electronic storage is 100% secure and reliable, and I cannot guarantee its absolute security.
@@ -141,8 +141,8 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
 
         <div className="footer_privacySectionContainer">
-          <h5>Data Deletion</h5>
-          <p>
+          <h5 className="common-h5-style">Data Deletion</h5>
+          <p className="common-p-style">
             You may have the right to request access to the personal information we collect from you, change
             that information, or delete it in some circumstances. To request to review, update, or
             delete your personal information, please Contact Us.
@@ -150,8 +150,8 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
 
         <div className="footer_privacySectionContainer">
-          <h5>Links to Other Sites</h5>
-          <p>
+          <h5 className="common-h5-style">Links to Other Sites</h5>
+          <p className="common-p-style">
             This Service may contain links to other sites. If you click on a third-party link,
             you will be directed to that site. Note that these external sites are not operated by me.
             Therefore, I strongly advise you to review the Privacy Policy of these websites.
@@ -161,8 +161,8 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
 
         <div className="footer_privacySectionContainer">
-          <h5>Children’s Privacy</h5>
-          <p>
+          <h5 className="common-h5-style">Children’s Privacy</h5>
+          <p className="common-p-style">
             These Services do not address anyone under the age of 13.
             I do not knowingly collect personally identifiable information from children under 13.
             In the case I discover that a child under 13 has provided me with personal information,
@@ -173,8 +173,8 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
 
         <div className="footer_privacySectionContainer">
-          <h5>Changes to This Privacy Policy</h5>
-          <p>
+          <h5 className="common-h5-style">Changes to This Privacy Policy</h5>
+          <p className="common-p-style">
             I may update our Privacy Policy from time to time.
             Thus, you are advised to review this page periodically for any changes.
             I will notify you of any changes by posting the new Privacy Policy on this page.
@@ -183,8 +183,8 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         </div>
 
         <div className="footer_privacySectionContainer">
-          <h5>Contact Us</h5>
-          <p>
+          <h5 className="common-h5-style">Contact Us</h5>
+          <p className="common-p-style">
             If you have any questions or suggestions about my Privacy Policy, do not hesitate to Contact Us.
           </p>
         </div>

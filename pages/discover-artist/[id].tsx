@@ -140,7 +140,7 @@ const DiscoverArtist = ({
               />
             </div>
 
-            <div className="col-md-6 mt-1">
+            <div className="col-md-6 mt-1 common-text-style">
               <h5>{artist.first_name} {artist?.last_name}</h5>
               <div className="mt-1 mb-1 spec-1">
                 {getUserSkills(artist.skills)}
@@ -219,7 +219,7 @@ const DiscoverArtist = ({
                       <div className="discoverArtists_desktopCoverTextContainer">
                         {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
                           <div>
-                            <h1>
+                            <h1 className="common-h1-style">
                               {artists.length} {getListingHeaderData(artSlug)["heading"]}<br></br>
                             </h1>
                             <h3>
@@ -228,10 +228,10 @@ const DiscoverArtist = ({
                           </div>
                         ) : (
                           <div>
-                            <h1>
+                            <h1 className="common-h1-style">
                               {artists.length} artists to work with on your next big hit.<br></br>
                             </h1>
-                            <h3>
+                            <h3 className="common-h3-style">
                               send them a collab request to see if they are available.
                             </h3>
                           </div>

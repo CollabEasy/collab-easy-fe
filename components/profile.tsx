@@ -146,7 +146,7 @@ const Profile = ({
             />
           </div>
         </div>
-        <div className="artistProfile__artistDetailContainer">
+        <div className="artistProfile__artistDetailContainer common-text-style">
           <h2 className="f-20">{user.first_name + " " + user.last_name}</h2>
           <h3 className="f-12">{getUserSkills(false)}</h3>
           {isSelf ? (<Button
@@ -175,6 +175,7 @@ const Profile = ({
                 <>
                   <Button
                     type="primary"
+                    className="common-text-style"
                     style={{ height: 'auto', marginTop: '10px' }}
                     disabled={!upForCollab}
                     onClick={() => {
@@ -182,9 +183,9 @@ const Profile = ({
                     }}
                   >  Collaborate</Button>
                   {!upForCollab ? (
-                    <span><CloseOutlined style={{ color: 'red', margin: '5px' }} />artist not available to collab </span>
+                    <span className="common-text-style"><CloseOutlined style={{ color: 'red', marginTop: '20px' }} />artist not available to collab </span>
                   ) : (
-                    <span><CheckOutlined style={{ color: 'green', margin: '5px' }} />artist available to collab </span>
+                    <span className="common-text-style"><CheckOutlined style={{ color: 'green', marginTop: '20px' }} />artist available to collab </span>
                   )}
                 </>
               )}
@@ -193,7 +194,7 @@ const Profile = ({
 
           )}
         </div>
-        <div className="artistProfile__tabsContainer">
+        <div className="artistProfile__tabsContainer common-text-style">
           <Tabs defaultActiveKey="1" type="card" size={"large"} centered>
             <TabPane tab="About" key="1">
               <div className="artistProfile__tabContainer">
