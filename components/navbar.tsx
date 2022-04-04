@@ -109,7 +109,7 @@ const NavBar = ({
         </div>
         {!hideSignUp ? (
           <div>
-            <Button id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
+            <Button className="common-text-style" id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
             <Button id="sign-up-mobile" shape="circle" onClick={openLoginModal}>
               <UserOutlined/>
             </Button>
@@ -154,21 +154,21 @@ const NavBar = ({
                 <div className="common-login-option">
                   <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
                     <div className="selected-option-shadow profile-option" onClick={() => setShowLoginOptions(false)}>
-                      <span className="f-14">Profile</span>
+                      <span className="f-14 common-text-style">Profile</span>
                     </div>
                   </Link>
                   <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref>
                     <div className="selected-option-shadow profile-option" onClick={() => setShowLoginOptions(false)}>
-                      <span className="f-14">Scratchpad</span>
+                      <span className="f-14 common-text-style">Scratchpad</span>
                     </div>
                   </Link>
                   <Link href={routeToHref(toEditProfile("account", "communication"))} passHref>
                     <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
-                      <span className="f-14">Settings</span>
+                      <span className="f-14 common-text-style">Settings</span>
                     </div>
                   </Link>
                   <div className="selected-option-shadow logout-option" onClick={logoutUser}>
-                    <span className="f-14">Logout</span>
+                    <span className="f-14 common-text-style">Logout</span>
                   </div>
                 </div>
               </div>

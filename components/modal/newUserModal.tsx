@@ -140,10 +140,10 @@ const NewUserModal = ({
           </div>
           <div className="profile-form">
             <div className="profile-title">
-              <h1>Welcome aborad,</h1>
+              <h1 className="common-h1-style">Welcome aborad,</h1>
               <h1>{userName}</h1>
             </div>
-            <p>
+            <p className="common-p-style">
               You are just one step away from collaborating with the artists on
               your next greatest work. Let’s gather some information about you
               first.
@@ -172,6 +172,7 @@ const NewUserModal = ({
                 <Select
                   mode="multiple"
                   style={{ width: "100%" }}
+                  className="common-text-style"
                   placeholder="select atleast one art style"
                   onChange={(value) => {
                     if (value?.length > 3) {
@@ -196,7 +197,7 @@ const NewUserModal = ({
               </Form.Item>
               <Form.Item noStyle={true}>
                 <div className="submit-container">
-                  <p className="submit-text">Let’s collaborate</p>
+                  <p className="submit-text common-p-style">Let’s collaborate</p>
                   <Button
                     type="text"
                     onClick={handleSubmit}

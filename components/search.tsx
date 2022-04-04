@@ -122,7 +122,7 @@ const Search = ({ setSelectedArtId, setSelectedArtSlug } : Props) => {
                 </button>
                 <input 
                     type="text" 
-                    className="search-bar__input" 
+                    className="search-bar__input common-text-style" 
                     placeholder="Search artist, art category etc."
                     aria-label="search"
                     value={inputVal}
@@ -160,8 +160,8 @@ const Search = ({ setSelectedArtId, setSelectedArtSlug } : Props) => {
                                 ? (
                                     <div key = {i} className="typeahead-item">
                                         <div onMouseDown={handleSearchClick(href, data)}>
-                                            <span className="typeahead-item__name">{name}</span>
-                                            <span className="typeahead-item__category">{entityType}</span>
+                                            <span className="typeahead-item__name common-text-style">{name}</span>
+                                            <span className="typeahead-item__category common-text-style">{entityType}</span>
                                         </div>
                                     </div>
                                     
@@ -169,8 +169,8 @@ const Search = ({ setSelectedArtId, setSelectedArtSlug } : Props) => {
                                 : (
                                     <div key = {i} className="typeahead-item">
                                         <div onMouseDown={handleSearchClick(href, data)}>
-                                            <span className="typeahead-item__name">{name}</span>
-                                            <span className="typeahead-item__category">{entityType}</span>
+                                            <span className="typeahead-item__name common-text-style">{name}</span>
+                                            <span className="typeahead-item__category common-text-style">{entityType}</span>
                                         </div>
                                     </div>
                                 )
@@ -187,7 +187,7 @@ const Search = ({ setSelectedArtId, setSelectedArtSlug } : Props) => {
                     { 
                          <div key = {1} className="typeahead-item">
                             <div>
-                                <span className="typeahead-item__name">Oops, no result found. Try something else.</span>
+                                <span className="typeahead-item__name common-text-style">Oops, no result found. Try something else.</span>
                             </div>
                         </div>
                     }

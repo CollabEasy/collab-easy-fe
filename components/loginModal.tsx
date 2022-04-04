@@ -65,10 +65,10 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
           <div className="login-info-container">
             <div className="login-wrapper">
               <div className="heading-container">
-                <span className="f-25 md-cop000">Sign up to Wondor</span>
+                <span className="f-25 md-cop000 common-text-style">Sign up to <span className="common-wondor-style">Wondor</span></span>
               </div>
               <div className="heading-info-container">
-                <span className="f-14 md-cop000">
+                <span className="f-14 md-cop000 common-text-style">
                   a door to the world where artists collaborate
                 </span>
               </div>
@@ -82,13 +82,13 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
                 />
               </div>
               {(Object.keys(user.errors).length !== 0) && (
-                <p className="error-message">
+                <p className="error-message common-text-style">
                   Something&apos;s not right. Please try after sometime.
                 </p>
               )}
               <div className="policy-container">
-                <span className="f-14 md-cop000">
-                  By continuing, you agree to Wondor’s 
+                <span className="f-14 md-cop000 common-text-style">
+                  By continuing, you agree to Wondor’s
                   <a target="_blank" href={toTerms().href} rel="noopener noreferrer"> Terms of Service</a> and
                   acknowledge you&apos;ve read our <a target="_blank" href={toPrivacy().href} rel="noopener noreferrer">Privacy Policy</a>.
                 </span>
