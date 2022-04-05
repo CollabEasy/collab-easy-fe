@@ -47,18 +47,6 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-const prefixSelector = (
-  <Form.Item name="prefix" noStyle>
-    <Select defaultValue={"🇺🇸United States"} style={{ width: 150 }}>
-      {COUNTRIES.map((country) => (
-        <Select.Option key={country.Iso2} value={country.Dial}>
-          {country.Unicode} {country.Name}
-        </Select.Option>
-      ))}
-    </Select>
-  </Form.Item>
-);
-
 const openLoginModal = () => {
   openLoginModalAction();
 };
@@ -146,6 +134,40 @@ const EditProfile = ({
   const [prospectusEntryRequestDetails, setProspectusEntryDetails] = useState(emptyProspectusEntryDetails);
 
   const { Option } = Select;
+
+  const getCountryName = (country_iso) => {
+    for (var i = 0; i < COUNTRIES.length; i++) {
+      if (COUNTRIES[i]["Dial"] == country_iso) {
+        return COUNTRIES[i];
+      }
+    }
+    return {};
+  }
+  // key={country.Iso2}
+  //                           value={country.Name}
+
+
+  const prefixSelector = (
+    <Form.Item name="prefix" noStyle>
+       <Select value={userDataCached.country_iso} style={{ width: 150 }}
+        onChange={(e) => {
+          let selectecCountry = getCountryName(e);
+          setUserDataCached((prevState) => ({
+            ...prevState,
+            country_dial: e,
+            country_name: selectecCountry["Name"],
+            country_iso: selectecCountry["Iso2"],
+          }));
+        }}
+      >
+        {COUNTRIES.map((country) => (
+          <Select.Option key={country.Iso2} value={country.Dial}>
+            {country.Unicode} {country.Name}
+          </Select.Option>
+        ))}
+      </Select>
+    </Form.Item>
+  );
 
   useEffect(() => {
     if (categories.length === 0) {
@@ -256,6 +278,7 @@ const EditProfile = ({
   };
 
   const submitForm = () => {
+    console.log(userDataCached);
     updateArtistProfile(userDataCached);
   };
 
@@ -267,7 +290,6 @@ const EditProfile = ({
   }
 
   const updateUserProspectus = (entry) => {
-    console.log(entry);
     setProspectusEntryDetails(entry);
     setViewMode(true);
   }
@@ -473,6 +495,7 @@ const EditProfile = ({
                         showSearch
                         value={userDataCached ? userDataCached.country : ""}
                         onChange={(e) => {
+                          console.log("rabbal", e);
                           setUserDataCached((prevState) => ({
                             ...prevState,
                             country: e,
