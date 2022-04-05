@@ -151,6 +151,7 @@ const Profile = ({
           <h3 className="f-12">{getUserSkills(false)}</h3>
           {isSelf ? (<Button
             type="primary"
+            className="common-btn-dimension"
             style={{ height: 'auto', marginTop: '10px' }}
             onClick={() => {
               router.push("/artist/settings/edit");
@@ -163,19 +164,20 @@ const Profile = ({
                 <>
                   <Button
                     type="primary"
+                    className="common-text-style common-btn-dimension"
                     style={{ height: 'auto', marginTop: '10px' }}
                     onClick={() => {
                       setShowCollabModalState(true);
                       setCollabRequestDetails(collab.collabDetails.sent.pending[0] ?? collab.collabDetails.sent.active[0]);
                     }}
                   > Show Pending Request</Button>
-                  <span><StarFilled style={{ color: 'orange', margin: '5px' }} />you have a pending collab request with this artist. </span>
+                  <span className="common-text-style"><StarFilled style={{ color: 'orange', margin: '5px' }} />you have a pending collab request with this artist. </span>
                 </>
               ) : (
                 <>
                   <Button
                     type="primary"
-                    className="common-text-style"
+                    className="common-text-style common-btn-dimension"
                     style={{ height: 'auto', marginTop: '10px' }}
                     disabled={!upForCollab}
                     onClick={() => {
@@ -218,7 +220,7 @@ const Profile = ({
                       ) : (
                         <>
                           <p>You have not uploaded any samples. You can upload 6 of them now and flaunt your best work to others!</p>
-                          <Button type="primary">
+                          <Button className="common-text-style common-btn-dimension" type="primary">
                             <Link
                               href={routeToHref(toEditProfile("profile", "samples"))}
                               passHref

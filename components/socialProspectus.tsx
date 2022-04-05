@@ -105,9 +105,9 @@ const SocialProspectusPage = ({
             <p className="text-justify para mb-0  break-word">{element.description}<br></br><br></br></p>
             <div>
                 {element.up_for_collab == "false" ? (
-                  <p><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />artist not available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
+                  <p className="common-p-style"><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />artist not available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
                 ) : (
-                  <p><CheckOutlined style={{ color: 'green', marginRight: '5px' }} />artist available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
+                  <p className="common-p-style"><CheckOutlined style={{ color: 'green', marginRight: '5px' }} />artist available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
                 )}
             </div>
           </div>
@@ -116,6 +116,7 @@ const SocialProspectusPage = ({
               <Button
                 block
                 type="primary"
+                className="common-text-style common-btn-dimension"
                 style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                 <a href={url} target="_blank" rel="noopener noreferrer">Profile</a>
               </Button>
@@ -140,9 +141,10 @@ const SocialProspectusPage = ({
               <>
                 {isSelf ? (
                   <div className="socialProspectus_noProfiles">
-                    <p className="text-center">{user.first_name}, add social profiles and Let everyone know!</p>
+                    <p className="text-center common-text-style">{user.first_name}, add social profiles and Let everyone know!</p>
                     <Button
                       type="primary"
+                      className="common-text-style common-btn-dimension"
                     >
                       <Link
                         href={routeToHref(toEditProfile("profile", "samples"))}
@@ -152,7 +154,7 @@ const SocialProspectusPage = ({
                   </div>
                 ) : (
                   <div className="socialProspectus_noProfiles">
-                    <p className="text-center">Oops, looks like {user.first_name} has not added any social profile.</p>
+                    <p className="text-center common-text-style">Oops, looks like {user.first_name} has not added any social profile.</p>
                   </div>
                 )}
               </>

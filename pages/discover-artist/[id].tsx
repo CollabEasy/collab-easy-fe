@@ -160,6 +160,7 @@ const DiscoverArtist = ({
                 <Button
                   block
                   type="primary"
+                  className="common-btn-dimension"
                   ghost
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
@@ -172,6 +173,7 @@ const DiscoverArtist = ({
 
                 <Button
                   block
+                  className="common-btn-dimension"
                   type="primary"
                   disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false"}
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
@@ -215,7 +217,7 @@ const DiscoverArtist = ({
               <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
                 <div className="discoverArtists__listingPageCoverContainer">
                   <div className="row ">
-                    <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background_color"] }}>
+                    <div className="col-sm-8" style={{ backgroundColor: getListingHeaderData(artSlug)["background_color"] }}>
                       <div className="discoverArtists_desktopCoverTextContainer">
                         {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
                           <div>
@@ -238,12 +240,14 @@ const DiscoverArtist = ({
                         )}
                       </div>
                     </div>
-                    <div className="col-sm-6" style={{ backgroundColor: getListingHeaderData(artSlug)["background_color"] }}>
+                    <div className="col-sm-4" style={{backgroundColor: getListingHeaderData(artSlug)["background_color"] }}>
                       <Image
-                        layout="responsive"
-                        objectFit="contain"
+                        alt="Image Alt"
+                        className="discoverArtists_desktopCoverImageContainer"
                         src={getListingHeaderData(artSlug)["image"]}
-                        alt="Landing page" />
+                        layout="responsive"
+                        objectFit="contain" // Scale your image down to fit into the container
+                      />
                     </div>
                   </div>
                 </div>
