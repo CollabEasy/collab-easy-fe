@@ -143,13 +143,10 @@ const EditProfile = ({
     }
     return {};
   }
-  // key={country.Iso2}
-  //                           value={country.Name}
-
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
-       <Select value={userDataCached.country_iso} style={{ width: 150 }}
+       <Select value={userDataCached.country} style={{ width: 150 }}
         onChange={(e) => {
           let selectecCountry = getCountryName(e);
           setUserDataCached((prevState) => ({
