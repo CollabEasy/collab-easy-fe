@@ -127,8 +127,8 @@ const CollabDetailCard = ({
   }
   return (
     <>
-      <div>
-        <div className="row p-2 bg-white border rounded social-card">
+      <div className="collabDetailCard__container">
+        <div className="row p-2 bg-white border rounded collab-card">
           <div className="col-md-3 mt-1 social-profile-picture">
             {showUser && (
               <div
@@ -157,12 +157,12 @@ const CollabDetailCard = ({
           </div>
 
           <div className="col-md-6 mt-1">
-            <h5 className="common-p-style">{collabDetails.senderId === user.artist_id
+            <h5 className="common-h5-style">{collabDetails.senderId === user.artist_id
               ? collabDetails.receiverName
               : collabDetails.senderName}</h5>
-            <p>{collabDetails.requestData.collabTheme}</p>
-            <p className="text-justify para mb-0  break-word">{collabDetails.requestData.message}</p>
-            <p className="common-p-style">{convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}</p>
+            <p className="common-p-style">{collabDetails.requestData.collabTheme}</p>
+            <p className="text-justify para mb-0  break-word common-p-style">{collabDetails.requestData.message}</p>
+            <p className="common-p-style common-p-style">{convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}</p>
 
           </div>
           <div className="align-items-center align-content-center col-md-3 border-left mt-1">
