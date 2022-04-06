@@ -431,7 +431,7 @@ const EditProfile = ({
                         }}
                       />
                     </Form.Item>
-                    <Form.Item label="Phone Number">
+                    {/* <Form.Item label="Phone Number">
                       <Input
                         addonBefore={prefixSelector}
                         style={{ width: "100%" }}
@@ -447,7 +447,7 @@ const EditProfile = ({
                           }));
                         }}
                       />
-                    </Form.Item>
+                    </Form.Item> */}
                     <Form.Item label="Date of birth">
                       <DatePicker
                         clearIcon={null}
