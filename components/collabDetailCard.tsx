@@ -123,7 +123,7 @@ const CollabDetailCard = ({
   return (
     <>
       <div
-        className={
+        className={ 
           collabDetails.status !== "COMPLETED" &&
             collabDetails.status !== "EXPIRED"
             ? "collabDetailCard__container"
@@ -151,24 +151,9 @@ const CollabDetailCard = ({
                 : collabDetails.senderProfilePicUrl)}
               alt=""
             />
-            <Button
-              className="collabDetailCard__artistNameLink"
-              type="link"
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                router.push(
-                  "/artist/profile/" +
-                  (collabDetails.senderId === user.artist_id
-                    ? collabDetails.receiverSlug
-                    : collabDetails.senderSlug)
-                );
-              }}
-            >
-              {collabDetails.senderId === user.artist_id
+            <p className="common-p-style" >{collabDetails.senderId === user.artist_id
                 ? collabDetails.receiverName
-                : collabDetails.senderName}
-            </Button>
+                : collabDetails.senderName}</p>
           </div>
         )}
         <div className="collabDetailCard__collabRequestTextContainer">
