@@ -87,43 +87,41 @@ const SocialProspectusPage = ({
     let data = userSocialProspectus.length != 0 ? userSocialProspectus[0].data : [];
     // "name": getSocialPlatformName(element.socialPlatformId),
     data.forEach(element => {
-      console.log(element);
       let iconPath = getSocialPlatformImage(element.socialPlatformId);
       let url = getSocialPlatformBaseUrl(element.socialPlatformId).concat("/", element.handle);
       prospectusCard.push(
         <div>
-        <div className="row p-2 bg-white border rounded social-card">
-          <div className="col-md-3 mt-1 social-profile-picture">
-            <Image
-              src={iconPath}
-              className="card-img-top"
-              alt="social platform" />
-          </div>
-
-          <div className="col-md-6 mt-1">
-            <h5 className="common-h5-style">{element.handle}</h5>
-            <p className="text-justify para mb-0  break-word common-p-style">{element.description}<br></br><br></br></p>
-            <div>
+          <div className="row p-2 bg-white border rounded social-card">
+            <div className="col-md-3 mt-1 social-profile-picture">
+              <Image
+                src={iconPath}
+                className="card-img-top"
+                alt="social platform" />
+            </div>
+            <div className="col-md-6 mt-1">
+              <h5 className="common-h5-style">{element.handle}</h5>
+              <p className="text-justify para mb-0  break-word common-p-style">{element.description}<br></br><br></br></p>
+              <div>
                 {element.up_for_collab == "false" ? (
                   <p className="common-p-style"><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />artist not available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
                 ) : (
                   <p className="common-p-style"><CheckOutlined style={{ color: 'green', marginRight: '5px' }} />artist available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
                 )}
+              </div>
             </div>
-          </div>
-          <div className="align-items-center align-content-center col-md-3 border-left mt-1">
-            <div className="d-flex flex-column mt-4">
-              <Button
-                block
-                type="primary"
-                className="common-btn-dimension"
-                style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
-                <a href={url} target="_blank" rel="noopener noreferrer">Profile</a>
-              </Button>
+            <div className="align-items-center align-content-center col-md-3 border-left mt-1">
+              <div className="d-flex flex-column mt-4">
+                <Button
+                  block
+                  type="primary"
+                  className="common-btn-dimension"
+                  style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                  <a href={url} target="_blank" rel="noopener noreferrer">Profile</a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       )
     });
 
@@ -163,7 +161,7 @@ const SocialProspectusPage = ({
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {socialProspectus.length != 0 && (
               <div className="col-md-8 socialProspectus_viewCardContainer">
-                  {getCurrentSocialProspectus()}
+                {getCurrentSocialProspectus()}
               </div>
             )
             }
