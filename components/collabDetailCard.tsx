@@ -10,7 +10,7 @@ import {
   ExclamationCircleOutlined,
 } from "@ant-design/icons";
 import { CollabRequestData } from "types/model";
-import { Button, Tooltip } from "antd";
+import { Button, Tooltip, Tag } from "antd";
 import * as actions from "./../state/action";
 import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 import { useRouter } from "next/router";
@@ -51,72 +51,20 @@ const CollabDetailCard = ({
 }: Props) => {
   const router = useRouter();
   const collabStatusComponentForSender = () => {
-    let icon: JSX.Element = (
-      <CheckCircleOutlined style={{ color: "#ADA7A7", fontSize: "48px" }} />
-    );
-    let text: JSX.Element = (
-      <p
-        className="mb0 text-center"
-        style={{ color: "#ADA7A7", fontSize: "18px" }}
-      >
-        Completed
-      </p>
-    );
-
+    let icon = <Tag color="green">Completed</Tag>;
     if (collabDetails.status === "ACTIVE") {
-      icon = <CheckOutlined style={{ color: "#81B622", fontSize: "48px" }} />;
-      text = (
-        <p
-          className="mb0 text-center"
-          style={{ color: "#81B622", fontSize: "18px" }}
-        >
-          Active
-        </p>
-      );
+      icon = <Tag color="blue">Active</Tag>;
     } else if (collabDetails.status === "PENDING") {
-      icon = (
-        <ClockCircleOutlined style={{ color: "#FF8300", fontSize: "48px" }} />
-      );
-      text = (
-        <p
-          className="mb0 text-center"
-          style={{ color: "#FF8300", fontSize: "18px" }}
-        >
-          Pending
-        </p>
-      );
+      icon = <Tag color="yellow">Pending</Tag>;
     } else if (collabDetails.status === "REJECTED") {
-      icon = (
-        <CloseCircleOutlined style={{ color: "#FF5C4D", fontSize: "48px" }} />
-      );
-      text = (
-        <p
-          className="mb0 text-center"
-          style={{ color: "#FF5C4D", fontSize: "18px" }}
-        >
-          Rejected
-        </p>
-      );
+      icon = <Tag color="red">Rejected</Tag>;
     } else if (collabDetails.status === "EXPIRED") {
-      icon = (
-        <ExclamationCircleOutlined
-          style={{ color: "#ADA7A7", fontSize: "48px" }}
-        />
-      );
-      text = (
-        <p
-          className="mb0 text-center"
-          style={{ color: "#ADA7A7", fontSize: "18px" }}
-        >
-          Expired
-        </p>
-      );
+      icon = <Tag color="grey">Expired</Tag>;
     }
 
     return (
       <div className="collabDetailCard__statusContainer">
         {icon}
-        {text}
         {collabDetails.status === "PENDING" && (
           <Tooltip title="Cancel Request">
             <Button
@@ -135,6 +83,11 @@ const CollabDetailCard = ({
     );
   };
 
+  const convertTimestampToDate = (timestamp) => {
+    const d = new Date(timestamp);
+    return d;
+  }
+
   const collabStatusComponentForReceiver = () => {
     if (collabDetails.status !== "PENDING")
       return collabStatusComponentForSender();
@@ -145,6 +98,7 @@ const CollabDetailCard = ({
           onClick={() => {
             acceptCollabRequest(collabDetails.id);
           }}
+          style={{ color: "white", backgroundColor: "green" }}
           disabled={isRejectingRequest}
           loading={isAcceptingRequest}
           className="collabDetailCard__acceptButton"
@@ -155,6 +109,7 @@ const CollabDetailCard = ({
           onClick={() => {
             rejectCollabRequest(collabDetails.id);
           }}
+          style={{ color: "white", backgroundColor: "red" }}
           disabled={isAcceptingRequest}
           loading={isRejectingRequest}
           className="collabDetailCard__rejectButton"
@@ -170,7 +125,7 @@ const CollabDetailCard = ({
       <div
         className={
           collabDetails.status !== "COMPLETED" &&
-          collabDetails.status !== "EXPIRED"
+            collabDetails.status !== "EXPIRED"
             ? "collabDetailCard__container"
             : "collabDetailCard__containerDisabled"
         }
@@ -182,9 +137,9 @@ const CollabDetailCard = ({
               e.preventDefault();
               router.push(
                 "/artist/profile/" +
-                  (collabDetails.senderId === user.artist_id
-                    ? collabDetails.receiverSlug
-                    : collabDetails.senderSlug)
+                (collabDetails.senderId === user.artist_id
+                  ? collabDetails.receiverSlug
+                  : collabDetails.senderSlug)
               );
             }}
             className="collabDetailCard__imageNameContainer"
@@ -204,9 +159,9 @@ const CollabDetailCard = ({
                 e.preventDefault();
                 router.push(
                   "/artist/profile/" +
-                    (collabDetails.senderId === user.artist_id
-                      ? collabDetails.receiverSlug
-                      : collabDetails.senderSlug)
+                  (collabDetails.senderId === user.artist_id
+                    ? collabDetails.receiverSlug
+                    : collabDetails.senderSlug)
                 );
               }}
             >
@@ -220,6 +175,10 @@ const CollabDetailCard = ({
           <h1 className="collabDetailCard__messageHeading">Theme</h1>
           <p className="collabDetailCard__messageThemeText">
             {collabDetails.requestData.message}
+          </p>
+          <h1 className="collabDetailCard__messageHeading">Date</h1>
+          <p className="collabDetailCard__messageThemeText">
+            {convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}
           </p>
           <h1 className="collabDetailCard__messageHeading">Description</h1>
           <p className="collabDetailCard__messageThemeText">
