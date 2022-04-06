@@ -93,86 +93,86 @@ const CollabDetailCard = ({
       return collabStatusComponentForSender();
 
     return (
-      <div className="collabDetailCard__buttonContainer">
+
+      <>
         <Button
+          block
+          type="primary"
           onClick={() => {
             acceptCollabRequest(collabDetails.id);
           }}
-          style={{ color: "white", backgroundColor: "green" }}
+          style={{ color: "white", border: "green", backgroundColor: "green", whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
           disabled={isRejectingRequest}
           loading={isAcceptingRequest}
-          className="collabDetailCard__acceptButton"
+          className="common-btn-dimension"
         >
           Accept
         </Button>
+
         <Button
+          block
+          type="primary"
           onClick={() => {
             rejectCollabRequest(collabDetails.id);
           }}
-          style={{ color: "white", backgroundColor: "red" }}
+          style={{ color: "white", border: "red", backgroundColor: "red", whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
           disabled={isAcceptingRequest}
           loading={isRejectingRequest}
-          className="collabDetailCard__rejectButton"
+          className="common-btn-dimension"
         >
           Reject
         </Button>
-      </div>
-    );
-  };
-
+      </>
+    )
+  }
   return (
     <>
-      <div
-        className={ 
-          collabDetails.status !== "COMPLETED" &&
-            collabDetails.status !== "EXPIRED"
-            ? "collabDetailCard__container"
-            : "collabDetailCard__containerDisabled"
-        }
-      >
-        {showUser && (
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              router.push(
-                "/artist/profile/" +
-                (collabDetails.senderId === user.artist_id
-                  ? collabDetails.receiverSlug
-                  : collabDetails.senderSlug)
-              );
-            }}
-            className="collabDetailCard__imageNameContainer"
-          >
-            <img
-              className="collabDetailCard__userImage"
-              src={(collabDetails.senderId === user.artist_id
-                ? collabDetails.receiverProfilePicUrl
-                : collabDetails.senderProfilePicUrl)}
-              alt=""
-            />
-            <p className="common-p-style" >{collabDetails.senderId === user.artist_id
-                ? collabDetails.receiverName
-                : collabDetails.senderName}</p>
+      <div>
+        <div className="row p-2 bg-white border rounded social-card">
+          <div className="col-md-3 mt-1 social-profile-picture">
+            {showUser && (
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  router.push(
+                    "/artist/profile/" +
+                    (collabDetails.senderId === user.artist_id
+                      ? collabDetails.receiverSlug
+                      : collabDetails.senderSlug)
+                  );
+                }}
+                className="collabDetailCard__imageNameContainer"
+              >
+
+                <img
+                  className=" card-img-top"
+                  src={(collabDetails.senderId === user.artist_id
+                    ? collabDetails.receiverProfilePicUrl
+                    : collabDetails.senderProfilePicUrl)}
+                  alt=""
+                />
+              </div>
+            )}
           </div>
-        )}
-        <div className="collabDetailCard__collabRequestTextContainer">
-          <h1 className="collabDetailCard__messageHeading">Theme</h1>
-          <p className="collabDetailCard__messageThemeText">
-            {collabDetails.requestData.message}
-          </p>
-          <h1 className="collabDetailCard__messageHeading">Date</h1>
-          <p className="collabDetailCard__messageThemeText">
-            {convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}
-          </p>
-          <h1 className="collabDetailCard__messageHeading">Description</h1>
-          <p className="collabDetailCard__messageThemeText">
-            {collabDetails.requestData.collabTheme}
-          </p>
+
+          <div className="col-md-6 mt-1">
+            <h5 className="common-p-style">{collabDetails.senderId === user.artist_id
+              ? collabDetails.receiverName
+              : collabDetails.senderName}</h5>
+            <p>{collabDetails.requestData.collabTheme}</p>
+            <p className="text-justify para mb-0  break-word">{collabDetails.requestData.message}</p>
+            <p className="common-p-style">{convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}</p>
+
+          </div>
+          <div className="align-items-center align-content-center col-md-3 border-left mt-1">
+            <div className="d-flex flex-column mt-4">
+              {user.artist_id === collabDetails.senderId
+                ? collabStatusComponentForSender()
+                : collabStatusComponentForReceiver()}
+            </div>
+          </div>
         </div>
-        {user.artist_id === collabDetails.senderId
-          ? collabStatusComponentForSender()
-          : collabStatusComponentForReceiver()}
       </div>
     </>
   );
