@@ -147,8 +147,8 @@ const Profile = ({
           </div>
         </div>
         <div className="artistProfile__artistDetailContainer common-text-style">
-          <h2 className="f-20">{user.first_name + " " + user.last_name}</h2>
-          <h3 className="f-12">{getUserSkills(false)}</h3>
+          <h2 className="f-20 common-h2-style">{user.first_name + " " + user.last_name}</h2>
+          <h3 className="f-12 common-h3-style">{getUserSkills(false)}</h3>
           {isSelf ? (<Button
             type="primary"
             className="common-btn-dimension"
@@ -164,7 +164,7 @@ const Profile = ({
                 <>
                   <Button
                     type="primary"
-                    className="common-text-style common-btn-dimension"
+                    className="common-btn-dimension"
                     style={{ height: 'auto', marginTop: '10px' }}
                     onClick={() => {
                       setShowCollabModalState(true);
@@ -177,7 +177,7 @@ const Profile = ({
                 <>
                   <Button
                     type="primary"
-                    className="common-text-style common-btn-dimension"
+                    className="common-btn-dimension"
                     style={{ height: 'auto', marginTop: '10px' }}
                     disabled={!upForCollab}
                     onClick={() => {
@@ -200,12 +200,12 @@ const Profile = ({
           <Tabs defaultActiveKey="1" type="card" size={"large"} centered>
             <TabPane tab="About" key="1">
               <div className="artistProfile__tabContainer">
-                <b className="f-16 mb4">
+                <b className="f-16 mb4 common-text-style">
                   Bio
                 </b>
-                <p className="mt4 artistProfile__bioContainer">{user.bio}</p>
-                <b className="f-16 mb4 f-w-b">Skills</b>
-                <p className="mt4">{getUserSkills(true)} </p>
+                <p className="mt4 artistProfile__bioContainer common-p-style">{user.bio}</p>
+                <b className="f-16 mb4 f-w-b common-text-style">Skills</b>
+                <p className="mt4 common-p-style">{getUserSkills(true)} </p>
               </div>
             </TabPane>
             <TabPane tab="Samples" key="2">
@@ -216,10 +216,10 @@ const Profile = ({
                   >
                     <div className="samplePage__nosample">
                       {!isSelf ? (
-                        <p>Oops, looks like {user.first_name} has not uploaded any samples.</p>
+                        <p className="common-p-style">Oops, looks like {user.first_name} has not uploaded any samples.</p>
                       ) : (
                         <>
-                          <p>You have not uploaded any samples. You can upload 6 of them now and flaunt your best work to others!</p>
+                          <p className="common-p-style">You have not uploaded any samples. You can upload 6 of them now and flaunt your best work to others!</p>
                           <Button className="common-text-style common-btn-dimension" type="primary">
                             <Link
                               href={routeToHref(toEditProfile("profile", "samples"))}
