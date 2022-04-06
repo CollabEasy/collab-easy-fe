@@ -98,10 +98,10 @@ const SocialProspectusPage = ({
                 className="card-img-top"
                 alt="social platform" />
             </div>
-          <div className="col-md-6 mt-1">
-            <h5 className="common-h5-style">{element.handle}</h5>
-            <p className="text-justify para mb-0  break-word common-p-style">{element.description}<br></br><br></br></p>
-            <div>
+            <div className="col-md-6 mt-1">
+              <h5 className="common-h5-style">{element.handle}</h5>
+              <p className="text-justify para mb-0  break-word common-p-style">{element.description}<br></br><br></br></p>
+              <div>
                 {element.up_for_collab == "false" ? (
                   <p className="common-p-style"><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />artist not available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
                 ) : (
@@ -109,15 +109,16 @@ const SocialProspectusPage = ({
                 )}
               </div>
             </div>
-          <div className="align-items-center align-content-center col-md-3 border-left mt-1">
-            <div className="d-flex flex-column mt-4">
-              <Button
-                block
-                type="primary"
-                className="common-btn-dimension"
-                style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
-                <a href={url} target="_blank" rel="noopener noreferrer">Profile</a>
-              </Button>
+            <div className="align-items-center align-content-center col-md-3 border-left mt-1">
+              <div className="d-flex flex-column mt-4">
+                <Button
+                  block
+                  type="primary"
+                  className="common-btn-dimension"
+                  style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                  <a href={url} target="_blank" rel="noopener noreferrer">Profile</a>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
