@@ -10,7 +10,7 @@ export const Loader = () => {
       <div className="loader__container">
         <Spin className="loader__spinner" indicator={antIcon} />
         <div>
-          <h2 className="f-20 mt4">{LOADER_QUOTES[Math.floor(Math.random()*LOADER_QUOTES.length)]}</h2>
+          <h2 className="f-20 mt4 common-h2-style">{LOADER_QUOTES[Math.floor(Math.random()*LOADER_QUOTES.length)]}</h2>
         </div>
       </div>
     </div>

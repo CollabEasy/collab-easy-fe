@@ -116,7 +116,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'dance'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={dancersImg} alt="cards" />}>
+                <Card hoverable style={{ height: '100%'}} cover={<Image src={dancersImg} alt="cards" />}>
                   <Meta className="common-text-style" title="Choreographer" />
                 </Card>
               </Link>

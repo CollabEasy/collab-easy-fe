@@ -107,7 +107,7 @@ const DiscoverArtist = ({
       skills.forEach((skill: string, index: number) => {
         skillsHtml.push(
           <>
-            <span>{skill}</span>
+            <span className="common-text-style">{skill}</span>
             {index == skills.length - 1 ? (<></>) : (<span className="dot"></span>)}
           </>
         )
@@ -121,7 +121,7 @@ const DiscoverArtist = ({
     if (artists.length == 0) {
       return <>
         <div style={{ textAlign: "center", paddingTop: "20px" }}>
-          <h2 style={{ color: "grey" }}>Sorry, no artists found for <b>{category}!</b></h2>
+          <h2 className="common-h2-style">Sorry, no artists found for <b>{category}!</b></h2>
         </div>
       </>
     }
@@ -141,16 +141,16 @@ const DiscoverArtist = ({
             </div>
 
             <div className="col-md-6 mt-1 common-text-style">
-              <h5>{artist.first_name} {artist?.last_name}</h5>
+              <h5 className="common-h5-style">{artist.first_name} {artist?.last_name}</h5>
               <div className="mt-1 mb-1 spec-1">
                 {getUserSkills(artist.skills)}
               </div>
-              <p className="text-justify para mb-0  break-word">{artist.bio}<br></br><br></br></p>
+              <p className="text-justify para mb-0  break-word common-hp-style">{artist.bio}<br></br><br></br></p>
               <div className="mt-1 mb-1 spec-1">
                 {artist.up_for_collab == "false" ? (
-                  <span><CloseOutlined style={{ color: 'red', margin: '5px' }} />artist not available to collab </span>
+                  <span className="common-text-style" ><CloseOutlined style={{ color: 'red', margin: '5px' }} />artist not available to collab </span>
                 ) : (
-                  <span><CheckOutlined style={{ color: 'green', margin: '5px' }} />artist available to collab </span>
+                  <span className="common-text-style"><CheckOutlined style={{ color: 'green', margin: '5px' }} />artist available to collab </span>
                 )}
                 {/* <span><PictureOutlined /> Sample work uploaded</span> */}
               </div>
@@ -224,7 +224,7 @@ const DiscoverArtist = ({
                             <h1 className="common-h1-style">
                               {artists.length} {getListingHeaderData(artSlug)["heading"]}<br></br>
                             </h1>
-                            <h3>
+                            <h3 className="common-h3-style">
                               {getListingHeaderData(artSlug)["sub_heading"]}
                             </h3>
                           </div>
@@ -240,7 +240,7 @@ const DiscoverArtist = ({
                         )}
                       </div>
                     </div>
-                    <div className="col-sm-4" style={{backgroundColor: getListingHeaderData(artSlug)["background_color"] }}>
+                    <div className="col-sm-4" style={{ backgroundColor: getListingHeaderData(artSlug)["background_color"] }}>
                       <Image
                         alt="Image Alt"
                         className="discoverArtists_desktopCoverImageContainer"
