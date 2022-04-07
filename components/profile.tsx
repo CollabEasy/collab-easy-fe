@@ -151,7 +151,6 @@ const Profile = ({
           <h3 className="f-12 common-h3-style">{getUserSkills(false)}</h3>
           {isSelf ? (<Button
             type="primary"
-            className="common-btn-dimension"
             style={{ height: 'auto', marginTop: '10px' }}
             onClick={() => {
               router.push("/artist/settings/edit");
@@ -164,7 +163,6 @@ const Profile = ({
                 <>
                   <Button
                     type="primary"
-                    className="common-btn-dimension"
                     style={{ height: 'auto', marginTop: '10px' }}
                     onClick={() => {
                       setShowCollabModalState(true);

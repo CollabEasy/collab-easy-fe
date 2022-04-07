@@ -160,7 +160,7 @@ const DiscoverArtist = ({
                 <Button
                   block
                   type="primary"
-                  className="common-btn-dimension"
+                  className="common-medium-btn"
                   ghost
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
@@ -173,7 +173,7 @@ const DiscoverArtist = ({
 
                 <Button
                   block
-                  className="common-btn-dimension"
+                  className="common-medium-btn"
                   type="primary"
                   disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false"}
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
