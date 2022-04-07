@@ -84,8 +84,8 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           <Image src={landingMobileImg} alt="Landing page" />
         </div>
         <div id="text-content">
-          <h1 className="common-h1-style">Meet artists to collaborate with on your next big idea.</h1>
-          <p className="common-p-style">Wondor connects artists from around the globe. Work with others to convert your idea into a masterpiece because we believe together you create better!</p>
+          <h1 className="common-h1-style">Meet creatives to collaborate with on your next big idea!</h1>
+          <p className="common-p-style">Work with creative people from around the globe to convert your idea into a masterpiece because we believe <b><i>together you create better!</i></b></p>
         </div>
       </div>
 
