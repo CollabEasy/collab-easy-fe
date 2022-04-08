@@ -7,14 +7,15 @@ import Head from 'next/head';
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from 'next/image';
-import landingDesktopImg from '../public/images/landing-desktop.png';
-import landingMobileImg from '../public/images/landing-mobile.png';
-import musiciansImg from '../public/images/musicians.png';
-import singersImg from '../public/images/singers.png';
-import paintersImg from '../public/images/painters.png';
-import dancersImg from '../public/images/listing-dance.png'
-import guitaristImg from '../public/images/guitarist.png';
-import writerImg from '../public/images/writer.png';
+import landingDesktopImg from '../public/images/desktop-landing.svg';
+import landingMobileImg from '../public/images/mobile-landing.svg';
+import photographerImg from '../public/images/popularCategories/photographer.svg'
+import paintersImg from '../public/images/popularCategories/painter.svg';
+import musiciansImg from '../public/images/popularCategories/musician.svg';
+import dancerImg from '../public/images/popularCategories/dancer.svg';
+import singersImg from '../public/images/popularCategories/singer.svg';
+import writerImg from '../public/images/popularCategories/writer.svg';
+
 import inspireImg from '../public/images/inspire.png';
 import howtoImg from '../public/images/howto.png';
 import { Card } from 'antd';
@@ -67,7 +68,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
 
   return (
     <>
-      <Title title="Wondor | meet the artists" />
+      <Title title="Wondor - a doorway to meet creatives around you" />
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />
       )
@@ -85,7 +86,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         </div>
         <div id="text-content">
           <h1 className="common-h1-style">Meet creatives to collaborate with on your next big idea!</h1>
-          <p className="common-p-style">Work with creative people from around the globe to convert your idea into a masterpiece because we believe <b><i>together you create better!</i></b></p>
+          <p className="common-p-style">Work with like minded people from around the globe to convert your idea into a masterpiece because we believe <b><i>together you create better!</i></b></p>
         </div>
       </div>
 
@@ -94,9 +95,16 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           <h2 className="custom-padding common-h2-style">Popular categories</h2>
           <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'music'} passHref>
-                <Card hoverable style={{ width: '100%' }} cover={<Image src={musiciansImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Musician" />
+              <Link href={toArtist().href + 'write'} passHref>
+                <Card hoverable style={{ height: '100%' }} cover={<Image src={writerImg} alt="cards" />}>
+                  <Meta className="common-text-style" title="Writer" />
+                </Card>
+              </Link>
+            </div>
+            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+              <Link href={toArtist().href + 'dance'} passHref>
+                <Card hoverable style={{ height: '100%' }} cover={<Image src={dancerImg} alt="cards" />}>
+                  <Meta className="common-text-style" title="Choreographer" />
                 </Card>
               </Link>
             </div>
@@ -108,30 +116,23 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+              <Link href={toArtist().href + 'photographer'} passHref>
+                <Card hoverable style={{ width: '100%' }} cover={<Image src={photographerImg} alt="cards" />}>
+                  <Meta className="common-text-style" title="Photographer" />
+                </Card>
+              </Link>
+            </div>
+            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
+              <Link href={toArtist().href + 'musician'} passHref>
+                <Card hoverable style={{ height: '100%' }} cover={<Image src={musiciansImg} alt="cards" />}>
+                  <Meta className="common-text-style" title="Musicians" />
+                </Card>
+              </Link>
+            </div>
+            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'paint'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={paintersImg} alt="cards" />}>
                   <Meta className="common-text-style" title="Painter" />
-                </Card>
-              </Link>
-            </div>
-            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'dance'} passHref>
-                <Card hoverable style={{ height: '100%'}} cover={<Image src={dancersImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Choreographer" />
-                </Card>
-              </Link>
-            </div>
-            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'music'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={guitaristImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Guitarist" />
-                </Card>
-              </Link>
-            </div>
-            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'write'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={writerImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Writer" />
                 </Card>
               </Link>
             </div>
@@ -159,4 +160,3 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
 }
 
 export default connector(Home);
-      

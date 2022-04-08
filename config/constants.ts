@@ -1,9 +1,11 @@
-import dancerImage from '../public/images/listing-dance.png'
-import singerImage from '../public/images/singers.png'
-import writerImage from '../public/images/writer.png'
-import painterImage from '../public/images/painters.png'
-import musicianImage from '../public/images/musicians.png'
-import guitaristImage from '../public/images/guitarist.png'
+import photographerImage from '../public/images/popularCategories/photographer.svg'
+import painterImage from '../public/images/popularCategories/painter.svg'
+import musicianImage from '../public/images/popularCategories/musician.svg';
+import dancerImage from '../public/images/popularCategories/dancer.svg';
+import singerImage from '../public/images/popularCategories/singer.svg'
+import writerImage from '../public/images/popularCategories/writer.svg'
+
+
 import facebookImage from '../public/images/facebook.png'
 import instagramImage from '../public/images/instagram.png'
 import tiktokImage from '../public/images/tiktok.png'
@@ -3939,20 +3941,12 @@ export enum CollabRequestStatus {
 
 export const LISTING_BANNERS = [
   {
-    "slug": "music",
-    "category": "Musician",
-    "heading": "musicians to work with on your next big hit!",
+    "slug": "photographer",
+    "category": "Photographer",
+    "heading": "Photographer to work with on your next big hit!",
     "sub_heading": "send a collab request to see if they are available.",
-    "image": musicianImage,
-    "background_color": "#F9D8EA",
-  },
-  {
-    "slug": "vocals",
-    "category": "Singer",
-    "heading": "singers to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
-    "image": singerImage,
-    "background_color": "#F5F5E5",
+    "image": photographerImage,
+    "background_color": "#E2F0CB",
   },
   {
     "slug": "paint",
@@ -3960,7 +3954,23 @@ export const LISTING_BANNERS = [
     "heading": "painters to work with on your next big hit!",
     "sub_heading": "send a collab request to see if they are available.",
     "image": painterImage,
-    "background_color": "#EFDAEA",
+    "background_color": "#C7CEEA",
+  },
+  {
+    "slug": "musician",
+    "category": "Musician",
+    "heading": "Musicians to work with on your next big hit!",
+    "sub_heading": "send a collab request to see if they are available.",
+    "image": musicianImage,
+    "background_color": "#B5EAD7",
+  },
+  {
+    "slug": "vocals",
+    "category": "Singer",
+    "heading": "singers to work with on your next big hit!",
+    "sub_heading": "send a collab request to see if they are available.",
+    "image": singerImage,
+    "background_color": "#FBF0C4",
   },
   {
     "slug": "dance",
@@ -3968,15 +3978,7 @@ export const LISTING_BANNERS = [
     "heading": "choreographers to work with on your next big hit!",
     "sub_heading": "send a collab request to see if they are available.",
     "image": dancerImage,
-    "background_color": "#C3E5C7",
-  },
-  {
-    "slug": "music",
-    "category": "Guitarist",
-    "heading": "guitarist to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
-    "image": guitaristImage,
-    "background_color": "#BBE7C5",
+    "background_color": "#FFDAC1",
   },
   {
     "slug": "write",
@@ -3984,7 +3986,7 @@ export const LISTING_BANNERS = [
     "heading": "writers to work with on your next big hit!",
     "sub_heading": "send a collab request to see if they are available.",
     "image": writerImage,
-    "background_color": "#E9D0CF",
+    "background_color": "#EDC5CD",
   },
   {
     "slug": "spoken-words",
