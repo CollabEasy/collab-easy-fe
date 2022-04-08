@@ -148,9 +148,10 @@ const Profile = ({
         </div>
         <div className="artistProfile__artistDetailContainer common-text-style">
           <h2 className="f-20 common-h2-style">{user.first_name + " " + user.last_name}</h2>
-          <h3 className="f-12 common-h3-style">{getUserSkills(false)}</h3>
+          <h3 className="f-15 common-h3-style">{getUserSkills(false)}</h3>
           {isSelf ? (<Button
             type="primary"
+            className="common-medium-btn"
             style={{ height: 'auto', marginTop: '10px' }}
             onClick={() => {
               router.push("/artist/settings/edit");
@@ -163,6 +164,7 @@ const Profile = ({
                 <>
                   <Button
                     type="primary"
+                    className="common-medium-btn"
                     style={{ height: 'auto', marginTop: '10px' }}
                     onClick={() => {
                       setShowCollabModalState(true);
@@ -175,7 +177,7 @@ const Profile = ({
                 <>
                   <Button
                     type="primary"
-                    className="common-btn-dimension"
+                    className="common-medium-btn"
                     style={{ height: 'auto', marginTop: '10px' }}
                     disabled={!upForCollab}
                     onClick={() => {
@@ -183,9 +185,9 @@ const Profile = ({
                     }}
                   >  Collaborate</Button>
                   {!upForCollab ? (
-                    <span className="common-text-style"><CloseOutlined style={{ color: 'red', marginTop: '20px' }} />artist not available to collab </span>
+                    <span className="common-text-style"><CloseOutlined style={{ color: 'red', marginTop: '20px' }} />artist is not available to collab! </span>
                   ) : (
-                    <span className="common-text-style"><CheckOutlined style={{ color: 'green', marginTop: '20px' }} />artist available to collab </span>
+                    <span className="common-text-style"><CheckOutlined style={{ color: 'green', marginTop: '20px' }} />artist is available to collab! </span>
                   )}
                 </>
               )}
@@ -218,7 +220,7 @@ const Profile = ({
                       ) : (
                         <>
                           <p className="common-p-style">You have not uploaded any samples. You can upload 6 of them now and flaunt your best work to others!</p>
-                          <Button className="common-text-style common-btn-dimension" type="primary">
+                          <Button className="common-medium-btn" type="primary">
                             <Link
                               href={routeToHref(toEditProfile("profile", "samples"))}
                               passHref

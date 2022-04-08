@@ -2,13 +2,8 @@ import Image from "next/image";
 import Title from "components/title";
 import { useRouter } from "next/router";
 import { LISTING_BANNERS } from "../../config/constants";
-import landingdanceImg from "public/images/listing-dance.png";
-import { Card, Button, Skeleton, Result } from "antd";
-import {
-  CloseOutlined,
-  CheckOutlined,
-  PictureOutlined,
-} from "@ant-design/icons";
+import { Card, Button } from "antd";
+import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useRoutesContext } from "../../components/routeContext";
 import { routeToHref } from "config/routes";
@@ -17,7 +12,6 @@ import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import React, { useEffect, useState } from 'react';
 import * as action from "../../state/action/categoryAction";
-
 import LoginModal from '../../components/loginModal';
 import { updateLoginData } from 'state/action';
 import { LoginModalDetails } from 'types/model';
@@ -148,9 +142,9 @@ const DiscoverArtist = ({
               <p className="text-justify para mb-0  break-word common-hp-style">{artist.bio}<br></br><br></br></p>
               <div className="mt-1 mb-1 spec-1">
                 {artist.up_for_collab == "false" ? (
-                  <span className="common-text-style" ><CloseOutlined style={{ color: 'red', margin: '5px' }} />artist not available to collab </span>
+                  <span className="common-text-style"><CloseOutlined style={{ color: 'red', margin: '5px' }} />artist is not available to collab! </span>
                 ) : (
-                  <span className="common-text-style"><CheckOutlined style={{ color: 'green', margin: '5px' }} />artist available to collab </span>
+                  <span className="common-text-style"><CheckOutlined style={{ color: 'green', margin: '5px' }} />artist is available to collab! </span>
                 )}
                 {/* <span><PictureOutlined /> Sample work uploaded</span> */}
               </div>
