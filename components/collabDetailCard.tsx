@@ -95,16 +95,18 @@ const CollabDetailCard = ({
     return (
 
       <>
+        {/* <Tag style={{width: "65px", marginBottom: '10px' }}color="orange">Pending</Tag> */}
+
         <Button
           block
           type="primary"
           onClick={() => {
             acceptCollabRequest(collabDetails.id);
           }}
-          style={{ color: "white", border: "green", backgroundColor: "green", whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
+          style={{ color: "white", border: "green", backgroundColor: "#91D296", whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
           disabled={isRejectingRequest}
           loading={isAcceptingRequest}
-          className="common-btn-dimension"
+          className="common-medium-btn"
         >
           Accept
         </Button>
@@ -115,10 +117,10 @@ const CollabDetailCard = ({
           onClick={() => {
             rejectCollabRequest(collabDetails.id);
           }}
-          style={{ color: "white", border: "red", backgroundColor: "red", whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
+          style={{ color: "white", border: "red", backgroundColor: "#ED6572", whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
           disabled={isAcceptingRequest}
           loading={isRejectingRequest}
-          className="common-btn-dimension"
+          className="common-medium-btn"
         >
           Reject
         </Button>
@@ -146,7 +148,7 @@ const CollabDetailCard = ({
               >
 
                 <img
-                  className=" card-img-top"
+                  className="card-img-top"
                   src={(collabDetails.senderId === user.artist_id
                     ? collabDetails.receiverProfilePicUrl
                     : collabDetails.senderProfilePicUrl)}
@@ -156,7 +158,7 @@ const CollabDetailCard = ({
             )}
           </div>
 
-          <div className="col-md-6 mt-1">
+          <div className="col-md-6 mt-1 collabDetailCard__textContainer">
             <h5 className="common-h5-style">{collabDetails.senderId === user.artist_id
               ? collabDetails.receiverName
               : collabDetails.senderName}</h5>
