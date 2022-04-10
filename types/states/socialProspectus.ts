@@ -4,4 +4,5 @@ export interface SocialProspectusState {
     socialProspectus?: any[];
     isDeletingProspectus: boolean;
     hasDeletedProspectus: boolean;
+    showSocialProspectusModal: boolean,
  }

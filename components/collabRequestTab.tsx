@@ -18,6 +18,8 @@ import * as action from "./../state/action";
 import { CollabRequestStatus } from "config/constants";
 import CollabDetailCard from "./collabDetailCard";
 import Loader from "./loader";
+import { useRoutesContext } from "./routeContext";
+import router from "next/router";
 
 const { Option } = Select;
 
@@ -46,6 +48,7 @@ export const CollabRequestTab = ({
   isFetchingCollabDetails,
   onClickCollabRequest,
 }: Props) => {
+  const { toCollabPage } = useRoutesContext(); 
   const dispatch = useDispatch();
   const [sentReceivedStatus, setSentReceivedStatus] = useState("received");
   const [collabStatusFilter, setCollabStatusFilter] = useState("all");
@@ -59,7 +62,7 @@ export const CollabRequestTab = ({
         <div
           style={request.status !== "COMPLETED" ? { cursor: "pointer" } : {}}
           onClick={() => {
-            if (request.status !== "COMPLETED") onClickCollabRequest(request);
+            if (request.status !== "COMPLETED") router.push(`/collab/${request.id}`);
           }}
         >
           <CollabDetailCard showUser={user.artist_id === otherUser} collabDetails={request} />

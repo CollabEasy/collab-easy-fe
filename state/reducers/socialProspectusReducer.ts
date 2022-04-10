@@ -7,6 +7,7 @@ const initialState: SocialProspectusState = {
   isDeletingProspectus: false,
   hasDeletedProspectus: false,
   socialProspectus: [],
+  showSocialProspectusModal: false,
 };
 
 const socialProspectusReducer = (state = initialState, action): SocialProspectusState => {
@@ -86,6 +87,11 @@ const socialProspectusReducer = (state = initialState, action): SocialProspectus
         isDeletingProspectus: false,
         hasDeletedProspectus: false,
       };
+    case actionType.SET_SHOW_SOCIAL_PROSPECTUS_MODAL:
+      return {
+        ...state,
+        showSocialProspectusModal: action.payload.show,
+      }
     default:
       return state;
   }

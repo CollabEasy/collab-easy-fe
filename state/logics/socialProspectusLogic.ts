@@ -40,6 +40,7 @@ export const updateArtistSocialProspectusLogic = createLogic<
       const { data } = action.payload;
       const result = await api.socialProspectusApi.addArtistSocialProspectusAPI(data);
       dispatch(actions.updateArtistSocialProspectusSuccess(result));
+      dispatch(actions.setShowSocialProspectusModal(false));
     } catch (error) {
     } finally {
       done();
@@ -60,6 +61,7 @@ export const deleteArtistSocialProspectusLogic = createLogic<
       const { data } = action.payload;
       const result = await api.socialProspectusApi.deleteArtistSocialProspectusAPI(data);
       dispatch(actions.deleteArtistSocialProspectusSuccess(result));
+      dispatch(actions.setShowSocialProspectusModal(false));
     } catch (error) {
     } finally {
       done();

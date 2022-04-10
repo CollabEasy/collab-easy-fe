@@ -45,6 +45,13 @@ export const deleteArtistSocialProspectus = (data: number) => ({
 	},
 });
 
+export const setShowSocialProspectusModal = (show: boolean) => ({
+	type: actionType.SET_SHOW_SOCIAL_PROSPECTUS_MODAL,
+	payload: {
+		show
+	}
+});
+
 export const deleteArtistSocialProspectusRequest = () => ({
   type: actionType.DELETE_ARTIST_SOCIAL_PROSPECTUS_REQUEST,
   payload: {},
