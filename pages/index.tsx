@@ -95,21 +95,21 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           <h2 className="custom-padding common-h2-style">Popular categories</h2>
           <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'write'} passHref>
+              <Link href={toArtist().href + 'writer'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={writerImg} alt="cards" />}>
                   <Meta className="common-text-style" title="Writer" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'dance'} passHref>
+              <Link href={toArtist().href + 'choreographer'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={dancerImg} alt="cards" />}>
                   <Meta className="common-text-style" title="Choreographer" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'vocals'} passHref>
+              <Link href={toArtist().href + 'singer'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={singersImg} alt="cards" />}>
                   <Meta className="common-text-style" title="Singer" />
                 </Card>
@@ -125,12 +125,12 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'musician'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={musiciansImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Musicians" />
+                  <Meta className="common-text-style" title="Musician" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'paint'} passHref>
+              <Link href={toArtist().href + 'painter'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={paintersImg} alt="cards" />}>
                   <Meta className="common-text-style" title="Painter" />
                 </Card>

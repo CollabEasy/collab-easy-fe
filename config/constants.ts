@@ -2,8 +2,9 @@ import photographerImage from '../public/images/popularCategories/photographer.s
 import painterImage from '../public/images/popularCategories/painter.svg'
 import musicianImage from '../public/images/popularCategories/musician.svg';
 import dancerImage from '../public/images/popularCategories/dancer.svg';
-import singerImage from '../public/images/popularCategories/singer.svg'
-import writerImage from '../public/images/popularCategories/writer.svg'
+import singerImage from '../public/images/popularCategories/singer.svg';
+import writerImage from '../public/images/popularCategories/writer.svg';
+import artistImage from '../public/images/popularCategories/artist.svg';
 
 
 import facebookImage from '../public/images/facebook.png'
@@ -3941,6 +3942,38 @@ export enum CollabRequestStatus {
 
 export const LISTING_BANNERS = [
   {
+    "slug": "artist",
+    "category": "Artists",
+    "heading": "Artists to work with on your next big hit!",
+    "sub_heading": "send a collab request to see if they are available.",
+    "image": artistImage,
+    "background_color": "#ECCFD6",
+  },
+  {
+    "slug": "writer",
+    "category": "Writer",
+    "heading": "writers to work with on your next big hit!",
+    "sub_heading": "send a collab request to see if they are available.",
+    "image": writerImage,
+    "background_color": "#EDC5CD",
+  },
+  {
+    "slug": "choreographer",
+    "category": "Choreographer",
+    "heading": "choreographers to work with on your next big hit!",
+    "sub_heading": "send a collab request to see if they are available.",
+    "image": dancerImage,
+    "background_color": "#FFDAC1",
+  },
+  {
+    "slug": "singer",
+    "category": "Singer",
+    "heading": "Singers to work with on your next big hit!",
+    "sub_heading": "send a collab request to see if they are available.",
+    "image": singerImage,
+    "background_color": "#FBF0C4",
+  },
+  {
     "slug": "photographer",
     "category": "Photographer",
     "heading": "Photographer to work with on your next big hit!",
@@ -3949,7 +3982,7 @@ export const LISTING_BANNERS = [
     "background_color": "#E2F0CB",
   },
   {
-    "slug": "paint",
+    "slug": "painter",
     "category": "Painter",
     "heading": "painters to work with on your next big hit!",
     "sub_heading": "send a collab request to see if they are available.",
@@ -3965,36 +3998,12 @@ export const LISTING_BANNERS = [
     "background_color": "#B5EAD7",
   },
   {
-    "slug": "vocals",
-    "category": "Singer",
-    "heading": "singers to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
-    "image": singerImage,
-    "background_color": "#FBF0C4",
-  },
-  {
-    "slug": "dance",
-    "category": "Choreographer",
-    "heading": "choreographers to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
-    "image": dancerImage,
-    "background_color": "#FFDAC1",
-  },
-  {
-    "slug": "write",
-    "category": "Writer",
-    "heading": "writers to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
-    "image": writerImage,
-    "background_color": "#EDC5CD",
-  },
-  {
     "slug": "spoken-words",
     "category": "Spoken Words",
     "heading": "poets to work with on your next big hit!",
-    "sub-heading": "send a collab request to see if they are available.",
+    "sub_heading": "send a collab request to see if they are available.",
     "image": writerImage,
-    "background_color": "#E9D0CF",
+    "background_color": "#EDC5CD",
   }
 ]
 
@@ -4029,4 +4038,117 @@ export const LOADER_QUOTES = [
   "Every artist was first an amateur. – Ralph Waldo Emerson.",
   "Every child is an artist; the problem is staying an artist when you grow up – Pablo Picasso",
   "Creativity is contagious, pass it on. – Albert Einstein",
+]
+
+export const SIMILAR_CATEGORIES = [
+  {
+    "slugs" : ["writer", "creative-writer", "poet", "spoken-words", "song-writer", "lyricist"],
+    "similar_categories": [
+      {
+        "name": "Writer",
+        "slug": "writer"
+      },
+      {
+        "name": "Creative Writer",
+        "slug": "creative-writer" 
+      },
+      {
+        "name": "Poet",
+        "slug": "poet" 
+      },
+      {
+        "name": "Spoken Words",
+        "slug": "spoken-words" 
+      },
+      {
+        "name": "Song Writer",
+        "slug": "song-writer" 
+      },
+      {
+        "name": "Lyricist",
+        "slug": "lyricist" 
+      }
+    ]
+  },
+  {
+    "slugs" : ["choreographer", "dancer"],
+    "similar_categories": [
+      {
+        "name": "Choreographer",
+        "slug": "choreographer"
+      },
+      {
+        "name": "Dancer",
+        "slug": "dancer" 
+      },
+    ]
+  },
+  {
+    "slugs" : ["singer", "vocalist"],
+    "similar_categories": [
+      {
+        "name": "Singer",
+        "slug": "singer"
+      },
+      {
+        "name": "Vocalist",
+        "slug": "vocalist" 
+      },
+    ]
+  },
+  {
+    "slugs" : ["photographer", "graphic-designer", "illustrator", "video-editor", "film-maker"],
+    "similar_categories": [
+      {
+        "name": "Photographer",
+        "slug": "photographer"
+      },
+      {
+        "name": "Illustrator",
+        "slug": "illustrator" 
+      },
+      {
+        "name": "Graphic Designer",
+        "slug": "graphic-designer" 
+      },
+      {
+        "name": "Video Editor",
+        "slug": "video-editor"
+      },
+      {
+        "name": "Film Maker",
+        "slug": "film-maker"
+      }
+    ]
+  },
+  {
+    "slugs" : ["musician", "sound-engineer", "music-director"],
+    "similar_categories": [
+      {
+        "name": "Musician",
+        "slug": "musician"
+      },
+      {
+        "name": "Sound Engineer",
+        "slug": "sound-engineer" 
+      },
+      {
+        "name": "Music Director",
+        "slug": "music-director" 
+      },
+    ]
+  },
+  {
+    "slugs" : ["painter", "carictaurist"],
+    "similar_categories": [
+      {
+        "name": "Painter",
+        "slug": "painter"
+      },
+      {
+        "name": "Carictaurist",
+        "slug": "carictaurist" 
+      }
+    ]
+  }
 ]

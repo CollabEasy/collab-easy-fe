@@ -49,12 +49,17 @@ type Props = {
 } & ConnectedProps<typeof connector>;
 
 const getListingHeaderData = (selectedCategorySlug) => {
+  let general = {};
   for (var i = 0; i < LISTING_BANNERS.length; i++) {
     if (LISTING_BANNERS[i]["slug"] == selectedCategorySlug) {
       return LISTING_BANNERS[i];
     }
+    if (LISTING_BANNERS[i]["slug"] == "artist") {
+      // This is a case where we do not have any data for header. Just return the generic one.
+      general = LISTING_BANNERS[i];
+    }
   }
-  return {};
+  return general;
 }
 
 
