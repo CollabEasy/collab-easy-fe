@@ -145,7 +145,7 @@ const SocialProspectusPage = ({
                       className="common-btn-dimension"
                     >
                       <Link
-                        href={routeToHref(toEditProfile("profile", "samples"))}
+                        href={routeToHref(toEditProfile("profile", "social-prospectus"))}
                         passHref
                       >Add profiles</Link>
                     </Button>

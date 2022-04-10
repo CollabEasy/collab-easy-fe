@@ -23,6 +23,10 @@ export const routes: AppRouteCreators = {
     href: '/artist/settings/[action]?tab=[tab]',
     as: `/artist/settings/${action}?tab=${tab}`,
   }),
+  toCollabPage: (id) => ({
+    href: '/collab/[id]',
+    as: `/collab/${id}`,
+  }),
   // toSampleUpload: () => ({
   //   href: '/artist/settings/',
   //   as: `/artist/settings/samples`,

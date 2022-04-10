@@ -255,7 +255,6 @@ const Profile = ({
                 <SocialProspectusPage
                   isSelf={isSelf}
                   user={user}
-                  socialProspectus={userSocialProspectus}
                 />
               </div>
             </TabPane>
