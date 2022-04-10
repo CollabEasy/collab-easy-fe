@@ -2,6 +2,7 @@ import Image from "next/image";
 import Title from "components/title";
 import { useRouter } from "next/router";
 import { LISTING_BANNERS } from "../../config/constants";
+import { SIMILAR_CATEGORIES } from "../../config/constants";
 import { Card, Button } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import Link from "next/link";
@@ -47,22 +48,6 @@ type Props = {
   user: any,
   artistListData: any
 } & ConnectedProps<typeof connector>;
-
-const getListingHeaderData = (selectedCategorySlug) => {
-  let general = {};
-  for (var i = 0; i < LISTING_BANNERS.length; i++) {
-    if (LISTING_BANNERS[i]["slug"] == selectedCategorySlug) {
-      return LISTING_BANNERS[i];
-    }
-    if (LISTING_BANNERS[i]["slug"] == "artist") {
-      // This is a case where we do not have any data for header. Just return the generic one.
-      general = LISTING_BANNERS[i];
-    }
-  }
-  return general;
-}
-
-
 const DiscoverArtist = ({
   artists,
   isLoggedIn,
@@ -79,7 +64,7 @@ const DiscoverArtist = ({
 
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
-  const { toArtistProfile } = useRoutesContext();
+  const { toArtistProfile, toArtist } = useRoutesContext();
   const router = useRouter();
   const { id: artSlug } = router.query;
 
@@ -100,6 +85,34 @@ const DiscoverArtist = ({
     }
   }, [artistListData]);
 
+  const getCategoryFromSlug = (selectedCategorySlug) => {
+    var selectedCategory = "Artists";
+    for (var i = 0; i < SIMILAR_CATEGORIES.length; i++) {
+      if (SIMILAR_CATEGORIES[i]["slugs"].indexOf(selectedCategorySlug) > -1) {
+        SIMILAR_CATEGORIES[i]["similar_categories"].forEach((category) => {
+          if (category["slug"] == selectedCategorySlug) {
+            selectedCategory = category["name"];
+          }
+        })
+      }
+    }
+    return selectedCategory;
+  }
+  const getListingHeaderData = (selectedCategorySlug) => {
+    let general = {};
+    for (var i = 0; i < LISTING_BANNERS.length; i++) {
+      if (LISTING_BANNERS[i]["slugs"].indexOf(selectedCategorySlug) > -1) {
+        LISTING_BANNERS[i]["category"] = getCategoryFromSlug(selectedCategorySlug);
+        return LISTING_BANNERS[i];
+      }
+      else if (LISTING_BANNERS[i]["slugs"].indexOf("artist") > -1) {
+        // This is a case where we do not have any data for header. Just return the generic one.
+        general = LISTING_BANNERS[i];
+      }
+    }
+    return general;
+  }
+
   const getUserSkills = (skills: string[]) => {
     const skillsHtml: JSX.Element[] = [];
     if (skills.length > 0) {
@@ -113,6 +126,31 @@ const DiscoverArtist = ({
       })
     }
     return skillsHtml;
+  }
+
+  const getSimilarCategories = (selectedCategorySlug) => {
+    const similarCategoriesHtml: JSX.Element[] = [];
+    SIMILAR_CATEGORIES.forEach((element) => {
+      if (element["slugs"].indexOf(selectedCategorySlug) > -1) {
+        element.similar_categories.forEach((category) => {
+          if (category["slug"] != selectedCategorySlug) {
+            similarCategoriesHtml.push(
+              <>
+                <div style={{ paddingLeft: "15px", paddingTop: "15px" }}>
+                  <Button >
+                    <Link
+                      href={toArtist().href + category["slug"]}
+                      passHref
+                    >
+                      {category["name"]}</Link></Button>
+                </div>
+              </>
+            )
+          }
+        })
+      }
+    })
+    return similarCategoriesHtml;
   }
 
   const getArtists = (color, category) => {
@@ -221,16 +259,16 @@ const DiscoverArtist = ({
                         {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
                           <div>
                             <h1 className="common-h1-style">
-                              {artists.length} {getListingHeaderData(artSlug)["heading"]}<br></br>
+                              {artists.length} {getListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit!<br></br>
                             </h1>
                             <h3 className="common-h3-style">
-                              {getListingHeaderData(artSlug)["sub_heading"]}
+                              send them a collab request to see if they are available.
                             </h3>
                           </div>
                         ) : (
                           <div>
                             <h1 className="common-h1-style">
-                              {artists.length} artists to work with on your next big hit.<br></br>
+                              {artists.length} artists to work with on your next big hit!<br></br>
                             </h1>
                             <h3 className="common-h3-style">
                               send them a collab request to see if they are available.
@@ -248,6 +286,11 @@ const DiscoverArtist = ({
                         objectFit="contain" // Scale your image down to fit into the container
                       />
                     </div>
+                  </div>
+                </div>
+                <div className="flex-row flex-wrap d-flex align-items-center justify-content-center colors my-2 scrolling-wrapper">
+                  <div className="btn-group">
+                    <p className="common-text-style" style={{ paddingLeft: "15px", paddingTop: "20px" }}>Similar categories:</p> {getSimilarCategories(artSlug)}
                   </div>
                 </div>
                 <div className="col-md-12 listingContainer">

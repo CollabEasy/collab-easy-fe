@@ -3942,69 +3942,47 @@ export enum CollabRequestStatus {
 
 export const LISTING_BANNERS = [
   {
-    "slug": "artist",
+    "slugs": ["artist"],
     "category": "Artists",
-    "heading": "Artists to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
     "image": artistImage,
     "background_color": "#ECCFD6",
   },
   {
-    "slug": "writer",
+    "slugs" : ["writer", "creative-writer", "poet", "spoken-words", "song-writer", "lyricist"],
     "category": "Writer",
-    "heading": "writers to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
     "image": writerImage,
     "background_color": "#EDC5CD",
   },
   {
-    "slug": "choreographer",
+    "slugs" : ["choreographer", "dancer"],
     "category": "Choreographer",
-    "heading": "choreographers to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
     "image": dancerImage,
     "background_color": "#FFDAC1",
   },
   {
-    "slug": "singer",
+    "slugs" : ["singer", "vocalist"],
     "category": "Singer",
-    "heading": "Singers to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
     "image": singerImage,
     "background_color": "#FBF0C4",
   },
   {
-    "slug": "photographer",
+    "slugs" : ["photographer", "graphic-designer", "illustrator", "video-editor", "film-maker"],
     "category": "Photographer",
-    "heading": "Photographer to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
     "image": photographerImage,
     "background_color": "#E2F0CB",
   },
   {
-    "slug": "painter",
+    "slugs" : ["painter", "carictaurist"],
     "category": "Painter",
-    "heading": "painters to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
     "image": painterImage,
     "background_color": "#C7CEEA",
   },
   {
-    "slug": "musician",
+    "slugs" : ["musician", "sound-engineer", "music-director"],
     "category": "Musician",
-    "heading": "Musicians to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
     "image": musicianImage,
     "background_color": "#B5EAD7",
   },
-  {
-    "slug": "spoken-words",
-    "category": "Spoken Words",
-    "heading": "poets to work with on your next big hit!",
-    "sub_heading": "send a collab request to see if they are available.",
-    "image": writerImage,
-    "background_color": "#EDC5CD",
-  }
 ]
 
 export const SOCIAL_PLATFORMS = [
