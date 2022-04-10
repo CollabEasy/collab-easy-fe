@@ -366,7 +366,7 @@ const EditProfile = ({
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0) return <Loader />;
   return (
-    <div className="edit-profile" style={{ padding: 200 }}>
+    <div className="edit-profile">
       <>
         {/* <Tabs
           tabPosition={"left"}
