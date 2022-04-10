@@ -3949,37 +3949,37 @@ export const LISTING_BANNERS = [
   },
   {
     "slugs" : ["writer", "creative-writer", "poet", "spoken-words", "song-writer", "lyricist"],
-    "category": "Writer",
+    "category": "Writers",
     "image": writerImage,
     "background_color": "#EDC5CD",
   },
   {
     "slugs" : ["choreographer", "dancer"],
-    "category": "Choreographer",
+    "category": "Choreographers",
     "image": dancerImage,
     "background_color": "#FFDAC1",
   },
   {
     "slugs" : ["singer", "vocalist"],
-    "category": "Singer",
+    "category": "Singers",
     "image": singerImage,
     "background_color": "#FBF0C4",
   },
   {
     "slugs" : ["photographer", "graphic-designer", "illustrator", "video-editor", "film-maker"],
-    "category": "Photographer",
+    "category": "Photographers",
     "image": photographerImage,
     "background_color": "#E2F0CB",
   },
   {
-    "slugs" : ["painter", "carictaurist"],
-    "category": "Painter",
+    "slugs" : ["painter", "caricaturist"],
+    "category": "Painters",
     "image": painterImage,
     "background_color": "#C7CEEA",
   },
   {
     "slugs" : ["musician", "sound-engineer", "music-director"],
-    "category": "Musician",
+    "category": "Musicians",
     "image": musicianImage,
     "background_color": "#B5EAD7",
   },
@@ -4023,15 +4023,15 @@ export const SIMILAR_CATEGORIES = [
     "slugs" : ["writer", "creative-writer", "poet", "spoken-words", "song-writer", "lyricist"],
     "similar_categories": [
       {
-        "name": "Writer",
+        "name": "Writers",
         "slug": "writer"
       },
       {
-        "name": "Creative Writer",
+        "name": "Creative Writers",
         "slug": "creative-writer" 
       },
       {
-        "name": "Poet",
+        "name": "Poets",
         "slug": "poet" 
       },
       {
@@ -4039,11 +4039,11 @@ export const SIMILAR_CATEGORIES = [
         "slug": "spoken-words" 
       },
       {
-        "name": "Song Writer",
+        "name": "Song Writers",
         "slug": "song-writer" 
       },
       {
-        "name": "Lyricist",
+        "name": "Lyricists",
         "slug": "lyricist" 
       }
     ]
@@ -4052,11 +4052,11 @@ export const SIMILAR_CATEGORIES = [
     "slugs" : ["choreographer", "dancer"],
     "similar_categories": [
       {
-        "name": "Choreographer",
+        "name": "Choreographers",
         "slug": "choreographer"
       },
       {
-        "name": "Dancer",
+        "name": "Dancers",
         "slug": "dancer" 
       },
     ]
@@ -4065,11 +4065,11 @@ export const SIMILAR_CATEGORIES = [
     "slugs" : ["singer", "vocalist"],
     "similar_categories": [
       {
-        "name": "Singer",
+        "name": "Singers",
         "slug": "singer"
       },
       {
-        "name": "Vocalist",
+        "name": "Vocalists",
         "slug": "vocalist" 
       },
     ]
@@ -4078,23 +4078,23 @@ export const SIMILAR_CATEGORIES = [
     "slugs" : ["photographer", "graphic-designer", "illustrator", "video-editor", "film-maker"],
     "similar_categories": [
       {
-        "name": "Photographer",
+        "name": "Photographers",
         "slug": "photographer"
       },
       {
-        "name": "Illustrator",
+        "name": "Illustrators",
         "slug": "illustrator" 
       },
       {
-        "name": "Graphic Designer",
+        "name": "Graphic Designers",
         "slug": "graphic-designer" 
       },
       {
-        "name": "Video Editor",
+        "name": "Video Editors",
         "slug": "video-editor"
       },
       {
-        "name": "Film Maker",
+        "name": "Film Makers",
         "slug": "film-maker"
       }
     ]
@@ -4117,15 +4117,15 @@ export const SIMILAR_CATEGORIES = [
     ]
   },
   {
-    "slugs" : ["painter", "carictaurist"],
+    "slugs" : ["painter", "caricaturist"],
     "similar_categories": [
       {
-        "name": "Painter",
+        "name": "Painters",
         "slug": "painter"
       },
       {
-        "name": "Carictaurist",
-        "slug": "carictaurist" 
+        "name": "Caricaturists",
+        "slug": "caricaturist" 
       }
     ]
   }
