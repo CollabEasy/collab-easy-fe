@@ -58,12 +58,18 @@ const CollabPage = ({
     window.alert(comment);
   }
 
+  const hideNewCommentBox = (status) => {
+    if (status == "REJECTED" || status == "EXPIRED" || status == "COMPLETED") {
+      return false;
+    }
+    return true;
+  }
   return (
     <>
       <div className="collabDetailsPage_container">
         <CollabDetailCard showUser={true} collabDetails={getCollabRequest(collab)} />
         <div className="collabDetailsPage_newCommentContainer">
-          {getCollabRequest(collab)["status"] != "COMPLETED" && (
+          {hideNewCommentBox(getCollabRequest(collab)["status"]) && (
             <>
               <TextArea rows={4} placeholder="What is in your mind." maxLength={500} onChange={(e) => {
                 handleChange(e)
