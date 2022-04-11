@@ -44,11 +44,9 @@
 }
 
 .collabDetailCard__statusContainer {
-    // display: flex;
-    // margin: 0 auto;
-    // flex-direction: column;
-    // margin-left: auto;
-    // margin-right: 18px;
+    // position: relative;
+    // top: 0px;
+    // right: 0px;
 }
 
 .collabDetailCard__buttonContainer {
@@ -116,28 +114,25 @@
 }
 
 @media only screen and (max-width: 1100px) and (min-width: 901px) {
-    
-    
+    .collabDetailCard__textContainer {
+        h5 {
+            font-size: medium;
+        }
+        p {
+            font-size: small;
+        }
+    }
 }
 
 @media only screen and (max-width: 900px) and (min-width: 766px) {
-    .collabDetailCard__imageNameContainer {
-        //height: 120px;
-        //display: block;
-        //margin-left: auto;
-        //margin-right: auto;
-        //width: 50%;
-
-    }
-    .collabDetailCard__statusContainer {
-        //justify-content: center;
-        // width: 100%;
-    }
     .collabDetailCard__textContainer {
-        //padding-top: 20%;
-        //text-align: center;
+        h5 {
+            font-size: small;
+        }
+        p {
+            font-size: smaller;
+        }
     }
-    
 }
 
 @media only screen and (max-width: 767px) and (min-width: 601px) {
@@ -151,7 +146,8 @@
     }
     .collabDetailCard__statusContainer {
         justify-content: center;
-        width: 100%;
+        margin: auto;
+        display: flex;
     }
     .collabDetailCard__textContainer {
         padding-top: 20%;
@@ -171,10 +167,12 @@
     }
     .collabDetailCard__statusContainer {
         justify-content: center;
-        width: 100%;
+        margin: auto;
+        display: flex;
     }
     .collabDetailCard__textContainer {
         padding-top: 10%;
+        text-align: center;
     }
 }
   
@@ -189,6 +187,11 @@
     }
     .collabDetailCard__statusContainer {
         justify-content: center;
-        width: 100%;
+        margin: auto;
+        display: flex;
+    }
+    .collabDetailCard__textContainer {
+        padding-top: 10%;
+        text-align: center;
     }
 }

@@ -66,18 +66,15 @@ const CollabDetailCard = ({
       <div className="collabDetailCard__statusContainer">
         {icon}
         {collabDetails.status === "PENDING" && (
-          <Tooltip title="Cancel Request">
-            <Button
-              type="primary"
-              icon={<CloseCircleOutlined twoToneColor={"#ADA7A7"} />}
-              loading={isCancellingRequest}
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                cancelCollabRequest(collabDetails.id);
-              }}
-            ></Button>
-          </Tooltip>
+          <Button
+            type="primary"
+            loading={isCancellingRequest}
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              cancelCollabRequest(collabDetails.id);
+            }}
+          >Cancel Request</Button>
         )}
       </div>
     );
