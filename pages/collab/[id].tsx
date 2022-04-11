@@ -63,10 +63,14 @@ const CollabPage = ({
       <div className="collabDetailsPage_container">
         <CollabDetailCard showUser={true} collabDetails={getCollabRequest(collab)} />
         <div className="collabDetailsPage_newCommentContainer">
-          <TextArea rows={4} placeholder="What is in your mind." maxLength={500} onChange={(e) => {
-            handleChange(e)
-          }} />
-          <Button type="primary" className="collabDetailsPage_buttonContainer" onClick={saveComment}>Send</Button>
+          {getCollabRequest(collab)["status"] != "COMPLETED" && (
+            <>
+              <TextArea rows={4} placeholder="What is in your mind." maxLength={500} onChange={(e) => {
+                handleChange(e)
+              }} />
+              <Button type="primary" className="collabDetailsPage_buttonContainer" onClick={saveComment}>Send</Button>
+            </>
+          )}
         </div>
       </div>
     </>
