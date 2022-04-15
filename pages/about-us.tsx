@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Button } from "antd";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
-import headerImg from "../public/images/aboutUsheader.png";
+import headerImg from "../public/images/aboutUsHeader.png";
 import { routeToHref } from "config/routes";
 
 import LoginModal from '../components/loginModal';
