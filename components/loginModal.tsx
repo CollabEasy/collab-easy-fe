@@ -44,6 +44,8 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
 
   const { toTerms, toPrivacy } = useRoutesContext()
 
+  console.log("Rabbal ", user);
+
   return (
     <Modal
       visible={visible}
