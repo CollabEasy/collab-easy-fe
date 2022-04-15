@@ -11,8 +11,10 @@ const postConfig = (dataToSend) => {
 export const getLoginData = async (token: string) => {
   console.log("You have the token ", token);
   const config = postConfig({"id_token": token});
+  console.log("you have ", config);
   try {
     const result = await api.call('api/v1/artist/login', config);
+    console.log("result ", result);
     return result;
   } catch (error) {
     throw error;
