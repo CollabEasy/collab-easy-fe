@@ -37,7 +37,7 @@ const CollabPage = ({
   const { id: collabId } = router.query;
   useEffect(() => {
     getCollabRequestsAction({
-      collabRequestId: collabId,
+      collabRequestId: collabId as string,
     });
   }, [getCollabRequestsAction, collabId]);
 

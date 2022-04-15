@@ -214,7 +214,7 @@ const EditProfile = ({
     router.push("/artist/settings/profile?tab=personal-information");
   }
 
-  function handleChange(value: string | React.SetStateAction<any[]>) {
+  function handleChange(value: string[]) {
     if (value.length <= 3) {
       setSelectedCategories(value);
     }
@@ -329,6 +329,7 @@ const EditProfile = ({
       title: "Action",
       key: "key",
       dataIndex: "key",
+      // eslint-disable-next-line react/display-name
       render: (_text: any, record: any) => (
         <>
           <Button type="primary" onClick={() => updateUserProspectus(record)}>
@@ -668,7 +669,7 @@ const EditProfile = ({
           <TabPane tab="Scratchpad" key="1.5">
             <div className="settings__basicProfileCardThird">
               <h2 className="f-20 ">Your Space to take notes</h2>
-              <ScratchpadPage user={user} />
+              <ScratchpadPage/>
             </div>
           </TabPane>
         </Tabs>

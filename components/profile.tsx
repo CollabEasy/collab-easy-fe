@@ -139,11 +139,11 @@ const Profile = ({
           </div>
           <div className="artistProfile__profileDpContainer">
             <Image
-              src={user.profile_pic_url ? user.profile_pic_url : avatar}
-              width="150px"
-              height="150px"
-              alt="Landing page"
-            />
+                src={user?.profile_pic_url}
+                alt="profile picture"
+                height={150}
+                width={150}
+              />
           </div>
         </div>
         <div className="artistProfile__artistDetailContainer common-text-style">
