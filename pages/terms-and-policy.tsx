@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+// eslint-disable-next-line react/no-unescaped-entities
 import { NextPage } from 'next'
 import { Button } from "antd";
 import Link from "next/link";
