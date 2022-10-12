@@ -4,7 +4,7 @@ import { AppState } from "state";
 import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
 import { useMemo } from 'react'
-import { Editable, withReact, Slate } from 'slate-react'
+import { Editable, withReact, Slate, ReactEditor } from 'slate-react'
 import { createEditor } from 'slate';
 import { Button } from "antd";
 import { useEffect } from "react";
@@ -77,7 +77,7 @@ const ScratchpadPage = ({
         }
         setViewMode(true);
     }
-    const editor = useMemo(() => withReact(createEditor()), [])
+    const editor = useMemo(() => withReact(createEditor() as ReactEditor), []);
     const [value, setValue] = useState(
         loggedInUserScratchpad.content.length !== 0 ? deserialize(loggedInUserScratchpad.content) :
             [

@@ -34,15 +34,19 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
   };
 
   const OnSuccessCallback = (response) => {
+    console.log("You are in success ", response);
     let { tokenId } = response;
     fetchLoginData(tokenId);
   };
 
   const OnFailureCallback = (response) => {
+    console.log("You are in failure ", response);
     setErrorMessageVisible(true);
   };
 
   const { toTerms, toPrivacy } = useRoutesContext()
+
+  console.log("Rabbal ", user);
 
   return (
     <Modal

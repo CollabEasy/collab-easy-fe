@@ -159,7 +159,7 @@ const SocialProspectusPage = ({
             )}
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            {socialProspectus.length != 0 && (
+            {socialProspectus && (
               <div className="col-md-8 socialProspectus_viewCardContainer">
                 {getCurrentSocialProspectus()}
               </div>

@@ -64,7 +64,7 @@ const CollabDetailCard = ({
 
     return (
       <div className="collabDetailCard__statusContainer">
-        {icon}
+        {collabDetails.status !== "PENDING" && icon}
         {collabDetails.status === "PENDING" && (
           <Button
             type="primary"
@@ -129,7 +129,7 @@ const CollabDetailCard = ({
       <div className="collabDetailCard__container">
         <div className="row p-2 bg-white border rounded collab-card">
           <div className="col-md-3 mt-1 social-profile-picture">
-            {showUser && (
+            {(
               <div
                 onClick={(e) => {
                   e.stopPropagation();
