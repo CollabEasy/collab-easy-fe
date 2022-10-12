@@ -1,6 +1,5 @@
 import { AppEnvs, NodeEnvs } from "./environment";
 
-
 export const Config = {
   appEnv: process.env.APP_ENV || AppEnvs.DEVELOPMENT,
   nodeEnv: process.env.NODE_ENV || NodeEnvs.DEVELOPMENT,
