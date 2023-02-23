@@ -78,7 +78,7 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
               </div>
               <div className="signup-container">
                 <GoogleLogin
-                  clientId="265324139647-lv38dkdpnqq06e66mkt9a6ab6i4r1cik.apps.googleusercontent.com"
+                  clientId="896694875793-05dp2a045lu38ki42dbb1t010rmr5hr9.apps.googleusercontent.com"
                   buttonText="Sign in with Google"
                   onSuccess={OnSuccessCallback}
                   onFailure={OnFailureCallback}
