@@ -6,10 +6,11 @@ import profileImageImg from "../public/images/profile.png";
 import { closeLoginModalAction, fetchLoginData } from "../state/action";
 import { Dispatch } from "redux";
 import { AppState } from "types/states";
-import { GoogleLogin } from "react-google-login";
 import { User } from "types/model";
 import { useRoutesContext } from "../components/routeContext";
 import Link from 'next/link';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user;
@@ -77,13 +78,14 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
                 </span>
               </div>
               <div className="signup-container">
-                <GoogleLogin
-                  clientId="896694875793-05dp2a045lu38ki42dbb1t010rmr5hr9.apps.googleusercontent.com"
-                  buttonText="Sign in with Google"
-                  onSuccess={OnSuccessCallback}
-                  onFailure={OnFailureCallback}
-                  cookiePolicy={"single_host_origin"}
-                />
+                <GoogleOAuthProvider clientId="896694875793-05dp2a045lu38ki42dbb1t010rmr5hr9.apps.googleusercontent.com">
+                  <GoogleLogin
+                    onSuccess={OnSuccessCallback}
+                    onError={() => {
+                      console.log('Login Failed');
+                    }}
+                  />
+                </GoogleOAuthProvider>
               </div>
               {(Object.keys(user.errors).length !== 0) && (
                 <p className="error-message common-text-style">
