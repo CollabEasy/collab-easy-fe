@@ -234,6 +234,8 @@ const EditProfile = ({
       active = "1.4";
     } else if (action === "profile" && tab === "scratchpad") {
       active = "1.5";
+    } else if (action === "profile" && tab === "collab-request") {
+      active = "1.6";
     }
     // else if (action === "account" && tab === "communication") {
     //   active = "2";
@@ -265,6 +267,9 @@ const EditProfile = ({
     } else if (tabIndex === "1.5") {
       action = "profile";
       tab = "scratchpad";
+    } else if (tabIndex === "1.6") {
+      action = "profile";
+      tab = "collab-request";
     }
     // else if (tabIndex === "2") {
     //   action = "account";
@@ -673,6 +678,11 @@ const EditProfile = ({
             <div className="settings__basicProfileCardThird">
               <h2 className="f-20 ">Your Space to take notes</h2>
               <ScratchpadPage/>
+            </div>
+          </TabPane>
+          <TabPane tab="Collab Request" key="1.6">
+          <div className="settings__basicProfileCardThird">
+              <h2 className="f-20 ">Your collab requests</h2>
             </div>
           </TabPane>
         </Tabs>
