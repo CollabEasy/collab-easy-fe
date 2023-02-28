@@ -95,11 +95,11 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
             this site.
           </p>
         </div>
-        <div className="footer_termsSectionContainer">
+        {/* <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Limitation</h5>
           <p className="common-p-style">
           </p>
-        </div>
+        </div> */}
         <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Accuracy</h5>
           <p className="common-p-style">
@@ -127,11 +127,11 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
             these terms of service.
           </p>
         </div>
-        <div className="footer_termsSectionContainer">
+        {/* <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Governing Law</h5>
           <p className="common-p-style">
           </p>
-        </div>
+        </div> */}
         <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Contact Us</h5>
           <p className="common-p-style">
