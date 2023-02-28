@@ -4023,15 +4023,15 @@ export const SIMILAR_CATEGORIES = [
     "slugs" : ["writer", "creative-writer", "poet", "spoken-words", "song-writer", "lyricist"],
     "similar_categories": [
       {
-        "name": "Writers",
+        "name": "Writer",
         "slug": "writer"
       },
       {
-        "name": "Creative Writers",
+        "name": "Creative Writer",
         "slug": "creative-writer" 
       },
       {
-        "name": "Poets",
+        "name": "Poet",
         "slug": "poet" 
       },
       {
@@ -4039,11 +4039,11 @@ export const SIMILAR_CATEGORIES = [
         "slug": "spoken-words" 
       },
       {
-        "name": "Song Writers",
+        "name": "Song Writer",
         "slug": "song-writer" 
       },
       {
-        "name": "Lyricists",
+        "name": "Lyricist",
         "slug": "lyricist" 
       }
     ]
@@ -4052,11 +4052,11 @@ export const SIMILAR_CATEGORIES = [
     "slugs" : ["choreographer", "dancer"],
     "similar_categories": [
       {
-        "name": "Choreographers",
+        "name": "Choreographer",
         "slug": "choreographer"
       },
       {
-        "name": "Dancers",
+        "name": "Dancer",
         "slug": "dancer" 
       },
     ]
@@ -4065,11 +4065,11 @@ export const SIMILAR_CATEGORIES = [
     "slugs" : ["singer", "vocalist"],
     "similar_categories": [
       {
-        "name": "Singers",
+        "name": "Singer",
         "slug": "singer"
       },
       {
-        "name": "Vocalists",
+        "name": "Vocalist",
         "slug": "vocalist" 
       },
     ]
@@ -4078,23 +4078,23 @@ export const SIMILAR_CATEGORIES = [
     "slugs" : ["photographer", "graphic-designer", "illustrator", "video-editor", "film-maker"],
     "similar_categories": [
       {
-        "name": "Photographers",
+        "name": "Photographer",
         "slug": "photographer"
       },
       {
-        "name": "Illustrators",
+        "name": "Illustrator",
         "slug": "illustrator" 
       },
       {
-        "name": "Graphic Designers",
+        "name": "Graphic Designer",
         "slug": "graphic-designer" 
       },
       {
-        "name": "Video Editors",
+        "name": "Video Editor",
         "slug": "video-editor"
       },
       {
-        "name": "Film Makers",
+        "name": "Film Maker",
         "slug": "film-maker"
       }
     ]
@@ -4120,11 +4120,11 @@ export const SIMILAR_CATEGORIES = [
     "slugs" : ["painter", "caricaturist"],
     "similar_categories": [
       {
-        "name": "Painters",
+        "name": "Painter",
         "slug": "painter"
       },
       {
-        "name": "Caricaturists",
+        "name": "Caricaturist",
         "slug": "caricaturist" 
       }
     ]
