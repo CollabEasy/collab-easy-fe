@@ -194,7 +194,7 @@ const DiscoverArtist = ({
             </div>
             <div className="align-items-center align-content-center col-md-3 border-left mt-1">
               <div className="d-flex flex-column mt-4">
-                <Button
+                {/* <Button
                   block
                   type="primary"
                   className="common-medium-btn"
@@ -206,7 +206,7 @@ const DiscoverArtist = ({
                     passHref
                   > Profile </Link>
 
-                </Button>
+                </Button> */}
 
                 <Button
                   block

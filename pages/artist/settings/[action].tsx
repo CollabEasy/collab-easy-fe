@@ -196,7 +196,7 @@ const EditProfile = ({
       preferences["upForCollaboration"] === "true" ||
       preferences["upForCollaboration"] === true
     )
-      setUpForCollaboration(true);
+    setUpForCollaboration(true);
 
     setUserDataCached(user);
     setSelectedCategories(user.skills);
@@ -316,6 +316,7 @@ const EditProfile = ({
     if (selectedCategories.length === 0) {
       message.error("You need to select atleast one art style.");
     } else {
+      console.log("rabbal:", selectedCategories);
       updateArtistSkills({ artNames: selectedCategories });
     }
   };
@@ -374,6 +375,8 @@ const EditProfile = ({
     });
     return <Table columns={columns} dataSource={updatedData} />;
   };
+
+  console.log(user.skills);
 
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0) return <Loader />;
@@ -595,7 +598,7 @@ const EditProfile = ({
                   <Select
                     mode="multiple"
                     style={{ width: "100%" }}
-                    placeholder="select atleast one art style"
+                    placeholder="Select atleast one art style"
                     onChange={(value) => {
                       if (value?.length > 3) {
                         value.pop();
@@ -636,7 +639,7 @@ const EditProfile = ({
               </Form>
             </div>
           </TabPane>
-          <TabPane tab="Samples" key="1.3">
+          {/* <TabPane tab="Samples" key="1.3">
             <div className="settings__basicProfileCardThird">
               <h2 className="f-20 ">Work Samples</h2>
               <p>
@@ -650,7 +653,7 @@ const EditProfile = ({
                 showLoader={isFetchingSamples}
               />
             </div>
-          </TabPane>
+          </TabPane> */}
           <TabPane tab="Social Prospectus" key="1.4">
             <div className="settings__basicProfileCardFourth">
               <h2 className="f-20 ">Social Media Prospectus</h2>

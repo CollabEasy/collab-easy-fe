@@ -152,11 +152,11 @@ const NavBar = ({
                   </div>
                 </div>
                 <div className="common-login-option">
-                  <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
+                  {/* <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
                     <div className="selected-option-shadow profile-option" onClick={() => setShowLoginOptions(false)}>
                       <span className="f-14 common-text-style">Profile</span>
                     </div>
-                  </Link>
+                  </Link> */}
                   <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref>
                     <div className="selected-option-shadow profile-option" onClick={() => setShowLoginOptions(false)}>
                       <span className="f-14 common-text-style">Scratchpad</span>
