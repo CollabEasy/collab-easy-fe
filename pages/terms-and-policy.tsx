@@ -67,9 +67,9 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
         <div className="footer_termsSectionContainer">
           <h1 className="common-h1-style">Terms & Conditions</h1>
           <p className="common-p-style">
-            When we say “Wondor”, “Company”, “we”, “our”, or “us” in this document,
-            we are referring to wondor.art a product built by us.
-            When we say “Services”, we mean any product created and maintained in as part of Wondor.
+            <b>Welcome to Wondor!.</b> When we say “Wondor”, “Company”, “we”, “our”, or “us” in this document,
+            we are referring to wondor.art a product built by us. When we say “Services”, we mean any 
+            product created and maintained in as part of Wondor.
           </p>
         </div>
 
@@ -95,6 +95,21 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
             this site.
           </p>
         </div>
+        <div className="footer_termsSectionContainer">
+          <h5 className="common-h5-style">Eligibility</h5>
+          <p className="common-p-style">
+          You must be 18 years or older to use our service. By using our service, you represent and 
+          warrant that you are at least 18 years old.
+          </p>
+        </div>
+        <div className="footer_termsSectionContainer">
+          <h5 className="common-h5-style">Account Creation</h5>
+          <p className="common-p-style">
+          To use our service, you may be required to create an account. You agree to 
+          provide accurate, current, and complete information during the account creation process and 
+          to update such information as necessary to ensure its accuracy.
+          </p>
+        </div>
         {/* <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Limitation</h5>
           <p className="common-p-style">
@@ -107,6 +122,13 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
             Wondor does not warrant that any of the materials on its website are accurate, complete or current.
             Wondor may make changes to the materials contained on its website at any time without notice.
             However Wondor does not make any commitment to update the materials.
+          </p>
+        </div>
+        <div className="footer_termsSectionContainer">
+          <h5 className="common-h5-style">Prohibited Conduct</h5>
+          <p className="common-p-style">
+          You agree not to use our service for any unlawful or prohibited purpose. You may not post any 
+          content that is offensive, harmful, or violates any third-party rights.
           </p>
         </div>
         <div className="footer_termsSectionContainer">
@@ -127,15 +149,30 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
             these terms of service.
           </p>
         </div>
-        {/* <div className="footer_termsSectionContainer">
+        <div className="footer_termsSectionContainer">
+          <h5 className="common-h5-style">Termination</h5>
+          <p className="common-p-style">
+            We reserve the right to terminate your access to our service at any time and for any reason.
+          </p>
+        </div>
+        <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Governing Law</h5>
           <p className="common-p-style">
+          These terms and conditions will be governed by and construed in accordance with the laws of 
+          the State of California, United States of America, without giving effect to any principles of 
+          conflicts of law.
           </p>
-        </div> */}
+        </div> 
         <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Contact Us</h5>
           <p className="common-p-style">
             If you have any questions or suggestions about my Privacy Policy, do not hesitate to Contact Us.
+          </p>
+        </div>
+        <div className="footer_termsSectionContainer">
+          <p className="common-p-style">
+          By using our service, you agree to these terms and conditions. If you do not agree to these 
+          terms and conditions, you should not use our service.
           </p>
         </div>
         <div className="footer_termsSectionContainer">
