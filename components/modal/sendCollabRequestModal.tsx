@@ -66,6 +66,8 @@ const SendCollabRequestModal = ({
     }
   };
 
+  console.log("Rabbal", otherUser);
+  console.log("Rabbal", collabDetails);
   return (
     <Modal
       closable

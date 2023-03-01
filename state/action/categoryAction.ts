@@ -84,5 +84,3 @@ export const getAllCategoriesSuccess = (data: any) => ({
     data
   },
 });
-
-

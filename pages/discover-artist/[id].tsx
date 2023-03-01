@@ -12,13 +12,14 @@ import { AppState } from "state";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import React, { useEffect, useState } from 'react';
-import * as action from "../../state/action/categoryAction";
+import * as action from  '../../state/action';
 import LoginModal from '../../components/loginModal';
 import { updateLoginData } from 'state/action';
-import { LoginModalDetails } from 'types/model';
+import { LoginModalDetails, CollabRequestData } from 'types/model';
 import NewUserModal from '../../components/modal/newUserModal';
 import Loader from "@/components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
+import SendCollabRequestModal from "../../components/modal/sendCollabRequestModal";
 
 const { Meta } = Card;
 
@@ -32,13 +33,15 @@ const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
   const artistListData = state.home.artistListDetails;
   const isLoggedIn = state.user.isLoggedIn;
-  return { errorInFetchingArtists, selectedCategorySlug, artists, isFetchingArtists, loggedInUserSlug, loginModalDetails, user, artistListData, isLoggedIn };
+  const showCollabModal = state.collab.showCollabModal;
+  return { showCollabModal, errorInFetchingArtists, selectedCategorySlug, artists, isFetchingArtists, loggedInUserSlug, loginModalDetails, user, artistListData, isLoggedIn };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistsByCategorySlug: (slug: string) =>
     dispatch(action.fetchArtistsByCategorySlug(slug)),
   updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
+  setShowCollabModalState: (show: boolean) => dispatch(action.setShowCollabModalState(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -57,16 +60,34 @@ const DiscoverArtist = ({
   loginModalDetails,
   selectedCategorySlug,
   errorInFetchingArtists,
+  showCollabModal,
   loggedInUserSlug,
   fetchArtistsByCategorySlug,
+  setShowCollabModalState,
   updateLoggedInData,
 }: Props) => {
 
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [userIdForCollab, saveUserIdForCollab] = useState("");
   const [showLoader, setShowLoader] = useState(true);
   const { toArtistProfile, toArtist } = useRoutesContext();
   const router = useRouter();
   const { id: artSlug } = router.query;
+
+  const emptyCollabDetails: CollabRequestData = {
+    id: "",
+    senderId: "",
+    receiverId: "",
+    collabDate: undefined,
+    requestData: {
+      message: "",
+      collabTheme: ""
+    },
+    status: "",
+    createdAt: undefined,
+    updatedAt: undefined
+  };
+  const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
 
   useEffect(() => {
     // we are not using selectedcategorySlug here because if a user is coming directly from a URL, 
@@ -84,6 +105,10 @@ const DiscoverArtist = ({
       setShowProfileModal(false);
     }
   }, [artistListData]);
+
+  const setUserIdForCollab = (userId) => {
+    saveUserIdForCollab(userId);
+  }
 
   const getCategoryFromSlug = (selectedCategorySlug) => {
     var selectedCategory = "Artists";
@@ -213,12 +238,13 @@ const DiscoverArtist = ({
                   className="common-medium-btn"
                   type="primary"
                   disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false"}
-                  style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
-                  <Link
-                    key={index}
-                    href={routeToHref(toArtistProfile(artist.slug))}
-                    passHref
-                  >Send collab request</Link>
+                  style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
+                  onClick={() => {
+                    setShowCollabModalState(true);
+                    setUserIdForCollab(artist.artist_id);
+                  }}
+                  >
+                  Send collab request
                 </Button>
               </div>
             </div>
@@ -300,6 +326,15 @@ const DiscoverArtist = ({
             </div>
           )}
         </div>
+      )}
+      {showCollabModal && (
+        <SendCollabRequestModal
+          otherUser={userIdForCollab}
+          onCancel={() => {
+            setShowCollabModalState(false);
+          }}
+          collabDetails={collabRequestDetails}
+        />
       )}
     </>
   );
