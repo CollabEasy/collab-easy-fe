@@ -3988,14 +3988,6 @@ export const LISTING_BANNERS = [
 export const SOCIAL_PLATFORMS = [
   {
     "id": 1,
-    "name": "Instagram",
-    "description": "Social media platform for sharing pictures and video.",
-    "approved": 1,
-    "base_url": "https://www.instagram.com",
-    "image": instagramImage,
-  },
-  {
-    "id": 2,
     "name": "Facebook",
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
@@ -4003,7 +3995,23 @@ export const SOCIAL_PLATFORMS = [
     "image":facebookImage,
   },
   {
+    "id": 2,
+    "name": "Instagram",
+    "description": "Social media platform for sharing pictures and video.",
+    "approved": 1,
+    "base_url": "https://www.instagram.com",
+    "image": instagramImage,
+  },
+  {
     "id": 3,
+    "name": "Youtube",
+    "description": "Social media platform for sharing pictures and video.",
+    "approved": 1,
+    "base_url": "https://www.youtube.com",
+    "image":facebookImage,
+  },
+  {
+    "id": 4,
     "name": "Tik Tok",
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
