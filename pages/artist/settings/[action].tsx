@@ -1,8 +1,8 @@
-import { User } from "types/model";
+import { CollabRequestData, User } from "types/model";
 import moment from "moment";
 import { InputNumber, message, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
-import { ProspectusEntry } from "types/model";
+import { ProspectusEntry, SearchCollab } from "types/model";
 import {
   Upload,
   Form,
@@ -52,6 +52,8 @@ const openLoginModal = () => {
 };
 
 const mapStateToProps = (state: AppState) => ({
+  collab: state.collab,
+  isFetchingCollabs: state.collab.isFetchingCollabDetails,
   user: state.user.user,
   preferences: state.user.preferences,
   samples: state.sample.samples,
@@ -89,6 +91,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(actions.setShowSocialProspectusModal(show)),
   deleteArtistSocialProspectus: (data: number) =>
     dispatch(actions.deleteArtistSocialProspectus(data)),
+  getCollabRequestsAction: (data: SearchCollab) => dispatch(actions.getCollabRequestsAction(data)),
 });
 
 const normFile = (e: any) => {
@@ -105,6 +108,7 @@ type Props = {} & ConnectedProps<typeof connector>;
 const EditProfile = ({
   user,
   samples,
+  collab,
   preferences,
   categories,
   socialProspectus,
@@ -125,6 +129,7 @@ const EditProfile = ({
   updateArtistProfile,
   setShowSocialProspectusModal,
   deleteArtistSocialProspectus,
+  getCollabRequestsAction,
 }: Props) => {
   const emptyProspectusEntryDetails: ProspectusEntry = {
     name: "",
@@ -133,6 +138,20 @@ const EditProfile = ({
     upForCollab: "",
   };
 
+  const emptyCollabDetails: CollabRequestData = {
+    id: "",
+    senderId: "",
+    receiverId: "",
+    collabDate: undefined,
+    requestData: {
+      message: "",
+      collabTheme: ""
+    },
+    status: "",
+    createdAt: undefined,
+    updatedAt: undefined
+  };
+  
   const [activeTabKey, setActiveTabKey] = useState("1");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);
@@ -146,6 +165,8 @@ const EditProfile = ({
   const [prospectusEntryRequestDetails, setProspectusEntryDetails] = useState(
     emptyProspectusEntryDetails
   );
+  const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
+  const [hasPendingCollab, setHasPendingCollab] = useState(false);
 
   const { Option } = Select;
 
@@ -189,7 +210,10 @@ const EditProfile = ({
     fetchArtistSamples(user.slug);
     fetchArtistSkills();
     fetchArtistSocialProspectus(user.slug);
-  }, []);
+    getCollabRequestsAction({
+      otherUserId: user.artist_id,
+    })
+  }, [getCollabRequestsAction]);
 
   useEffect(() => {
     if (
@@ -202,6 +226,19 @@ const EditProfile = ({
     setSelectedCategories(user.skills);
     setUserSocialProspectus(socialProspectus.socialProspectus);
   }, [preferences, user, socialProspectus]);
+
+  useEffect(() => {
+    if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {
+      setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
+      setHasPendingCollab(true);
+    } else if (collab.collabDetails.received.pending.length > 0 || collab.collabDetails.received.active.length > 0) {
+      setHasPendingCollab(true);
+      setCollabRequestDetails(collab.collabDetails.received.active[0]);
+    } else {
+      setHasPendingCollab(false);
+      setCollabRequestDetails(emptyCollabDetails);
+    }
+  }, [collab.collabDetails.received.pending, collab.collabDetails.sent.pending])
 
   const router = useRouter();
   const { action, tab } = router.query;
@@ -382,9 +419,12 @@ const EditProfile = ({
   };
 
   console.log(user.skills);
+  console.log("otherUserId:", user.artist_id),
+  console.log("Rabbal", collab);
+
 
   const currentDate = moment(new Date());
-  if (user && Object.keys(user).length === 0) return <Loader />;
+  if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails) return <Loader />;
   return (
     <div className="edit-profile">
       <>

@@ -60,14 +60,13 @@ const SendCollabRequestModal = ({
         },
         collabDate: collabDataCached.collabDate,
       };
+      console.log("Rabbal collab data is ", data);
       sendCollabRequestAction(data);
     } else {
       updateCollabRequest(collabDataCached);
     }
   };
 
-  console.log("Rabbal", otherUser);
-  console.log("Rabbal", collabDetails);
   return (
     <Modal
       closable
