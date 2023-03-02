@@ -3,6 +3,7 @@ import moment from "moment";
 import { InputNumber, message, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import { ProspectusEntry, SearchCollab } from "types/model";
+import CollabRequestTab from "../../../components/collabRequestTab";
 import {
   Upload,
   Form,
@@ -723,6 +724,13 @@ const EditProfile = ({
           <TabPane tab="Collab Request" key="1.6">
           <div className="settings__basicProfileCardThird">
               <h2 className="f-20 ">Your collab requests</h2>
+                <CollabRequestTab
+                  otherUser={user.artist_id}
+                  collabRequests={collab.collabDetails}
+                  onClickCollabRequest={(collabDetails: CollabRequestData) => {
+                    setCollabRequestDetails(collabDetails);
+                  }}
+                />
             </div>
           </TabPane>
         </Tabs>
