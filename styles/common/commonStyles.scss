@@ -4,37 +4,42 @@
 }
 .common-h1-style {
     font-family: 'Varela Round', sans-serif !important;
-    color: #394040;
+    color: rgba(0, 0, 0, 0.85);
 }
 
 .common-h2-style {
     font-family: 'Varela Round', sans-serif !important; 
-    color: #394040;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    font-size: 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .common-h3-style {
     font-family: 'Varela Round', sans-serif !important; 
-    color: #394040;
+    color: rgba(0, 0, 0, 0.85);
 }
 
 .common-h4-style {
     font-family: 'Varela Round', sans-serif !important; 
-    color: #394040;
+    color: rgba(0, 0, 0, 0.85);
 }
 
 .common-h5-style {
     font-family: 'Varela Round', sans-serif !important; 
-    color: #394040;
+    color: rgba(0, 0, 0, 0.85);
 }
 
 .common-p-style {
     font-family: 'Varela Round', sans-serif !important;
-    color: #394040;
+    color: rgba(0, 0, 0, 0.85);
 }
 
 .common-text-style {
     font-family: 'Varela Round', sans-serif !important;
-    color: #394040;
+    color: rgba(0, 0, 0, 0.85);
 }
 
 .common-small-btn {
