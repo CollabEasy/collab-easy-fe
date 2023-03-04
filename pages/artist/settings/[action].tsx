@@ -446,7 +446,7 @@ const EditProfile = ({
         >
           <TabPane tab="Profile" key="1.1">
             <div className="settings__basicProfileCard">
-              <h2 className="f-20 ">Personal Information</h2>
+              <h2 className="f-20 ">Personal information</h2>
               <Form
                 className="settings__basicProfileForm"
                 labelCol={{ span: 4 }}
@@ -457,7 +457,7 @@ const EditProfile = ({
                 size={componentSize as SizeType}
                 onFinish={submitForm}
               >
-                <Form.Item label="First Name">
+                <Form.Item label="First name">
                   <Input
                     value={userDataCached ? userDataCached.first_name : ""}
                     onChange={(e) => {
@@ -468,7 +468,7 @@ const EditProfile = ({
                     }}
                   />
                 </Form.Item>
-                <Form.Item label="Last Name">
+                <Form.Item label="Last name">
                   <Input
                     value={userDataCached ? userDataCached.last_name : ""}
                     onChange={(e) => {
@@ -552,7 +552,6 @@ const EditProfile = ({
                     showSearch
                     value={userDataCached ? userDataCached.country : ""}
                     onChange={(e) => {
-                      console.log("rabbal", e);
                       setUserDataCached((prevState) => ({
                         ...prevState,
                         country: e,
@@ -587,9 +586,9 @@ const EditProfile = ({
                     >
                       {isUpdatingProfile ? "Saving..." : "Save"}
                     </Button>
-                    <Button htmlType="button" onClick={resetData}>
+                    {/* <Button htmlType="button" onClick={resetData}>
                       Reset
-                    </Button>
+                    </Button> */}
                   </div>
                 </Form.Item>
               </Form>
@@ -608,7 +607,7 @@ const EditProfile = ({
                 size={componentSize as SizeType}
               >
                 <Form.Item
-                  label="Collaborate with others"
+                  label="Available to collab"
                   valuePropName="checked"
                 >
                   <Switch
@@ -628,7 +627,7 @@ const EditProfile = ({
 
                 <Form.Item
                   name="art"
-                  label="Art Styles"
+                  label="Art styles"
                   rules={[
                     {
                       validator(_, value) {
@@ -699,9 +698,9 @@ const EditProfile = ({
               />
             </div>
           </TabPane> */}
-          <TabPane tab="Social Prospectus" key="1.4">
+          <TabPane tab="Social prospectus" key="1.4">
             <div className="settings__basicProfileCardFourth">
-              <h2 className="f-20 ">Social Media Prospectus</h2>
+              <h2 className="f-20 ">Social media presence</h2>
               <div>
                 {!isFetchingSocialProspectus && (
                   <div>{getCurrentSocialProspectus()}</div>
@@ -716,11 +715,11 @@ const EditProfile = ({
           </TabPane>
           <TabPane tab="Scratchpad" key="1.5">
             <div className="settings__basicProfileCardThird">
-              <h2 className="f-20 ">Your Space to take notes</h2>
+              <h2 className="f-20 ">Your space to take notes</h2>
               <ScratchpadPage/>
             </div>
           </TabPane>
-          <TabPane tab="Collab Request" key="1.6">
+          <TabPane tab="Collab request" key="1.6">
           <div className="settings__basicProfileCardThird">
               <h2 className="f-20 ">Your collab requests</h2>
                 <CollabRequestTab
