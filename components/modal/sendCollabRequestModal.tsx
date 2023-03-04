@@ -60,6 +60,7 @@ const SendCollabRequestModal = ({
         },
         collabDate: collabDataCached.collabDate,
       };
+      console.log("Rabbal collab data is ", data);
       sendCollabRequestAction(data);
     } else {
       updateCollabRequest(collabDataCached);

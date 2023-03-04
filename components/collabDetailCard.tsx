@@ -74,7 +74,7 @@ const CollabDetailCard = ({
               e.preventDefault();
               cancelCollabRequest(collabDetails.id);
             }}
-          >Cancel Request</Button>
+          >Cancel</Button>
         )}
       </div>
     );
