@@ -60,10 +60,10 @@ export const CollabRequestTab = ({
     requestsToShow.forEach((request: CollabRequestData, index: number) => {
       htmlElement.push(
         <div
-          style={{ cursor: "pointer" }}
-          onClick={() => {
-            router.push(`/collab/${request.id}`);
-          }}
+          // style={{ cursor: "pointer" }}
+          // onClick={() => {
+          //   router.push(`/collab/${request.id}`);
+          // }}
         >
           <CollabDetailCard showUser={user.artist_id === otherUser} collabDetails={request} />
         </div>

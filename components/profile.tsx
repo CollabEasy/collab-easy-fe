@@ -208,7 +208,7 @@ const Profile = ({
                 <p className="mt4 common-p-style">{getUserSkills(true)} </p>
               </div>
             </TabPane>
-            <TabPane tab="Samples" key="2">
+            {/* <TabPane tab="Samples" key="2">
               <div className="artistProfile__tabContainer">
                 {userSamples.length == 0 ? (
                   <div
@@ -235,7 +235,7 @@ const Profile = ({
                   </>
                 )}
               </div>
-            </TabPane>
+            </TabPane> */}
             {/* {isSelf && ( */}
             <TabPane tab="Collab Requests" key="3">
               <div className="artistProfile__tabContainer">

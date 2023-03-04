@@ -212,7 +212,6 @@ const EditProfile = ({
     fetchArtistSkills();
     fetchArtistSocialProspectus(user.slug);
     getCollabRequestsAction({
-      otherUserId: user.artist_id,
     })
   }, [getCollabRequestsAction]);
 

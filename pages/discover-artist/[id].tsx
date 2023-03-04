@@ -12,7 +12,7 @@ import { AppState } from "state";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import React, { useEffect, useState } from 'react';
-import * as action from  '../../state/action';
+import * as action from '../../state/action';
 import LoginModal from '../../components/loginModal';
 import { updateLoginData } from 'state/action';
 import { LoginModalDetails, CollabRequestData } from 'types/model';
@@ -219,7 +219,7 @@ const DiscoverArtist = ({
             </div>
             <div className="align-items-center align-content-center col-md-3 border-left mt-1">
               <div className="d-flex flex-column mt-4">
-                {/* <Button
+                <Button
                   block
                   type="primary"
                   className="common-medium-btn"
@@ -231,7 +231,7 @@ const DiscoverArtist = ({
                     passHref
                   > Profile </Link>
 
-                </Button> */}
+                </Button>
 
                 <Button
                   block
