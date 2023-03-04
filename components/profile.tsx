@@ -156,7 +156,7 @@ const Profile = ({
             onClick={() => {
               router.push("/artist/settings/edit");
             }}
-          > Edit Profile</Button>
+          > Edit profile</Button>
 
           ) : (
             <>
@@ -170,8 +170,8 @@ const Profile = ({
                       setShowCollabModalState(true);
                       setCollabRequestDetails(collab.collabDetails.sent.pending[0] ?? collab.collabDetails.sent.active[0]);
                     }}
-                  > Show Pending Request</Button>
-                  <span className="common-text-style"><StarFilled style={{ color: 'orange', margin: '5px' }} />you have a pending collab request with this artist. </span>
+                  > Show pending requests</Button>
+                  <span className="common-text-style"><StarFilled style={{ color: 'orange', margin: '5px' }} />You have a pending collab request with this artist. </span>
                 </>
               ) : (
                 <>
@@ -185,9 +185,9 @@ const Profile = ({
                     }}
                   >  Collaborate</Button>
                   {!upForCollab ? (
-                    <span className="common-text-style"><CloseOutlined style={{ color: 'red', marginTop: '20px' }} />artist is not available to collab! </span>
+                    <span className="common-text-style"><CloseOutlined style={{ color: 'red', marginTop: '20px' }} />Artist is not available to collab! </span>
                   ) : (
-                    <span className="common-text-style"><CheckOutlined style={{ color: 'green', marginTop: '20px' }} />artist is available to collab! </span>
+                    <span className="common-text-style"><CheckOutlined style={{ color: 'green', marginTop: '20px' }} />Artist is available to collab! </span>
                   )}
                 </>
               )}
@@ -236,8 +236,7 @@ const Profile = ({
                 )}
               </div>
             </TabPane> */}
-            {/* {isSelf && ( */}
-            <TabPane tab="Collab Requests" key="3">
+            {/* <TabPane tab="Collab Requests" key="3">
               <div className="artistProfile__tabContainer">
                 <CollabRequestTab
                   otherUser={user.artist_id}
@@ -248,8 +247,7 @@ const Profile = ({
                   }}
                 />
               </div>
-            </TabPane>
-            {/* )} */}
+            </TabPane> */}
             <TabPane tab="Social Prospectus" key="4">
               <div className="artistProfile__tabContainer">
                 <SocialProspectusPage

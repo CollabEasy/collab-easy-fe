@@ -103,9 +103,9 @@ const SocialProspectusPage = ({
               <p className="text-justify para mb-0  break-word common-p-style">{element.description}<br></br><br></br></p>
               <div>
                 {element.up_for_collab == "false" ? (
-                  <p className="common-p-style"><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />artist not available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
+                  <p className="common-p-style"><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />Artist is not available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
                 ) : (
-                  <p className="common-p-style"><CheckOutlined style={{ color: 'green', marginRight: '5px' }} />artist available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
+                  <p className="common-p-style"><CheckOutlined style={{ color: 'green', marginRight: '5px' }} />Artist is available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
                 )}
               </div>
             </div>
@@ -139,7 +139,7 @@ const SocialProspectusPage = ({
               <>
                 {isSelf ? (
                   <div className="socialProspectus_noProfiles">
-                    <p className="text-center common-text-style">{user.first_name}, add social profiles and Let everyone know!</p>
+                    <p className="text-center common-text-style">{user.first_name}, add social media profiles and Let everyone know you are a creator!</p>
                     <Button
                       type="primary"
                       className="common-btn-dimension"
@@ -152,7 +152,7 @@ const SocialProspectusPage = ({
                   </div>
                 ) : (
                   <div className="socialProspectus_noProfiles">
-                    <p className="text-center common-text-style">Oops, looks like {user.first_name} has not added any social profile.</p>
+                    <p className="text-center common-text-style">Oops, looks like {user.first_name} has not added any social media profile.</p>
                   </div>
                 )}
               </>
