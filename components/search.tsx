@@ -54,7 +54,7 @@ const Search = ({ setSelectedArtId, setSelectedArtSlug } : Props) => {
 
     const handleTextChange = useCallback(
         debounce((searchQuery: string) => {
-            console.log("event : ", searchQuery);
+            // console.log("event : ", searchQuery);
             onSearch$.next(searchQuery);
     }, 500), []);
 

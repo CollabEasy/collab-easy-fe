@@ -35,19 +35,19 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
   };
 
   const OnSuccessCallback = (response) => {
-    console.log("You are in success ", response);
+   //  console.log("You are in success ", response);
     let  tokenId  = response.credential;
     fetchLoginData(tokenId);
   };
 
   const OnFailureCallback = (response) => {
-    console.log("You are in failure ", response);
+   //  console.log("You are in failure ", response);
     setErrorMessageVisible(true);
   };
 
   const { toTerms, toPrivacy } = useRoutesContext()
 
-  console.log("Rabbal ", user);
+  // console.log("Rabbal ", user);
 
   return (
     <Modal
@@ -82,7 +82,7 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
                   <GoogleLogin
                     onSuccess={OnSuccessCallback}
                     onError={() => {
-                      console.log('Login Failed');
+                      // console.log('Login Failed');
                     }}
                   />
                 </GoogleOAuthProvider>

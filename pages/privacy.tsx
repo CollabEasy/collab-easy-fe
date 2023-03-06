@@ -52,7 +52,7 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
     }
   }, [artistListData]);
 
-  console.log("loginModalDetails ", loginModalDetails);
+  // console.log("loginModalDetails ", loginModalDetails);
   return (
     <>
       {loginModalDetails.openModal && !user.new_user && (

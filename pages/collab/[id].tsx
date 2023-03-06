@@ -54,7 +54,7 @@ const CollabPage = ({
   }
 
   const saveComment = () => {
-    console.log("saving the comment ", comment);
+    // console.log("saving the comment ", comment);
     window.alert(comment);
   }
 

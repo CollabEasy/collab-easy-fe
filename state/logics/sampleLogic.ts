@@ -20,7 +20,7 @@ export const uploadSampleLogic = createLogic<
       const result = await sampleApi.uploadSampleApi(data);
       dispatch(actions.uploadSampleWorkSuccess(result));
     } catch (error) {
-      console.log("error : ", error);
+     // console.log("error : ", error);
     } finally {
       done();
     }
@@ -42,7 +42,7 @@ export const fetchSampleLogic = createLogic<
       const result = await sampleApi.fetchSampleApi(slug);
       dispatch(actions.fetchArtistSamplesSuccess(result));
     } catch (error) {
-      console.log("error : ", error);
+      // console.log("error : ", error);
     } finally {
       done();
     }
@@ -64,7 +64,7 @@ export const deleteSampleLogic = createLogic<
       const result = await sampleApi.deleteSampleAPI(data);
       dispatch(actions.deleteArtistSampleSuccess(data));
     } catch (error) {
-      console.log("error : ", error);
+     // console.log("error : ", error);
     } finally {
       done();
     }
