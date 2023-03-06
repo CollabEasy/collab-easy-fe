@@ -1,24 +1,30 @@
-.login-modal-container{
+.login-modal-container {
 	height: 100%;
-	.login-signup-container{
+
+	.login-signup-container {
 		display: flex;
 		height: 100%;
-		.login-image{
+
+		.login-image {
 			width: 60%;
 			height: 100%;
-			.profile-image{
+
+			.profile-image {
 				height: 100% !important;
 			}
 		}
-		.login-image > div{
+
+		.login-image>div {
 			height: 100%;
 		}
-		.login-info-container{
+
+		.login-info-container {
 			width: 40%;
 			position: relative;
-    		padding: 30px;
+			padding: 30px;
 		}
-		.login-wrapper{
+
+		.login-wrapper {
 			width: 100%;
 			position: absolute;
 			top: 50%;
@@ -26,20 +32,27 @@
 			transform: translate(-50%, -50%);
 			text-align: center;
 		}
-		.signup-container{
-			padding: 30px 20px 10px;
-			a{
+
+		.signup-container {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+
+			a {
 				color: #fff;
 			}
-			button{
+
+			button {
 				width: 100%;
 			}
 		}
+
 		.error-message {
 			font-size: 12px;
 			color: red;
 		}
-		.policy-container{
+
+		.policy-container {
 			padding: 20px;
 		}
 	}
@@ -47,54 +60,60 @@
 
 
 // Please write media query for all screen sizes below this line.
-@media only screen and (max-width: 1024px) and (min-width: 993px) {
-} 
-  
-@media only screen and (max-width: 992px) and (min-width: 601px) {
-}
-  
-@media only screen and (max-width: 600px) and  (min-width: 400px) {
+@media only screen and (max-width: 1024px) and (min-width: 993px) {}
+
+@media only screen and (max-width: 992px) and (min-width: 601px) {}
+
+@media only screen and (max-width: 600px) and (min-width: 400px) {
 	.login-modal-container {
 		.login-signup-container {
 			.login-image {
 				display: none;
+
 				.profile-image {
 					display: none;
 				}
 			}
-			.login-info-container{
+
+			.login-info-container {
 				width: 100%;
 				text-align: center;
 			}
-			.signup-container{
+
+			.signup-container {
 				padding-left: 50px;
 				padding-right: 50px;
 			}
+
 			.error-message {
 				font-size: 12px;
 				color: red;
 			}
-			.policy-container{
+
+			.policy-container {
 				padding-left: 50px;
 				padding-right: 50px;
 			}
 		}
 	}
 }
-  
+
 @media only screen and (max-width: 399px) {
 	.login-modal-container {
 		.login-signup-container {
 			.login-image {
 				display: none;
+
 				.profile-image {
 					display: none;
 				}
 			}
-			.login-info-container{
+
+			.login-info-container {
 				width: 100%;
 				text-align: center;
 			}
+
 			.error-message {
 				font-size: 12px;
 				color: red;

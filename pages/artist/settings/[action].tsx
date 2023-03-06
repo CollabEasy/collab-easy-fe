@@ -4,6 +4,7 @@ import { InputNumber, message, Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import { ProspectusEntry, SearchCollab } from "types/model";
 import CollabRequestTab from "../../../components/collabRequestTab";
+import NotAuthorised from "@/components/error/notAuthorised";
 import {
   Upload,
   Form,
@@ -35,10 +36,13 @@ import { useRoutesContext } from "components/routeContext";
 import State from "state";
 import * as actions from "state/action";
 import { useRouter } from "next/router";
+import { LoginModalDetails } from 'types/model';
 import { useCallback } from "react";
 import { getAllCategories } from "api/category";
 import Loader from "@/components/loader";
 import ArtistSocialProspectusModal from "@/components/modal/socialProspectusModal";
+import LoginModal from '@/components/loginModal';
+import NewUserModal from '@/components/modal/newUserModal';
 
 const { TabPane } = Tabs;
 
@@ -60,6 +64,8 @@ const mapStateToProps = (state: AppState) => ({
   samples: state.sample.samples,
   categories: state.category.categories,
   socialProspectus: state.socialProspectus,
+  loginModalDetails: state.home.loginModalDetails,
+  isLoggedIn: state.user.isLoggedIn,
 
   isFetchingSamples: state.sample.isFetchingSamples,
   isFetchingSocialProspectus: state.socialProspectus?.isFetchingProspectus,
@@ -115,6 +121,8 @@ const EditProfile = ({
   socialProspectus,
   isUpdatingProfile,
   isUpdatingPrefs,
+  loginModalDetails,
+  isLoggedIn,
   isUpdatingProspectus,
   isFetchingSamples,
   isFetchingSocialProspectus,
@@ -152,11 +160,12 @@ const EditProfile = ({
     createdAt: undefined,
     updatedAt: undefined
   };
-  
+
   const [activeTabKey, setActiveTabKey] = useState("1");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);
   const [upForCollaboration, setUpForCollaboration] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
   const [userDataCached, setUserDataCached] = useState<User>(user);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
@@ -220,7 +229,7 @@ const EditProfile = ({
       preferences["upForCollaboration"] === "true" ||
       preferences["upForCollaboration"] === true
     )
-    setUpForCollaboration(true);
+      setUpForCollaboration(true);
 
     setUserDataCached(user);
     setSelectedCategories(user.skills);
@@ -324,7 +333,7 @@ const EditProfile = ({
     router.push("/artist/settings/" + action + "?tab=" + tab);
   };
 
-  const resetData = () => {};
+  const resetData = () => { };
 
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
@@ -420,15 +429,30 @@ const EditProfile = ({
 
   console.log(user.skills);
   console.log("otherUserId:", user.artist_id),
-  console.log("Rabbal", collab);
+    console.log("Rabbal", collab);
 
 
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails) return <Loader />;
   return (
-    <div className="edit-profile">
-      <>
-        {/* <Tabs
+    <>
+      {loginModalDetails.openModal && !user.new_user && (
+        <LoginModal />
+      )
+      }
+      {showProfileModal && (
+        <NewUserModal />
+      )
+      }
+      {!isLoggedIn ? (
+        <>
+          <NotAuthorised />
+        </>
+      ) : (
+
+        <div className="edit-profile">
+          <>
+            {/* <Tabs
           tabPosition={"left"}
           onChange={(key: string) => {
             redirect(key);
@@ -436,62 +460,62 @@ const EditProfile = ({
           activeKey={getActiveTab()}
         >
           <TabPane tab="Artist's Information" key="1"> */}
-        <Tabs
-          type="card"
-          centered
-          onChange={(key: string) => {
-            redirect(key);
-          }}
-          activeKey={getActiveTab()}
-        >
-          <TabPane tab="Profile" key="1.1">
-            <div className="settings__basicProfileCard">
-              <h2 className="f-20 ">Personal information</h2>
-              <Form
-                className="settings__basicProfileForm"
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-                initialValues={{ size: componentSize }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize as SizeType}
-                onFinish={submitForm}
-              >
-                <Form.Item label="First name">
-                  <Input
-                    value={userDataCached ? userDataCached.first_name : ""}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        first_name: e.target.value,
-                      }));
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item label="Last name">
-                  <Input
-                    value={userDataCached ? userDataCached.last_name : ""}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        last_name: e.target.value,
-                      }));
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item label="Email">
-                  <Input
-                    value={userDataCached ? userDataCached.email : ""}
-                    disabled={true}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        email: e.target.value,
-                      }));
-                    }}
-                  />
-                </Form.Item>
-                {/* <Form.Item label="Phone Number">
+            <Tabs
+              type="card"
+              centered
+              onChange={(key: string) => {
+                redirect(key);
+              }}
+              activeKey={getActiveTab()}
+            >
+              <TabPane tab="Profile" key="1.1">
+                <div className="settings__basicProfileCard">
+                  <h2 className="f-20 ">Personal information</h2>
+                  <Form
+                    className="settings__basicProfileForm"
+                    labelCol={{ span: 4 }}
+                    wrapperCol={{ span: 14 }}
+                    layout="horizontal"
+                    initialValues={{ size: componentSize }}
+                    onValuesChange={onFormLayoutChange}
+                    size={componentSize as SizeType}
+                    onFinish={submitForm}
+                  >
+                    <Form.Item label="First name">
+                      <Input
+                        value={userDataCached ? userDataCached.first_name : ""}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            first_name: e.target.value,
+                          }));
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Last name">
+                      <Input
+                        value={userDataCached ? userDataCached.last_name : ""}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            last_name: e.target.value,
+                          }));
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Email">
+                      <Input
+                        value={userDataCached ? userDataCached.email : ""}
+                        disabled={true}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            email: e.target.value,
+                          }));
+                        }}
+                      />
+                    </Form.Item>
+                    {/* <Form.Item label="Phone Number">
                       <Input
                         addonBefore={prefixSelector}
                         style={{ width: "100%" }}
@@ -508,182 +532,182 @@ const EditProfile = ({
                         }}
                       />
                     </Form.Item> */}
-                <Form.Item label="Date of birth">
-                  <DatePicker
-                    clearIcon={null}
-                    disabledDate={(d) =>
-                      !d ||
-                      d.isAfter(currentDate) ||
-                      currentDate >= moment().endOf("day")
-                    }
-                    format="DD/MM/YYYY"
-                    value={moment(
-                      userDataCached.date_of_birth
-                        ? userDataCached.date_of_birth
-                        : currentDate
-                    )}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        date_of_birth: e.toDate(),
-                      }));
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item label="Gender">
-                  <Select
-                    value={userDataCached ? userDataCached.gender : ""}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        gender: e,
-                      }));
-                    }}
-                  >
-                    {GENDERS.map((gen) => (
-                      <Select.Option key={gen} value={gen}>
-                        {gen}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-                <Form.Item label="Country">
-                  <Select
-                    showSearch
-                    value={userDataCached ? userDataCached.country : ""}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        country: e,
-                      }));
-                    }}
-                  >
-                    {COUNTRIES.map((country) => (
-                      <Select.Option key={country.Iso2} value={country.Name}>
-                        {country.Unicode} {country.Name}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-                <Form.Item label="Bio">
-                  <Input.TextArea
-                    value={userDataCached ? userDataCached.bio : ""}
-                    onChange={(e) => {
-                      setUserDataCached((prevState) => ({
-                        ...prevState,
-                        bio: e.target.value,
-                      }));
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item {...tailLayout}>
-                  <div className="settings__basicProfileSubmitContainer">
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      onClick={submitForm}
-                      loading={isUpdatingProfile}
-                    >
-                      {isUpdatingProfile ? "Saving..." : "Save"}
-                    </Button>
-                    {/* <Button htmlType="button" onClick={resetData}>
+                    <Form.Item label="Date of birth">
+                      <DatePicker
+                        clearIcon={null}
+                        disabledDate={(d) =>
+                          !d ||
+                          d.isAfter(currentDate) ||
+                          currentDate >= moment().endOf("day")
+                        }
+                        format="DD/MM/YYYY"
+                        value={moment(
+                          userDataCached.date_of_birth
+                            ? userDataCached.date_of_birth
+                            : currentDate
+                        )}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            date_of_birth: e.toDate(),
+                          }));
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Gender">
+                      <Select
+                        value={userDataCached ? userDataCached.gender : ""}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            gender: e,
+                          }));
+                        }}
+                      >
+                        {GENDERS.map((gen) => (
+                          <Select.Option key={gen} value={gen}>
+                            {gen}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item label="Country">
+                      <Select
+                        showSearch
+                        value={userDataCached ? userDataCached.country : ""}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            country: e,
+                          }));
+                        }}
+                      >
+                        {COUNTRIES.map((country) => (
+                          <Select.Option key={country.Iso2} value={country.Name}>
+                            {country.Unicode} {country.Name}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item label="Bio">
+                      <Input.TextArea
+                        value={userDataCached ? userDataCached.bio : ""}
+                        onChange={(e) => {
+                          setUserDataCached((prevState) => ({
+                            ...prevState,
+                            bio: e.target.value,
+                          }));
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item {...tailLayout}>
+                      <div className="settings__basicProfileSubmitContainer">
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                          onClick={submitForm}
+                          loading={isUpdatingProfile}
+                        >
+                          {isUpdatingProfile ? "Saving..." : "Save"}
+                        </Button>
+                        {/* <Button htmlType="button" onClick={resetData}>
                       Reset
                     </Button> */}
-                  </div>
-                </Form.Item>
-              </Form>
-            </div>
-          </TabPane>
-          <TabPane tab="Preferences" key="1.2">
-            <div className="settings__basicProfileCardSecond">
-              <h2 className="f-20 ">Preferences</h2>
-              <Form
-                className="settings__basicProfileForm"
-                labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-                initialValues={{ size: componentSize }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize as SizeType}
-              >
-                <Form.Item
-                  label="Available to collab"
-                  valuePropName="checked"
-                >
-                  <Switch
-                    onChange={() => {
-                      updateArtistPreference(
-                        "upForCollaboration",
-                        !upForCollaboration
-                      );
-                      setUpForCollaboration(!upForCollaboration);
-                    }}
-                    loading={isUpdatingPrefs === "upForCollaboration"}
-                    checked={upForCollaboration}
-                    checkedChildren="active"
-                    unCheckedChildren="inactive"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name="art"
-                  label="Art styles"
-                  rules={[
-                    {
-                      validator(_, value) {
-                        if (value === undefined) {
-                          return Promise.reject();
-                        }
-                        return Promise.resolve();
-                      },
-                    },
-                  ]}
-                >
-                  <Select
-                    mode="multiple"
-                    style={{ width: "100%" }}
-                    placeholder="Select atleast one art style"
-                    onChange={(value) => {
-                      if (value?.length > 3) {
-                        value.pop();
-                        message.error("You can select maximum 3 art styles");
-                      } else {
-                        handleChange(value);
-                      }
-                    }}
-                    optionLabelProp="label"
-                    defaultValue={user.skills}
+                      </div>
+                    </Form.Item>
+                  </Form>
+                </div>
+              </TabPane>
+              <TabPane tab="Preferences" key="1.2">
+                <div className="settings__basicProfileCardSecond">
+                  <h2 className="f-20 ">Preferences</h2>
+                  <Form
+                    className="settings__basicProfileForm"
+                    labelCol={{ span: 4 }}
+                    wrapperCol={{ span: 14 }}
+                    layout="horizontal"
+                    initialValues={{ size: componentSize }}
+                    onValuesChange={onFormLayoutChange}
+                    size={componentSize as SizeType}
                   >
-                    {categories.length > 0 &&
-                      categories.map((category, index) => (
-                        <Option
-                          value={category}
-                          label={category}
-                          key={category}
-                        >
-                          <div className="demo-option-label-item">
-                            {category}
-                          </div>
-                        </Option>
-                      ))}
-                  </Select>
-                </Form.Item>
-                <Form.Item {...tailLayout}>
-                  <div className="settings__basicProfileSubmitContainer">
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      onClick={saveArtistSkills}
-                      loading={isUpdatingProfile}
+                    <Form.Item
+                      label="Available to collab"
+                      valuePropName="checked"
                     >
-                      {isUpdatingProfile ? "Saving..." : "Save"}
-                    </Button>
-                  </div>
-                </Form.Item>
-              </Form>
-            </div>
-          </TabPane>
-          {/* <TabPane tab="Samples" key="1.3">
+                      <Switch
+                        onChange={() => {
+                          updateArtistPreference(
+                            "upForCollaboration",
+                            !upForCollaboration
+                          );
+                          setUpForCollaboration(!upForCollaboration);
+                        }}
+                        loading={isUpdatingPrefs === "upForCollaboration"}
+                        checked={upForCollaboration}
+                        checkedChildren="active"
+                        unCheckedChildren="inactive"
+                      />
+                    </Form.Item>
+
+                    <Form.Item
+                      name="art"
+                      label="Art styles"
+                      rules={[
+                        {
+                          validator(_, value) {
+                            if (value === undefined) {
+                              return Promise.reject();
+                            }
+                            return Promise.resolve();
+                          },
+                        },
+                      ]}
+                    >
+                      <Select
+                        mode="multiple"
+                        style={{ width: "100%" }}
+                        placeholder="Select atleast one art style"
+                        onChange={(value) => {
+                          if (value?.length > 3) {
+                            value.pop();
+                            message.error("You can select maximum 3 art styles");
+                          } else {
+                            handleChange(value);
+                          }
+                        }}
+                        optionLabelProp="label"
+                        defaultValue={user.skills}
+                      >
+                        {categories.length > 0 &&
+                          categories.map((category, index) => (
+                            <Option
+                              value={category}
+                              label={category}
+                              key={category}
+                            >
+                              <div className="demo-option-label-item">
+                                {category}
+                              </div>
+                            </Option>
+                          ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item {...tailLayout}>
+                      <div className="settings__basicProfileSubmitContainer">
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                          onClick={saveArtistSkills}
+                          loading={isUpdatingProfile}
+                        >
+                          {isUpdatingProfile ? "Saving..." : "Save"}
+                        </Button>
+                      </div>
+                    </Form.Item>
+                  </Form>
+                </div>
+              </TabPane>
+              {/* <TabPane tab="Samples" key="1.3">
             <div className="settings__basicProfileCardThird">
               <h2 className="f-20 ">Work Samples</h2>
               <p>
@@ -698,42 +722,42 @@ const EditProfile = ({
               />
             </div>
           </TabPane> */}
-          <TabPane tab="Social prospectus" key="1.4">
-            <div className="settings__basicProfileCardFourth">
-              <h2 className="f-20 ">Social media presence</h2>
-              <div>
-                {!isFetchingSocialProspectus && (
-                  <div>{getCurrentSocialProspectus()}</div>
-                )}
-              </div>
-              <div className="socialProspectus__buttonContainer">
-                <Button type="primary" onClick={ShowProspectusEntryModal}>
-                  Add
-                </Button>
-              </div>
-            </div>
-          </TabPane>
-          <TabPane tab="Scratchpad" key="1.5">
-            <div className="settings__basicProfileCardThird">
-              <h2 className="f-20 ">Your space to take notes</h2>
-              <ScratchpadPage/>
-            </div>
-          </TabPane>
-          <TabPane tab="Collab request" key="1.6">
-          <div className="settings__basicProfileCardThird">
-              <h2 className="f-20 ">Your collab requests</h2>
-                <CollabRequestTab
-                  otherUser={user.artist_id}
-                  collabRequests={collab.collabDetails}
-                  onClickCollabRequest={(collabDetails: CollabRequestData) => {
-                    setCollabRequestDetails(collabDetails);
-                  }}
-                />
-            </div>
-          </TabPane>
-        </Tabs>
-        {/* </TabPane> */}
-        {/* <TabPane tab="Account Settings" key="2">
+              <TabPane tab="Social prospectus" key="1.4">
+                <div className="settings__basicProfileCardFourth">
+                  <h2 className="f-20 ">Social media presence</h2>
+                  <div>
+                    {!isFetchingSocialProspectus && (
+                      <div>{getCurrentSocialProspectus()}</div>
+                    )}
+                  </div>
+                  <div className="socialProspectus__buttonContainer">
+                    <Button type="primary" onClick={ShowProspectusEntryModal}>
+                      Add
+                    </Button>
+                  </div>
+                </div>
+              </TabPane>
+              <TabPane tab="Scratchpad" key="1.5">
+                <div className="settings__basicProfileCardThird">
+                  <h2 className="f-20 ">Your space to take notes</h2>
+                  <ScratchpadPage />
+                </div>
+              </TabPane>
+              <TabPane tab="Collab request" key="1.6">
+                <div className="settings__basicProfileCardThird">
+                  <h2 className="f-20 ">Your collab requests</h2>
+                  <CollabRequestTab
+                    otherUser={user.artist_id}
+                    collabRequests={collab.collabDetails}
+                    onClickCollabRequest={(collabDetails: CollabRequestData) => {
+                      setCollabRequestDetails(collabDetails);
+                    }}
+                  />
+                </div>
+              </TabPane>
+            </Tabs>
+            {/* </TabPane> */}
+            {/* <TabPane tab="Account Settings" key="2">
             <Tabs
               type="card"
               onChange={(key: string) => {
@@ -790,20 +814,22 @@ const EditProfile = ({
               </TabPane>
             </Tabs>
           </TabPane> */}
-        {/* </Tabs> */}
-      </>
-      <div>
-        {showSocialProspectusModal && (
-          <ArtistSocialProspectusModal
-            onCancel={() => {
-              HideProspectusEntryModal();
-            }}
-            isViewMode={true}
-            prospectusEntryDetails={prospectusEntryRequestDetails}
-          />
-        )}
-      </div>
-    </div>
+            {/* </Tabs> */}
+          </>
+          <div>
+            {showSocialProspectusModal && (
+              <ArtistSocialProspectusModal
+                onCancel={() => {
+                  HideProspectusEntryModal();
+                }}
+                isViewMode={true}
+                prospectusEntryDetails={prospectusEntryRequestDetails}
+              />
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
