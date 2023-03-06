@@ -42,7 +42,7 @@ export const fetchArtistsByCategorySlugLogic = createLogic<
       const result = await categoryApi.getArtistsByCategorySlugAPI(slug);
       dispatch(actions.fetchArtistsByCategorySlugSuccess(result));
     } catch (error) {
-      console.log("error : ", error);
+      // console.log("error : ", error);
       dispatch(actions.fetchArtistsByCategorySlugFalilure(error));
     } finally {
       done();

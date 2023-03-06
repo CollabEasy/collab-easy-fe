@@ -9,9 +9,9 @@ export const Loader = () => {
     <div className="loader__parent">
       <div className="loader__container">
         <Spin className="loader__spinner" indicator={antIcon} />
-        <div>
+        {/* <div>
           <h2 className="f-20 mt4 common-h2-style">{LOADER_QUOTES[Math.floor(Math.random()*LOADER_QUOTES.length)]}</h2>
-        </div>
+        </div> */}
       </div>
     </div>
   );

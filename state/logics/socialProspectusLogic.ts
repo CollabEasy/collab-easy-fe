@@ -20,7 +20,7 @@ export const fetchArtistSocialProspectusLogic = createLogic<
       const result = await socialProspectusApi.fetchArtistSocialProspectusAPI(slug);
       dispatch(actions.fetchArtistSocialProspectusSuccess([result]));
     } catch (error) {
-      console.log("error : ", error);
+     // console.log("error : ", error);
     } finally {
       done();
     }

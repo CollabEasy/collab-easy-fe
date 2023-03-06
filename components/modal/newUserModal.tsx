@@ -80,7 +80,7 @@ const NewUserModal = ({
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo);
   };
 
   const getModalWidth = (): number => {

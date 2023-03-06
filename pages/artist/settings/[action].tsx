@@ -340,7 +340,7 @@ const EditProfile = ({
   };
 
   const submitForm = () => {
-    console.log(userDataCached);
+    // console.log(userDataCached);
     updateArtistProfile(userDataCached);
   };
 
@@ -367,7 +367,7 @@ const EditProfile = ({
     if (selectedCategories.length === 0) {
       message.error("You need to select atleast one art style.");
     } else {
-      console.log("rabbal:", selectedCategories);
+     //  console.log("rabbal:", selectedCategories);
       updateArtistSkills({ artNames: selectedCategories });
     }
   };
@@ -427,9 +427,9 @@ const EditProfile = ({
     return <Table columns={columns} dataSource={updatedData} />;
   };
 
-  console.log(user.skills);
-  console.log("otherUserId:", user.artist_id),
-    console.log("Rabbal", collab);
+  // console.log(user.skills);
+  // console.log("otherUserId:", user.artist_id),
+  // console.log("Rabbal", collab);
 
 
   const currentDate = moment(new Date());

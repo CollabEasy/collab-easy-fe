@@ -19,7 +19,7 @@ export const fetchScratchpadByArtistIdLogic = createLogic<
       const result = await scratchpadApi.fetchScratchpadByArtistIdAPI();
       dispatch(actions.fetchScratchpadByArtistIdSuccess(result));
     } catch (error) {
-      console.log("error : ", error);
+      // console.log("error : ", error);
     } finally {
       done();
     }
@@ -34,7 +34,7 @@ export const updateArtistScratchpadLogic = createLogic<
 >({
   type: [actionTypes.UPDATE_ARTIST_SCRATCHPAD],
   async process({ action, api }, dispatch, done) {
-    console.log("Rabbal is inside save scratchpad logic", action.payload);
+    // console.log("Rabbal is inside save scratchpad logic", action.payload);
     try {
       dispatch(actions.updateArtistScratchpadRequest());
       const { data } = action.payload;
