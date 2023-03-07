@@ -61,7 +61,7 @@ export const setuserLogic = createLogic<
     const { data } = action.payload;
     try {
       localStorage.setItem("token", data.data.token);
-      dispatch(actions.fetchArtistSkills(""));
+      // dispatch(actions.fetchArtistSkills(""));
       // To-Do we need to set token in cookies
       // Cookies.set('token', data.data.token)
     } catch (error) {

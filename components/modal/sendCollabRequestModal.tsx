@@ -48,7 +48,7 @@ const SendCollabRequestModal = ({
   const isNewCollab = collabDetails.id === "";
   const [collabDataCached, setCollabDataCached] =
     useState<CollabRequestData>(collabDetails);
-  const [editable, setEditable] = useState( isNewCollab || (user.artist_id === collabDetails.senderId && collabDetails.status === "PENDING" ));
+  const [editable, setEditable] = useState(isNewCollab || (user.artist_id === collabDetails.senderId && collabDetails.status === "PENDING"));
 
   const sendCollabRequest = () => {
     if (isNewCollab) {
@@ -78,7 +78,26 @@ const SendCollabRequestModal = ({
       <div className="sendCollabRequestModal__container">
         <h2 className="f-20 text-center">Collab Request</h2>
         <div className="sendCollabRequestModal__textAreaContainer">
-          <p className="mb0">Add a note.</p>
+          <p className="mb0">Add your theme.</p>
+          <Input.TextArea
+            disabled={!editable}
+            showCount
+            maxLength={25}
+            value={collabDataCached.requestData?.collabTheme}
+            onChange={(e) => {
+              setCollabDataCached((prevState) => ({
+                ...prevState,
+                requestData: {
+                  ...prevState.requestData,
+                  collabTheme: e.target.value,
+                },
+              }));
+            }}
+          />
+        </div>
+
+        <div className="sendCollabRequestModal__textAreaContainer">
+          <p className="mb0">Add little more details.</p>
           <Input.TextArea
             disabled={!editable}
             showCount
@@ -96,27 +115,10 @@ const SendCollabRequestModal = ({
           />
         </div>
 
-        <div className="sendCollabRequestModal__textAreaContainer">
-          <p className="mb0">Add a theme.</p>
-          <Input.TextArea
-            disabled={!editable}
-            showCount
-            maxLength={255}
-            value={collabDataCached.requestData?.collabTheme}
-            onChange={(e) => {
-              setCollabDataCached((prevState) => ({
-                ...prevState,
-                requestData: {
-                  ...prevState.requestData,
-                  collabTheme: e.target.value,
-                },
-              }));
-            }}
-          />
-        </div>
+
 
         <div className="sendCollabRequestModal__textAreaContainer">
-          <p className="mb0">When do you want to connect?</p>
+          <p className="mb0">When do you want to post this collab?</p>
           <DatePicker
             disabled={!editable}
             clearIcon={null}

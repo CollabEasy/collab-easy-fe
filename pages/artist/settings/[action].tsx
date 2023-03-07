@@ -61,13 +61,13 @@ const mapStateToProps = (state: AppState) => ({
   isFetchingCollabs: state.collab.isFetchingCollabDetails,
   user: state.user.user,
   preferences: state.user.preferences,
-  samples: state.sample.samples,
+  /*samples: state.sample.samples,*/
   categories: state.category.categories,
   socialProspectus: state.socialProspectus,
   loginModalDetails: state.home.loginModalDetails,
   isLoggedIn: state.user.isLoggedIn,
 
-  isFetchingSamples: state.sample.isFetchingSamples,
+  /*isFetchingSamples: state.sample.isFetchingSamples,*/
   isFetchingSocialProspectus: state.socialProspectus?.isFetchingProspectus,
   isUpdatingProfile: state.user.isUpdatingProfile,
   isUpdatingPrefs: state.user.isUpdatingPrefs,
@@ -80,8 +80,8 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchArtistSamples: (slug: string) =>
-    dispatch(actions.fetchArtistSamples(slug)),
+  // fetchArtistSamples: (slug: string) =>
+  //   dispatch(actions.fetchArtistSamples(slug)),
   getAllCategories: () => dispatch(actions.getAllCategories()),
   fetchArtistSkills: () => dispatch(actions.fetchArtistSkills("")),
   fetchArtistSocialProspectus: (slug: string) =>
@@ -114,7 +114,7 @@ type Props = {} & ConnectedProps<typeof connector>;
 
 const EditProfile = ({
   user,
-  samples,
+  /*samples,*/
   collab,
   preferences,
   categories,
@@ -124,14 +124,14 @@ const EditProfile = ({
   loginModalDetails,
   isLoggedIn,
   isUpdatingProspectus,
-  isFetchingSamples,
+  /*isFetchingSamples,*/
   isFetchingSocialProspectus,
   isDeletingProspectus,
   hasDeletedProspectus,
   showSocialProspectusModal,
   getAllCategories,
   fetchArtistSkills,
-  fetchArtistSamples,
+  /*fetchArtistSamples,*/
   fetchArtistSocialProspectus,
   updateArtistPreference,
   updateArtistSkills,
@@ -217,7 +217,7 @@ const EditProfile = ({
     if (categories.length === 0) {
       getAllCategories();
     }
-    fetchArtistSamples(user.slug);
+    //fetchArtistSamples(user.slug);
     fetchArtistSkills();
     fetchArtistSocialProspectus(user.slug);
     getCollabRequestsAction({
