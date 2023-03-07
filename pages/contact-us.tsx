@@ -69,6 +69,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
             <Image
               src={headerImg}
               alt="Landing page"
+              priority
             />
           </div>
         </div>

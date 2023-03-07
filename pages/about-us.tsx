@@ -70,15 +70,17 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
             layout="responsive"
             objectFit="contain"
             src={headerImg}
-            alt="Landing page" />
+            alt="Landing page" 
+            priority
+          />
 
         </div>
         <div className="footer_aboutUsBodyTextContainer">
           <div>
             <h5 className="common-h5-style">What is Wondor?</h5>
             <p className="common-p-style">
-              Content creators are spread out on various social media platforms - some on instagram, others on youtube,
-              and we are here to help you discover these creators so that you can work with them on your next big thing.
+              Artists are spread out on various social media platforms - some on instagram, others on youtube,
+              and we are here to help you discover these artists so that you can work with them on your next big thing.
               Search for the art category to find the artists whose work most inpire you to work with them.<br></br><br></br>
               Take your time, explore the site, checkout different artists,
               and in the end, feel confident in the content you create by collaborating with them.
@@ -89,7 +91,7 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
           </div>
           <div>
             <h5 className="common-h5-style">Why Wondor?</h5>
-            <p className="common-p-style">When you are a content creator, the quality of your content is one of the most important things but
+            <p className="common-p-style">When you are a artist creating content every day, the quality of your content is one of the most important things but
               so is collaborting with other artists. By collaborating, you learn from each other and at the same time
               increase your reach. <br></br><br></br>
               Today, artists are everywhere and it makes it difficult to find the right one for yourself to collaborate

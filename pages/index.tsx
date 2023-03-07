@@ -79,10 +79,10 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       }
       <div className="row">
         <div id="landing-desktop-img" className="col-md-12 m-0 p-0">
-          <Image src={landingDesktopImg} layout="responsive" alt="Landing page" />
+          <Image src={landingDesktopImg} layout="responsive" alt="Landing page" priority/>
         </div>
         <div id="landing-mobile-img" className="col-md-12 m-0 p-0">
-          <Image src={landingMobileImg} alt="Landing page" />
+          <Image src={landingMobileImg} alt="Landing page" priority />
         </div>
         <div id="text-content">
           <h1 className="common-h1-style">Meet artists to collaborate with on your next big idea!</h1>

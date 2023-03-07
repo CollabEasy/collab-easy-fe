@@ -14,9 +14,9 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <footer >
       <div className="footer-basic">
-        <p className="copyright ">Wondor © 2023</p>
+        <p className="copyright ">Wondor © 2021</p>
         <ul className="list-inline">
-          <li className="list-inline-item common-text-style"><Link href={toAboutUs().href} passHref>About Us</Link></li>
+          <li className="list-inline-item common-text-style"><Link href={toAboutUs().href} passHref>About Wondor</Link></li>
           {/* <li className="list-inline-item"><Link href={toFAQ().href} passHref>FAQs</Link></li> */}
           <li className="list-inline-item common-text-style"><Link href={toTerms().href} passHref>Terms</Link></li>
           <li className="list-inline-item common-text-style"><Link href={toPrivacy().href} passHref>Privacy</Link></li>
