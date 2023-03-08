@@ -29,17 +29,17 @@ export const fetchCollabConversationByCollabIdLogic = createLogic<
 
 export const AddCollabConversationCommentLogic = createLogic<
   AppState,
-  FSACreatorPayload<typeof actions.AddCollabConversationComment>,
+  FSACreatorPayload<typeof actions.addCollabConversationComment>,
   any,
   LogicDeps
 >({
   type: [actionTypes.ADD_COLLAB_CONVERSATION_COMMENT],
   async process({ action, api }, dispatch, done) {
     try {
-      dispatch(actions.AddCollabConversationCommentRequest());
+      dispatch(actions.addCollabConversationCommentRequest());
       const { data } = action.payload;
       const result = await collabConversationApi.addCollabConversationCommentAPI(data);
-      dispatch(actions.AddCollabConversationCommentSuccess(result));
+      dispatch(actions.addCollabConversationCommentSuccess(result));
     } catch (error) {
     } finally {
       done();

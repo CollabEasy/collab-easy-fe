@@ -19,19 +19,19 @@ export const fetchCollabConversationByCollabIdSuccess = (data: any[]) => ({
   }
 })
 
-export const AddCollabConversationComment = (data: any) => ({
+export const addCollabConversationComment = (data: any) => ({
 	type: actionType.ADD_COLLAB_CONVERSATION_COMMENT,
 	payload: {
 		data
 	},
 });
 
-export const AddCollabConversationCommentRequest = () => ({
+export const addCollabConversationCommentRequest = () => ({
   type: actionType.ADD_COLLAB_CONVERSATION_COMMENT_REQUEST,
   payload: {},
 })
 
-export const AddCollabConversationCommentSuccess = (data: any) => ({
+export const addCollabConversationCommentSuccess = (data: any) => ({
 	type: actionType.ADD_COLLAB_CONVERSATION_COMMENT_SUCCESS,
 	payload: {
 		data

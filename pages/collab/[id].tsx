@@ -8,6 +8,7 @@ import { CollabRequestData, SearchCollab, User } from "types/model";
 import * as action from "../../state/action";
 import { useEffect, useState } from "react";
 import CollabDetailCard from "../../components/collabDetailCard";
+import Loader from "../../components/loader";
 
 // https://ant.design/components/card/
 const { TextArea } = Input;
@@ -15,12 +16,17 @@ const { TextArea } = Input;
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
   const collab = state.collab;
+  const collabConversation = state.collabConversation;
   const isFetchingCollabs = state.collab.isFetchingCollabDetails;
-  return { user, collab, isFetchingCollabs }
+  const isFetchingCollabConversation = state.collabConversation.isFetchingCollabConversation;
+  const isAddingCollabConversationComment = state.collabConversation.isAddingCollabConversationComment;
+  return { user, collab, collabConversation, isFetchingCollabs, isFetchingCollabConversation, isAddingCollabConversationComment}
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data))
+  getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
+  fetchCollabConversationById: (collabId: string) => dispatch(action.fetchCollabConversationByCollabId(collabId)),
+  addCollabConversationComment: (data: any) => dispatch(action.addCollabConversationComment(data)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -28,18 +34,32 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type Props = {} & ConnectedProps<typeof connector>;
 
 const CollabPage = ({
+  user,
   collab,
   isFetchingCollabs,
+  isAddingCollabConversationComment,
+  collabConversation,
   getCollabRequestsAction,
+  fetchCollabConversationById,
+  addCollabConversationComment,
 }: Props) => {
   const [comment, setComment] = useState("");
+  const [collabConversationComments, setCollabConversation] = useState([]);
+
   const router = useRouter();
   const { id: collabId } = router.query;
+
   useEffect(() => {
     getCollabRequestsAction({
       collabRequestId: collabId as string,
     });
-  }, [getCollabRequestsAction, collabId]);
+    fetchCollabConversationById(collabId as string);
+
+  }, [getCollabRequestsAction, fetchCollabConversationById, collabId]);
+
+  useEffect(() => {
+    setCollabConversation(collabConversation.collabConversation);
+  }, [collabConversation])
 
   const getCollabRequest = (collabData) => {
     if (collabData["collabDetails"]["sent"]["all"].length > 0) {
@@ -54,8 +74,15 @@ const CollabPage = ({
   }
 
   const saveComment = () => {
-    // console.log("saving the comment ", comment);
-    window.alert(comment);
+    let obj = {
+      "collab_id": collabId,
+      "content": comment,
+    }
+    console.log("saving the comment ", obj);
+
+    addCollabConversationComment({
+      obj
+    });
   }
 
   const hideNewCommentBox = (status) => {
@@ -64,10 +91,35 @@ const CollabPage = ({
     }
     return true;
   }
+
+  const getCollabConversationElement = () => {
+    const collabComments: JSX.Element[] = [];
+    let data = collabConversationComments.length != 0 ? collabConversationComments[0].data : [];
+    console.log("comment length is ", data.length);
+    data.forEach(element => {
+      console.log("comment is ", element["content"]);
+      collabComments.push(
+        <div>
+          <p>{element["content"]}</p>
+        </div>
+      )
+    });
+    return collabComments;
+  }
+
   return (
     <>
       <div className="collabDetailsPage_container">
         <CollabDetailCard showUser={true} collabDetails={getCollabRequest(collab)} />
+
+        {isFetchingCollabs ? (
+          <Loader />
+        ) : (
+          <div>
+            {getCollabConversationElement()}
+          </div>
+        )}
+
         <div className="collabDetailsPage_newCommentContainer">
           {hideNewCommentBox(getCollabRequest(collab)["status"]) && (
             <>

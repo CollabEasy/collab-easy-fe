@@ -36,15 +36,13 @@ const collabConversationReducer = (state = initialState, action): CollabConversa
 
     case actionType.ADD_COLLAB_CONVERSATION_COMMENT_SUCCESS:
       let updatedCollabConversation = []
-    //   if (state.socialProspectus.length > 0 ) {
-    //     const oldSocialProspectus = state.socialProspectus[0]["data"];
-    //     oldSocialProspectus.forEach((prospectusEntry, index) => {
-    //       if (prospectusEntry.socialPlatformId !== action.payload.data.data.socialPlatformId) {
-    //         updatedSocialProspectus.push(prospectusEntry);
-    //       }
-    //     });
-    //   }
-    //   updatedSocialProspectus.push(action.payload.data.data);
+      if (state.collabConversation.length > 0) {
+        const oldCollabConversation = state.collabConversation[0]["data"];
+        oldCollabConversation.forEach((collabConversation, index) => {
+          updatedCollabConversation.push(collabConversation);
+        });
+      }
+      updatedCollabConversation.push(action.payload.data.data);
       return {
         ...state,
         isFetchingCollabConversation: false,

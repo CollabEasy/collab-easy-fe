@@ -25,7 +25,7 @@ export const fetchCollabConversationAPI = async (collabId: string) => {
   try {
 
     let url = 'api/v1/collab/conversation/';
-	url += "?handle=" + collabId;
+	  url +=  collabId;
     const result = await api.call(url, config);
     return result;
   } catch (error) {
@@ -35,7 +35,7 @@ export const fetchCollabConversationAPI = async (collabId: string) => {
 
 
 export const addCollabConversationCommentAPI = async (data: any) => {
-    const config = postConfig(data);
+  const config = postConfig(data["obj"]);
 	try {
 		const result = await api.call('api/v1/collab/conversation/add', config);
 		return result;
