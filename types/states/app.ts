@@ -5,6 +5,7 @@ import { UserSampleState } from "./sample";
 import { CategoryState } from "./category";
 import { ScratchpadState } from "./scratchpad";
 import { SocialProspectusState } from "./socialProspectus";
+import { CollabConversationState } from "./collabConversation";
 
 export interface AppState {
   home: HomeState;
@@ -14,4 +15,5 @@ export interface AppState {
   category: CategoryState;
   scratchpad: ScratchpadState;
   socialProspectus: SocialProspectusState;
+  collabConversation: CollabConversationState;
 }
