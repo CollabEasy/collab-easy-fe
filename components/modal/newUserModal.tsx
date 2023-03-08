@@ -140,7 +140,7 @@ const NewUserModal = ({
           </div>
           <div className="profile-form">
             <div className="profile-title">
-              <h1 className="common-h1-style">Welcome aborad,</h1>
+              <h1 className="common-h1-style">Welcome aboard,</h1>
               <h1>{userName}</h1>
             </div>
             <p className="common-p-style">
