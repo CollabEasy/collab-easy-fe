@@ -1,5 +1,5 @@
 import React from "react";
-import { Tabs, Input, Button } from "antd";
+import { Tabs, Input, Button, Comment } from "antd";
 import { AppState } from "state";
 import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
@@ -69,9 +69,6 @@ const CollabPage = ({
     }
     return {};
   }
-  const handleChange = (event) => {
-    setComment(event.target.textContent);
-  }
 
   const saveComment = () => {
     let obj = {
@@ -83,6 +80,7 @@ const CollabPage = ({
     addCollabConversationComment({
       obj
     });
+    setComment("");
   }
 
   const hideNewCommentBox = (status) => {
@@ -95,12 +93,18 @@ const CollabPage = ({
   const getCollabConversationElement = () => {
     const collabComments: JSX.Element[] = [];
     let data = collabConversationComments.length != 0 ? collabConversationComments[0].data : [];
-    console.log("comment length is ", data.length);
     data.forEach(element => {
-      console.log("comment is ", element["content"]);
       collabComments.push(
         <div>
-          <p>{element["content"]}</p>
+          <Comment
+            author={element["artistId"]}
+            content={
+              <p>{element["content"]}</p>
+            }
+            datetime={
+                <span>{element["createdAt"]}</span>
+            }
+          />
         </div>
       )
     });
@@ -115,19 +119,24 @@ const CollabPage = ({
         {isFetchingCollabs ? (
           <Loader />
         ) : (
-          <div>
+          <div className="collabDetailsPage_newCommentContainer">
             {getCollabConversationElement()}
           </div>
         )}
 
         <div className="collabDetailsPage_newCommentContainer">
           {hideNewCommentBox(getCollabRequest(collab)["status"]) && (
-            <>
-              <TextArea rows={4} placeholder="What is in your mind." maxLength={500} onChange={(e) => {
-                handleChange(e)
-              }} />
+            <div>
+              <TextArea 
+                rows={4} 
+                placeholder="What is in your mind?" 
+                maxLength={500} 
+                onChange={(e) => 
+                  setComment(e.target.value)}
+                value={comment}
+              />
               <Button type="primary" className="collabDetailsPage_buttonContainer" onClick={saveComment}>Send</Button>
-            </>
+            </div>
           )}
         </div>
       </div>
