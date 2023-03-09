@@ -1,5 +1,5 @@
 import React from "react";
-import { Tabs, Input, Button } from "antd";
+import { Tabs, Input, Button, Comment } from "antd";
 import { AppState } from "state";
 import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
@@ -8,19 +8,26 @@ import { CollabRequestData, SearchCollab, User } from "types/model";
 import * as action from "../../state/action";
 import { useEffect, useState } from "react";
 import CollabDetailCard from "../../components/collabDetailCard";
+import Loader from "../../components/loader";
 
 // https://ant.design/components/card/
 const { TextArea } = Input;
 
 const mapStateToProps = (state: AppState) => {
+  console.log(state);
   const user = state.user.user;
   const collab = state.collab;
+  const collabConversation = state.collabConversation;
   const isFetchingCollabs = state.collab.isFetchingCollabDetails;
-  return { user, collab, isFetchingCollabs }
+  const isFetchingCollabConversation = state.collabConversation.isFetchingCollabConversation;
+  const isAddingCollabConversationComment = state.collabConversation.isAddingCollabConversationComment;
+  return { user, collab, collabConversation, isFetchingCollabs, isFetchingCollabConversation, isAddingCollabConversationComment}
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data))
+  getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
+  fetchCollabConversationById: (collabId: string) => dispatch(action.fetchCollabConversationByCollabId(collabId)),
+  addCollabConversationComment: (data: any) => dispatch(action.addCollabConversationComment(data)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -28,18 +35,35 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type Props = {} & ConnectedProps<typeof connector>;
 
 const CollabPage = ({
+  user,
   collab,
   isFetchingCollabs,
+  isAddingCollabConversationComment,
+  collabConversation,
   getCollabRequestsAction,
+  fetchCollabConversationById,
+  addCollabConversationComment,
 }: Props) => {
+  const emptyCollabDetails: CollabRequestData = {
+    id: "",
+    senderId: "",
+    receiverId: "",
+    collabDate: undefined,
+    requestData: {
+      message: "",
+      collabTheme: ""
+    },
+    status: "",
+    createdAt: undefined,
+    updatedAt: undefined
+  };
+
   const [comment, setComment] = useState("");
+  const [collabConversationComments, setCollabConversation] = useState([]);
+  const [collabDetails, setCollabRequestDetails] = useState<CollabRequestData>(emptyCollabDetails);
+
   const router = useRouter();
   const { id: collabId } = router.query;
-  useEffect(() => {
-    getCollabRequestsAction({
-      collabRequestId: collabId as string,
-    });
-  }, [getCollabRequestsAction, collabId]);
 
   const getCollabRequest = (collabData) => {
     if (collabData["collabDetails"]["sent"]["all"].length > 0) {
@@ -49,13 +73,37 @@ const CollabPage = ({
     }
     return {};
   }
-  const handleChange = (event) => {
-    setComment(event.target.textContent);
-  }
+
+  useEffect(() => {
+    getCollabRequestsAction({
+      collabRequestId: collabId as string,
+    });
+    fetchCollabConversationById(collabId as string);
+
+  }, [getCollabRequestsAction, fetchCollabConversationById, collabId]);
+
+  useEffect(() => {
+    setCollabConversation(collabConversation.collabConversation);
+    
+    if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {
+      setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
+    } else if (collab.collabDetails.received.pending.length > 0 || collab.collabDetails.received.active.length > 0) {
+      setCollabRequestDetails(collab.collabDetails.received.active[0]);
+    } else {
+      setCollabRequestDetails(emptyCollabDetails);
+    }
+
+  }, [collabConversation, collab]);
 
   const saveComment = () => {
-    // console.log("saving the comment ", comment);
-    window.alert(comment);
+    let obj = {
+      "collab_id": collabId,
+      "content": comment,
+    }
+    addCollabConversationComment({
+      obj
+    });
+    setComment("");
   }
 
   const hideNewCommentBox = (status) => {
@@ -64,18 +112,71 @@ const CollabPage = ({
     }
     return true;
   }
+
+  let final_collab = getCollabRequest(collab);
+  const collaborator_details = new Map();
+  collaborator_details.set(final_collab["receiverId"], final_collab["receiverName"]);
+  collaborator_details.set(final_collab["senderId"], final_collab["senderName"]);
+
+  const convertTimestampToDate = (timestamp) => {
+    const d = new Date(timestamp);
+    return d;
+  }
+
+  const getCollabConversationElement = () => {
+    const collabComments: JSX.Element[] = [];
+    let data = collabConversationComments.length != 0 ? collabConversationComments[0].data : [];
+    data.forEach(element => {
+      collabComments.push(
+        <div>
+          <Comment
+            author={collaborator_details.get(element["artistId"])}
+            content={
+              <p>{element["content"]}</p>
+            }
+            datetime={
+                <span>{convertTimestampToDate(element["createdAt"]).toLocaleDateString("en-US")}</span>
+            }
+          />
+        </div>
+      )
+    });
+    return collabComments;
+  }
+
+  console.log(final_collab);
+
   return (
     <>
       <div className="collabDetailsPage_container">
-        <CollabDetailCard showUser={true} collabDetails={getCollabRequest(collab)} />
+        {isFetchingCollabs ? (
+           <Loader />
+        ) : (
+          <CollabDetailCard showUser={true} collabDetails={getCollabRequest(collab)} />
+        )}
+        
+
+        {isAddingCollabConversationComment ? (
+          <Loader />
+        ) : (
+          <div className="collabDetailsPage_newCommentContainer">
+            {getCollabConversationElement()}
+          </div>
+        )}
+
         <div className="collabDetailsPage_newCommentContainer">
           {hideNewCommentBox(getCollabRequest(collab)["status"]) && (
-            <>
-              <TextArea rows={4} placeholder="What is in your mind." maxLength={500} onChange={(e) => {
-                handleChange(e)
-              }} />
+            <div>
+              <TextArea 
+                rows={4} 
+                placeholder="What is in your mind?" 
+                maxLength={500} 
+                onChange={(e) => 
+                  setComment(e.target.value)}
+                value={comment}
+              />
               <Button type="primary" className="collabDetailsPage_buttonContainer" onClick={saveComment}>Send</Button>
-            </>
+            </div>
           )}
         </div>
       </div>

@@ -51,6 +51,7 @@ type Props = {
   user: any,
   artistListData: any
 } & ConnectedProps<typeof connector>;
+
 const DiscoverArtist = ({
   artists,
   isLoggedIn,

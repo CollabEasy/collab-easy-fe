@@ -15,6 +15,7 @@ import * as loginApi from "api/login"
 import * as artistApi from "api/artist-user"
 import * as scratchpadApi from "api/scratchpad"
 import * as socialProspectusApi from "api/social-prospectus"
+import * as collabConversationApi from "api/collab-conversation"
 import { AppRouteCreators } from "types/core";
 
 export type AppState = ImportedAppState;
@@ -25,7 +26,8 @@ export const APIs = {
   loginApi,
   artistApi,
   scratchpadApi,
-  socialProspectusApi
+  socialProspectusApi,
+  collabConversationApi
 };
 
 export interface LogicDeps {
