@@ -14,6 +14,7 @@ import Loader from "../../components/loader";
 const { TextArea } = Input;
 
 const mapStateToProps = (state: AppState) => {
+  console.log(state);
   const user = state.user.user;
   const collab = state.collab;
   const collabConversation = state.collabConversation;
@@ -43,11 +44,35 @@ const CollabPage = ({
   fetchCollabConversationById,
   addCollabConversationComment,
 }: Props) => {
+  const emptyCollabDetails: CollabRequestData = {
+    id: "",
+    senderId: "",
+    receiverId: "",
+    collabDate: undefined,
+    requestData: {
+      message: "",
+      collabTheme: ""
+    },
+    status: "",
+    createdAt: undefined,
+    updatedAt: undefined
+  };
+
   const [comment, setComment] = useState("");
   const [collabConversationComments, setCollabConversation] = useState([]);
+  const [collabDetails, setCollabRequestDetails] = useState<CollabRequestData>(emptyCollabDetails);
 
   const router = useRouter();
   const { id: collabId } = router.query;
+
+  const getCollabRequest = (collabData) => {
+    if (collabData["collabDetails"]["sent"]["all"].length > 0) {
+      return collabData["collabDetails"]["sent"]["all"][0];
+    } else if (collabData["collabDetails"]["received"]["all"].length > 0) {
+      return collabData["collabDetails"]["received"]["all"][0];
+    }
+    return {};
+  }
 
   useEffect(() => {
     getCollabRequestsAction({
@@ -59,24 +84,22 @@ const CollabPage = ({
 
   useEffect(() => {
     setCollabConversation(collabConversation.collabConversation);
-  }, [collabConversation])
-
-  const getCollabRequest = (collabData) => {
-    if (collabData["collabDetails"]["sent"]["all"].length > 0) {
-      return collabData["collabDetails"]["sent"]["all"][0];
-    } else if (collabData["collabDetails"]["received"]["all"].length > 0) {
-      return collabData["collabDetails"]["received"]["all"][0];
+    
+    if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {
+      setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
+    } else if (collab.collabDetails.received.pending.length > 0 || collab.collabDetails.received.active.length > 0) {
+      setCollabRequestDetails(collab.collabDetails.received.active[0]);
+    } else {
+      setCollabRequestDetails(emptyCollabDetails);
     }
-    return {};
-  }
+
+  }, [collabConversation, collab]);
 
   const saveComment = () => {
     let obj = {
       "collab_id": collabId,
       "content": comment,
     }
-    console.log("saving the comment ", obj);
-
     addCollabConversationComment({
       obj
     });
@@ -111,12 +134,21 @@ const CollabPage = ({
     return collabComments;
   }
 
+  console.log(isFetchingCollabs);
+  console.log(collab);
+  console.log(collabDetails);
+
   return (
     <>
       <div className="collabDetailsPage_container">
-        <CollabDetailCard showUser={true} collabDetails={getCollabRequest(collab)} />
-
         {isFetchingCollabs ? (
+           <Loader />
+        ) : (
+          <CollabDetailCard showUser={true} collabDetails={getCollabRequest(collab)} />
+        )}
+        
+
+        {isAddingCollabConversationComment ? (
           <Loader />
         ) : (
           <div className="collabDetailsPage_newCommentContainer">
