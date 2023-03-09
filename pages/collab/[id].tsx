@@ -113,6 +113,16 @@ const CollabPage = ({
     return true;
   }
 
+  let final_collab = getCollabRequest(collab);
+  const collaborator_details = new Map();
+  collaborator_details.set(final_collab["receiverId"], final_collab["receiverName"]);
+  collaborator_details.set(final_collab["senderId"], final_collab["senderName"]);
+
+  const convertTimestampToDate = (timestamp) => {
+    const d = new Date(timestamp);
+    return d;
+  }
+
   const getCollabConversationElement = () => {
     const collabComments: JSX.Element[] = [];
     let data = collabConversationComments.length != 0 ? collabConversationComments[0].data : [];
@@ -120,12 +130,12 @@ const CollabPage = ({
       collabComments.push(
         <div>
           <Comment
-            author={element["artistId"]}
+            author={collaborator_details.get(element["artistId"])}
             content={
               <p>{element["content"]}</p>
             }
             datetime={
-                <span>{element["createdAt"]}</span>
+                <span>{convertTimestampToDate(element["createdAt"]).toLocaleDateString("en-US")}</span>
             }
           />
         </div>
@@ -134,9 +144,7 @@ const CollabPage = ({
     return collabComments;
   }
 
-  console.log(isFetchingCollabs);
-  console.log(collab);
-  console.log(collabDetails);
+  console.log(final_collab);
 
   return (
     <>
