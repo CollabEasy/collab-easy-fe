@@ -9,6 +9,9 @@ import * as action from "../../state/action";
 import { useEffect, useState } from "react";
 import CollabDetailCard from "../../components/collabDetailCard";
 import Loader from "../../components/loader";
+import NotAuthorised from "@/components/error/notAuthorised";
+import LoginModal from '@/components/loginModal';
+import NewUserModal from '@/components/modal/newUserModal';
 
 // https://ant.design/components/card/
 const { TextArea } = Input;
@@ -16,12 +19,14 @@ const { TextArea } = Input;
 const mapStateToProps = (state: AppState) => {
   console.log(state);
   const user = state.user.user;
+  const isLoggedIn = state.user.isLoggedIn;
+  const loginModalDetails = state.home.loginModalDetails;
   const collab = state.collab;
   const collabConversation = state.collabConversation;
   const isFetchingCollabs = state.collab.isFetchingCollabDetails;
   const isFetchingCollabConversation = state.collabConversation.isFetchingCollabConversation;
   const isAddingCollabConversationComment = state.collabConversation.isAddingCollabConversationComment;
-  return { user, collab, collabConversation, isFetchingCollabs, isFetchingCollabConversation, isAddingCollabConversationComment}
+  return { user, collab, isLoggedIn, loginModalDetails, collabConversation, isFetchingCollabs, isFetchingCollabConversation, isAddingCollabConversationComment }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -37,6 +42,8 @@ type Props = {} & ConnectedProps<typeof connector>;
 const CollabPage = ({
   user,
   collab,
+  isLoggedIn,
+  loginModalDetails,
   isFetchingCollabs,
   isAddingCollabConversationComment,
   collabConversation,
@@ -61,6 +68,7 @@ const CollabPage = ({
   const [comment, setComment] = useState("");
   const [collabConversationComments, setCollabConversation] = useState([]);
   const [collabDetails, setCollabRequestDetails] = useState<CollabRequestData>(emptyCollabDetails);
+  const [showProfileModal, setShowProfileModal] = useState(false);
 
   const router = useRouter();
   const { id: collabId } = router.query;
@@ -84,7 +92,7 @@ const CollabPage = ({
 
   useEffect(() => {
     setCollabConversation(collabConversation.collabConversation);
-    
+
     if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {
       setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
     } else if (collab.collabDetails.received.pending.length > 0 || collab.collabDetails.received.active.length > 0) {
@@ -135,7 +143,7 @@ const CollabPage = ({
               <p>{element["content"]}</p>
             }
             datetime={
-                <span>{convertTimestampToDate(element["createdAt"]).toLocaleDateString("en-US")}</span>
+              <span>{convertTimestampToDate(element["createdAt"]).toLocaleDateString("en-US")}</span>
             }
           />
         </div>
@@ -148,38 +156,51 @@ const CollabPage = ({
 
   return (
     <>
-      <div className="collabDetailsPage_container">
-        {isFetchingCollabs ? (
-           <Loader />
-        ) : (
-          <CollabDetailCard showUser={true} collabDetails={getCollabRequest(collab)} />
-        )}
-        
+      {loginModalDetails.openModal && !user.new_user && (
+        <LoginModal />
+      )
+      }
+      {showProfileModal && (
+        <NewUserModal />
+      )
+      }
+      {!isLoggedIn ? (
+        <>
+          <NotAuthorised />
+        </>
+      ) : (
+        <div className="collabDetailsPage_container">
+          {isFetchingCollabs ? (
+            <Loader />
+          ) : (
+            <CollabDetailCard showUser={true} collabDetails={getCollabRequest(collab)} />
+          )}
 
-        {isAddingCollabConversationComment ? (
-          <Loader />
-        ) : (
-          <div className="collabDetailsPage_newCommentContainer">
-            {getCollabConversationElement()}
-          </div>
-        )}
-
-        <div className="collabDetailsPage_newCommentContainer">
-          {hideNewCommentBox(getCollabRequest(collab)["status"]) && (
-            <div>
-              <TextArea 
-                rows={4} 
-                placeholder="What is in your mind?" 
-                maxLength={500} 
-                onChange={(e) => 
-                  setComment(e.target.value)}
-                value={comment}
-              />
-              <Button type="primary" className="collabDetailsPage_buttonContainer" onClick={saveComment}>Send</Button>
+          {isAddingCollabConversationComment ? (
+            <Loader />
+          ) : (
+            <div className="collabDetailsPage_newCommentContainer">
+              {getCollabConversationElement()}
             </div>
           )}
+
+          <div className="collabDetailsPage_newCommentContainer">
+            {hideNewCommentBox(getCollabRequest(collab)["status"]) && (
+              <div>
+                <TextArea
+                  rows={4}
+                  placeholder="What is in your mind?"
+                  maxLength={500}
+                  onChange={(e) =>
+                    setComment(e.target.value)}
+                  value={comment}
+                />
+                <Button type="primary" className="collabDetailsPage_buttonContainer" onClick={saveComment}>Send</Button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
