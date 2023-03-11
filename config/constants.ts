@@ -3986,14 +3986,14 @@ export const LISTING_BANNERS = [
 ]
 
 export const SOCIAL_PLATFORMS = [
-  {
-    "id": 1,
-    "name": "Facebook",
-    "description": "Social media platform for sharing pictures and video.",
-    "approved": 1,
-    "base_url": "https://www.facebook.com",
-    "image":facebookImage,
-  },
+  // {
+  //   "id": 1,
+  //   "name": "Facebook",
+  //   "description": "Social media platform for sharing pictures and video.",
+  //   "approved": 1,
+  //   "base_url": "https://www.facebook.com",
+  //   "image":facebookImage,
+  // },
   {
     "id": 2,
     "name": "Instagram",
@@ -4002,14 +4002,14 @@ export const SOCIAL_PLATFORMS = [
     "base_url": "https://www.instagram.com",
     "image": instagramImage,
   },
-  {
-    "id": 3,
-    "name": "Youtube",
-    "description": "Social media platform for sharing pictures and video.",
-    "approved": 1,
-    "base_url": "https://www.youtube.com",
-    "image":facebookImage,
-  },
+  // {
+  //   "id": 3,
+  //   "name": "Youtube",
+  //   "description": "Social media platform for sharing pictures and video.",
+  //   "approved": 1,
+  //   "base_url": "https://www.youtube.com",
+  //   "image":facebookImage,
+  // },
   {
     "id": 4,
     "name": "Tik Tok",

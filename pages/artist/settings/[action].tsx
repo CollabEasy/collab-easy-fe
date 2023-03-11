@@ -650,7 +650,7 @@ const EditProfile = ({
                     </Form.Item>
 
                     <Form.Item
-                      name="art"
+                      //name="art"
                       label="Art styles"
                       rules={[
                         {
@@ -676,6 +676,7 @@ const EditProfile = ({
                           }
                         }}
                         optionLabelProp="label"
+                        value={selectedCategories}
                         defaultValue={user.skills}
                       >
                         {categories.length > 0 &&
