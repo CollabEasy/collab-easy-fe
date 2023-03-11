@@ -19,7 +19,7 @@ const initialState: CollabRequestState = {
       completed: [],
     },
   },
-  isFetchingCollabDetails: false,
+  isFetchingCollabDetails: true,
   showCollabModal: false,
   isSendingRequest: false,
   isAcceptingRequest: false,
