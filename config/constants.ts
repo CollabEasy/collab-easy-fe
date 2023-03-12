@@ -4028,112 +4028,86 @@ export const LOADER_QUOTES = [
 
 export const SIMILAR_CATEGORIES = [
   {
-    "slugs" : ["writer", "creative-writer", "poet", "spoken-words", "song-writer", "lyricist"],
+    "slugs" : ["writing", "creative-writing", "poetry", "spoken-words", "calligraphy"],
     "similar_categories": [
       {
-        "name": "Writer",
-        "slug": "writer"
+        "name": "Writing",
+        "slug": "writing"
       },
       {
-        "name": "Creative Writer",
-        "slug": "creative-writer" 
+        "name": "Creative Writing",
+        "slug": "creative-writing" 
       },
       {
-        "name": "Poet",
-        "slug": "poet" 
+        "name": "Poetry",
+        "slug": "poetry" 
       },
       {
         "name": "Spoken Words",
         "slug": "spoken-words" 
       },
       {
-        "name": "Song Writer",
-        "slug": "song-writer" 
-      },
-      {
-        "name": "Lyricist",
-        "slug": "lyricist" 
+        "name": "Calligraphy",
+        "slug": "calligraphy" 
       }
     ]
   },
   {
-    "slugs" : ["choreographer", "dancer"],
-    "similar_categories": [
-      {
-        "name": "Choreographer",
-        "slug": "choreographer"
-      },
-      {
-        "name": "Dancer",
-        "slug": "dancer" 
-      },
-    ]
-  },
-  {
-    "slugs" : ["singer", "vocalist"],
-    "similar_categories": [
-      {
-        "name": "Singer",
-        "slug": "singer"
-      },
-      {
-        "name": "Vocalist",
-        "slug": "vocalist" 
-      },
-    ]
-  },
-  {
-    "slugs" : ["photographer", "graphic-designer", "illustrator", "video-editor", "film-maker"],
+    "slugs" : ["photographer", "illustration"],
     "similar_categories": [
       {
         "name": "Photographer",
         "slug": "photographer"
       },
       {
-        "name": "Illustrator",
-        "slug": "illustrator" 
-      },
-      {
-        "name": "Graphic Designer",
-        "slug": "graphic-designer" 
-      },
-      {
-        "name": "Video Editor",
-        "slug": "video-editor"
-      },
-      {
-        "name": "Film Maker",
-        "slug": "film-maker"
+        "name": "Illustration",
+        "slug": "illustration" 
       }
     ]
   },
   {
-    "slugs" : ["musician", "sound-engineer", "music-director"],
+    "slugs" : ["painting", "caricaturist", "sketching", "doodling"],
     "similar_categories": [
       {
-        "name": "Musician",
-        "slug": "musician"
-      },
-      {
-        "name": "Sound Engineer",
-        "slug": "sound-engineer" 
-      },
-      {
-        "name": "Music Director",
-        "slug": "music-director" 
-      },
-    ]
-  },
-  {
-    "slugs" : ["painter", "caricaturist"],
-    "similar_categories": [
-      {
-        "name": "Painter",
-        "slug": "painter"
+        "name": "Painting",
+        "slug": "painting"
       },
       {
         "name": "Caricaturist",
         "slug": "caricaturist" 
+      },
+      {
+        "name": "Sketching",
+        "slug": "sketching" 
+      },
+      {
+        "name": "Doodling",
+        "slug": "doodling"
+      }
+    ]
+  },
+  {
+    "slugs" : ["art-journaling", "creative-journaling", "bullet-journaling", "scrapbooking", "collage-making"],
+    "similar_categories": [
+      {
+        "name": "Art Journaling",
+        "slug": "art-journaling"
+      },
+      {
+        "name": "Creative Journaling",
+        "slug": "creative-journaling" 
+      },
+      {
+        "name": "Bullet Journaling",
+        "slug": "bullet-journaling" 
+      },
+      {
+        "name": "Scrapbooking",
+        "slug": "scrapbooking"
+      },
+      {
+        "name": "Collage Making",
+        "slug": "collage-making"
       }
     ]
   }

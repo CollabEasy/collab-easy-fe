@@ -95,44 +95,44 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           <h2 className="custom-padding common-h2-style">Popular categories</h2>
           <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'writer'} passHref>
+              <Link href={toArtist().href + 'creative-writing'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={writerImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Writer" />
+                  <Meta className="common-text-style" title="Creative Writing" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'choreographer'} passHref>
+              <Link href={toArtist().href + 'creative-journaling'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={dancerImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Choreographer" />
+                  <Meta className="common-text-style" title="Journaling" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'singer'} passHref >
+              <Link href={toArtist().href + 'doodling'} passHref >
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={singersImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Singer" />
+                  <Meta className="common-text-style" title="Doodling" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'photographer'} passHref>
+              <Link href={toArtist().href + 'photography'} passHref>
                 <Card hoverable style={{ width: '100%' }} cover={<Image src={photographerImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Photographer" />
+                  <Meta className="common-text-style" title="Photography" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'musician'} passHref>
+              <Link href={toArtist().href + 'sketching'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={musiciansImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Musician" />
+                  <Meta className="common-text-style" title="Sketching" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'painter'} passHref>
+              <Link href={toArtist().href + 'painting'} passHref>
                 <Card hoverable style={{ height: '100%' }} cover={<Image src={paintersImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Painter" />
+                  <Meta className="common-text-style" title="Painting" />
                 </Card>
               </Link>
             </div>
