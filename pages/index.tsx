@@ -12,7 +12,6 @@ import landingMobileImg from '../public/images/mobile-landing.svg';
 import photographerImg from '../public/images/popularCategories/photographer.svg'
 import paintersImg from '../public/images/popularCategories/painter.svg';
 import doodlingImage from '../public/images/popularCategories/doodling.svg';
-import dancerImg from '../public/images/popularCategories/dancer.svg';
 import writerImg from '../public/images/popularCategories/writer.svg';
 import sketchingImage from '../public/images/popularCategories/sketching.svg';
 import handLetteringImage from '../public/images/popularCategories/handLettering.svg';

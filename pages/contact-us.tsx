@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import Image from "next/image";
 import { Button } from "antd";
 import Link from "next/link";
-import headerImg from "public/images/contactUs.png";
+import contactUsImage from "public/images/contactUs.svg";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 
@@ -67,7 +67,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
         <div className="footer_contactUsSectionContainer">
           <div className="footer_contactUsImage">
             <Image
-              src={headerImg}
+              src={contactUsImage}
               alt="Landing page"
               priority
             />
