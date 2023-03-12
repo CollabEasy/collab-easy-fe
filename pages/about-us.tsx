@@ -65,17 +65,8 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
       }
 
       <div className="footer_aboutUsContainer">
-        <div className="footer_aboutUsHeaderPictureContainer">
-          <Image
-            layout="responsive"
-            objectFit="contain"
-            src={headerImg}
-            alt="Landing page" 
-            priority
-          />
-
-        </div>
         <div className="footer_aboutUsBodyTextContainer">
+          <h3 className="common-h5-style">Through Wondor, we are brining artists together everyday!</h3>
           <div>
             <h5 className="common-h5-style">What is Wondor?</h5>
             <p className="common-p-style">
