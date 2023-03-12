@@ -286,11 +286,18 @@ const DiscoverArtist = ({
                         {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
                           <div>
                             <h1 className="common-h1-style">
-                              {artists.length} {getListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit!<br></br>
+                              {artists.length} artists for {getListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit!<br></br>
                             </h1>
-                            <h3 className="common-h3-style">
-                              send them a collab request to see if they are available.
-                            </h3>
+                            {artists.length > 0 ? (
+                              <h3 className="common-h3-style">
+                                send them a collab request to see if they are available.
+                              </h3>
+                            ) : (
+                              <h3 className="common-h3-style">
+                                artists in similar categories might be interested to collab.
+                              </h3>
+                            )}
+
                           </div>
                         ) : (
                           <div>

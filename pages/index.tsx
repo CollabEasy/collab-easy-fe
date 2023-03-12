@@ -11,10 +11,11 @@ import landingDesktopImg from '../public/images/desktop-landing.svg';
 import landingMobileImg from '../public/images/mobile-landing.svg';
 import photographerImg from '../public/images/popularCategories/photographer.svg'
 import paintersImg from '../public/images/popularCategories/painter.svg';
-import musiciansImg from '../public/images/popularCategories/musician.svg';
+import doodlingImage from '../public/images/popularCategories/doodling.svg';
 import dancerImg from '../public/images/popularCategories/dancer.svg';
-import singersImg from '../public/images/popularCategories/singer.svg';
 import writerImg from '../public/images/popularCategories/writer.svg';
+import sketchingImage from '../public/images/popularCategories/sketching.svg';
+import handLetteringImage from '../public/images/popularCategories/handLettering.svg';
 
 import inspireImg from '../public/images/inspire.png';
 import howtoImg from '../public/images/howto.png';
@@ -102,16 +103,16 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'creative-journaling'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={dancerImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Journaling" />
+              <Link href={toArtist().href + 'doodling'} passHref>
+                <Card hoverable style={{ height: '100%' }} cover={<Image src={doodlingImage} alt="cards" />}>
+                  <Meta className="common-text-style" title="Doodling" />
                 </Card>
               </Link>
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'doodling'} passHref >
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={singersImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Doodling" />
+              <Link href={toArtist().href + 'hand-lettering'} passHref >
+                <Card hoverable style={{ height: '100%' }} cover={<Image src={handLetteringImage} alt="cards" />}>
+                  <Meta className="common-text-style" title="Hand Lettering" />
                 </Card>
               </Link>
             </div>
@@ -124,7 +125,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             </div>
             <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
               <Link href={toArtist().href + 'sketching'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={musiciansImg} alt="cards" />}>
+                <Card hoverable style={{ height: '100%' }} cover={<Image src={sketchingImage} alt="cards" />}>
                   <Meta className="common-text-style" title="Sketching" />
                 </Card>
               </Link>

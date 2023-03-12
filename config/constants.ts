@@ -5,7 +5,9 @@ import dancerImage from '../public/images/popularCategories/dancer.svg';
 import singerImage from '../public/images/popularCategories/singer.svg';
 import writerImage from '../public/images/popularCategories/writer.svg';
 import artistImage from '../public/images/popularCategories/artist.svg';
-
+import sketchingImage from '../public/images/popularCategories/sketching.svg';
+import handLetteringImage from '../public/images/popularCategories/handLettering.svg';
+import doodlingImage from '../public/images/popularCategories/doodling.svg';
 
 import facebookImage from '../public/images/facebook.png'
 import instagramImage from '../public/images/instagram.png'
@@ -3948,39 +3950,45 @@ export const LISTING_BANNERS = [
     "background_color": "#ECCFD6",
   },
   {
-    "slugs" : ["writer", "creative-writer", "poet", "spoken-words", "song-writer", "lyricist"],
-    "category": "Writers",
+    "slugs" : ["writing", "creative-writing", "poetry", "spoken-words"],
+    "category": "Writing",
     "image": writerImage,
     "background_color": "#EDC5CD",
   },
   {
-    "slugs" : ["choreographer", "dancer"],
-    "category": "Choreographers",
+    "slugs" : ["photography", "illustration"],
+    "category": "Photography",
     "image": dancerImage,
     "background_color": "#FFDAC1",
   },
   {
-    "slugs" : ["singer", "vocalist"],
-    "category": "Singers",
-    "image": singerImage,
-    "background_color": "#FBF0C4",
-  },
-  {
-    "slugs" : ["photographer", "graphic-designer", "illustrator", "video-editor", "film-maker"],
-    "category": "Photographers",
-    "image": photographerImage,
-    "background_color": "#E2F0CB",
-  },
-  {
-    "slugs" : ["painter", "caricaturist"],
-    "category": "Painters",
+    "slugs" : ["painting"],
+    "category": "Painting",
     "image": painterImage,
     "background_color": "#C7CEEA",
   },
   {
-    "slugs" : ["musician", "sound-engineer", "music-director"],
-    "category": "Musicians",
-    "image": musicianImage,
+    "slugs" : ["hand-lettering", "calligraphy"],
+    "category": "Hand Lettering",
+    "image": handLetteringImage,
+    "background_color": "#FBF0C4",
+  },
+  {
+    "slugs" : ["sketching"],
+    "category": "Painting",
+    "image": sketchingImage,
+    "background_color": "#FADAC1",
+  },
+  {
+    "slugs" : ["journaling", "art-journaling", "creative-journaling", "bullet-journaling", "scrapbooking", "collage-making"],
+    "category": "Journaling",
+    "image": photographerImage,
+    "background_color": "#E2F0CB",
+  },
+  {
+    "slugs" : ["doodling", "caricaturist"],
+    "category": "Doodling",
+    "image": doodlingImage,
     "background_color": "#B5EAD7",
   },
 ]
@@ -4053,11 +4061,11 @@ export const SIMILAR_CATEGORIES = [
     ]
   },
   {
-    "slugs" : ["photographer", "illustration"],
+    "slugs" : ["photography", "illustration"],
     "similar_categories": [
       {
-        "name": "Photographer",
-        "slug": "photographer"
+        "name": "Photography",
+        "slug": "photography"
       },
       {
         "name": "Illustration",
@@ -4087,7 +4095,7 @@ export const SIMILAR_CATEGORIES = [
     ]
   },
   {
-    "slugs" : ["art-journaling", "creative-journaling", "bullet-journaling", "scrapbooking", "collage-making"],
+    "slugs" : ["journaling","art-journaling", "creative-journaling", "bullet-journaling", "scrapbooking", "collage-making"],
     "similar_categories": [
       {
         "name": "Art Journaling",
@@ -4108,7 +4116,24 @@ export const SIMILAR_CATEGORIES = [
       {
         "name": "Collage Making",
         "slug": "collage-making"
+      },
+      {
+        "name": "Journaling",
+        "slug": "journaling"
       }
     ]
-  }
+  },
+  {
+    "slugs" : ["hand-lettering", "calligraphy", "writing"],
+    "similar_categories": [
+      {
+        "name": "Hand Lettering",
+        "slug": "hand-lettering"
+      },
+      {
+        "name": "Calligraphy",
+        "slug": "calligraphy" 
+      },
+    ]
+  },
 ]
