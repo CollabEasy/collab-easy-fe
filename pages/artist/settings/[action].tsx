@@ -1,6 +1,6 @@
 import { CollabRequestData, User } from "types/model";
 import moment from "moment";
-import { InputNumber, message, Tabs } from "antd";
+import { InputNumber, message, Tabs, Tooltip } from "antd";
 import React, { useEffect, useState } from "react";
 import { ProspectusEntry, SearchCollab } from "types/model";
 import CollabRequestTab from "../../../components/collabRequestTab";
@@ -19,6 +19,7 @@ import {
 import {
   UploadOutlined,
   MinusCircleOutlined,
+  InfoCircleOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
 import {
@@ -717,7 +718,7 @@ const EditProfile = ({
           </TabPane> */}
               <TabPane tab="Social prospectus" key="1.4">
                 <div className="settings__basicProfileCardFourth">
-                  <h2 className="f-20 ">Social media presence</h2>
+                  <h2 className="f-20 ">Your social media accounts.</h2>
                   <div>
                     {!isFetchingSocialProspectus && (
                       <div>{getCurrentSocialProspectus()}</div>
@@ -732,7 +733,7 @@ const EditProfile = ({
               </TabPane>
               <TabPane tab="Scratchpad" key="1.5">
                 <div className="settings__basicProfileCardThird">
-                  <h2 className="f-20 ">Your space to take notes</h2>
+                    <h2 className="f-20 ">Your space to take notes <Tooltip placement="topLeft" title="Please, do not write any personal information."><InfoCircleOutlined/></Tooltip></h2>
                   <ScratchpadPage />
                 </div>
               </TabPane>

@@ -1,4 +1,7 @@
-import { Form, Button, Input, Select, Switch } from "antd";
+import { Form, Button, Input, Select, Switch, Tooltip } from "antd";
+import {
+    InfoCircleOutlined,
+} from "@ant-design/icons";
 import Modal from "antd/lib/modal/Modal";
 import moment from "moment";
 import { SOCIAL_PLATFORMS } from "config/constants";
@@ -99,7 +102,13 @@ const ArtistSocialProspectusModal = ({
                             ))}
                         </Select>
                     </Form.Item>
-                    <Form.Item label="Handle">
+                    <Form.Item 
+                        label="Handle" 
+                        tooltip={{ 
+                            title: 'Do not write entire URL, write only your handle. You handle is "myhandle" in www.instagram.com/myhandle', 
+                            icon: <InfoCircleOutlined /> 
+                        }}
+                    >
                         <Input
                             value={prospectusData.handle}
                             onChange={(e) => {
