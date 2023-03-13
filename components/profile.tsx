@@ -31,7 +31,7 @@ const { TabPane } = Tabs;
 
 const mapStateToProps = (state: AppState) => {
   const collab = state.collab;
-  const isFetchingCollabs = state.collab.isFetchingCollabDetails;
+  // const isFetchingCollabs = state.collab.isFetchingCollabDetails;
   const userSamples = state.sample.samples;
   // const isFetchingSamples = state.sample.isFetchingSamples;
   const showCollabModal = state.collab.showCollabModal;
@@ -41,7 +41,7 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   // fetchArtistSamples: (slug: string) =>
   //   dispatch(action.fetchArtistSamples(slug)),
-  getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
+  // getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
   setShowCollabModalState: (show: boolean) => dispatch(action.setShowCollabModalState(show)),
 });
 
@@ -63,7 +63,7 @@ const Profile = ({
   /*isFetchingSamples,*/
   setShowCollabModalState,
   /*fetchArtistSamples,*/
-  getCollabRequestsAction,
+  /*getCollabRequestsAction,*/
 }: Props) => {
   const router = useRouter();
   const emptyCollabDetails: CollabRequestData = {
@@ -86,7 +86,7 @@ const Profile = ({
   const { toEditProfile } = useRoutesContext();
 
   useEffect(() => {
-    // fetchArtistSamples(user.slug);
+    /* fetchArtistSamples(user.slug);
     if (isSelf) {
       getCollabRequestsAction({
       })
@@ -94,8 +94,8 @@ const Profile = ({
       getCollabRequestsAction({
         otherUserId: user.artist_id,
       });
-    }
-  }, [/*fetchArtistSamples,*/ getCollabRequestsAction, isSelf, user.slug, user.artist_id]);
+    } */
+  }, [/*fetchArtistSamples, getCollabRequestsAction,*/ isSelf, user.slug, user.artist_id]);
 
   useEffect(() => {
     if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {

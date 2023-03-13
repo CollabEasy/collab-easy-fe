@@ -78,6 +78,7 @@ const ArtistProfile = ({
     return <Loader />;
   }
 
+  console.log("rabbal", user);
   return (
     <>
       {loginModalDetails.openModal && !user.new_user && (
