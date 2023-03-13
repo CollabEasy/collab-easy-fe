@@ -286,7 +286,7 @@ const DiscoverArtist = ({
                         {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
                           <div>
                             <h1 className="common-h1-style">
-                              {artists.length} artists for {getListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit!<br></br>
+                              {artists.length} artists for {getListingHeaderData(artSlug)["category"].toLowerCase()} to work with you on your next big hit!<br></br>
                             </h1>
                             {artists.length > 0 ? (
                               <h3 className="common-h3-style">
