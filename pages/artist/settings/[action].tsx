@@ -463,7 +463,7 @@ const EditProfile = ({
             >
               <TabPane tab="Profile" key="1.1">
                 <div className="settings__basicProfileCard">
-                  <h2 className="f-20 ">Personal information</h2>
+                  <h2 className="f-20 ">Your basic personal information</h2>
                   <Form
                     className="settings__basicProfileForm"
                     labelCol={{ span: 4 }}
@@ -613,7 +613,7 @@ const EditProfile = ({
               </TabPane>
               <TabPane tab="Preferences" key="1.2">
                 <div className="settings__basicProfileCardSecond">
-                  <h2 className="f-20 ">Preferences</h2>
+                  <h2 className="f-20 ">Your preferences</h2>
                   <Form
                     className="settings__basicProfileForm"
                     labelCol={{ span: 4 }}
@@ -718,7 +718,7 @@ const EditProfile = ({
           </TabPane> */}
               <TabPane tab="Social prospectus" key="1.4">
                 <div className="settings__basicProfileCardFourth">
-                  <h2 className="f-20 ">Your social media accounts.</h2>
+                  <h2 className="f-20 ">Your social media accounts</h2>
                   <div>
                     {!isFetchingSocialProspectus && (
                       <div>{getCurrentSocialProspectus()}</div>
