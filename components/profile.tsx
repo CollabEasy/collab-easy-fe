@@ -127,23 +127,45 @@ const Profile = ({
     return <Loader />
   }
 
+  const ShowIncompleteProfileBanner = (user : User) => {
+    if (user.bio.length == 0 && user.skills.length == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   return (
     <>
       <Title title={user.first_name + " " + user.last_name} />
       <div
         className="artistProfile__profileContainer"
       >
+
+        {/* {isSelf &&
+          <>
+        {ShowIncompleteProfileBanner(user) ? 
+          (
+            <div style={{ backgroundColor: "#FBF0C4", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
+            <p>{user.first_name} well done, your profile is not uptodte</p></div>
+          ) : (
+            <div style={{ backgroundColor: "#FBF0C4", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
+              <p>{user.first_name} well done, your profile is complete!</p></div>
+          )
+          
+        } </>} */}
+
         <div className="container">
           <div className="artistProfile__profileCoverContainer">
             <div className="graph"></div>
           </div>
           <div className="artistProfile__profileDpContainer">
             <Image
-                src={user?.profile_pic_url}
-                alt="profile picture"
-                height={150}
-                width={150}
-              />
+              src={user?.profile_pic_url}
+              alt="profile picture"
+              height={150}
+              width={150}
+            />
           </div>
         </div>
         <div className="artistProfile__artistDetailContainer common-text-style">
