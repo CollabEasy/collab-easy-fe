@@ -17,7 +17,7 @@ import NewUserModal from '@/components/modal/newUserModal';
 const { TextArea } = Input;
 
 const mapStateToProps = (state: AppState) => {
-  console.log(state);
+  // console.log(state);
   const user = state.user.user;
   const isLoggedIn = state.user.isLoggedIn;
   const loginModalDetails = state.home.loginModalDetails;
@@ -152,7 +152,7 @@ const CollabPage = ({
     return collabComments;
   }
 
-  console.log(final_collab);
+  // console.log(final_collab);
 
   return (
     <>
