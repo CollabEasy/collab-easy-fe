@@ -5,11 +5,11 @@
 //      https://www.web-eau.net/blog/10-best-footer-html-css-snippets
 //      https://css-tricks.com/couple-takes-sticky-footer/
 .footer-basic {
-    position: absolute;
-    width: 100%;  
-    padding-top:3px;
-    padding-bottom: 1px;
-    height: 50px;
+    position: relative; 
+    width: 100%;
+    bottom: 0;
+    color: white;
+    font-size: 12px; 
 }
   
 .footer-basic ul {
