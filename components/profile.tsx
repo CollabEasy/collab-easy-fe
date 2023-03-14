@@ -123,9 +123,9 @@ const Profile = ({
   };
 
   // show loader till the collab requests of other user is fetched (for Collaborate button status)
-  if (!isSelf && collab.isFetchingCollabDetails) {
-    return <Loader />
-  }
+  // if (!isSelf && collab.isFetchingCollabDetails) {
+  //   return <Loader />
+  // }
 
   return (
     <>
