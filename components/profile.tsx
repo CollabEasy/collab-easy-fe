@@ -126,6 +126,7 @@ const Profile = ({
   // if (!isSelf && collab.isFetchingCollabDetails) {
   //   return <Loader />
   // }
+  
   const ShowIncompleteProfileBanner = (user : User) => {
     if (!user.bio || user.bio.length === 0) {
       return true;
