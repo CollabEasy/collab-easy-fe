@@ -126,11 +126,10 @@ const Profile = ({
   // if (!isSelf && collab.isFetchingCollabDetails) {
   //   return <Loader />
   // }
-  console.log(user);
   const ShowIncompleteProfileBanner = (user : User) => {
-    if (user.bio === null || user.bio.length === 0) {
+    if (!user.bio || user.bio.length === 0) {
       return true;
-    } else if (user.skills === null || user.skills.length === 0) {
+    } else if (!user.skills || user.skills.length === 0) {
       return true;
     } else {
       return false;
@@ -149,11 +148,11 @@ const Profile = ({
         {ShowIncompleteProfileBanner(user) ? 
           (
             <div style={{ backgroundColor: "#FBF0C4", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-            <p>{user.first_name}, looks like your profile is not complete. For maximum reach, please complete it 
+            <p><b>{user.first_name}</b>, looks like your profile is not complete. For maximum reach, please complete it 
             <Link href={routeToHref(toEditProfile("profile", "profile"))} passHref> here.</Link></p></div>
           ) : (
             <div style={{ backgroundColor: "#E2F0CB", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-              <p>{user.first_name} well done, your profile is complete!</p></div>
+              <p><b>{user.first_name}</b> well done, your profile is complete!</p></div>
           )
           
         } </>}
