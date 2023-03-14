@@ -123,12 +123,14 @@ const Profile = ({
   };
 
   // show loader till the collab requests of other user is fetched (for Collaborate button status)
-  if (!isSelf && collab.isFetchingCollabDetails) {
-    return <Loader />
-  }
-
+  // if (!isSelf && collab.isFetchingCollabDetails) {
+  //   return <Loader />
+  // }
+  console.log(user);
   const ShowIncompleteProfileBanner = (user : User) => {
-    if (user.bio.length == 0 && user.skills.length == 0) {
+    if (user.bio === null || user.bio.length === 0) {
+      return true;
+    } else if (user.skills === null || user.skills.length === 0) {
       return true;
     } else {
       return false;
@@ -142,18 +144,19 @@ const Profile = ({
         className="artistProfile__profileContainer"
       >
 
-        {/* {isSelf &&
+        {isSelf &&
           <>
         {ShowIncompleteProfileBanner(user) ? 
           (
             <div style={{ backgroundColor: "#FBF0C4", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-            <p>{user.first_name} well done, your profile is not uptodte</p></div>
+            <p>{user.first_name}, looks like your profile is not complete. For maximum reach, please complete it 
+            <Link href={routeToHref(toEditProfile("profile", "profile"))} passHref> here.</Link></p></div>
           ) : (
-            <div style={{ backgroundColor: "#FBF0C4", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
+            <div style={{ backgroundColor: "#E2F0CB", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
               <p>{user.first_name} well done, your profile is complete!</p></div>
           )
           
-        } </>} */}
+        } </>}
 
         <div className="container">
           <div className="artistProfile__profileCoverContainer">
