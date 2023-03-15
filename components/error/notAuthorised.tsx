@@ -6,7 +6,7 @@ export const NotAuthorised = () => {
     <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
         <div className="discoverArtists__listingPageCoverContainer common-text-style">
             <Result
-            title="Login to your account to see the artists you can collaborate with!"
+            title="Create a new account or log in to your existing account to get the most from wondor!"
             // extra={
             //     <Skeleton active />
             // }

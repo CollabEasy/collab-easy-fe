@@ -15,9 +15,10 @@ import doodlingImage from '../public/images/popularCategories/doodling.svg';
 import writerImg from '../public/images/popularCategories/writer.svg';
 import sketchingImage from '../public/images/popularCategories/sketching.svg';
 import handLetteringImage from '../public/images/popularCategories/handLettering.svg';
+import { routeToHref } from "config/routes";
 
-import inspireImg from '../public/images/inspire.png';
-import howtoImg from '../public/images/howto.png';
+import inspireImg from '../public/images/inspire.svg';
+import ideaImg from '../public/images/idea.svg';
 import { Card } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { data } from 'copy';
@@ -50,7 +51,7 @@ type Props = {
 
 const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { toArtist } = useRoutesContext();
+  const { toArtist, toEditProfile, toGetInspired } = useRoutesContext();
 
   useEffect(() => {
     if (user) {
@@ -138,22 +139,24 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             </div>
           </div>
         </div>
-        {/* <div>
+        <div>
           <div className="row custom-padding">
-            <div className="col-12 col-sm-12 col-md-6 col-xl-6">
-              <Link href={toArtist().href + 'music'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={howtoImg} alt="cards" />}>
+            <div style={{cursor: 'pointer'}} className="col-12 col-sm-12 col-md-6 col-xl-6">
+              <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref>
+                <Card style={{ height: '100%' }} cover={<Image src={ideaImg} alt="cards" />}>
+                  <Meta className="common-text-style" title="Got an idea? Add it to your scratchpad before you forget!" />
                 </Card>
               </Link>
             </div>
-            <div className="col-12 col-sm-12 col-md-6 col-xl-6">
-              <Link href={toArtist().href + 'music'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={inspireImg} alt="cards" />}>
+            <div style={{cursor: 'pointer'}} className="col-12 col-sm-12 col-md-6 col-xl-6">
+              <Link href={routeToHref(toGetInspired())} passHref>
+                <Card style={{ height: '100%' }} cover={<Image src={inspireImg} alt="cards" />}>
+                  <Meta style={{wordWrap: 'break-word'}} className="common-text-style" title="Searching for an idea? We got you covered!" />
                 </Card>
               </Link>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   )
