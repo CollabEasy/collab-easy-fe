@@ -103,21 +103,21 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
             <div className="question">
               <h5 className="card-text common-h5-style">Quotes</h5>
               <p className="card-text common-p-style">
-                1. "Healing takes time, and asking for help is a courageous step." - Mariska Hargitay
+                1. Healing takes time, and asking for help is a courageous step. - Mariska Hargitay
               </p>
               <p className="card-text common-p-style">
-                2. "The strongest people are not those who show strength in front of us, but those who 
-                win battles we know nothing about." - Unknown
+                2. The strongest people are not those who show strength in front of us, but those who 
+                win battles we know nothing about. - Unknown
               </p>
               <p className="card-text common-p-style">
-                3. "It's okay not to be okay, as long as you're not giving up." - Unknown
+                3. It is okay not to be okay, as long as you are not giving up. - Unknown
               </p>
             </div>
             <div className="question">
               <h5 className="card-text common-h5-style">Think you got enough to get your creative juices going?</h5>
               <p className="card-text common-p-style">
                 Send a collab request to a fellow artist on one of these topics 
-                because we do believe <b>"Together we create better!"</b>
+                because we do believe <b><i>Together we create better!</i></b>
               </p>
             </div>
             <div className="footer_contactUsButtonContainer">
@@ -125,7 +125,7 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
                 <Link
                   href={routeToHref(toDiscover())}
                   passHref
-                >Let's collaborate</Link>
+                >Let&apos;s collaborate</Link>
               </Button>
             </div>
           </div>

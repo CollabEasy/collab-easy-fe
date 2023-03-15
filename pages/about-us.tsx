@@ -99,7 +99,7 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
             <Link
               href={routeToHref(toDiscover())}
               passHref
-            >Let's collaborate</Link>
+            >Let&apos;s collaborate</Link>
           </Button>
         </div>
       </div>
