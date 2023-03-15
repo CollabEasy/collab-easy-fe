@@ -85,13 +85,15 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
             <p className="common-p-style">When you are a artist creating content every day, the quality of your content is one of the most important things but
               so is collaborting with other artists. By collaborating, you learn from each other and at the same time
               increase your reach. <br></br><br></br>
-              Today, artists are everywhere and it makes it difficult to find the right one for yourself to collaborate
-              because there are so many platform artists are scattered over. Currently, there is no one place where you
-              can see all of the artists from all of the platforms. We have tried to gather, in one place, all of the artists
-              ready to collaborate with others. For each artists, you can see their sample work, their presence on various social
-              platforms and if they are available to collaborate, and all this information is shared freely, in a convenient user
-              interface. Thus, artists can see all their possible options in one view, and ultimately make a wise decision about who inspires
-              them the most to collaborate with on their next big hit. </p>
+              Today, with artists being ubiquitous, it can be challenging to find the perfect collaborator 
+              to bring your vision to life. This is because artists are scattered across multiple platforms, 
+              making it difficult to identify them all in one place. However, we have taken up the challenge 
+              to bring all artists ready for collaboration in one convenient location. On our platform, 
+              you can explore each artist's sample work, social media presence, and availability for 
+              collaboration with ease. By having all this information in one user-friendly interface, 
+              you can make a wise decision about who inspires you the most to collaborate with and bring
+              your creative vision to fruition. So what are you waiting for? Work with like minded people from around 
+              the globe to convert your idea into a masterpiece because we believe <b><i>together you create better!</i></b></p>
           </div>
         </div>
         <div className="footer_aboutUsButtonContainer">

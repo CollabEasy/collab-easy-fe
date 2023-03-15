@@ -117,7 +117,7 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
               <h5 className="card-text common-h5-style">Think you got enough to get your creative juices going?</h5>
               <p className="card-text common-p-style">
                 Send a collab request to a fellow artist on one of these topics 
-                because we do believe <b><i>Together we create better!</i></b>
+                because we do believe <b><i>together you create better!</i></b>
               </p>
             </div>
             <div className="footer_contactUsButtonContainer">
