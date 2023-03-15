@@ -122,6 +122,7 @@ const ArtistSocialProspectusModal = ({
                     <Form.Item label="Description">
                         <Input.TextArea
                             value={prospectusData.description}
+                            maxLength={200}
                             onChange={(e) => {
                                 setProspectusData((prevState) => ({
                                     ...prevState,
