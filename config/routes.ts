@@ -11,6 +11,7 @@ export const routes: AppRouteCreators = {
   toPrivacy: () => ({ href: "/privacy" }),
   toContactUs: () => ({ href: "/contact-us" }),
   toTerms: () => ({ href: "/terms-and-policy" }),
+  toGetInspired: () => ({ href: "/get-inspired" }),
   toProfile: () => ({
     href: '/profile',
     as: `/profile/`,
