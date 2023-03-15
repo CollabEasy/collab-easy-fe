@@ -125,7 +125,7 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
                 <Link
                   href={routeToHref(toDiscover())}
                   passHref
-                >Explore Wondor</Link>
+                >Let's collaborate</Link>
               </Button>
             </div>
           </div>
