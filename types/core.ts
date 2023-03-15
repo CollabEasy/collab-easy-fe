@@ -13,4 +13,5 @@ export interface AppRouteCreators {
   toTerms: () => WebRoute;
   toPrivacy: () => WebRoute;
   toContactUs: () => WebRoute;
+  toGetInspired: () => WebRoute;
 }
