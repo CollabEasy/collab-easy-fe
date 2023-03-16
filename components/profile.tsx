@@ -279,7 +279,7 @@ const Profile = ({
                 />
               </div>
             </TabPane> */}
-            <TabPane tab="Social Prospectus" key="4">
+            <TabPane tab="Social prospectus" key="4">
               <div className="artistProfile__tabContainer">
                 <SocialProspectusPage
                   isSelf={isSelf}
