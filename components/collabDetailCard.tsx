@@ -159,8 +159,18 @@ const CollabDetailCard = ({
             <h5 className="common-h5-style">{collabDetails.senderId === user.artist_id
               ? collabDetails.receiverName
               : collabDetails.senderName}</h5>
+
+            <b className="f-16 mb4 common-text-style">
+              Theme
+            </b>
             <p className="common-p-style">{collabDetails.requestData.collabTheme}</p>
+            <b className="f-16 mb4 common-text-style">
+              Details
+            </b>
             <p className="text-justify para mb-0  break-word common-p-style">{collabDetails.requestData.message}</p>
+            <b className="f-16 mb4 common-text-style">
+              Scheduled date
+            </b>
             <p className="common-p-style common-p-style">{convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}</p>
 
           </div>
