@@ -585,7 +585,8 @@ const EditProfile = ({
                     <Form.Item label="Bio">
                       <Input.TextArea
                         value={userDataCached ? userDataCached.bio : ""}
-                        maxLength={200}
+                        maxLength={500}
+                        showCount
                         onChange={(e) => {
                           setUserDataCached((prevState) => ({
                             ...prevState,
