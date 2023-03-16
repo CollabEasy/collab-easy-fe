@@ -585,6 +585,8 @@ const EditProfile = ({
                     <Form.Item label="Bio">
                       <Input.TextArea
                         value={userDataCached ? userDataCached.bio : ""}
+                        maxLength={500}
+                        showCount
                         onChange={(e) => {
                           setUserDataCached((prevState) => ({
                             ...prevState,
@@ -661,9 +663,9 @@ const EditProfile = ({
                         style={{ width: "100%" }}
                         placeholder="Select atleast one art style"
                         onChange={(value) => {
-                          if (value?.length > 3) {
+                          if (value?.length > 5) {
                             value.pop();
-                            message.error("You can select maximum 3 art styles");
+                            message.error("You can select maximum 5 art styles");
                           } else {
                             handleChange(value);
                           }

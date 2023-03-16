@@ -82,7 +82,7 @@ const SendCollabRequestModal = ({
           <Input.TextArea
             disabled={!editable}
             showCount
-            maxLength={25}
+            maxLength={50}
             value={collabDataCached.requestData?.collabTheme}
             onChange={(e) => {
               setCollabDataCached((prevState) => ({
@@ -101,7 +101,7 @@ const SendCollabRequestModal = ({
           <Input.TextArea
             disabled={!editable}
             showCount
-            maxLength={255}
+            maxLength={200}
             value={collabDataCached.requestData?.message}
             onChange={(e) => {
               setCollabDataCached((prevState) => ({
