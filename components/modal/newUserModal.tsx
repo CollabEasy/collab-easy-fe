@@ -175,9 +175,9 @@ const NewUserModal = ({
                   className="common-text-style"
                   placeholder="select atleast one art style"
                   onChange={(value) => {
-                    if (value?.length > 3) {
+                    if (value?.length > 5) {
                       value.pop();
-                      message.error("You can select maximum 3 art styles");
+                      message.error("You can select maximum 5 art styles");
                     } else {
                       handleChange(value);
                     }
