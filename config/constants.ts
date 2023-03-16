@@ -3945,7 +3945,7 @@ export enum CollabRequestStatus {
 export const LISTING_BANNERS = [
   {
     "slugs": ["artist"],
-    "category": "Artists",
+    "category": "you",
     "image": artistImage,
     "background_color": "#ECCFD6",
   },
