@@ -17,3 +17,11 @@ module.exports = {
     minimumCacheTTL: 3600,
   },
 }
+
+module.exports = {
+  reactStrictMode: true,
+  env: {
+    AMPLIFY_GOOGLE_CLIENT_ID: process.env.AMPLIFY_GOOGLE_CLIENT_ID,
+    AMPLIFY_GA_TRACKING_ID: process.env.AMPLIFY_GA_TRACKING_ID,
+  }
+}

@@ -12,6 +12,8 @@ import Link from 'next/link';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 
+export const AMPLIFY_GOOGLE_CLIENT_ID = process.env.AMPLIFY_GOOGLE_CLIENT_ID
+
 const mapStateToProps = (state: AppState) => {
   const user = state.user;
   const loginModalDetails = state.home.loginModalDetails;
@@ -47,8 +49,6 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
 
   const { toTerms, toPrivacy } = useRoutesContext()
 
-  // console.log("Rabbal ", user);
-
   return (
     <Modal
       visible={visible}
@@ -78,7 +78,7 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
                 </span>
               </div>
               <div className="signup-container">
-                <GoogleOAuthProvider clientId="896694875793-05dp2a045lu38ki42dbb1t010rmr5hr9.apps.googleusercontent.com">
+                <GoogleOAuthProvider clientId={AMPLIFY_GOOGLE_CLIENT_ID}>
                   <GoogleLogin
                     onSuccess={OnSuccessCallback}
                     onError={() => {
