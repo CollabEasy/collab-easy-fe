@@ -191,6 +191,7 @@ const CollabPage = ({
                   rows={4}
                   placeholder="What is in your mind?"
                   maxLength={500}
+                  showCount
                   onChange={(e) =>
                     setComment(e.target.value)}
                   value={comment}
