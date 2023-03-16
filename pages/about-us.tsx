@@ -89,7 +89,7 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
               to bring your vision to life. This is because artists are scattered across multiple platforms, 
               making it difficult to identify them all in one place. However, we have taken up the challenge 
               to bring all artists ready for collaboration in one convenient location. On our platform, 
-              you can explore each artist's sample work, social media presence, and availability for 
+              you can explore each artist&npos;s sample work, social media presence, and availability for 
               collaboration with ease. By having all this information in one user-friendly interface, 
               you can make a wise decision about who inspires you the most to collaborate with and bring
               your creative vision to fruition. So what are you waiting for? Work with like minded people from around 
