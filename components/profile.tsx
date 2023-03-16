@@ -196,7 +196,7 @@ const Profile = ({
                       setCollabRequestDetails(collab.collabDetails.sent.pending[0] ?? collab.collabDetails.sent.active[0]);
                     }}
                   > Show pending requests</Button>
-                  <span className="common-text-style"><StarFilled style={{ color: 'orange', margin: '5px' }} />You have a pending collab request with this artist. </span>
+                  <span className="common-text-style"><StarFilled style={{ color: 'orange', margin: '5px' }} />You have a pending collab request with {user.first_name}. </span>
                 </>
               ) : (
                 <>
@@ -208,11 +208,11 @@ const Profile = ({
                     onClick={() => {
                       setShowCollabModalState(true);
                     }}
-                  >  Collaborate</Button>
+                  >  Let&apos;s collaborate</Button>
                   {!upForCollab ? (
-                    <span className="common-text-style"><CloseOutlined style={{ color: 'red', marginTop: '20px' }} />Artist is not available to collab! </span>
+                    <span className="common-text-style"><CloseOutlined style={{ color: 'red', marginTop: '20px' }} />{user.first_name} is not available to collab! </span>
                   ) : (
-                    <span className="common-text-style"><CheckOutlined style={{ color: 'green', marginTop: '20px' }} />Artist is available to collab! </span>
+                    <span className="common-text-style"><CheckOutlined style={{ color: 'green', marginTop: '20px' }} />{user.first_name} is available to collab! </span>
                   )}
                 </>
               )}
