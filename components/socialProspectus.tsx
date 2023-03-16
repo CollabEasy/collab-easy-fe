@@ -103,9 +103,9 @@ const SocialProspectusPage = ({
               <p className="text-justify para mb-0  break-word common-p-style">{element.description}<br></br><br></br></p>
               <div>
                 {element.up_for_collab == "false" ? (
-                  <p className="common-p-style"><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />Artist is not available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
+                  <p className="common-p-style"><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />{user.first_name} is not available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
                 ) : (
-                  <p className="common-p-style"><CheckOutlined style={{ color: 'green', marginRight: '5px' }} />Artist is available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
+                  <p className="common-p-style"><CheckOutlined style={{ color: 'green', marginRight: '5px' }} />{user.first_name} is available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
                 )}
               </div>
             </div>
