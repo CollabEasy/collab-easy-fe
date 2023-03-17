@@ -13,6 +13,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 
 export const AMPLIFY_GOOGLE_CLIENT_ID = process.env.AMPLIFY_GOOGLE_CLIENT_ID
+export const AMPLIFY_GA_TRACKING_ID = process.env.AMPLIFY_GA_TRACKING_ID
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user;
@@ -49,6 +50,9 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
 
   const { toTerms, toPrivacy } = useRoutesContext()
 
+  console.log(AMPLIFY_GOOGLE_CLIENT_ID);
+  console.log(AMPLIFY_GA_TRACKING_ID);
+  
   return (
     <Modal
       visible={visible}
