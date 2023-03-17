@@ -143,18 +143,6 @@ const Profile = ({
     return `${src}?w=${width}&q=${quality || 75}`
   }
 
-  //   const Image = (props) => {
-  //     if(props.src) {
-  //        return <Image {...props}/>
-  //     }
-
-  //     //TODO: if the image source is not there, you can set a default source
-  //     //const defaultSrc = "something"
-
-  //     return <img {...props} src={avatarImage}/>
-  //  }
-
-  console.log(user.profile_pic_url);
   return (
     <>
       <Title title={user.first_name + " " + user.last_name} />
