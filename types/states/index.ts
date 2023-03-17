@@ -7,3 +7,4 @@ export * from "./artistCategories";
 export * from "./scratchpad";
 export * from "./socialProspectus";
 export * from "./collabConversation";
+export * from "./analyticsState";

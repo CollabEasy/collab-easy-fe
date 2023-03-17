@@ -14,7 +14,7 @@ const initialState: AnalyticsState = {
   }
 };
 
-const scratchpadReducer = (state = initialState, action): AnalyticsState => {
+const analyticsReducer = (state = initialState, action): AnalyticsState => {
   switch (action.type) {
     case actionType.FETCH_USER_ANALYTICS_REQUEST:
       return {
@@ -49,4 +49,4 @@ const scratchpadReducer = (state = initialState, action): AnalyticsState => {
   }
 };
 
-export default scratchpadReducer;
+export default analyticsReducer;

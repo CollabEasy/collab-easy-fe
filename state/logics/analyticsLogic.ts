@@ -6,7 +6,7 @@ import * as analyticsAPI from "../../api/analytics";
 import * as actions from "../action/";
 import * as actionTypes from "../actionTypes/analyticsActionTypes";
 
-export const fetchScratchpadByArtistIdLogic = createLogic<
+export const fetchUserAnalytics = createLogic<
   AppState,
   FSACreatorPayload<typeof actions.fetchScratchpadByArtistId>,
   any,
