@@ -6,3 +6,4 @@ export * from "./categoryReducer"
 export * from "./scratchpadReducer"
 export * from "./socialProspectusReducer"
 export * from "./collabConversationReducer"
+export * from "./analyticsReducer";

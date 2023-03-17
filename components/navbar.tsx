@@ -58,7 +58,7 @@ const NavBar = ({
   }
 
 
-  const { toWondorHome, toArtistProfile, toEditProfile } = useRoutesContext();
+  const { toWondorHome, toArtistProfile, toEditProfile, toAnalyticsPage } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = document.querySelector('#p-h');
@@ -170,6 +170,11 @@ const NavBar = ({
                   <Link href={routeToHref(toEditProfile("profile", "profile"))} passHref>
                     <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
                       <span className="f-14 common-text-style">Settings</span>
+                    </div>
+                  </Link>
+                  <Link href={routeToHref(toAnalyticsPage())} passHref>
+                    <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
+                      <span className="f-14 common-text-style">Analytics</span>
                     </div>
                   </Link>
                   <div className="selected-option-shadow logout-option" onClick={logoutUser}>

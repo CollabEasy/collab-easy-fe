@@ -28,6 +28,10 @@ export const routes: AppRouteCreators = {
     href: '/collab/[id]',
     as: `/collab/${id}`,
   }),
+  toAnalyticsPage: () => ({
+    href: '/admin/analytics',
+    as: '/admin/analytics',
+  }),
   // toSampleUpload: () => ({
   //   href: '/artist/settings/',
   //   as: `/artist/settings/samples`,
