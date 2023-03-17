@@ -9,7 +9,7 @@ import scratchpad from "./reducers/scratchpadReducer";
 import socialProspectus from "./reducers/socialProspectusReducer";
 import collabConversation from "./reducers/collabConversationReducer";
 
-const rootReducer = combineReducers<AppState>({
+const appReducer = combineReducers<AppState>({
   home,
   user,
   collab,
@@ -20,4 +20,12 @@ const rootReducer = combineReducers<AppState>({
   collabConversation,
 });
 
-export default rootReducer
+const rootReducer = (state, action) => {
+  if (action.type === 'RESET_USER_LOGGED_IN') {
+    return appReducer(undefined, action)
+  }
+
+  return appReducer(state, action)
+}
+
+export default rootReducer;
