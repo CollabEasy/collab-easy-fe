@@ -4,9 +4,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable import/no-extraneous-dependencies */
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import Script from 'next/script'
-
-import { GA_TRACKING_ID } from '../lib/gtag'
 
 export default class MyDocument extends Document {
 

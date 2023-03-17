@@ -25,6 +25,7 @@ import {
   PictureOutlined,
 } from "@ant-design/icons";
 import { useRoutesContext } from "components/routeContext";
+import avatarImage from '../public/images/avatar.png';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -126,8 +127,8 @@ const Profile = ({
   // if (!isSelf && collab.isFetchingCollabDetails) {
   //   return <Loader />
   // }
-  
-  const ShowIncompleteProfileBanner = (user : User) => {
+
+  const ShowIncompleteProfileBanner = (user: User) => {
     if (!user.bio || user.bio.length === 0) {
       return true;
     } else if (!user.skills || user.skills.length === 0) {
@@ -135,6 +136,11 @@ const Profile = ({
     } else {
       return false;
     }
+  }
+
+  // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
+  const prismicLoader = ({ src, width, quality }) => {
+    return `${src}?w=${width}&q=${quality || 75}`
   }
 
   return (
@@ -146,17 +152,17 @@ const Profile = ({
 
         {isSelf &&
           <>
-        {ShowIncompleteProfileBanner(user) ? 
-          (
-            <div style={{ backgroundColor: "#FBF0C4", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-            <p><b>{user.first_name}</b>, looks like your profile is not complete. For maximum reach, please complete it 
-            <Link href={routeToHref(toEditProfile("profile", "profile"))} passHref> here.</Link></p></div>
-          ) : (
-            <div style={{ backgroundColor: "#E2F0CB", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-              <p><b>{user.first_name}</b> well done, your profile is complete!</p></div>
-          )
-          
-        } </>}
+            {ShowIncompleteProfileBanner(user) ?
+              (
+                <div style={{ backgroundColor: "#FBF0C4", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
+                  <p><b>{user.first_name}</b>, looks like your profile is not complete. For maximum reach, please complete it
+                    <Link href={routeToHref(toEditProfile("profile", "profile"))} passHref> here.</Link></p></div>
+              ) : (
+                <div style={{ backgroundColor: "#E2F0CB", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
+                  <p><b>{user.first_name}</b> well done, your profile is complete!</p></div>
+              )
+
+            } </>}
 
         <div className="container">
           <div className="artistProfile__profileCoverContainer">
@@ -164,10 +170,12 @@ const Profile = ({
           </div>
           <div className="artistProfile__profileDpContainer">
             <Image
+              loader={prismicLoader}
               src={user?.profile_pic_url}
               alt="profile picture"
               height={150}
               width={150}
+              priority
             />
           </div>
         </div>
@@ -191,16 +199,16 @@ const Profile = ({
                     type="primary"
                     className="common-medium-btn"
                     style={{ height: 'auto', marginTop: '10px' }}
-                    // onClick={() => {
-                    //   setShowCollabModalState(true);
-                    //   setCollabRequestDetails(collab.collabDetails.sent.pending[0] ?? collab.collabDetails.sent.active[0]);
-                    // }}
+                  // onClick={() => {
+                  //   setShowCollabModalState(true);
+                  //   setCollabRequestDetails(collab.collabDetails.sent.pending[0] ?? collab.collabDetails.sent.active[0]);
+                  // }}
                   >
                     <Link
                       href={routeToHref(toEditProfile("profile", "collab-request"))}
                       passHref
-                    >Show pending requests</Link> 
-                  
+                    >Show pending requests</Link>
+
                   </Button>
                   <span className="common-text-style"><StarFilled style={{ color: 'orange', margin: '5px' }} />You have a pending collab request with {user.first_name}. </span>
                 </>
