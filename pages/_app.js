@@ -8,6 +8,9 @@ import { Provider } from "react-redux";
 import App from "components/app";
 import { routes } from "config/routes";
 import createStore from "../state/index";
+import Script from 'next/script'
+
+import { GA_TRACKING_ID } from '../lib/gtag'
 
 const makeStore = (preloadedState = {}) => {
   return createStore(routes, preloadedState);
@@ -29,11 +32,31 @@ class WondorApp extends NextApp {
     };
     const store = makeStore({});
     return (
+      <>
+        <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+          <Script
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}', {
+                page_path: window.location.pathname,
+              });
+            `,
+            }}
+          />
+      
       <Provider store={store}>
         <App {...config}>
             <Component {...pageProps} />
         </App>
       </Provider>
+      </>
     );
   }
 }
