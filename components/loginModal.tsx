@@ -50,9 +50,6 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
 
   const { toTerms, toPrivacy } = useRoutesContext()
 
-  console.log(AMPLIFY_GOOGLE_CLIENT_ID);
-  console.log(AMPLIFY_GA_TRACKING_ID);
-  
   return (
     <Modal
       visible={visible}
