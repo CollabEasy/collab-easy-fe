@@ -172,11 +172,6 @@ const NavBar = ({
                       <span className="f-14 common-text-style">Settings</span>
                     </div>
                   </Link>
-                  <Link href={routeToHref(toAnalyticsPage())} passHref>
-                    <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
-                      <span className="f-14 common-text-style">Analytics</span>
-                    </div>
-                  </Link>
                   <div className="selected-option-shadow logout-option" onClick={logoutUser}>
                     <span className="f-14 common-text-style">Logout</span>
                   </div>
