@@ -4,6 +4,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable import/no-extraneous-dependencies */
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Script from 'next/script'
 
 import { GA_TRACKING_ID } from '../lib/gtag'
 
@@ -19,12 +20,11 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <script
+          <Script
             strategy="afterInteractive"
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
           />
-
-          <script
+          <Script
             dangerouslySetInnerHTML={{
               __html: `
               window.dataLayer = window.dataLayer || [];
