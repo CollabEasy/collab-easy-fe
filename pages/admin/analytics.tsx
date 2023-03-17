@@ -41,7 +41,7 @@ const AnalyticsPage = ({ analytics, user, fetchUserAnalytics }: Props) => {
   startDate.setDate(new Date().getDate() - 30);
   const startDateStr = format(startDate, "yyyy-MM-dd");
   const [beginDate, setBeginDate] = useState(startDateStr);
-  const [peeklastDays, setPeekLastDays] = useState(15);
+  const [peeklastDays, setPeekLastDays] = useState(30);
 
   useEffect(() => {
     fetchUserAnalytics(startDateStr, currentDate);
