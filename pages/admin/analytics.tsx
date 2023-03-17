@@ -44,6 +44,9 @@ const AnalyticsPage = ({ analytics, user, fetchUserAnalytics }: Props) => {
   const [peeklastDays, setPeekLastDays] = useState(30);
 
   useEffect(() => {
+    if (!AUTHORIZED_EMAILS.includes(user.user.email)) {
+        return;
+    }    
     fetchUserAnalytics(startDateStr, currentDate);
   }, [beginDate]);
 
