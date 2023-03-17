@@ -10,9 +10,14 @@ module.exports = {
   reactStrictMode: false,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
-  },
+  }
+}
+
+module.exports = {
+  reactStrictMode: true,
   images: {
     domains: ['images.unsplash.com', 'lh3.googleusercontent.com'],
+    formats: ['image/webp', 'image/jpeg', 'image/png', 'image/gif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     minimumCacheTTL: 3600,
   },
