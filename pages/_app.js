@@ -33,7 +33,7 @@ class WondorApp extends NextApp {
     const store = makeStore({});
     return (
       <>
-        <Script
+        {/* <Script
             strategy="afterInteractive"
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
           />
@@ -49,7 +49,7 @@ class WondorApp extends NextApp {
               });
             `,
             }}
-          />
+          /> */}
       
       <Provider store={store}>
         <App {...config}>

@@ -25,6 +25,7 @@ import {
   PictureOutlined,
 } from "@ant-design/icons";
 import { useRoutesContext } from "components/routeContext";
+import avatarImage from '../public/images/avatar.png';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -164,7 +165,7 @@ const Profile = ({
           </div>
           <div className="artistProfile__profileDpContainer">
             <Image
-              src={user?.profile_pic_url}
+              src={user?.profile_pic_url || '../public/images/avatar.png'}
               alt="profile picture"
               height={150}
               width={150}
