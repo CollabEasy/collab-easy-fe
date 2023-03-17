@@ -58,7 +58,7 @@ const NavBar = ({
   }
 
 
-  const { toWondorHome, toArtistProfile, toEditProfile } = useRoutesContext();
+  const { toWondorHome, toArtistProfile, toEditProfile, toAnalyticsPage } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = document.querySelector('#p-h');

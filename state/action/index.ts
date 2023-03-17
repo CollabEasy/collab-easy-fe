@@ -6,4 +6,5 @@ export * from "./categoryAction";
 export * from "./socialProspectusAction";
 export * from "./scratchpadAction";
 export * from "./collabConversationAction";
+export * from "./analyticsAction";
 
