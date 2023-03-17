@@ -138,6 +138,17 @@ const Profile = ({
     }
   }
 
+//   const Image = (props) => {
+//     if(props.src) {
+//        return <Image {...props}/>
+//     }
+    
+//     //TODO: if the image source is not there, you can set a default source
+//     //const defaultSrc = "something"
+ 
+//     return <img {...props} src={avatarImage}/>
+//  }
+
   return (
     <>
       <Title title={user.first_name + " " + user.last_name} />
@@ -165,7 +176,7 @@ const Profile = ({
           </div>
           <div className="artistProfile__profileDpContainer">
             <Image
-              src={user?.profile_pic_url || '../public/images/avatar.png'}
+              src={user?.profile_pic_url}
               alt="profile picture"
               height={150}
               width={150}
