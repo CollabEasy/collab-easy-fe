@@ -179,6 +179,11 @@ const DiscoverArtist = ({
     return similarCategoriesHtml;
   }
 
+  // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
+  const prismicLoader = ({ src, width, quality }) => {
+    return `${src}?w=${width}&q=${quality || 75}`
+  }
+
   const getArtists = (color, category) => {
     const resultArtists: JSX.Element[] = [];
     if (artists.length == 0) {
@@ -195,6 +200,7 @@ const DiscoverArtist = ({
           <div className="row p-2 bg-white border rounded artits-card">
             <div className="col-md-3 mt-1 artist-profile-picture">
               <Image
+                loader={prismicLoader}
                 src={artist?.profile_pic_url}
                 alt="cards"
                 className="img-fluid img-responsive rounded"
