@@ -157,7 +157,7 @@ const CollabDetailCard = ({
               {getCollabAdditionalDetails(user.artist_id, collabDetails)}
             </p>
             <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style"> 
-              {getScheduledDate(collabDetails.status)} {convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}
+              {getScheduledDate(collabDetails.status)} {convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}.
             </p>
           </div>
           <div className="align-items-center align-content-center col-md-3 border-left mt-1">

@@ -14,19 +14,19 @@ export function getCollabHeading(loggedInUserId: string, collabDetails: CollabRe
         heading += "Hey " + collabDetails.senderName + ", ";
         if (collabDetails.status === "PENDING") {
             heading += "you have sent a collaboration request to " + collabDetails.receiverName;
-            heading += ". The theme is " + collabDetails.requestData.collabTheme;
+            heading += ". The theme is '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status === "ACTIVE") {
             heading += "you have an active collaboration request with " + collabDetails.receiverName;
-            heading += ". The theme is " + collabDetails.requestData.collabTheme;
+            heading += ". The theme is '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status == "COMPLETED") {
             heading += "you have completed a collaboration request from " + collabDetails.receiverName;
-            heading += ". The theme was " + collabDetails.requestData.collabTheme;
+            heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status === "REJECTED") {
             heading += "you have a rejected collaboration request from "+ collabDetails.receiverName;
-            heading += ". The theme was " + collabDetails.requestData.collabTheme;
+            heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status === "EXPIRED") {
             heading += " The collaboration request with "+ collabDetails.receiverName + " has expired";
-            heading += ". The theme was " + collabDetails.requestData.collabTheme;
+            heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         }
     } else {
         // Logged in user looking at "recieved" request
@@ -34,19 +34,19 @@ export function getCollabHeading(loggedInUserId: string, collabDetails: CollabRe
 
         if (collabDetails.status === "PENDING") {
             heading += "you have recieved a collaboration request from " + collabDetails.senderName;
-            heading += ". The theme is " + collabDetails.requestData.collabTheme;
+            heading += ". The theme is '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status === "ACTIVE") {
             heading += "you have an active collaboration request with " + collabDetails.senderName;
-            heading += ". The theme is " + collabDetails.requestData.collabTheme;
+            heading += ". The theme is '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status == "COMPLETED") {
             heading += "you have completed a collaboration request from " + collabDetails.senderName;
-            heading += ". The theme was " + collabDetails.requestData.collabTheme;
+            heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status === "REJECTED") {
             heading += "you have rejected a collaboration request from "+ collabDetails.senderName;
-            heading += ". The theme was " + collabDetails.requestData.collabTheme;
+            heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status === "EXPIRED") {
             heading += " the collaboration request from "+ collabDetails.senderName + " has expired";
-            heading += ". The theme was " + collabDetails.requestData.collabTheme;
+            heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         }
         
 
@@ -65,15 +65,15 @@ export function getCollabAdditionalDetails(loggedInUserId: string, collabDetails
         }
         
         if (collabDetails.status === "PENDING") {
-            additionalDetails += "is '" + collabDetails.requestData.message + "'"
+            additionalDetails += "is '" + collabDetails.requestData.message + "'."
         } else if (collabDetails.status === "ACTIVE") {
-            additionalDetails += "is '" + collabDetails.requestData.message + "'"
+            additionalDetails += "is '" + collabDetails.requestData.message + "'."
         } else if (collabDetails.status == "COMPLETED") {
-            additionalDetails += "was '" + collabDetails.requestData.message + "'"
+            additionalDetails += "was '" + collabDetails.requestData.message + "'."
         } else if (collabDetails.status === "REJECTED") {
-            additionalDetails += "was '" + collabDetails.requestData.message + "'"
+            additionalDetails += "was '" + collabDetails.requestData.message + "'."
         } else if (collabDetails.status === "EXPIRED") {
-            additionalDetails += "was '" + collabDetails.requestData.message + "'"
+            additionalDetails += "was '" + collabDetails.requestData.message + "'."
         }
     } else {
         // Logged in user looking at "recieved" request
@@ -84,15 +84,15 @@ export function getCollabAdditionalDetails(loggedInUserId: string, collabDetails
         }
         
         if (collabDetails.status === "PENDING") {
-            additionalDetails += " is '" + collabDetails.requestData.message + "'";
+            additionalDetails += " is '" + collabDetails.requestData.message + "'.";
         } else if (collabDetails.status === "ACTIVE") {
-            additionalDetails += " is '" + collabDetails.requestData.message + "'";
+            additionalDetails += " is '" + collabDetails.requestData.message + "'.";
         } else if (collabDetails.status == "COMPLETED") {
-            additionalDetails += " was '" + collabDetails.requestData.message + "'";
+            additionalDetails += " was '" + collabDetails.requestData.message + "'.";
         } else if (collabDetails.status === "REJECTED") {
-            additionalDetails += " was '" + collabDetails.requestData.message + "'";
+            additionalDetails += " was '" + collabDetails.requestData.message + "'.";
         } else if (collabDetails.status === "EXPIRED") {
-            additionalDetails += " was '" + collabDetails.requestData.message + "'";
+            additionalDetails += " was '" + collabDetails.requestData.message + "'.";
         }
     }
     return additionalDetails;
