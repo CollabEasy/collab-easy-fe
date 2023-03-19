@@ -77,22 +77,22 @@ export function getCollabAdditionalDetails(loggedInUserId: string, collabDetails
         }
     } else {
         // Logged in user looking at "recieved" request
-        additionalDetails += "The additional details provided by them ";
+        additionalDetails += "The additional details provided by " + collabDetails.senderName;
 
         if (collabDetails.requestData.message.length === 0 ) {
             return "No additional details provided by" + collabDetails.senderName + ".";
         }
         
         if (collabDetails.status === "PENDING") {
-            additionalDetails += "is '" + collabDetails.requestData.message + "'";
+            additionalDetails += " is '" + collabDetails.requestData.message + "'";
         } else if (collabDetails.status === "ACTIVE") {
-            additionalDetails += "is '" + collabDetails.requestData.message + "'";
+            additionalDetails += " is '" + collabDetails.requestData.message + "'";
         } else if (collabDetails.status == "COMPLETED") {
-            additionalDetails += "was '" + collabDetails.requestData.message + "'";
+            additionalDetails += " was '" + collabDetails.requestData.message + "'";
         } else if (collabDetails.status === "REJECTED") {
-            additionalDetails += "was '" + collabDetails.requestData.message + "'";
+            additionalDetails += " was '" + collabDetails.requestData.message + "'";
         } else if (collabDetails.status === "EXPIRED") {
-            additionalDetails += "was '" + collabDetails.requestData.message + "'";
+            additionalDetails += " was '" + collabDetails.requestData.message + "'";
         }
     }
     return additionalDetails;
