@@ -45,6 +45,8 @@ const SendCollabRequestModal = ({
   sendCollabRequestAction,
 }: Props) => {
   const currentDate = moment(new Date());
+  const tomorrow = currentDate.clone().add(1, "days");
+  console.log("tomorrow : ", tomorrow);
   const isNewCollab = collabDetails.id === "";
   const [collabDataCached, setCollabDataCached] =
     useState<CollabRequestData>(collabDetails);
@@ -127,7 +129,7 @@ const SendCollabRequestModal = ({
             value={moment(
               collabDataCached.collabDate
                 ? collabDataCached.collabDate
-                : currentDate
+                : tomorrow
             )}
             onChange={(e) => {
               setCollabDataCached((prevState) => ({
