@@ -87,7 +87,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         </div>
         <div id="text-content">
           <h1 className="common-h1-style">Meet artists to collaborate with on your next big idea!</h1>
-          <p className="common-p-style">Work with like minded people from around the globe to convert your idea into a masterpiece because we believe <b><i>together you create better!</i></b></p>
+          <p className="common-p-style">Work with like minded people from around the globe to convert your idea into a masterpiece because we believe <b className="common-text-style"><i>together you create better!</i></b> </p>
         </div>
       </div>
 
