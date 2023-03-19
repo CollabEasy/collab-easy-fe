@@ -45,10 +45,15 @@ const SendCollabRequestModal = ({
   sendCollabRequestAction,
 }: Props) => {
   const currentDate = moment(new Date());
+  const tomorrow = currentDate.clone().add(1, "days");
   const isNewCollab = collabDetails.id === "";
   const [collabDataCached, setCollabDataCached] =
     useState<CollabRequestData>(collabDetails);
-  const [editable, setEditable] = useState(isNewCollab || (user.artist_id === collabDetails.senderId && collabDetails.status === "PENDING"));
+  const [editable, setEditable] = useState(
+    isNewCollab ||
+      (user.artist_id === collabDetails.senderId &&
+        collabDetails.status === "PENDING")
+  );
 
   const sendCollabRequest = () => {
     if (isNewCollab) {
@@ -115,8 +120,6 @@ const SendCollabRequestModal = ({
           />
         </div>
 
-
-
         <div className="sendCollabRequestModal__textAreaContainer">
           <p className="mb0">When do you want to post this collab?</p>
           <DatePicker
@@ -127,7 +130,7 @@ const SendCollabRequestModal = ({
             value={moment(
               collabDataCached.collabDate
                 ? collabDataCached.collabDate
-                : currentDate
+                : tomorrow
             )}
             onChange={(e) => {
               setCollabDataCached((prevState) => ({
@@ -138,15 +141,25 @@ const SendCollabRequestModal = ({
           />
         </div>
         {editable ? (
-          <Button
-            size="large"
-            className="sendCollabRequestModal__button"
-            loading={isSendingRequest}
-            type="primary"
-            onClick={sendCollabRequest}
-          >
-            Send
-          </Button>
+          <div className="text-center ">
+            <Button
+              disabled={
+                collabDataCached.requestData.collabTheme.trim().length === 0 ||
+                collabDataCached.requestData.message.trim().length === 0
+              }
+              size="large"
+              className="sendCollabRequestModal__button"
+              loading={isSendingRequest}
+              type="primary"
+              onClick={sendCollabRequest}
+            >
+              Send
+            </Button>
+            <p className="mt4">
+              NOTE: If you marked yourself not ready for collabs, sending this request
+              would change your preferences and mark you ready for collabs.
+            </p>
+          </div>
         ) : collabDetails.status === "PENDING" ? (
           <div className="sendCollabRequestModal__acceptRejectContainer">
             <Button
