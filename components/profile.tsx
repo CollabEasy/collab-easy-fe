@@ -26,23 +26,24 @@ import {
 } from "@ant-design/icons";
 import { useRoutesContext } from "components/routeContext";
 import avatarImage from '../public/images/avatar.png';
+import { GetUserSkills, ShowIncompleteProfileBanner } from '../helpers/profilePageHelper';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
 
 const mapStateToProps = (state: AppState) => {
   const collab = state.collab;
-  // const isFetchingCollabs = state.collab.isFetchingCollabDetails;
+  const isFetchingCollabs = state.collab.isFetchingCollabDetails;
   const userSamples = state.sample.samples;
   // const isFetchingSamples = state.sample.isFetchingSamples;
   const showCollabModal = state.collab.showCollabModal;
-  return { showCollabModal, userSamples, collab, /*isFetchingSamples*/ };
+  return { showCollabModal, userSamples, collab, isFetchingCollabs, /*isFetchingSamples*/ };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   // fetchArtistSamples: (slug: string) =>
   //   dispatch(action.fetchArtistSamples(slug)),
-  // getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
+  getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
   setShowCollabModalState: (show: boolean) => dispatch(action.setShowCollabModalState(show)),
 });
 
@@ -64,7 +65,7 @@ const Profile = ({
   /*isFetchingSamples,*/
   setShowCollabModalState,
   /*fetchArtistSamples,*/
-  /*getCollabRequestsAction,*/
+  getCollabRequestsAction
 }: Props) => {
   const router = useRouter();
   const emptyCollabDetails: CollabRequestData = {
@@ -87,7 +88,7 @@ const Profile = ({
   const { toEditProfile } = useRoutesContext();
 
   useEffect(() => {
-    /* fetchArtistSamples(user.slug);
+    // fetchArtistSamples(user.slug);
     if (isSelf) {
       getCollabRequestsAction({
       })
@@ -95,8 +96,8 @@ const Profile = ({
       getCollabRequestsAction({
         otherUserId: user.artist_id,
       });
-    } */
-  }, [/*fetchArtistSamples, getCollabRequestsAction,*/ isSelf, user.slug, user.artist_id]);
+    }
+  }, [/*fetchArtistSamples,*/ getCollabRequestsAction, isSelf, user.slug, user.artist_id]);
 
   useEffect(() => {
     if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {
@@ -111,36 +112,14 @@ const Profile = ({
     }
   }, [collab.collabDetails.received.pending, collab.collabDetails.sent.pending])
 
-  const getUserSkills = (all: boolean) => {
-    var skills = "";
-    if (user.skills) {
-      user.skills.forEach((skill: string, index: number) => {
-        if (!all && index == 2) return skills;
-        if (index > 0) skills = skills + ", ";
-        skills = skills + skill;
-      });
-    }
-    return skills;
-  };
-
-  // show loader till the collab requests of other user is fetched (for Collaborate button status)
-  // if (!isSelf && collab.isFetchingCollabDetails) {
-  //   return <Loader />
-  // }
-
-  const ShowIncompleteProfileBanner = (user: User) => {
-    if (!user.bio || user.bio.length === 0) {
-      return true;
-    } else if (!user.skills || user.skills.length === 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
   const prismicLoader = ({ src, width, quality }) => {
     return `${src}?w=${width}&q=${quality || 75}`
+  }
+
+  // show loader till the collab requests of other user is fetched (for collaborate button status)
+  if (!isSelf && collab.isFetchingCollabDetails) {
+    return <Loader />
   }
 
   return (
@@ -149,7 +128,6 @@ const Profile = ({
       <div
         className="artistProfile__profileContainer"
       >
-
         {isSelf &&
           <>
             {ShowIncompleteProfileBanner(user) ?
@@ -181,7 +159,7 @@ const Profile = ({
         </div>
         <div className="artistProfile__artistDetailContainer common-text-style">
           <h2 className="f-20 common-h2-style">{user.first_name + " " + user.last_name}</h2>
-          <h3 className="f-15 common-h3-style">{getUserSkills(false)}</h3>
+          <h3 className="f-15 common-h3-style">{GetUserSkills(user, false)}</h3>
           {isSelf ? (<Button
             type="primary"
             className="common-medium-btn"
@@ -199,6 +177,8 @@ const Profile = ({
                     type="primary"
                     className="common-medium-btn"
                     style={{ height: 'auto', marginTop: '10px' }}
+                  // We do not need this logic anymore because we are not opening the modeal instead we are taking user
+                  // to the setting page.
                   // onClick={() => {
                   //   setShowCollabModalState(true);
                   //   setCollabRequestDetails(collab.collabDetails.sent.pending[0] ?? collab.collabDetails.sent.active[0]);
@@ -244,7 +224,7 @@ const Profile = ({
                 </b>
                 <p className="mt4 artistProfile__bioContainer common-p-style">{user.bio}</p>
                 <b className="f-16 mb4 f-w-b common-text-style">Skills</b>
-                <p className="mt4 common-p-style">{getUserSkills(true)} </p>
+                <p className="mt4 common-p-style">{GetUserSkills(user, true)} </p>
               </div>
             </TabPane>
             {/* <TabPane tab="Samples" key="2">
