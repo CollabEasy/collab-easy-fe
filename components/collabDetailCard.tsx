@@ -14,6 +14,7 @@ import { Button, Tooltip, Tag } from "antd";
 import * as actions from "./../state/action";
 import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 import { useRouter } from "next/router";
+import { convertTimestampToDate, getCollabCardHeading } from "helpers/collabHelper";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
@@ -79,11 +80,6 @@ const CollabDetailCard = ({
       </div>
     );
   };
-
-  const convertTimestampToDate = (timestamp) => {
-    const d = new Date(timestamp);
-    return d;
-  }
 
   const collabStatusComponentForReceiver = () => {
     if (collabDetails.status !== "PENDING")
@@ -156,10 +152,7 @@ const CollabDetailCard = ({
           </div>
 
           <div className="col-md-6 mt-1 collabDetailCard__textContainer">
-            <h5 className="common-h5-style">{collabDetails.senderId === user.artist_id
-              ? collabDetails.receiverName
-              : collabDetails.senderName}</h5>
-
+            <h5> {getCollabCardHeading(user.artist_id, collabDetails)}</h5>
             <b className="f-16 mb4 common-text-style">
               Theme
             </b>
