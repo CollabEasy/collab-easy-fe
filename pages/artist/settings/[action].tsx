@@ -262,7 +262,7 @@ const EditProfile = ({
   }
 
   function handleChange(value: string[]) {
-    if (value.length <= 3) {
+    if (value.length <= 5) {
       setSelectedCategories(value);
     }
   }
