@@ -42,6 +42,9 @@ const collabConversationReducer = (state = initialState, action): CollabConversa
           updatedCollabConversation.push(collabConversation);
         });
       }
+      // We are adding date of creation manually here because the data coming from backend on saving
+      // the commend doesn't return creation date.
+      action.payload.data.data["createdAt"] = Date.now();
       updatedCollabConversation.push(action.payload.data.data);
       return {
         ...state,
