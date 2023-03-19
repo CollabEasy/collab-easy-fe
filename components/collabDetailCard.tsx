@@ -14,7 +14,7 @@ import { Button, Tooltip, Tag } from "antd";
 import * as actions from "./../state/action";
 import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 import { useRouter } from "next/router";
-import { convertTimestampToDate, getCollabCardHeading } from "helpers/collabHelper";
+import { convertTimestampToDate, getCollabHeading, getCollabAdditionalDetails, getScheduledDate } from "helpers/collabCardHelper";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
@@ -152,20 +152,13 @@ const CollabDetailCard = ({
           </div>
 
           <div className="col-md-6 mt-1 collabDetailCard__textContainer">
-            <h5> {getCollabCardHeading(user.artist_id, collabDetails)}</h5>
-            <b className="f-16 mb4 common-text-style">
-              Theme
-            </b>
-            <p className="common-p-style">{collabDetails.requestData.collabTheme}</p>
-            <b className="f-16 mb4 common-text-style">
-              Details
-            </b>
-            <p className="text-justify para mb-0  break-word common-p-style">{collabDetails.requestData.message}</p>
-            <b className="f-16 mb4 common-text-style">
-              Scheduled date
-            </b>
-            <p className="common-p-style common-p-style">{convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}</p>
-
+            <b className="f-16 mb4 common-text-style"> {getCollabHeading(user.artist_id, collabDetails)}</b><br></br>
+            <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style">
+              {getCollabAdditionalDetails(user.artist_id, collabDetails)}
+            </p>
+            <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style"> 
+              {getScheduledDate(collabDetails.status)} {convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}
+            </p>
           </div>
           <div className="align-items-center align-content-center col-md-3 border-left mt-1">
             <div className="d-flex flex-column mt-4">
