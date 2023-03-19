@@ -1,5 +1,3 @@
-import { LISTING_BANNERS } from "config/constants";
-
 export function getLoginDetails() {
   const accessToken = localStorage.getItem("token");
   if (accessToken !== null) {
@@ -46,12 +44,3 @@ export function getPublicRoutes() {
     "/discover-artist/[id]",
   ];
 }
-
-export const getListingHeaderData = (selectedCategorySlug) => {
-  for (var i = 0; i < LISTING_BANNERS.length; i++) {
-    if (LISTING_BANNERS[i]["slug"] == selectedCategorySlug) {
-      return LISTING_BANNERS[i];
-    }
-  }
-  return {};
-};

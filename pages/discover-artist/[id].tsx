@@ -20,6 +20,7 @@ import NewUserModal from '../../components/modal/newUserModal';
 import Loader from "@/components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
 import SendCollabRequestModal from "../../components/modal/sendCollabRequestModal";
+import {GetListingHeaderData} from "helpers/listingPageHelper";
 
 const { Meta } = Card;
 
@@ -109,34 +110,6 @@ const DiscoverArtist = ({
 
   const setUserIdForCollab = (userId) => {
     saveUserIdForCollab(userId);
-  }
-
-  const getCategoryFromSlug = (selectedCategorySlug) => {
-    var selectedCategory = "Artists";
-    for (var i = 0; i < SIMILAR_CATEGORIES.length; i++) {
-      if (SIMILAR_CATEGORIES[i]["slugs"].indexOf(selectedCategorySlug) > -1) {
-        SIMILAR_CATEGORIES[i]["similar_categories"].forEach((category) => {
-          if (category["slug"] == selectedCategorySlug) {
-            selectedCategory = category["name"];
-          }
-        })
-      }
-    }
-    return selectedCategory;
-  }
-  const getListingHeaderData = (selectedCategorySlug) => {
-    let general = {};
-    for (var i = 0; i < LISTING_BANNERS.length; i++) {
-      if (LISTING_BANNERS[i]["slugs"].indexOf(selectedCategorySlug) > -1) {
-        LISTING_BANNERS[i]["category"] = getCategoryFromSlug(selectedCategorySlug);
-        return LISTING_BANNERS[i];
-      }
-      else if (LISTING_BANNERS[i]["slugs"].indexOf("artist") > -1) {
-        // This is a case where we do not have any data for header. Just return the generic one.
-        general = LISTING_BANNERS[i];
-      }
-    }
-    return general;
   }
 
   const getUserSkills = (skills: string[]) => {
@@ -287,12 +260,12 @@ const DiscoverArtist = ({
               <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
                 <div className="discoverArtists__listingPageCoverContainer">
                   <div className="row ">
-                    <div className="col-sm-8" style={{ backgroundColor: getListingHeaderData(artSlug)["background_color"] }}>
+                    <div className="col-sm-8" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
                       <div className="discoverArtists_desktopCoverTextContainer">
-                        {Object.keys(getListingHeaderData(artSlug)).length !== 0 ? (
+                        {Object.keys(GetListingHeaderData(artSlug)).length !== 0 ? (
                           <div>
                             <h1 className="common-h1-style">
-                              {artists.length} {artists.length === 1 ? (<>artist</>) : (<>artists</>)} for {getListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit!<br></br>
+                              {artists.length} {artists.length === 1 ? (<>artist</>) : (<>artists</>)} for {GetListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit!<br></br>
                             </h1>
                             {artists.length > 0 ? (
                               <h3 className="common-h3-style">
@@ -317,11 +290,11 @@ const DiscoverArtist = ({
                         )}
                       </div>
                     </div>
-                    <div className="col-sm-4" style={{ backgroundColor: getListingHeaderData(artSlug)["background_color"] }}>
+                    <div className="col-sm-4" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
                       <Image
                         alt="Image Alt"
                         className="discoverArtists_desktopCoverImageContainer"
-                        src={getListingHeaderData(artSlug)["image"]}
+                        src={GetListingHeaderData(artSlug)["image"]}
                         layout="responsive"
                         objectFit="contain" // Scale your image down to fit into the container
                       />
@@ -334,7 +307,7 @@ const DiscoverArtist = ({
                   </div>
                 </div>
                 <div className="col-md-12 listingContainer">
-                  {getArtists(getListingHeaderData(artSlug)["background_color"], getListingHeaderData(artSlug)["category"])}
+                  {getArtists(GetListingHeaderData(artSlug)["background_color"], GetListingHeaderData(artSlug)["category"])}
                 </div>
               </div>
             </div>
