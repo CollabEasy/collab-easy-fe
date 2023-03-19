@@ -47,6 +47,11 @@ export function getPublicRoutes() {
   ];
 }
 
+export function convertTimestampToDate(timestamp) {
+  const d = new Date(timestamp);
+  return d;
+}
+
 export const getListingHeaderData = (selectedCategorySlug) => {
   for (var i = 0; i < LISTING_BANNERS.length; i++) {
     if (LISTING_BANNERS[i]["slug"] == selectedCategorySlug) {

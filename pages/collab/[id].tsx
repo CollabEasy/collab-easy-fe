@@ -12,6 +12,7 @@ import Loader from "../../components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
 import LoginModal from '@/components/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
+import { convertTimestampToDate } from 'helpers/helper';
 
 // https://ant.design/components/card/
 const { TextArea } = Input;
@@ -125,11 +126,6 @@ const CollabPage = ({
   const collaborator_details = new Map();
   collaborator_details.set(final_collab["receiverId"], final_collab["receiverName"]);
   collaborator_details.set(final_collab["senderId"], final_collab["senderName"]);
-
-  const convertTimestampToDate = (timestamp) => {
-    const d = new Date(timestamp);
-    return d;
-  }
 
   const getCollabConversationElement = () => {
     const collabComments: JSX.Element[] = [];
