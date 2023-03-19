@@ -139,7 +139,7 @@ const SocialProspectusPage = ({
               <>
                 {isSelf ? (
                   <div className="socialProspectus_noProfiles">
-                    <p className="text-center common-text-style">{user.first_name}, add social media profiles and Let everyone know you are a creator!</p>
+                    <p className="text-center common-text-style">{user.first_name}, add social media profiles and let everyone know you create art!</p>
                     <Button
                       type="primary"
                       className="common-btn-dimension"
