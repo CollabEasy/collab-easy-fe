@@ -214,7 +214,7 @@ const DiscoverArtist = ({
               <div className="mt-1 mb-1 spec-1">
                 {getUserSkills(artist.skills)}
               </div>
-              <p className="text-justify para mb-0  break-word common-hp-style">{artist.bio}<br></br><br></br></p>
+              <p className="text-justify break-word common-p-style">{artist.bio}<br></br><br></br></p>
               <div className="mt-1 mb-1 spec-1">
                 {artist.up_for_collab == "false" ? (
                   <span className="common-text-style"><CloseOutlined style={{ color: 'red', margin: '5px' }} />{artist.first_name} is not available to collab! </span>
