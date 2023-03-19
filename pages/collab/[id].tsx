@@ -12,7 +12,8 @@ import Loader from "../../components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
 import LoginModal from '@/components/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
-import { convertTimestampToDate } from 'helpers/helper';
+import { convertTimestampToDate } from 'helpers/collabCardHelper';
+import { GetCollabRequest } from 'helpers/collabPageHelper';
 
 // https://ant.design/components/card/
 const { TextArea } = Input;
@@ -74,15 +75,6 @@ const CollabPage = ({
   const router = useRouter();
   const { id: collabId } = router.query;
 
-  const getCollabRequest = (collabData) => {
-    if (collabData["collabDetails"]["sent"]["all"].length > 0) {
-      return collabData["collabDetails"]["sent"]["all"][0];
-    } else if (collabData["collabDetails"]["received"]["all"].length > 0) {
-      return collabData["collabDetails"]["received"]["all"][0];
-    }
-    return {};
-  }
-
   useEffect(() => {
     getCollabRequestsAction({
       collabRequestId: collabId as string,
@@ -122,7 +114,7 @@ const CollabPage = ({
     return true;
   }
 
-  let final_collab = getCollabRequest(collab);
+  let final_collab = GetCollabRequest(collab);
   const collaborator_details = new Map();
   collaborator_details.set(final_collab["receiverId"], final_collab["receiverName"]);
   collaborator_details.set(final_collab["senderId"], final_collab["senderName"]);
@@ -131,6 +123,7 @@ const CollabPage = ({
     const collabComments: JSX.Element[] = [];
     let data = collabConversationComments.length != 0 ? collabConversationComments[0].data : [];
     data.forEach(element => {
+      //console.log(element);
       collabComments.push(
         <div>
           <Comment
@@ -169,7 +162,7 @@ const CollabPage = ({
           {isFetchingCollabs ? (
             <Loader />
           ) : (
-            <CollabDetailCard showUser={true} collabDetails={getCollabRequest(collab)} />
+            <CollabDetailCard showUser={true} collabDetails={GetCollabRequest(collab)} />
           )}
 
           {isAddingCollabConversationComment ? (
@@ -181,7 +174,7 @@ const CollabPage = ({
           )}
 
           <div className="collabDetailsPage_newCommentContainer">
-            {hideNewCommentBox(getCollabRequest(collab)["status"]) && (
+            {hideNewCommentBox(GetCollabRequest(collab)["status"]) && (
               <div>
                 <TextArea
                   rows={4}
