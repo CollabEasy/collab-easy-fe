@@ -13,7 +13,7 @@ import NotAuthorised from "@/components/error/notAuthorised";
 import LoginModal from '@/components/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
 import { convertTimestampToDate } from 'helpers/collabCardHelper';
-import { GetCollabRequest } from 'helpers/collabPageHelper';
+import { GetCollabRequest, GetCollaboratorInfoFromCollab, DoHideNewCommentBox } from 'helpers/collabPageHelper';
 
 // https://ant.design/components/card/
 const { TextArea } = Input;
@@ -107,27 +107,16 @@ const CollabPage = ({
     setComment("");
   }
 
-  const hideNewCommentBox = (status) => {
-    if (status == "REJECTED" || status == "EXPIRED" || status == "COMPLETED") {
-      return false;
-    }
-    return true;
-  }
-
-  let final_collab = GetCollabRequest(collab);
-  const collaborator_details = new Map();
-  collaborator_details.set(final_collab["receiverId"], final_collab["receiverName"]);
-  collaborator_details.set(final_collab["senderId"], final_collab["senderName"]);
+  const collaboratorDetails = GetCollaboratorInfoFromCollab(collab);
 
   const getCollabConversationElement = () => {
     const collabComments: JSX.Element[] = [];
     let data = collabConversationComments.length != 0 ? collabConversationComments[0].data : [];
     data.forEach(element => {
-      //console.log(element);
       collabComments.push(
         <div>
           <Comment
-            author={collaborator_details.get(element["artistId"])}
+            author={collaboratorDetails.get(element["artistId"])}
             content={
               <p>{element["content"]}</p>
             }
@@ -140,8 +129,6 @@ const CollabPage = ({
     });
     return collabComments;
   }
-
-  // console.log(final_collab);
 
   return (
     <>
@@ -174,7 +161,7 @@ const CollabPage = ({
           )}
 
           <div className="collabDetailsPage_newCommentContainer">
-            {hideNewCommentBox(GetCollabRequest(collab)["status"]) && (
+            {DoHideNewCommentBox(GetCollabRequest(collab)["status"]) && (
               <div>
                 <TextArea
                   rows={4}
