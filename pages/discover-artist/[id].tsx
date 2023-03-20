@@ -20,7 +20,7 @@ import NewUserModal from '../../components/modal/newUserModal';
 import Loader from "@/components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
 import SendCollabRequestModal from "../../components/modal/sendCollabRequestModal";
-import {GetListingHeaderData} from "helpers/listingPageHelper";
+import { GetListingHeaderData } from "helpers/listingPageHelper";
 
 const { Meta } = Card;
 
@@ -201,8 +201,9 @@ const DiscoverArtist = ({
               <div className="d-flex flex-column mt-4">
                 <Button
                   block
-                  type="primary"
                   className="common-medium-btn"
+                  type="primary"
+                  disabled={!isLoggedIn}
                   ghost
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
@@ -217,7 +218,7 @@ const DiscoverArtist = ({
                   block
                   className="common-medium-btn"
                   type="primary"
-                  disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false"}
+                  disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false" || !isLoggedIn}
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
                   onClick={() => {
                     setShowCollabModalState(true);
@@ -250,68 +251,62 @@ const DiscoverArtist = ({
         <Loader />
       ) : (
         <div>
-          {!isLoggedIn ? (
-            <>
-              <NotAuthorised />
-            </>
-          ) : (
-            <div>
-              <Title title="Discover Artist" />
-              <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
-                <div className="discoverArtists__listingPageCoverContainer">
-                  <div className="row ">
-                    <div className="col-sm-8" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
-                      <div className="discoverArtists_desktopCoverTextContainer">
-                        {Object.keys(GetListingHeaderData(artSlug)).length !== 0 ? (
-                          <div>
-                            <h1 className="common-h1-style">
-                              {artists.length} {artists.length === 1 ? (<>artist</>) : (<>artists</>)} for {GetListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit!<br></br>
-                            </h1>
-                            {artists.length > 0 ? (
-                              <h3 className="common-h3-style">
-                                send them a collab request to see if they are available.
-                              </h3>
-                            ) : (
-                              <h3 className="common-h3-style">
-                                artists in similar categories might be interested to collab.
-                              </h3>
-                            )}
-
-                          </div>
-                        ) : (
-                          <div>
-                            <h1 className="common-h1-style">
-                              {artists.length} artists to work with on your next big hit!<br></br>
-                            </h1>
+          <div>
+            <Title title="Discover Artist" />
+            <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
+              <div className="discoverArtists__listingPageCoverContainer">
+                <div className="row ">
+                  <div className="col-sm-8" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
+                    <div className="discoverArtists_desktopCoverTextContainer">
+                      {Object.keys(GetListingHeaderData(artSlug)).length !== 0 ? (
+                        <div>
+                          <h1 className="common-h1-style">
+                            {artists.length} {artists.length === 1 ? (<>artist</>) : (<>artists</>)} for {GetListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit!<br></br>
+                          </h1>
+                          {artists.length > 0 ? (
                             <h3 className="common-h3-style">
                               send them a collab request to see if they are available.
                             </h3>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                    <div className="col-sm-4" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
-                      <Image
-                        alt="Image Alt"
-                        className="discoverArtists_desktopCoverImageContainer"
-                        src={GetListingHeaderData(artSlug)["image"]}
-                        layout="responsive"
-                        objectFit="contain" // Scale your image down to fit into the container
-                      />
+                          ) : (
+                            <h3 className="common-h3-style">
+                              artists in similar categories might be interested to collab.
+                            </h3>
+                          )}
+
+                        </div>
+                      ) : (
+                        <div>
+                          <h1 className="common-h1-style">
+                            {artists.length} artists to work with on your next big hit!<br></br>
+                          </h1>
+                          <h3 className="common-h3-style">
+                            send them a collab request to see if they are available.
+                          </h3>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
-                <div className="flex-row flex-wrap d-flex align-items-center justify-content-center colors my-2 scrolling-wrapper">
-                  <div className="btn-group">
-                    <p className="common-text-style" style={{ paddingLeft: "15px", paddingTop: "20px" }}>Similar categories:</p> {getSimilarCategories(artSlug)}
+                  <div className="col-sm-4" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
+                    <Image
+                      alt="Image Alt"
+                      className="discoverArtists_desktopCoverImageContainer"
+                      src={GetListingHeaderData(artSlug)["image"]}
+                      layout="responsive"
+                      objectFit="contain" // Scale your image down to fit into the container
+                    />
                   </div>
-                </div>
-                <div className="col-md-12 listingContainer">
-                  {getArtists(GetListingHeaderData(artSlug)["background_color"], GetListingHeaderData(artSlug)["category"])}
                 </div>
               </div>
+              <div className="flex-row flex-wrap d-flex align-items-center justify-content-center colors my-2 scrolling-wrapper">
+                <div className="btn-group">
+                  <p className="common-text-style" style={{ paddingLeft: "15px", paddingTop: "20px" }}>Similar categories:</p> {getSimilarCategories(artSlug)}
+                </div>
+              </div>
+              <div className="col-md-12 listingContainer">
+                {getArtists(GetListingHeaderData(artSlug)["background_color"], GetListingHeaderData(artSlug)["category"])}
+              </div>
             </div>
-          )}
+          </div>
         </div>
       )}
       {showCollabModal && (
