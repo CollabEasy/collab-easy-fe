@@ -11,7 +11,7 @@ const postConfig = (dataToSend) => {
   };
 };
 
-const getConfig = () => {
+const getConfigWithToken = () => {
   return {
     method: "get",
     headers: {
@@ -20,8 +20,14 @@ const getConfig = () => {
   };
 };
 
+const getConfig = () => {
+  return {
+    method: "get",
+  };
+};
+
 export const getArtistsByCategoryIdAPI = async (id: number) => {
-  const config = getConfig();
+  const config = getConfigWithToken();
   try {
     const result = await api.call(
       `api/v1/artist/category/id/${id}/artists`,
@@ -47,7 +53,7 @@ export const getArtistsByCategorySlugAPI = async (slug: string) => {
 };
 
 export const getAllCategories = async () => {
-  const config = getConfig();
+  const config = getConfigWithToken();
   try {
     const categories = await api.call("api/v1/artist/categories", config);
     return categories;
