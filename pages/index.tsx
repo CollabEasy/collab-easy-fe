@@ -144,14 +144,14 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-6 col-xl-6">
               <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref>
                 <Card style={{ height: '100%' }} cover={<Image src={ideaImg} alt="cards" sizes="small" />}>
-                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>"Got an idea? Add it to your scratchpad before you forget!" </span>} />
+                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Got an idea? Add it to your scratchpad before you forget! </span>} />
                 </Card>
               </Link>
             </div>
             <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-6 col-xl-6">
               <Link href={routeToHref(toGetInspired())} passHref>
                 <Card style={{ height: '100%' }} cover={<Image src={inspireImg} alt="cards" />}>
-                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>"Searching for an idea? We got you covered!" </span>} />
+                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Searching for an idea? We got you covered! </span>} />
                 </Card>
               </Link>
             </div>
