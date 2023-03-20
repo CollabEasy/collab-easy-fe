@@ -201,8 +201,9 @@ const DiscoverArtist = ({
               <div className="d-flex flex-column mt-4">
                 <Button
                   block
-                  type="primary"
                   className="common-medium-btn"
+                  type="primary"
+                  disabled={!isLoggedIn}
                   ghost
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
@@ -217,7 +218,7 @@ const DiscoverArtist = ({
                   block
                   className="common-medium-btn"
                   type="primary"
-                  disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false"}
+                  disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false" || !isLoggedIn}
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
                   onClick={() => {
                     setShowCollabModalState(true);
@@ -238,6 +239,14 @@ const DiscoverArtist = ({
 
   return (
     <>
+      {loginModalDetails.openModal && !user.new_user && (
+        <LoginModal />
+      )
+      }
+      {showProfileModal && (
+        <NewUserModal />
+      )
+      }
       {isFetchingArtists ? (
         <Loader />
       ) : (
