@@ -44,6 +44,7 @@ import Loader from "@/components/loader";
 import ArtistSocialProspectusModal from "@/components/modal/socialProspectusModal";
 import LoginModal from '@/components/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
+import { GetSocialPlatformId, GetSocialPlatformName, GetCountryName} from '../../../helpers/artistSettingPageHelper';
 
 const { TabPane } = Tabs;
 
@@ -87,6 +88,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistSkills: () => dispatch(actions.fetchArtistSkills("")),
   fetchArtistSocialProspectus: (slug: string) =>
     dispatch(actions.fetchArtistSocialProspectus(slug)),
+  fetchArtistPreferences: () => dispatch(actions.fetchArtistPreferences()),
 
   updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
@@ -133,6 +135,7 @@ const EditProfile = ({
   getAllCategories,
   fetchArtistSkills,
   /*fetchArtistSamples,*/
+  fetchArtistPreferences,
   fetchArtistSocialProspectus,
   updateArtistPreference,
   updateArtistSkills,
@@ -181,22 +184,13 @@ const EditProfile = ({
 
   const { Option } = Select;
 
-  const getCountryName = (country_iso: string) => {
-    for (var i = 0; i < COUNTRIES.length; i++) {
-      if (COUNTRIES[i]["Dial"] == country_iso) {
-        return COUNTRIES[i];
-      }
-    }
-    return {};
-  };
-
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select
         value={userDataCached.country}
         style={{ width: 150 }}
         onChange={(e) => {
-          let selectecCountry = getCountryName(e);
+          let selectecCountry = GetCountryName(e);
           setUserDataCached((prevState) => ({
             ...prevState,
             country_dial: e,
@@ -219,6 +213,7 @@ const EditProfile = ({
       getAllCategories();
     }
     //fetchArtistSamples(user.slug);
+    fetchArtistPreferences();
     fetchArtistSkills();
     fetchArtistSocialProspectus(user.slug);
     getCollabRequestsAction({
@@ -354,7 +349,7 @@ const EditProfile = ({
     setShowSocialProspectusModal(true);
   };
   const deleteUserProspectus = (entry: { name: any; }) => {
-    deleteArtistSocialProspectus(getSocialPlatformId(entry.name));
+    deleteArtistSocialProspectus(GetSocialPlatformId(entry.name));
   };
 
   const HideProspectusEntryModal = () => {
@@ -390,23 +385,7 @@ const EditProfile = ({
     },
   ];
 
-  const getSocialPlatformId = (name: string) => {
-    for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
-      if (SOCIAL_PLATFORMS[i].name === name) {
-        return SOCIAL_PLATFORMS[i].id;
-      }
-    }
-    return 1;
-  };
-
-  const getSocialPlatformName = (id: number) => {
-    for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
-      if (SOCIAL_PLATFORMS[i].id === id) {
-        return SOCIAL_PLATFORMS[i].name;
-      }
-    }
-    return "";
-  };
+  
 
   const getCurrentSocialProspectus = () => {
     let data =
@@ -414,7 +393,7 @@ const EditProfile = ({
     let updatedData = [];
     data.forEach((element: { socialPlatformId: any; handle: any; description: any; upForCollab: any; }) => {
       let obj = {
-        name: getSocialPlatformName(element.socialPlatformId),
+        name: GetSocialPlatformName(element.socialPlatformId),
         handle: element.handle,
         description: element.description,
         upForCollab: element.upForCollab,
