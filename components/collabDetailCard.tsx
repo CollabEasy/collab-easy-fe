@@ -176,7 +176,6 @@ const CollabDetailCard = ({
                   block
                   type="primary"
                   onClick={() => {
-                    console.log("comleting request ", collabDetails.id);
                     completeCollabRequest(collabDetails.id);
                   }}
                   style={{ color: "white", border: "green", backgroundColor: "#91D296", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px'}}

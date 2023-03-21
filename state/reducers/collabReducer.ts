@@ -281,29 +281,31 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
       };
     case actionTypes.COMPLETE_COLLAB_REQUEST_SUCCESS:
       id = action.payload.id;
-      newAll = [];
       newCompleted = [];
-      state.collabDetails.sent.completed.forEach((request, index) => {
-        if (request.id !== id) {
+      newAll = [];
+      state.collabDetails.received.active.forEach((request, index) => {
+        if (request.id === id) {
+          request.status = "COMPLETE";
+          newAll.push(request);
           newCompleted.push(request);
-        }
+        } 
       });
 
-      state.collabDetails.sent.all.forEach((request, index) => {
+      state.collabDetails.received.all.forEach((request, _) => {
         if (request.id !== id) {
           newAll.push(request);
         }
-      });
+      })
 
       return {
         ...state,
         isCompletingRequest: false,
         collabDetails: {
           ...state.collabDetails,
-          sent: {
+          received: {
             ...state.collabDetails.received,
             all: newAll,
-            completed: newCompleted,
+            completed: newCompleted.concat(state.collabDetails.received.completed),
           },
         },
       };

@@ -104,7 +104,6 @@ export const completeCollabRequestLogic = createLogic<
 >({
   type: [actionTypes.COMPLETE_COLLAB_REQUEST],
   async process({ action, api, getState, routes }, dispatch, done) {
-    console.log("you are here");
     const { id } = action.payload;
     try {
       dispatch(actions.completeCollabRequestActionRequest());
