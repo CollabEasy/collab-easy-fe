@@ -17,7 +17,7 @@ export function GetCollaboratorInfoFromCollab(collabData) {
 }
 
 export function DoHideNewCommentBox(status) {
-    if (status == "REJECTED" || status == "EXPIRED" || status == "COMPLETED") {
+    if (status == "PENDING" || status == "REJECTED" || status == "EXPIRED" || status == "COMPLETED") {
         return false;
     }
     return true;

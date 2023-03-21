@@ -2,25 +2,29 @@
 import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
 import { AppState } from "state";
+import React, { useEffect, useState } from "react";
 import {
   CheckCircleOutlined,
   CheckOutlined,
   ClockCircleOutlined,
   CloseCircleOutlined,
   ExclamationCircleOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 import { CollabRequestData } from "types/model";
 import { Button, Tooltip, Tag } from "antd";
 import * as actions from "./../state/action";
 import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 import { useRouter } from "next/router";
-import { convertTimestampToDate, getCollabHeading, getCollabAdditionalDetails, getScheduledDate } from "helpers/collabCardHelper";
+import SendCollabRequestModal from "./modal/sendCollabRequestModal";
+import { ShowEditCollabDetailIcon, ConvertTimestampToDate, GetCollabHeading, GetCollabAdditionalDetails, GetScheduledDate } from "helpers/collabCardHelper";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
   isAcceptingRequest: state.collab.isAcceptingRequest,
   isRejectingRequest: state.collab.isRejectingRequest,
   isCancellingRequest: state.collab.isCancellingRequest,
+  showCollabModal: state.collab.showCollabModal,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -30,6 +34,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(actions.rejectCollabRequestAction(id)),
   cancelCollabRequest: (id: string) =>
     dispatch(actions.cancelCollabRequestAction(id)),
+  
+  setShowCollabModalState: (show: boolean) => 
+    dispatch(actions.setShowCollabModalState(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -46,11 +53,33 @@ const CollabDetailCard = ({
   isAcceptingRequest,
   isRejectingRequest,
   isCancellingRequest,
+  showCollabModal,
   acceptCollabRequest,
   rejectCollabRequest,
   cancelCollabRequest,
+  setShowCollabModalState,
 }: Props) => {
   const router = useRouter();
+  const emptyCollabDetails: CollabRequestData = {
+    id: "",
+    senderId: "",
+    receiverId: "",
+    collabDate: undefined,
+    requestData: {
+      message: "",
+      collabTheme: ""
+    },
+    status: "",
+    createdAt: undefined,
+    updatedAt: undefined
+  };
+  const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
+
+  useEffect(() => {
+    setCollabRequestDetails(collabDetails);
+  }, [collabDetails])
+
+
   const collabStatusComponentForSender = () => {
     let icon = <Tag color="green">Completed</Tag>;
     if (collabDetails.status === "ACTIVE") {
@@ -68,6 +97,7 @@ const CollabDetailCard = ({
         {collabDetails.status !== "PENDING" && icon}
         {collabDetails.status === "PENDING" && (
           <Button
+            block
             type="primary"
             loading={isCancellingRequest}
             onClick={(e) => {
@@ -152,15 +182,28 @@ const CollabDetailCard = ({
           </div>
 
           <div className="col-md-6 mt-1 collabDetailCard__textContainer">
-            <b className="f-16 mb4 common-text-style"> {getCollabHeading(user.artist_id, collabDetails)}</b><br></br>
+            <b className="f-16 mb4 common-text-style"> {GetCollabHeading(user.artist_id, collabDetails)}</b><br></br>
             <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style">
-              {getCollabAdditionalDetails(user.artist_id, collabDetails)}
+              {GetCollabAdditionalDetails(user.artist_id, collabDetails)}
             </p>
             <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style"> 
-              {getScheduledDate(collabDetails.status)} {convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}.
+              {GetScheduledDate(collabDetails.status)} {ConvertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}.
             </p>
           </div>
           <div className="align-items-center align-content-center col-md-3 border-left mt-1">
+            {ShowEditCollabDetailIcon(collabDetails, user.artist_id, collabDetails.status) && (
+                <Button
+                  block
+                  type="primary"
+                  onClick={() => {
+                    setShowCollabModalState(true);
+                    setCollabRequestDetails(collabDetails);
+                  }}
+                  className="common-medium-btn"
+                >
+                  Edit
+                </Button>
+            )}
             <div className="d-flex flex-column mt-4">
               {user.artist_id === collabDetails.senderId
                 ? collabStatusComponentForSender()
@@ -169,6 +212,15 @@ const CollabDetailCard = ({
           </div>
         </div>
       </div>
+      {showCollabModal && (
+        <SendCollabRequestModal
+          otherUser={user.artist_id}
+          onCancel={() => {
+            setShowCollabModalState(false);
+          }}
+          collabDetails={collabRequestDetails}
+        />
+      )}
     </>
   );
 };

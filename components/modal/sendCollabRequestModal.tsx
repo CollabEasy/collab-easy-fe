@@ -52,7 +52,7 @@ const SendCollabRequestModal = ({
   const [editable, setEditable] = useState(
     isNewCollab ||
       (user.artist_id === collabDetails.senderId &&
-        collabDetails.status === "PENDING")
+        (collabDetails.status === "PENDING" || collabDetails.status === "ACTIVE"))
   );
 
   const sendCollabRequest = () => {
