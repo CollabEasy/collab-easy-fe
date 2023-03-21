@@ -199,10 +199,16 @@ const DiscoverArtist = ({
             </div>
             <div className="align-items-center align-content-center col-md-3 border-left mt-1">
               <div className="d-flex flex-column mt-4">
+                {!isLoggedIn && (
+                  <div className="login-message">
+                    <p>Please, login to view profile or send a collab request</p>
+                  </div>
+                )}
                 <Button
                   block
                   className="common-medium-btn"
                   type="primary"
+                  disabled={!isLoggedIn}
                   ghost
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
