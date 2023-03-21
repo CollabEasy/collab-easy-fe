@@ -25,6 +25,7 @@ const initialState: CollabRequestState = {
   isAcceptingRequest: false,
   isRejectingRequest: false,
   isCancellingRequest: false,
+  isCompletingRequest: false,
 };
 
 const getUpdatedList = (
@@ -156,6 +157,11 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
         ...state,
         isCancellingRequest: true,
       };
+    case actionTypes.COMPLETE_COLLAB_REQUEST_REQUEST:
+      return {
+        ...state,
+        isCompletingRequest: true,
+      };
     case actionTypes.ACCEPT_COLLAB_REQUEST_FAILURE:
       return {
         ...state,
@@ -170,6 +176,11 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
       return {
         ...state,
         isCancellingRequest: false,
+      };
+    case actionTypes.COMPLETE_COLLAB_REQUEST_FAILURE:
+      return {
+        ...state,
+        isCompletingRequest: false,
       };
     case actionTypes.ACCEPT_COLLAB_REQUEST_SUCCESS:
       id = action.payload.id;
@@ -258,6 +269,34 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
       return {
         ...state,
         isCancellingRequest: false,
+        collabDetails: {
+          ...state.collabDetails,
+          sent: {
+            ...state.collabDetails.received,
+            all: newAll,
+            pending: newPending,
+          },
+        },
+      };
+    case actionTypes.COMPLETE_COLLAB_REQUEST_SUCCESS:
+      id = action.payload.id;
+      newAll = [];
+      newPending = [];
+      state.collabDetails.sent.pending.forEach((request, index) => {
+        if (request.id !== id) {
+          newPending.push(request);
+        }
+      });
+
+      state.collabDetails.sent.all.forEach((request, index) => {
+        if (request.id !== id) {
+          newAll.push(request);
+        }
+      });
+
+      return {
+        ...state,
+        isCompletingRequest: false,
         collabDetails: {
           ...state.collabDetails,
           sent: {

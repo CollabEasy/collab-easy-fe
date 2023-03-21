@@ -21,6 +21,7 @@ const mapStateToProps = (state: AppState) => ({
   isAcceptingRequest: state.collab.isAcceptingRequest,
   isRejectingRequest: state.collab.isRejectingRequest,
   isCancellingRequest: state.collab.isCancellingRequest,
+  isCompletingRequest: state.collab.isCompletingRequest,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -30,6 +31,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(actions.rejectCollabRequestAction(id)),
   cancelCollabRequest: (id: string) =>
     dispatch(actions.cancelCollabRequestAction(id)),
+  completeCollabRequest: (id: string) => dispatch(actions.completeCollabRequestAction(id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -46,9 +48,11 @@ const CollabDetailCard = ({
   isAcceptingRequest,
   isRejectingRequest,
   isCancellingRequest,
+  isCompletingRequest,
   acceptCollabRequest,
   rejectCollabRequest,
   cancelCollabRequest,
+  completeCollabRequest,
 }: Props) => {
   const router = useRouter();
   const collabStatusComponentForSender = () => {
@@ -156,7 +160,7 @@ const CollabDetailCard = ({
             <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style">
               {getCollabAdditionalDetails(user.artist_id, collabDetails)}
             </p>
-            <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style"> 
+            <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style">
               {getScheduledDate(collabDetails.status)} {convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}.
             </p>
           </div>
@@ -166,6 +170,24 @@ const CollabDetailCard = ({
                 ? collabStatusComponentForSender()
                 : collabStatusComponentForReceiver()}
             </div>
+            <>
+              {collabDetails.status === "ACTIVE" &&
+                <Button
+                  block
+                  type="primary"
+                  onClick={() => {
+                    console.log("comleting request ", collabDetails.id);
+                    completeCollabRequest(collabDetails.id);
+                  }}
+                  style={{ color: "white", border: "green", backgroundColor: "#91D296", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px'}}
+                  disabled={isRejectingRequest}
+                  loading={isAcceptingRequest}
+                  className="common-medium-btn"
+                >
+                  Mark Completed
+                </Button>
+              }
+            </>
           </div>
         </div>
       </div>

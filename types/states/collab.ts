@@ -7,5 +7,6 @@ export interface CollabRequestState {
   isAcceptingRequest: boolean;
   isRejectingRequest: boolean;
   isCancellingRequest: boolean;
+  isCompletingRequest: boolean;
   isFetchingCollabDetails: boolean;
 }

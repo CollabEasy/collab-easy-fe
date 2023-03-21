@@ -96,6 +96,30 @@ export const cancelCollabRequestLogic = createLogic<
   },
 });
 
+export const completeCollabRequestLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.completeCollabRequestAction>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.COMPLETE_COLLAB_REQUEST],
+  async process({ action, api, getState, routes }, dispatch, done) {
+    console.log("you are here");
+    const { id } = action.payload;
+    try {
+      dispatch(actions.completeCollabRequestActionRequest());
+      const request = await api.collabApi.completeCollabRequest(id);
+      dispatch(actions.completeCollabRequestActionSuccess(id))
+      dispatch(actions.setShowCollabModalState(false));
+    } catch (error) {
+      dispatch(actions.completeCollabRequestActionFailure())
+    } finally {
+      done();
+    }
+  },
+});
+
+
 export const rejectCollabRequestLogic = createLogic<
   AppState,
   FSACreatorPayload<typeof actions.rejectCollabRequestAction>,
