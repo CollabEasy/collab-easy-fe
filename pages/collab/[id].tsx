@@ -130,6 +130,7 @@ const CollabPage = ({
     return collabComments;
   }
 
+  console.log(collab.collabDetails);
   return (
     <>
       {loginModalDetails.openModal && !user.new_user && (

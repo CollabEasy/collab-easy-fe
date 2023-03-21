@@ -47,6 +47,7 @@ let id = "";
 let newPending = [];
 let newActive = [];
 let newRejected = [];
+let newCompleted = [];
 let newAll = [];
 
 
@@ -281,10 +282,10 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
     case actionTypes.COMPLETE_COLLAB_REQUEST_SUCCESS:
       id = action.payload.id;
       newAll = [];
-      newPending = [];
-      state.collabDetails.sent.pending.forEach((request, index) => {
+      newCompleted = [];
+      state.collabDetails.sent.completed.forEach((request, index) => {
         if (request.id !== id) {
-          newPending.push(request);
+          newCompleted.push(request);
         }
       });
 
@@ -302,7 +303,7 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
           sent: {
             ...state.collabDetails.received,
             all: newAll,
-            pending: newPending,
+            completed: newCompleted,
           },
         },
       };
