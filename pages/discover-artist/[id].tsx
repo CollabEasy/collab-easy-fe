@@ -203,7 +203,6 @@ const DiscoverArtist = ({
                   block
                   className="common-medium-btn"
                   type="primary"
-                  disabled={!isLoggedIn}
                   ghost
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
                   <Link
