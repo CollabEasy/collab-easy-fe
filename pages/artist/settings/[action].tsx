@@ -88,6 +88,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistSkills: () => dispatch(actions.fetchArtistSkills("")),
   fetchArtistSocialProspectus: (slug: string) =>
     dispatch(actions.fetchArtistSocialProspectus(slug)),
+  fetchArtistPreferences: () => dispatch(actions.fetchArtistPreferences()),
 
   updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
@@ -134,6 +135,7 @@ const EditProfile = ({
   getAllCategories,
   fetchArtistSkills,
   /*fetchArtistSamples,*/
+  fetchArtistPreferences,
   fetchArtistSocialProspectus,
   updateArtistPreference,
   updateArtistSkills,
@@ -211,6 +213,7 @@ const EditProfile = ({
       getAllCategories();
     }
     //fetchArtistSamples(user.slug);
+    fetchArtistPreferences();
     fetchArtistSkills();
     fetchArtistSocialProspectus(user.slug);
     getCollabRequestsAction({
@@ -390,7 +393,7 @@ const EditProfile = ({
     let updatedData = [];
     data.forEach((element: { socialPlatformId: any; handle: any; description: any; upForCollab: any; }) => {
       let obj = {
-        name: GetSocialPlatformId(element.socialPlatformId),
+        name: GetSocialPlatformName(element.socialPlatformId),
         handle: element.handle,
         description: element.description,
         upForCollab: element.upForCollab,
