@@ -65,6 +65,7 @@ const SocialProspectusPage = ({
     data.forEach(element => {
       let iconPath = GetSocialPlatformImage(element.socialPlatformId);
       let url =  GetSocialMediaUrl(element.socialPlatformId, element.handle);
+      console.log(element);
       prospectusCard.push(
         <div>
           <div className="row p-2 bg-white border rounded social-card">
@@ -78,7 +79,7 @@ const SocialProspectusPage = ({
               <h5 className="common-h5-style"> {!IsPersonalWebsite(element.socialPlatformId)? element.handle : "Personal Website"}</h5>
               <p className="text-justify para mb-0  break-word common-p-style">{element.description}<br></br><br></br></p>
               <div>
-                {element.up_for_collab == "false" ? (
+                {element.upForCollab === "false" ? (
                   <p className="common-p-style"><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />{user.first_name} is not available to collab on {GetSocialPlatformName(element.socialPlatformId)}</p>
                 ) : (
                   <p className="common-p-style"><CheckOutlined style={{ color: 'green', marginRight: '5px' }} />{user.first_name} is available to collab on {GetSocialPlatformName(element.socialPlatformId)}</p>
