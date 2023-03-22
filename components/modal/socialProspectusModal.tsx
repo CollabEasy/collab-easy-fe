@@ -167,9 +167,9 @@ const ArtistSocialProspectusModal = ({
             </div>
             <div>
                 <p className="mt4">
-                NOTE: If you have selected 'Personal Website' from listed platforms, then make sure you
+                NOTE: If you have selected &apos;Personal Website&apos; from listed platforms, then make sure you
                 enter the complete URL in handle. For other platforms just eneter your handle. 
-                The valid example for complete URL is 'www.personalwesbite.com/myhandle' and handle 'myhandle'.
+                The valid example for complete URL is &apos;www.personalwesbite.com/myhandle&apos; and handle &apos;myhandle&apos;.
                 </p>
             </div>
         </Modal>
