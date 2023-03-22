@@ -65,7 +65,6 @@ const SocialProspectusPage = ({
     data.forEach(element => {
       let iconPath = GetSocialPlatformImage(element.socialPlatformId);
       let url =  GetSocialMediaUrl(element.socialPlatformId, element.handle);
-      console.log(element);
       prospectusCard.push(
         <div>
           <div className="row p-2 bg-white border rounded social-card">
