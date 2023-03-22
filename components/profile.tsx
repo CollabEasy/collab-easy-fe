@@ -179,18 +179,15 @@ const Profile = ({
                     type="primary"
                     className="common-medium-btn"
                     style={{ height: 'auto', marginTop: '10px' }}
-                    onClick={() => {
-                      setShowCollabModalState(true);
-                      setCollabRequestDetails(collab.collabDetails.sent.pending[0] ?? collab.collabDetails.sent.active[0]);
-                    }}
+                  // onClick={() => {
+                  //   setShowCollabModalState(true);
+                  //   setCollabRequestDetails(collab.collabDetails.sent.pending[0] ?? collab.collabDetails.sent.active[0]);
+                  // }}
                   >
-                    Show pending requests
-                    {/* 
-                    // Do not redirect to setting page instead open the modal.
                     <Link
                       href={routeToHref(toEditProfile("profile", "collab-request"))}
                       passHref
-                    >Show pending requests</Link> */}
+                    >Show pending requests</Link>
 
                   </Button>
                   <span className="common-text-style"><StarFilled style={{ color: 'orange', margin: '5px' }} />You have a pending collab request with {user.first_name}. </span>
