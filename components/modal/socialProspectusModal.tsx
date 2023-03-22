@@ -105,7 +105,7 @@ const ArtistSocialProspectusModal = ({
                     <Form.Item 
                         label="Handle" 
                         tooltip={{ 
-                            title: 'Do not write complete URL, write only your handle. Your handle is "myhandle" in www.instagram.com/myhandle', 
+                            title: "NOTE: If you have selected 'Personal Website' from listed platforms, then make sure you enter the complete URL in handle. For other platforms just eneter your handle. The valid example for complete URL is 'www.personalwesbite.com/myhandle' and handle 'myhandle'.",
                             icon: <InfoCircleOutlined /> 
                         }}
                     >
@@ -168,7 +168,8 @@ const ArtistSocialProspectusModal = ({
             <div>
                 <p className="mt4">
                 NOTE: If you have selected 'Personal Website' from listed platforms, then make sure you
-                enter the complete URL. The complete URL is 'www.personalwesbite.com/myhandle'
+                enter the complete URL in handle. For other platforms just eneter your handle. 
+                The valid example for complete URL is 'www.personalwesbite.com/myhandle' and handle 'myhandle'.
                 </p>
             </div>
         </Modal>
