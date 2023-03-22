@@ -52,7 +52,7 @@ const SendCollabRequestModal = ({
   const [editable, setEditable] = useState(
     isNewCollab ||
       (user.artist_id === collabDetails.senderId &&
-        (collabDetails.status === "PENDING" || collabDetails.status === "ACTIVE"))
+        (collabDetails.status === "PENDING"))
   );
 
   const sendCollabRequest = () => {
@@ -120,10 +120,10 @@ const SendCollabRequestModal = ({
           />
         </div>
 
+        {/* Date should be allowed to be changed even for active collabs to allow collaborators to push date ahead if needed. */}
         <div className="sendCollabRequestModal__textAreaContainer">
           <p className="mb0">When do you want to post this collab?</p>
           <DatePicker
-            disabled={!editable}
             clearIcon={null}
             disabledDate={(d) => d.isSameOrBefore(currentDate)}
             format="DD/MM/YYYY"
@@ -133,6 +133,7 @@ const SendCollabRequestModal = ({
                 : tomorrow
             )}
             onChange={(e) => {
+              setEditable(true);
               setCollabDataCached((prevState) => ({
                 ...prevState,
                 collabDate: e.toDate(),
