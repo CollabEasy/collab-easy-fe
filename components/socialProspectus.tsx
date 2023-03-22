@@ -17,6 +17,7 @@ import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import Loader from "./loader";
+import { GetSocialMediaUrl, IsPersonalWebsite, GetSocialPlatformName, GetSocialPlatformImage, GetSocialPlatformBaseUrl } from '../helpers/socialProspectusHelper';
 
 const { Meta } = Card;
 
@@ -53,42 +54,17 @@ const SocialProspectusPage = ({
 
   useEffect(() => {
     setUserSocialProspectus(socialProspectus.socialProspectus);
-  }, [socialProspectus])
-
-  const getSocialPlatformName = (id) => {
-    for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
-      if (SOCIAL_PLATFORMS[i].id === id) {
-        return SOCIAL_PLATFORMS[i].name;
-      }
-    }
-    return "";
-  };
+  }, [socialProspectus])  
 
   const { toEditProfile } = useRoutesContext();
-
-  const getSocialPlatformImage = (socialPlatformId) => {
-    for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
-      if (SOCIAL_PLATFORMS[i].id == socialPlatformId) {
-        return SOCIAL_PLATFORMS[i].image;
-      }
-    }
-  }
-
-  const getSocialPlatformBaseUrl = (socialPlatformId) => {
-    for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {
-      if (SOCIAL_PLATFORMS[i].id == socialPlatformId) {
-        return SOCIAL_PLATFORMS[i].base_url;
-      }
-    }
-  }
 
   const getCurrentSocialProspectus = () => {
     const prospectusCard: JSX.Element[] = [];
     let data = userSocialProspectus.length != 0 ? userSocialProspectus[0].data : [];
-    // "name": getSocialPlatformName(element.socialPlatformId),
+    // "name": GetSocialPlatformName(element.socialPlatformId),
     data.forEach(element => {
-      let iconPath = getSocialPlatformImage(element.socialPlatformId);
-      let url = getSocialPlatformBaseUrl(element.socialPlatformId).concat("/", element.handle);
+      let iconPath = GetSocialPlatformImage(element.socialPlatformId);
+      let url =  GetSocialMediaUrl(element.socialPlatformId, element.handle);
       prospectusCard.push(
         <div>
           <div className="row p-2 bg-white border rounded social-card">
@@ -99,13 +75,13 @@ const SocialProspectusPage = ({
                 alt="social platform" />
             </div>
             <div className="col-md-6 mt-1">
-              <h5 className="common-h5-style">{element.handle}</h5>
+              <h5 className="common-h5-style"> {!IsPersonalWebsite(element.socialPlatformId)? element.handle : "Personal Website"}</h5>
               <p className="text-justify para mb-0  break-word common-p-style">{element.description}<br></br><br></br></p>
               <div>
                 {element.up_for_collab == "false" ? (
-                  <p className="common-p-style"><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />{user.first_name} is not available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
+                  <p className="common-p-style"><CloseOutlined style={{ color: 'red', marginRight: '5px' }} />{user.first_name} is not available to collab on {GetSocialPlatformName(element.socialPlatformId)}</p>
                 ) : (
-                  <p className="common-p-style"><CheckOutlined style={{ color: 'green', marginRight: '5px' }} />{user.first_name} is available to collab on {getSocialPlatformName(element.socialPlatformId)}</p>
+                  <p className="common-p-style"><CheckOutlined style={{ color: 'green', marginRight: '5px' }} />{user.first_name} is available to collab on {GetSocialPlatformName(element.socialPlatformId)}</p>
                 )}
               </div>
             </div>
