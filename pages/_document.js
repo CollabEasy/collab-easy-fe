@@ -16,12 +16,15 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
 
           <meta property="og:title" content='Wondor'/>
-          <meta property="og:image" content={landingMobileImg}/>
           <meta property="og:description" content="Meet artists to collaborate with on your next big idea!"/>
           <meta property="og:url" content='https://www.wondor.art'/>
+          <meta property="og:type" content='website'/>
+          {/* // This is a hack https://stackoverflow.com/questions/71305450/og-image-meta-tag-with-next-js-is-not-working */}
+          <img src="../public/images/thumbnail.png" alt="" style={{ display: 'none'}} />
+          <meta property="og:image" content={"https://www.wondor.art" + '/../public/images/thumbnail.png'}/>
           <meta property="og:image:width" content='1200' />
           <meta property="og:image:height" content='627' />
-          <meta property="og:type" content='website'/>
+          <meta property="og:image:type" content='image/png'/>
 
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
           <link href="https://fonts.googleapis.com/css?family=Nova+Round|Varela+Round&display=swap" rel="stylesheet"></link>
