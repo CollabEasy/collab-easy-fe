@@ -23,6 +23,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(action.updateCollabRequest(data)),
   acceptCollabRequest: (requestId: string) =>
     dispatch(action.acceptCollabRequestAction(requestId)),
+  setShowCollabModalState: (show: boolean) => 
+    dispatch(action.setShowCollabModalState(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -43,6 +45,7 @@ const SendCollabRequestModal = ({
   onCancel,
   updateCollabRequest,
   sendCollabRequestAction,
+  setShowCollabModalState,
 }: Props) => {
   const currentDate = moment(new Date());
   const tomorrow = currentDate.clone().add(1, "days");
@@ -70,6 +73,7 @@ const SendCollabRequestModal = ({
     } else {
       updateCollabRequest(collabDataCached);
     }
+    setShowCollabModalState(false);
   };
 
   return (
@@ -169,6 +173,7 @@ const SendCollabRequestModal = ({
               loading={isAcceptingRequest}
               onClick={() => {
                 acceptCollabRequest(collabDetails.id);
+                setShowCollabModalState(false);
               }}
             >
               Accept
@@ -181,6 +186,7 @@ const SendCollabRequestModal = ({
               loading={isRejectingRequest}
               onClick={() => {
                 rejectCollabRequest(collabDetails.id);
+                setShowCollabModalState(false);
               }}
             >
               Reject

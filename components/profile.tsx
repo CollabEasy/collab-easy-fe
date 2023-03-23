@@ -26,7 +26,7 @@ import {
 } from "@ant-design/icons";
 import { useRoutesContext } from "components/routeContext";
 import avatarImage from '../public/images/avatar.png';
-import { GetUserSkills, ShowIncompleteProfileBanner } from '../helpers/profilePageHelper';
+import { GetPendingCollabRequest, GetUserSkills, ShowIncompleteProfileBanner } from '../helpers/profilePageHelper';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -52,6 +52,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type Props = {
   isSelf: boolean;
   upForCollab: boolean;
+  loggedInUserId: string;
   user: User;
 } & ConnectedProps<typeof connector>;
 
@@ -59,9 +60,11 @@ const Profile = ({
   user,
   isSelf,
   upForCollab,
+  loggedInUserId,
   userSamples,
   collab,
   showCollabModal,
+  isFetchingCollabs,
   /*isFetchingSamples,*/
   setShowCollabModalState,
   /*fetchArtistSamples,*/
@@ -100,13 +103,19 @@ const Profile = ({
   }, [/*fetchArtistSamples,*/ getCollabRequestsAction, isSelf, user.slug, user.artist_id]);
 
   useEffect(() => {
-    if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {
-      setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
-      setHasPendingCollab(true);
-    } else if (collab.collabDetails.received.pending.length > 0 || collab.collabDetails.received.active.length > 0) {
-      setHasPendingCollab(true);
-      setCollabRequestDetails(collab.collabDetails.received.active[0]);
+    if (!isFetchingCollabs && (loggedInUserId !== user.artist_id)) {
+      // you are checking someone else page therefore fetch collab status.
+      var filteredCollab =  GetPendingCollabRequest(collab, loggedInUserId, user.artist_id);
+      if (filteredCollab.id !== "") {
+        // empty collab receieved.
+        setCollabRequestDetails(filteredCollab);
+        setHasPendingCollab(true);
+      } else {
+        setHasPendingCollab(false);
+        setCollabRequestDetails(emptyCollabDetails);
+      } 
     } else {
+      // you are on your own profile and do not fetch anything.
       setHasPendingCollab(false);
       setCollabRequestDetails(emptyCollabDetails);
     }
@@ -181,7 +190,7 @@ const Profile = ({
                     style={{ height: 'auto', marginTop: '10px' }}
                   onClick={() => {
                     setShowCollabModalState(true);
-                    setCollabRequestDetails(collab.collabDetails.sent.pending[0] ?? collab.collabDetails.sent.active[0]);
+                    setCollabRequestDetails(collabRequestDetails);
                   }}
                   >
                     Show pending requests
