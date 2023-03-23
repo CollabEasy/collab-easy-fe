@@ -22,7 +22,7 @@ export default class MyDocument extends Document {
           <meta property="og:type" content='website'/>
           {/* // This is a hack https://stackoverflow.com/questions/71305450/og-image-meta-tag-with-next-js-is-not-working */}
           <Image src="../public/images/thumbnail.png" alt="" style={{ display: 'none'}} />
-          <meta property="og:image" content={"https://www.wondor.art" + '/../public/images/thumbnail.png'}/>
+          <meta property="og:image" content={"https://www.wondor.art" + '/images/thumbnail.png'}/>
           <meta property="og:image:width" content='1200' />
           <meta property="og:image:height" content='627' />
           <meta property="og:image:type" content='image/png'/>
