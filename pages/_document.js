@@ -4,7 +4,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable import/no-extraneous-dependencies */
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import landingMobileImg from '../public/images/mobile-landing.svg';
+import landingMobileImg from '../public/images/thumbnail.png';
 
 export default class MyDocument extends Document {
 
@@ -16,9 +16,9 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
 
           <meta property="og:title" content='Wondor'/>
-          <meta property="og:image" content='../public/images/mobile-landing.svg'/>
+          <meta property="og:image" content="../public/images/thumbnail.png"/>
           <meta property="og:description" content="Meet artists to collaborate with on your next big idea!"/>
-          <meta property="og:url" content='www.wondor.art'/>
+          <meta property="og:url" content='https://www.wondor.art'/>
           <meta property="og:image:width" content='1200' />
           <meta property="og:image:height" content='627' />
           <meta property="og:type" content='website'/>
