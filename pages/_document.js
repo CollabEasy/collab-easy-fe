@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
 
           <meta property="og:title" content='Wondor'/>
-          <meta property="og:image" content={landingMobileImg}/>
+          <meta property="og:image" content='../public/images/mobile-landing.svg'/>
           <meta property="og:description" content="Meet artists to collaborate with on your next big idea!"/>
           <meta property="og:url" content='www.wondor.art'/>
           <meta property="og:image:width" content='1200' />
