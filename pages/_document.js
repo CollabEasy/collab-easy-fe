@@ -5,6 +5,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import landingMobileImg from '../public/images/thumbnail.png';
+import Image from "next/image";
 
 export default class MyDocument extends Document {
 
@@ -20,7 +21,7 @@ export default class MyDocument extends Document {
           <meta property="og:url" content='https://www.wondor.art'/>
           <meta property="og:type" content='website'/>
           {/* // This is a hack https://stackoverflow.com/questions/71305450/og-image-meta-tag-with-next-js-is-not-working */}
-          <img src="../public/images/thumbnail.png" alt="" style={{ display: 'none'}} />
+          <Image src="../public/images/thumbnail.png" alt="" style={{ display: 'none'}} />
           <meta property="og:image" content={"https://www.wondor.art" + '/../public/images/thumbnail.png'}/>
           <meta property="og:image:width" content='1200' />
           <meta property="og:image:height" content='627' />
