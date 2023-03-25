@@ -1,5 +1,6 @@
 import { createLogic } from "redux-logic";
 import * as actions from "../action/userAction";
+import * as notifActions from "../action/notificationAction";
 import * as homeActions from "../action/homeAction";
 import { LogicDeps } from "state";
 import { AppState } from "types/states";
@@ -102,6 +103,7 @@ export const updateArtistArtLogic = createLogic<
       dispatch(actions.updateArtistArtRequest());
       const { data } = action.payload;
       const result = await api.artistApi.updateArtistCategories(data);
+      dispatch(notifActions.showNotification(true, 'Art styles saved successfully.'));
       dispatch(actions.updateArtistArtSuccess(result));
     } catch (error) {
     } finally {
@@ -122,6 +124,7 @@ export const updateArtistPreferenceLogic = createLogic<
       const { key, value } = action.payload;
       dispatch(actions.updateArtistPreferenceRequest(key));
       const result = await api.artistApi.updateArtistPreference(key, value);
+      dispatch(notifActions.showNotification(true, 'Preferences saved successfully.'))
       dispatch(actions.updateArtistPreferenceSuccess(key, value));
     } catch (error) {
     } finally {
@@ -159,7 +162,9 @@ export const updateArtistProfileLogic = createLogic<
     try {
       dispatch(actions.updateArtistProfileRequest());
       const { data } = action.payload;
+      dispatch(notifActions.showNotification(true, 'Profile updated successfully.'));
       const result = await api.artistApi.updateArtistProfile(data);
+      
       dispatch(actions.updateArtistProfileSuccess(data));
       // TO-DO need to all get artist details action
     } catch (error) {

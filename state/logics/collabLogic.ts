@@ -2,6 +2,7 @@ import { CollabRequestStatus } from "config/constants";
 import { createLogic } from "redux-logic";
 import { LogicDeps } from "state";
 import * as actions from "../action/collabAction";
+import * as notifActions from "../action/notificationAction";
 import * as actionTypes from "../actionTypes/collabActionTypes";
 import { AppState } from "types/states";
 import { FSACreatorPayload } from "types/states/FSACreator";
@@ -18,6 +19,7 @@ export const sendCollabRequestLogic = createLogic<
     try {
       dispatch(actions.sendCollabRequestRequest());
       const response = await api.collabApi.sendCollabRequest(collabRequest);
+      dispatch(notifActions.showNotification(true, 'Collab Request sent successfully.'))
       dispatch(actions.setShowCollabModalState(false));
       dispatch(actions.sendCollabRequestSuccess(response['data']));
     } catch (error) {
