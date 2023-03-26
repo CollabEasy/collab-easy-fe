@@ -66,7 +66,7 @@ const SendCollabRequestModal = ({
           message: collabDataCached.requestData.message,
           collabTheme: collabDataCached.requestData.collabTheme,
         },
-        collabDate: collabDataCached.collabDate,
+        collabDate: collabDataCached.collabDate ?? tomorrow.toDate(),
       };
       // console.log("Rabbal collab data is ", data);
       sendCollabRequestAction(data);
