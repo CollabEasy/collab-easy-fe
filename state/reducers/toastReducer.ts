@@ -1,30 +1,30 @@
-import * as actionType from "../actionTypes/notificationActionTypes";
-import { NotificationState } from "types/states/notificationState";
+import * as actionType from "../actionTypes/toastActionTypes";
+import { ToastState } from "types/states/toastState";
 
-const initialState: NotificationState = {
+const initialState: ToastState = {
   isSuccess: false,
-  showNotification: false,
+  showToast: false,
   message: '',
   toastId: '',
 };
 
-const notificationReducer = (
+const toastReducer = (
   state = initialState,
   action
-): NotificationState => {
+): ToastState => {
   switch (action.type) {
     case actionType.SHOW_NOTIFICATION:
       return {
         ...state,
         isSuccess: action.payload.isSuccess,
-        showNotification: true,
+        showToast: true,
         message: action.payload.message,
       };
     case actionType.HIDE_NOTIFICATION:
       return {
         ...state,
         isSuccess: false,
-        showNotification: false,
+        showToast: false,
         message: '',
       };
     default:
@@ -32,4 +32,4 @@ const notificationReducer = (
   }
 };
 
-export default notificationReducer;
+export default toastReducer;

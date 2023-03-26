@@ -9,7 +9,7 @@ import scratchpad from "./reducers/scratchpadReducer";
 import socialProspectus from "./reducers/socialProspectusReducer";
 import collabConversation from "./reducers/collabConversationReducer";
 import analytics from "./reducers/analyticsReducer";
-import notification from "./reducers/notificationReducer";
+import toast from "./reducers/toastReducer";
 
 const appReducer = combineReducers<AppState>({
   home,
@@ -21,7 +21,7 @@ const appReducer = combineReducers<AppState>({
   socialProspectus,
   collabConversation,
   analytics,
-  notification,
+  toast,
 });
 
 const rootReducer = (state, action) => {

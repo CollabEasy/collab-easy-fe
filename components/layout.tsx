@@ -14,12 +14,12 @@ import { AppState } from "types/states";
 import { Dispatch } from "redux";
 import { getPublicRoutes } from "helpers/helper";
 import Loader from "./loader";
-import Notification from "./notifications/notification";
+import Toast from "./toast/toast";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
   isFetchingUser: state.user.isFetchingUser,
-  notification: state.notification,
+  toast: state.toast,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -40,7 +40,7 @@ const Layout = ({
   user,
   children,
   isFetchingUser,
-  notification,
+  toast,
   updateLoggedInData,
   fetchArtistPreferences,
   setIsFetchingUser,
@@ -65,13 +65,13 @@ const Layout = ({
       fetchArtistPreferences();
     }
   }
-  
+
   return (
     <div>
-      <Notification
-        showNotification={notification.showNotification}
-        isSuccess={notification.isSuccess}
-        message={notification.message}
+      <Toast
+        showToast={toast.showToast}
+        isSuccess={toast.isSuccess}
+        message={toast.message}
       />
 
       <div className="layout__layoutContainer">

@@ -4,7 +4,7 @@ import RoutesContext from "./routeContext";
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import * as gtag from '../lib/gtag'
-import Notification from "./notifications/notification";
+import Toast from "./toast/toast";
 
 const App = ({ children, routes }) => {
   const props = {

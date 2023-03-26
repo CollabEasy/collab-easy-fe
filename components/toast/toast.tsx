@@ -7,25 +7,25 @@ import { connect, ConnectedProps } from "react-redux";
 import { ToastContainer, ToastOptions } from "react-toastify";
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  hideNotification: () => dispatch(actions.hideNotification()),
+  hideToast: () => dispatch(actions.hideToast()),
 });
 
 const connector = connect(null, mapDispatchToProps);
 
 type Props = {
-  showNotification: boolean;
+  showToast: boolean;
   isSuccess: boolean;
   message: string;
 } & ConnectedProps<typeof connector>;
 
-const Notification = ({
-  showNotification,
+const Toast = ({
+  showToast,
   isSuccess,
   message,
-  hideNotification,
+  hideToast,
 }: Props) => {
   const [toastId, _] = useState(Date.now());
-  const notificationParams: ToastOptions = {
+  const toastParams: ToastOptions = {
     position: toast.POSITION.TOP_RIGHT,
     autoClose: 3000,
     hideProgressBar: false,
@@ -35,21 +35,21 @@ const Notification = ({
     progress: undefined,
     toastId: toastId,
     onClose: () => {
-      hideNotification()
+      hideToast()
     },
   };
 
-  if (message === "" || !showNotification || toast.isActive(toastId)) {
+  if (message === "" || !showToast || toast.isActive(toastId)) {
     return <div></div>;
   }
 
   if (isSuccess) {
-    toast.success(message, notificationParams);
+    toast.success(message, toastParams);
   } else {
-    toast.error(message, notificationParams);
+    toast.error(message, toastParams);
   }
 
   return <ToastContainer />;
 };
 
-export default connector(Notification);
+export default connector(Toast);

@@ -751,7 +751,7 @@ const EditProfile = ({
                     onValuesChange={onFormLayoutChange}
                     size={componentSize as SizeType}
                   >
-                    <Form.Item label="Notification Emails" valuePropName="checked">
+                    <Form.Item label="Toast Emails" valuePropName="checked">
                       <Switch
                         checkedChildren="enabled"
                         unCheckedChildren="disabled"

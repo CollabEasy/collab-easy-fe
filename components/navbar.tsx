@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
 import Search from './search';
 import { Dispatch } from "redux";
-import { /* Menu, Dropdown, */ Button } from 'antd';
+import { Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { AppState } from "types/states";
 import Image from 'next/image';
@@ -13,6 +13,7 @@ import titleDesktopImg from '../public/images/title-desktop.svg';
 import titleMobileImg from '../public/images/logo.svg';
 import hamburgerImg from '../public/images/hamburger.png';
 import { useRoutesContext } from "../components/routeContext";
+import Notification from "./notification/notification";
 import { routeToHref } from "config/routes";
 import { openLoginModalAction, resetUserLoggedIn } from "state/action";
 
@@ -117,6 +118,7 @@ const NavBar = ({
 
         ) : (
           <div className="login-menu-container">
+            <Notification />
             <div className={`menu-icon ${showLoginOptions ? 'hide-icon' : ''}`}
               onClick={() => setShowLoginOptions(!showLoginOptions)}
             >

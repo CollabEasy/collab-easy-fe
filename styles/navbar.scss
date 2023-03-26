@@ -64,6 +64,9 @@
 
 .login-menu-container{
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
   .login-options-container{
     position: absolute;
     background: #fff;
