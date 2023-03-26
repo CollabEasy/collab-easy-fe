@@ -10,6 +10,7 @@ import socialProspectus from "./reducers/socialProspectusReducer";
 import collabConversation from "./reducers/collabConversationReducer";
 import analytics from "./reducers/analyticsReducer";
 import toast from "./reducers/toastReducer";
+import notification from "./reducers/notificationsReducer";
 
 const appReducer = combineReducers<AppState>({
   home,
@@ -22,6 +23,7 @@ const appReducer = combineReducers<AppState>({
   collabConversation,
   analytics,
   toast,
+  notification,
 });
 
 const rootReducer = (state, action) => {

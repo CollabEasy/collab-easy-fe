@@ -9,3 +9,4 @@ export * from "./socialProspectus";
 export * from "./collabConversation";
 export * from "./analyticsState";
 export * from "./toastState";
+export * from "./notificationsState";

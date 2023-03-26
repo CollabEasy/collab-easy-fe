@@ -6,3 +6,4 @@ export * from "./categoryLogic";
 export * from "./socialProspectusLogic";
 export * from "./collabConversationLogic";
 export * from "./analyticsLogic";
+export * from "./notificationLogic";
