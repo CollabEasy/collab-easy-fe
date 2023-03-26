@@ -15,7 +15,6 @@ const notificationReducer = (state = initialState, action): NotificationState =>
       };
     case actionType.FETCH_NOTIFICATIONS_SUCCESS:
       const data = action.payload.result.data;
-      console.log(data);
       return {
         ...state,
         notifications: data,

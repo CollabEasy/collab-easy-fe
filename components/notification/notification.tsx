@@ -39,7 +39,7 @@ const Notification = ({
       innerNotifs.push(
         <CollabNotification
           collabStatus="received"
-          fromArtistName={notification.notification_data["from_artist"]}
+          fromArtistName={JSON.parse(notification.notification_data)['from_artist_name']}
           onClick={() => {
             router.push(`/collab/${notification.redirect_id}`);
           }}
