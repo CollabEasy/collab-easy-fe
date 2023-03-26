@@ -8,6 +8,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { ToastContainer, ToastOptions } from "react-toastify";
 import { Button, Dropdown, Menu, Space } from "antd";
 import type { MenuProps } from "antd";
+import CollabNotification from "./collabNotification";
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   hideToast: () => dispatch(actions.hideToast()),
@@ -19,10 +20,21 @@ type Props = {} & ConnectedProps<typeof connector>;
 
 const Notification = ({}: Props) => {
   const userMenu = (
-    <Menu>
-      <Menu.Item key="1">Item 1</Menu.Item>
-      <Menu.Item key="2">Item 2</Menu.Item>
-      <Menu.Item key="3">Item 3</Menu.Item>
+    <Menu className="notification-menu">
+      <Menu.Item key="1">
+        <CollabNotification
+          collabStatus="received"
+          fromArtistName="Prashant Joshi"
+          onClick={() => {}}
+        />
+      </Menu.Item>
+      <Menu.Item key="1">
+        <CollabNotification
+          collabStatus="received"
+          fromArtistName="Prashant Joshi"
+          onClick={() => {}}
+        />
+      </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="3">Logout</Menu.Item>
     </Menu>
