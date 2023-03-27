@@ -57,7 +57,7 @@ const ArtistProfile = ({
       let res = await artistApi.fetchUserByHandle(slug.toString())
       setOtherUser(res.data);
       setCollaborationStatus(
-        res.data.up_for_collab == "true" ? true : false
+        res.data.up_for_collab === "true" ? true : false
       );
     }
 
@@ -97,6 +97,7 @@ const ArtistProfile = ({
         <Profile
           isSelf={isSelf}
           upForCollab={upForCollab}
+          loggedInUserId={isLoggedIn ? user.artist_id : ""} 
           user={isSelf ? user : otherUser}
         />
       )}

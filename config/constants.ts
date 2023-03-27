@@ -12,6 +12,7 @@ import doodlingImage from '../public/images/popularCategories/doodling.svg';
 import facebookImage from '../public/images/facebook.png'
 import instagramImage from '../public/images/instagram.png'
 import tiktokImage from '../public/images/tiktok.png'
+import personalWebsiteImage from '../public/images/personalWebsite.png'
 
 export const COUNTRIES = [
   {
@@ -4025,6 +4026,14 @@ export const SOCIAL_PLATFORMS = [
     "approved": 1,
     "base_url": "https://www.tiktok.com",
     "image": tiktokImage,
+  },
+  {
+    "id": 5,
+    "name": "Personal Website",
+    "description": "Social media platform for sharing pictures and video.",
+    "approved": 1,
+    "base_url": "",
+    "image": personalWebsiteImage,
   }
 ]
 

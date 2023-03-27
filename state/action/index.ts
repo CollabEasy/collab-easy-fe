@@ -7,4 +7,5 @@ export * from "./socialProspectusAction";
 export * from "./scratchpadAction";
 export * from "./collabConversationAction";
 export * from "./analyticsAction";
+export * from "./notificationAction";
 

@@ -26,7 +26,7 @@ import {
 } from "@ant-design/icons";
 import { useRoutesContext } from "components/routeContext";
 import avatarImage from '../public/images/avatar.png';
-import { GetUserSkills, ShowIncompleteProfileBanner } from '../helpers/profilePageHelper';
+import { GetPendingCollabRequest, GetUserSkills, ShowIncompleteProfileBanner } from '../helpers/profilePageHelper';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -52,6 +52,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type Props = {
   isSelf: boolean;
   upForCollab: boolean;
+  loggedInUserId: string;
   user: User;
 } & ConnectedProps<typeof connector>;
 
@@ -59,9 +60,11 @@ const Profile = ({
   user,
   isSelf,
   upForCollab,
+  loggedInUserId,
   userSamples,
   collab,
   showCollabModal,
+  isFetchingCollabs,
   /*isFetchingSamples,*/
   setShowCollabModalState,
   /*fetchArtistSamples,*/
@@ -100,13 +103,19 @@ const Profile = ({
   }, [/*fetchArtistSamples,*/ getCollabRequestsAction, isSelf, user.slug, user.artist_id]);
 
   useEffect(() => {
-    if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {
-      setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
-      setHasPendingCollab(true);
-    } else if (collab.collabDetails.received.pending.length > 0 || collab.collabDetails.received.active.length > 0) {
-      setHasPendingCollab(true);
-      setCollabRequestDetails(collab.collabDetails.received.active[0]);
+    if (!isFetchingCollabs && (loggedInUserId !== user.artist_id)) {
+      // you are checking someone else page therefore fetch collab status.
+      var filteredCollab = GetPendingCollabRequest(collab, loggedInUserId, user.artist_id);
+      if (filteredCollab.id !== "") {
+        // empty collab receieved.
+        setCollabRequestDetails(filteredCollab);
+        setHasPendingCollab(true);
+      } else {
+        setHasPendingCollab(false);
+        setCollabRequestDetails(emptyCollabDetails);
+      }
     } else {
+      // you are on your own profile and do not fetch anything.
       setHasPendingCollab(false);
       setCollabRequestDetails(emptyCollabDetails);
     }
@@ -132,16 +141,18 @@ const Profile = ({
           <>
             {ShowIncompleteProfileBanner(user) ?
               (
-                <div style={{ backgroundColor: "#FBF0C4", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-                  <p><b>{user.first_name}</b>, looks like your profile is not complete. For maximum reach, please complete it
-                    <Link href={routeToHref(toEditProfile("profile", "profile"))} passHref> here.</Link></p></div>
+                <div style={{ backgroundColor: "EDC5CD", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
+                  <p><b>{user.first_name}</b>, looks like your profile is not complete 😔. For maximum reach, please complete it
+                    <Link href={routeToHref(toEditProfile("profile", "profile"))} passHref> here.</Link></p>
+                </div>
               ) : (
                 <div style={{ backgroundColor: "#E2F0CB", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-                  <p><b>{user.first_name}</b> well done, your profile is complete!</p></div>
+                  <p><b>{user.first_name}</b> well done, your profile is complete 🎉. Don&apos;t forget to show off your creation by adding your art accounts
+                    <Link href={routeToHref(toEditProfile("profile", "social-prospectus"))} passHref> here.</Link></p>
+                </div>
               )
 
             } </>}
-
         <div className="container">
           <div className="artistProfile__profileCoverContainer">
             <div className="graph"></div>
@@ -177,20 +188,34 @@ const Profile = ({
                     type="primary"
                     className="common-medium-btn"
                     style={{ height: 'auto', marginTop: '10px' }}
-                  // We do not need this logic anymore because we are not opening the modeal instead we are taking user
-                  // to the setting page.
-                  // onClick={() => {
-                  //   setShowCollabModalState(true);
-                  //   setCollabRequestDetails(collab.collabDetails.sent.pending[0] ?? collab.collabDetails.sent.active[0]);
-                  // }}
+                    onClick={() => {
+                      setShowCollabModalState(true);
+                      setCollabRequestDetails(collabRequestDetails);
+                    }}
                   >
-                    <Link
+                    {collabRequestDetails.status === "PENDING" ? (
+                      "Show pending request"
+                    ) : (
+                      "Show active request"
+                    )
+                    }
+                    {/* <Link
                       href={routeToHref(toEditProfile("profile", "collab-request"))}
                       passHref
-                    >Show pending requests</Link>
+                    >Show pending requests</Link> */}
 
                   </Button>
-                  <span className="common-text-style"><StarFilled style={{ color: 'orange', margin: '5px' }} />You have a pending collab request with {user.first_name}. </span>
+                  {collabRequestDetails.status === "PENDING" ? (
+                    <span className="common-text-style">
+                      <StarFilled style={{ color: 'orange', margin: '5px' }} />
+                      You have a pending collab request with {user.first_name}.
+                    </span>
+                  ) : (
+                    <span className="common-text-style">
+                      <StarFilled style={{ color: 'orange', margin: '5px' }} />
+                      You have an active collab request with {user.first_name}.
+                    </span>
+                  )}
                 </>
               ) : (
                 <>
