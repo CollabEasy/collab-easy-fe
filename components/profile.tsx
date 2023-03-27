@@ -27,6 +27,7 @@ import {
 import { useRoutesContext } from "components/routeContext";
 import avatarImage from '../public/images/avatar.png';
 import { GetPendingCollabRequest, GetUserSkills, ShowIncompleteProfileBanner } from '../helpers/profilePageHelper';
+import { ConvertTimestampToDate } from '../helpers/collabCardHelper';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -103,9 +104,11 @@ const Profile = ({
   }, [/*fetchArtistSamples,*/ getCollabRequestsAction, isSelf, user.slug, user.artist_id]);
 
   useEffect(() => {
+    console.log("we are here");
     if (!isFetchingCollabs && (loggedInUserId !== user.artist_id)) {
       // you are checking someone else page therefore fetch collab status.
       var filteredCollab = GetPendingCollabRequest(collab, loggedInUserId, user.artist_id);
+      console.log(ConvertTimestampToDate(filteredCollab["collabDate"]).toLocaleDateString("en-US"));
       if (filteredCollab.id !== "") {
         // empty collab receieved.
         setCollabRequestDetails(filteredCollab);

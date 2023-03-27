@@ -61,6 +61,9 @@ const SendCollabRequestModal = ({
         (collabDetails.status === "PENDING"))
   );
 
+  const [hasDateChanged, setDateChanged] = useState(false);
+
+
   const sendCollabRequest = () => {
     if (isNewCollab) {
       const data: SendCollabRequest = {
@@ -71,9 +74,10 @@ const SendCollabRequestModal = ({
         },
         collabDate: collabDataCached.collabDate ?? tomorrow.toDate(),
       };
-      // console.log("Rabbal collab data is ", data);
+      console.log("Rabbal collab is new ", data);
       sendCollabRequestAction(data);
     } else {
+      console.log("Rabbal collab is updating ", collabDataCached);
       updateCollabRequest(collabDataCached);
     }
     setShowCollabModalState(false);
@@ -140,7 +144,7 @@ const SendCollabRequestModal = ({
                 : tomorrow
             )}
             onChange={(e) => {
-              setEditable(true);
+              setDateChanged(true);
               setCollabDataCached((prevState) => ({
                 ...prevState,
                 collabDate: e.toDate(),
@@ -148,7 +152,7 @@ const SendCollabRequestModal = ({
             }}
           />
         </div>
-        {editable ? (
+        { (editable || hasDateChanged) ? (
           <div className="text-center ">
             <Button
               disabled={
