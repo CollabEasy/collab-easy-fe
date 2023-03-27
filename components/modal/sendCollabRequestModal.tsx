@@ -7,7 +7,6 @@ import { Dispatch } from "redux";
 import { AppState } from "state";
 import * as action from "../../state/action";
 import { CollabRequestData, SendCollabRequest } from "types/model";
-import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
@@ -23,6 +22,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(action.updateCollabRequest(data)),
   acceptCollabRequest: (requestId: string) =>
     dispatch(action.acceptCollabRequestAction(requestId)),
+  rejectCollabRequest: (requestId: string) =>
+    dispatch(action.rejectCollabRequestAction(requestId)),
   setShowCollabModalState: (show: boolean) => 
     dispatch(action.setShowCollabModalState(show)),
 });
@@ -45,6 +46,8 @@ const SendCollabRequestModal = ({
   onCancel,
   updateCollabRequest,
   sendCollabRequestAction,
+  acceptCollabRequest,
+  rejectCollabRequest,
   setShowCollabModalState,
 }: Props) => {
   const currentDate = moment(new Date());

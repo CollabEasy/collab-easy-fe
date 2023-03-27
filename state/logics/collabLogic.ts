@@ -42,6 +42,7 @@ export const updatedCollabRequestLogic = createLogic<
     try {
       dispatch(actions.updateCollabRequestRequest());
       const request = await api.collabApi.updateCollabRequest(collabRequest);
+      dispatch(notifActions.showNotification(true, 'Collab Request updated successfully.'))
       dispatch(actions.setShowCollabModalState(false));
       dispatch(actions.updateCollabRequestSuccess(collabRequest));
     } catch (error) {
@@ -64,6 +65,7 @@ export const acceptCollabRequestLogic = createLogic<
     try {
       dispatch(actions.acceptCollabRequestActionRequest());
       const request = await api.collabApi.acceptCollabRequest(id);
+      dispatch(notifActions.showNotification(true, 'Collab Request accepted successfully.'))
       dispatch(actions.acceptCollabRequestActionSuccess(id))
       dispatch(actions.setShowCollabModalState(false));
     } catch (error) {
@@ -87,6 +89,7 @@ export const cancelCollabRequestLogic = createLogic<
     try {
       dispatch(actions.cancelCollabRequestActionRequest());
       const request = await api.collabApi.cancelCollabRequest(id);
+      dispatch(notifActions.showNotification(true, 'Collab Request cancelled successfully.'))
       dispatch(actions.cancelCollabRequestActionSuccess(id))
       dispatch(actions.setShowCollabModalState(false));
     } catch (error) {
@@ -110,6 +113,7 @@ export const rejectCollabRequestLogic = createLogic<
     try {
       dispatch(actions.rejectCollabRequestActionRequest());
       const request = await api.collabApi.rejectCollabRequest(id);
+      dispatch(notifActions.showNotification(true, 'Collab Request rejected successfully.'))
       dispatch(actions.rejectCollabRequestActionSuccess(id))
       dispatch(actions.setShowCollabModalState(false));
     } catch (error) {
