@@ -105,7 +105,7 @@ const Profile = ({
   useEffect(() => {
     if (!isFetchingCollabs && (loggedInUserId !== user.artist_id)) {
       // you are checking someone else page therefore fetch collab status.
-      var filteredCollab =  GetPendingCollabRequest(collab, loggedInUserId, user.artist_id);
+      var filteredCollab = GetPendingCollabRequest(collab, loggedInUserId, user.artist_id);
       if (filteredCollab.id !== "") {
         // empty collab receieved.
         setCollabRequestDetails(filteredCollab);
@@ -113,7 +113,7 @@ const Profile = ({
       } else {
         setHasPendingCollab(false);
         setCollabRequestDetails(emptyCollabDetails);
-      } 
+      }
     } else {
       // you are on your own profile and do not fetch anything.
       setHasPendingCollab(false);
@@ -188,19 +188,34 @@ const Profile = ({
                     type="primary"
                     className="common-medium-btn"
                     style={{ height: 'auto', marginTop: '10px' }}
-                  onClick={() => {
-                    setShowCollabModalState(true);
-                    setCollabRequestDetails(collabRequestDetails);
-                  }}
+                    onClick={() => {
+                      setShowCollabModalState(true);
+                      setCollabRequestDetails(collabRequestDetails);
+                    }}
                   >
-                    Show pending requests
+                    {collabRequestDetails.status === "PENDING" ? (
+                      "Show pending request"
+                    ) : (
+                      "Show active request"
+                    )
+                    }
                     {/* <Link
                       href={routeToHref(toEditProfile("profile", "collab-request"))}
                       passHref
                     >Show pending requests</Link> */}
 
                   </Button>
-                  <span className="common-text-style"><StarFilled style={{ color: 'orange', margin: '5px' }} />You have a pending collab request with {user.first_name}. </span>
+                  {collabRequestDetails.status === "PENDING" ? (
+                    <span className="common-text-style">
+                      <StarFilled style={{ color: 'orange', margin: '5px' }} />
+                      You have a pending collab request with {user.first_name}.
+                    </span>
+                  ) : (
+                    <span className="common-text-style">
+                      <StarFilled style={{ color: 'orange', margin: '5px' }} />
+                      You have an active collab request with {user.first_name}.
+                    </span>
+                  )}
                 </>
               ) : (
                 <>
