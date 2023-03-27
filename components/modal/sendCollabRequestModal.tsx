@@ -151,8 +151,7 @@ const SendCollabRequestModal = ({
           <div className="text-center ">
             <Button
               disabled={
-                collabDataCached.requestData.collabTheme.trim().length === 0 ||
-                collabDataCached.requestData.message.trim().length === 0
+                collabDataCached.requestData.collabTheme.trim().length === 0 
               }
               size="large"
               className="sendCollabRequestModal__button"
