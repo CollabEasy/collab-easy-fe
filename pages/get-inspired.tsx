@@ -116,7 +116,7 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
               </p>
             </div>
             <div className="theme">
-              <h5 className="card-text common-h5-style">Theme for writing</h5>
+              <h5 className="card-text common-h5-style">Themes for writing</h5>
               <p className="card-text common-p-style">
                   1. Relationships and love
               </p>

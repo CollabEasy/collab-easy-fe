@@ -87,8 +87,8 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         </div>
         <div id="text-content">
           <h1 className="common-h1-style">Meet artists to collaborate with on your next big idea!</h1>
-          <p className="common-p-style">Work with like minded people from around the globe to convert your idea into a masterpiece because we believe <b className="common-text-style"><i>together you create better!</i></b> </p>
-          <b id="text-content-tagline" className="common-p-style"><i>together you create better!</i></b>
+          <p className="common-p-style">Work with like minded people from around the globe to convert your idea into a masterpiece because we believe <b className="common-text-style"><i>together you create better</i></b> 🤝 💡 🎉</p>
+          <b id="text-content-tagline" className="common-p-style"><i>together you create better 🤝 💡 🎉</i></b>
         </div>
       </div>
 
@@ -145,14 +145,14 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-6 col-xl-6">
               <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref>
                 <Card style={{ height: '100%' }} cover={<Image src={ideaImg} alt="cards" sizes="small" />}>
-                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Got an idea? Add it to your scratchpad before you forget! </span>} />
+                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Got an idea? Add it to your scratchpad before you forget 😎 </span>} />
                 </Card>
               </Link>
             </div>
             <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-6 col-xl-6">
               <Link href={routeToHref(toGetInspired())} passHref>
                 <Card style={{ height: '100%' }} cover={<Image src={inspireImg} alt="cards" />}>
-                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Searching for an idea? We got you covered! </span>} />
+                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Searching for an idea? We got you covered 🥳 </span>} />
                 </Card>
               </Link>
             </div>
