@@ -112,6 +112,7 @@ const SendCollabRequestModal = ({
           <p className="mb0">Add little more details.</p>
           <Input.TextArea
             disabled={!editable}
+            placeholder="Add details about your idea, social media platform you are hoping to post etc."
             showCount
             maxLength={200}
             value={collabDataCached.requestData?.message}
