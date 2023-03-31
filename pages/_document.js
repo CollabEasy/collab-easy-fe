@@ -4,6 +4,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable import/no-extraneous-dependencies */
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Title from '../components/title'
 
 export default class MyDocument extends Document {
 
@@ -25,6 +26,8 @@ export default class MyDocument extends Document {
 
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
           <link href="https://fonts.googleapis.com/css?family=Nova+Round|Varela+Round&display=swap" rel="stylesheet"></link>
+
+          <Title title="Wondor - meet artists to collaborate with on your next idea!" />
         </Head>
         <body>
           <Main />

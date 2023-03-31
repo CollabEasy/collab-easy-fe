@@ -63,6 +63,7 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
         <NewUserModal />
       )
       }
+      <Title title="Terms of Service" />
       <div className='footer_termsContainer'>
         <div className="footer_termsSectionContainer">
           <h1 className="common-h1-style">Terms & Conditions</h1>

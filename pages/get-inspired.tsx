@@ -62,7 +62,7 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
         <NewUserModal />
       )
       }
-
+      <Title title="Ideas for your next hit" />
       <div className="getInspired-parentContainer">
         <div className="getInspired-sectionContainer">
           <div className="getInspired-happyImage">

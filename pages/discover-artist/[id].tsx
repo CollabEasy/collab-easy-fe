@@ -257,7 +257,7 @@ const DiscoverArtist = ({
       ) : (
         <div>
           <div>
-            <Title title="Discover Artist" />
+            <Title title={"Artist to collaborate for "  + GetListingHeaderData(artSlug)["category"].toLowerCase()} />
             <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
               <div className="discoverArtists__listingPageCoverContainer">
                 <div className="row ">
