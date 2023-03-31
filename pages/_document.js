@@ -13,6 +13,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="description" content="Meet artists to collaborate with you on your next hit. Work with like minded people from around the globe to convert your idea into a masterpiece because we believe together you create better!" />
           <meta charSet="utf-8" />
 
           <meta property="og:title" content='Wondor'/>
