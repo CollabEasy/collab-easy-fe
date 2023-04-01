@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   // fetchArtistSamples: (slug: string) =>
   //   dispatch(action.fetchArtistSamples(slug)),
   getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
-  setShowCollabModalState: (show: boolean) => dispatch(action.setShowCollabModalState(show)),
+  setShowCollabModalState: (show: boolean, id: string) => dispatch(action.setShowCollabModalState(show, id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -192,7 +192,7 @@ const Profile = ({
                     className="common-medium-btn"
                     style={{ height: 'auto', marginTop: '10px' }}
                     onClick={() => {
-                      setShowCollabModalState(true);
+                      setShowCollabModalState(true, collabRequestDetails.id);
                       setCollabRequestDetails(collabRequestDetails);
                     }}
                   >
@@ -228,7 +228,7 @@ const Profile = ({
                     style={{ height: 'auto', marginTop: '10px' }}
                     disabled={!upForCollab}
                     onClick={() => {
-                      setShowCollabModalState(true);
+                      setShowCollabModalState(true, collabRequestDetails.id);
                     }}
                   >  Let&apos;s collaborate</Button>
                   {!upForCollab ? (
@@ -306,11 +306,11 @@ const Profile = ({
           </Tabs>
         </div>
       </div>
-      {showCollabModal && (
+      {showCollabModal.show && (
         <SendCollabRequestModal
           otherUser={user.artist_id}
           onCancel={() => {
-            setShowCollabModalState(false);
+            setShowCollabModalState(false, '');
           }}
           collabDetails={collabRequestDetails}
         />

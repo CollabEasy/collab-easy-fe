@@ -20,7 +20,7 @@ const initialState: CollabRequestState = {
     },
   },
   isFetchingCollabDetails: true,
-  showCollabModal: false,
+  showCollabModal: {show: false, id: ''},
   isSendingRequest: false,
   isAcceptingRequest: false,
   isRejectingRequest: false,
@@ -80,7 +80,10 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
     case actionTypes.SET_SHOW_COLLAB_MODAL_STATUS:
       return {
         ...state,
-        showCollabModal: action.payload.show,
+        showCollabModal: {
+          show: action.payload.show,
+          id: action.payload.show ? action.payload.collab_id : '',
+        }
       };
     case actionTypes.SEARCH_COLLAB_REQUEST_REQUEST:
       return {

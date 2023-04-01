@@ -58,7 +58,9 @@ const openLoginModal = () => {
   openLoginModalAction();
 };
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = (state: AppState) => {
+  console.log("state in settings : ", state.collab);
+  return {
   collab: state.collab,
   isFetchingCollabs: state.collab.isFetchingCollabDetails,
   user: state.user.user,
@@ -79,7 +81,7 @@ const mapStateToProps = (state: AppState) => ({
   hasDeletedProspectus: state.socialProspectus?.hasDeletedProspectus,
 
   showSocialProspectusModal: state.socialProspectus?.showSocialProspectusModal,
-});
+}};
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   // fetchArtistSamples: (slug: string) =>
