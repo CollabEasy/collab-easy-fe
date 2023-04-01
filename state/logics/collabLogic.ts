@@ -23,6 +23,8 @@ export const sendCollabRequestLogic = createLogic<
       dispatch(actions.setShowCollabModalState(false));
       dispatch(actions.sendCollabRequestSuccess(response['data']));
     } catch (error) {
+      const error_response = error.response.data;
+      dispatch(notifActions.showNotification(false, error_response['err_str']));
       dispatch(actions.sendCollabRequestFailure());
     } finally {
       done()
