@@ -5,6 +5,7 @@ import { FSACreatorPayload } from "types/states";
 import * as scratchpadApi from "../../api/scratchpad";
 import * as actions from "../action/";
 import * as actionTypes from "../actionTypes/scratchpadActionTypes";
+import * as notifActions from "../action/notificationAction";
 
 export const fetchScratchpadByArtistIdLogic = createLogic<
   AppState,
@@ -19,7 +20,7 @@ export const fetchScratchpadByArtistIdLogic = createLogic<
       const result = await scratchpadApi.fetchScratchpadByArtistIdAPI();
       dispatch(actions.fetchScratchpadByArtistIdSuccess(result));
     } catch (error) {
-      // console.log("error : ", error);
+
     } finally {
       done();
     }
@@ -34,11 +35,11 @@ export const updateArtistScratchpadLogic = createLogic<
 >({
   type: [actionTypes.UPDATE_ARTIST_SCRATCHPAD],
   async process({ action, api }, dispatch, done) {
-    // console.log("Rabbal is inside save scratchpad logic", action.payload);
     try {
       dispatch(actions.updateArtistScratchpadRequest());
       const { data } = action.payload;
       const result = await api.scratchpadApi.updateArtistScratchpad(data);
+      dispatch(notifActions.showNotification(true, 'Changes to your scratchpad saved successfully 🥳'));
       dispatch(actions.updateArtistScratchpadSuccess(data));
     } catch (error) {
     } finally {

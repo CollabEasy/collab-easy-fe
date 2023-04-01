@@ -14,6 +14,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
+import Title from '../components/title';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -63,10 +64,10 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         <NewUserModal />
       )
       }
-
+      <Title title="About Wondor" />
       <div className="footer_aboutUsContainer">
         <div className="footer_aboutUsBodyTextContainer">
-          <h3 className="common-h5-style">Through Wondor, we are brining artists together everyday!</h3>
+          <h3 className="common-h5-style">Through Wondor, we are brining artists together everyday 🤗</h3>
           <div>
             <h5 className="common-h5-style">What is Wondor?</h5>
             <p className="common-p-style">

@@ -19,6 +19,7 @@ import LoginModal from '@/components/loginModal';
 import { updateLoginData } from 'state/action';
 import { LoginModalDetails } from 'types/model';
 import NewUserModal from '@/components/modal/newUserModal';
+import Title from "../../../components/title";
 
 // https://ant.design/components/card/
 const { Meta } = Card;
