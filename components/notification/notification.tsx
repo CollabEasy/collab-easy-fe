@@ -41,8 +41,8 @@ const Notification = ({
 
   useEffect(() => {
     if (!fetched) {
-        fetchNotifications();
-        setFetched(true);
+      fetchNotifications();
+      setFetched(true);
     }
 
     const interval = setInterval(() => {
@@ -78,10 +78,13 @@ const Notification = ({
     </Menu>
   );
   return (
-    <div className="notification-icon" onClick={() => {
-        markNotificationsRead();
+    <div
+      className="notification-icon"
+      onClick={() => {
         setHasNewNotifs(false);
-        }}>
+        markNotificationsRead();
+      }}
+    >
       <Dropdown overlay={userMenu} trigger={["click"]}>
         <div className="notification-inner">
           {hasNewNotifs && <div className="circle_dot"></div>}
