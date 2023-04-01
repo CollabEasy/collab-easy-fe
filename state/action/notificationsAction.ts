@@ -11,7 +11,7 @@ export const fetchNotificationsSuccess = (result: any) => ({
   }
 });
 
-export const markNotificationsRead = (data: any) => ({
+export const markNotificationsRead = () => ({
   type: actionType.MARK_NOTIFICATIONS_READ,
   payload: {}
 });

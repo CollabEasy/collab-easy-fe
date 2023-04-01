@@ -17,6 +17,7 @@
       .user-icon{
         font-size: 20px;
       }
+      position: relative;
     }
   }
 
@@ -36,6 +37,7 @@
       padding: 12px 12px;
       background: #42f5ef;
       border-radius: 50%;
+      position: relative;
       .user-icon{
         font-size: 20px;
       }
@@ -65,4 +67,14 @@
 
   .notification-menu {
       width: 320px;
+  }
+
+  .circle_dot {
+    background: #f00;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
   }
