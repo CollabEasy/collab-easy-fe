@@ -20,14 +20,14 @@ import SendCollabRequestModal from "./modal/sendCollabRequestModal";
 import { ShowEditCollabDetailIcon, ConvertTimestampToDate, GetCollabHeading, GetCollabAdditionalDetails, GetScheduledDate } from "helpers/collabCardHelper";
 
 const mapStateToProps = (state: AppState) => {
-  console.log("show modal state : ", state.collab.showCollabModal)
   return {
     user: state.user.user,
-  isAcceptingRequest: state.collab.isAcceptingRequest,
-  isRejectingRequest: state.collab.isRejectingRequest,
-  isCancellingRequest: state.collab.isCancellingRequest,
-  showCollabModal: state.collab.showCollabModal,
-}};
+    isAcceptingRequest: state.collab.isAcceptingRequest,
+    isRejectingRequest: state.collab.isRejectingRequest,
+    isCancellingRequest: state.collab.isCancellingRequest,
+    showCollabModal: state.collab.showCollabModal,
+  }
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   acceptCollabRequest: (id: string) =>
@@ -36,8 +36,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(actions.rejectCollabRequestAction(id)),
   cancelCollabRequest: (id: string) =>
     dispatch(actions.cancelCollabRequestAction(id)),
-  
-  setShowCollabModalState: (show: boolean, id: string) => 
+
+  setShowCollabModalState: (show: boolean, id: string) =>
     dispatch(actions.setShowCollabModalState(show, id)),
 });
 
@@ -152,14 +152,14 @@ const CollabDetailCard = ({
       </>
     )
   }
-  console.log("collab details : ", collabDetails, showCollabModal);
+
   return (
     <>
-     {(showCollabModal.show && collabDetails.id === showCollabModal.id) && (
-       <SendCollabRequestModal onCancel={() => {
-         setShowCollabModalState(false, '');
-       }} otherUser={collabDetails.receiverId} collabDetails={collabDetails} />
-     )}
+      {(showCollabModal.show && collabDetails.id === showCollabModal.id) && (
+        <SendCollabRequestModal onCancel={() => {
+          setShowCollabModalState(false, '');
+        }} otherUser={collabDetails.receiverId} collabDetails={collabDetails} />
+      )}
       <div className="collabDetailCard__container">
         <div className="row p-2 bg-white border rounded collab-card">
           <div className="col-md-3 mt-1 social-profile-picture">
@@ -194,25 +194,24 @@ const CollabDetailCard = ({
             <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style">
               {GetCollabAdditionalDetails(user.artist_id, collabDetails)}
             </p>
-            <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style"> 
+            <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style">
               {GetScheduledDate(collabDetails.status)} {ConvertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}.
             </p>
           </div>
           <div className="align-items-center align-content-center col-md-3 border-left mt-1">
             {ShowEditCollabDetailIcon(collabDetails, user.artist_id, collabDetails.status) && (
-                <Button
-                  block
-                  type="primary"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    // setCollabRequestDetails(collabDetails);
-                    setShowCollabModalState(true, collabDetails.id);
-                  }}
-                  className="common-medium-btn"
-                >
-                  Edit
-                </Button>
+              <Button
+                block
+                type="primary"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  setShowCollabModalState(true, collabDetails.id);
+                }}
+                className="common-medium-btn"
+              >
+                Edit
+              </Button>
             )}
             <div className="d-flex flex-column mt-4">
               {user.artist_id === collabDetails.senderId
@@ -222,15 +221,6 @@ const CollabDetailCard = ({
           </div>
         </div>
       </div>
-      {/* {showCollabModal.show && (
-        <SendCollabRequestModal
-          otherUser={user.artist_id}
-          onCancel={() => {
-            setShowCollabModalState(false, '');
-          }}
-          collabDetails={collabRequestDetails}
-        />
-      )} */}
     </>
   );
 };
