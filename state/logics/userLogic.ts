@@ -1,5 +1,6 @@
 import { createLogic } from "redux-logic";
 import * as actions from "../action/userAction";
+import * as notifActions from "../action/notificationAction";
 import * as homeActions from "../action/homeAction";
 import { LogicDeps } from "state";
 import { AppState } from "types/states";
@@ -22,6 +23,8 @@ export const fetchLoginDataLogic = createLogic<
       dispatch(homeActions.closeLoginModalAction());
       dispatch(actions.setUserLoggedIn(loginData));
     } catch (error) {
+      const error_response = error.response.data;
+      dispatch(notifActions.showNotification(false, error_response['err_str']));
       dispatch(actions.userLoginFailure(error));
     } finally {
       done();
@@ -102,8 +105,11 @@ export const updateArtistArtLogic = createLogic<
       dispatch(actions.updateArtistArtRequest());
       const { data } = action.payload;
       const result = await api.artistApi.updateArtistCategories(data);
+      dispatch(notifActions.showNotification(true, 'Art styles saved successfully 🥳'));
       dispatch(actions.updateArtistArtSuccess(result));
     } catch (error) {
+      const error_response = error.response.data;
+      dispatch(notifActions.showNotification(false, error_response['err_str']));
     } finally {
       done();
     }
@@ -122,8 +128,11 @@ export const updateArtistPreferenceLogic = createLogic<
       const { key, value } = action.payload;
       dispatch(actions.updateArtistPreferenceRequest(key));
       const result = await api.artistApi.updateArtistPreference(key, value);
+      dispatch(notifActions.showNotification(true, 'Preferences saved successfully 🥳'))
       dispatch(actions.updateArtistPreferenceSuccess(key, value));
     } catch (error) {
+      const error_response = error.response.data;
+      dispatch(notifActions.showNotification(false, error_response['err_str']));
     } finally {
       done();
     }
@@ -160,9 +169,11 @@ export const updateArtistProfileLogic = createLogic<
       dispatch(actions.updateArtistProfileRequest());
       const { data } = action.payload;
       const result = await api.artistApi.updateArtistProfile(data);
+      dispatch(notifActions.showNotification(true, 'Profile updated successfully 🥳'));
       dispatch(actions.updateArtistProfileSuccess(data));
-      // TO-DO need to all get artist details action
     } catch (error) {
+      const error_response = error.response.data;
+      dispatch(notifActions.showNotification(false, error_response['err_str']));
     } finally {
       done();
     }

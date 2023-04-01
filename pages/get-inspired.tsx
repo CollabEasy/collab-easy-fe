@@ -62,7 +62,7 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
         <NewUserModal />
       )
       }
-
+      <Title title="Ideas for your next hit" />
       <div className="getInspired-parentContainer">
         <div className="getInspired-sectionContainer">
           <div className="getInspired-happyImage">
@@ -83,34 +83,70 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
               <br></br>
             </p >
             <div className="theme">
-              <h5 className="card-text common-h5-style">Themes</h5>
+              <h5 className="card-text common-h5-style">Themes for art</h5>
               <p className="card-text common-p-style">
-                1. March 20th - International Day of Happiness: This day is celebrated to recognize
-                the importance of happiness in the lives of people around the world.
+                1. Nature and landscapes.
               </p>
               <p className="card-text common-p-style">
-                2. March 21st - World Poetry Day: This day is celebrated to promote the reading,
-                writing, and teaching of poetry around the world.
+                2. Abstract art and non-representational art
               </p>
               <p className="card-text common-p-style">
-                3. March 22nd - World Water Day: This day is observed to raise awareness about
-                the importance of freshwater and the sustainable management of water resources.
+                3. Portraiture and figurative art
+                </p>
+              <p className="card-text common-p-style">
+                4. Still life and objects
+                </p>
+              <p className="card-text common-p-style">
+                5. Social issues and political commentary
+                </p>
+              <p className="card-text common-p-style">
+                6. Culture and identity
+                </p>
+              <p className="card-text common-p-style">
+                7. History and mythology
+                </p>
+              <p className="card-text common-p-style">
+                8. Science and technology
+                </p>
+              <p className="card-text common-p-style">
+                9. Pop culture and media
+                </p>
+              <p className="card-text common-p-style">
+                10. Emotions and psychological states
               </p>
             </div>
             <div className="theme">
-              <h5 className="card-text common-h5-style">Quotes</h5>
+              <h5 className="card-text common-h5-style">Themes for writing</h5>
               <p className="card-text common-p-style">
-                1. Happiness is not something ready-made. It comes from your own actions. - Dalai Lama XIV
+                  1. Relationships and love
               </p>
               <p className="card-text common-p-style">
-                2. If you want to be happy, be. - Leo Tolstoy
-              </p>
+                  2. Coming of age and personal growth
+                </p>
               <p className="card-text common-p-style">
-                3. Poetry is the spontaneous overflow of powerful feelings: it takes its origin from emotion recollected in tranquility. - William Wordsworth
-              </p>
-              <p className="card-text common-p-style">
-                4. Water is the driving force of all nature. - Leonardo da Vinci
-              </p>
+                  3. Mystery and suspense
+                </p>
+               <p className="card-text common-p-style">
+                  4. Science fiction and fantasy
+                </p>
+                <p className="card-text common-p-style">
+                  5. Historical fiction and non-fiction
+                </p>
+                <p className="card-text common-p-style">
+                  6. Memoir and autobiography
+                </p>
+                <p className="card-text common-p-style">
+                  7. Social issues and activism
+                </p>
+                <p className="card-text common-p-style">
+                  8. Politics and government
+                </p>
+                <p className="card-text common-p-style">
+                  9. Travel and adventure
+                </p>
+                <p className="card-text common-p-style">
+                  10. Humor and satire
+                </p>
 
             </div>
             <div className="theme">

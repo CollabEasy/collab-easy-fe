@@ -12,6 +12,7 @@ import doodlingImage from '../public/images/popularCategories/doodling.svg';
 import facebookImage from '../public/images/facebook.png'
 import instagramImage from '../public/images/instagram.png'
 import tiktokImage from '../public/images/tiktok.png'
+import personalWebsiteImage from '../public/images/personalWebsite.png'
 
 export const COUNTRIES = [
   {
@@ -3986,7 +3987,7 @@ export const LISTING_BANNERS = [
     "background_color": "#E2F0CB",
   },
   {
-    "slugs" : ["doodling", "caricaturist"],
+    "slugs" : ["doodling", "caricaturing"],
     "category": "Doodling",
     "image": doodlingImage,
     "background_color": "#B5EAD7",
@@ -4025,6 +4026,14 @@ export const SOCIAL_PLATFORMS = [
     "approved": 1,
     "base_url": "https://www.tiktok.com",
     "image": tiktokImage,
+  },
+  {
+    "id": 5,
+    "name": "Personal Website",
+    "description": "Social media platform for sharing pictures and video.",
+    "approved": 1,
+    "base_url": "",
+    "image": personalWebsiteImage,
   }
 ]
 
@@ -4074,15 +4083,15 @@ export const SIMILAR_CATEGORIES = [
     ]
   },
   {
-    "slugs" : ["painting", "caricaturist", "sketching", "doodling"],
+    "slugs" : ["painting", "caricaturing", "sketching", "doodling"],
     "similar_categories": [
       {
         "name": "Painting",
         "slug": "painting"
       },
       {
-        "name": "Caricaturist",
-        "slug": "caricaturist" 
+        "name": "caricaturing",
+        "slug": "caricaturing" 
       },
       {
         "name": "Sketching",

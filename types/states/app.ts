@@ -7,6 +7,7 @@ import { ScratchpadState } from "./scratchpad";
 import { SocialProspectusState } from "./socialProspectus";
 import { CollabConversationState } from "./collabConversation";
 import { AnalyticsState } from "./analyticsState";
+import { NotificationState } from "./notificationState";
 
 export interface AppState {
   home: HomeState;
@@ -18,4 +19,5 @@ export interface AppState {
   socialProspectus: SocialProspectusState;
   collabConversation: CollabConversationState;
   analytics: AnalyticsState;
+  notification: NotificationState,
 }

@@ -19,6 +19,7 @@ import LoginModal from '@/components/loginModal';
 import { updateLoginData } from 'state/action';
 import { LoginModalDetails } from 'types/model';
 import NewUserModal from '@/components/modal/newUserModal';
+import Title from "../../../components/title";
 
 // https://ant.design/components/card/
 const { Meta } = Card;
@@ -57,7 +58,7 @@ const ArtistProfile = ({
       let res = await artistApi.fetchUserByHandle(slug.toString())
       setOtherUser(res.data);
       setCollaborationStatus(
-        res.data.up_for_collab == "true" ? true : false
+        res.data.up_for_collab === "true" ? true : false
       );
     }
 
@@ -97,6 +98,7 @@ const ArtistProfile = ({
         <Profile
           isSelf={isSelf}
           upForCollab={upForCollab}
+          loggedInUserId={isLoggedIn ? user.artist_id : ""} 
           user={isSelf ? user : otherUser}
         />
       )}

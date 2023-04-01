@@ -199,6 +199,11 @@ const DiscoverArtist = ({
             </div>
             <div className="align-items-center align-content-center col-md-3 border-left mt-1">
               <div className="d-flex flex-column mt-4">
+                {!isLoggedIn && (
+                  <div className="login-message">
+                    <p>Please, login to view profile or send a collab request</p>
+                  </div>
+                )}
                 <Button
                   block
                   className="common-medium-btn"
@@ -252,7 +257,7 @@ const DiscoverArtist = ({
       ) : (
         <div>
           <div>
-            <Title title="Discover Artist" />
+            <Title title={"Artist to collaborate for "  + GetListingHeaderData(artSlug)["category"].toLowerCase()} />
             <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
               <div className="discoverArtists__listingPageCoverContainer">
                 <div className="row ">
@@ -261,7 +266,7 @@ const DiscoverArtist = ({
                       {Object.keys(GetListingHeaderData(artSlug)).length !== 0 ? (
                         <div>
                           <h1 className="common-h1-style">
-                            {artists.length} {artists.length === 1 ? (<>artist</>) : (<>artists</>)} for {GetListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit!<br></br>
+                            {artists.length} {artists.length === 1 ? (<>artist</>) : (<>artists</>)} for {GetListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit {artists.length >= 1 ? (<>🎉</>) : (<>😔</>)}<br></br>
                           </h1>
                           {artists.length > 0 ? (
                             <h3 className="common-h3-style">

@@ -7,7 +7,6 @@ import { Dispatch } from "redux";
 import { AppState } from "state";
 import * as action from "../../state/action";
 import { CollabRequestData, SendCollabRequest } from "types/model";
-import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
@@ -23,6 +22,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(action.updateCollabRequest(data)),
   acceptCollabRequest: (requestId: string) =>
     dispatch(action.acceptCollabRequestAction(requestId)),
+  rejectCollabRequest: (requestId: string) =>
+    dispatch(action.rejectCollabRequestAction(requestId)),
+  setShowCollabModalState: (show: boolean) => 
+    dispatch(action.setShowCollabModalState(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -43,6 +46,9 @@ const SendCollabRequestModal = ({
   onCancel,
   updateCollabRequest,
   sendCollabRequestAction,
+  acceptCollabRequest,
+  rejectCollabRequest,
+  setShowCollabModalState,
 }: Props) => {
   const currentDate = moment(new Date());
   const tomorrow = currentDate.clone().add(1, "days");
@@ -63,13 +69,14 @@ const SendCollabRequestModal = ({
           message: collabDataCached.requestData.message,
           collabTheme: collabDataCached.requestData.collabTheme,
         },
-        collabDate: collabDataCached.collabDate,
+        collabDate: collabDataCached.collabDate ?? tomorrow.toDate(),
       };
       // console.log("Rabbal collab data is ", data);
       sendCollabRequestAction(data);
     } else {
       updateCollabRequest(collabDataCached);
     }
+    setShowCollabModalState(false);
   };
 
   return (
@@ -105,6 +112,7 @@ const SendCollabRequestModal = ({
           <p className="mb0">Add little more details.</p>
           <Input.TextArea
             disabled={!editable}
+            placeholder="Add details about your idea, social media platform you are hoping to post etc."
             showCount
             maxLength={200}
             value={collabDataCached.requestData?.message}
@@ -144,8 +152,7 @@ const SendCollabRequestModal = ({
           <div className="text-center ">
             <Button
               disabled={
-                collabDataCached.requestData.collabTheme.trim().length === 0 ||
-                collabDataCached.requestData.message.trim().length === 0
+                collabDataCached.requestData.collabTheme.trim().length === 0 
               }
               size="large"
               className="sendCollabRequestModal__button"
@@ -169,6 +176,7 @@ const SendCollabRequestModal = ({
               loading={isAcceptingRequest}
               onClick={() => {
                 acceptCollabRequest(collabDetails.id);
+                setShowCollabModalState(false);
               }}
             >
               Accept
@@ -181,6 +189,7 @@ const SendCollabRequestModal = ({
               loading={isRejectingRequest}
               onClick={() => {
                 rejectCollabRequest(collabDetails.id);
+                setShowCollabModalState(false);
               }}
             >
               Reject

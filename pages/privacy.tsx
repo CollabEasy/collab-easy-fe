@@ -63,6 +63,7 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         <NewUserModal />
       )
       }
+      <Title title="Wondor Privacy Policy" />
       <div className='footer_privacyContainer'>
         <div className="footer_privacySectionContainer">
           <h1 className="common-h1-style">Privacy</h1>
