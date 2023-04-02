@@ -41,7 +41,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(actions.cancelCollabRequestAction(id)),
   completeCollabRequest: (id: string) => dispatch(actions.completeCollabRequestAction(id)),
   setShowCollabModalState: (show: boolean, id: string) =>
-  dispatch(actions.setShowCollabModalState(show, id)),
+    dispatch(actions.setShowCollabModalState(show, id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -85,7 +85,6 @@ const CollabDetailCard = ({
   useEffect(() => {
     setCollabRequestDetails(collabDetails);
   }, [collabDetails])
-
 
   const collabStatusComponentForSender = () => {
     return (
@@ -145,13 +144,8 @@ const CollabDetailCard = ({
     )
   }
 
-<<<<<<< Updated upstream
-=======
-  const GetCollabCardTag = (status) => {
-    if (status === "COMPLETED") {
-      return <Tag style={{ width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
-    }
-    else if (status === "ACTIVE") {
+  const getCollabCardTag = (status) => {
+    if (status === "ACTIVE") {
       return <Tag style={{ width: "55px", marginBottom: '10px' }} color="blue">Active</Tag>;
     } else if (status === "PENDING") {
       return <Tag style={{ width: "65px", marginBottom: '10px' }} color="yellow">Pending</Tag>;
@@ -159,10 +153,11 @@ const CollabDetailCard = ({
       return <Tag style={{ width: "80px", marginBottom: '10px' }} color="red">Rejected</Tag>;
     } else if (status === "EXPIRED") {
       return <Tag style={{ width: "65px", marginBottom: '10px' }} color="grey">Expired</Tag>;
+    } else {
+      return <Tag style={{ width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
     }
-}
+  }
 
->>>>>>> Stashed changes
   return (
     <>
       {(showCollabModal.show && collabDetails.id === showCollabModal.id) && (
@@ -187,7 +182,6 @@ const CollabDetailCard = ({
                 }}
                 className="collabDetailCard__imageNameContainer"
               >
-
                 <img
                   className="card-img-top"
                   src={(collabDetails.senderId === user.artist_id
@@ -195,12 +189,12 @@ const CollabDetailCard = ({
                     : collabDetails.senderProfilePicUrl)}
                   alt=""
                 />
+                {getCollabCardTag(collabDetails.status)}
               </div>
             )}
           </div>
 
           <div className="col-md-6 mt-1 collabDetailCard__textContainer">
-            {GetCollabCardTag(collabDetails.status)}<br></br>
             <b className="f-16 mb4 common-text-style"> {GetCollabHeading(user.artist_id, collabDetails)}</b><br></br>
             <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style">
               {GetCollabAdditionalDetails(user.artist_id, collabDetails)}
@@ -230,7 +224,7 @@ const CollabDetailCard = ({
                 : collabStatusComponentForReceiver()}
             </div>
             <>
-              {ShowChatButton(window.location.href, collabDetails.id, collabDetails.status)  &&
+              {!isCompletingRequest && ShowChatButton(window.location.href, collabDetails.id, collabDetails.status) &&
                 <Button
                   block
                   type="primary"
@@ -247,12 +241,13 @@ const CollabDetailCard = ({
                 <Button
                   block
                   type="primary"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
                     completeCollabRequest(collabDetails.id);
                   }}
                   style={{ color: "white", border: "green", backgroundColor: "#91D296", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px' }}
-                  disabled={isRejectingRequest}
-                  loading={isAcceptingRequest}
+                  loading={isCompletingRequest}
                   className="common-medium-btn"
                 >
                   Mark completed
