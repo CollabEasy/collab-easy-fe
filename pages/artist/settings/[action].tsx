@@ -59,7 +59,6 @@ const openLoginModal = () => {
 };
 
 const mapStateToProps = (state: AppState) => {
-  console.log("state in settings : ", state.collab);
   return {
   collab: state.collab,
   isFetchingCollabs: state.collab.isFetchingCollabDetails,

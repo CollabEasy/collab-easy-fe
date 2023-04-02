@@ -24,8 +24,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(action.acceptCollabRequestAction(requestId)),
   rejectCollabRequest: (requestId: string) =>
     dispatch(action.rejectCollabRequestAction(requestId)),
-  setShowCollabModalState: (show: boolean) => 
-    dispatch(action.setShowCollabModalState(show)),
+  setShowCollabModalState: (show: boolean, id: string) =>
+    dispatch(action.setShowCollabModalState(show, id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -57,8 +57,8 @@ const SendCollabRequestModal = ({
     useState<CollabRequestData>(collabDetails);
   const [editable, setEditable] = useState(
     isNewCollab ||
-      (user.artist_id === collabDetails.senderId &&
-        (collabDetails.status === "PENDING"))
+    (user.artist_id === collabDetails.senderId &&
+      (collabDetails.status === "PENDING"))
   );
 
   const [hasDateChanged, setDateChanged] = useState(false);
@@ -74,13 +74,12 @@ const SendCollabRequestModal = ({
         },
         collabDate: collabDataCached.collabDate ?? tomorrow.toDate(),
       };
-      console.log("Rabbal collab is new ", data);
       sendCollabRequestAction(data);
+      setShowCollabModalState(false, '');
     } else {
-      console.log("Rabbal collab is updating ", collabDataCached);
       updateCollabRequest(collabDataCached);
+      setShowCollabModalState(false, collabDataCached.id);
     }
-    setShowCollabModalState(false);
   };
 
   return (
@@ -153,11 +152,11 @@ const SendCollabRequestModal = ({
             }}
           />
         </div>
-        { (editable || hasDateChanged) ? (
+        {(editable || hasDateChanged) ? (
           <div className="text-center ">
             <Button
               disabled={
-                collabDataCached.requestData.collabTheme.trim().length === 0 
+                collabDataCached.requestData.collabTheme.trim().length === 0
               }
               size="large"
               className="sendCollabRequestModal__button"
@@ -181,7 +180,7 @@ const SendCollabRequestModal = ({
               loading={isAcceptingRequest}
               onClick={() => {
                 acceptCollabRequest(collabDetails.id);
-                setShowCollabModalState(false);
+                setShowCollabModalState(false, collabDetails.id);
               }}
             >
               Accept
@@ -194,7 +193,7 @@ const SendCollabRequestModal = ({
               loading={isRejectingRequest}
               onClick={() => {
                 rejectCollabRequest(collabDetails.id);
-                setShowCollabModalState(false);
+                setShowCollabModalState(false, collabDetails.id);
               }}
             >
               Reject

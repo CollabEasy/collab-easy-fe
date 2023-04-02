@@ -137,7 +137,6 @@ export function GetScheduledDate(status: string) {
 }
 
 export function ShowEditCollabDetailIcon(collabData, loggedInUserId, status) {
-    console.log("Collab : ", collabData);   
     if (status !== "PENDING" && status !== "ACTIVE") {
         return false;
     }

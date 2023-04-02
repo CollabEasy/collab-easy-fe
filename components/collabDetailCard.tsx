@@ -204,21 +204,22 @@ const CollabDetailCard = ({
             </p>
           </div>
           <div className="align-items-center align-content-center col-md-3 border-left mt-1">
-            {ShowEditCollabDetailIcon(collabDetails, user.artist_id, collabDetails.status) && (
-              <Button
-                block
-                type="primary"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  setShowCollabModalState(true, collabDetails.id);
-                }}
-                className="common-medium-btn"
-              >
-                Edit
-              </Button>
-            )}
             <div className="d-flex flex-column mt-4">
+              {ShowEditCollabDetailIcon(collabDetails, user.artist_id, collabDetails.status) && (
+                <Button
+                  block
+                  type="primary"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    setShowCollabModalState(true, collabDetails.id);
+                  }}
+                  style={{ color: "white", border: "green", backgroundColor: "#F8CF61", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px' }}
+                  className="common-medium-btn"
+                >
+                  Edit
+                </Button>
+              )}
               {user.artist_id === collabDetails.senderId
                 ? collabStatusComponentForSender()
                 : collabStatusComponentForReceiver()}

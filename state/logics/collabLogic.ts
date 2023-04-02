@@ -20,7 +20,7 @@ export const sendCollabRequestLogic = createLogic<
       dispatch(actions.sendCollabRequestRequest());
       const response = await api.collabApi.sendCollabRequest(collabRequest);
       dispatch(notifActions.showNotification(true, 'Collab Request sent successfully 🥳'))
-      dispatch(actions.setShowCollabModalState(false));
+      dispatch(actions.setShowCollabModalState(false, ''));
       dispatch(actions.sendCollabRequestSuccess(response['data']));
     } catch (error) {
       const error_response = error.response.data;
@@ -45,7 +45,7 @@ export const updatedCollabRequestLogic = createLogic<
       dispatch(actions.updateCollabRequestRequest());
       const request = await api.collabApi.updateCollabRequest(collabRequest);
       dispatch(notifActions.showNotification(true, 'Collab Request updated successfully 🥳'))
-      dispatch(actions.setShowCollabModalState(false));
+      dispatch(actions.setShowCollabModalState(false, collabRequest.id));
       dispatch(actions.updateCollabRequestSuccess(collabRequest));
     } catch (error) {
       const error_response = error.response.data;
@@ -71,7 +71,7 @@ export const acceptCollabRequestLogic = createLogic<
       const request = await api.collabApi.acceptCollabRequest(id);
       dispatch(notifActions.showNotification(true, 'Collab Request accepted successfully 🥳'))
       dispatch(actions.acceptCollabRequestActionSuccess(id))
-      dispatch(actions.setShowCollabModalState(false));
+      dispatch(actions.setShowCollabModalState(false, id));
     } catch (error) {
       const error_response = error.response.data;
       dispatch(notifActions.showNotification(false, error_response['err_str']));
@@ -96,7 +96,7 @@ export const cancelCollabRequestLogic = createLogic<
       const request = await api.collabApi.cancelCollabRequest(id);
       dispatch(actions.cancelCollabRequestActionSuccess(id))
       dispatch(notifActions.showNotification(true, 'Collab Request cancelled successfully 😢'))
-      dispatch(actions.setShowCollabModalState(false));
+      dispatch(actions.setShowCollabModalState(false, id));
     } catch (error) {
       const error_response = error.response.data;
       dispatch(notifActions.showNotification(false, error_response['err_str']));
@@ -146,7 +146,7 @@ export const rejectCollabRequestLogic = createLogic<
       const request = await api.collabApi.rejectCollabRequest(id);
       dispatch(notifActions.showNotification(true, 'Collab Request rejected successfully 😢'))
       dispatch(actions.rejectCollabRequestActionSuccess(id))
-      dispatch(actions.setShowCollabModalState(false));
+      dispatch(actions.setShowCollabModalState(false, id));
     } catch (error) {
       const error_response = error.response.data;
       dispatch(notifActions.showNotification(false, error_response['err_str']));

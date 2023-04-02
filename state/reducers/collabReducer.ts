@@ -110,7 +110,6 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
       };
     case actionTypes.UPDATE_COLLAB_REQUEST_SUCCESS:
       const updatedRequest = action.payload.data;
-      // console.log(updatedRequest);
       return {
         ...state,
         isSendingRequest: false,
@@ -136,6 +135,29 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
             ),
             completed: getUpdatedList(
               state.collabDetails.sent.completed,
+              updatedRequest
+            ),
+          },
+          received: {
+            ...state.collabDetails.received,
+            all: getUpdatedList(
+              state.collabDetails.received.all,
+              updatedRequest
+            ),
+            active: getUpdatedList(
+              state.collabDetails.received.active,
+              updatedRequest
+            ),
+            pending: getUpdatedList(
+              state.collabDetails.received.pending,
+              updatedRequest
+            ),
+            rejected: getUpdatedList(
+              state.collabDetails.received.rejected,
+              updatedRequest
+            ),
+            completed: getUpdatedList(
+              state.collabDetails.received.completed,
               updatedRequest
             ),
           },
