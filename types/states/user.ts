@@ -1,6 +1,7 @@
 import { User } from "types/model";
 
 export interface UserState {
+  profile_pic_url: any;
   user?: User;
   otherUser?: User;
   errors: any;
