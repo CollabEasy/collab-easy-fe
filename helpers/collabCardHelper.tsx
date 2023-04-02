@@ -9,24 +9,24 @@ export function ConvertTimestampToDate(timestamp) {
 
 export function ShowChatButton(url, collabId, collabStatus) {
     // return at once if not collab conversation page.
-    if (url.includes("/collab/"+collabId)) {
+    if (url.includes("/collab/" + collabId)) {
         return false;
     }
     if (collabStatus === "ACTIVE" || collabStatus === "COMPLETED") {
         return true;
     }
     return false;
-}   
+}
 
 export function ChatButtonText(collabStatus) {
     if (collabStatus === "PENDING") {
         return "";
     } else if (collabStatus === "ACTIVE") {
-        return "Send a message";
+        return "Add comment";
     } else {
-        return "Check messages";
+        return "Read comments";
     }
-}   
+}
 
 export function GetCollabHeading(loggedInUserId: string, collabDetails: CollabRequestData) {
     var heading = "";
@@ -43,10 +43,10 @@ export function GetCollabHeading(loggedInUserId: string, collabDetails: CollabRe
             heading += "you have completed a collaboration request from " + collabDetails.receiverName;
             heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status === "REJECTED") {
-            heading += "you have a rejected collaboration request from "+ collabDetails.receiverName;
+            heading += "you have a rejected collaboration request from " + collabDetails.receiverName;
             heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status === "EXPIRED") {
-            heading += " The collaboration request with "+ collabDetails.receiverName + " has expired";
+            heading += " The collaboration request with " + collabDetails.receiverName + " has expired";
             heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         }
     } else {
@@ -63,13 +63,13 @@ export function GetCollabHeading(loggedInUserId: string, collabDetails: CollabRe
             heading += "you have completed a collaboration request from " + collabDetails.senderName;
             heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status === "REJECTED") {
-            heading += "you have rejected a collaboration request from "+ collabDetails.senderName;
+            heading += "you have rejected a collaboration request from " + collabDetails.senderName;
             heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         } else if (collabDetails.status === "EXPIRED") {
-            heading += " the collaboration request from "+ collabDetails.senderName + " has expired";
+            heading += " the collaboration request from " + collabDetails.senderName + " has expired";
             heading += ". The theme was '" + collabDetails.requestData.collabTheme + "'.";
         }
-        
+
 
     }
     return heading;
@@ -77,14 +77,14 @@ export function GetCollabHeading(loggedInUserId: string, collabDetails: CollabRe
 
 export function GetCollabAdditionalDetails(loggedInUserId: string, collabDetails: CollabRequestData) {
     var additionalDetails = "";
-    
+
     if (collabDetails.senderId === loggedInUserId) {
         // Logged in user looking at "sent" request
         additionalDetails += "The additional details provided by you "
-        if (collabDetails.requestData.message.length === 0 ) {
+        if (collabDetails.requestData.message.length === 0) {
             return "No additional details provided by you."
         }
-        
+
         if (collabDetails.status === "PENDING") {
             additionalDetails += "is '" + collabDetails.requestData.message + "'."
         } else if (collabDetails.status === "ACTIVE") {
@@ -100,10 +100,10 @@ export function GetCollabAdditionalDetails(loggedInUserId: string, collabDetails
         // Logged in user looking at "recieved" request
         additionalDetails += "The additional details provided by " + collabDetails.senderName;
 
-        if (collabDetails.requestData.message.length === 0 ) {
+        if (collabDetails.requestData.message.length === 0) {
             return "No additional details provided by" + collabDetails.senderName + ".";
         }
-        
+
         if (collabDetails.status === "PENDING") {
             additionalDetails += " is '" + collabDetails.requestData.message + "'.";
         } else if (collabDetails.status === "ACTIVE") {
@@ -132,6 +132,6 @@ export function GetScheduledDate(status: string) {
     } else if (status === "EXPIRED") {
         scheduledDate += "It was scheduled for ";
     }
-    
+
     return scheduledDate;
 }
