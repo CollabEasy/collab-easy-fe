@@ -2,27 +2,35 @@
 import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
 import { AppState } from "state";
+import React, { useEffect, useState } from "react";
 import {
   CheckCircleOutlined,
   CheckOutlined,
   ClockCircleOutlined,
   CloseCircleOutlined,
   ExclamationCircleOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 import { CollabRequestData } from "types/model";
 import { Button, Tooltip, Tag } from "antd";
 import * as actions from "./../state/action";
 import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 import { useRouter } from "next/router";
-import { ShowChatButton, ChatButtonText, ConvertTimestampToDate, GetCollabHeading, GetCollabAdditionalDetails, GetScheduledDate } from "helpers/collabCardHelper";
+import SendCollabRequestModal from "./modal/sendCollabRequestModal";
+import { ShowEditCollabDetailIcon, ShowChatButton, ChatButtonText, ConvertTimestampToDate, GetCollabHeading, GetCollabAdditionalDetails, GetScheduledDate } from "helpers/collabCardHelper";
 
-const mapStateToProps = (state: AppState) => ({
-  user: state.user.user,
-  isAcceptingRequest: state.collab.isAcceptingRequest,
-  isRejectingRequest: state.collab.isRejectingRequest,
-  isCancellingRequest: state.collab.isCancellingRequest,
-  isCompletingRequest: state.collab.isCompletingRequest,
-});
+
+const mapStateToProps = (state: AppState) => {
+  return {
+    user: state.user.user,
+    isAcceptingRequest: state.collab.isAcceptingRequest,
+    isRejectingRequest: state.collab.isRejectingRequest,
+    isCancellingRequest: state.collab.isCancellingRequest,
+    isCompletingRequest: state.collab.isCompletingRequest,
+    showCollabModal: state.collab.showCollabModal,
+  }
+};
+
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   acceptCollabRequest: (id: string) =>
@@ -32,6 +40,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   cancelCollabRequest: (id: string) =>
     dispatch(actions.cancelCollabRequestAction(id)),
   completeCollabRequest: (id: string) => dispatch(actions.completeCollabRequestAction(id)),
+  setShowCollabModalState: (show: boolean, id: string) =>
+    dispatch(actions.setShowCollabModalState(show, id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -48,13 +58,34 @@ const CollabDetailCard = ({
   isAcceptingRequest,
   isRejectingRequest,
   isCancellingRequest,
-  isCompletingRequest,
+  showCollabModal,
   acceptCollabRequest,
   rejectCollabRequest,
   cancelCollabRequest,
+  setShowCollabModalState,
+  isCompletingRequest,
   completeCollabRequest,
 }: Props) => {
   const router = useRouter();
+  const emptyCollabDetails: CollabRequestData = {
+    id: "",
+    senderId: "",
+    receiverId: "",
+    collabDate: undefined,
+    requestData: {
+      message: "",
+      collabTheme: ""
+    },
+    status: "",
+    createdAt: undefined,
+    updatedAt: undefined
+  };
+  const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
+
+  useEffect(() => {
+    setCollabRequestDetails(collabDetails);
+  }, [collabDetails])
+
   const collabStatusComponentForSender = () => {
     return (
       <div className="collabDetailCard__statusContainer">
@@ -126,8 +157,14 @@ const CollabDetailCard = ({
       return <Tag style={{ width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
     }
   }
+
   return (
     <>
+      {(showCollabModal.show && collabDetails.id === showCollabModal.id) && (
+        <SendCollabRequestModal onCancel={() => {
+          setShowCollabModalState(false, '');
+        }} otherUser={collabDetails.receiverId} collabDetails={collabDetails} />
+      )}
       <div className="collabDetailCard__container">
         <div className="row p-2 bg-white border rounded collab-card">
           <div className="col-md-3 mt-1 social-profile-picture">
@@ -145,7 +182,6 @@ const CollabDetailCard = ({
                 }}
                 className="collabDetailCard__imageNameContainer"
               >
-
                 <img
                   className="card-img-top"
                   src={(collabDetails.senderId === user.artist_id
@@ -169,6 +205,21 @@ const CollabDetailCard = ({
           </div>
           <div className="align-items-center align-content-center col-md-3 border-left mt-1">
             <div className="d-flex flex-column mt-4">
+              {ShowEditCollabDetailIcon(collabDetails, user.artist_id, collabDetails.status) && (
+                <Button
+                  block
+                  type="primary"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    setShowCollabModalState(true, collabDetails.id);
+                  }}
+                  style={{ color: "white", border: "green", backgroundColor: "#F8CF61", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px' }}
+                  className="common-medium-btn"
+                >
+                  Edit
+                </Button>
+              )}
               {user.artist_id === collabDetails.senderId
                 ? collabStatusComponentForSender()
                 : collabStatusComponentForReceiver()}

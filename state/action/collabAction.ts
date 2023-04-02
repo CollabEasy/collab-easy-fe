@@ -193,10 +193,11 @@ export const getCollabRequestsActionFailure = () => ({
   },
 });
 
-export const setShowCollabModalState = (show: boolean) => ({
+export const setShowCollabModalState = (show: boolean, collab_id: string) => ({
   type: actionTypes.SET_SHOW_COLLAB_MODAL_STATUS,
   payload: {
-    show
+    show,
+    collab_id: collab_id,
   }
 })
 
