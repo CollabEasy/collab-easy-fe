@@ -119,9 +119,8 @@ export const completeCollabRequestLogic = createLogic<
     try {
       dispatch(actions.completeCollabRequestActionRequest());
       const request = await api.collabApi.completeCollabRequest(id);
-      dispatch(actions.completeCollabRequestActionSuccess(id))
-      dispatch(notifActions.showNotification(true, 'Collab Request marked completed successfully  🥳'))
-      dispatch(actions.setShowCollabModalState(false));
+      dispatch(actions.completeCollabRequestActionSuccess(id));
+      dispatch(notifActions.showNotification(true, 'Collab Request marked completed successfully  🥳'));
     } catch (error) {
       const error_response = error.response.data;
       dispatch(notifActions.showNotification(false, error_response['err_str']));

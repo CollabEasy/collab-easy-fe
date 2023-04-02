@@ -114,19 +114,18 @@ const CollabDetailCard = ({
   }
 
   const getCollabCardTag = (status) => {
-    if (collabDetails.status === "ACTIVE") {
+    if (status === "ACTIVE") {
       return <Tag style={{ width: "55px", marginBottom: '10px' }} color="blue">Active</Tag>;
-    } else if (collabDetails.status === "PENDING") {
+    } else if (status === "PENDING") {
       return <Tag style={{ width: "65px", marginBottom: '10px' }} color="yellow">Pending</Tag>;
-    } else if (collabDetails.status === "REJECTED") {
+    } else if (status === "REJECTED") {
       return <Tag style={{ width: "80px", marginBottom: '10px' }} color="red">Rejected</Tag>;
-    } else if (collabDetails.status === "EXPIRED") {
+    } else if (status === "EXPIRED") {
       return <Tag style={{ width: "65px", marginBottom: '10px' }} color="grey">Expired</Tag>;
-    } else if (status === "COMPLETED") {
+    } else {
       return <Tag style={{ width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
     }
   }
-
   return (
     <>
       <div className="collabDetailCard__container">
@@ -175,7 +174,7 @@ const CollabDetailCard = ({
                 : collabStatusComponentForReceiver()}
             </div>
             <>
-              {ShowChatButton(window.location.href, collabDetails.id, collabDetails.status) &&
+              {!isCompletingRequest && ShowChatButton(window.location.href, collabDetails.id, collabDetails.status) &&
                 <Button
                   block
                   type="primary"
@@ -192,12 +191,13 @@ const CollabDetailCard = ({
                 <Button
                   block
                   type="primary"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
                     completeCollabRequest(collabDetails.id);
                   }}
                   style={{ color: "white", border: "green", backgroundColor: "#91D296", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px' }}
-                  disabled={isRejectingRequest}
-                  loading={isAcceptingRequest}
+                  loading={isCompletingRequest}
                   className="common-medium-btn"
                 >
                   Mark completed
@@ -206,7 +206,7 @@ const CollabDetailCard = ({
             </>
           </div>
         </div>
-        </div>
+      </div>
     </>
   );
 };
