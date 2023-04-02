@@ -12,7 +12,7 @@ import Loader from "../../components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
 import LoginModal from '@/components/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
-import { convertTimestampToDate } from 'helpers/collabCardHelper';
+import { ConvertTimestampToDate } from 'helpers/collabCardHelper';
 import { GetCollabRequest, GetCollaboratorInfoFromCollab, DoHideNewCommentBox } from 'helpers/collabPageHelper';
 
 // https://ant.design/components/card/
@@ -120,7 +120,7 @@ const CollabPage = ({
               <p>{element["content"]}</p>
             }
             datetime={
-              <span>{convertTimestampToDate(element["createdAt"]).toLocaleDateString("en-US")}</span>
+              <span>{ConvertTimestampToDate(element["createdAt"]).toLocaleDateString("en-US")}</span>
             }
           />
         </div>
