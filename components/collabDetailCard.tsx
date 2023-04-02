@@ -88,20 +88,8 @@ const CollabDetailCard = ({
 
 
   const collabStatusComponentForSender = () => {
-    let icon = <Tag style={{width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
-    if (collabDetails.status === "ACTIVE") {
-      icon = <Tag style={{width: "55px", marginBottom: '10px' }} color="blue">Active</Tag>;
-    } else if (collabDetails.status === "PENDING") {
-      icon = <Tag style={{width: "65px", marginBottom: '10px' }} color="yellow">Pending</Tag>;
-    } else if (collabDetails.status === "REJECTED") {
-      icon = <Tag style={{width: "80px", marginBottom: '10px' }} color="red">Rejected</Tag>;
-    } else if (collabDetails.status === "EXPIRED") {
-      icon = <Tag style={{width: "65px", marginBottom: '10px' }} color="grey">Expired</Tag>;
-    }
-
     return (
       <div className="collabDetailCard__statusContainer">
-        {icon}
         {collabDetails.status === "PENDING" && (
           <Button
             block
@@ -125,9 +113,7 @@ const CollabDetailCard = ({
       return collabStatusComponentForSender();
 
     return (
-
       <>
-        <Tag style={{width: "60px", marginBottom: '10px' }} color="orange">Pending</Tag>
         <Button
           block
           type="primary"
@@ -159,6 +145,24 @@ const CollabDetailCard = ({
     )
   }
 
+<<<<<<< Updated upstream
+=======
+  const GetCollabCardTag = (status) => {
+    if (status === "COMPLETED") {
+      return <Tag style={{ width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
+    }
+    else if (status === "ACTIVE") {
+      return <Tag style={{ width: "55px", marginBottom: '10px' }} color="blue">Active</Tag>;
+    } else if (status === "PENDING") {
+      return <Tag style={{ width: "65px", marginBottom: '10px' }} color="yellow">Pending</Tag>;
+    } else if (status === "REJECTED") {
+      return <Tag style={{ width: "80px", marginBottom: '10px' }} color="red">Rejected</Tag>;
+    } else if (status === "EXPIRED") {
+      return <Tag style={{ width: "65px", marginBottom: '10px' }} color="grey">Expired</Tag>;
+    }
+}
+
+>>>>>>> Stashed changes
   return (
     <>
       {(showCollabModal.show && collabDetails.id === showCollabModal.id) && (
@@ -196,6 +200,7 @@ const CollabDetailCard = ({
           </div>
 
           <div className="col-md-6 mt-1 collabDetailCard__textContainer">
+            {GetCollabCardTag(collabDetails.status)}<br></br>
             <b className="f-16 mb4 common-text-style"> {GetCollabHeading(user.artist_id, collabDetails)}</b><br></br>
             <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style">
               {GetCollabAdditionalDetails(user.artist_id, collabDetails)}
