@@ -25,6 +25,7 @@ const initialState: CollabRequestState = {
   isAcceptingRequest: false,
   isRejectingRequest: false,
   isCancellingRequest: false,
+  isCompletingRequest: false,
 };
 
 const getUpdatedList = (
@@ -46,6 +47,7 @@ let id = "";
 let newPending = [];
 let newActive = [];
 let newRejected = [];
+let newCompleted = [];
 let newAll = [];
 
 
@@ -156,6 +158,11 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
         ...state,
         isCancellingRequest: true,
       };
+    case actionTypes.COMPLETE_COLLAB_REQUEST_REQUEST:
+      return {
+        ...state,
+        isCompletingRequest: true,
+      };
     case actionTypes.ACCEPT_COLLAB_REQUEST_FAILURE:
       return {
         ...state,
@@ -170,6 +177,11 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
       return {
         ...state,
         isCancellingRequest: false,
+      };
+    case actionTypes.COMPLETE_COLLAB_REQUEST_FAILURE:
+      return {
+        ...state,
+        isCompletingRequest: false,
       };
     case actionTypes.ACCEPT_COLLAB_REQUEST_SUCCESS:
       id = action.payload.id;
@@ -264,6 +276,36 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
             ...state.collabDetails.received,
             all: newAll,
             pending: newPending,
+          },
+        },
+      };
+    case actionTypes.COMPLETE_COLLAB_REQUEST_SUCCESS:
+      id = action.payload.id;
+      newCompleted = [];
+      newAll = [];
+      state.collabDetails.received.active.forEach((request, index) => {
+        if (request.id === id) {
+          request.status = "COMPLETE";
+          newAll.push(request);
+          newCompleted.push(request);
+        } 
+      });
+
+      state.collabDetails.received.all.forEach((request, _) => {
+        if (request.id !== id) {
+          newAll.push(request);
+        }
+      })
+
+      return {
+        ...state,
+        isCompletingRequest: false,
+        collabDetails: {
+          ...state.collabDetails,
+          received: {
+            ...state.collabDetails.received,
+            all: newAll,
+            completed: newCompleted.concat(state.collabDetails.received.completed),
           },
         },
       };
