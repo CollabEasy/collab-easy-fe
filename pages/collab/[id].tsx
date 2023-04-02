@@ -129,6 +129,8 @@ const CollabPage = ({
     return collabComments;
   }
 
+  console.log(collab);
+
   return (
     <>
       {loginModalDetails.openModal && !user.new_user && (

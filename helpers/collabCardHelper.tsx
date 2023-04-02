@@ -2,12 +2,16 @@
 
 import { CollabRequestData } from "types/model/collab";
 
-export function convertTimestampToDate(timestamp) {
+export function ConvertTimestampToDate(timestamp) {
     const d = new Date(timestamp);
     return d;
 }
 
-export function getCollabHeading(loggedInUserId: string, collabDetails: CollabRequestData) {
+export function IsCollabConversationPage(url, collabId) {
+    return url.includes("/collab/"+collabId);
+}   
+
+export function GetCollabHeading(loggedInUserId: string, collabDetails: CollabRequestData) {
     var heading = "";
     if (collabDetails.senderId === loggedInUserId) {
         // Logged in user looking at "sent" request
@@ -54,7 +58,7 @@ export function getCollabHeading(loggedInUserId: string, collabDetails: CollabRe
     return heading;
 }
 
-export function getCollabAdditionalDetails(loggedInUserId: string, collabDetails: CollabRequestData) {
+export function GetCollabAdditionalDetails(loggedInUserId: string, collabDetails: CollabRequestData) {
     var additionalDetails = "";
     
     if (collabDetails.senderId === loggedInUserId) {
@@ -98,7 +102,7 @@ export function getCollabAdditionalDetails(loggedInUserId: string, collabDetails
     return additionalDetails;
 }
 
-export function getScheduledDate(status: string) {
+export function GetScheduledDate(status: string) {
     var scheduledDate = "";
     if (status === "PENDING") {
         scheduledDate += "It is scheduled for ";

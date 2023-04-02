@@ -14,7 +14,7 @@ import { Button, Tooltip, Tag } from "antd";
 import * as actions from "./../state/action";
 import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 import { useRouter } from "next/router";
-import { convertTimestampToDate, getCollabHeading, getCollabAdditionalDetails, getScheduledDate } from "helpers/collabCardHelper";
+import { IsCollabConversationPage, ConvertTimestampToDate, GetCollabHeading, GetCollabAdditionalDetails, GetScheduledDate } from "helpers/collabCardHelper";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
@@ -56,24 +56,27 @@ const CollabDetailCard = ({
 }: Props) => {
   const router = useRouter();
   const collabStatusComponentForSender = () => {
-    let icon = <Tag color="green">Completed</Tag>;
+    let icon = <Tag style={{width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
     if (collabDetails.status === "ACTIVE") {
-      icon = <Tag color="blue">Active</Tag>;
+      icon = <Tag style={{width: "55px", marginBottom: '10px' }} color="blue">Active</Tag>;
     } else if (collabDetails.status === "PENDING") {
-      icon = <Tag color="yellow">Pending</Tag>;
+      icon = <Tag style={{width: "65px", marginBottom: '10px' }} color="yellow">Pending</Tag>;
     } else if (collabDetails.status === "REJECTED") {
-      icon = <Tag color="red">Rejected</Tag>;
+      icon = <Tag style={{width: "80px", marginBottom: '10px' }} color="red">Rejected</Tag>;
     } else if (collabDetails.status === "EXPIRED") {
-      icon = <Tag color="grey">Expired</Tag>;
+      icon = <Tag style={{width: "65px", marginBottom: '10px' }} color="grey">Expired</Tag>;
     }
 
     return (
       <div className="collabDetailCard__statusContainer">
-        {collabDetails.status !== "PENDING" && icon}
+        {icon}
         {collabDetails.status === "PENDING" && (
           <Button
+            block
             type="primary"
             loading={isCancellingRequest}
+            className="common-medium-btn"
+            style={{ color: "white", border: "yellow", backgroundColor: "#F8CF61", whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
             onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();
@@ -92,8 +95,7 @@ const CollabDetailCard = ({
     return (
 
       <>
-        {/* <Tag style={{width: "65px", marginBottom: '10px' }}color="orange">Pending</Tag> */}
-
+        <Tag style={{width: "60px", marginBottom: '10px' }} color="orange">Pending</Tag>
         <Button
           block
           type="primary"
@@ -156,12 +158,12 @@ const CollabDetailCard = ({
           </div>
 
           <div className="col-md-6 mt-1 collabDetailCard__textContainer">
-            <b className="f-16 mb4 common-text-style"> {getCollabHeading(user.artist_id, collabDetails)}</b><br></br>
+            <b className="f-16 mb4 common-text-style"> {GetCollabHeading(user.artist_id, collabDetails)}</b><br></br>
             <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style">
-              {getCollabAdditionalDetails(user.artist_id, collabDetails)}
+              {GetCollabAdditionalDetails(user.artist_id, collabDetails)}
             </p>
             <p style={{ paddingTop: '3px' }} className="text-justify break-word common-p-style">
-              {getScheduledDate(collabDetails.status)} {convertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}.
+              {GetScheduledDate(collabDetails.status)} {ConvertTimestampToDate(collabDetails.collabDate).toLocaleDateString("en-US")}.
             </p>
           </div>
           <div className="align-items-center align-content-center col-md-3 border-left mt-1">
@@ -171,6 +173,19 @@ const CollabDetailCard = ({
                 : collabStatusComponentForReceiver()}
             </div>
             <>
+              {collabDetails.status !== "PENDING" && !IsCollabConversationPage(window.location.href, collabDetails.id) &&
+                <Button
+                  block
+                  type="primary"
+                  onClick={() => {
+                    router.push(`/collab/${collabDetails.id}`);
+                  }}
+                  style={{ color: "white", border: "green", backgroundColor: "#9FBFF9", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px' }}
+                  className="common-medium-btn"
+                >
+                  Collab messages
+                </Button>
+              }
               {collabDetails.status === "ACTIVE" &&
                 <Button
                   block
@@ -178,7 +193,7 @@ const CollabDetailCard = ({
                   onClick={() => {
                     completeCollabRequest(collabDetails.id);
                   }}
-                  style={{ color: "white", border: "green", backgroundColor: "#91D296", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px'}}
+                  style={{ color: "white", border: "green", backgroundColor: "#91D296", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px' }}
                   disabled={isRejectingRequest}
                   loading={isAcceptingRequest}
                   className="common-medium-btn"

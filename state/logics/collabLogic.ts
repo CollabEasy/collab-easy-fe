@@ -94,8 +94,8 @@ export const cancelCollabRequestLogic = createLogic<
     try {
       dispatch(actions.cancelCollabRequestActionRequest());
       const request = await api.collabApi.cancelCollabRequest(id);
-      dispatch(notifActions.showNotification(true, 'Collab Request cancelled successfully 😢'))
       dispatch(actions.cancelCollabRequestActionSuccess(id))
+      dispatch(notifActions.showNotification(true, 'Collab Request cancelled successfully 😢'))
       dispatch(actions.setShowCollabModalState(false));
     } catch (error) {
       const error_response = error.response.data;
@@ -120,8 +120,11 @@ export const completeCollabRequestLogic = createLogic<
       dispatch(actions.completeCollabRequestActionRequest());
       const request = await api.collabApi.completeCollabRequest(id);
       dispatch(actions.completeCollabRequestActionSuccess(id))
+      dispatch(notifActions.showNotification(true, 'Collab Request marked completed successfully  🥳'))
       dispatch(actions.setShowCollabModalState(false));
     } catch (error) {
+      const error_response = error.response.data;
+      dispatch(notifActions.showNotification(false, error_response['err_str']));
       dispatch(actions.completeCollabRequestActionFailure())
     } finally {
       done();
