@@ -8,6 +8,7 @@ export const routes: AppRouteCreators = {
   toArtist: () => ({ href: "/discover-artist/" }),
   toAboutUs: () => ({ href: "/about-us"}),
   toFAQ: () => ({ href: "/faq"}),
+  toTutorial: () => ({ href: "/tutorial"}),
   toPrivacy: () => ({ href: "/privacy" }),
   toContactUs: () => ({ href: "/contact-us" }),
   toTerms: () => ({ href: "/terms-and-policy" }),

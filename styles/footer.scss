@@ -4,6 +4,10 @@
 // Tutorial used:
 //      https://www.web-eau.net/blog/10-best-footer-html-css-snippets
 //      https://css-tricks.com/couple-takes-sticky-footer/
+// 2 column grid
+//      https://matthewjamestaylor.com/2-column-layouts
+//      https://stackoverflow.com/questions/50265033/css-responsive-two-column-with-multi-rows-into-one-column
+
 .footer-basic {
     position: absolute;
     width: 100%;  
@@ -87,7 +91,52 @@
     align-items: center; 
 }
 
-// Page 2: Contact us
+// Page 2: Tutorial
+
+.footer_tutorialContainer {
+    position: relative;
+    margin: auto;
+    flex-direction: column;
+    width: 70%;
+    //border: 1px solid rgb(0 0 0 / 10%);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.footer_tutorialHeadingContainer {
+    margin-top: 48px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+}
+
+.footer_tutorialStepsContainer {
+    display: flex;
+    justify-content: center;
+    flex-flow: row nowrap;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+  
+.footer_tutorialStepText, .footer_tutorialStepImage {
+    flex: 0 0 50%;
+}
+  
+@media screen and (max-width:768px) {
+    .footer_tutorialStepsContainer {
+        flex-flow: column nowrap;
+    }
+}
+
+.footer_tutorialButtonContainer {
+    display: flex;  
+    justify-content: center;  
+    align-items: center; 
+}
+
+// Page 3: Contact us
 
 .footer_contactUsContainer {
     position: relative;
@@ -121,7 +170,7 @@
     // align-items: center; 
 }
 
-// Page 3: Terms and Conditions
+// Page 4: Terms and Conditions
 
 .footer_termsContainer {
     position: relative;
@@ -136,7 +185,7 @@
     padding-bottom: 1rem;
 }
 
-// Page 4: Privacy
+// Page 5: Privacy
 
 .footer_privacyContainer {
     position: relative;
