@@ -2,7 +2,7 @@ import { CollabRequestData, CollabResponse } from "types/model";
 
 export interface CollabRequestState {
   collabDetails: CollabResponse;
-  showCollabModal: boolean;
+  showCollabModal: { show: boolean; id: string };
   isSendingRequest: boolean;
   isAcceptingRequest: boolean;
   isRejectingRequest: boolean;

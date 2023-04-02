@@ -135,3 +135,16 @@ export function GetScheduledDate(status: string) {
 
     return scheduledDate;
 }
+
+export function ShowEditCollabDetailIcon(collabData, loggedInUserId, status) {
+    if (status !== "PENDING" && status !== "ACTIVE") {
+        return false;
+    }
+    if (status === "PENDING" && collabData.senderId === loggedInUserId) {
+        return true;
+    }
+    if (status === "ACTIVE") {
+        return true;
+    }
+    return false;
+}

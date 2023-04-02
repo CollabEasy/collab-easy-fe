@@ -42,7 +42,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistsByCategorySlug: (slug: string) =>
     dispatch(action.fetchArtistsByCategorySlug(slug)),
   updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
-  setShowCollabModalState: (show: boolean) => dispatch(action.setShowCollabModalState(show)),
+  setShowCollabModalState: (show: boolean, id: string) => dispatch(action.setShowCollabModalState(show, id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -226,7 +226,7 @@ const DiscoverArtist = ({
                   disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false" || !isLoggedIn}
                   style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
                   onClick={() => {
-                    setShowCollabModalState(true);
+                    setShowCollabModalState(true, '');
                     setUserIdForCollab(artist.artist_id);
                   }}
                 >
@@ -318,7 +318,7 @@ const DiscoverArtist = ({
         <SendCollabRequestModal
           otherUser={userIdForCollab}
           onCancel={() => {
-            setShowCollabModalState(false);
+            setShowCollabModalState(false, collabRequestDetails.id);
           }}
           collabDetails={collabRequestDetails}
         />

@@ -24,8 +24,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(action.acceptCollabRequestAction(requestId)),
   rejectCollabRequest: (requestId: string) =>
     dispatch(action.rejectCollabRequestAction(requestId)),
-  setShowCollabModalState: (show: boolean) => 
-    dispatch(action.setShowCollabModalState(show)),
+  setShowCollabModalState: (show: boolean, id: string) =>
+    dispatch(action.setShowCollabModalState(show, id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -57,9 +57,12 @@ const SendCollabRequestModal = ({
     useState<CollabRequestData>(collabDetails);
   const [editable, setEditable] = useState(
     isNewCollab ||
-      (user.artist_id === collabDetails.senderId &&
-        collabDetails.status === "PENDING")
+    (user.artist_id === collabDetails.senderId &&
+      (collabDetails.status === "PENDING"))
   );
+
+  const [hasDateChanged, setDateChanged] = useState(false);
+
 
   const sendCollabRequest = () => {
     if (isNewCollab) {
@@ -71,12 +74,12 @@ const SendCollabRequestModal = ({
         },
         collabDate: collabDataCached.collabDate ?? tomorrow.toDate(),
       };
-      // console.log("Rabbal collab data is ", data);
       sendCollabRequestAction(data);
+      setShowCollabModalState(false, '');
     } else {
       updateCollabRequest(collabDataCached);
+      setShowCollabModalState(false, collabDataCached.id);
     }
-    setShowCollabModalState(false);
   };
 
   return (
@@ -128,10 +131,10 @@ const SendCollabRequestModal = ({
           />
         </div>
 
+        {/* Date should be allowed to be changed even for active collabs to allow collaborators to push date ahead if needed. */}
         <div className="sendCollabRequestModal__textAreaContainer">
           <p className="mb0">When do you want to post this collab?</p>
           <DatePicker
-            disabled={!editable}
             clearIcon={null}
             disabledDate={(d) => d.isSameOrBefore(currentDate)}
             format="DD/MM/YYYY"
@@ -141,6 +144,7 @@ const SendCollabRequestModal = ({
                 : tomorrow
             )}
             onChange={(e) => {
+              setDateChanged(true);
               setCollabDataCached((prevState) => ({
                 ...prevState,
                 collabDate: e.toDate(),
@@ -148,11 +152,11 @@ const SendCollabRequestModal = ({
             }}
           />
         </div>
-        {editable ? (
+        {(editable || hasDateChanged) ? (
           <div className="text-center ">
             <Button
               disabled={
-                collabDataCached.requestData.collabTheme.trim().length === 0 
+                collabDataCached.requestData.collabTheme.trim().length === 0
               }
               size="large"
               className="sendCollabRequestModal__button"
@@ -176,7 +180,7 @@ const SendCollabRequestModal = ({
               loading={isAcceptingRequest}
               onClick={() => {
                 acceptCollabRequest(collabDetails.id);
-                setShowCollabModalState(false);
+                setShowCollabModalState(false, collabDetails.id);
               }}
             >
               Accept
@@ -189,7 +193,7 @@ const SendCollabRequestModal = ({
               loading={isRejectingRequest}
               onClick={() => {
                 rejectCollabRequest(collabDetails.id);
-                setShowCollabModalState(false);
+                setShowCollabModalState(false, collabDetails.id);
               }}
             >
               Reject

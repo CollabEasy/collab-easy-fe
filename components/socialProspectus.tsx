@@ -45,7 +45,6 @@ const SocialProspectusPage = ({
   fetchArtistSocialProspectus,
 }: Props) => {
   const router = useRouter();
-  const [showCollabModal, setShowCollabModal] = useState(false);
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);
 
   useEffect(() => {
