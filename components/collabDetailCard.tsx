@@ -17,7 +17,8 @@ import * as actions from "./../state/action";
 import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 import { useRouter } from "next/router";
 import SendCollabRequestModal from "./modal/sendCollabRequestModal";
-import { ShowEditCollabDetailIcon, ConvertTimestampToDate, GetCollabHeading, GetCollabAdditionalDetails, GetScheduledDate } from "helpers/collabCardHelper";
+import { ShowEditCollabDetailIcon, ShowChatButton, ChatButtonText, ConvertTimestampToDate, GetCollabHeading, GetCollabAdditionalDetails, GetScheduledDate } from "helpers/collabCardHelper";
+
 
 const mapStateToProps = (state: AppState) => {
   return {
@@ -25,9 +26,11 @@ const mapStateToProps = (state: AppState) => {
     isAcceptingRequest: state.collab.isAcceptingRequest,
     isRejectingRequest: state.collab.isRejectingRequest,
     isCancellingRequest: state.collab.isCancellingRequest,
+    isCompletingRequest: state.collab.isCompletingRequest,
     showCollabModal: state.collab.showCollabModal,
   }
 };
+
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   acceptCollabRequest: (id: string) =>
@@ -36,9 +39,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(actions.rejectCollabRequestAction(id)),
   cancelCollabRequest: (id: string) =>
     dispatch(actions.cancelCollabRequestAction(id)),
-
+  completeCollabRequest: (id: string) => dispatch(actions.completeCollabRequestAction(id)),
   setShowCollabModalState: (show: boolean, id: string) =>
-    dispatch(actions.setShowCollabModalState(show, id)),
+  dispatch(actions.setShowCollabModalState(show, id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -60,6 +63,8 @@ const CollabDetailCard = ({
   rejectCollabRequest,
   cancelCollabRequest,
   setShowCollabModalState,
+  isCompletingRequest,
+  completeCollabRequest,
 }: Props) => {
   const router = useRouter();
   const emptyCollabDetails: CollabRequestData = {
@@ -83,25 +88,27 @@ const CollabDetailCard = ({
 
 
   const collabStatusComponentForSender = () => {
-    let icon = <Tag color="green">Completed</Tag>;
+    let icon = <Tag style={{width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
     if (collabDetails.status === "ACTIVE") {
-      icon = <Tag color="blue">Active</Tag>;
+      icon = <Tag style={{width: "55px", marginBottom: '10px' }} color="blue">Active</Tag>;
     } else if (collabDetails.status === "PENDING") {
-      icon = <Tag color="yellow">Pending</Tag>;
+      icon = <Tag style={{width: "65px", marginBottom: '10px' }} color="yellow">Pending</Tag>;
     } else if (collabDetails.status === "REJECTED") {
-      icon = <Tag color="red">Rejected</Tag>;
+      icon = <Tag style={{width: "80px", marginBottom: '10px' }} color="red">Rejected</Tag>;
     } else if (collabDetails.status === "EXPIRED") {
-      icon = <Tag color="grey">Expired</Tag>;
+      icon = <Tag style={{width: "65px", marginBottom: '10px' }} color="grey">Expired</Tag>;
     }
 
     return (
       <div className="collabDetailCard__statusContainer">
-        {collabDetails.status !== "PENDING" && icon}
+        {icon}
         {collabDetails.status === "PENDING" && (
           <Button
             block
             type="primary"
             loading={isCancellingRequest}
+            className="common-medium-btn"
+            style={{ color: "white", border: "yellow", backgroundColor: "#F8CF61", whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
             onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();
@@ -120,8 +127,7 @@ const CollabDetailCard = ({
     return (
 
       <>
-        {/* <Tag style={{width: "65px", marginBottom: '10px' }}color="orange">Pending</Tag> */}
-
+        <Tag style={{width: "60px", marginBottom: '10px' }} color="orange">Pending</Tag>
         <Button
           block
           type="primary"
@@ -218,6 +224,36 @@ const CollabDetailCard = ({
                 ? collabStatusComponentForSender()
                 : collabStatusComponentForReceiver()}
             </div>
+            <>
+              {ShowChatButton(window.location.href, collabDetails.id, collabDetails.status)  &&
+                <Button
+                  block
+                  type="primary"
+                  onClick={() => {
+                    router.push(`/collab/${collabDetails.id}`);
+                  }}
+                  style={{ color: "white", border: "green", backgroundColor: "#9FBFF9", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px' }}
+                  className="common-medium-btn"
+                >
+                  {ChatButtonText(collabDetails.status)}
+                </Button>
+              }
+              {collabDetails.status === "ACTIVE" &&
+                <Button
+                  block
+                  type="primary"
+                  onClick={() => {
+                    completeCollabRequest(collabDetails.id);
+                  }}
+                  style={{ color: "white", border: "green", backgroundColor: "#91D296", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px' }}
+                  disabled={isRejectingRequest}
+                  loading={isAcceptingRequest}
+                  className="common-medium-btn"
+                >
+                  Mark Completed
+                </Button>
+              }
+            </>
           </div>
         </div>
       </div>

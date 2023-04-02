@@ -12,14 +12,13 @@ import Loader from "../../components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
 import LoginModal from '@/components/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
-import { convertTimestampToDate } from 'helpers/collabCardHelper';
+import { ConvertTimestampToDate } from 'helpers/collabCardHelper';
 import { GetCollabRequest, GetCollaboratorInfoFromCollab, DoHideNewCommentBox } from 'helpers/collabPageHelper';
 
 // https://ant.design/components/card/
 const { TextArea } = Input;
 
 const mapStateToProps = (state: AppState) => {
-  // console.log(state);
   const user = state.user.user;
   const isLoggedIn = state.user.isLoggedIn;
   const loginModalDetails = state.home.loginModalDetails;
@@ -121,7 +120,7 @@ const CollabPage = ({
               <p>{element["content"]}</p>
             }
             datetime={
-              <span>{convertTimestampToDate(element["createdAt"]).toLocaleDateString("en-US")}</span>
+              <span>{ConvertTimestampToDate(element["createdAt"]).toLocaleDateString("en-US")}</span>
             }
           />
         </div>
@@ -129,6 +128,8 @@ const CollabPage = ({
     });
     return collabComments;
   }
+
+  console.log(collab);
 
   return (
     <>

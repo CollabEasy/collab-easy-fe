@@ -136,6 +136,34 @@ export const cancelCollabRequestActionFailure = () => ({
   },
 });
 
+export const completeCollabRequestAction = (id: string) => ({
+  type: actionTypes.COMPLETE_COLLAB_REQUEST,
+  payload: {
+    id,
+  },
+});
+
+export const completeCollabRequestActionRequest = () => ({
+  type: actionTypes.COMPLETE_COLLAB_REQUEST_REQUEST,
+  payload: {
+    
+  },
+});
+
+export const completeCollabRequestActionSuccess = (id: string) => ({
+  type: actionTypes.COMPLETE_COLLAB_REQUEST_SUCCESS,
+  payload: {
+    id
+  },
+});
+
+export const completeCollabRequestActionFailure = () => ({
+  type: actionTypes.COMPLETE_COLLAB_REQUEST_FAILURE,
+  payload: {
+    
+  },
+});
+
 
 export const getCollabRequestsAction = (data: SearchCollab) => ({
   type: actionTypes.SEARCH_COLLAB_REQUEST,

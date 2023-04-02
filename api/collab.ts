@@ -54,6 +54,14 @@ export const cancelCollabRequest = async (id: string) => {
   }
 };
 
+export const completeCollabRequest = async (id: string) => {
+  try {
+    return await api.call(`api/v1/collab/complete/request/${id}`, postConfig());
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getCollabRequest = async (searchCollabData: SearchCollab) => {
   try {
     return await api.call(`api/v1/collab/search`, postConfig(searchCollabData));
