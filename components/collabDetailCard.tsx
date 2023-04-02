@@ -198,7 +198,7 @@ const CollabDetailCard = ({
                   loading={isAcceptingRequest}
                   className="common-medium-btn"
                 >
-                  Mark Completed
+                  Mark completed
                 </Button>
               }
             </>
