@@ -56,20 +56,8 @@ const CollabDetailCard = ({
 }: Props) => {
   const router = useRouter();
   const collabStatusComponentForSender = () => {
-    let icon = <Tag style={{width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
-    if (collabDetails.status === "ACTIVE") {
-      icon = <Tag style={{width: "55px", marginBottom: '10px' }} color="blue">Active</Tag>;
-    } else if (collabDetails.status === "PENDING") {
-      icon = <Tag style={{width: "65px", marginBottom: '10px' }} color="yellow">Pending</Tag>;
-    } else if (collabDetails.status === "REJECTED") {
-      icon = <Tag style={{width: "80px", marginBottom: '10px' }} color="red">Rejected</Tag>;
-    } else if (collabDetails.status === "EXPIRED") {
-      icon = <Tag style={{width: "65px", marginBottom: '10px' }} color="grey">Expired</Tag>;
-    }
-
     return (
       <div className="collabDetailCard__statusContainer">
-        {icon}
         {collabDetails.status === "PENDING" && (
           <Button
             block
@@ -93,9 +81,7 @@ const CollabDetailCard = ({
       return collabStatusComponentForSender();
 
     return (
-
       <>
-        <Tag style={{width: "60px", marginBottom: '10px' }} color="orange">Pending</Tag>
         <Button
           block
           type="primary"
@@ -126,6 +112,21 @@ const CollabDetailCard = ({
       </>
     )
   }
+
+  const getCollabCardTag = (status) => {
+    if (collabDetails.status === "ACTIVE") {
+      return <Tag style={{ width: "55px", marginBottom: '10px' }} color="blue">Active</Tag>;
+    } else if (collabDetails.status === "PENDING") {
+      return <Tag style={{ width: "65px", marginBottom: '10px' }} color="yellow">Pending</Tag>;
+    } else if (collabDetails.status === "REJECTED") {
+      return <Tag style={{ width: "80px", marginBottom: '10px' }} color="red">Rejected</Tag>;
+    } else if (collabDetails.status === "EXPIRED") {
+      return <Tag style={{ width: "65px", marginBottom: '10px' }} color="grey">Expired</Tag>;
+    } else if (status === "COMPLETED") {
+      return <Tag style={{ width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
+    }
+  }
+
   return (
     <>
       <div className="collabDetailCard__container">
@@ -153,6 +154,7 @@ const CollabDetailCard = ({
                     : collabDetails.senderProfilePicUrl)}
                   alt=""
                 />
+                {getCollabCardTag(collabDetails.status)}
               </div>
             )}
           </div>
@@ -173,7 +175,7 @@ const CollabDetailCard = ({
                 : collabStatusComponentForReceiver()}
             </div>
             <>
-              {ShowChatButton(window.location.href, collabDetails.id, collabDetails.status)  &&
+              {ShowChatButton(window.location.href, collabDetails.id, collabDetails.status) &&
                 <Button
                   block
                   type="primary"
@@ -204,7 +206,7 @@ const CollabDetailCard = ({
             </>
           </div>
         </div>
-      </div>
+        </div>
     </>
   );
 };
