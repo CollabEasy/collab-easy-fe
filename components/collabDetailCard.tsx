@@ -14,7 +14,7 @@ import { Button, Tooltip, Tag } from "antd";
 import * as actions from "./../state/action";
 import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 import { useRouter } from "next/router";
-import { IsCollabConversationPage, ConvertTimestampToDate, GetCollabHeading, GetCollabAdditionalDetails, GetScheduledDate } from "helpers/collabCardHelper";
+import { ShowChatButton, ChatButtonText, ConvertTimestampToDate, GetCollabHeading, GetCollabAdditionalDetails, GetScheduledDate } from "helpers/collabCardHelper";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
@@ -173,7 +173,7 @@ const CollabDetailCard = ({
                 : collabStatusComponentForReceiver()}
             </div>
             <>
-              {collabDetails.status !== "PENDING" && !IsCollabConversationPage(window.location.href, collabDetails.id) &&
+              {ShowChatButton(window.location.href, collabDetails.id, collabDetails.status)  &&
                 <Button
                   block
                   type="primary"
@@ -183,7 +183,7 @@ const CollabDetailCard = ({
                   style={{ color: "white", border: "green", backgroundColor: "#9FBFF9", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px' }}
                   className="common-medium-btn"
                 >
-                  Collab messages
+                  {ChatButtonText(collabDetails.status)}
                 </Button>
               }
               {collabDetails.status === "ACTIVE" &&

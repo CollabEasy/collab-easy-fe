@@ -7,8 +7,25 @@ export function ConvertTimestampToDate(timestamp) {
     return d;
 }
 
-export function IsCollabConversationPage(url, collabId) {
-    return url.includes("/collab/"+collabId);
+export function ShowChatButton(url, collabId, collabStatus) {
+    // return at once if not collab conversation page.
+    if (url.includes("/collab/"+collabId)) {
+        return false;
+    }
+    if (collabStatus === "ACTIVE" || collabStatus === "COMPLETED") {
+        return true;
+    }
+    return false;
+}   
+
+export function ChatButtonText(collabStatus) {
+    if (collabStatus === "PENDING") {
+        return "";
+    } else if (collabStatus === "ACTIVE") {
+        return "Send a message";
+    } else {
+        return "Check messages";
+    }
 }   
 
 export function GetCollabHeading(loggedInUserId: string, collabDetails: CollabRequestData) {
