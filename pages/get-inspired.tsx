@@ -77,9 +77,9 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
           <div className="getInspired-textContainer">
             <h3 className="common-h3-style">Looking for insipiration?</h3>
             <p className="common-p-style">
-              You have landed on the right place! An updated list of themes and quotes will be published on this page
-              <strong> every week.</strong>
-              Therefore, do not forget to come back again.
+              This page is the perfect destination for you. Here, we update our list of themes 
+              and quotes on a <strong>weekly basis</strong>, so be sure to check back often. 
+              You won&apos;t want to miss out!
               <br></br>
             </p >
             <div className="theme">
