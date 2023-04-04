@@ -104,7 +104,6 @@ const Profile = ({
   }, [/*fetchArtistSamples,*/ getCollabRequestsAction, isSelf, user.slug, user.artist_id]);
 
   useEffect(() => {
-    console.log("we are here");
     if (!isFetchingCollabs && (loggedInUserId !== user.artist_id)) {
       // you are checking someone else page therefore fetch collab status.
       var filteredCollab = GetPendingCollabRequest(collab, loggedInUserId, user.artist_id);
