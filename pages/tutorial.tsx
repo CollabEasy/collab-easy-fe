@@ -13,6 +13,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
+import createProfileGif from "public/images/createProfile.gif";
 import contactUsImage from "public/images/contactUs.svg";
 import Title from '../components/title';
 
@@ -67,7 +68,7 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
       <Title title="About Wondor" />
       <div className="footer_tutorialContainer">
         <div className="footer_tutorialHeadingContainer">
-          <h3 className="common-h5-style">You are just 4 steps away from your next collaboration 🤗</h3>
+          <h3 className="common-h3-style">You are just 4 steps away from your next collaboration 🤗</h3>
         </div>
 
         <div className='footer_tutorialStepsContainer'>
@@ -86,7 +87,7 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
           </div>
           <div className="footer_tutorialStepImage">
             <Image
-              src={contactUsImage}
+              src={createProfileGif}
               alt="Landing page"
               priority
             />
@@ -96,50 +97,55 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
         <div className='footer_tutorialStepsContainer'>
           <div className="footer_tutorialStepImage">
             <Image
-              src={contactUsImage}
+              src={createProfileGif}
               alt="Landing page"
               priority
             />
           </div>
           <div className="footer_tutorialStepText">
-            <h4 className="common-h4-style">2. Browse artist</h4>
+            <h4 className="common-h4-style">2. Find artists</h4>
             <p className="common-h6-style">
               Simply start by browsing artists in the art category of your choice
-              or search directly by artists&apos; name.
+              or search directly by artist&apos;s name.
             </p>
           </div>
         </div>
         <div className="footer_tutorialStepsContainer">
           <div className="footer_tutorialStepText">
-            <h4 className="common-h5-style">2. Send collaboration request</h4>
+            <h4 className="common-h5-style">3. Send collaboration request</h4>
             <p className="common-p-style">
               Before you send a colloboration request, Make sure they are <i><b>up for collaboration</b></i>.
               Their collaboration status is visible on their profile 😎<br></br><br></br>
+              In your collaboration request, mention
+              <ul>
+                <li>Theme or topic for art</li>
+                <li>Details about the theme, how and where you want to post it and when etc</li>
+              </ul>
             </p>
           </div>
           <div className="footer_tutorialStepImage">
             <Image
-              src={contactUsImage}
+              src={createProfileGif}
               alt="Landing page"
               priority
             />
           </div>
         </div>
         <div className="footer_tutorialStepsContainer">
-          <div className="footer_tutorialStepText">
-            <h5 className="common-h5-style">3. Discuss the details</h5>
-            <p className="common-p-style">
-              Artists are spread out on various social media platforms - some on instagram, others on youtube,
-              and we are here to help you discover these artists so that you can work with them on your next big thing.
-              Search for the art category to find the artists whose work most inpire you to work with them.<br></br><br></br>
-            </p>
-          </div>
           <div className="footer_tutorialStepImage">
             <Image
-              src={contactUsImage}
+              src={createProfileGif}
               alt="Landing page"
               priority
             />
+          </div>
+          <div className="footer_tutorialStepText">
+            <h5 className="common-h5-style">4. Work on your masterpiece</h5>
+            <p className="common-p-style">
+              Once the artist accept your request, start working with them on your masterpiece.
+              Discuss details by sending message to each other. Once it is ready, post it together.
+              And yes, don&apos;t forget to give credit to each other.<br></br><br></br>
+            </p>
           </div>
         </div>
         <div>

@@ -106,6 +106,7 @@
 }
 
 .footer_tutorialHeadingContainer {
+    text-align: center;
     margin-top: 48px;
     padding-left: 40px;
     padding-right: 40px;
@@ -116,14 +117,13 @@
     display: flex;
     justify-content: center;
     flex-flow: row nowrap;
-    padding-left: 5%;
-    padding-right: 5%;
 }
   
 .footer_tutorialStepText, .footer_tutorialStepImage {
     flex: 0 0 50%;
+    padding: 5%;
 }
-  
+
 @media screen and (max-width:768px) {
     .footer_tutorialStepsContainer {
         flex-flow: column nowrap;
