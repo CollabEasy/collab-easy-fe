@@ -4,7 +4,7 @@ import { Button } from "antd";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
-
+import { Card } from 'antd';
 import LoginModal from '../components/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
@@ -69,96 +69,92 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
       <div className="footer_tutorialContainer">
         <div className="footer_tutorialHeadingContainer">
           <h3 className="common-h3-style">You are just 4 steps away from your next collaboration 🤗</h3>
+          <p className="common-p-style">Are you ready to take your skills to the next level and collaborate with others on exciting projects? 
+          Then it&apos;s time to create your profile and join a community of like-minded individuals!</p>
         </div>
+        <div className="footer_tutorialButtonContainer">
+          <Button type="primary" className="common-btn-dimension">
+            <Link
+              href={routeToHref(toDiscover())}
+              passHref
+            >Let&apos;s collaborate</Link>
+          </Button>
+        </div>
+      </div>
 
-        <div className='footer_tutorialStepsContainer'>
-          <div className="footer_tutorialStepText">
-            <h4 className="common-h4-style">1. Set up your profile</h4>
+
+      <div className="footer_tutorialTextRow">
+        <div className="footer_tutorialTextColum">
+          <Card title="1. Set up your profile" style={{ width: '100%', height: '100%'}}>
             <p className="common-h6-style">
-              Login with Gmail to create your profile. Don't forget to
+              Create your profile by logging in with your Gmail account. 
+              Complete these steps to showcase your skills and collaborate
               <ul>
                 <li>Add basic information</li>
-                <li>Set preferences to indicate your skills</li>
-                <li>Set if you are up for collaboration</li>
-                <li>Add other social media account under social prospectus</li>
+                <li>Set preferences</li>
+                <li>Indicate collaboration interest</li>
+                <li>Include social media accounts</li>
               </ul>
-              You are now one step close to collaborate for you next hit 🥳
+              Take the first step towards your next hit 🥳
             </p>
-          </div>
-          <div className="footer_tutorialStepImage">
-            <Image
-              src={createProfileGif}
-              alt="Landing page"
-              priority
-            />
-          </div>
+          </Card>
         </div>
-
-        <div className='footer_tutorialStepsContainer'>
-          <div className="footer_tutorialStepImage">
-            <Image
-              src={createProfileGif}
-              alt="Landing page"
-              priority
-            />
-          </div>
-          <div className="footer_tutorialStepText">
-            <h4 className="common-h4-style">2. Find artists</h4>
+        <div className="footer_tutorialTextColum">
+          <Card title="2. Find an artist" style={{ width: '100%', height: '100%'}}>
             <p className="common-h6-style">
-              Simply start by browsing artists in the art category of your choice
-              or search directly by artist&apos;s name.
+              Simply browse the art category of your choice to see a variety of artists and their creations. 
+              To narrow down your search even further, you can also search directly by an artist&apos;s name.
             </p>
-          </div>
+          </Card>
         </div>
-        <div className="footer_tutorialStepsContainer">
-          <div className="footer_tutorialStepText">
-            <h4 className="common-h5-style">3. Send collaboration request</h4>
+        <div className="footer_tutorialTextColum">
+          <Card title="3. Send a collaboration request" style={{ width: '100%', height: '100%'}}>
             <p className="common-p-style">
-              Before you send a colloboration request, Make sure they are <i><b>up for collaboration</b></i>.
-              Their collaboration status is visible on their profile 😎<br></br><br></br>
+              Ready to collaborate? Confirm the artist is open to it on their profile 😎<br></br>
               In your collaboration request, mention
               <ul>
                 <li>Theme or topic for art</li>
-                <li>Details about the theme, how and where you want to post it and when etc</li>
+                <li>Provide details such as platform, deadlines, and milestones</li>
               </ul>
+              Let&apos;s work together to create something unique and inspiring!
             </p>
+          </Card>
+        </div>
+        <div className="footer_tutorialTextColum">
+          <Card title="4. Work on your masterpiece" style={{ width: '100%', height: '100%'}}>
+            <p className="common-p-style">
+              Congratulations on finding an artist to collaborate with 🥳. 
+              Once accepted, discuss details by messaging each other. Post your work together on the due date 
+              And yes, don&apos;t forget to give credit to each other.<br></br><br></br>
+            </p>
+          </Card>
+        </div>
+      </div>
+
+      {/* <div className='footer_tutorialStepsContainer'>
+          <div className="footer_tutorialStepText">     
           </div>
           <div className="footer_tutorialStepImage">
-            <Image
-              src={createProfileGif}
-              alt="Landing page"
-              priority
-            />
+          </div>
+        </div>
+        <div className='footer_tutorialStepsContainer'>
+          <div className="footer_tutorialStepImage">
+          </div>
+          <div className="footer_tutorialStepText">
+          </div>
+        </div>
+        <div className="footer_tutorialStepsContainer">
+          <div className="footer_tutorialStepText">
+          </div>
+          <div className="footer_tutorialStepImage">
           </div>
         </div>
         <div className="footer_tutorialStepsContainer">
           <div className="footer_tutorialStepImage">
-            <Image
-              src={createProfileGif}
-              alt="Landing page"
-              priority
-            />
           </div>
           <div className="footer_tutorialStepText">
-            <h5 className="common-h5-style">4. Work on your masterpiece</h5>
-            <p className="common-p-style">
-              Once the artist accept your request, start working with them on your masterpiece.
-              Discuss details by sending message to each other. Once it is ready, post it together.
-              And yes, don&apos;t forget to give credit to each other.<br></br><br></br>
-            </p>
           </div>
-        </div>
-        <div>
-          <div className="footer_contactUsButtonContainer">
-            <Button type="primary" className="common-btn-dimension">
-              <Link
-                href={routeToHref(toDiscover())}
-                passHref
-              >Explore Wondor</Link>
-            </Button>
-          </div>
-        </div>
-      </div>
+        </div> */}
     </>
   )
 }
