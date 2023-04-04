@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({
         <p className="copyright ">Wondor © 2021</p>
         <ul className="list-inline">
           <li className="list-inline-item common-text-style"><Link href={toAboutUs().href} passHref>About Wondor</Link></li>
-          <li className="list-inline-item common-text-style"><Link href={toTutorial().href} passHref>Tutorial</Link></li>
+          <li className="list-inline-item common-text-style"><Link href={toTutorial().href} passHref>How Wondor works</Link></li>
           <li className="list-inline-item common-text-style"><Link href={toTerms().href} passHref>Terms</Link></li>
           <li className="list-inline-item common-text-style"><Link href={toPrivacy().href} passHref>Privacy</Link></li>
           <li className="list-inline-item common-text-style"><Link href={toContactUs().href} passHref>Contact Us</Link></li>

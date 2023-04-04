@@ -72,14 +72,6 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
           <p className="common-p-style">Are you ready to take your skills to the next level and collaborate with others on exciting projects? 
           Then it&apos;s time to create your profile and join a community of like-minded individuals!</p>
         </div>
-        <div className="footer_tutorialButtonContainer">
-          <Button type="primary" className="common-btn-dimension">
-            <Link
-              href={routeToHref(toDiscover())}
-              passHref
-            >Let&apos;s collaborate</Link>
-          </Button>
-        </div>
       </div>
 
 
@@ -103,7 +95,7 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
           <Card title="2. Find an artist" style={{ width: '100%', height: '100%'}}>
             <p className="common-h6-style">
               Simply browse the art category of your choice to see a variety of artists and their creations. 
-              To narrow down your search even further, you can also search directly by an artist&apos;s name.
+              To narrow down your search even further, you can also search directly by an artist&apos;s name 😉
             </p>
           </Card>
         </div>
@@ -116,7 +108,7 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
                 <li>Theme or topic for art</li>
                 <li>Provide details such as platform, deadlines, and milestones</li>
               </ul>
-              Let&apos;s work together to create something unique and inspiring!
+              Let&apos;s work together to create something unique and inspiring 😇
             </p>
           </Card>
         </div>
@@ -124,11 +116,20 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
           <Card title="4. Work on your masterpiece" style={{ width: '100%', height: '100%'}}>
             <p className="common-p-style">
               Congratulations on finding an artist to collaborate with 🥳. 
-              Once accepted, discuss details by messaging each other. Post your work together on the due date 
-              And yes, don&apos;t forget to give credit to each other.<br></br><br></br>
+              Once accepted, discuss details by messaging each other. Post your work together on the due date.
+              And yes, don&apos;t forget to give credit to each other 🙏🏻<br></br><br></br>
             </p>
           </Card>
         </div>
+      </div>
+
+      <div className="footer_tutorialButtonContainer">
+        <Button type="primary" className="common-btn-dimension">
+          <Link
+            href={routeToHref(toDiscover())}
+            passHref
+          >Let&apos;s collaborate</Link>
+        </Button>
       </div>
 
       {/* <div className='footer_tutorialStepsContainer'>
