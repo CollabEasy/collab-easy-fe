@@ -314,7 +314,7 @@ const DiscoverArtist = ({
           </div>
         </div>
       )}
-      {showCollabModal && (
+      {showCollabModal.show && (
         <SendCollabRequestModal
           otherUser={userIdForCollab}
           onCancel={() => {
