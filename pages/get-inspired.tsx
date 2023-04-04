@@ -83,71 +83,42 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
               <br></br>
             </p >
             <div className="theme">
-              <h5 className="card-text common-h5-style">Themes for art</h5>
+              <h5 className="card-text common-h5-style">Themes for the week</h5>
               <p className="card-text common-p-style">
-                1. Nature and landscapes.
+                1. World Health Day - April 7th, 2023: This is an international awareness day
+                sponsored by the World Health Organization. It is a day to raise awareness
+                about global health issues and to encourage people to take action to improve
+                their health and well-being.
               </p>
               <p className="card-text common-p-style">
-                2. Abstract art and non-representational art
+                2. Climate Change: With the increasing awareness and concern for climate change,
+                many artists are creating works that reflect this issue. This can range from pieces
+                that raise awareness about the environmental impact of human activity to those
+                that explore the beauty of nature.
               </p>
               <p className="card-text common-p-style">
-                3. Portraiture and figurative art
-                </p>
+                3. Politics: With the recent political upheavals in many countries, artists are
+                creating works that reflect on these events. This can include pieces that comment
+                on the state of democracy, freedom of speech, or the role of the media in
+                shaping public opinion.
+              </p>
               <p className="card-text common-p-style">
-                4. Still life and objects
-                </p>
-              <p className="card-text common-p-style">
-                5. Social issues and political commentary
-                </p>
-              <p className="card-text common-p-style">
-                6. Culture and identity
-                </p>
-              <p className="card-text common-p-style">
-                7. History and mythology
-                </p>
-              <p className="card-text common-p-style">
-                8. Science and technology
-                </p>
-              <p className="card-text common-p-style">
-                9. Pop culture and media
-                </p>
-              <p className="card-text common-p-style">
-                10. Emotions and psychological states
+                4. Social Justice: Many artists are creating work that responds to current events
+                related to social justice and human rights issues. This can include pieces that
+                comment on police brutality, racism, sexism, or other forms of oppression.
               </p>
             </div>
             <div className="theme">
-              <h5 className="card-text common-h5-style">Themes for writing</h5>
+              <h5 className="card-text common-h5-style">Quotes for the week</h5>
               <p className="card-text common-p-style">
-                  1. Relationships and love
+                1. The best way to predict your future is to create it. - Abraham Lincoln
               </p>
               <p className="card-text common-p-style">
-                  2. Coming of age and personal growth
-                </p>
+                2. The only way to do great work is to love what you do - Steve Jobs
+              </p>
               <p className="card-text common-p-style">
-                  3. Mystery and suspense
-                </p>
-               <p className="card-text common-p-style">
-                  4. Science fiction and fantasy
-                </p>
-                <p className="card-text common-p-style">
-                  5. Historical fiction and non-fiction
-                </p>
-                <p className="card-text common-p-style">
-                  6. Memoir and autobiography
-                </p>
-                <p className="card-text common-p-style">
-                  7. Social issues and activism
-                </p>
-                <p className="card-text common-p-style">
-                  8. Politics and government
-                </p>
-                <p className="card-text common-p-style">
-                  9. Travel and adventure
-                </p>
-                <p className="card-text common-p-style">
-                  10. Humor and satire
-                </p>
-
+                3. Your time is limited, don&apos;t waste it living someone else&apos;s life - Steve Jobs
+              </p>
             </div>
             <div className="theme">
               <h5 className="card-text common-h5-style">Think you got enough to get your creative juices going?</h5>
@@ -164,46 +135,6 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
                 >Let&apos;s collaborate</Link>
               </Button>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="getInspired-parentContainer">
-        <div className="getInspired-sectionContainer">
-          <div className="getInspired-textContainer">
-            <div className="theme">
-              <h5 className="card-text common-h5-style">Last week themes</h5>
-              <p className="card-text common-p-style">
-                1. Sustainability: With increasing concern for the environment,
-                artists are exploring themes of sustainability, eco-friendliness,
-                and climate change in their work.
-              </p>
-              <p className="card-text common-p-style">
-                2. Mental health: In the wake of the pandemic, mental health has become
-                an important topic. Artwork related to mental health and wellness,
-                such as mindfulness and self-care, is becoming more prevalent.
-              </p>
-              <p className="card-text common-p-style">
-                3. Diversity and inclusion: There is a growing interest in promoting diversity
-                and inclusivity in art, with artists exploring themes related to race,
-                gender, sexuality, and disability.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="getInspired-sectionContainer">
-          <div className="theme">
-            <h5 className="card-text common-h5-style">Last week quotes</h5>
-            <p className="card-text common-p-style">
-              1. Healing takes time, and asking for help is a courageous step. - Mariska Hargitay
-            </p>
-            <p className="card-text common-p-style">
-              2. The strongest people are not those who show strength in front of us, but those who
-              win battles we know nothing about. - Unknown
-            </p>
-            <p className="card-text common-p-style">
-              3. It is okay not to be okay, as long as you are not giving up. - Unknown
-            </p>
           </div>
         </div>
       </div>
