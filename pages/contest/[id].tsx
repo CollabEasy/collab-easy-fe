@@ -11,6 +11,7 @@ import SamplePage from "@/components/samplePage";
 import { Card } from 'antd';
 import Image from 'next/image';
 import sampleImage from '../../public/images/mobile-landing.svg';
+import { FireOutlined } from '@ant-design/icons';
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -47,8 +48,14 @@ const ContestPage = ({
         for (var i = 0; i < 10; i++ ){ 
             resultArtists.push(
                 <div className='contestDetailPage_sampleTile'>
-                    <Card style={{ height: '100%' }} cover={<Image src={sampleImage} alt="cards" />}>
-                    <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Searching for an idea? We got you covered 🥳 </span>} />
+                    <Card 
+                        style={{ height: '100%' }} 
+                        cover={<Image src={sampleImage} alt="cards" />}
+                        actions={[
+                            <FireOutlined key="upvote" />,
+                          ]}
+                    >
+                        <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Searching for an idea? We got you covered 🥳 </span>} />
                     </Card>
                 </div>
             )
