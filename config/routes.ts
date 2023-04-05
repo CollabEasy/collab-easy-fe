@@ -29,6 +29,10 @@ export const routes: AppRouteCreators = {
     href: '/collab/[id]',
     as: `/collab/${id}`,
   }),
+  toContestPage: (id) => ({
+    href: '/contest/[id]',
+    as: `/contest/${id}`,
+  }),
   toAnalyticsPage: () => ({
     href: '/admin/analytics',
     as: '/admin/analytics',
