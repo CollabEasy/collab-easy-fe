@@ -9,6 +9,7 @@ import NewUserModal from '@/components/modal/newUserModal';
 import { Card, Tag } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
+import Link from "next/link";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -45,9 +46,14 @@ const AllContestPage = ({
                 <Card
                     title="12 May 2023"
                     style={{ height: '100%' }}
-                    extra={<a href="#">Submit your work</a>}
+                    extra={
+                        <>
+                            <Tag color="green">Accepting submission</Tag>
+                            <a href={routeToHref(toContestPage("123"))}>Submit</a>
+                        </>
+                    }
+
                 >
-                    <Tag color="green">current</Tag>
                     The theme for contest is Health Day
                 </Card>
             </div>
@@ -58,9 +64,13 @@ const AllContestPage = ({
                     <Card
                         title="12 Jan 2023"
                         style={{ height: '100%' }}
-                        extra={<a href={routeToHref(toContestPage("123"))}>Check details</a>}
+                        extra={
+                            <>
+                                <Tag color="red">Not accepting submission</Tag>
+                                <a href={routeToHref(toContestPage("123"))}>Details</a>
+                            </>
+                        }
                     >
-                        <Tag color="red">past</Tag>
                         The theme for contest was save planet
                     </Card>
                 </div>
