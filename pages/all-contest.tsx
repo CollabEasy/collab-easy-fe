@@ -50,8 +50,8 @@ const AllContestPage = ({
                     style={{ height: '100%' }}
                     extra={
                         <>
-                            <Tag color="green">Accepting submission</Tag>
-                            <a href={routeToHref(toContestPage("123"))}>Submit</a>
+                            <Tag color="green">Ongoing contest</Tag>
+                            <a href={routeToHref(toContestPage("123"))}>Enter</a>
                         </>
                     }
 
@@ -68,7 +68,7 @@ const AllContestPage = ({
                         style={{ height: '100%' }}
                         extra={
                             <>
-                                <Tag color="red">Not accepting submission</Tag>
+                                <Tag color="red">Past contest</Tag>
                                 <a href={routeToHref(toContestPage("123"))}>Details</a>
                             </>
                         }
@@ -98,10 +98,10 @@ const AllContestPage = ({
                         <div className="col-sm-8" style={{ backgroundColor: "#F8F5E7" }}>
                             <div className="allContestPage_desktopCoverTextContainer">
                                 <h1 className="common-h1-style">
-                                    Artists, unite! Enter our competition and let the world see your talent.
+                                    Artists, unite! Enter our contest and let the world see your talent 😎
                                 </h1>
                                 <h3 className="common-h3-style">
-                                    Join our competition and let your creativity be the judge.
+                                    Join our contest and let your creativity be the judge!
                                 </h3>
                             </div>
                         </div>

@@ -1,3 +1,5 @@
+// Contest details page 
+
 .contestDetailPage_container {
   //display: flex;
   //padding: 200px;
@@ -7,7 +9,7 @@
   margin-left: auto;
   margin-right: auto;
   flex-direction: column;
-  width: 70%;
+  width: 80%;
   //box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
   // border: 1px solid rgb(0 0 0 / 10%);
   //background-color: rgb(0 0 0 / 5%);
@@ -24,6 +26,36 @@
   margin: 4px;
   padding: 32px 32px 0px 32px;
   margin-top: 32px;
+
+    h1 {
+      font-size: 33px;
+      text-align: left;
+    }
+
+    h3 {
+      font-size: 20px;
+      color: rgba(18, 17, 17, 0.3);
+      text-align: left;
+      padding-right: 10%;
+      //padding-bottom: 2%;
+    }
+}
+
+.responsive-two-column-grid {
+  display:block;
+}
+
+/* columns */
+.responsive-two-column-grid > * {
+  padding:1rem;
+}
+
+/* tablet breakpoint */
+@media (min-width:768px) {
+  .responsive-two-column-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+  }
 }
 
 // Taken from https://stackoverflow.com/questions/54044769/css-grid-responsive-multiple-3-columns-rows-to-2-columns-rows
