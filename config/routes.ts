@@ -13,6 +13,7 @@ export const routes: AppRouteCreators = {
   toContactUs: () => ({ href: "/contact-us" }),
   toTerms: () => ({ href: "/terms-and-policy" }),
   toGetInspired: () => ({ href: "/get-inspired" }),
+  toAllContestPage: () => ({ href: "/all-contest" }),
   toProfile: () => ({
     href: '/profile',
     as: `/profile/`,

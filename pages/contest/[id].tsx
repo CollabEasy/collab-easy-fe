@@ -45,15 +45,15 @@ const ContestPage = ({
 
     const getSubmissions = () => {
         const resultArtists: JSX.Element[] = [];
-        for (var i = 0; i < 10; i++ ){ 
+        for (var i = 0; i < 10; i++) {
             resultArtists.push(
                 <div className='contestDetailPage_sampleTile'>
-                    <Card 
-                        style={{ height: '100%' }} 
+                    <Card
+                        style={{ height: '100%' }}
                         cover={<Image src={sampleImage} alt="cards" />}
                         actions={[
                             <FireOutlined key="upvote" />,
-                          ]}
+                        ]}
                     >
                         <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Searching for an idea? We got you covered 🥳 </span>} />
                     </Card>
@@ -73,40 +73,35 @@ const ContestPage = ({
                 <NewUserModal />
             )
             }
-            {!isLoggedIn ? (
-                <>
-                    <NotAuthorised />
-                </>
-            ) : (
-                <div className="contestDetailPage_container">
-                    <Tabs type="card" centered>
-                        <TabPane tab="Submit your work" key="1">
-                            <div className="contestDetailPage_tabContainer">
-                                <p>
-                                    You can submit only one art piece to this contest. 
-                                    Make sure this is your best and final work.
-                                </p>
-                                <SamplePage
-                                    isSelf
-                                    samples={[]}
-                                    user={user}
-                                    showLoader={false}
-                                />
+
+            <div className="contestDetailPage_container">
+                <Tabs type="card" centered>
+                    <TabPane tab="Submit your work" key="1">
+                        <div className="contestDetailPage_tabContainer">
+                            <p>
+                                You can submit only one art piece to this contest.
+                                Make sure this is your best and final work.
+                            </p>
+                            <SamplePage
+                                isSelf
+                                samples={[]}
+                                user={user}
+                                showLoader={false}
+                            />
+                        </div>
+                    </TabPane>
+                    <TabPane tab="Leaderboard" key="2">
+                        <div className="contestDetailPage_tabContainer">
+                            <p>
+                                200 artists have submitted their work, dont miss out and submit your work now!
+                            </p>
+                            <div className="contestDetailPage_submissionTabContainer">
+                                {getSubmissions()}
                             </div>
-                        </TabPane>
-                        <TabPane tab="Leaderboard" key="2">
-                            <div className="contestDetailPage_tabContainer">
-                                <p>
-                                    200 artists have submitted their work, dont miss out and submit your work now!
-                                </p>
-                                <div className="contestDetailPage_submissionTabContainer">
-                                    {getSubmissions()}
-                                </div>
-                            </div>
-                        </TabPane>
-                    </Tabs>
-                </div>
-            )}
+                        </div>
+                    </TabPane>
+                </Tabs>
+            </div>
         </>
     );
 };
