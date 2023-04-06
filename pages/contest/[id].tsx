@@ -142,23 +142,25 @@ const ContestPage = ({
                     </TabPane>
                     <TabPane tab="Submit your work" key="2">
                         <div className="contestDetailPage_tabContainer">
-                            <p>
+                            <p className="common-p-style" style={{textAlign: "center"}}>
                                 You can submit only one art piece to this contest.
                                 Make sure this is your best and final work.
                             </p>
-                            <SamplePage
-                                isSelf
-                                samples={[]}
-                                user={user}
-                                showLoader={false}
-                            />
+                            <div style={{alignItems: "center"}}>
+                                <SamplePage
+                                    isSelf
+                                    samples={[]}
+                                    user={user}
+                                    showLoader={false}
+                                />
+                            </div>
                         </div>
                     </TabPane>
                     <TabPane tab="Leaderboard" key="3">
                         <div className="contestDetailPage_tabContainer">
-                            <p>
-                                200 artists have submitted their work, dont miss out and submit your work now!
-                            </p>
+                            <h2 className="common-h2-style" style={{textAlign: "center"}}>
+                                <b>200</b> artists have submitted their work, dont miss out and submit your work now!
+                            </h2>
                             <div className="contestDetailPage_submissionTabContainer">
                                 {getSubmissions()}
                             </div>
