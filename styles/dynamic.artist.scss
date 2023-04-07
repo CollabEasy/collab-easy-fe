@@ -18,6 +18,20 @@
 .container {
   position: relative;
   margin: auto;
+  .artistProfile__profileDpContainerNonSelf {
+    position: relative;
+    margin: auto;
+    bottom: -80px;
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+}
+
+.container {
+  position: relative;
+  margin: auto;
   .artistProfile__profileDpContainer {
     position: relative;
     margin: auto;

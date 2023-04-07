@@ -13,6 +13,7 @@ import {
 } from "@ant-design/icons";
 import { Upload, message, Modal } from "antd";
 import "cropperjs/dist/cropper.css";
+import { User } from "types/model";
 
 const mapStateToProps = (state: AppState) => ({
   userModel: state.user,
@@ -27,9 +28,13 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {} & ConnectedProps<typeof connector>;
+type Props = { isSelf: boolean; userProfileOpened: User } & ConnectedProps<
+  typeof connector
+>;
 
 const ProfilePicture = ({
+  isSelf,
+  userProfileOpened,
   userModel,
   updateProfilePicture,
   showProfilePictureUpdateModal,
@@ -38,14 +43,15 @@ const ProfilePicture = ({
   const [imageUrl, setImageUrl] = useState("");
   const [uploadFile, setUploadFile] = useState(null);
   const cropperRef = useRef<ReactCropperElement>(null);
-  const user = userModel.user;
+  const user = userProfileOpened;
+  const editable = isSelf;
   const showUploadModal = userModel.showProfilePictureUpdateModal;
   const [showUploadingLoader, setShowUploadingLoader] = useState(false);
   const isUploading = userModel.isUpdatingProfilePic;
 
   useEffect(() => {
     if (isUploading === showUploadingLoader) {
-        return;
+      return;
     }
     if (!isUploading && showUploadingLoader) {
       setTimeout(() => {
@@ -114,11 +120,15 @@ const ProfilePicture = ({
   const prismicLoader = ({ src, width, quality }) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
+
+  const containerClassName = editable
+    ? 'artistProfile__profileDpContainer'
+    : "artistProfile__profileDpContainerNonSelf";
   return (
-    <div className="artistProfile__profileDpContainer">
+    <div className={containerClassName}>
       <Image
         className={`artistProfile_profileImage${
-            showUploadingLoader ? "Uploading" : ""
+          showUploadingLoader ? "Uploading" : ""
         }`}
         loader={prismicLoader}
         src={user?.profile_pic_url}
@@ -127,15 +137,17 @@ const ProfilePicture = ({
         width={150}
         priority
       />
-      <Upload
-        name="avatar"
-        listType="picture-card"
-        showUploadList={false}
-        accept="image/png, image/jpeg"
-        onChange={handleChange}
-      >
-        {uploadButton}
-      </Upload>
+      {editable && (
+        <Upload
+          name="avatar"
+          listType="picture-card"
+          showUploadList={false}
+          accept="image/png, image/jpeg"
+          onChange={handleChange}
+        >
+          {uploadButton}
+        </Upload>
+      )}
       {uploadFile && showUploadModal && (
         <Modal
           closable
