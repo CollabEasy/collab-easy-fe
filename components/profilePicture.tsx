@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Cropper, { ReactCropperElement } from "react-cropper";
 import Image from "next/image";
 import { AppState } from "state";
@@ -21,21 +21,40 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateProfilePicture: (formData: FormData) =>
     dispatch(actions.updateProfilePicture(formData)),
-    showProfilePictureUpdateModal: (show: boolean) => dispatch(actions.showProfilePictureUpdateModal(show)),
+  showProfilePictureUpdateModal: (show: boolean) =>
+    dispatch(actions.showProfilePictureUpdateModal(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const ProfilePicture = ({ userModel, updateProfilePicture, showProfilePictureUpdateModal }: Props) => {
+const ProfilePicture = ({
+  userModel,
+  updateProfilePicture,
+  showProfilePictureUpdateModal,
+}: Props) => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [uploadFile, setUploadFile] = useState(null);
   const cropperRef = useRef<ReactCropperElement>(null);
   const user = userModel.user;
   const showUploadModal = userModel.showProfilePictureUpdateModal;
+  const [showUploadingLoader, setShowUploadingLoader] = useState(false);
   const isUploading = userModel.isUpdatingProfilePic;
+
+  useEffect(() => {
+    if (isUploading === showUploadingLoader) {
+        return;
+    }
+    if (!isUploading && showUploadingLoader) {
+      setTimeout(() => {
+        setShowUploadingLoader(isUploading);
+      }, 2000);
+    } else {
+      setShowUploadingLoader(isUploading);
+    }
+  }, [isUploading, showUploadingLoader]);
 
   const handleChange = (info) => {
     if (info.file.status === "uploading") {
@@ -60,11 +79,16 @@ const ProfilePicture = ({ userModel, updateProfilePicture, showProfilePictureUpd
 
   const handleSave = () => {
     if (typeof cropperRef.current?.cropper !== "undefined") {
-      setUploadFile(dataURLtoFile(cropperRef.current?.cropper.getCroppedCanvas().toDataURL(), 'wondor-cropped' + uploadFile.name));
+      setUploadFile(
+        dataURLtoFile(
+          cropperRef.current?.cropper.getCroppedCanvas().toDataURL(),
+          "wondor-cropped" + uploadFile.name
+        )
+      );
       const canvas = cropperRef.current?.cropper.getCroppedCanvas();
       canvas.toBlob(async (blob) => {
         const formData = new FormData();
-        formData.append('filename', blob, 'cropped.jpg');
+        formData.append("filename", blob, "cropped.jpg");
         updateProfilePicture(formData);
       });
     }
@@ -72,10 +96,18 @@ const ProfilePicture = ({ userModel, updateProfilePicture, showProfilePictureUpd
 
   const uploadButton = (
     <div
-      className={`artistProfile_profilePicEditButton${isUploading ? 'Uploading' : ''}`}
+      className={`artistProfile_profilePicEditButton${
+        showUploadingLoader ? "Uploading" : ""
+      }`}
     >
-      {isUploading ? <LoadingOutlined style={{ marginTop: '26px' }} /> : <CameraOutlined style={{ marginTop: '26px' }} />}
-      <div style={{ marginTop: '8px' }}>{isUploading ? "Updating" : "Update"}</div>
+      {showUploadingLoader ? (
+        <LoadingOutlined style={{ marginTop: "26px" }} />
+      ) : (
+        <CameraOutlined style={{ marginTop: "26px" }} />
+      )}
+      <div style={{ marginTop: "8px" }}>
+        {showUploadingLoader ? "Updating" : "Update"}
+      </div>
     </div>
   );
 
@@ -85,7 +117,9 @@ const ProfilePicture = ({ userModel, updateProfilePicture, showProfilePictureUpd
   return (
     <div className="artistProfile__profileDpContainer">
       <Image
-        className={`artistProfile_profileImage${isUploading ? 'Uploading' : ''}`}
+        className={`artistProfile_profileImage${
+            showUploadingLoader ? "Uploading" : ""
+        }`}
         loader={prismicLoader}
         src={user?.profile_pic_url}
         alt="profile picture"
@@ -121,6 +155,7 @@ const ProfilePicture = ({ userModel, updateProfilePicture, showProfilePictureUpd
               responsive={true}
               style={{ height: 400, width: "100%" }}
               initialAspectRatio={1 / 1}
+              aspectRatio={1 / 1}
               ref={cropperRef}
             />
             <button
