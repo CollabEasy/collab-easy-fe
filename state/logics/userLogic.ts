@@ -23,7 +23,7 @@ export const fetchLoginDataLogic = createLogic<
       dispatch(homeActions.closeLoginModalAction());
       dispatch(actions.setUserLoggedIn(loginData));
     } catch (error) {
-      const error_response = error.response.data;
+      const error_response = error.response;
       dispatch(notifActions.showNotification(false, error_response['err_str']));
       dispatch(actions.userLoginFailure(error));
     } finally {
@@ -213,6 +213,29 @@ export const fetchUserByHandleLogic = createLogic<
       const result = await api.artistApi.fetchUserByHandle(handle);
       dispatch(actions.fetchUserByHandleSuccess(result));
     } catch (error) {
+    } finally {
+      done();
+    }
+  },
+});
+
+export const updateProfilePicture = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.updateProfilePicture>,
+  any,
+  LogicDeps
+>({
+  type: [actionType.UPDATE_PROFILE_PICTURE],
+  async process({ action, api }, dispatch, done) {
+    try {
+      dispatch(actions.updateProfilePictureRequest());
+      const data = action.payload.data;
+      const result = await api.artistApi.updateProfilePicture(data);
+      dispatch(actions.updateProfilePictureSuccess(result));
+      dispatch(notifActions.showNotification(true, "Profile picture updated sucessfully."));
+    } catch (error) {
+      dispatch(notifActions.showNotification(false, "Profile picture updation failed. " + error.response.err_str));
+      dispatch(actions.updateProfilePictureFailure(error.response.err_str));
     } finally {
       done();
     }

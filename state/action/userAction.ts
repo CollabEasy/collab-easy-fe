@@ -158,3 +158,36 @@ export const updateArtistPreferenceSuccess = (key: string, value: any) => ({
 		value,
 	}
 });
+
+export const updateProfilePicture = (formData: FormData) => ({
+  type: actionType.UPDATE_PROFILE_PICTURE,
+  payload: {
+      data: formData,
+  }
+});
+
+export const updateProfilePictureRequest = () => ({
+  type: actionType.UPDATE_PROFILE_PICTURE_REQUEST,
+  payload: {},
+});
+
+export const updateProfilePictureSuccess = (data: any) => ({
+  type: actionType.UPDATE_PROFILE_PICTURE_SUCCESS,
+  payload: {
+      data
+  },
+})
+
+export const updateProfilePictureFailure = (data: any) => ({
+  type: actionType.UPDATE_PROFILE_PICTURE_FAILURE,
+  payload: {
+      data
+  },
+})
+
+export const showProfilePictureUpdateModal = (show: boolean) => ({
+  type: actionType.SHOW_PROFILE_PICTURE_UPDATE_MODAL,
+  payload: {
+    show
+  }
+})

@@ -32,6 +32,27 @@
   .artistProfile__profileDpContainer:hover .artistProfile_profilePicEditButton {
     position: absolute;
     visibility: visible;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    bottom: 58px;
+    right: 58px;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    background-color: #c4c2c2;
+    border-radius: 50%;
+    z-index: 100;
+  }
+
+  .artistProfile_profilePicEditButtonUploading {
+    position: absolute;
+    visibility: visible;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     bottom: 58px;
     right: 58px;
     width: 32px;
@@ -50,6 +71,10 @@
     z-index: 0;
   }
 
+  .artistProfile_profileImageUploading {
+    opacity: 0.1;
+  }
+
   .artistProfile_profilePicEditButton {
     visibility: hidden;
   }
@@ -60,6 +85,24 @@
 }
 .edit_hover_class:hover div {
  visibility:visible;
+}
+
+.profilePicture__cropperModalContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.profilePicture__cropperModalSaveButton {
+  width: 48px;
+  border-radius: 12px;
+  background-color: #ebe951;
+}
+
+.profilePicture_cropperModal {
+  padding: 48px;
 }
 
 .artistProfile__profileCoverContainer {
