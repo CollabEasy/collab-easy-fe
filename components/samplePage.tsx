@@ -12,7 +12,7 @@ import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import CollabRequestTab from "components/collabRequestTab";
 import { AppState } from "state";
-import { allowedFileTypes } from "helpers/helper";
+import { allowedFileTypes, getBase64 } from "helpers/helper";
 import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
@@ -76,15 +76,6 @@ const SamplePage = ({
     setUploadFile(null);
     setShowUploadModal(false);
   };
-
-  function getBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-  }
 
   const { toEditProfile } = useRoutesContext();
 

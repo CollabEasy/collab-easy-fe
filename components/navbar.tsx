@@ -18,8 +18,8 @@ import { openLoginModalAction, resetUserLoggedIn } from "state/action";
 
 const mapStateToProps = (state: AppState) => {
   const isLoggedIn = state.user.isLoggedIn;
-  const user = state.user.user;
-  return { isLoggedIn, user }
+  const userModel = state.user;
+  return { isLoggedIn, userModel }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -35,7 +35,7 @@ type Props = {
 const NavBar = ({
   openLoginModalAction,
   isLoggedIn,
-  user,
+  userModel,
   resetUserLoggedIn
 }: Props) => {
   const [ref, inView, entry] = useInView({
@@ -43,6 +43,7 @@ const NavBar = ({
     rootMargin: '-20px 0px 0px 0px',
   });
 
+  const user = userModel.user;
   const [hideSignUp, setHideSignUp] = useState(false);
   const [showLoginOptions, setShowLoginOptions] = useState(false);
   const [profilePic, setProfilePic] = useState("");
