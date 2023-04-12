@@ -407,6 +407,7 @@ const EditProfile = ({
 
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails) return <Loader />;
+
   return (
     <>
       {loginModalDetails.openModal && !user.new_user && (
