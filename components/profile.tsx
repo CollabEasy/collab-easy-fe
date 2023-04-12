@@ -107,7 +107,6 @@ const Profile = ({
     if (!isFetchingCollabs && (loggedInUserId !== user.artist_id)) {
       // you are checking someone else page therefore fetch collab status.
       var filteredCollab = GetPendingCollabRequest(collab, loggedInUserId, user.artist_id);
-      console.log(ConvertTimestampToDate(filteredCollab["collabDate"]).toLocaleDateString("en-US"));
       if (filteredCollab.id !== "") {
         // empty collab receieved.
         setCollabRequestDetails(filteredCollab);
