@@ -7,6 +7,8 @@ export interface UserState {
   isLoggedIn: boolean;
   isUpdatingProfile: boolean;
   isUpdatingPrefs: string;
+  isUpdatingProfilePic: boolean;
+  showProfilePictureUpdateModal: boolean;
   preferences: any;
   artCategories: string[];
   isFetchingUser: boolean;
