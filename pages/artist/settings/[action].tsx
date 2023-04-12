@@ -45,6 +45,7 @@ import ArtistSocialProspectusModal from "@/components/modal/socialProspectusModa
 import LoginModal from '@/components/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
 import { GetSocialPlatformId, GetSocialPlatformName, GetCountryName} from '../../../helpers/artistSettingPageHelper';
+import ProfilePicture from "@/components/profilePicture";
 
 const { TabPane } = Tabs;
 
@@ -455,6 +456,9 @@ const EditProfile = ({
                     size={componentSize as SizeType}
                     onFinish={submitForm}
                   >
+                    <Form.Item label="Profile picture">
+                      <ProfilePicture isSelf={true} userProfileOpened={user}/>
+                    </Form.Item>
                     <Form.Item label="First name">
                       <Input
                         value={userDataCached ? userDataCached.first_name : ""}

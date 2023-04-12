@@ -11,7 +11,7 @@ import {
   LoadingOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
-import { Upload, message, Modal } from "antd";
+import { Upload, message, Modal, Button } from "antd";
 import "cropperjs/dist/cropper.css";
 import { User } from "types/model";
 
@@ -170,12 +170,14 @@ const ProfilePicture = ({
               aspectRatio={1 / 1}
               ref={cropperRef}
             />
-            <button
-              className="profilePicture__cropperModalSaveButton"
+            <Button
+              type="primary"
+              className="common-medium-btn"
+              style={{ height: 'auto', marginTop: '10px' }}
               onClick={handleSave}
             >
               Save
-            </button>
+            </Button>
           </div>
         </Modal>
       )}
