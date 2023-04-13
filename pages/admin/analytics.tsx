@@ -18,12 +18,17 @@ import ContestModal from "@/components/modal/contestModal";
 const mapStateToProps = (state: AppState) => ({
   analytics: state.analytics,
   user: state.user,
+  contests: state.contest,
   showContestModal: state.contest?.showContestModal,
+  isFetchingContest: state.contest.isFetchingContest,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchUserAnalytics: (startDate: string, endDate: string) =>
     dispatch(actions.fetchUserAnalytics(startDate, endDate)),
+
+  fetchAllContests: () =>
+    dispatch(actions.fetchAllContests()),
 
   setShowContestModal: (show: boolean) =>
     dispatch(actions.setShowContestModal(show)),
@@ -54,8 +59,11 @@ const emptyContestEntryDetails: ContestEntry = {
 const AnalyticsPage = ({
   analytics,
   user,
+  contests,
   showContestModal,
+  isFetchingContest,
   fetchUserAnalytics,
+  fetchAllContests,
   setShowContestModal
 }: Props) => {
 
@@ -73,17 +81,19 @@ const AnalyticsPage = ({
   const [contestEntryRequestDetails, setContestEntryDetails] = useState(
     emptyContestEntryDetails
   );
+  const [allContests, setAllContests] = useState([]);
 
   useEffect(() => {
     if (!AUTHORIZED_EMAILS.includes(user.user.email)) {
       return;
     }
     fetchUserAnalytics(startDateStr, currentDate);
+    fetchAllContests();
   }, [beginDate]);
 
-  if (analytics.users.isFetchingUserAnalytics) {
-    return <Loader />;
-  }
+  useEffect(() => {
+    setAllContests(contests.contest);
+  }, [contests])
 
   let datasets = [];
   let counts = [];
@@ -115,55 +125,69 @@ const AnalyticsPage = ({
 
   return (
     <>
-      <div className="analytics__pageContainer">
-        <h1 className="common-h1-style text-center">Total Users : {analytics.users.totalUsers}</h1>
-        <div className="analytics__pageContainer">
-          <Line
-            data={chartData}
-            options={{
-              plugins: {
-                title: {
-                  display: true,
-                  text: "Users gained in last " + peeklastDays + " days",
-                },
-                legend: {
-                  display: false,
-                },
-              },
-              scales: {
-                y: {
-                  title: {
-                    display: true,
-                    text: '# of Users'
+      {analytics.users.isFetchingUserAnalytics || isFetchingContest ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="analytics__pageContainer">
+            <h1 className="common-h1-style text-center">Total Users : {analytics.users.totalUsers}</h1>
+            <div className="analytics__pageContainer">
+              <Line
+                data={chartData}
+                options={{
+                  plugins: {
+                    title: {
+                      display: true,
+                      text: "Users gained in last " + peeklastDays + " days",
+                    },
+                    legend: {
+                      display: false,
+                    },
                   },
-                  min: 0,
-                  ticks: {
-                    stepSize: 1
+                  scales: {
+                    y: {
+                      title: {
+                        display: true,
+                        text: '# of Users'
+                      },
+                      min: 0,
+                      ticks: {
+                        stepSize: 1
+                      }
+                    }
                   }
-                }
-              }
-            }}
-          />
-        </div>
-      </div>
-      <div className="analytics__pageContainer">
-        <h1 className="common-h1-style text-center">Total contest : {analytics.users.totalUsers}</h1>
-        <Button type="primary" onClick={ShowContestEntryModal}>
-          Add
-        </Button>
-      </div>
+                }}
+              />
+            </div>
+          </div>
+          <div className="analytics__pageContainer">
+            <h1 className="common-h1-style text-center">Total contest : {contests.allContest}</h1>
+            <div className="analytics__contestButtonContainer">
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="common-medium-btn"
+                style={{ height: 'auto', margin: '10px' }}
+                onClick={ShowContestEntryModal}
+              >
+                Add contest
+              </Button>
+            </div>
+          </div>
 
-      <div>
-        {showContestModal && (
-          <ContestModal
-            onCancel={() => {
-              HideContestEntryModal();
-            }}
-            isViewMode={true}
-            contestEntry={contestEntryRequestDetails}
-          />
-        )}
-      </div>
+          <div>
+            {showContestModal && (
+              <ContestModal
+                onCancel={() => {
+                  HideContestEntryModal();
+                }}
+                isViewMode={true}
+                contestEntry={contestEntryRequestDetails}
+              />
+            )}
+          </div>
+        </>
+      )}
     </>
   );
 };

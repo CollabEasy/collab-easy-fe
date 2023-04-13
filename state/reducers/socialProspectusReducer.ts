@@ -19,7 +19,6 @@ const socialProspectusReducer = (state = initialState, action): SocialProspectus
         isFetchingProspectus: true,
       };
     case actionType.FETCH_ARTIST_SOCIAL_PROSPECTUS_SUCCESS:
-
       return {
         ...state,
         socialProspectus: action.payload.data,

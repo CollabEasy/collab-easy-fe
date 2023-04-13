@@ -1,10 +1,8 @@
 import * as actionType from '../actionTypes/contestActionTypes';
 
-export const fetchAllContests = (slug: string) => ({
+export const fetchAllContests = () => ({
     type: actionType.FETCH_ALL_CONTESTS,
-    payload: {
-        slug,
-    }
+    payload: {}
 })
 
 export const fetchAllContestsRequest = () => ({
