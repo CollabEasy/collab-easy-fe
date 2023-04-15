@@ -36,14 +36,14 @@ const contestReducer = (state = initialState, action): ContestState => {
                 contest: [],
                 isFetchingContest: true,
             };
-        case actionType.FETCH_CONTEST_REQUEST:
+        case actionType.FETCH_CONTEST_SUCCESS:
 
             return {
                 ...state,
-                contest: action.payload.data,
+                contest: [action.payload.data],
                 isFetchingContest: false,
             };
-        case actionType.FETCH_CONTEST_SUCCESS:
+        case actionType.FETCH_CONTEST_FAILURE:
             return {
                 ...state,
                 isFetchingContest: false,
