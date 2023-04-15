@@ -11,16 +11,17 @@ const initialState: UserState = {
   errors: {},
   artCategories: [],
   isFetchingUser: true,
+  isUpdatingProfilePic: false,
+  showProfilePictureUpdateModal: false,
 };
 
 const userReducer = (state = initialState, action): UserState => {
   switch (action.type) {
-    
     case actionType.SET_IS_FETCHING_USER:
       return {
         ...state,
         isFetchingUser: action.payload.value,
-      }
+      };
     case actionType.SET_USER_DATA:
       return {
         ...state,
@@ -119,8 +120,31 @@ const userReducer = (state = initialState, action): UserState => {
         user: {
           ...state.user,
           new_user: action.payload.data,
-        }
-      }
+        },
+      };
+    case actionType.SHOW_PROFILE_PICTURE_UPDATE_MODAL:
+      return {
+        ...state,
+        showProfilePictureUpdateModal: action.payload.show,
+      };
+    case actionType.UPDATE_PROFILE_PICTURE_REQUEST:
+      return {
+        ...state,
+        showProfilePictureUpdateModal: false,
+        isUpdatingProfilePic: true,
+      };
+    case actionType.UPDATE_PROFILE_PICTURE_SUCCESS:
+      //console.log("data : ", action.payload.data.data);
+      return {
+        ...state,
+        user: action.payload.data.data,
+        isUpdatingProfilePic: false,
+      };
+    case actionType.UPDATE_PROFILE_PICTURE_FAILURE:
+      return {
+        ...state,
+        isUpdatingProfilePic: false,
+      };
     default:
       return state;
   }

@@ -28,6 +28,7 @@ import { useRoutesContext } from "components/routeContext";
 import avatarImage from '../public/images/avatar.png';
 import { GetPendingCollabRequest, GetUserSkills, ShowIncompleteProfileBanner } from '../helpers/profilePageHelper';
 import { ConvertTimestampToDate } from '../helpers/collabCardHelper';
+import ProfilePicture from "./profilePicture";
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -107,7 +108,6 @@ const Profile = ({
     if (!isFetchingCollabs && (loggedInUserId !== user.artist_id)) {
       // you are checking someone else page therefore fetch collab status.
       var filteredCollab = GetPendingCollabRequest(collab, loggedInUserId, user.artist_id);
-      console.log(ConvertTimestampToDate(filteredCollab["collabDate"]).toLocaleDateString("en-US"));
       if (filteredCollab.id !== "") {
         // empty collab receieved.
         setCollabRequestDetails(filteredCollab);
@@ -159,16 +159,7 @@ const Profile = ({
           <div className="artistProfile__profileCoverContainer">
             <div className="graph"></div>
           </div>
-          <div className="artistProfile__profileDpContainer">
-            <Image
-              loader={prismicLoader}
-              src={user?.profile_pic_url}
-              alt="profile picture"
-              height={150}
-              width={150}
-              priority
-            />
-          </div>
+          <ProfilePicture isSelf={isSelf} userProfileOpened={user}/>
         </div>
         <div className="artistProfile__artistDetailContainer common-text-style">
           <h2 className="f-20 common-h2-style">{user.first_name + " " + user.last_name}</h2>

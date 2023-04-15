@@ -8,6 +8,7 @@ import { SocialProspectusState } from "./socialProspectus";
 import { CollabConversationState } from "./collabConversation";
 import { AnalyticsState } from "./analyticsState";
 import { NotificationState } from "./notificationState";
+import { ContestState } from "./contestState";
 
 export interface AppState {
   home: HomeState;
@@ -20,4 +21,5 @@ export interface AppState {
   collabConversation: CollabConversationState;
   analytics: AnalyticsState;
   notification: NotificationState,
+  contest: ContestState,
 }
