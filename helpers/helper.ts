@@ -47,6 +47,22 @@ export function getPublicRoutes() {
   ];
 }
 
+
+
+export function IsAdmin(email) {
+  const AUTHORIZED_EMAILS = [
+    "prashant.joshi056@gmail.com",
+    "wondor4creators@gmail.com",
+    "rahulgupta6007@gmail.com"
+  ];
+
+  if (AUTHORIZED_EMAILS.includes(email)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 export function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -58,13 +74,13 @@ export function getBase64(file) {
 
 export function dataURLtoFile(dataurl, filename) {
   var arr = dataurl.split(','),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]), 
-      n = bstr.length, 
-      u8arr = new Uint8Array(n);
-      
-  while(n--){
-      u8arr[n] = bstr.charCodeAt(n);
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
+
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
   }
-  return new File([u8arr], filename, {type:mime});
+  return new File([u8arr], filename, { type: mime });
 }

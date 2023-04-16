@@ -16,6 +16,7 @@ import { FireOutlined } from '@ant-design/icons';
 import * as action from "../../state/action";
 import Loader from "@/components/loader";
 import { GetContestStatus, GetDateString } from "helpers/contest";
+import { IsAdmin } from "helpers/helper";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -50,6 +51,10 @@ const ContestPage = ({
 }: Props) => {
 
     const router = useRouter();
+    if (!IsAdmin(user.email)) {
+        router.push("/");
+    }
+
     const { id: contestSlug } = router.query;
     const [showProfileModal, setShowProfileModal] = useState(false);
 

@@ -15,6 +15,7 @@ import headerImage from '../public/images/contest.svg';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
 import { GetContestStatus, GetDateString } from "helpers/contest";
+import { IsAdmin } from "helpers/helper";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -52,30 +53,33 @@ const AllContestPage = ({
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [allContests, setAllContests] = useState([]);
 
+    const router = useRouter();
+    if (!IsAdmin(user.email)) {
+        router.push("/");
+    }
+
     useEffect(() => {
         fetchAllContests();
     }, []);
 
     useEffect(() => {
         if (user) {
-          if (user.new_user) {
-            setShowProfileModal(true);
-          }
+            if (user.new_user) {
+                setShowProfileModal(true);
+            }
         }
-      }, [user])
-    
-      useEffect(() => {
-        if (artistListData.status === "success") {
-          setShowProfileModal(false);
-        }
-      }, [artistListData]);
+    }, [user])
 
-      
+    useEffect(() => {
+        if (artistListData.status === "success") {
+            setShowProfileModal(false);
+        }
+    }, [artistListData]);
+
+
     useEffect(() => {
         setAllContests(contests.contest);
     }, [contests])
-
-    const router = useRouter();
 
     const getAllContests = (allContests) => {
         const resultArtists: JSX.Element[] = [];
@@ -87,11 +91,19 @@ const AllContestPage = ({
             resultArtists.push(
                 <div className="row p-2 bg-white rounded contest-card">
                     <Card
-                        title={ contest.title }
+                        title={contest.title}
                         style={{ height: '100%' }}
                         extra={
                             <>
-                                <Tag color="green">{status}</Tag>
+                                {status === "Ongoing" && (
+                                    <Tag color="green">{status}</Tag>
+                                )}
+                                {status === "Upcoming" && (
+                                    <Tag color="yellow">{status}</Tag>
+                                )}
+                                {status === "Past" && (
+                                    <Tag color="grey">{status}</Tag>
+                                )}
                                 <a href={routeToHref(toContestPage(contest.contestSlug))}>Enter</a>
                             </>
                         }
