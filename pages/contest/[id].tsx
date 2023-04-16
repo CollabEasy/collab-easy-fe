@@ -59,6 +59,9 @@ const ContestPage = ({
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     useEffect(() => {
+        if (!IsAdmin(user.email)) {
+            return;
+        }
         fetchContestAction(contestSlug as string);
     }, []);
 
@@ -68,14 +71,10 @@ const ContestPage = ({
                 setShowProfileModal(true);
             }
         }
-    }, [user])
-
-    useEffect(() => {
         if (artistListData.status === "success") {
             setShowProfileModal(false);
         }
-    }, [artistListData]);
-
+    }, [user, artistListData])
 
     const getSubmissions = () => {
         const resultArtists: JSX.Element[] = [];
@@ -176,7 +175,7 @@ const ContestPage = ({
                                             <b>3rd winner</b> USD 10
                                         </p>
 
-                                        <b className="common-text-style">Are you ready? Let your imagination soar and join the ultimate art showdown!"</b>
+                                        <b className="common-text-style">Are you ready? Let your imagination soar and join the ultimate art showdown!</b>
                                     </div>
                                 </div>
                             </TabPane>

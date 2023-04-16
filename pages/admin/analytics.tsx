@@ -81,7 +81,7 @@ const AnalyticsPage = ({
   const [allContests, setAllContests] = useState([]);
 
   useEffect(() => {
-    if (!AUTHORIZED_EMAILS.includes(user.user.email)) {
+    if (!IsAdmin(user.user.email)) {
       return;
     }
     fetchUserAnalytics(startDateStr, currentDate);

@@ -59,6 +59,9 @@ const AllContestPage = ({
     }
 
     useEffect(() => {
+        if (!IsAdmin(user.email)) {
+            return;
+        }
         fetchAllContests();
     }, []);
 
@@ -68,18 +71,11 @@ const AllContestPage = ({
                 setShowProfileModal(true);
             }
         }
-    }, [user])
-
-    useEffect(() => {
         if (artistListData.status === "success") {
             setShowProfileModal(false);
         }
-    }, [artistListData]);
-
-
-    useEffect(() => {
         setAllContests(contests.contest);
-    }, [contests])
+    }, [user, artistListData, contests]);
 
     const getAllContests = (allContests) => {
         const resultArtists: JSX.Element[] = [];
