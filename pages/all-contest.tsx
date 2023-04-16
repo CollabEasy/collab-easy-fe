@@ -100,7 +100,11 @@ const AllContestPage = ({
                                 {status === "Past" && (
                                     <Tag color="grey">{status}</Tag>
                                 )}
-                                <a href={routeToHref(toContestPage(contest.contestSlug))}>Enter</a>
+                                {status === "Ongoing" ? (
+                                    <a href={routeToHref(toContestPage(contest.contestSlug))}>Enter</a>
+                                ) : (
+                                    <a href={routeToHref(toContestPage(contest.contestSlug))}>Check details</a>
+                                )}
                             </>
                         }
                     >

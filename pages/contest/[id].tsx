@@ -198,16 +198,19 @@ const ContestPage = ({
                                     </div>
                                 </TabPane>
                             )}
-                            <TabPane tab="Leaderboard" key="3">
-                                <div className="contestDetailPage_tabContainer">
-                                    <h2 className="common-h2-style" style={{ textAlign: "center" }}>
-                                        <b>200</b> artists have submitted their work, dont miss out and submit your work now!
-                                    </h2>
-                                    <div className="contestDetailPage_submissionTabContainer">
-                                        {getSubmissions()}
+
+                            {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) !== "Upcoming" && (
+                                <TabPane tab="Leaderboard" key="3">
+                                    <div className="contestDetailPage_tabContainer">
+                                        <h2 className="common-h2-style" style={{ textAlign: "center" }}>
+                                            <b>200</b> artists have submitted their work, dont miss out and submit your work now!
+                                        </h2>
+                                        <div className="contestDetailPage_submissionTabContainer">
+                                            {getSubmissions()}
+                                        </div>
                                     </div>
-                                </div>
-                            </TabPane>
+                                </TabPane>
+                            )}
                         </Tabs>
                     </div>
                 </>
