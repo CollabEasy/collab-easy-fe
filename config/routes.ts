@@ -13,6 +13,7 @@ export const routes: AppRouteCreators = {
   toContactUs: () => ({ href: "/contact-us" }),
   toTerms: () => ({ href: "/terms-and-policy" }),
   toGetInspired: () => ({ href: "/get-inspired" }),
+  toAllContestPage: () => ({ href: "/all-contest" }),
   toProfile: () => ({
     href: '/profile',
     as: `/profile/`,
@@ -28,6 +29,10 @@ export const routes: AppRouteCreators = {
   toCollabPage: (id) => ({
     href: '/collab/[id]',
     as: `/collab/${id}`,
+  }),
+  toContestPage: (id) => ({
+    href: '/contest/[id]',
+    as: `/contest/${id}`,
   }),
   toAnalyticsPage: () => ({
     href: '/admin/analytics',

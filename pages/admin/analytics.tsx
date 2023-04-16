@@ -14,6 +14,7 @@ import router from "next/router";
 import { Button } from "antd";
 import { ContestEntry } from "types/model/contest";
 import ContestModal from "@/components/modal/contestModal";
+import { IsAdmin } from "helpers/helper";
 
 const mapStateToProps = (state: AppState) => ({
   analytics: state.analytics,
@@ -38,11 +39,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
-const AUTHORIZED_EMAILS = [
-  "prashant.joshi056@gmail.com",
-  "wondor4creators@gmail.com",
-  "rahulgupta6007@gmail.com"
-];
 
 const currentDate = moment(new Date());
 const tomorrow = currentDate.clone().add(1, "days");
@@ -70,7 +66,8 @@ const AnalyticsPage = ({
   Chart.register(CategoryScale);
   const startDate = new Date();
   const currentDate = format(new Date(), "yyyy-MM-dd");
-  if (!AUTHORIZED_EMAILS.includes(user.user.email)) {
+
+  if (!IsAdmin(user.user.email)) {
     router.push("/");
   }
 
@@ -84,7 +81,7 @@ const AnalyticsPage = ({
   const [allContests, setAllContests] = useState([]);
 
   useEffect(() => {
-    if (!AUTHORIZED_EMAILS.includes(user.user.email)) {
+    if (!IsAdmin(user.user.email)) {
       return;
     }
     fetchUserAnalytics(startDateStr, currentDate);
