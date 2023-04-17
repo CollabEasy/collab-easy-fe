@@ -81,3 +81,22 @@ export const setShowContestModal = (show: boolean) => ({
 		show
 	}
 });
+
+export const fetchArtistSubmission = (slug: string) => ({
+    type: actionType.FETCH_ARTIST_SUBMISSION,
+    payload: {
+        slug,
+    }
+})
+
+export const fetchArtistSubmissionRequest = () => ({
+    type: actionType.FETCH_ARTIST_SUBMISSION_REQUEST,
+    payload: {}
+})
+
+export const fetchArtistSubmissionSuccess = (data: any[]) => ({
+    type: actionType.FETCH_ARTIST_SUBMISSION_SUCCESS,
+    payload: {
+        data
+    }
+})

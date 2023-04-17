@@ -11,6 +11,7 @@ import collabConversation from "./reducers/collabConversationReducer";
 import analytics from "./reducers/analyticsReducer";
 import notification from "./reducers/notificationReducer";
 import contest from "./reducers/contestReducer";
+import contestSubmission from "./reducers/contestSubmissionReducer";
 
 const appReducer = combineReducers<AppState>({
   home,
@@ -24,6 +25,7 @@ const appReducer = combineReducers<AppState>({
   analytics,
   notification,
   contest,
+  contestSubmission,
 });
 
 const rootReducer = (state, action) => {

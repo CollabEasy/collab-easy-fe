@@ -17,6 +17,7 @@ import * as action from "../../state/action";
 import Loader from "@/components/loader";
 import { GetContestStatus, GetDateString } from "helpers/contest";
 import { IsAdmin } from "helpers/helper";
+import UploadContestArtwork from "@/components/contestArtwork";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -188,12 +189,7 @@ const ContestPage = ({
                                             Make sure this is your best and final work.
                                         </p>
                                         <div style={{ alignItems: "center" }}>
-                                            <SamplePage
-                                                isSelf
-                                                samples={[]}
-                                                user={user}
-                                                showLoader={false}
-                                            />
+                                            <UploadContestArtwork />
                                         </div>
                                     </div>
                                 </TabPane>

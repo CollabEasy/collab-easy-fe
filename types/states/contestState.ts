@@ -5,3 +5,8 @@ export interface ContestState {
     allContest: number;
     showContestModal: boolean,
  }
+
+ export interface ContestSubmissionState {
+    isFetchingSubmission: boolean;
+    submission?: any[];
+ }
