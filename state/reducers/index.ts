@@ -6,4 +6,6 @@ export * from "./categoryReducer"
 export * from "./scratchpadReducer"
 export * from "./socialProspectusReducer"
 export * from "./collabConversationReducer"
-export * from "./analyticsReducer";
+export * from "./analyticsReducer"
+export * from "./contestReducer"
+export * from "./contestSubmissionReducer"

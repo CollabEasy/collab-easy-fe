@@ -5,3 +5,10 @@ export interface ContestState {
     allContest: number;
     showContestModal: boolean,
  }
+
+ export interface ContestSubmissionState {
+    isFetchingSubmissions: boolean;
+    isFetchingArtistSubmission: boolean;
+    allSubmissions?: any[];
+    artistSubmission?: any[];
+ }

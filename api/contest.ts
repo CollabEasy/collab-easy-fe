@@ -18,6 +18,15 @@ const getConfig = () => {
   }
 }
 
+const getConfigWithToken = () => {
+  return {
+    method: "get",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+};
+
 export const fetchAllContestsApi = async () => {
   const config = getConfig();
   try {
@@ -65,3 +74,34 @@ export const updateContestApi = async (data: any) => {
     throw error;
   }
 }
+
+
+export const fetchArtistSubmissionApi = async (slug: string) => {
+  const config = getConfigWithToken();
+  try {
+    let url = 'api/v1/contest/submission/';
+    if (slug.length > 0) {
+      // here data is handle.
+      url += slug + "/entry";
+    }
+    const result = await api.call(url, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchContestSubmissionsApi = async (slug: string) => {
+  const config = getConfig();
+  try {
+    let url = 'api/v1/contest/submission/';
+    if (slug.length > 0) {
+      // here data is handle.
+      url += slug + "/all";
+    }
+    const result = await api.call(url, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};

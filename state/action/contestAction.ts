@@ -81,3 +81,41 @@ export const setShowContestModal = (show: boolean) => ({
 		show
 	}
 });
+
+export const fetchArtistSubmission = (slug: string) => ({
+    type: actionType.FETCH_ARTIST_SUBMISSION,
+    payload: {
+        slug,
+    }
+})
+
+export const fetchArtistSubmissionRequest = () => ({
+    type: actionType.FETCH_ARTIST_SUBMISSION_REQUEST,
+    payload: {}
+})
+
+export const fetchArtistSubmissionSuccess = (data: any[]) => ({
+    type: actionType.FETCH_ARTIST_SUBMISSION_SUCCESS,
+    payload: {
+        data
+    }
+})
+
+export const fetchContestSubmissions = (slug: string) => ({
+    type: actionType.FETCH_CONTEST_SUBMISSIONS,
+    payload: {
+        slug,
+    }
+})
+
+export const fetchContestSubmissionsRequest = () => ({
+    type: actionType.FETCH_CONTEST_SUBMISSIONS_REQUEST,
+    payload: {}
+})
+
+export const fetchContestSubmissionsSuccess = (data: any[]) => ({
+    type: actionType.FETCH_CONTEST_SUBMISSIONS_SUCCESS,
+    payload: {
+        data
+    }
+})

@@ -89,3 +89,45 @@ export const updateContestLogic = createLogic<
     }
   },
 });
+
+export const fetchArtistSubmissionLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.fetchArtistSubmission>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.FETCH_ARTIST_SUBMISSION],
+  async process({ action, api }, dispatch, done) {
+    try {
+      const slug = action.payload.slug;
+      dispatch(actions.fetchArtistSubmissionRequest());
+      const result = await contestApi.fetchArtistSubmissionApi(slug);
+      dispatch(actions.fetchArtistSubmissionSuccess([result]));
+    } catch (error) {
+
+    } finally {
+      done();
+    }
+  },
+});
+
+export const fetchContestSubmissionsLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.fetchContestSubmissions>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.FETCH_CONTEST_SUBMISSIONS],
+  async process({ action, api }, dispatch, done) {
+    try {
+      const slug = action.payload.slug;
+      dispatch(actions.fetchContestSubmissionsRequest());
+      const result = await contestApi.fetchContestSubmissionsApi(slug);
+      dispatch(actions.fetchContestSubmissionsSuccess([result]));
+    } catch (error) {
+
+    } finally {
+      done();
+    }
+  },
+});
