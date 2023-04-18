@@ -117,7 +117,6 @@ const AllContestPage = ({
         return resultArtists;
     };
 
-
     return (
         <>
             {loginModalDetails.openModal && !user.new_user && (

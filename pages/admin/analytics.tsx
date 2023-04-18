@@ -11,10 +11,13 @@ import { Line } from "react-chartjs-2";
 import { CategoryScale } from 'chart.js';
 import Chart from 'chart.js/auto';
 import router from "next/router";
-import { Button } from "antd";
+import { Button, Card, Tag } from "antd";
 import { ContestEntry } from "types/model/contest";
 import ContestModal from "@/components/modal/contestModal";
 import { IsAdmin } from "helpers/helper";
+import { routeToHref } from "config/routes";
+import { GetContestStatus } from "helpers/contest";
+import { useRoutesContext } from "components/routeContext";
 
 const mapStateToProps = (state: AppState) => ({
   analytics: state.analytics,
@@ -79,6 +82,7 @@ const AnalyticsPage = ({
     emptyContestEntryDetails
   );
   const [allContests, setAllContests] = useState([]);
+  const { toContestPage } = useRoutesContext();
 
   useEffect(() => {
     if (!IsAdmin(user.user.email)) {
@@ -120,6 +124,46 @@ const AnalyticsPage = ({
     setShowContestModal(false);
   };
 
+  const getAllContests = (allContests) => {
+    const resultArtists: JSX.Element[] = [];
+    const now = new Date();
+    let data = allContests.length != 0 ? allContests[0].data : [];
+    data.forEach(contest => {
+      let status = GetContestStatus(now.getTime(), contest.startDate, contest.endDate);
+      resultArtists.push(
+        <div className="row p-2 bg-white rounded contest-card">
+          <Card
+            title={contest.title}
+            style={{ height: '100%' }}
+            extra={
+              <>
+                {status === "Ongoing" && (
+                  <Tag color="green">{status}</Tag>
+                )}
+                {status === "Upcoming" && (
+                  <Tag color="yellow">{status}</Tag>
+                )}
+                {status === "Past" && (
+                  <Tag color="grey">{status}</Tag>
+                )}
+                {status === "Ongoing" ? (
+                  <a href={routeToHref(toContestPage(contest.contestSlug))}>Enter</a>
+                ) : (
+                  <a href={routeToHref(toContestPage(contest.contestSlug))}>Check details</a>
+                )}
+              </>
+            }
+          >
+            <div>
+              {contest.description}
+            </div>
+          </Card>
+        </div>
+      )
+    });
+    return resultArtists;
+  };
+
   return (
     <>
       {analytics.users.isFetchingUserAnalytics || isFetchingContest ? (
@@ -158,13 +202,16 @@ const AnalyticsPage = ({
             </div>
           </div>
           <div className="analytics__pageContainer">
-            <h1 className="common-h1-style text-center">Total contest : {contests.allContest}</h1>
+            <h1 className="common-h1-style text-center">Total contest : {contests.contestCount}</h1>
+            <div className="col-md-12 listingContainer" style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+              {getAllContests(contests.contest)}
+            </div>
             <div className="analytics__contestButtonContainer">
               <Button
                 type="primary"
                 htmlType="submit"
                 className="common-medium-btn"
-                style={{ height: 'auto', margin: '10px' }}
+                style={{ height: 'auto', margin: '20px' }}
                 onClick={ShowContestEntryModal}
               >
                 Add contest

@@ -2,7 +2,7 @@ export interface ContestState {
     isFetchingContest: boolean;
     isUpdatingContest: boolean;
     contest?: any[];
-    allContest: number;
+    contestCount: number;
     showContestModal: boolean,
  }
 

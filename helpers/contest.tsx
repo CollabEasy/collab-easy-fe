@@ -6,7 +6,6 @@ export function GetDateString(time: number) {
 }
 
 export function GetContestStatus(now: number, start: number, end: number) {
-    return "Ongoing";
     if (now < start) {
         return "Upcoming";
     } else if (now >= start && now <= end) {

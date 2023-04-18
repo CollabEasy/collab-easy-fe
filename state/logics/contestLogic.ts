@@ -62,6 +62,7 @@ export const addContestLogic = createLogic<
       const result = await api.contestApi.addContestApi(data);
       dispatch(notifActions.showNotification(true, 'Your contest added successfully 🥳'));
       dispatch(actions.addContestSuccess(data));
+      dispatch(actions.setShowContestModal(false));
     } catch (error) {
     } finally {
       done();
