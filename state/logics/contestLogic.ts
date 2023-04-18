@@ -64,6 +64,8 @@ export const addContestLogic = createLogic<
       dispatch(actions.addContestSuccess(data));
       dispatch(actions.setShowContestModal(false));
     } catch (error) {
+      const error_response = error.response.data;
+      dispatch(notifActions.showNotification(false, error_response['err_str']));
     } finally {
       done();
     }
