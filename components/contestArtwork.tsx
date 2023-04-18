@@ -24,7 +24,7 @@ const mapStateToProps = (state: AppState) => ({
   contest: state.contest,
   submissions: state.contestSubmission,
   userModel: state.user,
-  isFetchingSubmission: state.contestSubmission.isFetchingSubmission,
+  isFetchingArtistSubmission: state.contestSubmission.isFetchingArtistSubmission,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -47,7 +47,7 @@ const UploadContestArtwork = ({
   contest,
   submissions,
   userModel,
-  isFetchingSubmission,
+  isFetchingArtistSubmission,
   fetchArtistSubmission,
   // updateProfilePicture,
   // showProfilePictureUpdateModal,
