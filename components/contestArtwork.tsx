@@ -140,9 +140,17 @@ const UploadContestArtwork = ({
     return `${src}?w=${width}&q=${quality || 75}`;
   };
 
-  console.log(submissions);
   return (
     <div>
+      <Upload
+        name="avatar"
+        listType="picture-card"
+        showUploadList={false}
+        accept="image/png, image/jpeg"
+        onChange={handleChange}
+      >
+        {uploadButton}
+      </Upload>
       <Image
         className={`artistProfile_profileImage${showUploadingLoader ? "Uploading" : ""
           }`}
@@ -153,15 +161,6 @@ const UploadContestArtwork = ({
         width={150}
         priority
       />
-      <Upload
-        name="avatar"
-        listType="picture-card"
-        showUploadList={false}
-        accept="image/png, image/jpeg"
-        onChange={handleChange}
-      >
-        {uploadButton}
-      </Upload>
       {uploadFile && showUploadModal && (
         <Modal
           closable
