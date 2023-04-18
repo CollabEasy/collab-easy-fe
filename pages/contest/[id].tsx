@@ -29,12 +29,15 @@ const mapStateToProps = (state: AppState) => {
     const loginModalDetails = state.home.loginModalDetails;
     const artistListData = state.home.artistListDetails;
     const contest = state.contest;
+    const allSubmissions = state.contestSubmission.allSubmissions;
     const isFetchingContest = state.contest.isFetchingContest;
-    return { user, isLoggedIn, artistListData, loginModalDetails, contest, isFetchingContest }
+    const isFetchingSubmissions = state.contestSubmission.isFetchingSubmissions;
+    return { user, isLoggedIn, artistListData, loginModalDetails, contest, allSubmissions, isFetchingContest, isFetchingSubmissions }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     fetchContestAction: (slug: string) => dispatch(action.fetchContest(slug)),
+    fetchContestSubmissions: (slug: string) => dispatch(action.fetchContestSubmissions(slug)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -46,9 +49,12 @@ const ContestPage = ({
     isLoggedIn,
     loginModalDetails,
     contest,
+    allSubmissions,
     isFetchingContest,
+    isFetchingSubmissions,
     artistListData,
     fetchContestAction,
+    fetchContestSubmissions,
 }: Props) => {
 
     const router = useRouter();
@@ -64,6 +70,7 @@ const ContestPage = ({
             return;
         }
         fetchContestAction(contestSlug as string);
+        fetchContestSubmissions(contestSlug as string);
     }, []);
 
     useEffect(() => {
@@ -77,23 +84,39 @@ const ContestPage = ({
         }
     }, [user, artistListData])
 
+    const prismicLoader = ({ src, width, quality }) => {
+        return `${src}?w=${width}&q=${quality || 75}`;
+    };
+
     const getSubmissions = () => {
         const resultArtists: JSX.Element[] = [];
-        for (var i = 0; i < 10; i++) {
+        let data = allSubmissions.length != 0 ? allSubmissions[0].data : [];
+        data.forEach(submission => {
             resultArtists.push(
                 <div className='contestDetailPage_sampleTile'>
                     <Card
                         style={{ height: '100%' }}
-                        cover={<Image src={sampleImage} alt="cards" />}
+                        cover={
+                            <Image
+                                loader={prismicLoader}
+                                src={submission.artworkUrl}
+                                alt="cards"
+                                height={50}
+                                width={50}
+                                layout="responsive"
+                                objectFit="contain"
+                                priority
+                            />
+                        }
                         actions={[
                             <FireOutlined key="upvote" />,
                         ]}
                     >
-                        <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Searching for an idea? We got you covered 🥳 </span>} />
+                        <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}> {submission.description}</span>} />
                     </Card>
                 </div>
             )
-        }
+        })
         return resultArtists;
     };
 
@@ -108,7 +131,7 @@ const ContestPage = ({
                 <NewUserModal />
             )
             }
-            {isFetchingContest ? (
+            {isFetchingContest && isFetchingSubmissions ? (
                 <Loader />
             ) : (
                 <>

@@ -100,3 +100,22 @@ export const fetchArtistSubmissionSuccess = (data: any[]) => ({
         data
     }
 })
+
+export const fetchContestSubmissions = (slug: string) => ({
+    type: actionType.FETCH_CONTEST_SUBMISSIONS,
+    payload: {
+        slug,
+    }
+})
+
+export const fetchContestSubmissionsRequest = () => ({
+    type: actionType.FETCH_CONTEST_SUBMISSIONS_REQUEST,
+    payload: {}
+})
+
+export const fetchContestSubmissionsSuccess = (data: any[]) => ({
+    type: actionType.FETCH_CONTEST_SUBMISSIONS_SUCCESS,
+    payload: {
+        data
+    }
+})

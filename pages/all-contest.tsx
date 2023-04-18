@@ -82,7 +82,6 @@ const AllContestPage = ({
         const now = new Date();
         let data = allContests.length != 0 ? allContests[0].data : [];
         data.forEach(contest => {
-            console.log(contest);
             let status = GetContestStatus(now.getTime(), contest.startDate, contest.endDate);
             resultArtists.push(
                 <div className="row p-2 bg-white rounded contest-card">

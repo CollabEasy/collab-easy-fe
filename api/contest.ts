@@ -90,3 +90,18 @@ export const fetchArtistSubmissionApi = async (slug: string) => {
     throw error;
   }
 };
+
+export const fetchContestSubmissionsApi = async (slug: string) => {
+  const config = getConfig();
+  try {
+    let url = 'api/v1/contest/submission/';
+    if (slug.length > 0) {
+      // here data is handle.
+      url += slug + "/all";
+    }
+    const result = await api.call(url, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};

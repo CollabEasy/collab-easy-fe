@@ -7,6 +7,8 @@ export interface ContestState {
  }
 
  export interface ContestSubmissionState {
-    isFetchingSubmission: boolean;
-    submission?: any[];
+    isFetchingSubmissions: boolean;
+    isFetchingArtistSubmission: boolean;
+    allSubmissions?: any[];
+    artistSubmission?: any[];
  }

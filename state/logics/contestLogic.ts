@@ -110,3 +110,24 @@ export const fetchArtistSubmissionLogic = createLogic<
     }
   },
 });
+
+export const fetchContestSubmissionsLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.fetchContestSubmissions>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.FETCH_CONTEST_SUBMISSIONS],
+  async process({ action, api }, dispatch, done) {
+    try {
+      const slug = action.payload.slug;
+      dispatch(actions.fetchContestSubmissionsRequest());
+      const result = await contestApi.fetchContestSubmissionsApi(slug);
+      dispatch(actions.fetchContestSubmissionsSuccess([result]));
+    } catch (error) {
+
+    } finally {
+      done();
+    }
+  },
+});

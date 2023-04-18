@@ -2,8 +2,10 @@ import * as actionType from "../actionTypes/contestActionTypes";
 import { ContestSubmissionState } from "types/states";
 
 const initialState: ContestSubmissionState = {
-    isFetchingSubmission: false,
-    submission: [],
+    isFetchingSubmissions: false,
+    isFetchingArtistSubmission: false,
+    allSubmissions: [],
+    artistSubmission: [],
 };
 
 const contestSubmissionReducer = (state = initialState, action): ContestSubmissionState => {
@@ -11,21 +13,39 @@ const contestSubmissionReducer = (state = initialState, action): ContestSubmissi
         case actionType.FETCH_ARTIST_SUBMISSION:
             return {
                 ...state,
-                submission: [],
-                isFetchingSubmission : true,
+                artistSubmission: [],
+                isFetchingArtistSubmission: true,
             };
         case actionType.FETCH_ARTIST_SUBMISSION_SUCCESS:
             return {
                 ...state,
-                submission: action.payload.data,
-                isFetchingSubmission: false,
+                artistSubmission: action.payload.data,
+                isFetchingArtistSubmission: false,
             };
         case actionType.FETCH_ARTIST_SUBMISSION_FAILURE:
             return {
                 ...state,
-                isFetchingSubmission: false,
+                isFetchingArtistSubmission: false,
             };
-        
+
+        case actionType.FETCH_CONTEST_SUBMISSIONS:
+            return {
+                ...state,
+                allSubmissions: [],
+                isFetchingSubmissions: true,
+            };
+        case actionType.FETCH_CONTEST_SUBMISSIONS_SUCCESS:
+            return {
+                ...state,
+                allSubmissions: action.payload.data,
+                isFetchingSubmissions: false,
+            };
+        case actionType.FETCH_CONTEST_SUBMISSIONS_FAILURE:
+            return {
+                ...state,
+                isFetchingSubmissions: false,
+            };
+
         default:
             return state;
     }
