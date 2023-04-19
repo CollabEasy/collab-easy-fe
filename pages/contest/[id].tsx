@@ -62,15 +62,16 @@ const ContestPage = ({
         router.push("/");
     }
 
-    const { id: contestSlug } = router.query;
+    const { id: slug, tab: tab } = router.query;
+
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     useEffect(() => {
         if (!IsAdmin(user.email)) {
             return;
         }
-        fetchContestAction(contestSlug as string);
-        fetchContestSubmissions(contestSlug as string);
+        fetchContestAction(slug as string);
+        fetchContestSubmissions(slug as string);
     }, []);
 
     useEffect(() => {
@@ -83,6 +84,32 @@ const ContestPage = ({
             setShowProfileModal(false);
         }
     }, [user, artistListData])
+
+    const getActiveTab = () => {
+        let active = "1";
+        if (tab === "details") {
+            active = "1";
+        }
+        if (tab === "submit") {
+            active = "2";
+        } else if (tab === "leaderboard") {
+            active = "3";
+        }
+        return active;
+    };
+
+    const redirect = (tabIndex: string) => {
+        let tab = "details";
+        if (tabIndex == "1") {
+            // do nothing
+        }
+        if (tabIndex === "2") {
+            tab = "submit";
+        } else if (tabIndex === "3") {
+            tab = "leaderboard";
+        }
+        router.push("/contest/" + slug + "?tab=" + tab);
+    };
 
     const prismicLoader = ({ src, width, quality }) => {
         return `${src}?w=${width}&q=${quality || 75}`;
@@ -136,7 +163,14 @@ const ContestPage = ({
             ) : (
                 <>
                     <div className="contestDetailPage_container">
-                        <Tabs type="card" centered>
+                        <Tabs
+                            type="card"
+                            centered
+                            onChange={(key: string) => {
+                                redirect(key);
+                            }}
+                            activeKey={getActiveTab()}
+                        >
                             <TabPane tab="Contest details" key="1">
 
                                 <div className="responsive-two-column-grid">
@@ -221,9 +255,11 @@ const ContestPage = ({
                             {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) !== "Upcoming" && (
                                 <TabPane tab="Leaderboard" key="3">
                                     <div className="contestDetailPage_tabContainer">
-                                        <h2 className="common-h2-style" style={{ textAlign: "center" }}>
-                                            <b>200</b> artists have submitted their work, dont miss out and submit your work now!
-                                        </h2>
+                                        {allSubmissions.length != 0 && (
+                                            <h2 className="common-h2-style" style={{ textAlign: "center" }}>
+                                                <b>{allSubmissions[0].data.length}</b> artists have submitted their work, dont miss out and submit your work now!
+                                            </h2>
+                                        )}
                                         <div className="contestDetailPage_submissionTabContainer">
                                             {getSubmissions()}
                                         </div>

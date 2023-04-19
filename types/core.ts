@@ -9,7 +9,7 @@ export interface AppRouteCreators {
   toEditProfile: (action: string, tab: string) => WebRoute;
   toCollabPage: (id: string) => WebRoute;
   toAllContestPage: () => WebRoute;
-  toContestPage: (id: string) => WebRoute;
+  toContestPage: (slug: string, tab: string) => WebRoute;
   toAboutUs: () => WebRoute;
   toTutorial: () => WebRoute;
   toFAQ: () => WebRoute;
