@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
+import { routeToHref } from "config/routes";
 import NotAuthorised from "@/components/error/notAuthorised";
 import LoginModal from '@/components/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
@@ -18,6 +19,8 @@ import Loader from "@/components/loader";
 import { GetContestStatus, GetDateString } from "helpers/contest";
 import { IsAdmin } from "helpers/helper";
 import UploadContestArtwork from "@/components/contestArtwork";
+import Link from "next/link";
+import { useRoutesContext } from "components/routeContext";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -58,6 +61,7 @@ const ContestPage = ({
 }: Props) => {
 
     const router = useRouter();
+    const { toContestPage } = useRoutesContext();
     if (!IsAdmin(user.email)) {
         router.push("/");
     }
@@ -257,7 +261,8 @@ const ContestPage = ({
                                     <div className="contestDetailPage_tabContainer">
                                         {allSubmissions.length != 0 && (
                                             <h2 className="common-h2-style" style={{ textAlign: "center" }}>
-                                                <b>{allSubmissions[0].data.length}</b> artists have submitted their work, dont miss out and submit your work now!
+                                                <b>{allSubmissions[0].data.length}</b> artists have submitted their work, dont miss out and 
+                                                <Link href={routeToHref(toContestPage(slug as string, "submit"))} passHref> submit</Link> your work now!
                                             </h2>
                                         )}
                                         <div className="contestDetailPage_submissionTabContainer">
