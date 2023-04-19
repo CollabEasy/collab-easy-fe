@@ -211,7 +211,7 @@ const ContestPage = ({
                                             <b>End date:</b> {GetDateString(contest.contest[0]?.data.endDate)}
                                         </p>
                                         <p className="common-p-style">
-                                            <b>Duration:</b> {(contest.contest[0]?.data.endDate - contest.contest[0]?.data.startDate)/(1000*86400) + 1} days
+                                            <b>Duration:</b> {(contest.contest[0]?.data.endDate - contest.contest[0]?.data.startDate) / (1000 * 86400) + 1} days
                                         </p>
 
                                         <h2 className="common-h2-style">Rules and Regulations:</h2>
@@ -236,7 +236,6 @@ const ContestPage = ({
                                         <p className="common-p-style">
                                             <b>3rd winner</b> USD 10
                                         </p>
-
                                         <b className="common-text-style">Are you ready? Let your imagination soar and join the ultimate art showdown!</b>
                                     </div>
                                 </div>
@@ -261,7 +260,7 @@ const ContestPage = ({
                                     <div className="contestDetailPage_tabContainer">
                                         {allSubmissions.length != 0 && (
                                             <h2 className="common-h2-style" style={{ textAlign: "center" }}>
-                                                <b>{allSubmissions[0].data.length}</b> artists have submitted their work, dont miss out and 
+                                                <b>{allSubmissions[0].data.length}</b> artists have submitted their work, dont miss out and
                                                 <Link href={routeToHref(toContestPage(slug as string, "submit"))} passHref> submit</Link> your work now!
                                             </h2>
                                         )}
