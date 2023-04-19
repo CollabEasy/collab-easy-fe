@@ -201,13 +201,13 @@ const ContestPage = ({
                                             <b>Description:</b> {contest.contest[0]?.data.description}
                                         </p>
                                         <p className="common-p-style">
-                                            <b>Duration:</b> 1 week
-                                        </p>
-                                        <p className="common-p-style">
                                             <b>Start date:</b> {GetDateString(contest.contest[0]?.data.startDate)}
                                         </p>
                                         <p className="common-p-style">
                                             <b>End date:</b> {GetDateString(contest.contest[0]?.data.endDate)}
+                                        </p>
+                                        <p className="common-p-style">
+                                            <b>Duration:</b> {(contest.contest[0]?.data.endDate - contest.contest[0]?.data.startDate)/(1000*86400) + 1} days
                                         </p>
 
                                         <h2 className="common-h2-style">Rules and Regulations:</h2>
