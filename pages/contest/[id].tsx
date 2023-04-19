@@ -119,6 +119,10 @@ const ContestPage = ({
         return `${src}?w=${width}&q=${quality || 75}`;
     };
 
+    const upvoteArtwork = () => {
+        console.log("upvote the work");
+    }
+
     const getSubmissions = () => {
         const resultArtists: JSX.Element[] = [];
         let data = allSubmissions.length != 0 ? allSubmissions[0].data : [];
@@ -132,15 +136,15 @@ const ContestPage = ({
                                 loader={prismicLoader}
                                 src={submission.artworkUrl}
                                 alt="cards"
-                                height={50}
-                                width={50}
-                                layout="responsive"
-                                objectFit="contain"
+                                height={250}
+                                width={250}
                                 priority
                             />
                         }
                         actions={[
-                            <FireOutlined key="upvote" />,
+                            <FireOutlined key="upvote" 
+                                onClick={upvoteArtwork}
+                            />,
                         ]}
                     >
                         <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}> {submission.description}</span>} />

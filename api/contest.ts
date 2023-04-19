@@ -105,3 +105,14 @@ export const fetchContestSubmissionsApi = async (slug: string) => {
     throw error;
   }
 };
+
+export const updateContestSubmissionApi = async (data: any) => {
+  const config = postConfig(data);
+  try {
+    let url = 'api/v1/contest/submission/upvote';
+    const result = await api.call(url, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -4,8 +4,10 @@ import { ContestSubmissionState } from "types/states";
 const initialState: ContestSubmissionState = {
     isFetchingSubmissions: false,
     isFetchingArtistSubmission: false,
+    isFetchingSubmissionVotes: false,
     allSubmissions: [],
     artistSubmission: [],
+    artistSubmissionVotes: [],
 };
 
 const contestSubmissionReducer = (state = initialState, action): ContestSubmissionState => {

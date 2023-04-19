@@ -134,3 +134,24 @@ export const fetchContestSubmissionsLogic = createLogic<
     }
   },
 });
+
+export const upvoteContestSubmissionLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.upvoteContestSubmission>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.UPVOTE_CONTEST_SUBMISSION],
+  async process({ action, api }, dispatch, done) {
+    try {
+      const data = action.payload.data;
+      dispatch(actions.upvoteContestSubmissionRequest());
+      const result = await contestApi.updateContestSubmissionApi(data);
+      dispatch(actions.upvoteContestSubmissionSuccess([result]));
+    } catch (error) {
+
+    } finally {
+      done();
+    }
+  },
+});

@@ -119,3 +119,22 @@ export const fetchContestSubmissionsSuccess = (data: any[]) => ({
         data
     }
 })
+
+export const upvoteContestSubmission = (data: any) => ({
+    type: actionType.UPVOTE_CONTEST_SUBMISSION,
+    payload: {
+        data,
+    }
+})
+
+export const upvoteContestSubmissionRequest = () => ({
+    type: actionType.UPVOTE_CONTEST_SUBMISSION_REQUEST,
+    payload: {}
+})
+
+export const upvoteContestSubmissionSuccess = (data: any) => ({
+    type: actionType.UPVOTE_CONTEST_SUBMISSION_SUCCESS,
+    payload: {
+        data
+    }
+})
