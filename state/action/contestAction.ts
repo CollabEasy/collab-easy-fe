@@ -138,3 +138,22 @@ export const upvoteContestSubmissionSuccess = (data: any) => ({
         data
     }
 })
+
+export const fetchContestSubmissionArtistVotes = (slug: string) => ({
+    type: actionType.FETCH_CONTEST_SUBMISSIONS_ARTIST_VOTES,
+    payload: {
+        slug,
+    }
+})
+
+export const fetchContestSubmissionArtistVotesRequest = () => ({
+    type: actionType.FETCH_CONTEST_SUBMISSIONS_ARTIST_VOTES_REQUEST,
+    payload: {}
+})
+
+export const fetchContestSubmissionArtistVotesSuccess = (data: any[]) => ({
+    type: actionType.FETCH_CONTEST_SUBMISSIONS_ARTIST_VOTES_SUCCESS,
+    payload: {
+        data
+    }
+})

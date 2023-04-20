@@ -12,6 +12,7 @@ import analytics from "./reducers/analyticsReducer";
 import notification from "./reducers/notificationReducer";
 import contest from "./reducers/contestReducer";
 import contestSubmission from "./reducers/contestSubmissionReducer";
+import contestSubmissionVote from "./reducers/contestSubmissionVoteReducer";
 
 const appReducer = combineReducers<AppState>({
   home,
@@ -26,6 +27,7 @@ const appReducer = combineReducers<AppState>({
   notification,
   contest,
   contestSubmission,
+  contestSubmissionVote,
 });
 
 const rootReducer = (state, action) => {

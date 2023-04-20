@@ -8,7 +8,7 @@ import { SocialProspectusState } from "./socialProspectus";
 import { CollabConversationState } from "./collabConversation";
 import { AnalyticsState } from "./analyticsState";
 import { NotificationState } from "./notificationState";
-import { ContestState, ContestSubmissionState } from "./contestState";
+import { ContestState, ContestSubmissionState, ContestSubmissionVoteState } from "./contestState";
 
 export interface AppState {
   home: HomeState;
@@ -23,4 +23,5 @@ export interface AppState {
   notification: NotificationState,
   contest: ContestState,
   contestSubmission: ContestSubmissionState,
+  contestSubmissionVote: ContestSubmissionVoteState,
 }

@@ -146,8 +146,30 @@ export const upvoteContestSubmissionLogic = createLogic<
     try {
       const data = action.payload.data;
       dispatch(actions.upvoteContestSubmissionRequest());
-      const result = await contestApi.updateContestSubmissionApi(data);
+      const result = await contestApi.upvoteContestSubmissionApi(data);
       dispatch(actions.upvoteContestSubmissionSuccess([result]));
+    } catch (error) {
+
+    } finally {
+      done();
+    }
+  },
+});
+
+
+export const fetchContestSubmissionArtistVotesLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.fetchContestSubmissionArtistVotes>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.FETCH_CONTEST_SUBMISSIONS_ARTIST_VOTES],
+  async process({ action, api }, dispatch, done) {
+    try {
+      const slug = action.payload.slug;
+      dispatch(actions.fetchContestSubmissionArtistVotesRequest());
+      const result = await contestApi.fetchContestSubmissionArtistVotesApi(slug);
+      dispatch(actions.fetchContestSubmissionArtistVotesSuccess([result]));
     } catch (error) {
 
     } finally {
