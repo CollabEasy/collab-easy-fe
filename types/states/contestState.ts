@@ -12,3 +12,9 @@ export interface ContestState {
     allSubmissions?: any[];
     artistSubmission?: any[];
  }
+
+ export interface ContestSubmissionVoteState {
+   isFetchingSubmissionVotes: boolean;
+   artistSubmissionVotes?: any[];
+   artistSubmissionVotesId?: any[];
+ }

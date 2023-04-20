@@ -4,4 +4,9 @@ export interface ContestEntry {
     description: string;
     startDate: Date;
     endDate: Date;
-  }
+}
+
+export interface ContestSubmissionVote {
+    id: number;
+    slug: string;
+}

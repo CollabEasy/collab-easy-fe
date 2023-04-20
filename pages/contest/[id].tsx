@@ -13,7 +13,7 @@ import { Card } from 'antd';
 import Image from 'next/image';
 import sampleImage from '../../public/images/mobile-landing.svg';
 import detailsImage from '../../public/images/contestDetails.svg';
-import { FireOutlined } from '@ant-design/icons';
+import { FireOutlined, FireFilled } from '@ant-design/icons';
 import * as action from "../../state/action";
 import Loader from "@/components/loader";
 import { GetContestStatus, GetDateString } from "helpers/contest";
@@ -21,6 +21,7 @@ import { IsAdmin } from "helpers/helper";
 import UploadContestArtwork from "@/components/contestArtwork";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
+import { ContestSubmissionVote } from "types/model/contest";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -33,14 +34,17 @@ const mapStateToProps = (state: AppState) => {
     const artistListData = state.home.artistListDetails;
     const contest = state.contest;
     const allSubmissions = state.contestSubmission.allSubmissions;
+    const allSubmissionsVotes = state.contestSubmissionVote.artistSubmissionVotes;
     const isFetchingContest = state.contest.isFetchingContest;
     const isFetchingSubmissions = state.contestSubmission.isFetchingSubmissions;
-    return { user, isLoggedIn, artistListData, loginModalDetails, contest, allSubmissions, isFetchingContest, isFetchingSubmissions }
+    const isFetchingSubmissionVotes = state.contestSubmissionVote.isFetchingSubmissionVotes;
+    return { user, isLoggedIn, artistListData, loginModalDetails, contest, allSubmissions, allSubmissionsVotes, isFetchingContest, isFetchingSubmissions, isFetchingSubmissionVotes }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     fetchContestAction: (slug: string) => dispatch(action.fetchContest(slug)),
     fetchContestSubmissions: (slug: string) => dispatch(action.fetchContestSubmissions(slug)),
+    upvoteContestSubmission: (data: any) => dispatch(action.upvoteContestSubmission(data)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -53,11 +57,14 @@ const ContestPage = ({
     loginModalDetails,
     contest,
     allSubmissions,
+    allSubmissionsVotes,
     isFetchingContest,
     isFetchingSubmissions,
+    isFetchingSubmissionVotes,
     artistListData,
     fetchContestAction,
     fetchContestSubmissions,
+    upvoteContestSubmission,
 }: Props) => {
 
     const router = useRouter();
@@ -119,9 +126,24 @@ const ContestPage = ({
         return `${src}?w=${width}&q=${quality || 75}`;
     };
 
+    const upvoteArtwork = (id, slug) => {
+        let obj = {
+            "submissionId": id,
+            "contestSlug": slug,
+            "vote": true,
+        }
+        upvoteContestSubmission(obj);
+    }
+
     const getSubmissions = () => {
         const resultArtists: JSX.Element[] = [];
         let data = allSubmissions.length != 0 ? allSubmissions[0].data : [];
+        let artistVotesData = allSubmissionsVotes.length != 0 ? allSubmissionsVotes[0].data : []
+        let artistVotes = []
+        artistVotesData.forEach(votes => {
+            artistVotes.push(votes.submissionId);
+        });
+
         data.forEach(submission => {
             resultArtists.push(
                 <div className='contestDetailPage_sampleTile'>
@@ -132,15 +154,25 @@ const ContestPage = ({
                                 loader={prismicLoader}
                                 src={submission.artworkUrl}
                                 alt="cards"
-                                height={50}
-                                width={50}
-                                layout="responsive"
-                                objectFit="contain"
+                                height={250}
+                                width={250}
                                 priority
                             />
                         }
                         actions={[
-                            <FireOutlined key="upvote" />,
+                            <>
+                                {artistVotes.includes(submission.id) ? (
+                                    <FireOutlined key="upvote"
+                                        
+                                        onClick={() => upvoteArtwork(submission.id, slug)}
+                                    />
+                                ) : (
+                                    <FireFilled key="upvote"
+                                        style={{color: "red"}}
+                                        onClick={() => upvoteArtwork(submission.id, slug)}
+                                    />
+                                )}
+                            </>
                         ]}
                     >
                         <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}> {submission.description}</span>} />
@@ -162,7 +194,7 @@ const ContestPage = ({
                 <NewUserModal />
             )
             }
-            {isFetchingContest && isFetchingSubmissions ? (
+            {isFetchingContest && isFetchingSubmissions && isFetchingSubmissionVotes ? (
                 <Loader />
             ) : (
                 <>

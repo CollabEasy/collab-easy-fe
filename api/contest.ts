@@ -105,3 +105,26 @@ export const fetchContestSubmissionsApi = async (slug: string) => {
     throw error;
   }
 };
+
+export const upvoteContestSubmissionApi = async (data: any) => {
+  const config = postConfig(data);
+  try {
+    let url = 'api/v1/contest/submission/upvote';
+    const result = await api.call(url, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+export const fetchContestSubmissionArtistVotesApi = async (slug: string) => {
+  const config = getConfigWithToken();
+  try {
+    let url = 'api/v1/contest/submission/artist/vote/' + slug;
+    const result = await api.call(url, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
