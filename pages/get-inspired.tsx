@@ -83,12 +83,17 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
               <br></br>
             </p >
             <div className="theme">
+              <h5 className="card-text common-h5-style">Important events of the week</h5>
+              <p className="card-text common-p-style">
+                1. Earth Day - April 22nd
+              </p>
+            </div>
+            <div className="theme">
               <h5 className="card-text common-h5-style">Themes for the week</h5>
               <p className="card-text common-p-style">
-                1. World Health Day - April 7th, 2023: This is an international awareness day
-                sponsored by the World Health Organization. It is a day to raise awareness
-                about global health issues and to encourage people to take action to improve
-                their health and well-being.
+                1. Global Health: Create art that celebrates the work of healthcare workers, 
+                or that raises awareness about health issues affecting people around the world, 
+                such as access to clean water, vaccinations, or mental health.
               </p>
               <p className="card-text common-p-style">
                 2. Climate Change: With the increasing awareness and concern for climate change,
