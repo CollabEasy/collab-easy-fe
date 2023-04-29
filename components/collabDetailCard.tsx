@@ -158,6 +158,10 @@ const CollabDetailCard = ({
     }
   }
 
+  const ppurl = (collabDetails.senderId === user.artist_id
+    ? collabDetails.receiverProfilePicUrl
+    : collabDetails.senderProfilePicUrl);
+  console.log("collab details : ", collabDetails.senderId, collabDetails.receiverId, user.artist_id, ppurl); 
   return (
     <>
       {(showCollabModal.show && collabDetails.id === showCollabModal.id) && (

@@ -70,6 +70,7 @@ const SamplePage = ({
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [selectedSample, setSelectedSample] = useState(undefined);
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [hasUploadError, setHasUploadError] = useState(false);
 
   const resetState = () => {
     setImageUrl("");
@@ -101,7 +102,7 @@ const SamplePage = ({
     if (!isValidSize) {
       message.error("File must be smaller than 100 MB");
     }
-    return isValidFile || isValidSize;
+    return isValidFile && isValidSize;
   }
 
   const handleChange = (info) => {
@@ -127,6 +128,7 @@ const SamplePage = ({
       // Get this url from response in real world.
       setLoading(false);
       message.error("Error in uploading file");
+      return;
     }
   };
 

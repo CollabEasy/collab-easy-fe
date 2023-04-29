@@ -20,6 +20,13 @@ export const uploadSampleWorkSuccess = (data: any) => ({
     },
 })
 
+export const uploadSampleWorkFailure = (data: any) => ({
+    type: actionTypes.UPLOAD_SAMPLE_WORK_FAILURE,
+    payload: {
+        data,
+    }
+})
+
 export const fetchArtistSamples = (slug: string) => ({
     type: actionTypes.FETCH_SAMPLE_WORK,
     payload: {

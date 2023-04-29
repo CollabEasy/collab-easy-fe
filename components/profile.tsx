@@ -37,14 +37,14 @@ const mapStateToProps = (state: AppState) => {
   const collab = state.collab;
   const isFetchingCollabs = state.collab.isFetchingCollabDetails;
   const userSamples = state.sample.samples;
-  // const isFetchingSamples = state.sample.isFetchingSamples;
+  const isFetchingSamples = state.sample.isFetchingSamples;
   const showCollabModal = state.collab.showCollabModal;
-  return { showCollabModal, userSamples, collab, isFetchingCollabs, /*isFetchingSamples*/ };
+  return { showCollabModal, userSamples, collab, isFetchingCollabs, isFetchingSamples };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  // fetchArtistSamples: (slug: string) =>
-  //   dispatch(action.fetchArtistSamples(slug)),
+  fetchArtistSamples: (slug: string) =>
+    dispatch(action.fetchArtistSamples(slug)),
   getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
   setShowCollabModalState: (show: boolean, id: string) => dispatch(action.setShowCollabModalState(show, id)),
 });
@@ -67,9 +67,9 @@ const Profile = ({
   collab,
   showCollabModal,
   isFetchingCollabs,
-  /*isFetchingSamples,*/
+  isFetchingSamples,
   setShowCollabModalState,
-  /*fetchArtistSamples,*/
+  fetchArtistSamples,
   getCollabRequestsAction
 }: Props) => {
   const router = useRouter();
@@ -93,7 +93,7 @@ const Profile = ({
   const { toEditProfile } = useRoutesContext();
 
   useEffect(() => {
-    // fetchArtistSamples(user.slug);
+    fetchArtistSamples(user.slug);
     if (isSelf) {
       getCollabRequestsAction({
       })
@@ -102,7 +102,7 @@ const Profile = ({
         otherUserId: user.artist_id,
       });
     }
-  }, [/*fetchArtistSamples,*/ getCollabRequestsAction, isSelf, user.slug, user.artist_id]);
+  }, [fetchArtistSamples, getCollabRequestsAction, isSelf, user.slug, user.artist_id]);
 
   useEffect(() => {
     if (!isFetchingCollabs && (loggedInUserId !== user.artist_id)) {
@@ -245,7 +245,7 @@ const Profile = ({
                 <p className="mt4 common-p-style">{GetUserSkills(user, true)} </p>
               </div>
             </TabPane>
-            {/* <TabPane tab="Samples" key="2">
+            <TabPane tab="Samples" key="2">
               <div className="artistProfile__tabContainer">
                 {userSamples.length == 0 ? (
                   <div
@@ -272,7 +272,7 @@ const Profile = ({
                   </>
                 )}
               </div>
-            </TabPane> */}
+            </TabPane>
             {/* <TabPane tab="Collab Requests" key="3">
               <div className="artistProfile__tabContainer">
                 <CollabRequestTab

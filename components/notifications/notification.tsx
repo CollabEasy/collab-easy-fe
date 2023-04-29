@@ -39,14 +39,16 @@ const Notification = ({
     },
   };
 
-  if (message === "" || !showNotification || toast.isActive(toastId)) {
+  if (!showNotification || toast.isActive(toastId)) {
     return <div></div>;
   }
 
+  console.log("MESSAGE : ", message);
   if (isSuccess) {
     toast.success(message, notificationParams);
   } else {
-    toast.error(message, notificationParams);
+    const err_msg = message ??  'Something went wrong. Please try again later';
+    toast.error(err_msg, notificationParams);
   }
 
   return <ToastContainer />;
