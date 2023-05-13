@@ -157,3 +157,29 @@ export const fetchContestSubmissionArtistVotesSuccess = (data: any[]) => ({
         data
     }
 })
+
+
+
+export const addContestArtwork = (formData: FormData, contestSlug: string) => {
+    return {
+    type: actionType.ADD_CONTEST_ARTWORK,
+    payload: {
+        data: formData,
+        contest: contestSlug,
+    }
+}
+};
+
+export const addContestArtworkRequest = () => ({
+    type: actionType.ADD_CONTEST_ARTWORK_REQUEST,
+    payload: {}
+})
+
+export const addContestArtworkSuccess = () => ({
+    type: actionType.ADD_CONTEST_ARTWORK_SUCCESS,
+})
+
+export const addContestArtworkFailure = (data: any[]) => ({
+    type: actionType.ADD_CONTEST_ARTWORK_FAILURE,
+    payload: {}
+})

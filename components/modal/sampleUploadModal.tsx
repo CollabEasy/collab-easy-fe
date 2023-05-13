@@ -21,13 +21,11 @@ const { Meta } = Card;
 const { TabPane } = Tabs;
 
 const mapStateToProps = (state: AppState) => {
-  const isUploading = state.sample.isUploading;
-  const isUploaded = state.sample.isUploaded;
-  return { isUploading, isUploaded };
+  return { };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  uploadSample: (formData: FormData) => dispatch(actions.uploadSample(formData)),
+  
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -39,6 +37,10 @@ type Props = {
   editable: boolean;
   imageUrl: string;
   caption: string;
+  isUploading: boolean,
+  isUploaded: boolean,
+  onClickUpload: () => void;
+  onChangeCaption: (caption: string) => void;
   onCancel: () => void;
 } & ConnectedProps<typeof connector>;
 
@@ -52,26 +54,11 @@ const UploadModal = ({
   isUploading,
   isUploaded,
   onCancel,
-  uploadSample,
+  onChangeCaption,
+  onClickUpload,
 }: Props) => {
   const router = useRouter();
   const [fileCaption, setFileCaption] = useState(caption);
-
-  const getFileType = () => {
-    if (fileType.includes("image")) return "image";
-    if (fileType.includes("video")) return "video";
-    if (fileType.includes("audio")) return "audio";
-    return fileType;
-  };
-  
-  const onClickUpload = () => {
-    const formData = new FormData();
-    formData.append("filename", file);
-    formData.append("caption", fileCaption);
-    formData.append("filetype", getFileType());
-
-    uploadSample(formData);
-  };
 
   return (
     <>
@@ -113,6 +100,7 @@ const UploadModal = ({
               value={fileCaption}
               onChange={(e) => {
                 setFileCaption(e.target.value);
+                onChangeCaption(e.target.value);
               }}
             />
           </div>

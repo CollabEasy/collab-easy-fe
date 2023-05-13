@@ -6,7 +6,7 @@ import { AppState } from "state";
 import { Dispatch } from "redux";
 import * as actions from "state/action/contestAction";
 import { connect, ConnectedProps } from "react-redux";
-import { getBase64, dataURLtoFile } from "helpers/helper";
+import { getBase64, dataURLtoFile, getFileType } from "helpers/helper";
 import {
   CameraOutlined,
   LoadingOutlined,
@@ -17,7 +17,7 @@ import "cropperjs/dist/cropper.css";
 import { User } from "types/model";
 import { ContestEntry } from "types/model/contest";
 import { updateProfilePicture } from "api/artist-user";
-import { showProfilePictureUpdateModal } from "state/action";
+import UploadModal from "./modal/sampleUploadModal";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user,
@@ -25,6 +25,8 @@ const mapStateToProps = (state: AppState) => ({
   submissions: state.contestSubmission,
   userModel: state.user,
   isFetchingArtistSubmission: state.contestSubmission.isFetchingArtistSubmission,
+  isUploading: state.contestSubmission.isUploading,
+  isUploaded: state.contestSubmission.isUploaded,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -32,10 +34,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistSubmission: (constestSlug: string) =>
     dispatch(actions.fetchArtistSubmission(constestSlug)),
 
-  // updateProfilePicture: (formData: FormData) =>
-  //   dispatch(actions.updateProfilePicture(formData)),
-  // showProfilePictureUpdateModal: (show: boolean) =>
-  //   dispatch(actions.showProfilePictureUpdateModal(show)),
+  uploadContestArtwork: (formData: FormData, contest: string) => dispatch(actions.addContestArtwork(formData, contest)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -47,40 +46,35 @@ const UploadContestArtwork = ({
   contest,
   submissions,
   userModel,
+  isUploading,
+  isUploaded,
   isFetchingArtistSubmission,
   fetchArtistSubmission,
-  // updateProfilePicture,
-  // showProfilePictureUpdateModal,
+  uploadContestArtwork,
 }: Props) => {
 
   const router = useRouter();
   const { id: contestSlug } = router.query;
-
+  const [editable, setEditable] = useState(true);
+  const [caption, setCaption] = useState("");
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [uploadFile, setUploadFile] = useState(null);
+  const [fileType, setFileType] = useState("");
   const cropperRef = useRef<ReactCropperElement>(null);
-  const showUploadModal = userModel.showProfilePictureUpdateModal;
+  const [showUploadModal, setShowUploadModal] = useState(false);
   const [showUploadingLoader, setShowUploadingLoader] = useState(false);
-  const isUploading = userModel.isUpdatingProfilePic;
+
+  const resetState = () => {
+    setImageUrl("");
+    setUploadFile(null);
+    setCaption("");
+    setShowUploadModal(false);
+  };
 
   useEffect(() => {
     fetchArtistSubmission(contestSlug as string);
   }, []);
-
-  useEffect(() => {
-    if (isUploading === showUploadingLoader) {
-      return;
-    }
-    if (!isUploading && showUploadingLoader) {
-      setTimeout(() => {
-        setShowUploadingLoader(isUploading);
-      }, 2000);
-    } else {
-      setShowUploadingLoader(isUploading);
-    }
-
-  }, [isUploading, showUploadingLoader]);
 
   const handleChange = (info) => {
     if (info.file.status === "uploading") {
@@ -94,7 +88,8 @@ const UploadContestArtwork = ({
         setImageUrl(imageUrl)
       );
       setUploadFile(info.file.originFileObj);
-      showProfilePictureUpdateModal(true);
+      setFileType(info.file.originFileObj.type);
+      setShowUploadModal(true);
     }
     if (info.file.status === "error") {
       // Get this url from response in real world.
@@ -140,8 +135,35 @@ const UploadContestArtwork = ({
     return `${src}?w=${width}&q=${quality || 75}`;
   };
 
+  const onClickUpload = () => {
+    const formData = new FormData();
+    
+    formData.append("filename", uploadFile);
+    formData.append("description", caption);
+    formData.append("filetype", getFileType(fileType));
+    uploadContestArtwork(formData, contestSlug as string);
+  }
+
+
   return (
     <div>
+      {showUploadModal && (
+          <UploadModal
+            user={user.user}
+            fileType={fileType}
+            caption={caption}
+            editable={editable}
+            file={uploadFile}
+            imageUrl={imageUrl}
+            isUploading={isUploading}
+            isUploaded={isUploaded}
+            onCancel={resetState}
+            onClickUpload={onClickUpload}
+            onChangeCaption={(caption: string) => {
+              setCaption(caption);
+            }}
+          />
+        )}
       <Upload
         name="avatar"
         listType="picture-card"
@@ -161,39 +183,6 @@ const UploadContestArtwork = ({
         width={150}
         priority
       />
-      {uploadFile && showUploadModal && (
-        <Modal
-          closable
-          onCancel={() => {
-            showProfilePictureUpdateModal(false);
-          }}
-          className="profilePicture_cropperModal"
-          visible={true}
-          footer={null}
-        >
-          <div className="profilePicture__cropperModalContainer">
-            <h4>Update Profile Picture</h4>
-            <Cropper
-              src={imageUrl}
-              guides={true}
-              background={false}
-              responsive={true}
-              style={{ height: 400, width: "100%" }}
-              initialAspectRatio={1 / 1}
-              aspectRatio={1 / 1}
-              ref={cropperRef}
-            />
-            <Button
-              type="primary"
-              className="common-medium-btn"
-              style={{ height: 'auto', marginTop: '10px' }}
-              onClick={handleSave}
-            >
-              Save
-            </Button>
-          </div>
-        </Modal>
-      )}
     </div>
   );
 };

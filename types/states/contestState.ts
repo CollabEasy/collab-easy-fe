@@ -11,6 +11,8 @@ export interface ContestState {
     isFetchingArtistSubmission: boolean;
     allSubmissions?: any[];
     artistSubmission?: any[];
+    isUploading: boolean,
+    isUploaded: boolean,
  }
 
  export interface ContestSubmissionVoteState {

@@ -65,6 +65,16 @@ export const addContestApi = async (data: ContestEntry) => {
   }
 }
 
+export const addContestArtworkApi = async (contest: string, data: FormData) => {
+  const config = postConfig(data);
+  try {
+    const result = await api.call(`api/v1/contest/submission/upload/${contest}/artwork`, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export const updateContestApi = async (data: any) => {
   const config = postConfig(data);
   try {

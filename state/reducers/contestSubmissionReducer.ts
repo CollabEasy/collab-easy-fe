@@ -6,6 +6,8 @@ const initialState: ContestSubmissionState = {
     isFetchingArtistSubmission: false,
     allSubmissions: [],
     artistSubmission: [],
+    isUploading: false,
+    isUploaded: false,
 };
 
 const contestSubmissionReducer = (state = initialState, action): ContestSubmissionState => {
@@ -45,7 +47,24 @@ const contestSubmissionReducer = (state = initialState, action): ContestSubmissi
                 ...state,
                 isFetchingSubmissions: false,
             };
-
+        case actionType.ADD_CONTEST_ARTWORK_REQUEST:
+            return {
+                ...state,
+                isUploaded: false,
+                isUploading: true
+            }
+        case actionType.ADD_CONTEST_ARTWORK_SUCCESS:
+            return {
+                ...state,
+                isUploading: false,
+                isUploaded: true,
+            }
+        case actionType.ADD_CONTEST_ARTWORK_FAILURE:
+            return {
+                ...state,
+                isUploaded: false,
+                isUploading: false,
+            }
         default:
             return state;
     }

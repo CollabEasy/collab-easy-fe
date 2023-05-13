@@ -84,3 +84,10 @@ export function dataURLtoFile(dataurl, filename) {
   }
   return new File([u8arr], filename, { type: mime });
 }
+
+export const getFileType = (fileType: string) => {
+  if (fileType.includes("image")) return "image";
+  if (fileType.includes("video")) return "video";
+  if (fileType.includes("audio")) return "audio";
+  return fileType;
+};

@@ -93,6 +93,28 @@ export const updateContestLogic = createLogic<
   },
 });
 
+export const addContestArtworkLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.addContestArtwork>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.ADD_CONTEST_ARTWORK],
+  async process({ action, api }, dispatch, done) {
+    try {
+      dispatch(actions.addContestArtworkRequest());
+      const { data, contest } = action.payload;
+      const result = await api.contestApi.addContestArtworkApi(contest, data);
+      dispatch(notifActions.showNotification(true, 'Your artwork for the contest submitted successfully. 🥳'));
+      dispatch(actions.addContestArtworkSuccess());
+      dispatch(actions.fetchArtistSubmission(contest));
+    } catch (error) {
+    } finally {
+      done();
+    }
+  },
+});
+
 export const fetchArtistSubmissionLogic = createLogic<
   AppState,
   FSACreatorPayload<typeof actions.fetchArtistSubmission>,

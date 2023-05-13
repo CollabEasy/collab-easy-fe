@@ -273,7 +273,7 @@ const ContestPage = ({
                                 </div>
                             </TabPane>
 
-                            {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) === "Ongoing" && (
+                            {/* {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) === "Ongoing" && ( */}
                                 <TabPane tab="Submit your work" key="2">
                                     <div className="contestDetailPage_tabContainer">
                                         <p className="common-p-style" style={{ textAlign: "center" }}>
@@ -285,7 +285,7 @@ const ContestPage = ({
                                         </div>
                                     </div>
                                 </TabPane>
-                            )}
+                            {/* )} */}
 
                             {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) !== "Upcoming" && (
                                 <TabPane tab="Leaderboard" key="3">

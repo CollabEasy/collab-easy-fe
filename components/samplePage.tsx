@@ -11,8 +11,8 @@ import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import CollabRequestTab from "components/collabRequestTab";
-import { AppState } from "state";
-import { allowedFileTypes, getBase64 } from "helpers/helper";
+import State, { AppState } from "state";
+import { allowedFileTypes, getBase64, getFileType } from "helpers/helper";
 import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
@@ -30,14 +30,16 @@ const { TabPane } = Tabs;
 const mapStateToProps = (state: AppState) => {
   const isDeleting = state.sample.isDeleting;
   const isDeleted = state.sample.isDeleted;
-
-  return { isDeleting, isDeleted }
+  const isUploading = state.sample.isUploading;
+  const isUploaded = state.sample.isUploaded;
+  return { isDeleting, isDeleted, isUploading, isUploaded }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   clearUploadSampleState: () => dispatch(action.clearUploadSampleState()),
   clearDeleteSampleState: () => dispatch(action.clearDeleteSampleState()),
   deleteSample: (sample: UserSample) => dispatch(action.deleteSample(sample)),
+  uploadSample: (formData: FormData) => dispatch(action.uploadSample(formData)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -55,8 +57,11 @@ const SamplePage = ({
   samples,
   isDeleting,
   isDeleted,
+  isUploading,
+  isUploaded,
   showLoader,
   deleteSample,
+  uploadSample,
   clearUploadSampleState,
   clearDeleteSampleState,
 }: Props) => {
@@ -177,6 +182,15 @@ const SamplePage = ({
     return sampleTiles;
   };
 
+  const onClickUpload = () => {
+    const formData = new FormData();
+    formData.append("filename", uploadFile);
+    formData.append("caption", caption);
+    formData.append("filetype", getFileType(fileType));
+
+    uploadSample(formData);
+  };
+
   if (showLoader) return <Loader />
 
   return (
@@ -190,7 +204,13 @@ const SamplePage = ({
             editable={editable}
             file={uploadFile}
             imageUrl={imageUrl}
+            isUploading={isUploading}
+            isUploaded={isUploaded}
             onCancel={resetState}
+            onClickUpload={onClickUpload}
+            onChangeCaption={(caption: string) => {
+              setCaption(caption);
+            }}
           />
         )}
         {showConfirmationModal && (
