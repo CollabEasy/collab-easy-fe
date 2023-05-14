@@ -54,14 +54,8 @@ const AllContestPage = ({
     const [allContests, setAllContests] = useState([]);
 
     const router = useRouter();
-    if (!IsAdmin(user.email)) {
-        router.push("/");
-    }
 
     useEffect(() => {
-        if (!IsAdmin(user.email)) {
-            return;
-        }
         fetchAllContests();
     }, []);
 
@@ -81,6 +75,7 @@ const AllContestPage = ({
         const resultArtists: JSX.Element[] = [];
         const now = new Date();
         let data = allContests.length != 0 ? allContests[0].data : [];
+        data.sort((a,b) => b.startDate - a.startDate);
         data.forEach(contest => {
             let status = GetContestStatus(now.getTime(), contest.startDate, contest.endDate);
             resultArtists.push(

@@ -9,7 +9,7 @@ import NotAuthorised from "@/components/error/notAuthorised";
 import LoginModal from '@/components/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
 import SamplePage from "@/components/samplePage";
-import { Card } from 'antd';
+import { Card, notification } from 'antd';
 import Image from 'next/image';
 import sampleImage from '../../public/images/mobile-landing.svg';
 import detailsImage from '../../public/images/contestDetails.svg';
@@ -44,6 +44,7 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     fetchContestAction: (slug: string) => dispatch(action.fetchContest(slug)),
     fetchContestSubmissions: (slug: string) => dispatch(action.fetchContestSubmissions(slug)),
+    fetchContestSubmissionArtistVotes: (slug: string) => dispatch(action.fetchContestSubmissionArtistVotes(slug)),
     upvoteContestSubmission: (data: any) => dispatch(action.upvoteContestSubmission(data)),
 });
 
@@ -64,25 +65,21 @@ const ContestPage = ({
     artistListData,
     fetchContestAction,
     fetchContestSubmissions,
+    fetchContestSubmissionArtistVotes,
     upvoteContestSubmission,
 }: Props) => {
 
     const router = useRouter();
     const { toContestPage } = useRoutesContext();
-    if (!IsAdmin(user.email)) {
-        router.push("/");
-    }
 
     const { id: slug, tab: tab } = router.query;
 
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     useEffect(() => {
-        if (!IsAdmin(user.email)) {
-            return;
-        }
         fetchContestAction(slug as string);
         fetchContestSubmissions(slug as string);
+        fetchContestSubmissionArtistVotes(slug as string);
     }, []);
 
     useEffect(() => {
@@ -126,16 +123,36 @@ const ContestPage = ({
         return `${src}?w=${width}&q=${quality || 75}`;
     };
 
-    const upvoteArtwork = (id, slug) => {
+    const showNotification = (title, message) => {
+        notification.open({
+            message: title,
+            description: message,
+        });
+    }
+    const upvoteArtwork = (id, slug, status) => {
         let obj = {
             "submissionId": id,
             "contestSlug": slug,
             "vote": true,
         }
-        upvoteContestSubmission(obj);
+        if (status === "Past") {
+            showNotification(
+                "Contest has finished!",
+                "Sorry but this contest has finished. You can not make changes to the vote 😕"
+            );
+        } else {
+            if (!isLoggedIn) {
+                showNotification(
+                    "Please login to upvote!",
+                    "We really appreciate you for supporting the artists by your votes 🙏🏻"
+                );
+            } else {
+                upvoteContestSubmission(obj);
+            }
+        }
     }
 
-    const getSubmissions = () => {
+    const getSubmissions = (status) => {
         const resultArtists: JSX.Element[] = [];
         let data = allSubmissions.length != 0 ? allSubmissions[0].data : [];
         let artistVotesData = allSubmissionsVotes.length != 0 ? allSubmissionsVotes[0].data : []
@@ -148,7 +165,7 @@ const ContestPage = ({
             resultArtists.push(
                 <div className='contestDetailPage_sampleTile'>
                     <Card
-                        style={{ height: '100%' }}
+                        style={{ height: '100%', width: '80%' }}
                         cover={
                             <Image
                                 loader={prismicLoader}
@@ -162,14 +179,13 @@ const ContestPage = ({
                         actions={[
                             <>
                                 {artistVotes.includes(submission.id) ? (
-                                    <FireOutlined key="upvote"
-                                        
-                                        onClick={() => upvoteArtwork(submission.id, slug)}
+                                    <FireFilled key="upvote"
+                                        style={{ color: "red" }}
+                                        onClick={() => upvoteArtwork(submission.id, slug, status)}
                                     />
                                 ) : (
-                                    <FireFilled key="upvote"
-                                        style={{color: "red"}}
-                                        onClick={() => upvoteArtwork(submission.id, slug)}
+                                    <FireOutlined key="upvote"
+                                        onClick={() => upvoteArtwork(submission.id, slug, status)}
                                     />
                                 )}
                             </>
@@ -273,7 +289,7 @@ const ContestPage = ({
                                 </div>
                             </TabPane>
 
-                            {/* {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) === "Ongoing" && ( */}
+                            {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) === "Ongoing" && (
                                 <TabPane tab="Submit your work" key="2">
                                     <div className="contestDetailPage_tabContainer">
                                         <p className="common-p-style" style={{ textAlign: "center" }}>
@@ -285,19 +301,28 @@ const ContestPage = ({
                                         </div>
                                     </div>
                                 </TabPane>
-                            {/* )} */}
+                            )}
 
                             {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) !== "Upcoming" && (
                                 <TabPane tab="Leaderboard" key="3">
                                     <div className="contestDetailPage_tabContainer">
                                         {allSubmissions.length != 0 && (
                                             <h2 className="common-h2-style" style={{ textAlign: "center" }}>
-                                                <b>{allSubmissions[0].data.length}</b> artists have submitted their work, dont miss out and
-                                                <Link href={routeToHref(toContestPage(slug as string, "submit"))} passHref> submit</Link> your work now!
+
+                                                {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) === "Ongoing" ? (
+                                                    <>
+                                                        <b>{allSubmissions[0].data.length}</b> artists have submitted their work! Dont miss out and
+                                                        <Link href={routeToHref(toContestPage(slug as string, "submit"))} passHref> submit</Link> your work now!
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <b>{allSubmissions[0].data.length}</b> artists participated in the contest.
+                                                    </>
+                                                )}
                                             </h2>
                                         )}
                                         <div className="contestDetailPage_submissionTabContainer">
-                                            {getSubmissions()}
+                                            {getSubmissions(GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate))}
                                         </div>
                                     </div>
                                 </TabPane>

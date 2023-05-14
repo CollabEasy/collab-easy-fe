@@ -18,6 +18,7 @@ import { User } from "types/model";
 import { ContestEntry } from "types/model/contest";
 import { updateProfilePicture } from "api/artist-user";
 import UploadModal from "./modal/sampleUploadModal";
+import Loader from "./loader";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user,
@@ -137,54 +138,71 @@ const UploadContestArtwork = ({
 
   const onClickUpload = () => {
     const formData = new FormData();
-    
+
     formData.append("filename", uploadFile);
     formData.append("description", caption);
     formData.append("filetype", getFileType(fileType));
     uploadContestArtwork(formData, contestSlug as string);
   }
 
+  const GetArtistSubmissionUrl = (artistSubmission) => {
+    if (artistSubmission.length > 0 && artistSubmission[0].data.length > 0) {
+      let submissionDetails = artistSubmission[0].data[0]
+      return submissionDetails["artworkUrl"];
+    }
+    return "";
+  }
 
   return (
-    <div>
-      {showUploadModal && (
-          <UploadModal
-            user={user.user}
-            fileType={fileType}
-            caption={caption}
-            editable={editable}
-            file={uploadFile}
-            imageUrl={imageUrl}
-            isUploading={isUploading}
-            isUploaded={isUploaded}
-            onCancel={resetState}
-            onClickUpload={onClickUpload}
-            onChangeCaption={(caption: string) => {
-              setCaption(caption);
-            }}
-          />
-        )}
-      <Upload
-        name="avatar"
-        listType="picture-card"
-        showUploadList={false}
-        accept="image/png, image/jpeg"
-        onChange={handleChange}
-      >
-        {uploadButton}
-      </Upload>
-      <Image
-        className={`artistProfile_profileImage${showUploadingLoader ? "Uploading" : ""
-          }`}
-        loader={prismicLoader}
-        src={user?.user.profile_pic_url}
-        alt="profile picture"
-        height={150}
-        width={150}
-        priority
-      />
-    </div>
-  );
+    <>
+      {isFetchingArtistSubmission ? (
+        <Loader />
+      ) : (
+        <>
+          {showUploadModal && (
+            <UploadModal
+              user={user.user}
+              fileType={fileType}
+              caption={caption}
+              editable={editable}
+              file={uploadFile}
+              imageUrl={imageUrl}
+              isUploading={isUploading}
+              isUploaded={isUploaded}
+              onCancel={resetState}
+              onClickUpload={onClickUpload}
+              onChangeCaption={(caption: string) => {
+                setCaption(caption);
+              }}
+            />
+          )}
+          {GetArtistSubmissionUrl(submissions.artistSubmission).length === 0 &&
+            <Upload
+              name="avatar"
+              listType="picture-card"
+              showUploadList={false}
+              accept="image/png, image/jpeg"
+              onChange={handleChange}
+            >
+              {uploadButton}
+            </Upload>
+          }
+          {GetArtistSubmissionUrl(submissions.artistSubmission).length > 0 &&
+            <Image
+              className={`artistProfile_profileImage${showUploadingLoader ? "Uploading" : ""
+                }`}
+              loader={prismicLoader}
+              src={GetArtistSubmissionUrl(submissions.artistSubmission)}
+              alt="profile picture"
+              height={150}
+              width={150}
+              priority
+            />
+          }
+        </>
+      )}
+    </>
+  )
 };
 
 export default connector(UploadContestArtwork);
