@@ -32,10 +32,8 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-
     fetchArtistSubmission: (constestSlug: string) =>
         dispatch(actions.fetchArtistSubmission(constestSlug)),
-
     uploadContestArtwork: (formData: FormData, contest: string) => dispatch(actions.addContestArtwork(formData, contest)),
 });
 
@@ -45,10 +43,7 @@ type Props = {} & ConnectedProps<typeof connector>;
 
 const ContestArtworkSubmission = ({
     user,
-    isLoggedIn,
-    contest,
     submissions,
-    userModel,
     isUploading,
     isUploaded,
     isFetchingArtistSubmission,
@@ -64,7 +59,6 @@ const ContestArtworkSubmission = ({
     const [imageUrl, setImageUrl] = useState("");
     const [uploadFile, setUploadFile] = useState(null);
     const [fileType, setFileType] = useState("");
-    const cropperRef = useRef<ReactCropperElement>(null);
     const [showUploadModal, setShowUploadModal] = useState(false);
     const [showUploadingLoader, setShowUploadingLoader] = useState(false);
 
@@ -98,23 +92,6 @@ const ContestArtworkSubmission = ({
             // Get this url from response in real world.
             setLoading(false);
             message.error("Error in uploading file");
-        }
-    };
-
-    const handleSave = () => {
-        if (typeof cropperRef.current?.cropper !== "undefined") {
-            setUploadFile(
-                dataURLtoFile(
-                    cropperRef.current?.cropper.getCroppedCanvas().toDataURL(),
-                    "wondor-cropped" + uploadFile.name
-                )
-            );
-            const canvas = cropperRef.current?.cropper.getCroppedCanvas();
-            canvas.toBlob(async (blob) => {
-                const formData = new FormData();
-                formData.append("filename", blob, "cropped.jpg");
-                updateProfilePicture(formData);
-            });
         }
     };
 

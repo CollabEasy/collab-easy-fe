@@ -308,7 +308,7 @@ const ContestPage = ({
                                                 {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) === "Ongoing" ? (
                                                     <>
                                                         <b>{allSubmissions[0].data.length}</b> artists have submitted their work! Dont miss out and
-                                                        <Link href={routeToHref(toContestPage(slug as string, "submit"))} passHref> submit</Link> your work now!
+                                                        <Link href={routeToHref(toContestPage(slug as string, "submit"))} passHref> submit</Link> your work if you have not already!
                                                     </>
                                                 ) : (
                                                     <>
