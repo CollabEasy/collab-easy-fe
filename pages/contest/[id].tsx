@@ -18,7 +18,7 @@ import * as action from "../../state/action";
 import Loader from "@/components/loader";
 import { GetContestStatus, GetDateString } from "helpers/contest";
 import { IsAdmin } from "helpers/helper";
-import UploadContestArtwork from "@/components/contestArtwork";
+import UploadContestArtworkPage from "@/components/contestArtworkPage";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { ContestSubmissionVote } from "types/model/contest";
@@ -293,7 +293,7 @@ const ContestPage = ({
                                 <TabPane tab="Submit your work" key="2">
                                     <div className="contestDetailPage_tabContainer">
                                         <div style={{ alignItems: "center" }}>
-                                            <UploadContestArtwork />
+                                            <UploadContestArtworkPage />
                                         </div>
                                     </div>
                                 </TabPane>
