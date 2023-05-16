@@ -128,6 +128,7 @@ const AnalyticsPage = ({
     const resultArtists: JSX.Element[] = [];
     const now = new Date();
     let data = allContests.length != 0 ? allContests[0].data : [];
+    data.sort((a,b) => b.startDate - a.startDate);
     data.forEach(contest => {
       let status = GetContestStatus(now.getTime(), contest.startDate, contest.endDate);
       resultArtists.push(
