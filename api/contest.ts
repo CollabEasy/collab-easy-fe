@@ -127,11 +127,21 @@ export const upvoteContestSubmissionApi = async (data: any) => {
   }
 };
 
-
 export const fetchContestSubmissionArtistVotesApi = async (slug: string) => {
   const config = getConfigWithToken();
   try {
-    let url = 'api/v1/contest/submission/artist/vote/' + slug;
+    let url = 'api/v1/contest/submission/votes/' + slug;
+    const result = await api.call(url, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchContestSubmissionVotesApi = async (slug: string) => {
+  const config = getConfig();
+  try {
+    let url = 'api/v1/contest/submission/votes/' + slug;
     const result = await api.call(url, config);
     return result;
   } catch (error) {

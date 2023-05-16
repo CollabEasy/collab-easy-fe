@@ -158,7 +158,9 @@ const ContestPage = ({
         let artistVotesData = allSubmissionsVotes.length != 0 ? allSubmissionsVotes[0].data : []
         let artistVotes = []
         artistVotesData.forEach(votes => {
-            artistVotes.push(votes.submissionId);
+            if (votes.artistId === user.artist_id && votes.vote === true) {
+                artistVotes.push(votes.submissionId);
+            }
         });
 
         data.forEach(submission => {

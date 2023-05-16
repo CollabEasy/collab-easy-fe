@@ -25,6 +25,7 @@ const mapStateToProps = (state: AppState) => ({
     isLoggedIn: state.user.isLoggedIn,
     contest: state.contest,
     submissions: state.contestSubmission,
+    allSubmissionsVotes: state.contestSubmissionVote.artistSubmissionVotes,
     userModel: state.user,
     isFetchingArtistSubmission: state.contestSubmission.isFetchingArtistSubmission,
     isUploading: state.contestSubmission.isUploading,
@@ -44,6 +45,7 @@ type Props = {} & ConnectedProps<typeof connector>;
 const ContestArtworkSubmission = ({
     user,
     submissions,
+    allSubmissionsVotes,
     isUploading,
     isUploaded,
     isFetchingArtistSubmission,
@@ -140,6 +142,17 @@ const ContestArtworkSubmission = ({
         return "";
     }
 
+    const getSubmissions = () => {
+        let artistVotesData = allSubmissionsVotes.length != 0 ? allSubmissionsVotes[0].data : []
+        let artistVotes = []
+        artistVotesData.forEach(votes => {
+            if (votes.artistId === user.user?.artist_id) {
+                artistVotes.push(votes.submissionId);
+            }
+        });
+        return artistVotes.length;
+    }
+
     return (
         <>
             {isFetchingArtistSubmission ? (
@@ -183,7 +196,9 @@ const ContestArtworkSubmission = ({
                     {GetArtistSubmissionUrl(submissions.artistSubmission).length > 0 &&
                         <>
                             <p className="common-p-style" style={{ textAlign: "center" }}>
-                                Thanks for submitting your work. It is now live for voting!
+                                Thanks for submitting your work. It is now live for voting. 
+                                So far, you have recieved <b>{getSubmissions()} votes</b>. 
+                                Spread the word and increase your chances of winning the contest! 
                             </p>
                             <Image
                                 className={`artistProfile_profileImage${showUploadingLoader ? "Uploading" : ""

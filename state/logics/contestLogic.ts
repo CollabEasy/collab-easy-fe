@@ -190,7 +190,7 @@ export const fetchContestSubmissionArtistVotesLogic = createLogic<
     try {
       const slug = action.payload.slug;
       dispatch(actions.fetchContestSubmissionArtistVotesRequest());
-      const result = await contestApi.fetchContestSubmissionArtistVotesApi(slug);
+      const result = await contestApi.fetchContestSubmissionVotesApi(slug);
       dispatch(actions.fetchContestSubmissionArtistVotesSuccess([result]));
     } catch (error) {
 
