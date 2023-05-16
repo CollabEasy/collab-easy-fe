@@ -292,10 +292,6 @@ const ContestPage = ({
                             {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) === "Ongoing" && (
                                 <TabPane tab="Submit your work" key="2">
                                     <div className="contestDetailPage_tabContainer">
-                                        <p className="common-p-style" style={{ textAlign: "center" }}>
-                                            You can submit only one art piece to this contest.
-                                            Make sure this is your best and final work.
-                                        </p>
                                         <div style={{ alignItems: "center" }}>
                                             <UploadContestArtwork />
                                         </div>

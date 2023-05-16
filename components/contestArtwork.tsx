@@ -22,6 +22,7 @@ import Loader from "./loader";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user,
+  isLoggedIn: state.user.isLoggedIn,
   contest: state.contest,
   submissions: state.contestSubmission,
   userModel: state.user,
@@ -44,6 +45,7 @@ type Props = {} & ConnectedProps<typeof connector>;
 
 const UploadContestArtwork = ({
   user,
+  isLoggedIn,
   contest,
   submissions,
   userModel,
@@ -155,50 +157,71 @@ const UploadContestArtwork = ({
 
   return (
     <>
-      {isFetchingArtistSubmission ? (
-        <Loader />
+      {!isLoggedIn ? (
+        <div>
+          <p className="common-p-style" style={{ textAlign: "center" }}>
+            We are happy to see that you have decided to participate in this contest. Please login to submit!
+          </p>
+        </div>
       ) : (
         <>
-          {showUploadModal && (
-            <UploadModal
-              user={user.user}
-              fileType={fileType}
-              caption={caption}
-              editable={editable}
-              file={uploadFile}
-              imageUrl={imageUrl}
-              isUploading={isUploading}
-              isUploaded={isUploaded}
-              onCancel={resetState}
-              onClickUpload={onClickUpload}
-              onChangeCaption={(caption: string) => {
-                setCaption(caption);
-              }}
-            />
+          {isFetchingArtistSubmission ? (
+            <Loader />
+          ) : (
+            <>
+              {showUploadModal && (
+                <UploadModal
+                  user={user.user}
+                  fileType={fileType}
+                  caption={caption}
+                  editable={editable}
+                  file={uploadFile}
+                  imageUrl={imageUrl}
+                  isUploading={isUploading}
+                  isUploaded={isUploaded}
+                  onCancel={resetState}
+                  onClickUpload={onClickUpload}
+                  onChangeCaption={(caption: string) => {
+                    setCaption(caption);
+                  }}
+                />
+              )}
+              {GetArtistSubmissionUrl(submissions.artistSubmission).length === 0 &&
+                <>
+                  <p className="common-p-style" style={{ textAlign: "center" }}>
+                    You can submit only one art piece to this contest.
+                    Make sure this is your best and final work.
+                  </p>
+                  <Upload
+                    name="avatar"
+                    listType="picture-card"
+                    showUploadList={false}
+                    accept="image/png, image/jpeg"
+                    onChange={handleChange}
+                  >
+                    {uploadButton}
+                  </Upload>
+                </>
+              }
+              {GetArtistSubmissionUrl(submissions.artistSubmission).length > 0 &&
+                <>
+                  <p className="common-p-style" style={{ textAlign: "center" }}>
+                    Thanks for submitting your work. It is now live for voting! 
+                  </p>
+                  <Image
+                    className={`artistProfile_profileImage${showUploadingLoader ? "Uploading" : ""
+                      }`}
+                    loader={prismicLoader}
+                    src={GetArtistSubmissionUrl(submissions.artistSubmission)}
+                    alt="profile picture"
+                    height={150}
+                    width={150}
+                    priority
+                  />
+                </>
+              }
+            </>
           )}
-          {GetArtistSubmissionUrl(submissions.artistSubmission).length === 0 &&
-            <Upload
-              name="avatar"
-              listType="picture-card"
-              showUploadList={false}
-              accept="image/png, image/jpeg"
-              onChange={handleChange}
-            >
-              {uploadButton}
-            </Upload>
-          }
-          {GetArtistSubmissionUrl(submissions.artistSubmission).length > 0 &&
-            <Image
-              className={`artistProfile_profileImage${showUploadingLoader ? "Uploading" : ""
-                }`}
-              loader={prismicLoader}
-              src={GetArtistSubmissionUrl(submissions.artistSubmission)}
-              alt="profile picture"
-              height={150}
-              width={150}
-              priority
-            />
-          }
         </>
       )}
     </>
