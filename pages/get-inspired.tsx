@@ -77,52 +77,51 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
           <div className="getInspired-textContainer">
             <h3 className="common-h3-style">Looking for insipiration?</h3>
             <p className="common-p-style">
-              This page is the perfect destination for you. Here, we update our list of themes 
-              and quotes on a <strong>weekly basis</strong>, so be sure to check back often. 
+              This page is the perfect destination for you. Here, we update our list of themes
+              and quotes on a <strong>weekly basis</strong>, so be sure to check back often.
               You won&apos;t want to miss out!
               <br></br>
             </p >
             <div className="theme">
-              <h5 className="card-text common-h5-style">Important events of the week</h5>
+              <h5 className="card-text common-h5-style">Important events of the month</h5>
               <p className="card-text common-p-style">
-                1. Earth Day - April 22nd
+                1. World Day for Cultural Diversity for Dialogue and Development - May 21st
               </p>
             </div>
             <div className="theme">
               <h5 className="card-text common-h5-style">Themes for the week</h5>
               <p className="card-text common-p-style">
-                1. Global Health: Create art that celebrates the work of healthcare workers, 
-                or that raises awareness about health issues affecting people around the world, 
-                such as access to clean water, vaccinations, or mental health.
+                1. <b>Emotions in Motion</b>: Use various artistic mediums to depict emotions in motion.
+                Capture the essence of joy, sadness, anger.
               </p>
               <p className="card-text common-p-style">
-                2. Climate Change: With the increasing awareness and concern for climate change,
-                many artists are creating works that reflect this issue. This can range from pieces
-                that raise awareness about the environmental impact of human activity to those
-                that explore the beauty of nature.
+                2. <b>Dreamscapes</b>: Let your imagination wander and create dreamlike landscapes or scenes.
+                Combine elements of reality and fantasy to depict surreal and whimsical environments
+                that evoke a sense of wonder and intrigue
               </p>
               <p className="card-text common-p-style">
-                3. Politics: With the recent political upheavals in many countries, artists are
-                creating works that reflect on these events. This can include pieces that comment
-                on the state of democracy, freedom of speech, or the role of the media in
-                shaping public opinion.
+                3. <b>Human Connection</b>: Explore the theme of human connection and relationships.
+                Depict various forms of connections, such as friendships, family bonds, or
+                the universal ties that bring people together, emphasizing the significance of
+                interpersonal connections in our lives.
               </p>
               <p className="card-text common-p-style">
-                4. Social Justice: Many artists are creating work that responds to current events
-                related to social justice and human rights issues. This can include pieces that
-                comment on police brutality, racism, sexism, or other forms of oppression.
+                4. <b>Environmental Consciousness</b>: Address environmental issues through your artwork.
+                Shed light on topics like climate change, sustainability, or conservation. Encourage
+                viewers to reflect on their relationship with the natural world and the importance of
+                taking care of our planet.
               </p>
             </div>
             <div className="theme">
               <h5 className="card-text common-h5-style">Quotes for the week</h5>
               <p className="card-text common-p-style">
-                1. The best way to predict your future is to create it. - Abraham Lincoln
+                1. Believe you can, and you are halfway there! - Abraham Lincoln
               </p>
               <p className="card-text common-p-style">
-                2. The only way to do great work is to love what you do - Steve Jobs
+                2. The only way to do great work is to love what you do! - Steve Jobs
               </p>
               <p className="card-text common-p-style">
-                3. Your time is limited, don&apos;t waste it living someone else&apos;s life - Steve Jobs
+                3. Every day may not be good, but there is something good in every day!
               </p>
             </div>
             <div className="theme">
