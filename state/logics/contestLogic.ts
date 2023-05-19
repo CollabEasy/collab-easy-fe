@@ -108,6 +108,7 @@ export const addContestArtworkLogic = createLogic<
       dispatch(notifActions.showNotification(true, 'Your artwork for the contest submitted successfully. 🥳'));
       dispatch(actions.addContestArtworkSuccess());
       dispatch(actions.fetchArtistSubmission(contest));
+      dispatch(actions.fetchContestSubmissions(contest));
     } catch (error) {
     } finally {
       done();

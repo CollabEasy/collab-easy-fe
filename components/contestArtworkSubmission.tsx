@@ -180,7 +180,7 @@ const ContestArtworkSubmission = ({
                         <>
                             <p className="common-p-style" style={{ textAlign: "center" }}>
                                 You can submit only one art piece to this contest.
-                                Make sure this is your best and final work.
+                                Make sure this is your best and final work!.
                             </p>
                             <Upload
                                 name="avatar"
