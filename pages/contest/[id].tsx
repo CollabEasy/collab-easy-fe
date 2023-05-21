@@ -11,9 +11,10 @@ import NewUserModal from '@/components/modal/newUserModal';
 import SamplePage from "@/components/samplePage";
 import { Card, notification } from 'antd';
 import Image from 'next/image';
+import { Modal } from 'antd';
 import sampleImage from '../../public/images/mobile-landing.svg';
 import detailsImage from '../../public/images/contestDetails.svg';
-import { FireOutlined, FireFilled } from '@ant-design/icons';
+import { FireOutlined, FireFilled, ReadOutlined } from '@ant-design/icons';
 import * as action from "../../state/action";
 import Loader from "@/components/loader";
 import { GetContestStatus, GetDateString } from "helpers/contest";
@@ -21,7 +22,7 @@ import { IsAdmin } from "helpers/helper";
 import UploadContestArtworkPage from "@/components/contestArtworkPage";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
-import { ContestSubmissionVote } from "types/model/contest";
+import { ContestSubmission } from "types/model/contest";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -69,12 +70,21 @@ const ContestPage = ({
     upvoteContestSubmission,
 }: Props) => {
 
+    const emptyContestSubmissionDetails: ContestSubmission = {
+        imageUrl: "",
+        description: "",
+    };
+
     const router = useRouter();
     const { toContestPage } = useRoutesContext();
 
     const { id: slug, tab: tab } = router.query;
 
     const [showProfileModal, setShowProfileModal] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [contestSubmissionDetails, setContestSubmissionDetails] = useState(
+        emptyContestSubmissionDetails
+    );
 
     useEffect(() => {
         fetchContestAction(slug as string);
@@ -92,6 +102,23 @@ const ContestPage = ({
             setShowProfileModal(false);
         }
     }, [user, artistListData])
+
+    const showModal = (imageUrl, description) => {
+        let obj = {
+            imageUrl: imageUrl,
+            description: description
+        }
+        setContestSubmissionDetails(obj);
+        setIsModalOpen(true);
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
 
     const getActiveTab = () => {
         let active = "1";
@@ -165,18 +192,25 @@ const ContestPage = ({
 
         data.forEach(submission => {
             resultArtists.push(
-                <div className='contestDetailPage_sampleTile'>
+                <div className='contestDetailPage_sampleTile' >
                     <Card
-                        style={{ height: '100%', width: '80%' }}
+                        style={{ width: 300 }}
                         cover={
-                            <Image
-                                loader={prismicLoader}
-                                src={submission.artworkUrl}
-                                alt="cards"
-                                height={250}
-                                width={250}
-                                priority
-                            />
+                            // <Image
+                            //     loader={prismicLoader}
+                            //     src={submission.artworkUrl}
+                            //     alt="cards"
+                            //     height={250}
+                            //     width={250}
+                            //     priority
+                            // />
+                            <div style={{ overflow: "hidden", height: "300px" }}>
+                                <img
+                                    alt="sample"
+                                    style={{ height: "100%", width: "100%" }}
+                                    src={submission.artworkUrl}
+                                />
+                            </div>
                         }
                         actions={[
                             <>
@@ -190,10 +224,14 @@ const ContestPage = ({
                                         onClick={() => upvoteArtwork(submission.id, slug, status)}
                                     />
                                 )}
-                            </>
+
+                            </>,
+                            <ReadOutlined
+                                onClick={() => showModal(submission.artworkUrl, submission.description)}
+                            />
                         ]}
                     >
-                        <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}> {submission.description}</span>} />
+                        <Meta className="common-text-style" title={<span> {submission.description}</span>} />
                     </Card>
                 </div>
             )
@@ -204,131 +242,155 @@ const ContestPage = ({
     const now = new Date();
     return (
         <>
-            {loginModalDetails.openModal && !user.new_user && (
-                <LoginModal />
-            )
-            }
-            {showProfileModal && (
-                <NewUserModal />
-            )
-            }
-            {isFetchingContest && isFetchingSubmissions && isFetchingSubmissionVotes ? (
-                <Loader />
-            ) : (
-                <>
-                    <div className="contestDetailPage_container">
-                        <Tabs
-                            type="card"
-                            centered
-                            onChange={(key: string) => {
-                                redirect(key);
-                            }}
-                            activeKey={getActiveTab()}
-                        >
-                            <TabPane tab="Contest details" key="1">
+            <>
+                {loginModalDetails.openModal && !user.new_user && (
+                    <LoginModal />
+                )
+                }
+                {showProfileModal && (
+                    <NewUserModal />
+                )
+                }
+                {isFetchingContest && isFetchingSubmissions && isFetchingSubmissionVotes ? (
+                    <Loader />
+                ) : (
+                    <>
+                        <div className="contestDetailPage_container">
+                            <Tabs
+                                type="card"
+                                centered
+                                onChange={(key: string) => {
+                                    redirect(key);
+                                }}
+                                activeKey={getActiveTab()}
+                            >
+                                <TabPane tab="Contest details" key="1">
 
-                                <div className="responsive-two-column-grid">
-                                    <div>
-                                        <Image
-                                            alt="Image Alt"
-                                            src={detailsImage}
-                                            layout="responsive"
-                                            objectFit="contain" // Scale your image down to fit into the container
-                                        />
-                                    </div>
-                                    <div className="contestDetailPage_tabContainer">
-                                        <b className="common-text-style">
-                                            Unleash your inner artist on Wonder - the platform for collaborative culture among artists.
-                                            Connect and express yourself with fellow art enthusiasts, and participate
-                                            in our monthly contests for inspiration to create something new and exciting.
-                                            Join us and discover the power of art to bring people together.
-                                        </b>
-                                        <br></br><br></br>
-
-                                        <h2 className="common-h1-style">
-                                            Contest Details
-                                        </h2>
-                                        <p className="common-p-style">
-                                            <b>Theme:</b> {contest.contest[0]?.data.title}
-                                        </p>
-                                        <p className="common-p-style">
-                                            <b>Description:</b> {contest.contest[0]?.data.description}
-                                        </p>
-                                        <p className="common-p-style">
-                                            <b>Start date:</b> {GetDateString(contest.contest[0]?.data.startDate)}
-                                        </p>
-                                        <p className="common-p-style">
-                                            <b>End date:</b> {GetDateString(contest.contest[0]?.data.endDate)}
-                                        </p>
-                                        <p className="common-p-style">
-                                            <b>Duration:</b> {(contest.contest[0]?.data.endDate - contest.contest[0]?.data.startDate) / (1000 * 86400) + 1} days
-                                        </p>
-
-                                        <h2 className="common-h2-style">Rules and Regulations:</h2>
-                                        <ul className="common-text-style">
-                                            <li>Any artist with a valid account on Wondor is eligible to participate.</li>
-                                            <li>Your work should be inspired from the theme of the contest.</li>
-                                            <li>Submit an image of your artwork. You can submit only one piece for the contest.</li>
-                                            <li>You work will be judged by other artists on the platform. Final decision will include things like creativity, technique, adherence to the theme, and overall impact.</li>
-                                            <li>You will be disqualified from the contest for plagiarism, offensive content, or failure to adhere to the rules and guidelines</li>
-                                            <li> You can also send in your queries in an email to wondor4creators@gmail.com, during the contest.</li>
-                                        </ul>
-
-                                        <h2 className="common-h2-style">Prize</h2>
-                                        <p className="common-p-style">We believe anyone who participates is a winner. However, we will give an
-                                            amazon gift card to 3 artists whose work is most upvoted.</p>
-                                        <p className="common-p-style">
-                                            <b>1st winner:</b> USD 20
-                                        </p>
-                                        <p className="common-p-style">
-                                            <b>2nd winner</b> USD 15
-                                        </p>
-                                        <p className="common-p-style">
-                                            <b>3rd winner</b> USD 10
-                                        </p>
-                                        <b className="common-text-style">Are you ready? Let your imagination soar and join the ultimate art showdown!</b>
-                                    </div>
-                                </div>
-                            </TabPane>
-
-                            {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) === "Ongoing" && (
-                                <TabPane tab="Submit your work" key="2">
-                                    <div className="contestDetailPage_tabContainer">
-                                        <div style={{ alignItems: "center" }}>
-                                            <UploadContestArtworkPage />
+                                    <div className="responsive-two-column-grid">
+                                        <div>
+                                            <Image
+                                                alt="Image Alt"
+                                                src={detailsImage}
+                                                layout="responsive"
+                                                objectFit="contain" // Scale your image down to fit into the container
+                                            />
                                         </div>
-                                    </div>
-                                </TabPane>
-                            )}
+                                        <div className="contestDetailPage_tabContainer">
+                                            <b className="common-text-style">
+                                                Unleash your inner artist on Wonder - the platform for collaborative culture among artists.
+                                                Connect and express yourself with fellow art enthusiasts, and participate
+                                                in our monthly contests for inspiration to create something new and exciting.
+                                                Join us and discover the power of art to bring people together.
+                                            </b>
+                                            <br></br><br></br>
 
-                            {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) !== "Upcoming" && (
-                                <TabPane tab="Leaderboard" key="3">
-                                    <div className="contestDetailPage_tabContainer">
-                                        {allSubmissions.length != 0 && (
-                                            <h2 className="common-h2-style" style={{ textAlign: "center" }}>
-
-                                                {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) === "Ongoing" ? (
-                                                    <>
-                                                        <b>{allSubmissions[0].data.length}</b> artists have submitted their work! Dont miss out and
-                                                        <Link href={routeToHref(toContestPage(slug as string, "submit"))} passHref> submit</Link> your work if you have not already!
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <b>{allSubmissions[0].data.length}</b> artists participated in the contest.
-                                                    </>
-                                                )}
+                                            <h2 className="common-h1-style">
+                                                Contest Details
                                             </h2>
-                                        )}
-                                        <div className="contestDetailPage_submissionTabContainer">
-                                            {getSubmissions(GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate))}
+                                            <p className="common-p-style">
+                                                <b>Theme:</b> {contest.contest[0]?.data.title}
+                                            </p>
+                                            <p className="common-p-style">
+                                                <b>Description:</b> {contest.contest[0]?.data.description}
+                                            </p>
+                                            <p className="common-p-style">
+                                                <b>Start date:</b> {GetDateString(contest.contest[0]?.data.startDate)}
+                                            </p>
+                                            <p className="common-p-style">
+                                                <b>End date:</b> {GetDateString(contest.contest[0]?.data.endDate)}
+                                            </p>
+                                            <p className="common-p-style">
+                                                <b>Duration:</b> {(contest.contest[0]?.data.endDate - contest.contest[0]?.data.startDate) / (1000 * 86400) + 1} days
+                                            </p>
+
+                                            <h2 className="common-h2-style">Rules and Regulations:</h2>
+                                            <ul className="common-text-style">
+                                                <li>Any artist with a valid account on Wondor is eligible to participate.</li>
+                                                <li>Your work should be inspired from the theme of the contest.</li>
+                                                <li>Submit an image of your artwork. You can submit only one piece for the contest.</li>
+                                                <li>You work will be judged by other artists on the platform. Final decision will include things like creativity, technique, adherence to the theme, and overall impact.</li>
+                                                <li>You will be disqualified from the contest for plagiarism, offensive content, or failure to adhere to the rules and guidelines</li>
+                                                <li> You can also send in your queries in an email to wondor4creators@gmail.com, during the contest.</li>
+                                            </ul>
+
+                                            <h2 className="common-h2-style">Prize</h2>
+                                            <p className="common-p-style">We believe anyone who participates is a winner. However, we will give an
+                                                amazon gift card to 3 artists whose work is most upvoted.</p>
+                                            <p className="common-p-style">
+                                                <b>1st winner:</b> USD 20
+                                            </p>
+                                            <p className="common-p-style">
+                                                <b>2nd winner</b> USD 15
+                                            </p>
+                                            <p className="common-p-style">
+                                                <b>3rd winner</b> USD 10
+                                            </p>
+                                            <b className="common-text-style">Are you ready? Let your imagination soar and join the ultimate art showdown!</b>
                                         </div>
                                     </div>
                                 </TabPane>
-                            )}
-                        </Tabs>
-                    </div>
-                </>
-            )}
+
+                                {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) === "Ongoing" && (
+                                    <TabPane tab="Submit your work" key="2">
+                                        <div className="contestDetailPage_tabContainer">
+                                            <div style={{ alignItems: "center" }}>
+                                                <UploadContestArtworkPage />
+                                            </div>
+                                        </div>
+                                    </TabPane>
+                                )}
+
+                                {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) !== "Upcoming" && (
+                                    <TabPane tab="Leaderboard" key="3">
+                                        <div className="contestDetailPage_tabContainer">
+                                            {allSubmissions.length != 0 && (
+                                                <h2 className="common-h2-style" style={{ textAlign: "center" }}>
+
+                                                    {GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate) === "Ongoing" ? (
+                                                        <>
+                                                            <b>{allSubmissions[0].data.length}</b> artists have submitted their work! Dont miss out and
+                                                            <Link href={routeToHref(toContestPage(slug as string, "submit"))} passHref> submit</Link> your work if you have not already!
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <b>{allSubmissions[0].data.length}</b> artists participated in the contest.
+                                                        </>
+                                                    )}
+                                                </h2>
+                                            )}
+                                            <div className="contestDetailPage_submissionTabContainer">
+                                                {getSubmissions(GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate))}
+                                            </div>
+                                        </div>
+                                    </TabPane>
+                                )}
+                            </Tabs>
+                        </div>
+                    </>
+                )}
+            </>
+            <div>
+                {isModalOpen &&
+                    <Modal closable
+                        onCancel={handleCancel}
+                        visible={isModalOpen}
+                        footer={null}
+
+                    >
+                        <div style={{ overflow: "hidden", height: "100%" }}>
+                            <img
+                                alt="sample"
+                                style={{ height: "100%", width: "100%" }}
+                                src={contestSubmissionDetails.imageUrl}
+                            />
+                        </div>
+                        <p style={{ textAlign: "center" }} className='common-text-style'>
+                            {contestSubmissionDetails.description}
+                        </p>
+
+                    </Modal>
+                }
+            </div>
         </>
     );
 };
