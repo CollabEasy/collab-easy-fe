@@ -196,21 +196,22 @@ const ContestPage = ({
                     <Card
                         style={{ width: 300 }}
                         cover={
-                            // <Image
-                            //     loader={prismicLoader}
-                            //     src={submission.artworkUrl}
-                            //     alt="cards"
-                            //     height={250}
-                            //     width={250}
-                            //     priority
-                            // />
-                            <div style={{ overflow: "hidden", height: "300px" }}>
-                                <img
-                                    alt="sample"
-                                    style={{ height: "100%", width: "100%" }}
-                                    src={submission.artworkUrl}
-                                />
-                            </div>
+                            <Image
+                                loader={prismicLoader}
+                                src={submission.artworkUrl}
+                                alt="cards"
+                                height={250}
+                                width={250}
+                                priority
+                            />
+                            // <div style={{ overflow: "hidden", height: "300px" }}>
+                            //     <Image
+                            //         alt="sample"
+                            //         height= "100%"
+                            //         width= "100%"
+                            //         src={submission.artworkUrl}
+                            //     />
+                            // </div>
                         }
                         actions={[
                             <>
@@ -220,13 +221,13 @@ const ContestPage = ({
                                         onClick={() => upvoteArtwork(submission.id, slug, status)}
                                     />
                                 ) : (
-                                    <FireOutlined key="upvote"
+                                    <FireOutlined key="downvote"
                                         onClick={() => upvoteArtwork(submission.id, slug, status)}
                                     />
                                 )}
 
                             </>,
-                            <ReadOutlined
+                            <ReadOutlined key="details"
                                 onClick={() => showModal(submission.artworkUrl, submission.description)}
                             />
                         ]}
@@ -378,10 +379,19 @@ const ContestPage = ({
 
                     >
                         <div style={{ overflow: "hidden", height: "100%" }}>
-                            <img
+                            {/* <Image
                                 alt="sample"
-                                style={{ height: "100%", width: "100%" }}
+                                height= "100%"
+                                width= "100%"
                                 src={contestSubmissionDetails.imageUrl}
+                            /> */}
+                            <Image
+                                loader={prismicLoader}
+                                src={contestSubmissionDetails.imageUrl}
+                                alt="cards"
+                                height={250}
+                                width={250}
+                                priority
                             />
                         </div>
                         <p style={{ textAlign: "center" }} className='common-text-style'>
