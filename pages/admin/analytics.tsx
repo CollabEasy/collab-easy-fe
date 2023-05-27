@@ -11,7 +11,7 @@ import { Line } from "react-chartjs-2";
 import { CategoryScale } from 'chart.js';
 import Chart from 'chart.js/auto';
 import router from "next/router";
-import { Button, Card, Tag } from "antd";
+import { Button, Card, Table, Tag } from "antd";
 import { ContestEntry } from "types/model/contest";
 import ContestModal from "@/components/modal/contestModal";
 import { IsAdmin } from "helpers/helper";
@@ -22,6 +22,7 @@ import { useRoutesContext } from "components/routeContext";
 const mapStateToProps = (state: AppState) => ({
   analytics: state.analytics,
   user: state.user,
+  categories: state.category.categories,
   contests: state.contest,
   showContestModal: state.contest?.showContestModal,
   isFetchingContest: state.contest.isFetchingContest,
@@ -33,6 +34,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
   fetchAllContests: () =>
     dispatch(actions.fetchAllContests()),
+
+  getAllCategories: () => 
+    dispatch(actions.getAllCategories()),
 
   setShowContestModal: (show: boolean) =>
     dispatch(actions.setShowContestModal(show)),
@@ -59,10 +63,12 @@ const AnalyticsPage = ({
   analytics,
   user,
   contests,
+  categories,
   showContestModal,
   isFetchingContest,
   fetchUserAnalytics,
   fetchAllContests,
+  getAllCategories,
   setShowContestModal
 }: Props) => {
 
@@ -90,6 +96,7 @@ const AnalyticsPage = ({
     }
     fetchUserAnalytics(startDateStr, currentDate);
     fetchAllContests();
+    getAllCategories();
   }, [beginDate]);
 
   useEffect(() => {
@@ -165,6 +172,43 @@ const AnalyticsPage = ({
     return resultArtists;
   };
 
+  const updateUserProspectus = (entry) => {
+    // setProspectusEntryDetails(entry);
+    // setShowSocialProspectusModal(true);
+  };
+  const deleteUserProspectus = (entry: { name: any; }) => {
+    // deleteArtistSocialProspectus(GetSocialPlatformId(entry.name));
+  };
+
+  const columns = [
+    { title: "Id", dataIndex: "id", key: "id" },
+    { title: "Name", dataIndex: "artName", key: "name" },
+    { title: "Slug", dataIndex: "slug", key: "slug" },
+    { title: "Description", dataIndex: "description", key: "description" },
+    { title: "Approved", dataIndex: "approved", key: "approved" },
+    {
+      title: "Action",
+      key: "key",
+      dataIndex: "key",
+      // eslint-disable-next-line react/display-name
+      render: (_text: any, record: any) => (
+        <>
+          <Button type="primary" onClick={() => updateUserProspectus(record)}>
+            Update
+          </Button>
+          {/* <Button onClick={() => deleteUserProspectus(record)}>Delete</Button> */}
+        </>
+      ),
+    },
+  ];
+
+  
+  const getCategories = (categories) => {
+    categories.sort((a,b) => a.id - b.id);
+    return <Table columns={columns} dataSource={categories} />;
+  };
+
+  
   return (
     <>
       {analytics.users.isFetchingUserAnalytics || isFetchingContest ? (
@@ -216,6 +260,24 @@ const AnalyticsPage = ({
                 onClick={ShowContestEntryModal}
               >
                 Add contest
+              </Button>
+            </div>
+          </div>
+          
+          <div className="analytics__pageContainer">
+            <h1 className="common-h1-style text-center">Total categories : {categories.length}</h1>
+            <div className="col-md-12 listingContainer" style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+              {getCategories(categories)}
+            </div>
+            <div className="analytics__contestButtonContainer">
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="common-medium-btn"
+                style={{ height: 'auto', margin: '20px' }}
+                onClick={ShowContestEntryModal}
+              >
+                Add category
               </Button>
             </div>
           </div>

@@ -8,4 +8,13 @@ export interface CategoryState {
     categories: any[];
     artists: User[];
     errorInFetchingArtists: boolean;
+    isUpdatingCategory: boolean;
+}
+
+export interface CategoryEntry {
+    id: number;
+    slug: string; 
+    name: string;
+    description: string;
+    approved: boolean;
 }

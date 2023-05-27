@@ -68,3 +68,22 @@ export const fetchArtistCategoriesLogic = createLogic<
     }
   },
 });
+
+export const addCategoryLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.addCategory>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.ADD_CATEGORY],
+  async process({ api }, dispatch, done) {
+    try {
+      dispatch(actions.addCategoryRequest())
+      const categoryData = await categoryApi.addCategoryApi();
+      dispatch(actions.addCategorySuccess(categoryData));
+    } catch (error) {
+    } finally {
+      done();
+    }
+  },
+});

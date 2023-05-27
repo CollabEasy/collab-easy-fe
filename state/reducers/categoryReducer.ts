@@ -9,6 +9,7 @@ const initialState: CategoryState = {
   errorInFetchingArtists: false,
   categories: [],
   artists: [],
+  isUpdatingCategory: false,
 };
 
 const categoryReducer = (state = initialState, action): CategoryState => {

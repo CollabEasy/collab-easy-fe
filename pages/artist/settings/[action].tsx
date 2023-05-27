@@ -662,12 +662,12 @@ const EditProfile = ({
                         {categories.length > 0 &&
                           categories.map((category, index) => (
                             <Option
-                              value={category}
-                              label={category}
-                              key={category}
+                              value={category.artName}
+                              label={category.artName}
+                              key={category.artName}
                             >
                               <div className="demo-option-label-item">
-                                {category}
+                                {category.artName}
                               </div>
                             </Option>
                           ))}
