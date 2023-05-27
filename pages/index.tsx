@@ -160,7 +160,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-4 col-xl-4">
               <Link href={routeToHref(toAllContestPage())} passHref>
                 <Card style={{ height: '100%' }} cover={<Image src={contestTileImage} alt="cards" />}>
-                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Want to compete and win a prize? enter Wonder monthly contests 🤑 </span>} />
+                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Want to win a prize? enter Wondor monthly contests 🤑 </span>} />
                 </Card>
               </Link>
             </div>
