@@ -143,27 +143,27 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         </div>
         <div>
           <div className="row custom-padding">
-          <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-6 col-xl-6">
+          <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-4 col-xl-4">
               <Link href={routeToHref(toGetInspired())} passHref>
                 <Card style={{ height: '100%' }} cover={<Image src={inspireImg} alt="cards" />}>
                   <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Searching for an idea for your next hit? We got you covered 🥳 </span>} />
                 </Card>
               </Link>
             </div>
-            <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-6 col-xl-6">
+            <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-4 col-xl-4">
               <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref>
                 <Card style={{ height: '100%' }} cover={<Image src={ideaImg} alt="cards" sizes="small" />}>
                   <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Got an idea? Add it to your scratchpad before you forget 😎 </span>} />
                 </Card>
               </Link>
             </div>
-            {/* <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-4 col-xl-4">
+            <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-4 col-xl-4">
               <Link href={routeToHref(toAllContestPage())} passHref>
                 <Card style={{ height: '100%' }} cover={<Image src={contestTileImage} alt="cards" />}>
                   <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Want to compete and win a prize? enter Wonder monthly contests 🤑 </span>} />
                 </Card>
               </Link>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
