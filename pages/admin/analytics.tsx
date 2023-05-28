@@ -18,6 +18,8 @@ import { IsAdmin } from "helpers/helper";
 import { routeToHref } from "config/routes";
 import { GetContestStatus } from "helpers/contest";
 import { useRoutesContext } from "components/routeContext";
+import { CategoryEntry } from "types/states/category";
+import CategoryModal from "@/components/modal/categoryModal";
 
 const mapStateToProps = (state: AppState) => ({
   analytics: state.analytics,
@@ -35,7 +37,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchAllContests: () =>
     dispatch(actions.fetchAllContests()),
 
-  getAllCategories: () => 
+  getAllCategories: () =>
     dispatch(actions.getAllCategories()),
 
   setShowContestModal: (show: boolean) =>
@@ -57,6 +59,15 @@ const emptyContestEntryDetails: ContestEntry = {
   description: "",
   startDate: tomorrow.toDate(),
   endDate: weekLater.toDate(),
+};
+
+
+const emptyNewCategoryDetails: CategoryEntry = {
+  slug: "",
+  artName: "",
+  description: "",
+  id: 0,
+  approved: false
 };
 
 const AnalyticsPage = ({
@@ -87,6 +98,11 @@ const AnalyticsPage = ({
   const [contestEntryRequestDetails, setContestEntryDetails] = useState(
     emptyContestEntryDetails
   );
+  const [newCategoryDetails, setNewCategoryDetails] = useState(
+    emptyNewCategoryDetails
+  );
+
+  const [showCategoryModal, setShowCategorytModal] = useState(false);
   const [allContests, setAllContests] = useState([]);
   const { toContestPage } = useRoutesContext();
 
@@ -127,15 +143,29 @@ const AnalyticsPage = ({
     setShowContestModal(true);
   };
 
+  const ShowNewCategoryModal = () => {
+    setNewCategoryDetails(emptyNewCategoryDetails);
+    setShowCategorytModal(true);
+  };
+
   const HideContestEntryModal = () => {
     setShowContestModal(false);
+  };
+
+  const HideCatgeoryEntryModal = () => {
+    setShowCategorytModal(false);
+  };
+
+  const updateCategory = (entry: React.SetStateAction<CategoryEntry>) => {
+    setNewCategoryDetails(entry);
+    setShowCategorytModal(true);
   };
 
   const getAllContests = (allContests) => {
     const resultArtists: JSX.Element[] = [];
     const now = new Date();
     let data = allContests.length != 0 ? allContests[0].data : [];
-    data.sort((a,b) => b.startDate - a.startDate);
+    data.sort((a, b) => b.startDate - a.startDate);
     data.forEach(contest => {
       let status = GetContestStatus(now.getTime(), contest.startDate, contest.endDate);
       resultArtists.push(
@@ -172,14 +202,6 @@ const AnalyticsPage = ({
     return resultArtists;
   };
 
-  const updateUserProspectus = (entry) => {
-    // setProspectusEntryDetails(entry);
-    // setShowSocialProspectusModal(true);
-  };
-  const deleteUserProspectus = (entry: { name: any; }) => {
-    // deleteArtistSocialProspectus(GetSocialPlatformId(entry.name));
-  };
-
   const columns = [
     { title: "Id", dataIndex: "id", key: "id" },
     { title: "Name", dataIndex: "artName", key: "name" },
@@ -193,7 +215,7 @@ const AnalyticsPage = ({
       // eslint-disable-next-line react/display-name
       render: (_text: any, record: any) => (
         <>
-          <Button type="primary" onClick={() => updateUserProspectus(record)}>
+          <Button type="primary" onClick={() => updateCategory(record)}>
             Update
           </Button>
           {/* <Button onClick={() => deleteUserProspectus(record)}>Delete</Button> */}
@@ -202,13 +224,12 @@ const AnalyticsPage = ({
     },
   ];
 
-  
   const getCategories = (categories) => {
-    categories.sort((a,b) => a.id - b.id);
+    categories.sort((a, b) => a.id - b.id);
     return <Table columns={columns} dataSource={categories} />;
   };
 
-  
+
   return (
     <>
       {analytics.users.isFetchingUserAnalytics || isFetchingContest ? (
@@ -263,7 +284,7 @@ const AnalyticsPage = ({
               </Button>
             </div>
           </div>
-          
+
           <div className="analytics__pageContainer">
             <h1 className="common-h1-style text-center">Total categories : {categories.length}</h1>
             <div className="col-md-12 listingContainer" style={{ paddingLeft: "20px", paddingRight: "20px" }}>
@@ -275,7 +296,7 @@ const AnalyticsPage = ({
                 htmlType="submit"
                 className="common-medium-btn"
                 style={{ height: 'auto', margin: '20px' }}
-                onClick={ShowContestEntryModal}
+                onClick={ShowNewCategoryModal}
               >
                 Add category
               </Button>
@@ -290,6 +311,18 @@ const AnalyticsPage = ({
                 }}
                 isViewMode={true}
                 contestEntry={contestEntryRequestDetails}
+              />
+            )}
+          </div>
+
+          <div>
+            {showCategoryModal && (
+              <CategoryModal
+                onCancel={() => {
+                  HideCatgeoryEntryModal();
+                }}
+                isViewMode={true}
+                categoryEntry={newCategoryDetails}
               />
             )}
           </div>

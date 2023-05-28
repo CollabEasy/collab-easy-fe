@@ -14,6 +14,34 @@ const initialState: CategoryState = {
 
 const categoryReducer = (state = initialState, action): CategoryState => {
   switch (action.type) {
+
+    case actionType.ADD_CATEGORY:
+        return {
+            ...state,
+            isUpdatingCategory: false,
+        };
+    case actionType.ADD_CATEGORY_SUCCESS:
+        let updatedCategories = []
+        if (state.categories.length > 0) {
+            const oldCategories= state.categories;
+            oldCategories.forEach((category, index) => {
+              if (category.id !== action.payload.data.data.id ) {
+                updatedCategories.push(category);
+              }
+            });
+        }
+        updatedCategories.push(action.payload.data.data);
+        return {
+            ...state,
+            categories:  [{"data": updatedCategories}],
+            isUpdatingCategory: false,
+        };
+    case actionType.ADD_CATEGORY_FAILURE:
+        return {
+            ...state,
+            isUpdatingCategory: false,
+        };
+
     case actionType.SET_SELETECTED_CATEGORY_ID:
       return {
         ...state,

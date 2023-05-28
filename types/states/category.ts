@@ -14,7 +14,7 @@ export interface CategoryState {
 export interface CategoryEntry {
     id: number;
     slug: string; 
-    name: string;
+    artName: string;
     description: string;
     approved: boolean;
 }

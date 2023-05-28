@@ -76,10 +76,11 @@ export const addCategoryLogic = createLogic<
   LogicDeps
 >({
   type: [actionTypes.ADD_CATEGORY],
-  async process({ api }, dispatch, done) {
+  async process({ action, api }, dispatch, done) {
     try {
       dispatch(actions.addCategoryRequest())
-      const categoryData = await categoryApi.addCategoryApi();
+      const { data } = action.payload;
+      const categoryData = await categoryApi.addCategoryApi(data);
       dispatch(actions.addCategorySuccess(categoryData));
     } catch (error) {
     } finally {

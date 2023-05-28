@@ -1,3 +1,4 @@
+import { CategoryEntry } from "types/states/category";
 import api from "./client";
 
 const postConfig = (dataToSend) => {
@@ -62,8 +63,8 @@ export const getAllCategories = async () => {
   }
 };
 
-export const addCategoryApi = async () => {
-  const config = getConfigWithToken();
+export const addCategoryApi = async (data: CategoryEntry) => {
+  const config = postConfig(data);
   try {
     const categories = await api.call("api/v1/category/add", config);
     return categories;

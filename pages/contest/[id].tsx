@@ -81,7 +81,7 @@ const ContestPage = ({
     const { id: slug, tab: tab } = router.query;
 
     const [showProfileModal, setShowProfileModal] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isContestModalOpen, setIsContestModalOpen] = useState(false);
     const [contestSubmissionDetails, setContestSubmissionDetails] = useState(
         emptyContestSubmissionDetails
     );
@@ -103,21 +103,17 @@ const ContestPage = ({
         }
     }, [user, artistListData])
 
-    const showModal = (imageUrl, description) => {
+    const showContestModal = (imageUrl, description) => {
         let obj = {
             imageUrl: imageUrl,
             description: description
         }
         setContestSubmissionDetails(obj);
-        setIsModalOpen(true);
-    };
-
-    const handleOk = () => {
-        setIsModalOpen(false);
+        setIsContestModalOpen(true);
     };
 
     const handleCancel = () => {
-        setIsModalOpen(false);
+        setIsContestModalOpen(false);
     };
 
     const getActiveTab = () => {
@@ -228,7 +224,7 @@ const ContestPage = ({
 
                             </>,
                             <ReadOutlined key="details"
-                                onClick={() => showModal(submission.artworkUrl, submission.description)}
+                                onClick={() => showContestModal(submission.artworkUrl, submission.description)}
                             />
                         ]}
                     >
@@ -371,10 +367,10 @@ const ContestPage = ({
                 )}
             </>
             <div>
-                {isModalOpen &&
+                {isContestModalOpen &&
                     <Modal closable
                         onCancel={handleCancel}
-                        visible={isModalOpen}
+                        visible={isContestModalOpen}
                         footer={null}
 
                     >

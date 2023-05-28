@@ -11,13 +11,15 @@ import { AppState } from "state";
 import * as action from "../../state/action";
 import { ContestEntry } from "types/model/contest";
 import { CategoryEntry } from "types/states/category";
+import { IsAdmin } from "helpers/helper";
 
 const mapStateToProps = (state: AppState) => ({
+    user: state.user,
     isUpdatingCategory: state.category.isUpdatingCategory,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    addContest: (data: any) => dispatch(action.addContest(data)),
+    addCategory: (data: any) => dispatch(action.addCategory(data)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -29,40 +31,39 @@ type Props = {
 } & ConnectedProps<typeof connector>;
 
 const CategoryModal = ({
-    onCancel,
+    user,
     isViewMode,
     categoryEntry,
     isUpdatingCategory,
-    addContest,
+    onCancel,
+    addCategory,
 }: Props) => {
-    const currentDate = moment(new Date());
-    const tomorrow = currentDate.clone().add(1, "days");
-    const weekLater = currentDate.clone().add(7, "days");
     const [showModal, setViewModal] = useState(isViewMode);
 
-    const newContestEntry: CategoryEntry = {
+    const newCategoryEntry: CategoryEntry = {
         id: categoryEntry.id,
         slug: categoryEntry.slug,
-        name: categoryEntry.name,
+        artName: categoryEntry.artName,
         description: categoryEntry.description,
         approved: categoryEntry.approved,
     };
 
-    const [newCategoryData, setNewCategoryData] = useState<CategoryEntry>(newContestEntry);
+    const [newCategoryData, setNewCategoryData] = useState<CategoryEntry>(newCategoryEntry);
 
-    const saveContestEntry = () => {
+    const saveNewCategory = () => {
         let obj = {
-            "contestSlug": newContestData.slug,
-            "title": newContestData.title,
-            "description": newContestData.description,
-            "startDate": newContestData.startDate,
-            "endDate": newContestData.endDate,
+            "id": 0,
+            "art_name": newCategoryData.artName,
+            "slug":  newCategoryData.artName.toLowerCase().replace(/ /g,"_"),
+            "description": newCategoryData.description,
+            "approved": IsAdmin(user.user.email),
         }
-        addContest(obj);
+        console.log(obj);
+        addCategory(obj);
     };
 
-    const hideContestEntryModal = (isUpdatingCategory) => {
-        setViewModal(isUpdatingCategory);
+    const hideCategoryEntryModal = () => {
+        setViewModal(false);
     }
 
     return (
@@ -78,82 +79,30 @@ const CategoryModal = ({
                 <Form
                     className="settings__basicProfileForm"
                     layout="horizontal"
-                    onFinish={saveContestEntry}
+                    onFinish={saveNewCategory}
                 >
-                    <Form.Item label="Slug"
-                        tooltip={{
-                            title: "NOTE: make sure the slug is a single word (ie. no space)",
-                            icon: <InfoCircleOutlined />
-                        }}
-                    >
-                        <Input
-                            value={newContestData.slug}
-                            onChange={(e) => {
-                                setNewContestData((prevState) => ({
-                                    ...prevState,
-                                    slug: e.target.value,
-                                }));
-                            }}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Title">
+                    <Form.Item label="Name">
                         <Input.TextArea
-                            value={newContestData.title}
+                            value={newCategoryData.artName}
                             maxLength={100}
                             showCount
                             onChange={(e) => {
-                                setNewContestData((prevState) => ({
+                                setNewCategoryData((prevState) => ({
                                     ...prevState,
-                                    title: e.target.value,
+                                    name: e.target.value,
                                 }));
                             }}
                         />
                     </Form.Item>
                     <Form.Item label="Description">
                         <Input.TextArea
-                            value={newContestData.description}
-                            maxLength={1000}
+                            value={newCategoryData.description}
+                            maxLength={100}
                             showCount
                             onChange={(e) => {
-                                setNewContestData((prevState) => ({
+                                setNewCategoryData((prevState) => ({
                                     ...prevState,
                                     description: e.target.value,
-                                }));
-                            }}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Start date">
-                        <DatePicker
-                            clearIcon={null}
-                            disabledDate={(d) => d.isSameOrBefore(currentDate)}
-                            format="DD/MM/YYYY"
-                            value={moment(
-                                newContestData.startDate
-                                    ? newContestData.startDate
-                                    : tomorrow
-                            )}
-                            onChange={(e) => {
-                                setNewContestData((prevState) => ({
-                                    ...prevState,
-                                    startDate: e.toDate(),
-                                }));
-                            }}
-                        />
-                    </Form.Item>
-                    <Form.Item label="End date">
-                        <DatePicker
-                            clearIcon={null}
-                            disabledDate={(d) => d.isSameOrBefore(currentDate)}
-                            format="DD/MM/YYYY"
-                            value={moment(
-                                newContestData.startDate
-                                    ? newContestData.endDate
-                                    : weekLater
-                            )}
-                            onChange={(e) => {
-                                setNewContestData((prevState) => ({
-                                    ...prevState,
-                                    endDate: e.toDate(),
                                 }));
                             }}
                         />
@@ -163,12 +112,12 @@ const CategoryModal = ({
                             <Button
                                 type="primary"
                                 htmlType="submit"
-                                loading={isUpdatingContest}
+                                loading={isUpdatingCategory}
                                 onClick={() => {
-                                    hideContestEntryModal(isUpdatingContest)
+                                    hideCategoryEntryModal()
                                 }}
                             >
-                                {isUpdatingContest ? "Saving..." : "Save"}
+                                {isUpdatingCategory ? "Saving..." : "Save"}
                             </Button>
                         </div>
                     </Form.Item>
