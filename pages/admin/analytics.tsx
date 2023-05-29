@@ -28,6 +28,8 @@ const mapStateToProps = (state: AppState) => ({
   contests: state.contest,
   showContestModal: state.contest?.showContestModal,
   isFetchingContest: state.contest.isFetchingContest,
+  isUpdatingCategory: state.category.isUpdatingCategory,
+  showCategoryModal: state.category.showCategoryModal,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -42,6 +44,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
   setShowContestModal: (show: boolean) =>
     dispatch(actions.setShowContestModal(show)),
+  
+  setShowCategoryModal: (show: boolean) => 
+    dispatch(actions.setShowCategoryModal(show)),
 
 });
 
@@ -76,11 +81,14 @@ const AnalyticsPage = ({
   contests,
   categories,
   showContestModal,
+  showCategoryModal,
   isFetchingContest,
+  isUpdatingCategory,
   fetchUserAnalytics,
   fetchAllContests,
   getAllCategories,
-  setShowContestModal
+  setShowContestModal,
+  setShowCategoryModal,
 }: Props) => {
 
   Chart.register(CategoryScale);
@@ -101,8 +109,6 @@ const AnalyticsPage = ({
   const [newCategoryDetails, setNewCategoryDetails] = useState(
     emptyNewCategoryDetails
   );
-
-  const [showCategoryModal, setShowCategorytModal] = useState(false);
   const [allContests, setAllContests] = useState([]);
   const { toContestPage } = useRoutesContext();
 
@@ -145,7 +151,7 @@ const AnalyticsPage = ({
 
   const ShowNewCategoryModal = () => {
     setNewCategoryDetails(emptyNewCategoryDetails);
-    setShowCategorytModal(true);
+    setShowCategoryModal(true);
   };
 
   const HideContestEntryModal = () => {
@@ -153,12 +159,12 @@ const AnalyticsPage = ({
   };
 
   const HideCatgeoryEntryModal = () => {
-    setShowCategorytModal(false);
+    setShowCategoryModal(false);
   };
 
   const updateCategory = (entry: React.SetStateAction<CategoryEntry>) => {
     setNewCategoryDetails(entry);
-    setShowCategorytModal(true);
+    setShowCategoryModal(true);
   };
 
   const getAllContests = (allContests) => {
@@ -226,7 +232,19 @@ const AnalyticsPage = ({
 
   const getCategories = (categories) => {
     categories.sort((a, b) => a.id - b.id);
-    return <Table columns={columns} dataSource={categories} />;
+    let updatedData = [];
+    categories.forEach((element: { id: any; artName: any; slug: any; description: any; approved: any; }) => {
+      let obj = {
+        id: element.id,
+        artName: element.artName,
+        slug: element.description,
+        description: element.description,
+        approved: element.approved ? "true" : "false",
+      };
+      updatedData.push(obj);
+    });
+
+    return <Table columns={columns} dataSource={updatedData} />;
   };
 
 

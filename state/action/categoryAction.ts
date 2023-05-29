@@ -103,3 +103,10 @@ export const addCategorySuccess = (data: any) => ({
       data
   },
 });
+
+export const setShowCategoryModal = (show: boolean) => ({
+	type: actionType.SET_SHOW_CATEGORY_MODAL,
+	payload: {
+		show
+	}
+});

@@ -9,6 +9,7 @@ export interface CategoryState {
     artists: User[];
     errorInFetchingArtists: boolean;
     isUpdatingCategory: boolean;
+    showCategoryModal: boolean,
 }
 
 export interface CategoryEntry {

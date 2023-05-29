@@ -82,6 +82,7 @@ export const addCategoryLogic = createLogic<
       const { data } = action.payload;
       const categoryData = await categoryApi.addCategoryApi(data);
       dispatch(actions.addCategorySuccess(categoryData));
+      dispatch(actions.setShowCategoryModal(false));
     } catch (error) {
     } finally {
       done();

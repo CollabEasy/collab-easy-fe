@@ -10,6 +10,7 @@ const initialState: CategoryState = {
   categories: [],
   artists: [],
   isUpdatingCategory: false,
+  showCategoryModal: false,
 };
 
 const categoryReducer = (state = initialState, action): CategoryState => {
@@ -33,7 +34,7 @@ const categoryReducer = (state = initialState, action): CategoryState => {
         updatedCategories.push(action.payload.data.data);
         return {
             ...state,
-            categories:  [{"data": updatedCategories}],
+            categories:  updatedCategories,
             isUpdatingCategory: false,
         };
     case actionType.ADD_CATEGORY_FAILURE:
@@ -103,6 +104,12 @@ const categoryReducer = (state = initialState, action): CategoryState => {
         ...state,
         isFetchingCategories: false,
       };
+    
+    case actionType.SET_SHOW_CATEGORY_MODAL:
+      return {
+        ...state,
+        showCategoryModal: action.payload.show,
+      }
     default:
       return state;
   }

@@ -16,6 +16,7 @@ import { IsAdmin } from "helpers/helper";
 const mapStateToProps = (state: AppState) => ({
     user: state.user,
     isUpdatingCategory: state.category.isUpdatingCategory,
+    showCategoryModal: state.category.showCategoryModal,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -35,6 +36,7 @@ const CategoryModal = ({
     isViewMode,
     categoryEntry,
     isUpdatingCategory,
+    showCategoryModal,
     onCancel,
     addCategory,
 }: Props) => {
@@ -58,7 +60,6 @@ const CategoryModal = ({
             "description": newCategoryData.description,
             "approved": IsAdmin(user.user.email),
         }
-        console.log(obj);
         addCategory(obj);
     };
 
