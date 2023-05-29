@@ -11,20 +11,25 @@ import { Line } from "react-chartjs-2";
 import { CategoryScale } from 'chart.js';
 import Chart from 'chart.js/auto';
 import router from "next/router";
-import { Button, Card, Tag } from "antd";
+import { Button, Card, Table, Tag } from "antd";
 import { ContestEntry } from "types/model/contest";
 import ContestModal from "@/components/modal/contestModal";
 import { IsAdmin } from "helpers/helper";
 import { routeToHref } from "config/routes";
 import { GetContestStatus } from "helpers/contest";
 import { useRoutesContext } from "components/routeContext";
+import { CategoryEntry } from "types/states/category";
+import CategoryModal from "@/components/modal/categoryModal";
 
 const mapStateToProps = (state: AppState) => ({
   analytics: state.analytics,
   user: state.user,
+  categories: state.category.categories,
   contests: state.contest,
   showContestModal: state.contest?.showContestModal,
   isFetchingContest: state.contest.isFetchingContest,
+  isUpdatingCategory: state.category.isUpdatingCategory,
+  showCategoryModal: state.category.showCategoryModal,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -34,8 +39,14 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchAllContests: () =>
     dispatch(actions.fetchAllContests()),
 
+  getAllCategories: () =>
+    dispatch(actions.getAllCategories()),
+
   setShowContestModal: (show: boolean) =>
     dispatch(actions.setShowContestModal(show)),
+  
+  setShowCategoryModal: (show: boolean) => 
+    dispatch(actions.setShowCategoryModal(show)),
 
 });
 
@@ -55,15 +66,29 @@ const emptyContestEntryDetails: ContestEntry = {
   endDate: weekLater.toDate(),
 };
 
+
+const emptyNewCategoryDetails: CategoryEntry = {
+  slug: "",
+  artName: "",
+  description: "",
+  id: 0,
+  approved: false
+};
+
 const AnalyticsPage = ({
   analytics,
   user,
   contests,
+  categories,
   showContestModal,
+  showCategoryModal,
   isFetchingContest,
+  isUpdatingCategory,
   fetchUserAnalytics,
   fetchAllContests,
-  setShowContestModal
+  getAllCategories,
+  setShowContestModal,
+  setShowCategoryModal,
 }: Props) => {
 
   Chart.register(CategoryScale);
@@ -81,6 +106,9 @@ const AnalyticsPage = ({
   const [contestEntryRequestDetails, setContestEntryDetails] = useState(
     emptyContestEntryDetails
   );
+  const [newCategoryDetails, setNewCategoryDetails] = useState(
+    emptyNewCategoryDetails
+  );
   const [allContests, setAllContests] = useState([]);
   const { toContestPage } = useRoutesContext();
 
@@ -90,6 +118,7 @@ const AnalyticsPage = ({
     }
     fetchUserAnalytics(startDateStr, currentDate);
     fetchAllContests();
+    getAllCategories();
   }, [beginDate]);
 
   useEffect(() => {
@@ -120,15 +149,29 @@ const AnalyticsPage = ({
     setShowContestModal(true);
   };
 
+  const ShowNewCategoryModal = () => {
+    setNewCategoryDetails(emptyNewCategoryDetails);
+    setShowCategoryModal(true);
+  };
+
   const HideContestEntryModal = () => {
     setShowContestModal(false);
+  };
+
+  const HideCatgeoryEntryModal = () => {
+    setShowCategoryModal(false);
+  };
+
+  const updateCategory = (entry: React.SetStateAction<CategoryEntry>) => {
+    setNewCategoryDetails(entry);
+    setShowCategoryModal(true);
   };
 
   const getAllContests = (allContests) => {
     const resultArtists: JSX.Element[] = [];
     const now = new Date();
     let data = allContests.length != 0 ? allContests[0].data : [];
-    data.sort((a,b) => b.startDate - a.startDate);
+    data.sort((a, b) => b.startDate - a.startDate);
     data.forEach(contest => {
       let status = GetContestStatus(now.getTime(), contest.startDate, contest.endDate);
       resultArtists.push(
@@ -164,6 +207,46 @@ const AnalyticsPage = ({
     });
     return resultArtists;
   };
+
+  const columns = [
+    { title: "Id", dataIndex: "id", key: "id" },
+    { title: "Name", dataIndex: "artName", key: "name" },
+    { title: "Slug", dataIndex: "slug", key: "slug" },
+    { title: "Description", dataIndex: "description", key: "description" },
+    { title: "Approved", dataIndex: "approved", key: "approved" },
+    {
+      title: "Action",
+      key: "key",
+      dataIndex: "key",
+      // eslint-disable-next-line react/display-name
+      render: (_text: any, record: any) => (
+        <>
+          <Button type="primary" onClick={() => updateCategory(record)}>
+            Update
+          </Button>
+          {/* <Button onClick={() => deleteUserProspectus(record)}>Delete</Button> */}
+        </>
+      ),
+    },
+  ];
+
+  const getCategories = (categories) => {
+    categories.sort((a, b) => a.id - b.id);
+    let updatedData = [];
+    categories.forEach((element: { id: any; artName: any; slug: any; description: any; approved: any; }) => {
+      let obj = {
+        id: element.id,
+        artName: element.artName,
+        slug: element.description,
+        description: element.description,
+        approved: element.approved ? "true" : "false",
+      };
+      updatedData.push(obj);
+    });
+
+    return <Table columns={columns} dataSource={updatedData} />;
+  };
+
 
   return (
     <>
@@ -220,6 +303,24 @@ const AnalyticsPage = ({
             </div>
           </div>
 
+          <div className="analytics__pageContainer">
+            <h1 className="common-h1-style text-center">Total categories : {categories.length}</h1>
+            <div className="col-md-12 listingContainer" style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+              {getCategories(categories)}
+            </div>
+            <div className="analytics__contestButtonContainer">
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="common-medium-btn"
+                style={{ height: 'auto', margin: '20px' }}
+                onClick={ShowNewCategoryModal}
+              >
+                Add category
+              </Button>
+            </div>
+          </div>
+
           <div>
             {showContestModal && (
               <ContestModal
@@ -228,6 +329,18 @@ const AnalyticsPage = ({
                 }}
                 isViewMode={true}
                 contestEntry={contestEntryRequestDetails}
+              />
+            )}
+          </div>
+
+          <div>
+            {showCategoryModal && (
+              <CategoryModal
+                onCancel={() => {
+                  HideCatgeoryEntryModal();
+                }}
+                isViewMode={true}
+                categoryEntry={newCategoryDetails}
               />
             )}
           </div>

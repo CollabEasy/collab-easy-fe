@@ -23,7 +23,6 @@ export const uploadSampleLogic = createLogic<
       dispatch(actions.uploadSampleWorkSuccess(result));
       dispatch(notifActions.showNotification(true, 'Sample file uploaded successfully.'));
     } catch (error) {
-      console.log("HAS ERROR");
       const error_response = error.response.data;
       dispatch(notifActions.showNotification(false, error_response['err_str']));
       dispatch(actions.uploadSampleWorkFailure(error.response.data));

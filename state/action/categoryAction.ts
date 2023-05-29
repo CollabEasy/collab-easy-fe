@@ -84,3 +84,29 @@ export const getAllCategoriesSuccess = (data: any) => ({
     data
   },
 });
+
+export const addCategory = (data: any) => ({
+  type: actionType.ADD_CATEGORY,
+  payload: {
+      data
+  },
+});
+
+export const addCategoryRequest = () => ({
+  type: actionType.ADD_CATEGORY_REQUEST,
+  payload: {},
+})
+
+export const addCategorySuccess = (data: any) => ({
+  type: actionType.ADD_CATEGORY_SUCCESS,
+  payload: {
+      data
+  },
+});
+
+export const setShowCategoryModal = (show: boolean) => ({
+	type: actionType.SET_SHOW_CATEGORY_MODAL,
+	payload: {
+		show
+	}
+});

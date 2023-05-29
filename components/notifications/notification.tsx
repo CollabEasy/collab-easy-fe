@@ -43,7 +43,6 @@ const Notification = ({
     return <div></div>;
   }
 
-  console.log("MESSAGE : ", message);
   if (isSuccess) {
     toast.success(message, notificationParams);
   } else {
