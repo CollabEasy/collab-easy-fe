@@ -15,7 +15,7 @@ const { Meta } = Card;
 
 const { TabPane } = Tabs;
 
-const mapStateToProps = (state: AppState) => {};
+const mapStateToProps = (state: AppState) => { };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
@@ -38,27 +38,27 @@ const SampleTile = ({
   onClickDelete,
 }: Props) => {
   const router = useRouter();
-  
 
- 
+
+
   return (
     <div className="sampleTile__imageTileContainer">
-          <img
-            onClick={onClick}
-            className="sampleTile__imageTile"
-            src={sample.thumbnailUrl}
-            alt=""
+      <img
+        onClick={onClick}
+        className="sampleTile__imageTile"
+        src={sample.thumbnailUrl}
+        alt=""
+      />
+      {isSelf && (
+        <div className="sampleTile__deleteButtonContainer">
+          <Button
+            className="sampleTile__deleteButton"
+            icon={<DeleteOutlined />}
+            onClick={onClickDelete}
           />
-          {isSelf && (
-            <div className="sampleTile__deleteButtonContainer">
-              <Button 
-                className="sampleTile__deleteButton" 
-                icon={<DeleteOutlined />} 
-                onClick={onClickDelete}
-              />
-            </div>
-          )}
         </div>
+      )}
+    </div>
   );
 };
 

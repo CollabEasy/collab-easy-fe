@@ -4,7 +4,7 @@
   //display: flex;
   //padding: 200px;
   position: relative;
-  margin-top: 10%;
+  margin-top: 20%;
   margin-bottom: 5%;
   margin-left: auto;
   margin-right: auto;
@@ -48,14 +48,6 @@
 /* columns */
 .responsive-two-column-grid > * {
   padding:1rem;
-}
-
-/* tablet breakpoint */
-@media (min-width:768px) {
-  .responsive-two-column-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-  }
 }
 
 // Taken from https://stackoverflow.com/questions/54044769/css-grid-responsive-multiple-3-columns-rows-to-2-columns-rows
@@ -135,6 +127,23 @@
 }
 
 
+.leaderboard__grid {
+  display: grid;
+  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  background: #fff;
+  grid-gap: 32px;
+  min-height: 0;  /* NEW */
+  min-width: 0;  
+}
+
+
+/* tablet breakpoint */
+@media (min-width:768px) {
+  .responsive-two-column-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+  }
+}
 
 @media only screen and (max-width: 1200px) and (min-width: 1101px) {
 
@@ -188,6 +197,11 @@
       }
     }
   }
+
+  .leaderboard__grid {
+    grid-template: repeat(3, 1fr) / repeat(2, 1fr); 
+    grid-gap: 20px;
+  } 
 }
 
 @media only screen and (max-width: 900px) and (min-width: 766px) {
@@ -216,6 +230,10 @@
       }
     }
   }
+  .leaderboard__grid {
+    grid-template: repeat(3, 1fr) / repeat(2, 1fr); 
+    grid-gap: 20px;
+  } 
 }
 
 @media only screen and (max-width: 767px) and (min-width: 601px) {
@@ -255,6 +273,10 @@
       }
     }
   }
+  .leaderboard__grid {
+    grid-template: repeat(3, 1fr) / repeat(2, 1fr); 
+    grid-gap: 20px;
+  } 
 }
 
 @media only screen and (max-width: 600px) and (min-width: 400px) {
@@ -296,6 +318,10 @@
       }
     }
   }
+  .leaderboard__grid {
+    grid-template: repeat(1, 1fr) / repeat(1, 1fr); 
+    grid-gap: 20px;
+  } 
 }
 
 @media only screen and (max-width: 399px) {
@@ -334,6 +360,10 @@
       }
     }
   }
+  .leaderboard__grid {
+    grid-template: repeat(1, 1fr) / repeat(1, 1fr); 
+    grid-gap: 20px;
+  } 
 }
 
 

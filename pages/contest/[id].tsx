@@ -188,9 +188,9 @@ const ContestPage = ({
 
         data.forEach(submission => {
             resultArtists.push(
-                <div className='contestDetailPage_sampleTile' >
+                <div className='sampleTile__imageTileContainer' >
                     <Card
-                        style={{ width: 300 }}
+                        className="sampleTile__imageTile"
                         cover={
                             <Image
                                 loader={prismicLoader}
@@ -200,14 +200,6 @@ const ContestPage = ({
                                 width={250}
                                 priority
                             />
-                            // <div style={{ overflow: "hidden", height: "300px" }}>
-                            //     <Image
-                            //         alt="sample"
-                            //         height= "100%"
-                            //         width= "100%"
-                            //         src={submission.artworkUrl}
-                            //     />
-                            // </div>
                         }
                         actions={[
                             <>
@@ -352,7 +344,7 @@ const ContestPage = ({
                                                     )}
                                                 </h2>
                                             )}
-                                            <div className="contestDetailPage_submissionTabContainer">
+                                            <div className="leaderboard__grid">
                                                 {getSubmissions(GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate))}
                                             </div>
                                         </div>
