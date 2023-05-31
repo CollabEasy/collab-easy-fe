@@ -295,11 +295,13 @@ const ContestPage = ({
                                             <h2 className="common-h2-style">Rules and Regulations:</h2>
                                             <ul className="common-text-style">
                                                 <li>Any artist with a valid account on Wondor is eligible to participate.</li>
+                                                <li>Post about the contest on social media such as instagram.</li>
                                                 <li>Your work should be inspired from the theme of the contest.</li>
                                                 <li>Submit an image of your artwork. You can submit only one piece for the contest.</li>
-                                                <li>You work will be judged by the number of votes you have recieved. Final decision will include things like creativity, technique, adherence to the theme, and overall impact.</li>
+                                                <li>You work will be judged by the number of votes you have recieved. Share with your friends and get votes.</li>
+                                                <li>Final decision will include things like creativity, technique, adherence to the theme, and overall impact.</li>
                                                 <li>You will be disqualified from the contest for plagiarism, offensive content, or failure to adhere to the rules and guidelines</li>
-                                                <li>You can also send in your queries in an email to wondor4creators@gmail.com, during the contest.</li>
+                                                <li>You can also send in your queries in an email to admin@wondor.com, during the contest.</li>
                                             </ul>
 
                                             <h2 className="common-h2-style">Prize</h2>

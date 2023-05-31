@@ -80,7 +80,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
             <h3 className="common-h3-style">Contact us</h3>
             <p className="common-p-style">
               We can be reached at:
-              <strong> wondor4creators@gmail.com</strong>
+              <strong> admin@wondor.com</strong>
               <br></br>
               Please classify your email in one of the categories, and we will gladly get back to you.
               <br></br>
