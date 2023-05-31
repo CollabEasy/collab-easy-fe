@@ -4,7 +4,7 @@
   //display: flex;
   //padding: 200px;
   position: relative;
-  margin-top: 20%;
+  margin-top: 10%;
   margin-bottom: 5%;
   margin-left: auto;
   margin-right: auto;
@@ -172,6 +172,10 @@
 }
 
 @media only screen and (max-width: 1100px) and (min-width: 901px) {
+  
+  .contestDetailPage_container {
+    margin-top: 15%;
+  }
 
   .allContestPage_listingPagecontainer {
     width: 90%;
@@ -206,6 +210,10 @@
 
 @media only screen and (max-width: 900px) and (min-width: 766px) {
 
+  .contestDetailPage_container {
+    margin-top: 15%;
+  }
+
   .allContestPage_listingPagecontainer {
     width: 90%;
 
@@ -237,6 +245,10 @@
 }
 
 @media only screen and (max-width: 767px) and (min-width: 601px) {
+
+  .contestDetailPage_container {
+    margin-top: 15%;
+  }
 
   .allContestPage_listingPagecontainer {
     width: 90%;
@@ -280,6 +292,11 @@
 }
 
 @media only screen and (max-width: 600px) and (min-width: 400px) {
+
+  .contestDetailPage_container {
+    margin-top: 15%;
+  }
+
   .allContestPage_listingPagecontainer {
     width: 90%;
 
@@ -325,6 +342,11 @@
 }
 
 @media only screen and (max-width: 399px) {
+
+  .contestDetailPage_container {
+    margin-top: 15%;
+  }
+  
   .allContestPage_listingPagecontainer {
     width: 90%;
 

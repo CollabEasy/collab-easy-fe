@@ -1,4 +1,4 @@
-import { Tabs, Input, Button, Comment } from "antd";
+import { Tabs, Input, Button, Comment, Tag } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -229,6 +229,7 @@ const ContestPage = ({
     };
 
     const now = new Date();
+    let status = GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate);
     return (
         <>
             <>
@@ -265,6 +266,17 @@ const ContestPage = ({
                                             />
                                         </div>
                                         <div className="contestDetailPage_tabContainer">
+                                            <div style={{paddingTop: "10px", paddingBottom: "10px"}}> 
+                                                {status === "Ongoing" && (
+                                                    <Tag color="green">{status}</Tag>
+                                                )}
+                                                {status === "Upcoming" && (
+                                                    <Tag color="yellow">{status}</Tag>
+                                                )}
+                                                {status === "Past" && (
+                                                    <Tag color="grey">{status}</Tag>
+                                                )}
+                                            </div>
                                             <b className="common-text-style">
                                                 Unleash your inner artist on Wonder - the platform for collaborative culture among artists.
                                                 Connect and express yourself with fellow art enthusiasts, and participate
