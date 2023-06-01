@@ -186,8 +186,8 @@ const NewUserModal = ({
                 >
                   {categories.length > 0 &&
                     categories.map((category, index) => (
-                      <Option value={category} label={category} key={category}>
-                        <div className="demo-option-label-item">{category}</div>
+                      <Option value={category.artName} label={category.artName} key={category.artName}>
+                        <div className="demo-option-label-item">{category.artName}</div>
                       </Option>
                     ))}
                 </Select>
