@@ -142,11 +142,20 @@ const ContestArtworkSubmission = ({
         return "";
     }
 
-    const getSubmissions = () => {
+    const getSubmissions = (artistSubmission) => {
+        let submissionId = -1;
+        if (artistSubmission.length > 0 && artistSubmission[0].data.length > 0) {
+            let submissionDetails = artistSubmission[0].data[0]
+            submissionId = submissionDetails["id"];
+        }
+        if (submissionId === -1 ) {
+            return 0;
+        }
+
         let artistVotesData = allSubmissionsVotes.length != 0 ? allSubmissionsVotes[0].data : []
         let artistVotes = []
         artistVotesData.forEach(votes => {
-            if (votes.artistId === user.user?.artist_id) {
+            if (votes.submissionId === submissionId) {
                 artistVotes.push(votes.submissionId);
             }
         });
@@ -197,7 +206,7 @@ const ContestArtworkSubmission = ({
                         <>
                             <p className="common-p-style" style={{ textAlign: "center" }}>
                                 Thanks for submitting your work. It is now live for voting. 
-                                So far, you have recieved <b>{getSubmissions()} votes</b>. 
+                                So far, you have recieved <b>{getSubmissions(submissions.artistSubmission)} votes</b>. 
                                 Spread the word and increase your chances of winning the contest! 
                             </p>
                             <Image
