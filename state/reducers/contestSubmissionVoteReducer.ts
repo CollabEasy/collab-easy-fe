@@ -18,14 +18,13 @@ const contestSubmissionVoteReducer = (state = initialState, action): ContestSubm
             if (state.artistSubmissionVotes.length > 0) {
                 const oldVotes = state.artistSubmissionVotes[0]["data"];
                 oldVotes.forEach((vote) => {
-                    if (vote.id !== action.payload.data[0].data.id) {
+                    if (vote.submissionId !== action.payload.data[0].data.submissionId) {
                         updatedContestSubmissionVotes.push(vote);
                     }
                 });
             }
-            if (action.payload.data[0].data.vote === true) {
-                updatedContestSubmissionVotes.push(action.payload.data[0].data)
-            }
+            
+            updatedContestSubmissionVotes.push(action.payload.data[0].data)
             return {
                 ...state,
                 artistSubmissionVotes: [{ "data": updatedContestSubmissionVotes }],
