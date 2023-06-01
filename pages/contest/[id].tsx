@@ -319,7 +319,7 @@ const ContestPage = ({
                                                 <b>End date:</b> {GetDateString(contest.contest[0]?.data.endDate)}
                                             </p>
                                             <p className="common-p-style">
-                                                <b>Duration:</b> {(contest.contest[0]?.data.endDate - contest.contest[0]?.data.startDate) / (1000 * 86400) + 1} days
+                                                <b>Duration:</b> {Math.floor((contest.contest[0]?.data.endDate - contest.contest[0]?.data.startDate) / (1000 * 86400) + 1)} days
                                             </p>
 
                                             <h2 className="common-h2-style">Rules and Regulations:</h2>
