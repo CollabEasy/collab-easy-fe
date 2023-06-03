@@ -119,9 +119,8 @@ const ContestArtworkSubmission = ({
 
     const onClickUpload = () => {
         const formData = new FormData();
-
         formData.append("filename", uploadFile);
-        formData.append("description", caption);
+        formData.append("description", caption === "" ? " " : caption);
         formData.append("filetype", getFileType(fileType));
         uploadContestArtwork(formData, contestSlug as string);
     }

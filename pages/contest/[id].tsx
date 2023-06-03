@@ -1,4 +1,4 @@
-import { Tabs, Input, Button, Comment, Tag } from "antd";
+import { Tabs, Input, Button, Comment, Tag, message } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -187,6 +187,7 @@ const ContestPage = ({
         });
 
         data.forEach(submission => {
+            const disabledVote = submission.artistId === user.artist_id;
             resultArtists.push(
                 <div className='sampleTile__imageTileContainer' >
                     <Card
@@ -202,19 +203,36 @@ const ContestPage = ({
                             />
                         }
                         actions={[
-                            <>
+                            !disabledVote ? (<>
                                 {artistVotes.includes(submission.id) ? (
                                     <FireFilled key="upvote"
                                         style={{ color: "red" }}
-                                        onClick={() => upvoteArtwork(submission.id, slug, status)}
+                                        onClick={() => {
+                                            if (disabledVote) {
+                                                message.error("You cannot vote for your own submission");
+                                                return;
+                                            }
+                                            upvoteArtwork(submission.id, slug, status)}
+                                        }
                                     />
                                 ) : (
                                     <FireOutlined key="downvote"
-                                        onClick={() => upvoteArtwork(submission.id, slug, status)}
+                                        onClick={() => {
+                                            if (disabledVote) {
+                                                message.error("You cannot vote for your own submission");
+                                                return;
+                                            }
+                                            upvoteArtwork(submission.id, slug, status)
+                                        }}
                                     />
                                 )}
 
-                            </>,
+                            </>) : (
+                                <FireFilled key="upvote"
+                                    style={{ color: "grey"}}
+                                    onClick={() => message.error("You cannot vote for your own submission")}
+                                />
+                            ),
                             <ReadOutlined key="details"
                                 onClick={() => showContestModal(submission.artworkUrl, submission.description)}
                             />
@@ -301,7 +319,7 @@ const ContestPage = ({
                                                 <b>End date:</b> {GetDateString(contest.contest[0]?.data.endDate)}
                                             </p>
                                             <p className="common-p-style">
-                                                <b>Duration:</b> {(contest.contest[0]?.data.endDate - contest.contest[0]?.data.startDate) / (1000 * 86400) + 1} days
+                                                <b>Duration:</b> {Math.floor((contest.contest[0]?.data.endDate - contest.contest[0]?.data.startDate) / (1000 * 86400) + 1)} days
                                             </p>
 
                                             <h2 className="common-h2-style">Rules and Regulations:</h2>
