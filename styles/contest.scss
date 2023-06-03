@@ -129,7 +129,7 @@
 
 .leaderboard__grid {
   display: grid;
-  grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   background: #fff;
   grid-gap: 32px;
   min-height: 0;  /* NEW */
