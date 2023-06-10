@@ -211,7 +211,9 @@ const ContestPage = ({
         });
 
 
-        data.forEach(submission => {
+        data.forEach(submissionData => {
+            const submission = submissionData.submission;
+            const artistName = submissionData.firstName + " " + submissionData.lastName;
             const disabledVote = submission.artistId === user.artist_id;
             resultArtists.push(
                 <div className='sampleTile__imageTileContainer' >
@@ -263,8 +265,9 @@ const ContestPage = ({
                             />
                         ]}
                     >
-                        <Meta className="common-text-style" title={GetMetaText(status, submission.id, submission.description, votesCount)}
-                        />
+                        <Meta className="common-text-style" title={GetMetaText(status, submission.id, submission.description, votesCount)}/>
+                        <p className="mt16 common-text-style">{artistName}</p>
+                        
                     </Card>
                 </div>
             )
