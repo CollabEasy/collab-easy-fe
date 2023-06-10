@@ -175,16 +175,41 @@ const ContestPage = ({
         }
     }
 
+    const GetMetaText = (status, submissionId, description, votesCount) => {
+        if (status === "Past") {
+            if ( submissionId in votesCount) {
+                return <span> {votesCount[submissionId]} votes recieved</span>
+            } else {
+                return <span>{description}</span>
+            }
+        } else {
+            return <span>{description}</span>
+        }
+    }
+
     const getSubmissions = (status) => {
         const resultArtists: JSX.Element[] = [];
         let data = allSubmissions.length != 0 ? allSubmissions[0].data : [];
-        let artistVotesData = allSubmissionsVotes.length != 0 ? allSubmissionsVotes[0].data : []
+        let artistsVotesData = allSubmissionsVotes.length != 0 ? allSubmissionsVotes[0].data : []
+    
         let artistVotes = []
-        artistVotesData.forEach(votes => {
+        artistsVotesData.forEach(votes => {
             if (votes.artistId === user.artist_id && votes.vote === true) {
                 artistVotes.push(votes.submissionId);
             }
         });
+
+        let votesCount = {};
+        artistsVotesData.forEach(vote => {
+            if (vote.vote === true) {
+                if (vote.submissionId in votesCount) {
+                    votesCount[vote.submissionId] += 1;
+                } else {
+                    votesCount[vote.submissionId] = 1;
+                }
+            }
+        });
+
 
         data.forEach(submission => {
             const disabledVote = submission.artistId === user.artist_id;
@@ -238,7 +263,8 @@ const ContestPage = ({
                             />
                         ]}
                     >
-                        <Meta className="common-text-style" title={<span> {submission.description}</span>} />
+                        <Meta className="common-text-style" title={GetMetaText(status, submission.id, submission.description, votesCount)}
+                        />
                     </Card>
                 </div>
             )
