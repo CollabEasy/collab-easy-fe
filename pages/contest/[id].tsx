@@ -23,6 +23,7 @@ import UploadContestArtworkPage from "@/components/contestArtworkPage";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { ContestSubmission } from "types/model/contest";
+import { Config } from "config/config";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -214,6 +215,8 @@ const ContestPage = ({
         data.forEach(submissionData => {
             const submission = submissionData.submission;
             const artistName = submissionData.firstName + " " + submissionData.lastName;
+            const artistSlug = submissionData.slug;
+            const profileLink = `${Config.baseUrl}/artist/profile/${artistSlug}`;
             const disabledVote = submission.artistId === user.artist_id;
             resultArtists.push(
                 <div className='sampleTile__imageTileContainer' >
@@ -266,7 +269,7 @@ const ContestPage = ({
                         ]}
                     >
                         <Meta className="common-text-style" title={GetMetaText(status, submission.id, submission.description, votesCount)}/>
-                        <p className="mt16 common-text-style">{artistName}</p>
+                        <div className="mt16 common-text-style"><a href={profileLink} >{artistName}</a></div>
                         
                     </Card>
                 </div>
