@@ -320,7 +320,6 @@ const AnalyticsPage = ({
               </Button>
             </div>
           </div>
-
           <div>
             {showContestModal && (
               <ContestModal
@@ -332,7 +331,6 @@ const AnalyticsPage = ({
               />
             )}
           </div>
-
           <div>
             {showCategoryModal && (
               <CategoryModal

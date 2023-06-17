@@ -5,6 +5,7 @@ import { FSACreatorPayload } from "types/states";
 import * as categoryApi from "../../api/category";
 import * as actions from "../action/";
 import * as actionTypes from "../actionTypes/categoryActionTypes";
+import * as notifActions from "../action/notificationAction";
 
 export const fetchArtistsByCategoryIdLogic = createLogic<
   AppState,
@@ -83,7 +84,10 @@ export const addCategoryLogic = createLogic<
       const categoryData = await categoryApi.addCategoryApi(data);
       dispatch(actions.addCategorySuccess(categoryData));
       dispatch(actions.setShowCategoryModal(false));
+      dispatch(notifActions.showNotification(true, 'The category has been successfully submitted for review 🥳'));
     } catch (error) {
+      const error_response = error.response.data;
+      dispatch(notifActions.showNotification(false, error_response['err_str']));
     } finally {
       done();
     }

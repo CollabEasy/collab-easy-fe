@@ -56,7 +56,7 @@ const CategoryModal = ({
         let obj = {
             "id": 0,
             "art_name": newCategoryData.artName,
-            "slug":  newCategoryData.artName.toLowerCase().replace(/ /g,"_"),
+            "slug": newCategoryData.artName.toLowerCase().replace(/ /g, "_"),
             "description": newCategoryData.description,
             "approved": IsAdmin(user.user.email),
         }
@@ -90,7 +90,7 @@ const CategoryModal = ({
                             onChange={(e) => {
                                 setNewCategoryData((prevState) => ({
                                     ...prevState,
-                                    name: e.target.value,
+                                    artName: e.target.value,
                                 }));
                             }}
                         />

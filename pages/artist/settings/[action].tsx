@@ -44,8 +44,10 @@ import Loader from "@/components/loader";
 import ArtistSocialProspectusModal from "@/components/modal/socialProspectusModal";
 import LoginModal from '@/components/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
-import { GetSocialPlatformId, GetSocialPlatformName, GetCountryName} from '../../../helpers/artistSettingPageHelper';
+import { GetSocialPlatformId, GetSocialPlatformName, GetCountryName } from '../../../helpers/artistSettingPageHelper';
 import ProfilePicture from "@/components/profilePicture";
+import { CategoryEntry } from "types/states/category";
+import CategoryModal from "@/components/modal/categoryModal";
 
 const { TabPane } = Tabs;
 
@@ -61,27 +63,29 @@ const openLoginModal = () => {
 
 const mapStateToProps = (state: AppState) => {
   return {
-  collab: state.collab,
-  isFetchingCollabs: state.collab.isFetchingCollabDetails,
-  user: state.user.user,
-  preferences: state.user.preferences,
-  samples: state.sample.samples,
-  categories: state.category.categories,
-  socialProspectus: state.socialProspectus,
-  loginModalDetails: state.home.loginModalDetails,
-  isLoggedIn: state.user.isLoggedIn,
+    collab: state.collab,
+    isFetchingCollabs: state.collab.isFetchingCollabDetails,
+    user: state.user.user,
+    preferences: state.user.preferences,
+    samples: state.sample.samples,
+    categories: state.category.categories,
+    socialProspectus: state.socialProspectus,
+    loginModalDetails: state.home.loginModalDetails,
+    isLoggedIn: state.user.isLoggedIn,
 
-  isFetchingSamples: state.sample.isFetchingSamples,
-  isFetchingSocialProspectus: state.socialProspectus?.isFetchingProspectus,
-  isUpdatingProfile: state.user.isUpdatingProfile,
-  isUpdatingPrefs: state.user.isUpdatingPrefs,
+    isFetchingSamples: state.sample.isFetchingSamples,
+    isFetchingSocialProspectus: state.socialProspectus?.isFetchingProspectus,
+    isUpdatingProfile: state.user.isUpdatingProfile,
+    isUpdatingPrefs: state.user.isUpdatingPrefs,
 
-  isUpdatingProspectus: state.socialProspectus?.isUpdatingProspectus,
-  isDeletingProspectus: state.socialProspectus?.isDeletingProspectus,
-  hasDeletedProspectus: state.socialProspectus?.hasDeletedProspectus,
+    isUpdatingProspectus: state.socialProspectus?.isUpdatingProspectus,
+    isDeletingProspectus: state.socialProspectus?.isDeletingProspectus,
+    hasDeletedProspectus: state.socialProspectus?.hasDeletedProspectus,
 
-  showSocialProspectusModal: state.socialProspectus?.showSocialProspectusModal,
-}};
+    showSocialProspectusModal: state.socialProspectus?.showSocialProspectusModal,
+    showCategoryModal: state.category.showCategoryModal,
+  }
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistSamples: (slug: string) =>
@@ -103,7 +107,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(actions.setShowSocialProspectusModal(show)),
   deleteArtistSocialProspectus: (data: number) =>
     dispatch(actions.deleteArtistSocialProspectus(data)),
+  
   getCollabRequestsAction: (data: SearchCollab) => dispatch(actions.getCollabRequestsAction(data)),
+
+  setShowCategoryModal: (show: boolean) => 
+    dispatch(actions.setShowCategoryModal(show)),
+
 });
 
 const normFile = (e: any) => {
@@ -134,6 +143,7 @@ const EditProfile = ({
   isDeletingProspectus,
   hasDeletedProspectus,
   showSocialProspectusModal,
+  showCategoryModal,
   getAllCategories,
   fetchArtistSkills,
   fetchArtistSamples,
@@ -145,6 +155,7 @@ const EditProfile = ({
   setShowSocialProspectusModal,
   deleteArtistSocialProspectus,
   getCollabRequestsAction,
+  setShowCategoryModal,
 }: Props) => {
   const emptyProspectusEntryDetails: ProspectusEntry = {
     name: "",
@@ -167,6 +178,14 @@ const EditProfile = ({
     updatedAt: undefined
   };
 
+  const emptyNewCategoryDetails: CategoryEntry = {
+    slug: "",
+    artName: "",
+    description: "",
+    id: 0,
+    approved: false
+  };
+  
   const [activeTabKey, setActiveTabKey] = useState("1");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);
@@ -183,6 +202,9 @@ const EditProfile = ({
   );
   const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
+  const [newCategoryDetails, setNewCategoryDetails] = useState(
+    emptyNewCategoryDetails
+  );
 
   const { Option } = Select;
 
@@ -257,6 +279,15 @@ const EditProfile = ({
   ) {
     router.push("/artist/settings/profile?tab=personal-information");
   }
+
+  const ShowNewCategoryModal = () => {
+    setNewCategoryDetails(emptyNewCategoryDetails);
+    setShowCategoryModal(true);
+  };
+
+  const HideCatgeoryEntryModal = () => {
+    setShowCategoryModal(false);
+  };
 
   function handleChange(value: string[]) {
     if (value.length <= 5) {
@@ -387,7 +418,7 @@ const EditProfile = ({
     },
   ];
 
-  
+
 
   const getCurrentSocialProspectus = () => {
     let data =
@@ -457,7 +488,7 @@ const EditProfile = ({
                     onFinish={submitForm}
                   >
                     <Form.Item label="Profile picture">
-                      <ProfilePicture isSelf={true} userProfileOpened={user}/>
+                      <ProfilePicture isSelf={true} userProfileOpened={user} />
                     </Form.Item>
                     <Form.Item label="First name">
                       <Input
@@ -672,6 +703,10 @@ const EditProfile = ({
                             </Option>
                           ))}
                       </Select>
+                      <div style={{ height: 'auto', marginTop: '20px' }}>
+                        Unable to see the art category in the list? Click <a href="#" onClick={ShowNewCategoryModal}>here</a> to add a category. 
+                        After a thorough review, we will include it.
+                      </div>
                     </Form.Item>
                     <Form.Item {...tailLayout}>
                       <div className="settings__basicProfileSubmitContainer">
@@ -689,20 +724,20 @@ const EditProfile = ({
                 </div>
               </TabPane>
               <TabPane tab="Samples" key="1.3">
-            <div className="settings__basicProfileCardThird">
-              <h2 className="f-20 ">Work Samples</h2>
-              <p>
-                You can upload 6 of them now and flaunt your best work to
-                others!
-              </p>
-              <SamplePage
-                isSelf
-                samples={samples}
-                user={user}
-                showLoader={isFetchingSamples}
-              />
-            </div>
-          </TabPane>
+                <div className="settings__basicProfileCardThird">
+                  <h2 className="f-20 ">Work Samples</h2>
+                  <p>
+                    You can upload 6 of them now and flaunt your best work to
+                    others!
+                  </p>
+                  <SamplePage
+                    isSelf
+                    samples={samples}
+                    user={user}
+                    showLoader={isFetchingSamples}
+                  />
+                </div>
+              </TabPane>
               <TabPane tab="Social prospectus" key="1.4">
                 <div className="settings__basicProfileCardFourth">
                   <h2 className="f-20 ">Your social media accounts</h2>
@@ -720,7 +755,7 @@ const EditProfile = ({
               </TabPane>
               <TabPane tab="Scratchpad" key="1.5">
                 <div className="settings__basicProfileCardThird">
-                    <h2 className="f-20 ">Your space to take notes <Tooltip placement="topLeft" title="Please, do not write any personal information."><InfoCircleOutlined/></Tooltip></h2>
+                  <h2 className="f-20 ">Your space to take notes <Tooltip placement="topLeft" title="Please, do not write any personal information."><InfoCircleOutlined /></Tooltip></h2>
                   <ScratchpadPage />
                 </div>
               </TabPane>
@@ -805,6 +840,17 @@ const EditProfile = ({
                 }}
                 isViewMode={true}
                 prospectusEntryDetails={prospectusEntryRequestDetails}
+              />
+            )}
+          </div>
+          <div>
+            {showCategoryModal && (
+              <CategoryModal
+                onCancel={() => {
+                  HideCatgeoryEntryModal();
+                }}
+                isViewMode={true}
+                categoryEntry={newCategoryDetails}
               />
             )}
           </div>
