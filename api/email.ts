@@ -33,3 +33,17 @@ export const sendEmail = async (
     throw error;
   }
 };
+
+
+export const sendEmailToAll = async (
+  subject: string,
+  content: string
+) => {
+  const config = postConfig({"subject" : subject, "content": content});
+  try {
+    const result = await api.call(`api/v1/notify/all`, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};

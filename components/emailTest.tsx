@@ -29,6 +29,7 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   sendEmailToOneUser: (subject: string, content: string, fromAdmin: boolean) => dispatch(actions.sendEmailToOneUser(subject, content, fromAdmin)),
+  sendEmailToAll: (subject: string, content: string, fromAdmin: boolean) => dispatch(actions.sendEmailToAllUsers(subject, content, fromAdmin)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -39,6 +40,7 @@ type Props = {
 const EmailTest = ({
     user_id,
   sendEmailToOneUser,
+  sendEmailToAll,
 }: Props) => {
   
     const [form] = Form.useForm();
@@ -71,11 +73,19 @@ const EmailTest = ({
             <TextArea onChange={(e) => {setContent(e.target.value)}} defaultValue={content} rows={20} />
         </Form.Item>
     
-        <Button onClick={() => {
+        <div style={{padding: '32px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+        <Button style={{backgroundColor: '#6afcf3'}} onClick={() => {
             sendEmailToOneUser(subject, encryptContent(content), true);
         }}>
-            Send Email
+            Send Email to myself
         </Button>
+
+        <Button style={{backgroundColor: 'red'}} onClick={() => {
+            sendEmailToAll(subject, encryptContent(content), true);
+        }}>
+            Send Email to all users
+        </Button>
+        </div>
       </Form>
     );
   };
