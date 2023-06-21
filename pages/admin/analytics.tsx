@@ -20,6 +20,7 @@ import { GetContestStatus } from "helpers/contest";
 import { useRoutesContext } from "components/routeContext";
 import { CategoryEntry } from "types/states/category";
 import CategoryModal from "@/components/modal/categoryModal";
+import EmailTest from "@/components/emailTest";
 
 const mapStateToProps = (state: AppState) => ({
   analytics: state.analytics,
@@ -344,7 +345,14 @@ const AnalyticsPage = ({
               />
             )}
           </div>
+
+          <div className="analytics__pageContainer">
+          <h1 className="common-h1-style text-center">Send Email</h1>
+            <EmailTest ></EmailTest>
+          </div>
         </>
+
+
       )}
     </>
   );
