@@ -18,6 +18,7 @@ import * as socialProspectusApi from "api/social-prospectus"
 import * as collabConversationApi from "api/collab-conversation"
 import * as analyticsApi from "api/analytics";
 import * as contestApi from "api/contest";
+import * as emailApi from "api/email";
 
 import { AppRouteCreators } from "types/core";
 
@@ -33,6 +34,7 @@ export const APIs = {
   collabConversationApi,
   analyticsApi,
   contestApi,
+  emailApi,
 };
 
 export interface LogicDeps {
