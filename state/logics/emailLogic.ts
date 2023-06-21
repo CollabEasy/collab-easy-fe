@@ -3,7 +3,8 @@ import { AppState, LogicDeps } from "state";
 import { FSACreatorPayload } from "types/states";
 
 import * as emailApi from "../../api/email";
-import * as actions from "../action/";
+import * as actions from "../action/emailAction";
+import * as notifActions from "../action/notificationAction";
 import * as actionTypes from "../actionTypes/emailActionTypes";
 
 export const sendEmailToOneUser = createLogic<
@@ -20,16 +21,15 @@ export const sendEmailToOneUser = createLogic<
         action.payload["subject"],
         action.payload["content"]
       );
-      if (action.payload['fromAdmin']) {
-        dispatch(actions.showNotification(true, "Email API called successfully"));
+      if (action.payload['fromAdmin'] === true) {
+        dispatch(notifActions.showNotification(true, "Email API called successfully"));
       }
       dispatch(actions.sendEmailToOneUserSuccess());
     } catch (error) {
         const error_response = error.response.data;
         if (action.payload['fromAdmin']) {
-            dispatch(actions.showNotification(false, error_response['err_str']));
+            dispatch(notifActions.showNotification(false, error_response['err_str']));
         }
-      // console.log("error : ", error);
     } finally {
       done();
     }
@@ -51,15 +51,14 @@ export const sendEmailToAllUsers = createLogic<
         action.payload["content"]
       );
       if (action.payload['fromAdmin']) {
-        dispatch(actions.showNotification(true, "Email API called successfully"));
+        dispatch(notifActions.showNotification(true, "Email API called successfully"));
       }
       dispatch(actions.sendEmailToAllSuccess());
     } catch (error) {
         const error_response = error.response.data;
-        if (action.payload['fromAdmin']) {
-            dispatch(actions.showNotification(false, error_response['err_str']));
+        if (action.payload['fromAdmin'] === true) {
+            dispatch(notifActions.showNotification(false, error_response['err_str']));
         }
-      // console.log("error : ", error);
     } finally {
       done();
     }

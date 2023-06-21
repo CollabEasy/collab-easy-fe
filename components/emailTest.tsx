@@ -5,7 +5,7 @@ import {
   PictureOutlined,
 } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
-import { Card, Tabs, Button, Form, Input } from "antd";
+import { Card, Tabs, Button, Form, Input, Tooltip } from "antd";
 import { AppState } from "state";
 import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
@@ -18,35 +18,36 @@ import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import Loader from "./loader";
 import { encryptContent } from "helpers/helper";
-import { GetSocialMediaUrl, IsPersonalWebsite, GetSocialPlatformName, GetSocialPlatformImage, GetSocialPlatformBaseUrl } from '../helpers/socialProspectusHelper';
+import {
+  GetSocialMediaUrl,
+  IsPersonalWebsite,
+  GetSocialPlatformName,
+  GetSocialPlatformImage,
+  GetSocialPlatformBaseUrl,
+} from "../helpers/socialProspectusHelper";
 import TextArea from "antd/lib/input/TextArea";
 
 const { Meta } = Card;
 
 const mapStateToProps = (state: AppState) => ({
- user_id: state.user.user.artist_id
+  user_id: state.user.user.artist_id,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  sendEmailToOneUser: (subject: string, content: string, fromAdmin: boolean) => dispatch(actions.sendEmailToOneUser(subject, content, fromAdmin)),
-  sendEmailToAll: (subject: string, content: string, fromAdmin: boolean) => dispatch(actions.sendEmailToAllUsers(subject, content, fromAdmin)),
+  sendEmailToOneUser: (subject: string, content: string, fromAdmin: boolean) =>
+    dispatch(actions.sendEmailToOneUser(subject, content, fromAdmin)),
+  sendEmailToAll: (subject: string, content: string, fromAdmin: boolean) =>
+    dispatch(actions.sendEmailToAllUsers(subject, content, fromAdmin)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {
-} & ConnectedProps<typeof connector>;
+type Props = {} & ConnectedProps<typeof connector>;
 
-const EmailTest = ({
-    user_id,
-  sendEmailToOneUser,
-  sendEmailToAll,
-}: Props) => {
-  
-    const [form] = Form.useForm();
-    const [subject, setSubject] = useState("Subject");
-    const html = 
-    `<!DOCTYPE html> 
+const EmailTest = ({ user_id, sendEmailToOneUser, sendEmailToAll }: Props) => {
+  const [form] = Form.useForm();
+  const [subject, setSubject] = useState("");
+  const html = `<!DOCTYPE html> 
         <html> 
             <head> 
                 <title>THIS IS TEST CONTENT</title> 
@@ -56,38 +57,77 @@ const EmailTest = ({
                 <p>This is a paragraph. </p> 
             </body> 
         </html>`;
-    
-    const [content, setContent] = useState(html);
-  
-    return (
-      <Form
-        form={form}
-        name="control-hooks"
-        style={{ maxWidth: 600 }}
+
+  const [content, setContent] = useState(html);
+
+  const buttonDisabled = subject.length < 5 || content.length < 10;
+  return (
+    <Form form={form} name="control-hooks" style={{ maxWidth: 600 }}>
+      <Form.Item name="Subject" label="Subject" rules={[{ required: true }]}>
+        <Input
+          onChange={(e) => {
+            setSubject(e.target.value);
+          }}
+          defaultValue={subject}
+        />
+      </Form.Item>
+
+      <Form.Item name="Content" label="Content" rules={[{ required: true }]}>
+        <TextArea
+          onChange={(e) => {
+            setContent(e.target.value);
+          }}
+          defaultValue={content}
+          rows={20}
+        />
+      </Form.Item>
+
+      <div
+        style={{
+          padding: "32px",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
       >
-        <Form.Item name="Subject" label="Subject" rules={[{ required: true }]}>
-          <Input onChange={(e) => {setSubject(e.target.value)}} defaultValue={subject}/>
-        </Form.Item>
-
-        <Form.Item name="Content" label="Content" rules={[{ required: true }]}>
-            <TextArea onChange={(e) => {setContent(e.target.value)}} defaultValue={content} rows={20} />
-        </Form.Item>
-    
-        <div style={{padding: '32px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-        <Button style={{backgroundColor: '#6afcf3'}} onClick={() => {
-            sendEmailToOneUser(subject, encryptContent(content), true);
-        }}>
+        <Tooltip
+          title={
+            buttonDisabled
+              ? "Subject or content doesn't meet the length requirements."
+              : ""
+          }
+        >
+          <Button
+            disabled={buttonDisabled}
+            style={{ backgroundColor: "#6afcf3" }}
+            onClick={() => {
+              sendEmailToOneUser(subject, encryptContent(content), true);
+            }}
+          >
             Send Email to myself
-        </Button>
+          </Button>
+        </Tooltip>
 
-        <Button style={{backgroundColor: 'red'}} onClick={() => {
-            sendEmailToAll(subject, encryptContent(content), true);
-        }}>
+        <Tooltip
+          title={
+            buttonDisabled
+              ? "Subject or content doesn't meet the length requirements."
+              : ""
+          }
+        >
+          <Button
+            disabled={buttonDisabled}
+            style={{ backgroundColor: "red" }}
+            onClick={() => {
+              sendEmailToAll(subject, encryptContent(content), true);
+            }}
+          >
             Send Email to all users
-        </Button>
-        </div>
-      </Form>
-    );
-  };
+          </Button>
+        </Tooltip>
+      </div>
+    </Form>
+  );
+};
 
 export default connector(EmailTest);
