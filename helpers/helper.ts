@@ -1,3 +1,5 @@
+import CryptoJS from 'crypto-js' ;
+
 export function getLoginDetails() {
   const accessToken = localStorage.getItem("token");
   if (accessToken !== null) {
@@ -91,3 +93,15 @@ export const getFileType = (fileType: string) => {
   if (fileType.includes("audio")) return "audio";
   return fileType;
 };
+
+
+export const encryptContent = (content: string) => {
+    var key  = CryptoJS.enc.Latin1.parse('Rit2011056wondor');
+    var iv   = CryptoJS.enc.Latin1.parse('Rit2011056wondor');  
+    var encrypted = CryptoJS.AES.encrypt(
+      content,
+      key,
+      {iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.ZeroPadding
+    });
+    return "" + encrypted;
+  }

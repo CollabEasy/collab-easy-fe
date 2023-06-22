@@ -7,3 +7,4 @@ export * from "./socialProspectusLogic";
 export * from "./collabConversationLogic";
 export * from "./analyticsLogic";
 export * from "./contestLogic";
+export * from "./emailLogic";

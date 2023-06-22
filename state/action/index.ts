@@ -9,3 +9,4 @@ export * from "./collabConversationAction";
 export * from "./analyticsAction";
 export * from "./notificationAction";
 export * from "./contestAction";
+export * from "./emailAction";

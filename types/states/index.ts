@@ -10,3 +10,4 @@ export * from "./collabConversation";
 export * from "./analyticsState";
 export * from "./notificationState";
 export * from "./contestState";
+export * from "./emailState";
