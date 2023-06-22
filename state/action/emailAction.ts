@@ -37,3 +37,33 @@ export const sendEmailToAllSuccess = () => ({
     type: actionType.SEND_EMAIL_TO_ALL_USERS_SUCCESS,
     payload: {}
   });
+
+export const fetchAllEmailEnumDetails = () => ({
+  type: actionType.FETCH_ALL_EMAIL_ENUMS,
+  payload: {}
+})
+
+export const fetchAllEmailEnumDetailsSuccess = (data: any) => ({
+  type: actionType.FETCH_ALL_EMAIL_ENUMS_SUCCESS,
+  payload: data,
+})
+
+export const sendEmailToGroup = (groupEnum: string, subject: string, content: string, fromAdmin: true) => ({
+  type: actionType.SEND_EMAIL_TO_GROUP,
+  payload: {
+    groupEnum,
+    subject,
+    content,
+    fromAdmin
+  }
+});
+
+export const sendEmailToGroupRequest = () => ({
+  type: actionType.SEND_EMAIL_TO_GROUP_REQUEST,
+  payload: {}
+});
+
+export const sendEmailToGroupSuccess = () => ({
+    type: actionType.SEND_EMAIL_TO_GROUP_SUCCESS,
+    payload: {}
+  });

@@ -1,4 +1,5 @@
 import * as actionType from "../actionTypes/analyticsActionTypes";
+import * as emailActionTypes from "../actionTypes/emailActionTypes";
 import { AnalyticsState } from "types/states/analyticsState";
 
 const initialState: AnalyticsState = {
@@ -11,6 +12,9 @@ const initialState: AnalyticsState = {
     isFetchingCollabAnalytics: true,
     totalCollabs: 0,
     datewiseCollabs: [],
+  },
+  emails: {
+    emailEnumDetails: [],
   }
 };
 
@@ -44,6 +48,14 @@ const analyticsReducer = (state = initialState, action): AnalyticsState => {
             datewiseUsers: [],
         }
       };
+    case emailActionTypes.FETCH_ALL_EMAIL_ENUMS_SUCCESS:
+      const emailData = action.payload.data
+      return {
+        ...state,
+        emails: {
+          emailEnumDetails: emailData,
+        }
+      }
     default:
       return state;
   }

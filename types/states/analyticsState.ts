@@ -1,4 +1,4 @@
-import { DateWiseCount } from "types/model/analytics";
+import { DateWiseCount, EmailEnumGroupDetail } from "types/model/analytics";
 
 export interface AnalyticsState {
     users: {
@@ -10,5 +10,8 @@ export interface AnalyticsState {
         isFetchingCollabAnalytics: boolean,
         totalCollabs: number;
         datewiseCollabs: DateWiseCount[];
+    },
+    emails: {
+        emailEnumDetails: EmailEnumGroupDetail[]
     }
  }
