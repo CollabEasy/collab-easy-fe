@@ -48,7 +48,7 @@ export const fetchAllEmailEnumDetailsSuccess = (data: any) => ({
   payload: data,
 })
 
-export const sendEmailToGroup = (groupEnum: string, subject: string, content: string, fromAdmin: true) => ({
+export const sendEmailToGroup = (groupEnum: string, subject: string, content: string, fromAdmin: boolean) => ({
   type: actionType.SEND_EMAIL_TO_GROUP,
   payload: {
     groupEnum,
