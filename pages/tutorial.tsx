@@ -83,9 +83,10 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
               Complete these steps to showcase your skills and collaborate
               <ul>
                 <li>Add basic information</li>
+                <li>Add work samples</li>
+                <li>Link your social media accounts</li>
                 <li>Set preferences</li>
                 <li>Indicate collaboration interest</li>
-                <li>Include social media accounts</li>
               </ul>
               Take the first step towards your next hit 🥳
             </p>
@@ -106,7 +107,7 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
               In your collaboration request, mention
               <ul>
                 <li>Theme or topic for art</li>
-                <li>Provide details such as platform, deadlines, and milestones</li>
+                <li>Provide details such as social platform, deadlines, and milestones</li>
               </ul>
               Let&apos;s work together to create something unique and inspiring 😇
             </p>
