@@ -15,6 +15,7 @@ import hamburgerImg from '../public/images/hamburger.png';
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 import { openLoginModalAction, resetUserLoggedIn } from "state/action";
+import { IsAdmin } from "helpers/helper";
 
 const mapStateToProps = (state: AppState) => {
   const isLoggedIn = state.user.isLoggedIn;
@@ -112,7 +113,7 @@ const NavBar = ({
           <div>
             <Button className="common-text-style" id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
             <Button id="sign-up-mobile" shape="circle" onClick={openLoginModal}>
-              <UserOutlined/>
+              <UserOutlined />
             </Button>
           </div>
 
@@ -173,6 +174,13 @@ const NavBar = ({
                       <span className="f-14 common-text-style">Settings</span>
                     </div>
                   </Link>
+                  {IsAdmin(user.email) && (
+                    <Link href={routeToHref(toAnalyticsPage())} passHref>
+                      <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
+                        <span className="f-14 common-text-style">Admin Portal</span>
+                      </div>
+                    </Link>
+                  )}
                   <div className="selected-option-shadow logout-option" onClick={logoutUser}>
                     <span className="f-14 common-text-style">Logout</span>
                   </div>
