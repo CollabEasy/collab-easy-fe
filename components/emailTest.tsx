@@ -98,8 +98,9 @@ const EmailTest = ({ user_id, sendEmailToOneUser, sendEmailToAll }: Props) => {
           }
         >
           <Button
+            type="primary"
+            className="common-medium-btn"
             disabled={buttonDisabled}
-            style={{ backgroundColor: "#6afcf3" }}
             onClick={() => {
               sendEmailToOneUser(subject, encryptContent(content), true);
             }}
@@ -116,6 +117,8 @@ const EmailTest = ({ user_id, sendEmailToOneUser, sendEmailToAll }: Props) => {
           }
         >
           <Button
+            type="primary"
+            className="common-medium-btn"
             disabled={buttonDisabled}
             style={{ backgroundColor: "red" }}
             onClick={() => {
