@@ -6,6 +6,7 @@ import * as emailApi from "../../api/email";
 import * as actions from "../action/emailAction";
 import * as notifActions from "../action/notificationAction";
 import * as actionTypes from "../actionTypes/emailActionTypes";
+import { encryptContent } from "helpers/helper";
 
 export const sendEmailToOneUser = createLogic<
   AppState,
@@ -19,7 +20,7 @@ export const sendEmailToOneUser = createLogic<
     //   dispatch(actions.sendEmailToOneUserRequest());
       const result = await emailApi.sendEmail(
         action.payload["subject"],
-        action.payload["content"]
+        encryptContent(action.payload["content"])
       );
       if (action.payload['fromAdmin'] === true) {
         dispatch(notifActions.showNotification(true, "Email API called successfully"));
@@ -48,7 +49,7 @@ export const sendEmailToAllUsers = createLogic<
     //   dispatch(actions.sendEmailToOneUserRequest());
       const result = await emailApi.sendEmailToAll(
         action.payload["subject"],
-        action.payload["content"]
+        encryptContent(action.payload["content"])
       );
       if (action.payload['fromAdmin']) {
         dispatch(notifActions.showNotification(true, "Email API called successfully"));
@@ -57,6 +58,56 @@ export const sendEmailToAllUsers = createLogic<
     } catch (error) {
         const error_response = error.response.data;
         if (action.payload['fromAdmin'] === true) {
+            dispatch(notifActions.showNotification(false, error_response['err_str']));
+        }
+    } finally {
+      done();
+    }
+  },
+});
+
+export const fetchAllEmailEnumDetails = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.fetchAllEmailEnumDetails>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.FETCH_ALL_EMAIL_ENUMS],
+  async process({ action, api }, dispatch, done) {
+    try {
+    //   dispatch(actions.sendEmailToOneUserRequest());
+      const result = await emailApi.fetchAllEmailEnumDetailsAPI();
+      dispatch(actions.fetchAllEmailEnumDetailsSuccess(result));
+    } catch (error) {
+        const error_response = error.response.data;
+    } finally {
+      done();
+    }
+  },
+});
+
+export const sendEmailToGroup = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.sendEmailToGroup>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.SEND_EMAIL_TO_GROUP],
+  async process({ action, api }, dispatch, done) {
+    try {
+    //   dispatch(actions.sendEmailToOneUserRequest());
+      const result = await emailApi.sendEmailToEnumGroup(
+        action.payload["groupEnum"],
+        action.payload["subject"],
+        encryptContent(action.payload["content"])
+      );
+      if (action.payload['fromAdmin'] === true) {
+        dispatch(notifActions.showNotification(true, "Email API called successfully"));
+      }
+      dispatch(actions.sendEmailToGroupSuccess());
+    } catch (error) {
+        const error_response = error.response.data;
+        if (action.payload['fromAdmin']) {
             dispatch(notifActions.showNotification(false, error_response['err_str']));
         }
     } finally {

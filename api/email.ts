@@ -47,3 +47,27 @@ export const sendEmailToAll = async (
     throw error;
   }
 };
+
+export const sendEmailToEnumGroup = async (
+  enumGroup: string,
+  subject: string,
+  content: string,
+) => {
+  const config = postConfig({"subject" : subject, "content": content});
+  try {
+    const result = await api.call(`api/v1/notify/group/${enumGroup}`, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchAllEmailEnumDetailsAPI = async () => {
+  const config = getConfig();
+  try {
+    const result = await api.call(`api/v1/email/enums/all`, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
