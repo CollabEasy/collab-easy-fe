@@ -132,7 +132,7 @@ export const CollabRequestTab = ({
     const noCollabMessage = (
       <div style={{ padding: "32px 16px" }}>
         <p className="common-h1-style h4">
-          No collab requests for selected date? It's never too late! Reach out to your
+          No collab requests for selected date? It&apos;s never too late! Reach out to your
           favorite artist and collaborate now!{" "}
         </p>
         <p className="common-h1-style h5">

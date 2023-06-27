@@ -31,7 +31,7 @@ const CollabCalender = ({ user, events, onSelectDate }: Props) => {
     return listData;
   };
 
-  const dateCellRender = (value: Dayjs) => {
+  const dateCellRender = (value) => {
     const listData = getListData(value);
     return (
       <ul className="events">
@@ -47,10 +47,10 @@ const CollabCalender = ({ user, events, onSelectDate }: Props) => {
   return (
     <div className="collabCalender__container">
       <Calendar
-        onSelect={(value: Dayjs) => {
+        onSelect={(value) => {
             return onSelectDate(value.year() + "/" + (value.month() + 1) + "/" + value.date());
         }}
-        dateCellRender={(value: Dayjs) => {
+        dateCellRender={(value) => {
           return dateCellRender(value);
         }}
       ></Calendar>
