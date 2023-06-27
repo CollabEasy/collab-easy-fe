@@ -19,11 +19,9 @@ type Props = {
 } & ConnectedProps<typeof connector>;
 
 const CollabCalender = ({ user, events, onSelectDate }: Props) => {
-    console.log("Events : ", events);
   const getListData = (value: Dayjs) => {
     const listData = [];
-    const dateKey = value.date() + "/" + value.month() + "/" + value.year();
-    console.log("date key : ", dateKey);
+    const dateKey = value.year() + "/" + (value.month() + 1) + "/" + value.date();
     const eventsOnDate = events[dateKey] ?? [];
     eventsOnDate.forEach((event) => {
         const collabColor = event.status === 'PENDING' ? 'orange' : (event.status === 'ACTIVE' ? 'green' : 'grey');
@@ -33,13 +31,12 @@ const CollabCalender = ({ user, events, onSelectDate }: Props) => {
     return listData;
   };
 
-  const dateCellRender = (value: Dayjs) => {
-    console.log("date : ", value);
+  const dateCellRender = (value) => {
     const listData = getListData(value);
     return (
       <ul className="events">
         {listData.map((item) => (
-          <li style={{ color: `${item.collabColor}` }} key={item.content}>
+          <li style={{ color: `${item.type}` }} key={item.content}>
            <span style={{ color: 'black' }}>{item.content}</span>
           </li>
         ))}
@@ -48,12 +45,12 @@ const CollabCalender = ({ user, events, onSelectDate }: Props) => {
   };
 
   return (
-    <div className="container">
+    <div className="collabCalender__container">
       <Calendar
-        onSelect={(value: Dayjs) => {
-            return onSelectDate(value.date() + "/" + value.month() + "/" + value.year());
+        onSelect={(value) => {
+            return onSelectDate(value.year() + "/" + (value.month() + 1) + "/" + value.date());
         }}
-        dateCellRender={(value: Dayjs) => {
+        dateCellRender={(value) => {
           return dateCellRender(value);
         }}
       ></Calendar>
