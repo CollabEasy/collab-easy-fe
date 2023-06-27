@@ -12,14 +12,14 @@
 }
 
 .collabRequestTab__filterContainer {
-
     justify-content: center;
     display: flex;
     gap: 48px;
     margin-bottom: 32px;
     border-radius: 12px;
     padding: 16px;
-    box-shadow: 0px 4px 12px rgb(0 0 0 / 5%), 0px 4px 12px rgb(0 0 0 / 5%);
+    border-color: black;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 5%), 0px 4px 4px rgb(0 0 0 / 5%);
 }
 
 .collabRequestTab__collabListContainer {
