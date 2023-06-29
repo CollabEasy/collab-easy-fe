@@ -159,19 +159,9 @@ const NavBar = ({
                       <span className="f-14 common-text-style">Profile</span>
                     </div>
                   </Link>
-                  <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref>
-                    <div className="selected-option-shadow profile-option" onClick={() => setShowLoginOptions(false)}>
-                      <span className="f-14 common-text-style">Scratchpad</span>
-                    </div>
-                  </Link>
-                  <Link href={routeToHref(toEditProfile("profile", "collab-request"))} passHref>
-                    <div className="selected-option-shadow profile-option" onClick={() => setShowLoginOptions(false)}>
-                      <span className="f-14 common-text-style">Collab Request</span>
-                    </div>
-                  </Link>
-                  <Link href={routeToHref(toEditProfile("profile", "profile"))} passHref>
+                  <Link href={routeToHref(toEditProfile("profile", "basic-information"))} passHref>
                     <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
-                      <span className="f-14 common-text-style">Settings</span>
+                      <span className="f-14 common-text-style">Artist Portal</span>
                     </div>
                   </Link>
                   {IsAdmin(user.email) && (

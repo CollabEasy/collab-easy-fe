@@ -39,6 +39,7 @@ import {
   openLoginModalAction,
   updateArtistProfile,
   updateArtistPreference,
+  resetUserLoggedIn,
 } from "state/action";
 import SamplePage from "@/components/samplePage";
 import ScratchpadPage from "@/components/scratchpad";
@@ -128,6 +129,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   setShowCategoryModal: (show: boolean) =>
     dispatch(actions.setShowCategoryModal(show)),
 
+  resetUserLoggedIn: () => dispatch(resetUserLoggedIn())
 });
 
 const normFile = (e: any) => {
@@ -171,6 +173,7 @@ const EditProfile = ({
   deleteArtistSocialProspectus,
   getCollabRequestsAction,
   setShowCategoryModal,
+  resetUserLoggedIn,
 }: Props) => {
   const emptyProspectusEntryDetails: ProspectusEntry = {
     name: "",
@@ -289,11 +292,11 @@ const EditProfile = ({
   const { action, tab } = router.query;
 
   if (
-    typeof window !== "undefined" && 
+    typeof window !== "undefined" &&
     action !== "profile" &&
     action !== "account"
   ) {
-    router.push("/artist/settings/profile?tab=personal-information");
+    router.push("/artist/settings/profile?tab=basic-information");
   }
 
   const ShowNewCategoryModal = () => {
@@ -313,27 +316,32 @@ const EditProfile = ({
 
   function handleClick(e: any) {
     setActiveTabKey(e.key);
+    redirect(e.key);
   }
-    
+
   const redirect = (tabIndex: string) => {
-    let action = "profile";
-    let tab = "personal-information";
-    if (tabIndex == "1.1") {
+    let action = "";
+    let tab = "";
+    if (tabIndex == "0") {
       // do nothing
     }
-    if (tabIndex === "1.2") {
+    else if (tabIndex == "1") {
+      action = "profile";
+      tab = "basic-information";
+    }
+    else if (tabIndex === "2") {
       action = "profile";
       tab = "preferences";
-    } else if (tabIndex === "1.3") {
+    } else if (tabIndex === "3") {
       action = "profile";
       tab = "samples";
-    } else if (tabIndex === "1.4") {
+    } else if (tabIndex === "4") {
       action = "profile";
       tab = "social-prospectus";
-    } else if (tabIndex === "1.5") {
+    } else if (tabIndex === "5") {
       action = "profile";
       tab = "scratchpad";
-    } else if (tabIndex === "1.6") {
+    } else if (tabIndex === "6") {
       action = "profile";
       tab = "collab-request";
     }
@@ -400,7 +408,11 @@ const EditProfile = ({
     },
   ];
 
-
+  const logoutUser = () => {
+    localStorage.removeItem('token');
+    resetUserLoggedIn();
+    router.push("/");
+  }
 
   const getCurrentSocialProspectus = () => {
     let data =
@@ -440,7 +452,7 @@ const EditProfile = ({
         </>
       ) : (
         <div>
-          <Layout style={{minHeight:"100vh", overflow: "auto" }}>
+          <Layout style={{ minHeight: "100vh", overflow: "auto" }}>
             <Sider trigger={null} collapsible collapsed={collapsed}>
               <div className="logo">
 
@@ -451,36 +463,39 @@ const EditProfile = ({
                 defaultSelectedKeys={['1']}
                 onClick={handleClick}
               >
-                <Menu.Item key="0">
+                <Menu.Item key="0" onClick={(e) => {
+                  router.push("/");
+                }}
+                >
                   <SearchOutlined />
                   <span>Discover</span>
                 </Menu.Item>
 
                 <Menu.Item key="1">
-                  <UserOutlined/>
+                  <UserOutlined />
                   <span>Profile</span>
                 </Menu.Item>
                 <Menu.Item key="2">
-                  <CheckCircleOutlined/>
+                  <CheckCircleOutlined />
                   <span>Preferences</span>
                 </Menu.Item>
                 <Menu.Item key="3">
-                  <PictureOutlined/>
+                  <PictureOutlined />
                   <span>Sample</span>
                 </Menu.Item>
                 <Menu.Item key="4">
-                  <InstagramOutlined/>
+                  <InstagramOutlined />
                   <span>Social Prospectus</span>
                 </Menu.Item>
                 <Menu.Item key="5">
-                  <EditOutlined/>
+                  <EditOutlined />
                   <span>Scratchpad</span>
                 </Menu.Item>
                 <Menu.Item key="6">
-                  <CalendarOutlined/>
+                  <CalendarOutlined />
                   <span>Collab Requests</span>
                 </Menu.Item>
-                <Menu.Item key="7">
+                <Menu.Item key="7" onClick={logoutUser}>
                   <LogoutOutlined />
                   <span>Log out</span>
                 </Menu.Item>
