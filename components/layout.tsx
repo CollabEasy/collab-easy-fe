@@ -65,7 +65,11 @@ const Layout = ({
       fetchArtistPreferences();
     }
   }
-  
+
+  function IsArtistPortal() {
+    return router.pathname.includes("/artist/settings");
+  }
+
   return (
     <div>
       <Notification
@@ -75,13 +79,18 @@ const Layout = ({
       />
 
       <div className="layout__layoutContainer">
-        <Navbar />
+        {!IsArtistPortal() && (
+          <Navbar />
+        )}
+
         {isFetchingUser ? (
           <Loader />
         ) : (
           <main className="page-content">{children}</main>
         )}
-        <Footer footerLinkColumns={footerLinkColumns} />
+        {!IsArtistPortal() && (
+          <Footer footerLinkColumns={footerLinkColumns} />
+        )}
       </div>
     </div>
   );

@@ -73,7 +73,6 @@ const Profile = ({
   getCollabRequestsAction
 }: Props) => {
   const router = useRouter();
-  console.log(encryptContent("test email"));
   const emptyCollabDetails: CollabRequestData = {
     id: "",
     senderId: "",
