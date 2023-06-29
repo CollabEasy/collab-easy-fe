@@ -19,6 +19,13 @@ import {
 } from "antd";
 import { Layout, Menu } from 'antd';
 import {
+  SearchOutlined,
+  CheckCircleOutlined,
+  CalendarOutlined,
+  EditOutlined,
+  InstagramOutlined,
+  PictureOutlined,
+  LogoutOutlined,
   MinusCircleOutlined,
   InfoCircleOutlined,
   PlusOutlined,
@@ -282,7 +289,7 @@ const EditProfile = ({
   const { action, tab } = router.query;
 
   if (
-    typeof window !== "undefined" &&
+    typeof window !== "undefined" && 
     action !== "profile" &&
     action !== "account"
   ) {
@@ -307,7 +314,7 @@ const EditProfile = ({
   function handleClick(e: any) {
     setActiveTabKey(e.key);
   }
-
+    
   const redirect = (tabIndex: string) => {
     let action = "profile";
     let tab = "personal-information";
@@ -411,6 +418,8 @@ const EditProfile = ({
     return <Table columns={columns} dataSource={updatedData} />;
   };
 
+  console.log(router.pathname);
+  console.log(activeTabKey);
 
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails) return <Loader />;
@@ -442,29 +451,38 @@ const EditProfile = ({
                 defaultSelectedKeys={['1']}
                 onClick={handleClick}
               >
+                <Menu.Item key="0">
+                  <SearchOutlined />
+                  <span>Discover</span>
+                </Menu.Item>
+
                 <Menu.Item key="1">
-                  <Icon type="user" />
+                  <UserOutlined/>
                   <span>Profile</span>
                 </Menu.Item>
                 <Menu.Item key="2">
-                  <Icon type="video-camera" />
+                  <CheckCircleOutlined/>
                   <span>Preferences</span>
                 </Menu.Item>
                 <Menu.Item key="3">
-                  <Icon type="upload" />
+                  <PictureOutlined/>
                   <span>Sample</span>
                 </Menu.Item>
                 <Menu.Item key="4">
-                  <Icon type="upload" />
+                  <InstagramOutlined/>
                   <span>Social Prospectus</span>
                 </Menu.Item>
                 <Menu.Item key="5">
-                  <Icon type="upload" />
+                  <EditOutlined/>
                   <span>Scratchpad</span>
                 </Menu.Item>
                 <Menu.Item key="6">
-                  <Icon type="upload" />
+                  <CalendarOutlined/>
                   <span>Collab Requests</span>
+                </Menu.Item>
+                <Menu.Item key="7">
+                  <LogoutOutlined />
+                  <span>Log out</span>
                 </Menu.Item>
               </Menu>
             </Sider>
