@@ -1,5 +1,8 @@
 import { CollabRequestData, User } from "types/model";
 import moment from "moment";
+import Image from 'next/image';
+import titleDesktopImg from '../../../public/images/Wondor.svg';
+import titleMobileImg from '../../../public/images/logo.svg';
 import { InputNumber, message, Tabs, Tooltip } from "antd";
 import React, { useEffect, useState } from "react";
 import { ProspectusEntry, SearchCollab } from "types/model";
@@ -320,29 +323,28 @@ const EditProfile = ({
   }
 
   const redirect = (tabIndex: string) => {
-    let action = "";
+    let action = "profile";
     let tab = "";
-    if (tabIndex == "0") {
-      // do nothing
+    // 0 is for discover and 7 is for logout.
+    if (tabIndex === "0") {
+      router.push("/");
+      return;
+    } else if (tabIndex === "7") {
+      logoutUser();
+      return;
     }
-    else if (tabIndex == "1") {
-      action = "profile";
+
+    else if (tabIndex === "1") {
       tab = "basic-information";
-    }
-    else if (tabIndex === "2") {
-      action = "profile";
+    } else if (tabIndex === "2") {
       tab = "preferences";
     } else if (tabIndex === "3") {
-      action = "profile";
       tab = "samples";
     } else if (tabIndex === "4") {
-      action = "profile";
       tab = "social-prospectus";
     } else if (tabIndex === "5") {
-      action = "profile";
       tab = "scratchpad";
     } else if (tabIndex === "6") {
-      action = "profile";
       tab = "collab-request";
     }
     router.push("/artist/settings/" + action + "?tab=" + tab);
@@ -430,9 +432,6 @@ const EditProfile = ({
     return <Table columns={columns} dataSource={updatedData} />;
   };
 
-  console.log(router.pathname);
-  console.log(activeTabKey);
-
   const currentDate = moment(new Date());
   if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails) return <Loader />;
 
@@ -455,7 +454,11 @@ const EditProfile = ({
           <Layout style={{ minHeight: "100vh", overflow: "auto" }}>
             <Sider trigger={null} collapsible collapsed={collapsed}>
               <div className="logo">
-
+                {!collapsed ? (
+                  <Image color="white" src={titleDesktopImg} alt="Landing page" />
+                ) : (
+                  <Image src={titleMobileImg} alt="Landing page" />
+                )}
               </div>
               <Menu
                 theme="dark"
@@ -463,10 +466,7 @@ const EditProfile = ({
                 defaultSelectedKeys={['1']}
                 onClick={handleClick}
               >
-                <Menu.Item key="0" onClick={(e) => {
-                  router.push("/");
-                }}
-                >
+                <Menu.Item key="0">
                   <SearchOutlined />
                   <span>Discover</span>
                 </Menu.Item>
@@ -495,7 +495,7 @@ const EditProfile = ({
                   <CalendarOutlined />
                   <span>Collab Requests</span>
                 </Menu.Item>
-                <Menu.Item key="7" onClick={logoutUser}>
+                <Menu.Item key="7" danger >
                   <LogoutOutlined />
                   <span>Log out</span>
                 </Menu.Item>
