@@ -149,7 +149,7 @@ const Profile = ({
                 </div>
               ) : (
                 <div style={{ backgroundColor: "#E2F0CB", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-                  <p><b>{user.first_name}</b> well done, your profile is complete 🎉. Don&apos;t forget to show off your creation by adding your art accounts
+                  <p><b>{user.first_name}</b> well done, your profile is complete 🎉. Don&apos;t forget to show off your creation by linking your social media accounts
                     <Link href={routeToHref(toEditProfile("profile", "social-prospectus"))} passHref> here.</Link></p>
                 </div>
               )

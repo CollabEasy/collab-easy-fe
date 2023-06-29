@@ -455,7 +455,7 @@ const EditProfile = ({
             <Sider trigger={null} collapsible collapsed={collapsed}>
               <div className="logo">
                 {!collapsed ? (
-                  <Image color="white" src={titleDesktopImg} alt="Landing page" />
+                  <Image src={titleDesktopImg} alt="Landing page" />
                 ) : (
                   <Image src={titleMobileImg} alt="Landing page" />
                 )}
