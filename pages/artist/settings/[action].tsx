@@ -336,7 +336,6 @@ const EditProfile = ({
   const getActiveTab = () => {
     return activeTabKey;
   }
-  const resetData = () => { };
 
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
@@ -431,10 +430,12 @@ const EditProfile = ({
           <NotAuthorised />
         </>
       ) : (
-        <div style={{ paddingTop: "100px" }}>
-          <Layout>
+        <div>
+          <Layout style={{minHeight:"100vh", overflow: "auto" }}>
             <Sider trigger={null} collapsible collapsed={collapsed}>
-              <div className="demo-logo-vertical" />
+              <div className="logo">
+
+              </div>
               <Menu
                 theme="dark"
                 mode="inline"
@@ -483,7 +484,7 @@ const EditProfile = ({
               <>
                 {getActiveTab() === "1" && (
                   <Content
-                    style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
                   >
                     <div className="settings__basicProfileCard">
                       <h2 className="f-20 ">Your basic personal information</h2>
@@ -623,7 +624,7 @@ const EditProfile = ({
 
                 {getActiveTab() === "2" && (
                   <Content
-                    style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
                   >
                     <div className="settings__basicProfileCardSecond">
                       <h2 className="f-20 ">Your preferences</h2>
@@ -722,7 +723,7 @@ const EditProfile = ({
 
                 {getActiveTab() === "3" && (
                   <Content
-                    style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
                   >
                     <div className="settings__basicProfileCardThird">
                       <h2 className="f-20 ">Work Samples</h2>
@@ -742,7 +743,7 @@ const EditProfile = ({
 
                 {getActiveTab() === "4" && (
                   <Content
-                    style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
                   >
                     <div className="settings__basicProfileCardFourth">
                       <h2 className="f-20 ">Your social media accounts</h2>
@@ -762,7 +763,7 @@ const EditProfile = ({
 
                 {getActiveTab() === "5" && (
                   <Content
-                    style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
                   >
                     <div className="settings__basicProfileCardThird">
                       <h2 className="f-20 ">Your space to take notes <Tooltip placement="topLeft" title="Please, do not write any personal information."><InfoCircleOutlined /></Tooltip></h2>
@@ -773,7 +774,7 @@ const EditProfile = ({
 
                 {getActiveTab() === "6" && (
                   <Content
-                    style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
                   >
                     <div className="settings__basicProfileCardThird">
                       <h2 className="f-20 ">Your collab requests</h2>
