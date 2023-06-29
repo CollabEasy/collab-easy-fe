@@ -68,7 +68,7 @@ import CategoryModal from "@/components/modal/categoryModal";
 
 const { TabPane } = Tabs;
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider, Content, Footer } = Layout;
 
 type SizeType = Parameters<typeof Form>[0]["size"];
 
@@ -451,8 +451,8 @@ const EditProfile = ({
         </>
       ) : (
         <div>
-          <Layout style={{ minHeight: "100vh", overflow: "auto" }}>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
+          <Layout style={{ minHeight: "100vh", overflow: "auto" }} hasSider>
+            <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
               <div className="logo">
                 {!collapsed ? (
                   <Image src={titleDesktopImg} alt="Landing page" />
@@ -502,18 +502,6 @@ const EditProfile = ({
               </Menu>
             </Sider>
             <Layout>
-              <Header style={{ padding: 0, background: "#fff" }}>
-                <Button
-                  type="text"
-                  icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                  onClick={() => setCollapsed(!collapsed)}
-                  style={{
-                    fontSize: '16px',
-                    width: 64,
-                    height: 64,
-                  }}
-                />
-              </Header>
               <>
                 {getActiveTab() === "1" && (
                   <Content
