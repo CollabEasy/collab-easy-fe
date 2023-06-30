@@ -296,10 +296,10 @@ const EditProfile = ({
 
   if (
     typeof window !== "undefined" &&
-    action !== "profile" &&
+    action !== "portal" &&
     action !== "account"
   ) {
-    router.push("/artist/settings/profile?tab=basic-information");
+    router.push("/artist/settings/portal?tab=basic-information");
   }
 
   const ShowNewCategoryModal = () => {
@@ -323,7 +323,7 @@ const EditProfile = ({
   }
 
   const redirect = (tabIndex: string) => {
-    let action = "profile";
+    let action = "portal";
     let tab = "";
     // 0 is for discover and 7 is for logout.
     if (tabIndex === "0") {
