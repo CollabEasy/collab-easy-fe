@@ -473,7 +473,7 @@ const EditProfile = ({
 
                 <Menu.Item key="1">
                   <UserOutlined />
-                  <span>Profile</span>
+                  <span>Basic Information</span>
                 </Menu.Item>
                 <Menu.Item key="2">
                   <CheckCircleOutlined />
@@ -481,7 +481,7 @@ const EditProfile = ({
                 </Menu.Item>
                 <Menu.Item key="3">
                   <PictureOutlined />
-                  <span>Sample</span>
+                  <span>Samples</span>
                 </Menu.Item>
                 <Menu.Item key="4">
                   <InstagramOutlined />
