@@ -145,12 +145,12 @@ const Profile = ({
               (
                 <div style={{ backgroundColor: "#EDC5CD", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
                   <p><b>{user.first_name}</b>, looks like your profile is not complete 😔. For maximum reach, please complete it
-                    <Link href={routeToHref(toEditProfile("portal", "basic-information"))} passHref> here.</Link></p>
+                    <Link href={routeToHref(toEditProfile("basic-information"))} passHref> here.</Link></p>
                 </div>
               ) : (
                 <div style={{ backgroundColor: "#E2F0CB", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
                   <p><b>{user.first_name}</b> well done, your profile is complete 🎉. Don&apos;t forget to show off your creation by linking your social media accounts
-                    <Link href={routeToHref(toEditProfile("portal", "social-prospectus"))} passHref> here.</Link></p>
+                    <Link href={routeToHref(toEditProfile("social-prospectus"))} passHref> here.</Link></p>
                 </div>
               )
 
@@ -169,7 +169,7 @@ const Profile = ({
             className="common-medium-btn"
             style={{ height: 'auto', marginTop: '10px' }}
             onClick={() => {
-              router.push("/artist/settings/");
+              router.push("/artist/portal");
             }}
           > Edit profile</Button>
 
@@ -259,7 +259,7 @@ const Profile = ({
                           <p className="common-p-style">You have not uploaded any samples. You can upload 6 of them now and flaunt your best work to others!</p>
                           <Button className="common-medium-btn" type="primary">
                             <Link
-                              href={routeToHref(toEditProfile("portal", "samples"))}
+                              href={routeToHref(toEditProfile("samples"))}
                               passHref
                             >Upload Samples</Link>
                           </Button>

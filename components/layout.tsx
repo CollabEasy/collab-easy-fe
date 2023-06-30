@@ -67,7 +67,7 @@ const Layout = ({
   }
 
   function IsArtistPortal() {
-    return router.pathname.includes("/artist/settings");
+    return router.pathname.includes("/artist/portal");
   }
 
   return (

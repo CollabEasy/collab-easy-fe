@@ -151,7 +151,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
               </Link>
             </div>
             <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-4 col-xl-4">
-              <Link href={routeToHref(toEditProfile("portal", "scratchpad"))} passHref>
+              <Link href={routeToHref(toEditProfile("scratchpad"))} passHref>
                 <Card style={{ height: '100%' }} cover={<Image src={ideaImg} alt="cards" sizes="small" />}>
                   <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Got an idea? Add it to your scratchpad before you forget 😎 </span>} />
                 </Card>

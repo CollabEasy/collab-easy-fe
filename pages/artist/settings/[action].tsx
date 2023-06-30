@@ -292,15 +292,13 @@ const EditProfile = ({
   }, [collab.collabDetails.received.pending, collab.collabDetails.sent.pending])
 
   const router = useRouter();
-  const { action, tab } = router.query;
+  const { tab } = router.query;
 
-  if (
-    typeof window !== "undefined" &&
-    action !== "portal" &&
-    action !== "account"
-  ) {
-    router.push("/artist/settings/portal?tab=basic-information");
-  }
+  // if (
+  //   typeof window !== "undefined"
+  // ) {
+  //   router.push("/artist/portal?tab=basic-information");
+  // }
 
   const ShowNewCategoryModal = () => {
     setNewCategoryDetails(emptyNewCategoryDetails);
@@ -323,7 +321,6 @@ const EditProfile = ({
   }
 
   const redirect = (tabIndex: string) => {
-    let action = "portal";
     let tab = "";
     // 0 is for discover and 7 is for logout.
     if (tabIndex === "0") {
@@ -347,7 +344,7 @@ const EditProfile = ({
     } else if (tabIndex === "6") {
       tab = "collab-request";
     }
-    router.push("/artist/settings/" + action + "?tab=" + tab);
+    router.push("/artist/portal?tab=" + tab);
   };
 
   const getActiveTab = () => {

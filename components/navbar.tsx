@@ -159,7 +159,7 @@ const NavBar = ({
                       <span className="f-14 common-text-style">Profile</span>
                     </div>
                   </Link>
-                  <Link href={routeToHref(toEditProfile("portal", "basic-information"))} passHref>
+                  <Link href={routeToHref(toEditProfile("basic-information"))} passHref>
                     <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
                       <span className="f-14 common-text-style">Artist Portal</span>
                     </div>

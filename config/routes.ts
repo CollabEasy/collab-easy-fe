@@ -22,9 +22,9 @@ export const routes: AppRouteCreators = {
     href: '/artist/profile/[id]',
     as: `/artist/profile/${id}`,
   }),
-  toEditProfile: (action, tab) => ({
-    href: '/artist/settings/[action]?tab=[tab]',
-    as: `/artist/settings/${action}?tab=${tab}`,
+  toEditProfile: (tab) => ({
+    href: '/artist/portal?tab=[tab]',
+    as: `/artist/portal?tab=${tab}`,
   }),
   toCollabPage: (id) => ({
     href: '/collab/[id]',
@@ -38,14 +38,6 @@ export const routes: AppRouteCreators = {
     href: '/admin/analytics',
     as: '/admin/analytics',
   }),
-  // toSampleUpload: () => ({
-  //   href: '/artist/settings/',
-  //   as: `/artist/settings/samples`,
-  // }),
-  // toPreferences: () => ({
-  //   href: '/artist/settings/',
-  //   as: `/artist/settings/preferences`,
-  // }),
 };
 
 
