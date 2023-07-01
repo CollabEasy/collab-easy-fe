@@ -10,6 +10,12 @@ import { Button } from "antd";
 import { useEffect } from "react";
 import Loader from "./loader";
 import * as action from "state/action/scratchpadAction";
+import { Form, Input, Typography } from 'antd';
+import TextEditor from "components/scratchpadTextEditor";
+
+const { Item } = Form;
+const { TextArea } = Input;
+const { Title } = Typography;
 
 const serialize = value => {
     let finalString = "";
@@ -34,8 +40,6 @@ const deserialize = value => {
     }
     return finalData;
 }
-
-
 
 const mapStateToProps = (state: AppState) => {
     const isFetchingScratchpad = state.scratchpad.isFetchingScratchpad;
@@ -73,7 +77,7 @@ const ScratchpadPage = ({
     const saveBlog = () => {
         if (blogText != null) {
             isUpdatingScratchpad = false;
-            updateArtistScratchpad(serialize(blogText));
+            updateArtistScratchpad(blogText);
         }
         setViewMode(true);
     }
@@ -109,55 +113,48 @@ const ScratchpadPage = ({
         return formattedContent;
     }
 
-    
+    const [form] = Form.useForm();
+    interface IPostCreate {
+        body: string;
+    }
+
+    const onSubmit = (values: IPostCreate) => {
+        // logic to submit form to server
+        console.log(values.body);
+        setBlogText(values.body);
+        saveBlog();
+        // form.resetFields();
+    };
+
+    console.log(loggedInUserScratchpad);
+
     return (
         <div>
             {isFetchingScratchpad ? (
                 <Loader />
             ) : (
-                <div>
-                    {isViewMode ? (
-                        <div>
-                            <div>
-                                {loggedInUserScratchpad.content.length == 0 ? (
-                                    <div>
-                                        <p>Write what is on your mind !</p>
-                                    </div>
-                                ) : (
-                                    <div>
-                                        <p>{getBlogFormattedContent(loggedInUserScratchpad.content)}</p>
-                                    </div>
-                                )}
+                <>
+                    <Form layout="vertical" form={form} onFinish={onSubmit}>
+                        <Item
+                            name="body"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please enter body of post',
+                                },
+                            ]}
+                        >
+                            {/* @ts-ignore */}
+                            <TextEditor value={loggedInUserScratchpad.content} />
+                        </Item>
 
-                            </div>
-                            <div className="scratchpad__buttonContainer">
-                                <Button type="primary" onClick={setWritingMode}>Edit</Button>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="scratchpad_container">
-                            <div className="scratchpad_editorContainer">
-                                <Slate
-                                    editor={editor}
-                                    value={deserialize(loggedInUserScratchpad.content)}
-                                    onChange={value => {
-                                        setBlogText(value)
-                                    }}
-                                >
-                                    <Editable />
-                                </Slate>
-                            </div>
-                            <div className="scratchpad__buttonContainer">
-                                <Button loading={isUpdatingScratchpad} type="primary" onClick={saveBlog}>
-                                    Save
-                                </Button>
-                                <Button type="primary" onClick={doNotSaveBlog}>
-                                    Cancel
-                                </Button>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                        <Item>
+                            <Button htmlType="submit" type="primary">
+                                Submit
+                            </Button>
+                        </Item>
+                    </Form>
+                </>
             )}
         </div>
     )
