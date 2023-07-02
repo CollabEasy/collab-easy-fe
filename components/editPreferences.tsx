@@ -127,6 +127,8 @@ const EditPreferences = ({
         }
     };
 
+    const [isViewMode, setViewMode] = useState(false);
+    
     function handleChange(value: string[]) {
         if (value.length <= 5) {
             setSelectedCategories(value);
