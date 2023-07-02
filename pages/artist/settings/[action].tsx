@@ -40,7 +40,6 @@ import {
 } from "@ant-design/icons";
 import {
   openLoginModalAction,
-  updateArtistProfile,
   updateArtistPreference,
   resetUserLoggedIn,
 } from "state/action";
@@ -66,6 +65,7 @@ import ProfilePicture from "@/components/profilePicture";
 import { CategoryEntry } from "types/states/category";
 import CategoryModal from "@/components/modal/categoryModal";
 import EditBasicInformation from "@/components/editBasicInformation";
+import EditPreferences from "@/components/editPreferences";
 
 const { TabPane } = Tabs;
 
@@ -110,28 +110,15 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistSamples: (slug: string) =>
     dispatch(actions.fetchArtistSamples(slug)),
-  getAllCategories: () => dispatch(actions.getAllCategories()),
-  fetchArtistSkills: () => dispatch(actions.fetchArtistSkills("")),
   fetchArtistSocialProspectus: (slug: string) =>
     dispatch(actions.fetchArtistSocialProspectus(slug)),
-  fetchArtistPreferences: () => dispatch(actions.fetchArtistPreferences()),
-
-  updateArtistSkills: (data: any) => dispatch(actions.updateArtistArt(data)),
-  updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
-  updateArtistPreference: (key: string, value: any) =>
-    dispatch(updateArtistPreference(key, value)),
   updateArtistSocialProspectus: (data: any[]) =>
     dispatch(actions.updateArtistSocialProspectus(data)),
-
   setShowSocialProspectusModal: (show: boolean) =>
     dispatch(actions.setShowSocialProspectusModal(show)),
   deleteArtistSocialProspectus: (data: number) =>
     dispatch(actions.deleteArtistSocialProspectus(data)),
-
   getCollabRequestsAction: (data: SearchCollab) => dispatch(actions.getCollabRequestsAction(data)),
-
-  setShowCategoryModal: (show: boolean) =>
-    dispatch(actions.setShowCategoryModal(show)),
 
   resetUserLoggedIn: () => dispatch(resetUserLoggedIn())
 });
@@ -164,19 +151,11 @@ const EditProfile = ({
   isDeletingProspectus,
   hasDeletedProspectus,
   showSocialProspectusModal,
-  showCategoryModal,
-  getAllCategories,
-  fetchArtistSkills,
   fetchArtistSamples,
-  fetchArtistPreferences,
   fetchArtistSocialProspectus,
-  updateArtistPreference,
-  updateArtistSkills,
-  updateArtistProfile,
   setShowSocialProspectusModal,
   deleteArtistSocialProspectus,
   getCollabRequestsAction,
-  setShowCategoryModal,
   resetUserLoggedIn,
 }: Props) => {
   const emptyProspectusEntryDetails: ProspectusEntry = {
@@ -200,13 +179,6 @@ const EditProfile = ({
     updatedAt: undefined
   };
 
-  const emptyNewCategoryDetails: CategoryEntry = {
-    slug: "",
-    artName: "",
-    description: "",
-    id: 0,
-    approved: false
-  };
 
   const [collapsed, setCollapsed] = useState(false);
   const [activeTabKey, setActiveTabKey] = useState("1");
@@ -214,7 +186,6 @@ const EditProfile = ({
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);
   const [upForCollaboration, setUpForCollaboration] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const [userDataCached, setUserDataCached] = useState<User>(user);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
   );
@@ -225,43 +196,15 @@ const EditProfile = ({
   );
   const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
-  const [newCategoryDetails, setNewCategoryDetails] = useState(
-    emptyNewCategoryDetails
-  );
+  
 
   const { Option } = Select;
-
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select
-        value={userDataCached.country}
-        style={{ width: 150 }}
-        onChange={(e) => {
-          let selectecCountry = GetCountryName(e);
-          setUserDataCached((prevState) => ({
-            ...prevState,
-            country_dial: e,
-            country_name: selectecCountry["Name"],
-            country_iso: selectecCountry["Iso2"],
-          }));
-        }}
-      >
-        {COUNTRIES.map((country) => (
-          <Select.Option key={country.Iso2} value={country.Dial}>
-            {country.Unicode} {country.Name}
-          </Select.Option>
-        ))}
-      </Select>
-    </Form.Item>
-  );
 
   useEffect(() => {
     if (categories.length === 0) {
       getAllCategories();
     }
     fetchArtistSamples(user.slug);
-    fetchArtistPreferences();
-    fetchArtistSkills();
     fetchArtistSocialProspectus(user.slug);
     getCollabRequestsAction({
     })
@@ -272,9 +215,8 @@ const EditProfile = ({
       preferences["upForCollaboration"] === "true" ||
       preferences["upForCollaboration"] === true
     )
-      setUpForCollaboration(true);
+    setUpForCollaboration(true);
 
-    setUserDataCached(user);
     setSelectedCategories(user.skills);
     setUserSocialProspectus(socialProspectus.socialProspectus);
   }, [preferences, user, socialProspectus]);
@@ -303,14 +245,6 @@ const EditProfile = ({
     router.push("/artist/settings/profile?tab=basic-information");
   }
 
-  const ShowNewCategoryModal = () => {
-    setNewCategoryDetails(emptyNewCategoryDetails);
-    setShowCategoryModal(true);
-  };
-
-  const HideCatgeoryEntryModal = () => {
-    setShowCategoryModal(false);
-  };
 
   function handleChange(value: string[]) {
     if (value.length <= 5) {
@@ -359,10 +293,6 @@ const EditProfile = ({
     setComponentSize(size);
   };
 
-  const submitForm = () => {
-    updateArtistProfile(userDataCached);
-  };
-
   const [isViewMode, setViewMode] = useState(false);
 
   const ShowProspectusEntryModal = () => {
@@ -382,13 +312,6 @@ const EditProfile = ({
     setShowSocialProspectusModal(false);
   };
 
-  const saveArtistSkills = () => {
-    if (selectedCategories.length === 0) {
-      message.error("You need to select atleast one art style.");
-    } else {
-      updateArtistSkills({ artNames: selectedCategories });
-    }
-  };
 
   const columns = [
     { title: "Platform", dataIndex: "name", key: "name" },
@@ -510,9 +433,7 @@ const EditProfile = ({
                   >
                     <div className="settings__basicProfileCard">
                       <h2 className="f-20 ">Your basic personal information</h2>
-                      <EditBasicInformation
-                      
-                      />
+                      <EditBasicInformation/>
                     </div>
                   </Content>
                 )}
@@ -523,95 +444,7 @@ const EditProfile = ({
                   >
                     <div className="settings__basicProfileCardSecond">
                       <h2 className="f-20 ">Your preferences</h2>
-                      <Form
-                        className="settings__basicProfileForm"
-                        labelCol={{ span: 4 }}
-                        wrapperCol={{ span: 14 }}
-                        layout="horizontal"
-                        initialValues={{ size: componentSize }}
-                        onValuesChange={onFormLayoutChange}
-                        size={componentSize as SizeType}
-                      >
-                        <Form.Item
-                          label="Available to collab"
-                          valuePropName="checked"
-                        >
-                          <Switch
-                            onChange={() => {
-                              updateArtistPreference(
-                                "upForCollaboration",
-                                !upForCollaboration
-                              );
-                              setUpForCollaboration(!upForCollaboration);
-                            }}
-                            loading={isUpdatingPrefs === "upForCollaboration"}
-                            checked={upForCollaboration}
-                            checkedChildren="active"
-                            unCheckedChildren="inactive"
-                          />
-                        </Form.Item>
-
-                        <Form.Item
-                          // name="art"
-                          label="Art styles"
-                          rules={[
-                            {
-                              validator(_, value) {
-                                if (value === undefined) {
-                                  return Promise.reject();
-                                }
-                                return Promise.resolve();
-                              },
-                            },
-                          ]}
-                        >
-                          <Select
-                            mode="multiple"
-                            style={{ width: "100%" }}
-                            placeholder="Select atleast one art style"
-                            onChange={(value) => {
-                              if (value?.length > 5) {
-                                value.pop();
-                                message.error("You can select maximum 5 art styles");
-                              } else {
-                                handleChange(value);
-                              }
-                            }}
-                            optionLabelProp="label"
-                            value={selectedCategories}
-                            defaultValue={user.skills}
-                          >
-                            {categories.length > 0 &&
-                              categories.map((category, index) => (
-                                <Option
-                                  value={category.artName}
-                                  label={category.artName}
-                                  key={category.artName}
-                                >
-                                  <div className="demo-option-label-item">
-                                    {category.artName}
-                                  </div>
-                                </Option>
-                              ))}
-                          </Select>
-                          <div style={{ height: 'auto', marginTop: '20px' }}>
-                            Unable to see the art category in the list? Click <a href="#" onClick={ShowNewCategoryModal}>here</a> to add a category.
-                            After a thorough review, we will include it.
-                          </div>
-                        </Form.Item>
-                        <Form.Item {...tailLayout}>
-                          <div className="settings__basicProfileSubmitContainer">
-                            <Button
-                              type="primary"
-                              htmlType="submit"
-                              onClick={saveArtistSkills}
-                              loading={isUpdatingProfile}
-                            >
-                              {isUpdatingProfile ? "Saving..." : "Save"}
-                            </Button>
-                          </div>
-                        </Form.Item>
-                      </Form>
+                      <EditPreferences/>
                     </div>
                   </Content>
                 )}
@@ -694,17 +527,6 @@ const EditProfile = ({
                 }}
                 isViewMode={true}
                 prospectusEntryDetails={prospectusEntryRequestDetails}
-              />
-            )}
-          </div>
-          <div>
-            {showCategoryModal && (
-              <CategoryModal
-                onCancel={() => {
-                  HideCatgeoryEntryModal();
-                }}
-                isViewMode={true}
-                categoryEntry={newCategoryDetails}
               />
             )}
           </div>

@@ -1,29 +1,25 @@
 import React, { useState } from "react";
-import { Card, Button, Tabs, Form, Input, DatePicker, Select } from "antd";
+import { Button, Form, Input, DatePicker, Select } from "antd";
 import { AppState } from "state";
-import { connect, ConnectedProps, useStore } from "react-redux";
-import router, { useRouter } from "next/router";
+import { connect, ConnectedProps } from "react-redux";
+import { useRouter } from "next/router";
 import moment from "moment";
 import { Dispatch } from "redux";
-import { SearchCollab, User } from "types/model";
-import * as action from "../state/action";
 import { useRoutesContext } from "components/routeContext";
 import ProfilePicture from "./profilePicture";
 import { SizeType } from "antd/lib/config-provider/SizeContext";
 import {
     updateArtistProfile,
-  } from "state/action";
+} from "state/action";
 import { COUNTRIES, GENDERS } from "config/constants";
-
-const { Meta } = Card;
-const { TabPane } = Tabs;
+import { User } from "types/model";
 
 const mapStateToProps = (state: AppState) => {
     return {
-      user: state.user.user,
-      isUpdatingProfile: state.user.isUpdatingProfile,
+        user: state.user.user,
+        isUpdatingProfile: state.user.isUpdatingProfile,
     }
-  };
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     updateArtistProfile: (user: any) => dispatch(updateArtistProfile(user)),
@@ -52,7 +48,7 @@ const EditBasicInformation = ({
     const onFormLayoutChange = ({ size }: { size: SizeType }) => {
         setComponentSize(size);
     };
-    
+
     const submitForm = () => {
         updateArtistProfile(userDataCached);
     };
