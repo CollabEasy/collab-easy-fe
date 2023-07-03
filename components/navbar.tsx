@@ -161,7 +161,7 @@ const NavBar = ({
                   </Link>
                   <Link href={routeToHref(toEditProfile("profile", "basic-information"))} passHref>
                     <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
-                      <span className="f-14 common-text-style">Artist Portal</span>
+                      <span className="f-14 common-text-style">Portal</span>
                     </div>
                   </Link>
                   {IsAdmin(user.email) && (
