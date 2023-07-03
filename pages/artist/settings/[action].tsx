@@ -276,7 +276,7 @@ const EditProfile = ({
                     style={{ padding: 24, background: '#fff', minHeight: 280 }}
                   >
                     <div className="settings__basicProfileCardThird">
-                      <h2 className="f-20 ">Work Samples</h2>
+                      <h2 className="f-20 ">You work samples</h2>
                       <p>
                         You can upload 6 of them now and flaunt your best work to
                         others!
