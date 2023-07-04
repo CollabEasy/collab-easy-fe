@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
 import Search from './search';
 import { Dispatch } from "redux";
+import { useRouter } from "next/router";
 import { /* Menu, Dropdown, */ Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { AppState } from "types/states";
@@ -47,9 +48,11 @@ const NavBar = ({
   const user = userModel.user;
   const [hideSignUp, setHideSignUp] = useState(false);
   const [showLoginOptions, setShowLoginOptions] = useState(false);
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   // const [isMobileVersion, setIsMobileVersion] = useState(false);
 
+  const router = useRouter();
 
   const openLoginModal = () => {
     openLoginModalAction()
@@ -61,17 +64,20 @@ const NavBar = ({
 
 
   const { toWondorHome, toArtistProfile, toEditProfile, toAnalyticsPage } = useRoutesContext();
+  const { toGetInspired, toAllContestPage, toTutorial } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = document.querySelector('#p-h');
     if (!inView && entry !== undefined) {
       navBarElement.classList.add('scroll-effect');
       navBarElement.classList.add('animate__fadeInDown');
+      setShowSearchBar(true);
     }
 
     if (inView && entry !== undefined) {
       navBarElement.classList.remove('scroll-effect');
       navBarElement.classList.remove('animate__fadeInDown');
+      setShowSearchBar(false);
     }
   }, [inView, entry])
 
@@ -92,6 +98,10 @@ const NavBar = ({
     setShowLoginOptions(false);
   }
 
+  function IsLandingPage() {
+    return router.pathname === "/";
+  }
+
   return (
     <div className="row">
       <div id="p-h" className="col-lg-12 col-md-12 col-sm-12 nv-f-t animate__animated">
@@ -107,7 +117,31 @@ const NavBar = ({
         </div>
 
         <div className="navbar-search">
-          <Search></Search>
+          <>
+            {(!IsLandingPage() || showSearchBar) ? (
+              <Search />
+            ) : (
+              <div className="navbar-links">
+                <ul>
+                  <li>
+                    <p className="common-p-style">
+                      <a href={routeToHref(toGetInspired())}>Inspiration</a>
+                    </p>
+                  </li>
+                  <li>
+                    <p className="common-p-style">
+                      <a href={routeToHref(toAllContestPage())}>Contests</a>
+                    </p>
+                  </li>
+                  <li>
+                    <p className="common-p-style">
+                      <a href={routeToHref(toTutorial())}>Tutorial</a>
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </>
         </div>
         {!hideSignUp ? (
           <div>
