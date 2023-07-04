@@ -95,6 +95,22 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       <div className="row" style={{ padding: "20px" }}>
         <div className="container">
           <div className="column" style={{ padding: "10px" }}>
+            <div className="button rowspan" style={{ background: "#FAE5F9", borderRadius: "10px" }}>
+              <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center"}}>
+                <div style={{ padding: "5px" }}>
+                  <Image
+                    src={socialImg}
+                    height={400}
+                    width={400}
+                    priority
+                  />
+                  <h3 className="common-h3-style">User Journey</h3>
+                  <p className="common-p-style" style={{ width: "60%" }}>Connect with artists on various social media like instagram, youtube, tiktok etc </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="column" style={{ padding: "10px" }}>
             <div className="button" style={{ background: "#DBECFD", marginBottom: "10px", alignItems: "center", borderRadius: "10px" }}>
               <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
                 <div style={{ padding: "20px" }}>
@@ -112,7 +128,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
               </div>
             </div>
             <div className="button" style={{ background: "#FCE9CA", marginTop: "10px", alignItems: "center", borderRadius: "10px" }}>
-              <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center", }}>
+              <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
                 <div style={{ padding: "20px" }}>
                   <h3 className="common-h3-style">User Journey</h3>
                   <p className="common-p-style" style={{ width: "60%" }}>Connect with artists on various social media like instagram, youtube, tiktok etc </p>
@@ -127,26 +143,11 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                 </div>
               </div>
             </div>
-
-          </div>
-
-          <div className="column" style={{ padding: "10px" }}>
-            <div className="button rowspan container2" style={{ background: "#FAE5F9" }}>
-              <div className="iconDetails">
-                <Image
-                  src={discoverImg}
-                  height={350}
-                  width={350}
-                  priority
-                />
-                <h1>This is a beautiful picture.</h1>
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
-      <div>
+      <div className='card-rw'>
         <h2 className="custom-padding common-h2-style">Popular Collab Categories</h2>
         <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
           <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">

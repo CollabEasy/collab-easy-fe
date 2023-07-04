@@ -44,32 +44,12 @@
 
 .button {
   flex: 1;
-
   color: white;
 }
 
 .button.rowspan {
   flex: 2;
 }
-
-.container2 {
-  display: grid;
-  align-items: center; 
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 5px;
-}
-
-.iconDetails {
-  padding: 10%;
-  max-width: 100%;
-  max-height:100%;
-}
-
-.text {
-  font-size: 70px;
-}
- 
- 
 
 .card-rw {
 	padding-top: 50vh;
