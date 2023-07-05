@@ -92,26 +92,23 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           </div>
         </div>
       </div>
-      <div className="row" style={{ padding: "20px" }}>
+
+      <div className="row" style={{ padding: "20px", display: "flex" }}>
         <div className="container">
           <div className="column" style={{ padding: "10px" }}>
-            <div className="button rowspan" style={{ background: "#FAE5F9", borderRadius: "10px" }}>
-              <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center"}}>
-                <div style={{ padding: "5px" }}>
-                  <Image
-                    src={socialImg}
-                    height={400}
-                    width={400}
-                    priority
-                  />
-                  <h3 className="common-h3-style">User Journey</h3>
-                  <p className="common-p-style" style={{ width: "60%" }}>Connect with artists on various social media like instagram, youtube, tiktok etc </p>
-                </div>
-              </div>
+            <div style={{ background: "#E2F0CB", borderRadius: "10px", justifyContent: "space-around", alignItems: "center", padding: "5px" }}>
+              <Image
+                src={socialImg}
+                height={400}
+                width={400}
+                priority
+              />
+              <h3 className="common-h3-style">User Journey</h3>
+              <p className="common-p-style" style={{ width: "60%" }}>Connect with artists on various social media like instagram, youtube, tiktok etc </p>
             </div>
           </div>
           <div className="column" style={{ padding: "10px" }}>
-            <div className="button" style={{ background: "#DBECFD", marginBottom: "10px", alignItems: "center", borderRadius: "10px" }}>
+            <div style={{ background: "#DBECFD", marginBottom: "10px", alignItems: "center", borderRadius: "10px" }}>
               <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
                 <div style={{ padding: "20px" }}>
                   <h3 className="common-h3-style">User Journey</h3>
@@ -127,7 +124,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                 </div>
               </div>
             </div>
-            <div className="button" style={{ background: "#FCE9CA", marginTop: "10px", alignItems: "center", borderRadius: "10px" }}>
+            <div style={{ background: "#FBF0C4", marginTop: "10px", alignItems: "center", borderRadius: "10px" }}>
               <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
                 <div style={{ padding: "20px" }}>
                   <h3 className="common-h3-style">User Journey</h3>
@@ -141,6 +138,78 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                     priority
                   />
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="row" style={{ height: "500px", backgroundColor: "#FAFCFE", padding: "20px", display: "flex" }}>
+        <div style={{ width: "30%", wordWrap: "break-word" }}>
+          <h3 className="common-h3-style">Popular Categories for Collaboration</h3>
+        </div>
+        <div className="row mt-2 g-4">
+          <div className="col-md-3">
+            <div className="card p-1">
+              <div className="d-flex justify-content-between align-items-center p-2">
+                <div className="flex-column lh-1 imagename"> <span>Mobile</span> <span>Phones</span> </div>
+                <div> <img src="https://i.imgur.com/b9zkoz0.jpg" height="100" width="100" /> </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card p-2">
+              <div className="d-flex justify-content-between align-items-center p-2">
+                <div className="flex-column lh-1 imagename"> <span>Head</span> <span>Phones</span> </div>
+                <div> <img src="https://i.imgur.com/SHWASPG.png" height="100" width="100" /> </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card p-2">
+              <div className="d-flex justify-content-between align-items-center p-2">
+                <div className="flex-column lh-1 imagename"> <span>Smart</span> <span>Watches</span> </div>
+                <div> <img src=" https://i.imgur.com/Ya0OXCv.png" height="100" width="100" /> </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card p-2">
+              <div className="d-flex justify-content-between align-items-center p-2">
+                <div className="flex-column lh-1 imagename"> <span>Air</span> <span>Purifiers</span> </div>
+                <div> <img src="https://i.imgur.com/2gvGwbh.png" height="100" width="100" /> </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card p-2tr5">
+              <div className="d-flex justify-content-between align-items-center p-2">
+                <div className="flex-column lh-1 imagename"> <span>Vacuum</span> <span>Cleaners</span> </div>
+                <div> <img src="https://i.imgur.com/UMQJpSG.png" height="100" width="100" /> </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card p-2">
+              <div className="d-flex justify-content-between align-items-center p-2">
+                <div className="flex-column lh-1 imagename"> <span>Washing</span> <span>Machines</span> </div>
+                <div> <img src="https://i.imgur.com/e9CyhXR.png" height="100" width="100" /> </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card p-2">
+              <div className="d-flex justify-content-between align-items-center p-2">
+                <div className="flex-column lh-1 imagename"> <span>Smart</span> <span>Televisions</span> </div>
+                <div> <img src=" https://i.imgur.com/Zq8VigZ.png" height="100" width="100" /> </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card p-2">
+              <div className="d-flex justify-content-between align-items-center p-2">
+                <div className="flex-column lh-1 imagename"> <span>Laptops</span> </div>
+                <div> <img src="https://i.imgur.com/6pK5oZl.jpg" height="100" width="100" /> </div>
               </div>
             </div>
           </div>
