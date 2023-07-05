@@ -98,27 +98,13 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       <div className="row" style={{ padding: "20px" }}>
         <div className="container">
           <div className="column" style={{ padding: "10px" }}>
-            <div style={{ padding: "20px", height: "100%", background: "#E2F0CB", borderRadius: "10px", justifyContent: "space-around", alignItems: "center" }}>
-              <Image
-                src={socialImg}
-                height={400}
-                width={400}
-                priority
-              />
-              <div>
-                <h3 className="common-h3-style">Connect to Collaborate</h3>
-                <p className="common-p-style" style={{ width: "60%" }}>Create a centralized profile, 
-                  linking all social platforms, to demonstrate collaboration readiness and unlock art 
-                  world opportunities with fellow artists. Together, you create better! 
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="column" style={{ padding: "10px" }}>
             <div style={{ height: "49%", background: "#DBECFD", marginBottom: "10px", alignItems: "center", borderRadius: "10px", display: "flex", justifyContent: "space-around" }}>
-              <div style={{ padding: "20px" }}>
-                <h3 className="common-h3-style">User Journey</h3>
-                <p className="common-p-style" style={{ width: "60%" }}>Connect with artists on various social media like instagram, youtube, tiktok etc </p>
+              <div style={{ padding: "20px", width: "60%" }}>
+                <h3 className="common-h3-style">Stremline Workflows</h3>
+                <p className="common-p-style" style={{ width: "60%" }}>Easy-to-use workflow to send
+                  requests to collab and an organized calendar to keep track of upcoming
+                  collaboration and project deadlines.
+                </p>
               </div>
               <div style={{ padding: "5px" }}>
                 <Image
@@ -127,10 +113,10 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                   width={250}
                   priority
                 />
-            </div>
+              </div>
             </div>
             <div style={{ height: "49%", background: "#FBF0C4", marginTop: "10px", alignItems: "center", borderRadius: "10px", display: "flex", justifyContent: "space-around" }}>
-              <div style={{ padding: "20px" }}>
+              <div style={{ padding: "20px", width: "60%" }}>
                 <h3 className="common-h3-style">User Journey</h3>
                 <p className="common-p-style" style={{ width: "60%" }}>Connect with artists on various social media like instagram, youtube, tiktok etc </p>
               </div>
@@ -144,6 +130,24 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
               </div>
             </div>
           </div>
+          <div className="column" style={{ padding: "10px" }}>
+            <div style={{ padding: "20px", height: "100%", background: "#E2F0CB", borderRadius: "10px", justifyContent: "space-around", alignItems: "center" }}>
+              <Image
+                src={socialImg}
+                height={400}
+                width={400}
+                priority
+              />
+              <div>
+                <h3 className="common-h3-style">Connect to Collaborate</h3>
+                <p className="common-p-style" style={{ width: "60%" }}>Create a centralized profile,
+                  linking all social platforms, to demonstrate collaboration readiness and unlock art
+                  world opportunities with fellow artists. Together, you create better!
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
