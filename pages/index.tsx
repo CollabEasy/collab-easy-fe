@@ -106,8 +106,11 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                 priority
               />
               <div>
-                <h3 className="common-h3-style">Connect with artists to collaborate</h3>
-                <p className="common-p-style" style={{ width: "60%" }}>Connect with artists on various social media like instagram, youtube, tiktok etc </p>
+                <h3 className="common-h3-style">Connect to Collaborate</h3>
+                <p className="common-p-style" style={{ width: "60%" }}>Create a centralized profile, 
+                  linking all social platforms, to demonstrate collaboration readiness and unlock art 
+                  world opportunities with fellow artists. Together, you create better! 
+                </p>
               </div>
             </div>
           </div>
