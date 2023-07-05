@@ -30,8 +30,9 @@
   }
 }
 
-.container {
-  flex: 1;
+.info-container {
+  display: flex;
+  max-width: 100%;
 }
 
 .column {
@@ -39,12 +40,25 @@
   padding: 10px;
 
   .small-card {
-    height: "49%";
-    margin-bottom: "10px";
-    align-items: "center";
-    border-radius: "10px";
-    display: "flex";
-    justify-content: "space-around";
+    height: 49%;
+    margin-bottom: 10px;
+    align-items: center;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    
+    .small-card-text {
+      padding: 20px; 
+      width: 60%;
+    }
+  }
+
+  .large-card {
+    padding: 20px; 
+    height: 100%;
+    border-radius: 10px; 
+    justify-content: space-around;
+    align-items: center;
   }
 }
 
