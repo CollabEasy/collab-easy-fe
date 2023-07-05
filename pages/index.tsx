@@ -95,35 +95,49 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         </div>
       </div>
 
-      <div className="row" style={{ padding: "20px" }}>
-        <div className="info-container">
+      <div className="row" style={{ padding: "20px", display: "flex" }}>
+        <div className="container">
           <div className="column" style={{ padding: "10px" }}>
-            <div className='small-card' style={{ background: "#FBF0C4" }}>
+            <div className="large-card" style={{background: "#E2F0CB"}}>
+              <Image
+                src={socialImg}
+                height={300}
+                width={300}
+                priority
+              />
+              <div>
+                <h3 className="common-h3-style">Discover New Opportunities</h3>
+                <p className="common-p-style">Join vibrant community of artists, networking and interact with peers. 
+                  Explore the profiles of fellow creators, discover new talent, exchange ideas, 
+                  and initiate collaborations directly within the platform.</p>
+              </div>
+            </div>
+          </div>
+          <div className="column" style={{ padding: "10px" }}>
+            <div className="small-card" style={{ background: "#DBECFD"}}>
               <div className="small-card-text">
                 <h3 className="common-h3-style">Connect to Collaborate</h3>
                 <p className="common-p-style">Create a centralized profile,
                   link all social platforms, demonstrate collaboration readiness and unlock art
-                  world opportunities with fellow artists.
-                </p>
+                  world opportunities with fellow artists.</p>
               </div>
-              <div style={{ padding: "5px" }}>
+              <div style={{ paddingRight: "5px" }}>
                 <Image
                   src={connectImg}
                   height={250}
                   width={250}
                   priority
                 />
-              </div>
             </div>
-            <div className='small-card' style={{ background: "#DBECFD" }}>
+            </div>
+            <div className="small-card" style={{background: "#FBF0C4"}}>
               <div className="small-card-text">
                 <h3 className="common-h3-style">Stremline Workflows</h3>
                 <p className="common-p-style">Easy-to-use workflow to send
                   requests to collab and an organized calendar to keep track of upcoming
-                  collaboration and project deadlines.
-                </p>
+                  collaboration and project deadlines. </p>
               </div>
-              <div style={{ padding: "5px" }}>
+              <div style={{ paddingRight: "5px" }}>
                 <Image
                   src={calendarImg}
                   height={250}
@@ -133,25 +147,6 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
               </div>
             </div>
           </div>
-          <div className="column" style={{ padding: "10px" }}>
-            <div className='large-card' style={{ background: "#E2F0CB" }}>
-              <Image
-                src={socialImg}
-                height={400}
-                width={400}
-                priority
-              />
-              <div>
-                <h3 className="common-h3-style">Discover New Opportunities</h3>
-                <p className="common-p-style" >
-                  Join vibrant community of artists, networking and interact with peers. 
-                  Explore the profiles of fellow creators, discover new talent, exchange ideas, 
-                  and initiate collaborations directly within the platform.
-                </p>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
 

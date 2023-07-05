@@ -38,28 +38,28 @@
 .column {
   flex: 1;
   padding: 10px;
+}
 
-  .small-card {
-    height: 49%;
-    margin-bottom: 10px;
-    align-items: center;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-around;
-    
-    .small-card-text {
-      padding: 20px; 
-      width: 60%;
-    }
-  }
+.small-card {
+  height: 49%;
+  margin-bottom: 10px;
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+}
 
-  .large-card {
-    padding: 20px; 
-    height: 100%;
-    border-radius: 10px; 
-    justify-content: space-around;
-    align-items: center;
-  }
+.small-card-text {
+  padding: 20px; 
+  width: 60%;
+}
+
+.large-card {
+  height: 100%;
+  padding: 20px; 
+  border-radius: 10px; 
+  justify-content: space-around;
+  align-items: center;
 }
 
 
