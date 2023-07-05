@@ -2,7 +2,7 @@
 @import './common/_font-size';
 
 .header-text {
-  height: 400px;
+  height: 350px;
   width: 100%;
 }
 
@@ -37,7 +37,18 @@
 .column {
   flex: 1;
   padding: 10px;
+
+  .small-card {
+    height: "49%";
+    margin-bottom: "10px";
+    align-items: "center";
+    border-radius: "10px";
+    display: "flex";
+    justify-content: "space-around";
+  }
 }
+
+
 
 .card {
   height: 130px;
