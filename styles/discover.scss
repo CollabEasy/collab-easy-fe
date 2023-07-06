@@ -78,8 +78,9 @@
 }
 
 .contest-scratchpad {
-  padding-left: 5%;
-  padding-right: 5%;
+  padding: 5%;
+  // padding-left: 5%;
+  // padding-right: 5%;
   display: flex;
   justify-content: center; /* Center the columns horizontally */
   gap: 20px; /* Adjust the space between columns */

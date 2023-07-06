@@ -276,7 +276,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       </div>
 
       {/* Contest and Scratchpad */}
-      <div className="row">
+      <div className="row" style={{backgroundColor: "#E7EFEB" }}>
         <div className="container">
           <div className="row d-flex justify-content-center">
             <div className="col-md-12 contest-scratchpad">
