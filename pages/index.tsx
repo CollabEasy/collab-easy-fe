@@ -139,93 +139,93 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       </div>
 
       {/* popular categories */}
-      <div className="row" style={{backgroundColor: "#E0EFEC", padding: "20px", display: "flex" }}>
-        <div style={{ width: "30%", wordWrap: "break-word" }}>
-          <h3 className="common-h3-style">Popular Categories for Collaboration</h3>
+      <div className="row" style={{backgroundColor: "#E0EFEC", padding: "30px 20px", display: "flex" }}>
+        <div className='text-center'>
+          <h3 className="common-h3-style popular-text">Popular Categories for Collaboration</h3>
         </div>
         <div className="row mt-2 g-4">
-          <div className="col-md-3" style={{ cursor: 'pointer' }} >
+          <div className="col-md-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1" >
+              <div className="card p-1">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style">Creative Writing</p> </div>
+                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Creative Writing</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
-          <div className="col-md-3" style={{ cursor: 'pointer' }} >
+          <div className="col-md-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1" >
+              <div className="card p-1">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style">Doodling</p> </div>
+                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Doodling</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
-          <div className="col-md-3" style={{ cursor: 'pointer' }} >
+          <div className="col-md-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
               <div className="card p-1" >
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style">Hand Lettering</p> </div>
+                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Hand Lettering</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
-          <div className="col-md-3" style={{ cursor: 'pointer' }} >
+          <div className="col-md-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1" >
+              <div className="card p-1">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style">Illustration</p> </div>
+                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Illustration</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
-          <div className="col-md-3" style={{ cursor: 'pointer' }} >
+          <div className="col-md-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
               <div className="card p-1" >
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style">Photography</p> </div>
+                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Photography</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
-          <div className="col-md-3" style={{ cursor: 'pointer' }} >
+          <div className="col-md-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
               <div className="card p-1" style={{ backgroundColor: "#FFFFF" }}>
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style">Sketching</p> </div>
+                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Sketching</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
-          <div className="col-md-3" style={{ cursor: 'pointer' }} >
+          <div className="col-md-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1" >
+              <div className="card p-1">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style">Painting</p> </div>
+                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Painting</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
-          <div className="col-md-3" style={{ cursor: 'pointer' }} >
+          <div className="col-md-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1" >
+              <div className="card p-1">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style">Dancing</p> </div>
+                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Dancing</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
@@ -250,18 +250,19 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                   </div>
                 </div>
                 <div className="col-md-6">
-                  <div className="p-4">
-                    <div className="mt-4 mb-3 inspire-text">
+                  <div className="inspire-cnt">
+                    <div className="inspire-text text-center">
                       <h3 className="common-h3-style">Searching for an idea for your next hit? We got you covered 🥳</h3>
                       <p className="common-p-style">
                         We provide invaluable support to artists in times of need by publishing curated
                         lists of themes and topics, serving as inspiration for their next creative masterpiece.
                       </p>
                     </div>
-                    <div className="mt-4 align-items-center">
-                      <div>
+                    <div className="mt-4 inspire-btn">
+                      <div className='cursor-pointer'>
                         <Button
                           type="primary"
+                          className='animate__animated'
                         >
                           <Link href={routeToHref(toGetInspired())} passHref > Get Inspired </Link>
                         </Button>
@@ -290,14 +291,14 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                     />
                   </div>
                   <div className="p-4 text-center">
-                    <div className="mt-4 mb-3 inspire-text">
+                    <div className="mt-4 mb-3">
                       <h3 className="common-h3-style">Searching for an idea for your next hit? We got you covered 🥳</h3>
                       <p className="common-p-style">
                         We provide invaluable support to artists in times of need by publishing curated
                         lists of themes and topics, serving as inspiration for their next creative masterpiece.
                       </p>
                     </div>
-                    <div className="mt-4 align-items-center">
+                    <div className="mt-4 inspire-btn">
                       <div>
                         <Button
                           type="primary"
@@ -317,14 +318,14 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                     />
                   </div>
                   <div className="p-4 text-center">
-                    <div className="mt-4 mb-3 inspire-text">
+                    <div className="mt-4 mb-3">
                       <h3 className="common-h3-style">Searching for an idea for your next hit? We got you covered 🥳</h3>
                       <p className="common-p-style">
                         We provide invaluable support to artists in times of need by publishing curated
                         lists of themes and topics, serving as inspiration for their next creative masterpiece.
                       </p>
                     </div>
-                    <div className="mt-4 align-items-center">
+                    <div className="mt-4 inspire-btn">
                       <div>
                         <Button
                           type="primary"

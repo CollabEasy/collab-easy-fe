@@ -2,8 +2,11 @@
 @import '../styles/common/_font-size';
 
 .navbar-links {
+  position: relative;
+  top: 2px;
   ul {
     list-style: none;
+    margin-bottom: 0;
   }
   
   li {
@@ -17,10 +20,17 @@
     }
 
     a:hover {
-      color:grey; 
+      // color:#1890ff;
       text-decoration:none; 
       cursor:pointer;  
+    }
   }
+  .nav-text{
+    margin-bottom: 0;
+    height: 25px;
+    &:hover{
+      border-bottom: 2px solid black;
+    }
   }
 }
 

@@ -124,17 +124,17 @@ const NavBar = ({
               <div className="navbar-links">
                 <ul>
                   <li>
-                    <p className="common-p-style">
+                    <p className="common-p-style nav-text">
                       <a href={routeToHref(toGetInspired())}>Inspiration</a>
                     </p>
                   </li>
                   <li>
-                    <p className="common-p-style">
+                    <p className="common-p-style nav-text">
                       <a href={routeToHref(toAllContestPage())}>Contests</a>
                     </p>
                   </li>
                   <li>
-                    <p className="common-p-style">
+                    <p className="common-p-style nav-text">
                       <a href={routeToHref(toTutorial())}>Tutorial</a>
                     </p>
                   </li>
