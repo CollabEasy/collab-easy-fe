@@ -138,7 +138,8 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         </div>
       </div>
 
-      <div className="row" style={{ height: "500px", backgroundColor: "#E0EFEC", padding: "20px", display: "flex" }}>
+      {/* popular categories */}
+      <div className="row" style={{backgroundColor: "#E0EFEC", padding: "20px", display: "flex" }}>
         <div style={{ width: "30%", wordWrap: "break-word" }}>
           <h3 className="common-h3-style">Popular Categories for Collaboration</h3>
         </div>
@@ -233,7 +234,8 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         </div>
       </div>
 
-      <div className="row" style={{ height: "350px" }} >
+      {/* Inspiration */}
+      <div className="row" >
         <div className="container">
           <div className="row d-flex justify-content-center inspire-box">
             <div className="col-md-12">
@@ -273,7 +275,8 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         </div>
       </div>
 
-      <div className="row" style={{ height: "800px", paddingTop: "5%" }}>
+      {/* Contest and Scratchpad */}
+      <div className="row">
         <div className="container">
           <div className="row d-flex justify-content-center">
             <div className="col-md-12 contest-scratchpad">
@@ -337,10 +340,6 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           </div>
         </div>
       </div >
-
-      <div className="row" style={{ height: "350px", paddingTop: "10%" }}>
-
-      </div>
     </>
   )
 }
