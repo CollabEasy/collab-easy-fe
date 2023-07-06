@@ -70,6 +70,40 @@
   border-radius: 10px
 }
 
+.inspire-box {
+  margin: 5%;
+  // background-color: #F5E6B9;
+  background-color: #F7E0DF;
+  border-radius: 10px
+}
+
+.contest-scratchpad {
+  padding-top: 10%;
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  justify-content: center; /* Center the columns horizontally */
+  gap: 20px; /* Adjust the space between columns */
+}
+
+.contest-scratchpad-box {
+  border-radius: 10px;
+  flex: 1;
+  margin-right: 20px;
+}
+
+.contest-scratchpad-box:first-child {
+  margin-left: 20px; /* Adjust the space on the left of the first column */
+}
+
+.contest-scratchpad-box:last-child {
+  margin-right: 20px; /* Adjust the space on the right of the last column */
+}
+
+// .contest-scratchpad-box:last-child {
+//   margin-right: 0; /* Remove margin from the last column */
+// }
+
 .inspire-text {
   width: 80%;
 }
