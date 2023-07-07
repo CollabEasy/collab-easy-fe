@@ -9,8 +9,6 @@ import connectImg from '../public/images/connect.svg';
 import calendarImg from '../public/images/calendar.svg';
 import socialImg from '../public/images/social.svg';
 import cameramanImg from '../public/images/popularCategories/cameraman.svg'
-import writerImg from '../public/images/popularCategories/writer.svg';
-import contestTileImage from '../public/images/contestTile.svg';
 import { routeToHref } from "config/routes";
 
 import inspireImg from '../public/images/inspirebg.svg';
@@ -277,12 +275,12 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       </div>
 
       {/* Contest and Scratchpad */}
-      <div className="row" style={{backgroundColor: "#E7EFEB" }}>
+      <div className="row" style={{backgroundColor: "#F8F9FA" }}>
         <div className="container">
           <div className="row d-flex justify-content-center">
             <div className="col-md-12 contest-scratchpad">
               <div className="row">
-                <div className="col-md-6 contest-scratchpad-box" style={{backgroundColor: "#F5F1E0"}}>
+                <div className="col-md-6 contest-scratchpad-box" style={{backgroundColor: "#EAEED8"}}>
                   <div className="text-center p-4">
                     <Image
                       src={inspireImg}
@@ -309,7 +307,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                     </div>
                   </div>
                 </div>
-                <div className="col-md-6 contest-scratchpad-box" style={{backgroundColor: "#F6F6F6"}}>
+                <div className="col-md-6 contest-scratchpad-box" style={{backgroundColor: "#D8EBF7"}}>
                   <div className="text-center p-4">
                     <Image
                       src={inspireImg}
