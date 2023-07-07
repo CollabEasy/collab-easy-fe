@@ -118,7 +118,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             </div>
             <div className="small-card" style={{ background: "#FBF0C4" }}>
               <div className="small-card-text">
-                <h3 className="common-h3-style">Stremline Workflows</h3>
+                <h3 className="common-h3-style">Streamlined Workflows</h3>
                 <p className="common-p-style">Easy-to-use workflow to send
                   requests to collab and an organized calendar to keep track of upcoming
                   collaboration and project deadlines. </p>
@@ -139,14 +139,15 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       {/* popular categories */}
       <div className="row" style={{backgroundColor: "#E0EFEC", padding: "30px 20px", display: "flex" }}>
         <div className='text-center'>
-          <h3 className="common-h3-style popular-text">Popular Categories for Collaboration</h3>
+          <h5 className="common-h5-style popular-text">Want to collaborate? Checkout what's</h5>
+          <h1 style={{color: "black"}} className="common-h1-style"> <b>Popular Among Artists</b></h1>
         </div>
         <div className="row mt-2 g-4">
           <div className="col-md-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
               <div className="card p-1">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Creative Writing</p> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Creative Writing</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
@@ -157,7 +158,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <Link href={toArtist().href + 'creative-writing'} passHref>
               <div className="card p-1">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Doodling</p> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Doodling</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
@@ -168,7 +169,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <Link href={toArtist().href + 'creative-writing'} passHref>
               <div className="card p-1" >
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Hand Lettering</p> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Hand Lettering</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
@@ -179,7 +180,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <Link href={toArtist().href + 'creative-writing'} passHref>
               <div className="card p-1">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Illustration</p> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Illustration</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
@@ -190,7 +191,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <Link href={toArtist().href + 'creative-writing'} passHref>
               <div className="card p-1" >
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Photography</p> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Photography</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
@@ -201,7 +202,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <Link href={toArtist().href + 'creative-writing'} passHref>
               <div className="card p-1" style={{ backgroundColor: "#FFFFF" }}>
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Sketching</p> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Sketching</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
@@ -212,7 +213,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <Link href={toArtist().href + 'creative-writing'} passHref>
               <div className="card p-1">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Painting</p> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Painting</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
@@ -223,7 +224,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <Link href={toArtist().href + 'creative-writing'} passHref>
               <div className="card p-1">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1 imagename"> <p className="common-p-style font-bold">Dancing</p> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Dancing</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
@@ -249,7 +250,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                 </div>
                 <div className="col-md-6">
                   <div className="inspire-cnt">
-                    <div className="inspire-text text-center">
+                    <div className="inspire-text text-right">
                       <h3 className="common-h3-style">Searching for an idea for your next hit? We got you covered 🥳</h3>
                       <p className="common-p-style">
                         We provide invaluable support to artists in times of need by publishing curated

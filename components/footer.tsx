@@ -22,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({
                   <h1 style={{ color: "#404040", fontFamily: "pacifico", fontSize: "30px" }}>Wondor</h1>
                 </div>
                 <p className="common-p-style">Unlock new avenues for creativity, collaboration, and success in the world of creators 🤝 💡 🎉</p>
-                <p><i className="fa fa-copyright"></i> 2020 </p>
+                <p><i className="fa fa-copyright"></i> 2023. All rights reserved.</p>
                 {/* <div className="social mt-2 mb-3"> <i className="fa fa-facebook-official fa-lg"></i> <i className="fa fa-instagram fa-lg"></i> <i className="fa fa-twitter fa-lg"></i> <i className="fa fa-linkedin-square fa-lg"></i> <i className="fa fa-facebook"></i> </div> */}
               </div>
             </div>
@@ -37,7 +37,7 @@ export const Footer: React.FC<FooterProps> = ({
               </ul>
             </div>
             <div className="col-md-2 col-sm-2 col-xs-2">
-              <h6 className="common-h6-style">Artists</h6>
+              <h6 className="common-h6-style">For artists</h6>
               <ul className="common-text-style">
                 <li><a href={toEditProfile("profile", "profile").href} >Portal</a></li>
                 <li><a href={toGetInspired().href} >Inspiration</a></li>
