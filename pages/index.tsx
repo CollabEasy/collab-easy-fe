@@ -12,6 +12,7 @@ import cameramanImg from '../public/images/popularCategories/cameraman.svg'
 import { routeToHref } from "config/routes";
 
 import inspireImg from '../public/images/inspirebg.svg';
+import allContestImg from '../public/images/allcontestbg.svg';
 import { Button, Card } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { updateLoginData } from 'state/action';
@@ -137,10 +138,10 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       </div>
 
       {/* popular categories */}
-      <div className="row" style={{backgroundColor: "#E0EFEC", padding: "30px 20px", display: "flex" }}>
+      <div className="row" style={{ backgroundColor: "#E0EFEC", padding: "30px 20px", display: "flex" }}>
         <div className='text-center'>
           <h5 className="common-h5-style popular-text">Want to collaborate? Checkout what's</h5>
-          <h1 style={{color: "black"}} className="common-h1-style"> <b>Popular Among Artists</b></h1>
+          <h1 style={{ color: "black" }} className="common-h1-style"> <b>Popular Among Artists</b></h1>
         </div>
         <div className="row mt-2 g-4">
           <div className="col-md-3 cursor-pointer">
@@ -240,7 +241,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <div className="col-md-12">
               <div className="row">
                 <div className="col-md-6">
-                  <div className="text-center p-4">
+                  <div className="text-center">
                     <Image
                       src={inspireImg}
                       height={400}
@@ -250,7 +251,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                 </div>
                 <div className="col-md-6">
                   <div className="inspire-cnt">
-                    <div className="inspire-text text-right">
+                    <div className="inspire-text text-center">
                       <h3 className="common-h3-style">Searching for an idea for your next hit? We got you covered 🥳</h3>
                       <p className="common-p-style">
                         We provide invaluable support to artists in times of need by publishing curated
@@ -260,10 +261,8 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                     <div className="mt-4 inspire-btn">
                       <div className='cursor-pointer'>
                         <Button
-                          type="primary"
-                          className='animate__animated'
                         >
-                          <Link href={routeToHref(toGetInspired())} passHref > Get Inspired </Link>
+                          <Link href={routeToHref(toGetInspired())} passHref > Get Inspiration </Link>
                         </Button>
                       </div>
                     </div>
@@ -276,13 +275,13 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       </div>
 
       {/* Contest and Scratchpad */}
-      <div className="row" style={{backgroundColor: "#F8F9FA" }}>
+      <div className="row" style={{ backgroundColor: "#F8F9FA" }}>
         <div className="container">
           <div className="row d-flex justify-content-center">
             <div className="col-md-12 contest-scratchpad">
               <div className="row">
-                <div className="col-md-6 contest-scratchpad-box" style={{backgroundColor: "#EAEED8"}}>
-                  <div className="text-center p-4">
+                <div className="col-md-6 contest-scratchpad-box" style={{ backgroundColor: "#EAEED8" }}>
+                  <div className="text-center">
                     <Image
                       src={inspireImg}
                       height={300}
@@ -291,7 +290,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                   </div>
                   <div className="p-4 text-center">
                     <div className="mt-4 mb-3">
-                      <h3 className="common-h3-style">Searching for an idea for your next hit? We got you covered 🥳</h3>
+                      <h3 className="common-h3-style">Got an idea? Add it to your scratchpad before you forget 😎</h3>
                       <p className="common-p-style">
                         We provide invaluable support to artists in times of need by publishing curated
                         lists of themes and topics, serving as inspiration for their next creative masterpiece.
@@ -302,23 +301,23 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                         <Button
                           type="primary"
                         >
-                          <Link href={routeToHref(toGetInspired())} passHref > Get Inspired </Link>
+                          <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref > Scratchpad </Link>
                         </Button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="col-md-6 contest-scratchpad-box" style={{backgroundColor: "#D8EBF7"}}>
-                  <div className="text-center p-4">
+                <div className="col-md-6 contest-scratchpad-box" style={{ backgroundColor: "#D8EBF7" }}>
+                  <div className="text-center">
                     <Image
-                      src={inspireImg}
+                      src={allContestImg}
                       height={300}
                       width={300}
                     />
                   </div>
                   <div className="p-4 text-center">
                     <div className="mt-4 mb-3">
-                      <h3 className="common-h3-style">Searching for an idea for your next hit? We got you covered 🥳</h3>
+                      <h3 className="common-h3-style">Want to win a prize? enter Wondor monthly contests 🤑</h3>
                       <p className="common-p-style">
                         We provide invaluable support to artists in times of need by publishing curated
                         lists of themes and topics, serving as inspiration for their next creative masterpiece.
@@ -329,7 +328,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                         <Button
                           type="primary"
                         >
-                          <Link href={routeToHref(toGetInspired())} passHref > Get Inspired </Link>
+                          <Link href={routeToHref(toAllContestPage())} passHref > Contests </Link>
                         </Button>
                       </div>
                     </div>
