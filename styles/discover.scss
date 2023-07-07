@@ -75,6 +75,13 @@
   display: flex;
 }
 
+.popular-text {
+  padding-top: 20px;
+  margin-bottom: 0;
+  color: #aaa;
+  //font-size: 20px;
+}
+
 .card {
   height: 130px;
   overflow: hidden;
@@ -123,6 +130,10 @@
   }
 }
 
+.inspire-text {
+  width: 80%;
+}
+
 .contest-scratchpad {
   padding: 5%;
   // padding-left: 5%;
@@ -150,194 +161,130 @@
   /* Adjust the space on the right of the last column */
 }
 
-// .contest-scratchpad-box:last-child {
-//   margin-right: 0; /* Remove margin from the last column */
-// }
-
-.inspire-text {
-  width: 80%;
-}
-
-.popular-text {
-  padding-top: 20px;
-  margin-bottom: 0;
-  color: #aaa;
-  //font-size: 20px;
-}
-
-.card-rw {
-  padding-top: 50vh;
-}
-
-.custom-padding {
-  padding-left: 2vw;
-  padding-right: 2vw;
-}
-
-.custom-footer {
-  padding-top: 2rem;
-}
-
 @media only screen and (max-width: 1600px) and (min-width: 1201px) {
-  #text-content {
-    top: 20%;
-    width: 34%;
+  .header-text {
+    height: 350px;
+  }
 
-    #text-content-tagline {
-      display: none;
+  .text-content {
+    top: 5%;
+  
+    h1 {
+      font-size: 45px;
+      padding-left: 20%;
+      padding-right: 20%;
+    }
+  
+    h6 {
+      padding-left: 25%;
+      padding-right: 25%;
     }
   }
 }
 
 // Please write media query for all screen sizes below this line.
 @media only screen and (max-width: 1200px) and (min-width: 993px) {
-  #text-content {
-    position: absolute;
-    margin-left: 40px;
-    top: 18%;
-    width: 40%;
-    word-wrap: break-word;
+  .header-text {
+    height: 350px;
+  }
 
+  .text-content {
+    top: 5%;
+  
     h1 {
-      font-size: 30px;
-      line-height: 32px;
+      font-size: 40px;
+      padding-left: 20%;
+      padding-right: 20%;
     }
-
-    p {
-      margin: 10px 0;
-      font-size: 12px;
-    }
-
-    #text-content-tagline {
-      display: none;
+  
+    h6 {
+      padding-left: 25%;
+      padding-right: 25%;
     }
   }
 }
 
 @media only screen and (max-width: 992px) and (min-width: 768px) {
 
-  #text-content {
-    position: absolute;
-    margin-left: 40px;
-    top: 14%;
-    width: 40%;
-    word-wrap: break-word;
+  .header-text {
+    height: 300px;
+  }
 
+  .text-content {
+    top: 4%;
+  
     h1 {
-      font-size: 25px;
-      line-height: 25px;
+      font-size: 35px;
+      padding-left: 10%;
+      padding-right: 10%;
     }
-
-    p {
-      margin: 10px 0;
-      font-size: 12px;
-    }
-
-    #text-content-tagline {
-      display: none;
+  
+    h6 {
+      padding-left: 10%;
+      padding-right: 10%;
     }
   }
 }
 
 @media only screen and (max-width: 767px) {
-  #landing-mobile-img {
-    display: block;
+  .header-text {
+    height: 300px;
   }
 
-  #landing-desktop-img {
-    display: none;
-  }
-
-  #text-content {
-    top: 10%;
-    width: 100%;
-    word-wrap: break-word;
-    text-align: center;
-    margin-left: 0px;
-    padding: 0px 40px;
-
+  .text-content {
+    top: 3%;
+  
     h1 {
-      font-size: 18px;
-      margin-top: -10%;
+      font-size: 30px;
+      padding-left: 10%;
+      padding-right: 10%;
     }
-
-    p {
-      margin: 8px 0;
-      font-size: 12px;
-    }
-
-    #text-content-tagline {
-      display: none;
-    }
-  }
-
-  .card-rw {
-    h2 {
-      font-size: 18px;
+  
+    h6 {
+      padding-left: 10%;
+      padding-right: 10%;
     }
   }
 }
 
 @media only screen and (max-width: 550px) {
-  #landing-mobile-img {
-    display: block;
+  .header-text {
+    height: 300px;
   }
 
-  #landing-desktop-img {
-    display: none;
-  }
-
-  #text-content {
-    top: 10%;
-    width: 100%;
-    word-wrap: break-word;
-    text-align: center;
-    margin-left: 0px;
-    padding: 0px 40px;
-
+  .text-content {
+    top: 2.5%;
+  
     h1 {
-      font-size: 18px;
-      margin-top: -10%;
+      font-size: 28px;
+      padding-left: 10%;
+      padding-right: 10%;
     }
-
-    p {
-      display: none;
-    }
-
-    #text-content-tagline {
-      display: block;
-    }
-  }
-
-  .card-rw {
-    h2 {
-      font-size: 18px;
+  
+    h6 {
+      padding-left: 10%;
+      padding-right: 10%;
     }
   }
 }
 
-@media only screen and (max-width: 399px) {
-  #text-content {
-    top: 8%;
-
-    h1 {
-      font-size: 16px;
-      margin-top: -10%;
-    }
-
-    p {
-      display: none;
-    }
-
-    #text-content-tagline {
-      display: block;
-      font-size: 12px;
-    }
+@media only screen and (max-width: 399px) {  
+  .header-text {
+    height: 300px;
   }
-
-  .card-rw {
-    h2 {
-      font-size: 16px;
+  
+  .text-content {
+    top: 2%;
+  
+    h1 {
+      font-size: 28px;
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+  
+    h6 {
+      padding-left: 10%;
+      padding-right: 10%;
     }
   }
 }

@@ -164,8 +164,16 @@
 .login-mobile-userdetails {
   display: none;
 }
+
 // Please write media query for all screen sizes below this line.
 @media only screen and (max-width: 1024px) and (min-width: 993px) {
+  .navbar-links {
+    li {
+      font-size: medium;
+      margin-right: 15px; /* add spacing between items */
+    }
+  }
+  
   .nv-f-t {
 
     & #app-logo-desktop{
@@ -183,6 +191,13 @@
 } 
 
 @media only screen and (max-width: 992px) and (min-width: 768px) {
+  .navbar-links {
+    li {
+      font-size: medium;
+      margin-right: 15px; /* add spacing between items */
+    }
+  }
+
   .nv-f-t {
     .navbar-search {
       display: flex;
@@ -206,6 +221,13 @@
 } 
 
 @media only screen and (max-width: 767px) and (min-width: 601px) {
+  .navbar-links {
+    li {
+      font-size: medium;
+      margin-right: 10px; /* add spacing between items */
+    }
+  }
+
   .nv-f-t {
     .navbar-search {
       display: flex;
@@ -229,6 +251,13 @@
 }
 
 @media only screen and (max-width: 600px) and  (min-width: 400px) {
+  .navbar-links {
+    li {
+      font-size: medium;
+      margin-right: 10px; /* add spacing between items */
+    }
+  }
+
   .nv-f-t {
     padding: 1rem;
 
@@ -259,6 +288,13 @@
 }
 
 @media only screen and (max-width: 399px) {
+  .navbar-links {
+    li {
+      font-size: small;
+      margin-right: 10px; /* add spacing between items */
+    }
+  }
+  
   .animate__animated.animate__slideInRight {
     width: 50%;
   }
@@ -288,87 +324,6 @@
 
     & #app-logo-desktop{
       display: none;
-    }
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .animate__animated.animate__slideInRight {
-    width: 50%;
-    margin: auto;
-    text-align: center;
-  }
-
-  .login-mobile-userdetails {
-    display: block;
-    margin: auto;
-    padding: 5px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
-    img{
-      max-width: 100%;
-      border-radius: 50px;
-    }
-    .default-profile{
-      height: 100%;
-      text-align: center;
-      padding: 10px 0px;
-      background: white;
-      border-radius: 50%;
-      .user-icon{
-        font-size: 20px;
-      }
-    }
-    .login-mobile-username {
-      padding-top:10px;
-      width: 100%;
-      h3 {
-        font-size: 15px;
-        text-align: left;
-      }
-      hr {
-        max-width: 140%;
-      }
-    }
-  }
-  .login-menu-container{
-    position: static;
-    .login-options-container{
-      top: 0px;
-      right: 0px;
-      bottom: 0px;
-      position: fixed;
-      border-radius: 0px;
-      padding-top: 50px;
-    }
-    .common-login-option {
-      margin-top: 50px;
-      padding-top: 10px;
-      font-size: 40px;
-    }
-    .hide-icon{
-      display: none;
-    }
-  }
-  .sidebar-mask{
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.45);
-  }
-  .menu-icon{
-    width: 32px;
-    height: 32px;
-    .default-profile{
-      padding: 3px 0px;
-      .user-icon{
-        font-size: 15px;
-      }
     }
   }
 }

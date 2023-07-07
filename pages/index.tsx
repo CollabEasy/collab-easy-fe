@@ -77,7 +77,6 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             <h6 className="common-p-style">
               Unlock new avenues for creativity, collaboration, and success in the world of creators 🤝 💡 🎉
             </h6>
-            <b id="text-content-tagline" className="common-p-style"><i>Together you create better 🤝 💡 🎉</i></b>
           </div>
         </div>
       </div>
