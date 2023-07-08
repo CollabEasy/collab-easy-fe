@@ -165,6 +165,21 @@
   display: none;
 }
 
+.login-signup-cnt{
+  display: flex;
+  gap: 10px;
+}
+
+.login-btn{
+  background-color: #40576d12 !important;
+  color: #000 !important;
+  border-color: transparent !important;
+  padding-top: 8px !important;
+  &:hover{
+    background-color: #394c6026 !important;
+  }
+}
+
 // Please write media query for all screen sizes below this line.
 @media only screen and (max-width: 1024px) and (min-width: 993px) {
   .navbar-links {
@@ -248,6 +263,10 @@
       text-align: center;
     }
   }
+  .menu-icon{
+    width: 40px;
+    height: 40px;
+  }
 }
 
 @media only screen and (max-width: 600px) and  (min-width: 400px) {
@@ -285,6 +304,10 @@
       display: none;
     }
   }
+  .menu-icon{
+    width: 40px;
+    height: 40px;
+  }
 }
 
 @media only screen and (max-width: 399px) {
@@ -296,7 +319,7 @@
   }
   
   .animate__animated.animate__slideInRight {
-    width: 50%;
+    // width: 50%;
   }
 
   .nv-f-t {
@@ -325,5 +348,9 @@
     & #app-logo-desktop{
       display: none;
     }
+  }
+  .menu-icon{
+    width: 40px;
+    height: 40px;
   }
 }

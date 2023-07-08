@@ -13,8 +13,8 @@ export const Footer: React.FC<FooterProps> = ({
   const { toEditProfile, toGetInspired, toAllContestPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext()
   return (
     <footer className="footer-body">
-      <div className="container-fluid mt-5">
-        <div className="footer-card mx-5">
+      <div className="container-fluid footer-cnt">
+        <div className="footer-card">
           <div className="row mb-4">
             <div className="col-md-4 col-sm-4 col-xs-4">
               <div className="footer-text pull-left">
@@ -27,28 +27,32 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
             </div>
             <div className="col-md-2 col-sm-2 col-xs-2"></div>
-            <div className="col-md-2 col-sm-2 col-xs-2">
-              <h6 className="common-h6-style">Company</h6>
-              <ul className="common-text-style">
-                <li><a href={toAboutUs().href} >About Us</a></li>
-                <li><a href={toTerms().href} >Terms & Policy</a></li>
-                <li><a href={toPrivacy().href} >Privacy</a></li>
-                <li><a href={toTutorial().href} >Tutorial</a></li>
-              </ul>
-            </div>
-            <div className="col-md-2 col-sm-2 col-xs-2">
-              <h6 className="common-h6-style">For artists</h6>
-              <ul className="common-text-style">
-                <li><a href={toEditProfile("profile", "profile").href} >Portal</a></li>
-                <li><a href={toGetInspired().href} >Inspiration</a></li>
-                <li><a href={toAllContestPage().href} >Contests</a></li>
-              </ul>
-            </div>
-            <div className="col-md-2 col-sm-2 col-xs-2">
-              <h6 className="common-h6-style">Contact</h6>
-              <ul className="common-text-style">
-                <li><a href={toContactUs().href}>Contact Us</a></li>
-              </ul>
+            <div className='col-md-6'>
+              <div className='row'>
+                <div className="col-md-4 col-4">
+                  <h6 className="common-h6-style">Company</h6>
+                  <ul className="common-text-style">
+                    <li><a href={toAboutUs().href} >About Us</a></li>
+                    <li><a href={toTerms().href} >Terms & Policy</a></li>
+                    <li><a href={toPrivacy().href} >Privacy</a></li>
+                    <li><a href={toTutorial().href} >Tutorial</a></li>
+                  </ul>
+                </div>
+                <div className="col-md-4 col-4">
+                  <h6 className="common-h6-style">For artists</h6>
+                  <ul className="common-text-style">
+                    <li><a href={toEditProfile("profile", "profile").href} >Portal</a></li>
+                    <li><a href={toGetInspired().href} >Inspiration</a></li>
+                    <li><a href={toAllContestPage().href} >Contests</a></li>
+                  </ul>
+                </div>
+                <div className="col-md-4 col-4">
+                  <h6 className="common-h6-style">Contact</h6>
+                  <ul className="common-text-style">
+                    <li><a href={toContactUs().href}>Contact Us</a></li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           {/* <div className="divider mb-4"> </div> */}

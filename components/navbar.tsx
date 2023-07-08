@@ -1,18 +1,18 @@
 // import Link from "next/link";
 import { connect, ConnectedProps } from "react-redux";
 import Link from "next/link";
-import React, { useEffect, useState } from 'react'
-import { useInView } from 'react-intersection-observer';
-import Search from './search';
+import React, { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import Search from "./search";
 import { Dispatch } from "redux";
 import { useRouter } from "next/router";
-import { /* Menu, Dropdown, */ Button } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { /* Menu, Dropdown, */ Button } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import { AppState } from "types/states";
-import Image from 'next/image';
-import titleDesktopImg from '../public/images/title-desktop.svg';
-import titleMobileImg from '../public/images/logo.svg';
-import hamburgerImg from '../public/images/hamburger.png';
+import Image from "next/image";
+import titleDesktopImg from "../public/images/title-desktop.svg";
+import titleMobileImg from "../public/images/logo.svg";
+import hamburgerImg from "../public/images/hamburger.png";
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 import { openLoginModalAction, resetUserLoggedIn } from "state/action";
@@ -21,28 +21,27 @@ import { IsAdmin } from "helpers/helper";
 const mapStateToProps = (state: AppState) => {
   const isLoggedIn = state.user.isLoggedIn;
   const userModel = state.user;
-  return { isLoggedIn, userModel }
-}
+  return { isLoggedIn, userModel };
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   openLoginModalAction: () => dispatch(openLoginModalAction()),
-  resetUserLoggedIn: () => dispatch(resetUserLoggedIn())
+  resetUserLoggedIn: () => dispatch(resetUserLoggedIn()),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {
-} & ConnectedProps<typeof connector>;
+type Props = {} & ConnectedProps<typeof connector>;
 
 const NavBar = ({
   openLoginModalAction,
   isLoggedIn,
   userModel,
-  resetUserLoggedIn
+  resetUserLoggedIn,
 }: Props) => {
   const [ref, inView, entry] = useInView({
     root: null,
-    rootMargin: '-20px 0px 0px 0px',
+    rootMargin: "-20px 0px 0px 0px",
   });
 
   const user = userModel.user;
@@ -55,31 +54,31 @@ const NavBar = ({
   const router = useRouter();
 
   const openLoginModal = () => {
-    openLoginModalAction()
+    openLoginModalAction();
   };
 
   const checkDevice = () => {
     return window.matchMedia("only screen and (max-width: 767px)").matches;
-  }
+  };
 
-
-  const { toWondorHome, toArtistProfile, toEditProfile, toAnalyticsPage } = useRoutesContext();
+  const { toWondorHome, toArtistProfile, toEditProfile, toAnalyticsPage } =
+    useRoutesContext();
   const { toGetInspired, toAllContestPage, toTutorial } = useRoutesContext();
 
   useEffect(() => {
-    const navBarElement = document.querySelector('#p-h');
+    const navBarElement = document.querySelector("#p-h");
     if (!inView && entry !== undefined) {
-      navBarElement.classList.add('scroll-effect');
-      navBarElement.classList.add('animate__fadeInDown');
+      navBarElement.classList.add("scroll-effect");
+      navBarElement.classList.add("animate__fadeInDown");
       setShowSearchBar(true);
     }
 
     if (inView && entry !== undefined) {
-      navBarElement.classList.remove('scroll-effect');
-      navBarElement.classList.remove('animate__fadeInDown');
+      navBarElement.classList.remove("scroll-effect");
+      navBarElement.classList.remove("animate__fadeInDown");
       setShowSearchBar(false);
     }
-  }, [inView, entry])
+  }, [inView, entry]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -92,11 +91,11 @@ const NavBar = ({
   }, [user]);
 
   const logoutUser = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     resetUserLoggedIn();
     setHideSignUp(false);
     setShowLoginOptions(false);
-  }
+  };
 
   function IsLandingPage() {
     return router.pathname === "/";
@@ -104,21 +103,32 @@ const NavBar = ({
 
   return (
     <div className="row">
-      <div id="p-h" className="col-lg-12 col-md-12 col-sm-12 nv-f-t animate__animated">
+      <div
+        id="p-h"
+        className="col-lg-12 col-md-12 col-sm-12 nv-f-t animate__animated"
+      >
         <div id="app-logo-desktop">
           <Link href={routeToHref(toWondorHome())} passHref>
-            <Image src={titleDesktopImg} alt="Landing page" onClick={() => setShowLoginOptions(false)} />
+            <Image
+              src={titleDesktopImg}
+              alt="Landing page"
+              onClick={() => setShowLoginOptions(false)}
+            />
           </Link>
         </div>
         <div id="app-logo-mobile">
           <Link href={routeToHref(toWondorHome())} passHref>
-            <Image src={titleMobileImg} alt="Landing page" onClick={() => setShowLoginOptions(false)} />
+            <Image
+              src={titleMobileImg}
+              alt="Landing page"
+              onClick={() => setShowLoginOptions(false)}
+            />
           </Link>
         </div>
 
         <div className="navbar-search">
           <>
-            {(!IsLandingPage() || showSearchBar) ? (
+            {!IsLandingPage() || showSearchBar ? (
               <Search />
             ) : (
               <div className="navbar-links">
@@ -144,16 +154,32 @@ const NavBar = ({
           </>
         </div>
         {!hideSignUp ? (
-          <div>
-            <Button className="common-text-style" id="sign-up-desktop" type="primary" onClick={openLoginModal}>Sign Up</Button>
+          <div className="login-signup-cnt">
+            <Button
+              className="common-text-style login-btn"
+              id="sign-up-desktop"
+              type="primary"
+              onClick={openLoginModal}
+            >
+              Log in
+            </Button>
+            <Button
+              className="common-text-style"
+              id="sign-up-desktop"
+              type="primary"
+              onClick={openLoginModal}
+              style={{paddingTop: "6px"}}
+            >
+              Sign Up
+            </Button>
             <Button id="sign-up-mobile" shape="circle" onClick={openLoginModal}>
               <UserOutlined />
             </Button>
           </div>
-
         ) : (
           <div className="login-menu-container">
-            <div className={`menu-icon ${showLoginOptions ? 'hide-icon' : ''}`}
+            <div
+              className={`menu-icon ${showLoginOptions ? "hide-icon" : ""}`}
               onClick={() => setShowLoginOptions(!showLoginOptions)}
             >
               {user?.profile_pic_url ? (
@@ -163,16 +189,20 @@ const NavBar = ({
                 <div className="default-profile">
                   <UserOutlined className="user-icon" />
                 </div>
-              )
-              }
+              )}
             </div>
             {checkDevice() && showLoginOptions && (
-              <div className="sidebar-mask" onClick={() => setShowLoginOptions(false)}></div>
-            )
-            }
+              <div
+                className="sidebar-mask"
+                onClick={() => setShowLoginOptions(false)}
+              ></div>
+            )}
             {showLoginOptions && (
-              <div className={`login-options-container ${checkDevice() ? 'animate__animated animate__slideInRight' : ''}`}>
-
+              <div
+                className={`login-options-container ${
+                  checkDevice() ? "animate__animated animate__slideInRight" : ""
+                }`}
+              >
                 <div className={"login-mobile-userdetails"}>
                   {user?.profile_pic_url ? (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -189,23 +219,44 @@ const NavBar = ({
                 </div>
                 <div className="common-login-option">
                   <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
-                    <div className="selected-option-shadow profile-option" onClick={() => setShowLoginOptions(false)}>
+                    <div
+                      className="selected-option-shadow profile-option"
+                      onClick={() => setShowLoginOptions(false)}
+                    >
                       <span className="f-14 common-text-style">Profile</span>
                     </div>
                   </Link>
-                  <Link href={routeToHref(toEditProfile("profile", "basic-information"))} passHref>
-                    <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
-                      <span className="f-14 common-text-style">Artist Portal</span>
+                  <Link
+                    href={routeToHref(
+                      toEditProfile("profile", "basic-information")
+                    )}
+                    passHref
+                  >
+                    <div
+                      className="selected-option-shadow settings-option"
+                      onClick={() => setShowLoginOptions(false)}
+                    >
+                      <span className="f-14 common-text-style">
+                        Artist Portal
+                      </span>
                     </div>
                   </Link>
                   {IsAdmin(user.email) && (
                     <Link href={routeToHref(toAnalyticsPage())} passHref>
-                      <div className="selected-option-shadow settings-option" onClick={() => setShowLoginOptions(false)}>
-                        <span className="f-14 common-text-style">Admin Portal</span>
+                      <div
+                        className="selected-option-shadow settings-option"
+                        onClick={() => setShowLoginOptions(false)}
+                      >
+                        <span className="f-14 common-text-style">
+                          Admin Portal
+                        </span>
                       </div>
                     </Link>
                   )}
-                  <div className="selected-option-shadow logout-option" onClick={logoutUser}>
+                  <div
+                    className="selected-option-shadow logout-option"
+                    onClick={logoutUser}
+                  >
                     <span className="f-14 common-text-style">Logout</span>
                   </div>
                 </div>
@@ -214,10 +265,9 @@ const NavBar = ({
           </div>
         )}
       </div>
-      <div ref={ref} className="dummy-div">
-      </div>
+      <div ref={ref} className="dummy-div"></div>
     </div>
-  )
-}
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

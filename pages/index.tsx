@@ -137,7 +137,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       </div>
 
       {/* popular categories */}
-      <div className="row" style={{ backgroundColor: "#E0EFEC", padding: "30px 20px", display: "flex" }}>
+      <div className="row popular-section">
         <div className='text-center'>
           <h5 className="common-h5-style popular-text">Want to collaborate? Checkout what's</h5>
           <h1 style={{ color: "black" }} className="common-h1-style"> <b>Popular Among Artists</b></h1>
@@ -257,7 +257,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                         lists of themes and topics, serving as inspiration for their next creative masterpiece.
                       </p>
                     </div>
-                    <div className="mt-4 inspire-btn">
+                    <div className="mt-4 mb-4 inspire-btn">
                       <div className='cursor-pointer'>
                         <Button
                         >
