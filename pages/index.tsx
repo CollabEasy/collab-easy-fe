@@ -5,14 +5,19 @@ import Link from "next/link";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from 'next/image';
+import artistConnectImg from '../public/images/artistConnect.svg';
 import connectImg from '../public/images/connect.svg';
 import calendarImg from '../public/images/calendar.svg';
-import socialImg from '../public/images/social.svg';
+
 import cameramanImg from '../public/images/popularCategories/cameraman.svg'
+
+import inspireImg from '../public/images/inspire.svg';
+import ideaImg from '../public/images/idea.svg';
+import allContestImg from '../public/images/competition.svg';
+
+
 import { routeToHref } from "config/routes";
 
-import inspireImg from '../public/images/inspirebg.svg';
-import allContestImg from '../public/images/allcontestbg.svg';
 import { Button, Card } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { updateLoginData } from 'state/action';
@@ -86,7 +91,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           <div className="column" style={{ padding: "10px" }}>
             <div className="large-card text-center" style={{ background: "#E2F0CB" }}>
               <Image
-                src={socialImg}
+                src={artistConnectImg}
                 height={300}
                 width={300}
                 priority
@@ -282,7 +287,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                 <div className="col-md-6 contest-scratchpad-box" style={{ backgroundColor: "#EAEED8" }}>
                   <div className="text-center">
                     <Image
-                      src={inspireImg}
+                      src={ideaImg}
                       height={300}
                       width={300}
                     />
