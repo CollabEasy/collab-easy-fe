@@ -1,0 +1,479 @@
+
+
+.footer-basic ul {
+    list-style: none;
+    text-align: center;
+    font-size: 12px;
+}
+
+.footer-basic li {
+    // padding:0 20px;
+}
+
+// Below is CSS for each link in footer.
+// 
+// Page 1: About us
+
+.footer_aboutUsContainer {
+    position: relative;
+    margin: auto;
+    flex-direction: column;
+    width: 70%;
+    //border: 1px solid rgb(0 0 0 / 10%);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.footer_aboutUsHeaderPictureContainer {
+    width: '100%';
+    height: '100%';
+    border: 1px solid rgb(0 0 0 / 10%);
+}
+
+.footer_aboutUsBodyTextContainer {
+    margin-top: 48px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+}
+
+.footer_aboutUsButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Page 2: Tutorial
+
+.footer_tutorialContainer {
+    position: relative;
+    margin: auto;
+    flex-direction: column;
+    width: 70%;
+    //border: 1px solid rgb(0 0 0 / 10%);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.footer_tutorialHeadingContainer {
+    text-align: center;
+    margin-top: 48px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+/* Container for flexboxes */
+.footer_tutorialTextRow {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+/* Create four equal columns */
+.footer_tutorialTextColum {
+    flex: 25%;
+    padding: 20px;
+}
+
+.footer_tutorialButtonContainer {
+    padding-top: 10px;
+    align-items: center;
+}
+
+// .footer_tutorialStepsContainer {
+//     display: flex;
+//     justify-content: center;
+//     flex-flow: row nowrap;
+// }
+
+// .footer_tutorialStepText, .footer_tutorialStepImage {
+//     flex: 0 0 50%;
+//     padding: 5%;
+// }
+
+// @media screen and (max-width:768px) {
+//     .footer_tutorialStepsContainer {
+//         flex-flow: column nowrap;
+//     }
+// }
+
+.footer_tutorialButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Page 3: Contact us
+
+.footer_contactUsContainer {
+    position: relative;
+    margin: auto;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 10%;
+}
+
+.footer_contactUsSectionContainer {
+    width: 50%;
+    float: left;
+
+    .footer_contactUsImage {
+        display: block;
+    }
+}
+
+.footer_contactUsTextContainer {
+    h3 {
+        text-align: left;
+    }
+
+    .question {
+        padding-top: 10px;
+    }
+}
+
+.footer_contactUsButtonContainer {
+    padding-top: 20px;
+    display: flex;
+    // justify-content: center;  
+    // align-items: center; 
+}
+
+// Page 4: Terms and Conditions
+
+.footer_termsContainer {
+    position: relative;
+    margin: auto;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 10%;
+}
+
+.footer_termsSectionContainer {
+    text-align: left;
+    padding-bottom: 1rem;
+}
+
+// Page 5: Privacy
+
+.footer_privacyContainer {
+    position: relative;
+    margin: auto;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 10%;
+}
+
+.footer_privacySectionContainer {
+    text-align: left;
+    padding-bottom: 1rem;
+}
+
+/* mobile css starts from here  */
+@media only screen and (max-width: 1600px) and (min-width: 1201px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 10rem;
+        margin-bottom: 5%;
+    }
+
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+
+    .footer_contactUsContainer {
+        width: 90%;
+        margin-top: 10rem;
+    }
+
+    .footer_contactUsTextContainer {
+        h3 {
+            text-align: center;
+        }
+    }
+
+    .footer_termsContainer {
+        width: 90%;
+        margin-top: 10rem;
+    }
+
+    .footer_privacyContainer {
+        width: 90%;
+        margin-top: 10rem;
+    }
+
+    .footer_tutorialContainer {
+        width: 90%;
+        margin-top: 10rem;
+        margin-bottom: 5%;
+    }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 993px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 9rem;
+        margin-bottom: 5%;
+    }
+
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+
+    .footer_contactUsContainer {
+        width: 90%;
+        margin-top: 9rem;
+    }
+
+    .footer_contactUsTextContainer {
+        h3 {
+            text-align: center;
+        }
+    }
+
+    .footer_termsContainer {
+        width: 90%;
+        margin-top: 9rem;
+    }
+
+    .footer_privacyContainer {
+        width: 90%;
+        margin-top: 9rem;
+    }
+
+    .footer_tutorialContainer {
+        width: 90%;
+        margin-top: 9rem;
+        margin-bottom: 5%;
+    }
+}
+
+@media only screen and (max-width: 992px) and (min-width: 768px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 8rem;
+        margin-bottom: 5%;
+    }
+
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+
+    .footer_contactUsContainer {
+        width: 80%;
+        margin-top: 8rem;
+    }
+
+    .footer_contactUsTextContainer {
+        h3 {
+            text-align: center;
+        }
+    }
+
+    .footer_contactUsSectionContainer {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer_contactUsButtonContainer {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer_termsContainer {
+        width: 80%;
+        margin-top: 8rem;
+    }
+
+    .footer_privacyContainer {
+        width: 80%;
+        margin-top: 8rem;
+    }
+
+    .footer_tutorialContainer {
+        width: 90%;
+        margin-top: 8rem;
+        margin-bottom: 5%;
+    }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 601px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 7rem;
+        margin-bottom: 5%;
+    }
+
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+
+    .footer_contactUsContainer {
+        width: 80%;
+        margin-top: 7rem;
+    }
+
+    .footer_contactUsTextContainer {
+        h3 {
+            text-align: center;
+        }
+    }
+
+    .footer_contactUsSectionContainer {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer_contactUsButtonContainer {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer_termsContainer {
+        width: 80%;
+        margin-top: 7rem;
+    }
+
+    .footer_privacyContainer {
+        width: 80%;
+        margin-top: 7rem;
+    }
+
+    .footer-basic .copyright {
+        font-size: 16px;
+    }
+
+    .footer_tutorialContainer {
+        width: 90%;
+        margin-top: 7rem;
+        margin-bottom: 5%;
+    }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 400px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 6rem;
+        margin-bottom: 5%;
+    }
+
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+
+    .footer_contactUsContainer {
+        width: 90%;
+        margin-top: 7rem;
+    }
+
+    .footer_contactUsTextContainer {
+        h3 {
+            text-align: center;
+        }
+    }
+
+    .footer_contactUsSectionContainer {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer_contactUsButtonContainer {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer_termsContainer {
+        width: 80%;
+        margin-top: 6rem;
+    }
+
+    .footer_privacyContainer {
+        width: 80%;
+        margin-top: 6rem;
+    }
+
+    .footer_tutorialContainer {
+        width: 90%;
+        margin-top: 6rem;
+        margin-bottom: 5%;
+    }
+
+    .footer_tutorialTextRow {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 399px) {
+    .footer_aboutUsContainer {
+        width: 90%;
+        margin-top: 5rem;
+        margin-bottom: 5%;
+    }
+
+    .footer_aboutUsBodyTextContainer {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+    }
+
+    .footer_contactUsContainer {
+        width: 90%;
+        margin-top: 5rem;
+    }
+
+    .footer_contactUsTextContainer {
+        h3 {
+            text-align: center;
+        }
+    }
+
+    .footer_contactUsSectionContainer {
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer_contactUsButtonContainer {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer_termsContainer {
+        width: 80%;
+        margin-top: 5rem;
+    }
+
+    .footer_privacyContainer {
+        width: 80%;
+        margin-top: 5rem;
+    }
+
+    .footer_tutorialContainer {
+        width: 90%;
+        margin-top: 5rem;
+    }
+
+    .footer_tutorialTextRow {
+        flex-direction: column;
+    }
+}
