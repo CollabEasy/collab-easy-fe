@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import CollabDetailCard from "../../components/collabDetailCard";
 import Loader from "../../components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
-import LoginModal from '@/components/loginModal';
+import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
 import { ConvertTimestampToDate } from 'helpers/collabCardHelper';
 import { GetCollabRequest, GetCollaboratorInfoFromCollab, DoHideNewCommentBox } from 'helpers/collabPageHelper';

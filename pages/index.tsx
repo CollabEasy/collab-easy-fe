@@ -1,6 +1,6 @@
 import Title from '../components/title'
 import NewUserModal from '../components/modal/newUserModal';
-import LoginModal from '../components/loginModal';
+import LoginModal from '../components/modal/loginModal';
 import Link from "next/link";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";

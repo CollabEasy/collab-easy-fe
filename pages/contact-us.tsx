@@ -6,7 +6,7 @@ import contactUsImage from "public/images/contactUs.svg";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 
-import LoginModal from '../components/loginModal';
+import LoginModal from '../components/modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
 import { updateLoginData } from 'state/action';

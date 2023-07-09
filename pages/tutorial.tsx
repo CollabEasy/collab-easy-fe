@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import { Card } from 'antd';
-import LoginModal from '../components/loginModal';
+import LoginModal from '../components/modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
 import { updateLoginData } from 'state/action';

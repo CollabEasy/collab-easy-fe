@@ -14,7 +14,7 @@ import * as actions from "state/action";
 import Loader from "@/components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
 
-import LoginModal from "@/components/loginModal";
+import LoginModal from "@/components/modal/loginModal";
 import { updateLoginData } from "state/action";
 import { LoginModalDetails } from "types/model";
 import NewUserModal from "@/components/modal/newUserModal";

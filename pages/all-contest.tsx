@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
-import LoginModal from '@/components/loginModal';
+import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
 import { Card, Tag } from 'antd';
 import { useRoutesContext } from "components/routeContext";

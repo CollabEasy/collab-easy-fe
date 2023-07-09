@@ -13,7 +13,7 @@ import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import React, { useEffect, useState } from 'react';
 import * as action from '../../state/action';
-import LoginModal from '../../components/loginModal';
+import LoginModal from '../../components/modal/loginModal';
 import { updateLoginData } from 'state/action';
 import { LoginModalDetails, CollabRequestData } from 'types/model';
 import NewUserModal from '../../components/modal/newUserModal';
