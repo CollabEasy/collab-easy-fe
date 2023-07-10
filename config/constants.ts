@@ -1,9 +1,15 @@
+import writerImage from '../public/images/popularCategories/writingbg.svg';
+import cameramanImage from '../public/images/popularCategories/camerabg.svg';
+import doodleImage from '../public/images/popularCategories/doodle.svg';
+import illustratorImage from '../public/images/popularCategories/illustrator.svg';
+import dancingImage from '../public/images/popularCategories/dancing.svg';
+
 import photographerImage from '../public/images/popularCategories/photographer.svg'
 import painterImage from '../public/images/popularCategories/painter.svg'
 import musicianImage from '../public/images/popularCategories/musician.svg';
 import dancerImage from '../public/images/popularCategories/dancer.svg';
 import singerImage from '../public/images/popularCategories/singer.svg';
-import writerImage from '../public/images/popularCategories/writer.svg';
+
 import artistImage from '../public/images/popularCategories/artist.svg';
 import sketchingImage from '../public/images/popularCategories/sketching.svg';
 import handLetteringImage from '../public/images/popularCategories/handLettering.svg';
@@ -3957,11 +3963,24 @@ export const LISTING_BANNERS = [
     "background_color": "#EDC5CD",
   },
   {
-    "slugs" : ["photography", "illustration"],
+    "slugs" : ["photography"],
     "category": "Photography",
-    "image": dancerImage,
+    "image": cameramanImage,
     "background_color": "#FFDAC1",
   },
+  {
+    "slugs" : ["illustration"],
+    "category": "Illustration",
+    "image": illustratorImage,
+    "background_color": "#FFDAC1",
+  },
+  {
+    "slugs" : ["dancing", "choreography"],
+    "category": "Dancing",
+    "image": dancingImage,
+    "background_color": "#FFDAC1",
+  },
+  
   {
     "slugs" : ["painting"],
     "category": "Painting",
@@ -3989,7 +4008,7 @@ export const LISTING_BANNERS = [
   {
     "slugs" : ["doodling", "caricaturing"],
     "category": "Doodling",
-    "image": doodlingImage,
+    "image": doodleImage,
     "background_color": "#B5EAD7",
   },
 ]
@@ -4079,6 +4098,19 @@ export const SIMILAR_CATEGORIES = [
       {
         "name": "Illustration",
         "slug": "illustration" 
+      }
+    ]
+  },
+  {
+    "slugs" : ["dancing", "choreography"],
+    "similar_categories": [
+      {
+        "name": "Dancing",
+        "slug": "dancing"
+      },
+      {
+        "name": "Choreography",
+        "slug": "choreography" 
       }
     ]
   },

@@ -9,7 +9,11 @@ import artistConnectImg from '../public/images/artistConnect.svg';
 import connectImg from '../public/images/connect.svg';
 import calendarImg from '../public/images/calendar.svg';
 
-import cameramanImg from '../public/images/popularCategories/cameraman.svg'
+import writingImg from '../public/images/popularCategories/writing.svg'
+import doodleImg from '../public/images/popularCategories/doodle.svg'
+import cameramanImg from '../public/images/popularCategories/camera.svg'
+import illustratorImg from '../public/images/popularCategories/illustrator.svg'
+import dancingImage from '../public/images/popularCategories/dancing.svg';
 
 import inspireImg from '../public/images/inspire.svg';
 import ideaImg from '../public/images/idea.svg';
@@ -148,53 +152,20 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           <h1 style={{ color: "black" }} className="common-h1-style"> <b>Popular Among Artists</b></h1>
         </div>
         <div className="row mt-2 g-4">
-          <div className="col-md-3 cursor-pointer">
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1">
+              <div className="card">
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1"> <p className="common-p-style font-bold">Creative Writing</p> </div>
-                  <div> <Image src={cameramanImg} height={130} width={130} /> </div>
+                  <div> <Image src={writingImg} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
-          <div className="col-md-3 cursor-pointer">
-            <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1">
-                <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Doodling</p> </div>
-                  <div> <Image src={cameramanImg} height={130} width={130} /> </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-
-          <div className="col-md-3 cursor-pointer">
-            <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1" >
-                <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Hand Lettering</p> </div>
-                  <div> <Image src={cameramanImg} height={130} width={130} /> </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-
-          <div className="col-md-3 cursor-pointer">
-            <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1">
-                <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Illustration</p> </div>
-                  <div> <Image src={cameramanImg} height={130} width={130} /> </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-
-          <div className="col-md-3 cursor-pointer">
-            <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1" >
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'photography'} passHref>
+              <div className="card" >
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1"> <p className="common-p-style font-bold">Photography</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
@@ -203,9 +174,53 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             </Link>
           </div>
 
-          <div className="col-md-3 cursor-pointer">
+          <div className="col-12 col-sm-6 col-md-6  col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'dancing'} passHref>
+              <div className="card">
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Dancing</p> </div>
+                  <div> <Image src={dancingImage} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'illustration'} passHref>
+              <div className="card">
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Illustration</p> </div>
+                  <div> <Image src={illustratorImg} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'doodling'} passHref>
+              <div className="card">
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Doodling</p> </div>
+                  <div> <Image src={doodleImg} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1" style={{ backgroundColor: "#FFFFF" }}>
+              <div className="card" >
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Hand Lettering</p> </div>
+                  <div> <Image src={cameramanImg} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'creative-writing'} passHref>
+              <div className="card" style={{ backgroundColor: "#FFFFF" }}>
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1"> <p className="common-p-style font-bold">Sketching</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
@@ -214,22 +229,11 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             </Link>
           </div>
 
-          <div className="col-md-3 cursor-pointer">
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
             <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1">
+              <div className="card">
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1"> <p className="common-p-style font-bold">Painting</p> </div>
-                  <div> <Image src={cameramanImg} height={130} width={130} /> </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-
-          <div className="col-md-3 cursor-pointer">
-            <Link href={toArtist().href + 'creative-writing'} passHref>
-              <div className="card p-1">
-                <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Dancing</p> </div>
                   <div> <Image src={cameramanImg} height={130} width={130} /> </div>
                 </div>
               </div>
