@@ -120,7 +120,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                   link all social platforms, demonstrate collaboration readiness and unlock art
                   world opportunities with fellow artists.</p>
               </div>
-              <div style={{ paddingRight: "5px" }}>
+              <div className= "small-card-image">
                 <Image
                   src={connectImage}
                   height={250}
@@ -136,7 +136,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                   requests to collab and an organized calendar to keep track of upcoming
                   collaboration and project deadlines. </p>
               </div>
-              <div style={{ paddingRight: "5px" }}>
+              <div className= "small-card-image">
                 <Image
                   src={calendarImage}
                   height={250}

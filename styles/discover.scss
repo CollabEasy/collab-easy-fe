@@ -61,6 +61,10 @@
   width: 60%;
 }
 
+.small-card-image {
+  padding-right: "5px";
+}
+
 .large-card {
   height: 100%;
   padding: 20px;
@@ -96,7 +100,6 @@
 
 .inspire-box {
   margin: 5%;
-  // background-color: #F5E6B9;
   background-color: #FBE2DA;
   border-radius: 10px
 }
@@ -230,6 +233,10 @@
       padding-right: 10%;
     }
   }
+  .inspire-btn {
+    width: initial;
+    margin-bottom: 25px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -292,6 +299,16 @@
       padding-right: 10%;
     }
   }
+
+  .small-card {
+    flex-direction: column;
+  }
+
+  .small-card-text {
+    width: 100%;
+    text-align: center;
+    order: 2;
+  }
 }
 
 @media only screen and (max-width: 399px) {  
@@ -312,5 +329,15 @@
       padding-left: 10%;
       padding-right: 10%;
     }
+  }
+
+  .small-card {
+    flex-direction: column;
+  }
+
+  .small-card-text {
+    width: 100%;
+    text-align: center;
+    order: 2;
   }
 }
