@@ -16,7 +16,7 @@ import hamburgerImg from "../public/images/hamburger.png";
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 import { openLoginModalAction, resetUserLoggedIn } from "state/action";
-import { IsAdmin } from "helpers/helper";
+import { IsAdmin, IsLandingPage } from "helpers/helper";
 
 const mapStateToProps = (state: AppState) => {
   const isLoggedIn = state.user.isLoggedIn;
@@ -97,10 +97,6 @@ const NavBar = ({
     setShowLoginOptions(false);
   };
 
-  function IsLandingPage() {
-    return router.pathname === "/";
-  }
-
   return (
     <div className="row">
       <div
@@ -128,7 +124,7 @@ const NavBar = ({
 
         <div className="navbar-search">
           <>
-            {!IsLandingPage() || showSearchBar ? (
+            {!IsLandingPage(router.pathname) || showSearchBar ? (
               <Search />
             ) : (
               <div className="navbar-links">

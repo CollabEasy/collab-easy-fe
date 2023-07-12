@@ -5,19 +5,23 @@ import Link from "next/link";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from 'next/image';
-import artistConnectImg from '../public/images/artistConnect.svg';
-import connectImg from '../public/images/connect.svg';
-import calendarImg from '../public/images/calendar.svg';
+import artistConnectImage from '../public/images/artistConnect.svg';
+import connectImage from '../public/images/connect.svg';
+import calendarImage from '../public/images/calendar.svg';
 
-import writingImg from '../public/images/popularCategories/writing.svg'
-import doodleImg from '../public/images/popularCategories/doodle.svg'
-import cameramanImg from '../public/images/popularCategories/camera.svg'
-import illustratorImg from '../public/images/popularCategories/illustrator.svg'
+import writingImage from '../public/images/popularCategories/writing.svg'
+import doodleImage from '../public/images/popularCategories/doodle.svg'
+import cameramanImage from '../public/images/popularCategories/camera.svg'
+import illustratorImage from '../public/images/popularCategories/illustrator.svg'
 import dancingImage from '../public/images/popularCategories/dancing.svg';
+import handLetteringImage from '../public/images/popularCategories/handLettering.svg';
+import paintingImage from '../public/images/popularCategories/painting.svg';
+import singingImage from '../public/images/popularCategories/singing.svg';
+import musicImage from '../public/images/popularCategories/music.svg';
 
-import inspireImg from '../public/images/inspire.svg';
-import ideaImg from '../public/images/idea.svg';
-import allContestImg from '../public/images/competition.svg';
+import inspireImage from '../public/images/inspire.svg';
+import ideaImage from '../public/images/idea.svg';
+import allContestImage from '../public/images/competition.svg';
 
 
 import { routeToHref } from "config/routes";
@@ -95,7 +99,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           <div className="column" style={{ padding: "10px" }}>
             <div className="large-card text-center" style={{ background: "#E2F0CB" }}>
               <Image
-                src={artistConnectImg}
+                src={artistConnectImage}
                 height={300}
                 width={300}
                 priority
@@ -118,7 +122,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
               </div>
               <div style={{ paddingRight: "5px" }}>
                 <Image
-                  src={connectImg}
+                  src={connectImage}
                   height={250}
                   width={250}
                   priority
@@ -134,7 +138,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
               </div>
               <div style={{ paddingRight: "5px" }}>
                 <Image
-                  src={calendarImg}
+                  src={calendarImage}
                   height={250}
                   width={250}
                   priority
@@ -157,7 +161,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
               <div className="card">
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1"> <p className="common-p-style font-bold">Creative Writing</p> </div>
-                  <div> <Image src={writingImg} height={130} width={130} /> </div>
+                  <div> <Image src={writingImage} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
@@ -168,7 +172,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
               <div className="card" >
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1"> <p className="common-p-style font-bold">Photography</p> </div>
-                  <div> <Image src={cameramanImg} height={130} width={130} /> </div>
+                  <div> <Image src={cameramanImage} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
@@ -186,55 +190,55 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           </div>
 
           <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
-            <Link href={toArtist().href + 'illustration'} passHref>
+            <Link href={toArtist().href + 'digital-art'} passHref>
               <div className="card">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Illustration</p> </div>
-                  <div> <Image src={illustratorImg} height={130} width={130} /> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Digital Art</p> </div>
+                  <div> <Image src={illustratorImage} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
           <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
-            <Link href={toArtist().href + 'doodling'} passHref>
+            <Link href={toArtist().href + 'music'} passHref>
               <div className="card">
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Doodling</p> </div>
-                  <div> <Image src={doodleImg} height={130} width={130} /> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Music</p> </div>
+                  <div> <Image src={musicImage} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
           <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
-            <Link href={toArtist().href + 'creative-writing'} passHref>
+            <Link href={toArtist().href + 'journaling'} passHref>
               <div className="card" >
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Hand Lettering</p> </div>
-                  <div> <Image src={cameramanImg} height={130} width={130} /> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Journaling</p> </div>
+                  <div> <Image src={handLetteringImage} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
           <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
-            <Link href={toArtist().href + 'creative-writing'} passHref>
+            <Link href={toArtist().href + 'singing'} passHref>
               <div className="card" style={{ backgroundColor: "#FFFFF" }}>
                 <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Sketching</p> </div>
-                  <div> <Image src={cameramanImg} height={130} width={130} /> </div>
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Singing</p> </div>
+                  <div> <Image src={singingImage} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
           </div>
 
           <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
-            <Link href={toArtist().href + 'creative-writing'} passHref>
+            <Link href={toArtist().href + 'painting'} passHref>
               <div className="card">
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1"> <p className="common-p-style font-bold">Painting</p> </div>
-                  <div> <Image src={cameramanImg} height={130} width={130} /> </div>
+                  <div> <Image src={paintingImage} height={130} width={130} /> </div>
                 </div>
               </div>
             </Link>
@@ -251,7 +255,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                 <div className="col-md-6">
                   <div className="text-center">
                     <Image
-                      src={inspireImg}
+                      src={inspireImage}
                       height={400}
                       width={400}
                     />
@@ -291,7 +295,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                 <div className="col-md-6 contest-scratchpad-box" style={{ backgroundColor: "#EAEED8" }}>
                   <div className="text-center">
                     <Image
-                      src={ideaImg}
+                      src={ideaImage}
                       height={300}
                       width={300}
                     />
@@ -309,7 +313,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                         <Button
                           type="primary"
                         >
-                          <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref > Scratchpad </Link>
+                          <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref > Take notes </Link>
                         </Button>
                       </div>
                     </div>
@@ -318,7 +322,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                 <div className="col-md-6 contest-scratchpad-box" style={{ backgroundColor: "#D8EBF7" }}>
                   <div className="text-center">
                     <Image
-                      src={allContestImg}
+                      src={allContestImage}
                       height={300}
                       width={300}
                     />
@@ -336,7 +340,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                         <Button
                           type="primary"
                         >
-                          <Link href={routeToHref(toAllContestPage())} passHref > Contests </Link>
+                          <Link href={routeToHref(toAllContestPage())} passHref > Enter now </Link>
                         </Button>
                       </div>
                     </div>

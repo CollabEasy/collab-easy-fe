@@ -1,5 +1,9 @@
 import CryptoJS from 'crypto-js' ;
 
+export function IsLandingPage(pathname) {
+  return pathname === "/";
+}
+
 export function getLoginDetails() {
   const accessToken = localStorage.getItem("token");
   if (accessToken !== null) {
