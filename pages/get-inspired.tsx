@@ -6,7 +6,7 @@ import { routeToHref } from "config/routes";
 import happyImage from "public/images/happy.svg";
 import { useRoutesContext } from "../components/routeContext";
 import Title from 'components/title'
-import LoginModal from '../components/loginModal';
+import LoginModal from '../components/modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
 import { updateLoginData } from 'state/action';

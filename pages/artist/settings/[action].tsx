@@ -29,7 +29,7 @@ import { Dispatch } from "redux";
 import * as actions from "state/action";
 import { useRouter } from "next/router";
 import Loader from "@/components/loader";
-import LoginModal from '@/components/loginModal';
+import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
 import EditBasicInformation from "@/components/editBasicInformation";
 import EditPreferences from "@/components/editPreferences";

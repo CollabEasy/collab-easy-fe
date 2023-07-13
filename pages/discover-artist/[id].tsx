@@ -13,7 +13,7 @@ import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import React, { useEffect, useState } from 'react';
 import * as action from '../../state/action';
-import LoginModal from '../../components/loginModal';
+import LoginModal from '../../components/modal/loginModal';
 import { updateLoginData } from 'state/action';
 import { LoginModalDetails, CollabRequestData } from 'types/model';
 import NewUserModal from '../../components/modal/newUserModal';
@@ -257,7 +257,7 @@ const DiscoverArtist = ({
       ) : (
         <div>
           <div>
-            <Title title={"Artist to collaborate for "  + GetListingHeaderData(artSlug)["category"].toLowerCase()} />
+            <Title title={"Artist to collaborate for " + GetListingHeaderData(artSlug)["category"].toLowerCase()} />
             <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
               <div className="discoverArtists__listingPageCoverContainer">
                 <div className="row ">
@@ -294,19 +294,21 @@ const DiscoverArtist = ({
                   <div className="col-sm-4" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
                     <Image
                       alt="Image Alt"
-                      className="discoverArtists_desktopCoverImageContainer"
                       src={GetListingHeaderData(artSlug)["image"]}
-                      layout="responsive"
-                      objectFit="contain" // Scale your image down to fit into the container
+                      height={250}
+                      width={250}
                     />
                   </div>
                 </div>
               </div>
-              <div className="flex-row flex-wrap d-flex align-items-center justify-content-center colors my-2 scrolling-wrapper">
-                <div className="btn-group">
-                  <p className="common-text-style" style={{ paddingLeft: "15px", paddingTop: "20px" }}>Similar categories:</p> {getSimilarCategories(artSlug)}
+
+              {getSimilarCategories(artSlug).length > 0 && (
+                <div className="flex-row flex-wrap d-flex align-items-center justify-content-center colors my-2 scrolling-wrapper">
+                  <div className="btn-group">
+                    <p className="common-text-style" style={{ paddingLeft: "15px", paddingTop: "20px" }}>Similar categories:</p> {getSimilarCategories(artSlug)}
+                  </div>
                 </div>
-              </div>
+              )}
               <div className="col-md-12 listingContainer">
                 {getArtists(GetListingHeaderData(artSlug)["background_color"], GetListingHeaderData(artSlug)["category"])}
               </div>

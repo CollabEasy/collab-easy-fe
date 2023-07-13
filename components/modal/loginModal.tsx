@@ -2,13 +2,11 @@ import { connect, ConnectedProps } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
 import Image from "next/image";
-import profileImageImg from "../public/images/profile.png";
-import { closeLoginModalAction, fetchLoginData } from "../state/action";
+import profileImageImg from "../..//public/images/profile.png";
+import { closeLoginModalAction, fetchLoginData } from "../../state/action";
 import { Dispatch } from "redux";
 import { AppState } from "types/states";
-import { User } from "types/model";
-import { useRoutesContext } from "../components/routeContext";
-import Link from 'next/link';
+import { useRoutesContext } from "../routeContext";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 
@@ -71,11 +69,11 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
           <div className="login-info-container">
             <div className="login-wrapper">
               <div className="heading-container">
-                <span className="f-25 md-cop000 common-text-style">Sign up to <span className="common-wondor-style">Wondor</span></span>
+                <span className="f-25 md-cop000 common-text-style">Welcome to <span className="common-wondor-style">Wondor</span></span>
               </div>
               <div className="heading-info-container">
                 <span className="f-14 md-cop000 common-text-style">
-                  a door to the world where artists collaborate
+                  Unlock new avenues for creativity, collaboration, and success in the world of creators!
                 </span>
               </div>
               <div className="signup-container">

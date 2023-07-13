@@ -1,33 +1,37 @@
 import Title from '../components/title'
 import NewUserModal from '../components/modal/newUserModal';
-import LoginModal from '../components/loginModal';
+import LoginModal from '../components/modal/loginModal';
 import Link from "next/link";
-import Script from 'next/script';
-import Head from 'next/head';
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from 'next/image';
-import landingDesktopImg from '../public/images/desktop-landing.svg';
-import landingMobileImg from '../public/images/mobile-landing.svg';
-import photographerImg from '../public/images/popularCategories/photographer.svg'
-import paintersImg from '../public/images/popularCategories/painter.svg';
-import doodlingImage from '../public/images/popularCategories/doodling.svg';
-import writerImg from '../public/images/popularCategories/writer.svg';
-import sketchingImage from '../public/images/popularCategories/sketching.svg';
+import artistConnectImage from '../public/images/artistConnect.svg';
+import connectImage from '../public/images/connect.svg';
+import calendarImage from '../public/images/calendar.svg';
+
+import writingImage from '../public/images/popularCategories/writing.svg'
+import doodleImage from '../public/images/popularCategories/doodle.svg'
+import cameramanImage from '../public/images/popularCategories/camera.svg'
+import illustratorImage from '../public/images/popularCategories/illustrator.svg'
+import dancingImage from '../public/images/popularCategories/dancing.svg';
 import handLetteringImage from '../public/images/popularCategories/handLettering.svg';
-import contestTileImage from '../public/images/contestTile.svg';
+import paintingImage from '../public/images/popularCategories/painting.svg';
+import singingImage from '../public/images/popularCategories/singing.svg';
+import musicImage from '../public/images/popularCategories/music.svg';
+
+import inspireImage from '../public/images/inspire.svg';
+import ideaImage from '../public/images/idea.svg';
+import allContestImage from '../public/images/competition.svg';
+
+
 import { routeToHref } from "config/routes";
 
-import inspireImg from '../public/images/inspire.svg';
-import ideaImg from '../public/images/idea.svg';
-import { Card } from 'antd';
+import { Button, Card } from 'antd';
 import { useRoutesContext } from "components/routeContext";
-import { data } from 'copy';
 import { updateLoginData } from 'state/action';
 import React, { useEffect, useState } from 'react';
 import { LoginModalDetails } from 'types/model';
 import { AppState } from 'types/states';
-import { getLoginDetails } from 'helpers/helper';
 
 const { Meta } = Card;
 
@@ -79,94 +83,274 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         <NewUserModal />
       )
       }
-      <div className="row">
-        <div id="landing-desktop-img" className="col-md-12 m-0 p-0">
-          <Image src={landingDesktopImg} layout="responsive" alt="Landing page" priority />
-        </div>
-        <div id="landing-mobile-img" className="col-md-12 m-0 p-0">
-          <Image src={landingMobileImg} alt="Landing page" priority />
-        </div>
-        <div id="text-content">
-          <h1 className="common-h1-style">Meet artists to collaborate with on your next big idea!</h1>
-          <p className="common-p-style">Work with like minded people from around the globe to convert your idea into a masterpiece because we believe <b className="common-text-style"><i>together you create better</i></b> 🤝 💡 🎉</p>
-          <b id="text-content-tagline" className="common-p-style"><i>together you create better 🤝 💡 🎉</i></b>
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        <div className="header-text">
+          <div className="text-content">
+            <h1 className="common-h1-style">Connect. Collaborate. Conquer.</h1>
+            <h6 className="common-p-style">
+              Unlock new avenues for creativity, collaboration, and success in the world of creators 🤝 💡 🎉
+            </h6>
+          </div>
         </div>
       </div>
 
-      <div className="row card-rw">
-        <div>
-          <h2 className="custom-padding common-h2-style">Popular Collab Categories</h2>
-          <div className="row text-center flex-row flex-nowrap mt-4 pb-4 pt-2 scrolling-wrapper">
-            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'creative-writing'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={writerImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Creative Writing" />
-                </Card>
-              </Link>
-            </div>
-            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'doodling'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={doodlingImage} alt="cards" />}>
-                  <Meta className="common-text-style" title="Doodling" />
-                </Card>
-              </Link>
-            </div>
-            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'hand-lettering'} passHref >
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={handLetteringImage} alt="cards" />}>
-                  <Meta className="common-text-style" title="Hand Lettering" />
-                </Card>
-              </Link>
-            </div>
-            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'photography'} passHref>
-                <Card hoverable style={{ width: '100%' }} cover={<Image src={photographerImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Photography" />
-                </Card>
-              </Link>
-            </div>
-            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'sketching'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={sketchingImage} alt="cards" />}>
-                  <Meta className="common-text-style" title="Sketching" />
-                </Card>
-              </Link>
-            </div>
-            <div className="col-6 col-sm-4 col-md-4 col-lg-3 col-xl-2">
-              <Link href={toArtist().href + 'painting'} passHref>
-                <Card hoverable style={{ height: '100%' }} cover={<Image src={paintersImg} alt="cards" />}>
-                  <Meta className="common-text-style" title="Painting" />
-                </Card>
-              </Link>
+      <div className="row" style={{ padding: "20px", display: "flex" }}>
+        <div className="container">
+          <div className="column" style={{ padding: "10px" }}>
+            <div className="large-card text-center" style={{ background: "#E2F0CB" }}>
+              <Image
+                src={artistConnectImage}
+                height={300}
+                width={300}
+                priority
+              />
+              <div>
+                <h3 className="common-h3-style">Discover New Opportunities</h3>
+                <p className="common-p-style">Join vibrant community of artists, networking and interact with peers.
+                  Explore the profiles of fellow creators, discover new talent, exchange ideas,
+                  and initiate collaborations directly within the platform.</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <div className="row custom-padding">
-          <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-4 col-xl-4">
-              <Link href={routeToHref(toGetInspired())} passHref>
-                <Card style={{ height: '100%' }} cover={<Image src={inspireImg} alt="cards" />}>
-                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Searching for an idea for your next hit? We got you covered 🥳 </span>} />
-                </Card>
-              </Link>
+          <div className="column" style={{ padding: "10px" }}>
+            <div className="small-card" style={{ background: "#DBECFD" }}>
+              <div className="small-card-text">
+                <h3 className="common-h3-style">Connect to Collaborate</h3>
+                <p className="common-p-style">Create a centralized profile,
+                  link all social platforms, demonstrate collaboration readiness and unlock art
+                  world opportunities with fellow artists.</p>
+              </div>
+              <div style={{ paddingRight: "5px" }}>
+                <Image
+                  src={connectImage}
+                  height={250}
+                  width={250}
+                  priority
+                />
+              </div>
             </div>
-            <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-4 col-xl-4">
-              <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref>
-                <Card style={{ height: '100%' }} cover={<Image src={ideaImg} alt="cards" sizes="small" />}>
-                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Got an idea? Add it to your scratchpad before you forget 😎 </span>} />
-                </Card>
-              </Link>
-            </div>
-            <div style={{ cursor: 'pointer' }} className="col-12 col-sm-12 col-md-4 col-xl-4">
-              <Link href={routeToHref(toAllContestPage())} passHref>
-                <Card style={{ height: '100%' }} cover={<Image src={contestTileImage} alt="cards" />}>
-                  <Meta className="common-text-style" title={<span style={{ whiteSpace: 'initial' }}>Want to win a prize? enter Wondor monthly contests 🤑 </span>} />
-                </Card>
-              </Link>
+            <div className="small-card" style={{ background: "#FBF0C4" }}>
+              <div className="small-card-text">
+                <h3 className="common-h3-style">Streamlined Workflows</h3>
+                <p className="common-p-style">Easy-to-use workflow to send
+                  requests to collab and an organized calendar to keep track of upcoming
+                  collaboration and project deadlines. </p>
+              </div>
+              <div style={{ paddingRight: "5px" }}>
+                <Image
+                  src={calendarImage}
+                  height={250}
+                  width={250}
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* popular categories */}
+      <div className="row popular-section">
+        <div className='text-center'>
+          <h5 className="common-h5-style popular-text">Want to collaborate? Checkout what's</h5>
+          <h1 style={{ color: "black" }} className="common-h1-style"> <b>Popular Among Artists</b></h1>
+        </div>
+        <div className="row mt-2 g-4">
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'creative-writing'} passHref>
+              <div className="card">
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Creative Writing</p> </div>
+                  <div> <Image src={writingImage} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'photography'} passHref>
+              <div className="card" >
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Photography</p> </div>
+                  <div> <Image src={cameramanImage} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-6  col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'dancing'} passHref>
+              <div className="card">
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Dancing</p> </div>
+                  <div> <Image src={dancingImage} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'digital-art'} passHref>
+              <div className="card">
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Digital Art</p> </div>
+                  <div> <Image src={illustratorImage} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'music'} passHref>
+              <div className="card">
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Music</p> </div>
+                  <div> <Image src={musicImage} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'journaling'} passHref>
+              <div className="card" >
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Journaling</p> </div>
+                  <div> <Image src={handLetteringImage} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'singing'} passHref>
+              <div className="card" style={{ backgroundColor: "#FFFFF" }}>
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Singing</p> </div>
+                  <div> <Image src={singingImage} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
+            <Link href={toArtist().href + 'painting'} passHref>
+              <div className="card">
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1"> <p className="common-p-style font-bold">Painting</p> </div>
+                  <div> <Image src={paintingImage} height={130} width={130} /> </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* Inspiration */}
+      <div className="row" >
+        <div className="container">
+          <div className="row d-flex justify-content-center inspire-box">
+            <div className="col-md-12">
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="text-center">
+                    <Image
+                      src={inspireImage}
+                      height={400}
+                      width={400}
+                    />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="inspire-cnt">
+                    <div className="inspire-text text-center">
+                      <h3 className="common-h3-style">Searching for an idea for your next hit? We got you covered 🥳</h3>
+                      <p className="common-p-style">
+                        We provide invaluable support to artists in times of need by publishing curated
+                        lists of themes and topics, serving as inspiration for their next creative masterpiece.
+                      </p>
+                    </div>
+                    <div className="mt-4 mb-4 inspire-btn">
+                      <div className='cursor-pointer'>
+                        <Button
+                        >
+                          <Link href={routeToHref(toGetInspired())} passHref > Get Inspiration </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Contest and Scratchpad */}
+      <div className="row" style={{ backgroundColor: "#F8F9FA" }}>
+        <div className="container">
+          <div className="row d-flex justify-content-center">
+            <div className="col-md-12 contest-scratchpad">
+              <div className="row">
+                <div className="col-md-6 contest-scratchpad-box" style={{ backgroundColor: "#EAEED8" }}>
+                  <div className="text-center">
+                    <Image
+                      src={ideaImage}
+                      height={300}
+                      width={300}
+                    />
+                  </div>
+                  <div className="p-4 text-center">
+                    <div className="mt-4 mb-3">
+                      <h3 className="common-h3-style">Got an idea? Add it to your scratchpad before you forget 😎</h3>
+                      <p className="common-p-style">
+                        We provide invaluable support to artists in times of need by publishing curated
+                        lists of themes and topics, serving as inspiration for their next creative masterpiece.
+                      </p>
+                    </div>
+                    <div className="mt-4 inspire-btn">
+                      <div>
+                        <Button
+                          type="primary"
+                        >
+                          <Link href={routeToHref(toEditProfile("profile", "scratchpad"))} passHref > Take notes </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-6 contest-scratchpad-box" style={{ backgroundColor: "#D8EBF7" }}>
+                  <div className="text-center">
+                    <Image
+                      src={allContestImage}
+                      height={300}
+                      width={300}
+                    />
+                  </div>
+                  <div className="p-4 text-center">
+                    <div className="mt-4 mb-3">
+                      <h3 className="common-h3-style">Want to win a prize? enter Wondor monthly contests 🤑</h3>
+                      <p className="common-p-style">
+                        We provide invaluable support to artists in times of need by publishing curated
+                        lists of themes and topics, serving as inspiration for their next creative masterpiece.
+                      </p>
+                    </div>
+                    <div className="mt-4 inspire-btn">
+                      <div>
+                        <Button
+                          type="primary"
+                        >
+                          <Link href={routeToHref(toAllContestPage())} passHref > Enter now </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div >
     </>
   )
 }
