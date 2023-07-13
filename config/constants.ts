@@ -11,10 +11,6 @@ import sketchingImage from '../public/images/popularCategories/sketching.svg';
 import handLetteringbgImage from '../public/images/popularCategories/handLetteringbg.svg';
 import musicImage from '../public/images/popularCategories/musicbg.svg';
 
-import singerImage from '../public/images/popularCategories/singer.svg';
-import musicbgImage from '../public/images/popularCategories/muscicbg.svg';
-import doodlingImage from '../public/images/popularCategories/doodling.svg';
-
 import facebookImage from '../public/images/facebook.png'
 import instagramImage from '../public/images/instagram.png'
 import tiktokImage from '../public/images/tiktok.png'

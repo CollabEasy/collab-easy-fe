@@ -10,7 +10,6 @@ import connectImage from '../public/images/connect.svg';
 import calendarImage from '../public/images/calendar.svg';
 
 import writingImage from '../public/images/popularCategories/writing.svg'
-import doodleImage from '../public/images/popularCategories/doodle.svg'
 import cameramanImage from '../public/images/popularCategories/camera.svg'
 import illustratorImage from '../public/images/popularCategories/illustrator.svg'
 import dancingImage from '../public/images/popularCategories/dancing.svg';
@@ -152,7 +151,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       {/* popular categories */}
       <div className="row popular-section">
         <div className='text-center'>
-          <h5 className="common-h5-style popular-text">Want to collaborate? Checkout what's</h5>
+          <h5 className="common-h5-style popular-text">Want to collaborate? Checkout what&apos;s</h5>
           <h1 style={{ color: "black" }} className="common-h1-style"> <b>Popular Among Artists</b></h1>
         </div>
         <div className="row mt-2 g-4">
