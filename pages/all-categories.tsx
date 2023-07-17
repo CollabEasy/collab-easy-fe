@@ -83,7 +83,7 @@ const AllCategoryPage = ({
                 approvedCategories.push(element);
             }
         })
-        return data;
+        return approvedCategories;
     };
 
     return (
