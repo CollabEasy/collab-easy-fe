@@ -1,4 +1,4 @@
-// Contest details page 
+// Category details page 
 
 .categoryDetailPage_container {
     //display: flex;
@@ -65,7 +65,7 @@
   }
   
   // --------- All category page css ----------
-  .allContestPage_listingPagecontainer {
+  .allCategoryPage_listingPagecontainer {
     //display: flex;
     //padding: 200px;
     position: relative;
@@ -81,13 +81,13 @@
     overflow-x: hidden;
     overflow-y: scroll;
   
-    .allContestPage__listingPageCoverContainer {
+    .allCategoryPage__listingPageCoverContainer {
       width: '100%';
       height: '100%';
       border: 1px solid rgb(0 0 0 / 10%);
       margin-top: 50px;
   
-      .allContestPage_desktopCoverTextContainer {
+      .allCategoryPage_desktopCoverTextContainer {
         padding-top: 2rem;
         padding-left: 5rem;
         padding-right: 5rem;
@@ -108,11 +108,11 @@
     }
   
     .listingContainer {
-      padding-top: 20px;
-      padding-left: 20px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
+      align-items: center;
   
       .category-card {
         width: 100%;
@@ -147,14 +147,14 @@
   
   @media only screen and (max-width: 1200px) and (min-width: 1101px) {
   
-    .allContestPage_listingPagecontainer {
+    .allCategoryPage_listingPagecontainer {
       width: 90%;
   
-      .allContestPage__listingPageCoverContainer {
+      .allCategoryPage__listingPageCoverContainer {
         margin-top: 50px;
         text-align: left;
   
-        .allContestPage_desktopCoverTextContainer {
+        .allCategoryPage_desktopCoverTextContainer {
           padding: 4rem;
   
           h1 {
@@ -181,14 +181,14 @@
       margin-top: 15%;
     }
   
-    .allContestPage_listingPagecontainer {
+    .allCategoryPage_listingPagecontainer {
       width: 90%;
   
-      .allContestPage__listingPageCoverContainer {
+      .allCategoryPage__listingPageCoverContainer {
         margin-top: 50px;
         text-align: left;
   
-        .allContestPage_desktopCoverTextContainer {
+        .allCategoryPage_desktopCoverTextContainer {
           padding-top: 2rem;
           padding-left: 5rem;
           padding-right: 5rem;
@@ -218,14 +218,14 @@
       margin-top: 15%;
     }
   
-    .allContestPage_listingPagecontainer {
+    .allCategoryPage_listingPagecontainer {
       width: 90%;
   
-      .allContestPage__listingPageCoverContainer {
+      .allCategoryPage__listingPageCoverContainer {
         margin-top: 50px;
         text-align: left;
   
-        .allContestPage_desktopCoverTextContainer {
+        .allCategoryPage_desktopCoverTextContainer {
           padding-top: 2rem;
           padding-left: 5rem;
           padding-right: 5rem;
@@ -254,14 +254,14 @@
       margin-top: 15%;
     }
   
-    .allContestPage_listingPagecontainer {
+    .allCategoryPage_listingPagecontainer {
       width: 90%;
   
-      .allContestPage__listingPageCoverContainer {
+      .allCategoryPage__listingPageCoverContainer {
         margin-top: 50px;
         text-align: left;
   
-        .allContestPage_desktopCoverTextContainer {
+        .allCategoryPage_desktopCoverTextContainer {
           padding-top: 2rem;
           padding-left: 5rem;
           padding-right: 5rem;
@@ -279,8 +279,8 @@
       }
   
       .listingContainer {
-        padding-top: 10px;
-        padding-left: 20px;
+        padding: 10px;
+        align-items: center;
   
         .category-card {
           width: 100%;
@@ -301,14 +301,14 @@
       margin-top: 15%;
     }
   
-    .allContestPage_listingPagecontainer {
+    .allCategoryPage_listingPagecontainer {
       width: 90%;
   
-      .allContestPage__listingPageCoverContainer {
+      .allCategoryPage__listingPageCoverContainer {
         margin-top: 50px;
         text-align: center;
   
-        .allContestPage_desktopCoverTextContainer {
+        .allCategoryPage_desktopCoverTextContainer {
           padding-top: 2rem;
           padding-left: 3rem;
           padding-right: 3rem;
@@ -329,8 +329,8 @@
       }
   
       .listingContainer {
-        padding-top: 10px;
-        padding-left: 20px;
+        padding: 10px;
+        align-items: center;
   
         .category-card {
           width: 100%;
@@ -351,13 +351,13 @@
       margin-top: 15%;
     }
     
-    .allContestPage_listingPagecontainer {
+    .allCategoryPage_listingPagecontainer {
       width: 90%;
   
-      .allContestPage__listingPageCoverContainer {
+      .allCategoryPage__listingPageCoverContainer {
         margin-top: 50px;
   
-        .allContestPage_desktopCoverTextContainer {
+        .allCategoryPage_desktopCoverTextContainer {
           padding: 1rem;
   
           h1 {
@@ -376,9 +376,9 @@
       }
   
       .listingContainer {
-        padding-top: 10px;
-        padding-left: 20px;
-  
+        padding: 10px;
+        align-items: center;
+        
         .category-card {
           width: 100%;
           height: 90%;
