@@ -238,7 +238,7 @@ const AnalyticsPage = ({
       let obj = {
         id: element.id,
         artName: element.artName,
-        slug: element.description,
+        slug: element.slug,
         description: element.description,
         approved: element.approved ? "true" : "false",
       };
