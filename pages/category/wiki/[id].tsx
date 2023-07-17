@@ -1,16 +1,13 @@
-import { Button, Tag } from "antd";
+import { Button } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
-import { routeToHref } from "config/routes";
 import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
-import { Card } from 'antd';
 import Image from 'next/image';
-import detailsImage from '../../public/images/contestDetails.svg';
-import Link from "next/link";
+import detailsImage from '../../../public/images/contestDetails.svg';
 import { useRoutesContext } from "components/routeContext";
 
 const mapStateToProps = (state: AppState) => {
@@ -35,12 +32,10 @@ const CategoryPage = ({
 
     const router = useRouter();
     const { toCategoryPage } = useRoutesContext();
-
+    const [showProfileModal, setShowProfileModal]   = useState(false);
     const { id: slug } = router.query;
 
-    const [showProfileModal, setShowProfileModal] = useState(false);
-
-    useEffect(() => {}, []);
+    useEffect(() => { }, []);
 
     useEffect(() => {
         if (user) {
@@ -92,7 +87,7 @@ const CategoryPage = ({
                             <h2 className="common-h2-style">Rules and Regulations:</h2>
                             <b className="common-text-style">Are you ready? Let your imagination soar and join the ultimate art showdown!</b>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </>
         </>
