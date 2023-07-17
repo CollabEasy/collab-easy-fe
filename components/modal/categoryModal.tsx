@@ -98,7 +98,7 @@ const CategoryModal = ({
                     <Form.Item label="Description">
                         <Input.TextArea
                             value={newCategoryData.description}
-                            maxLength={100}
+                            maxLength={250}
                             showCount
                             onChange={(e) => {
                                 setNewCategoryData((prevState) => ({
