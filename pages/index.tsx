@@ -154,7 +154,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           <h5 className="common-h5-style popular-text">Want to collaborate? Checkout what&apos;s</h5>
           <h1 style={{ color: "black" }} className="common-h1-style"> <b>Popular Among Artists</b></h1>
           <Link href={routeToHref(toAllCategoryPage())} passHref >
-            <h5 className="common-h5-style"> Show More</h5>
+            <em style={{textDecoration: "underline"}} className="cursor-pointer"> Show more</em>
           </Link>
         </div>
         <div className="row mt-2 g-4">

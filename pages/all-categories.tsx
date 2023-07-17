@@ -122,6 +122,9 @@ const AllCategoryPage = ({
         return resultArtists;
     };
 
+
+    console.log(isFetchingCategories);
+    console.log(categories);
     return (
         <>
             {loginModalDetails.openModal && !user.new_user && (
