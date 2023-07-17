@@ -152,9 +152,9 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       <div className="row popular-section">
         <div className='text-center'>
           <h5 className="common-h5-style popular-text">Want to collaborate? Checkout what&apos;s</h5>
-          <h1 style={{ color: "black" }} className="common-h1-style"> <b>Popular Among Artists</b></h1>
+          <h1 style={{ color: "black", marginBottom: "1px" }} className="common-h1-style"> <b>Popular Among Artists</b></h1>
           <Link href={routeToHref(toAllCategoryPage())} passHref >
-            <em style={{textDecoration: "underline"}} className="cursor-pointer"> Show more</em>
+            <em style={{textDecoration: "underline"}} className="cursor-pointer"> show more categories</em>
           </Link>
         </div>
         <div className="row mt-2 g-4">

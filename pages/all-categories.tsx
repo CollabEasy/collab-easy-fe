@@ -10,7 +10,7 @@ import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import Link from "next/link";
 import Image from 'next/image';
-import headerImage from '../public/images/contest.svg';
+import headerImage from '../public/images/popularCategories/artist.svg';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
 
@@ -24,7 +24,7 @@ const mapStateToProps = (state: AppState) => {
     const categories = state.category.categories;
     const isFetchingCategories = state.category.isFetchingCategories;
 
-    return { user, isLoggedIn, loginModalDetails, artistListData, categories, isFetchingCategories}
+    return { user, isLoggedIn, loginModalDetails, artistListData, categories, isFetchingCategories }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -66,60 +66,10 @@ const AllCategoryPage = ({
         setAllCategory(categories);
     }, [user, artistListData, categories]);
 
-    const data = [
-        {
-            title: 'Ant Design Title 1',
-        },
-        {
-            title: 'Ant Design Title 2',
-        },
-        {
-            title: 'Ant Design Title 3',
-        },
-        {
-            title: 'Ant Design Title 4',
-        },
-    ];
-
     const getAllContests = (allCategories) => {
-        const resultArtists: JSX.Element[] = [];
-        const now = new Date();
-        let data = allCategories.length != 0 ? allCategories[0].data : [];
-        data.sort((a, b) => b.startDate - a.startDate);
-        // data.forEach(contest => {
-        //     let status = GetContestStatus(now.getTime(), contest.startDate, contest.endDate);
-        //     resultArtists.push(
-        //         <div className="row p-2 bg-white rounded contest-card">
-        //             <Card
-        //                 title={contest.title}
-        //                 style={{ height: '100%' }}
-        //                 extra={
-        //                     <>
-        //                         {status === "Ongoing" && (
-        //                             <Tag color="green">{status}</Tag>
-        //                         )}
-        //                         {status === "Upcoming" && (
-        //                             <Tag color="yellow">{status}</Tag>
-        //                         )}
-        //                         {status === "Past" && (
-        //                             <Tag color="grey">{status}</Tag>
-        //                         )}
-        //                         {status === "Ongoing" ? (
-        //                             <a href={routeToHref(toContestPage(contest.contestSlug, "details"))}>Enter</a>
-        //                         ) : (
-        //                             <a href={routeToHref(toContestPage(contest.contestSlug, "details"))}>Check details</a>
-        //                         )}
-        //                     </>
-        //                 }
-        //             >
-        //                 <div>
-        //                     {contest.description}
-        //                 </div>
-        //             </Card>
-        //         </div>
-        //     )
-        // });
-        return resultArtists;
+        let data = allCategories.length != 0 ? allCategories : [];
+        data.sort((a, b) => b.artName - a.artName);
+        return data;
     };
 
 
@@ -142,17 +92,17 @@ const AllCategoryPage = ({
                     <div className="allContestPage_listingPagecontainer">
                         <div className="allContestPage__listingPageCoverContainer">
                             <div className="row ">
-                                <div className="col-sm-8" style={{ backgroundColor: "#F8F5E7" }}>
+                                <div className="col-sm-8" style={{ backgroundColor: "#ECCFD6" }}>
                                     <div className="allContestPage_desktopCoverTextContainer">
                                         <h1 className="common-h1-style">
-                                            Artists, unite! Enter our contest and let the world see your talent 😎
+                                            List of categories which are available on Wondor 😎
                                         </h1>
                                         <h3 className="common-h3-style">
-                                            Join our contest and let your creativity be the judge!
+                                            Find artists who are available and send them request to collaborate with you now!
                                         </h3>
                                     </div>
                                 </div>
-                                <div className="col-sm-4" style={{ backgroundColor: "#F8F5E7" }}>
+                                <div className="col-sm-4" style={{ backgroundColor: "#ECCFD6" }}>
                                     <Image
                                         alt="Image Alt"
                                         className="discoverArtists_desktopCoverImageContainer"
@@ -165,13 +115,14 @@ const AllCategoryPage = ({
                         </div>
                         <div className="col-md-12 listingContainer">
                             <List
+                                bordered
                                 itemLayout="horizontal"
-                                dataSource={data}
+                                dataSource={getAllContests(categories)}
                                 renderItem={(item, index) => (
                                     <List.Item>
                                         <List.Item.Meta
-                                            title={<a href="https://ant.design">{item.title}</a>}
-                                            description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                                            title={<a href={toArtist().href + item.slug}>{item.artName}</a>}
+                                            description={item.description}
                                         />
                                     </List.Item>
                                 )}
