@@ -55,7 +55,7 @@ type Props = {
 
 const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { toArtist, toEditProfile, toGetInspired, toAllContestPage } = useRoutesContext();
+  const { toArtist, toEditProfile, toGetInspired, toAllContestPage, toAllCategoryPage } = useRoutesContext();
 
   useEffect(() => {
     if (user) {
@@ -153,6 +153,9 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         <div className='text-center'>
           <h5 className="common-h5-style popular-text">Want to collaborate? Checkout what&apos;s</h5>
           <h1 style={{ color: "black" }} className="common-h1-style"> <b>Popular Among Artists</b></h1>
+          <Link href={routeToHref(toAllCategoryPage())} passHref >
+            <h5 className="common-h5-style"> Show More</h5>
+          </Link>
         </div>
         <div className="row mt-2 g-4">
           <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">
