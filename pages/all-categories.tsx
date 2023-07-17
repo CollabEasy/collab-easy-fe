@@ -13,6 +13,7 @@ import Image from 'next/image';
 import headerImage from '../public/images/popularCategories/artist.svg';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
+import { CategoryEntry } from "types/states/category";
 
 
 
@@ -67,14 +68,24 @@ const AllCategoryPage = ({
     }, [user, artistListData, categories]);
 
     const getAllContests = (allCategories) => {
+        const approvedCategories: Array<CategoryEntry> = [];
         let data = allCategories.length != 0 ? allCategories : [];
         data.sort((a, b) => b.artName - a.artName);
+        data.forEach(category => {
+            if (category.approved) {
+                let element = {
+                    "id": category.id,
+                    "artName": category.artName,
+                    "slug": category.slug,
+                    "description": category.description,
+                    "approved": category.approved,
+                }
+                approvedCategories.push(element);
+            }
+        })
         return data;
     };
 
-
-    console.log(isFetchingCategories);
-    console.log(categories);
     return (
         <>
             {loginModalDetails.openModal && !user.new_user && (
@@ -118,7 +129,7 @@ const AllCategoryPage = ({
                                 bordered
                                 itemLayout="horizontal"
                                 dataSource={getAllContests(categories)}
-                                renderItem={(item, index) => (
+                                renderItem={(item) => (
                                     <List.Item>
                                         <List.Item.Meta
                                             title={<a href={toArtist().href + item.slug}>{item.artName}</a>}
