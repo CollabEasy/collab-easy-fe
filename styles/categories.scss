@@ -1,37 +1,38 @@
 // Category details page 
 
-.categoryDetailPage_container {
-    //display: flex;
-    //padding: 200px;
-    position: relative;
-    margin-top: 10%;
-    margin-bottom: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    flex-direction: column;
-    width: 80%;
-    //box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
-    // border: 1px solid rgb(0 0 0 / 10%);
-    //background-color: rgb(0 0 0 / 5%);
-    overflow-x: hidden;
-    overflow-y: scroll;
-  
-  }
-  
-  .categoryDetailPage_tabContainer {
-    //box-shadow: 0 0 8px 0 rgb(0 0 0 / 20%);
+// --------- All category page css ----------
+.allCategoryPage_listingPagecontainer {
+  //display: flex;
+  //padding: 200px;
+  position: relative;
+  margin-top: 10%;
+  margin-bottom: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+  width: 70%;
+  //box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+  // border: 1px solid rgb(0 0 0 / 10%);
+  //background-color: rgb(0 0 0 / 5%);
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  .allCategoryPage__listingPageCoverContainer {
+    width: '100%';
+    height: '100%';
     border: 1px solid rgb(0 0 0 / 10%);
-    transition: 0.3s;
-    border-radius: 5px;
-    margin: 4px;
-    padding: 32px 32px 0px 32px;
-    margin-top: 32px;
-  
+    margin-top: 50px;
+
+    .allCategoryPage_desktopCoverTextContainer {
+      padding-top: 2rem;
+      padding-left: 5rem;
+      padding-right: 5rem;
+
       h1 {
         font-size: 33px;
         text-align: left;
       }
-  
+
       h3 {
         font-size: 20px;
         color: rgba(18, 17, 17, 0.3);
@@ -39,369 +40,231 @@
         padding-right: 10%;
         //padding-bottom: 2%;
       }
+    }
   }
-  
-  .responsive-two-column-grid {
-    display:block;
-  }
-  
-  /* columns */
-  .responsive-two-column-grid > * {
-    padding:1rem;
-  }
-  
-  // Taken from https://stackoverflow.com/questions/54044769/css-grid-responsive-multiple-3-columns-rows-to-2-columns-rows
-  .categoryDetailPage_submissionTabContainer {
-    display: grid;
-    grid-template-columns: auto;
-    padding: 10px;
-    grid-gap: 10px 10px;
-  }
-  
-  .categoryDetailPage_sampleTile {
-    padding: 10px;
-    font-size: 30px;
-    text-align: center;
-  }
-  
-  // --------- All category page css ----------
-  .allCategoryPage_listingPagecontainer {
-    //display: flex;
-    //padding: 200px;
-    position: relative;
-    margin-top: 10%;
-    margin-bottom: 5%;
-    margin-left: auto;
-    margin-right: auto;
+
+  .listingContainer {
+    padding: 20px;
+    display: flex;
     flex-direction: column;
-    width: 70%;
-    //box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
-    // border: 1px solid rgb(0 0 0 / 10%);
-    //background-color: rgb(0 0 0 / 5%);
-    overflow-x: hidden;
-    overflow-y: scroll;
-  
+    gap: 10px;
+    align-items: center;
+
+    .category-card {
+      width: 100%;
+      height: 90%;
+      transition: 0.3s;
+      background-color: #fafafa;
+      //padding-top: 10px;
+      //padding-bottom: 100px;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 1101px) {
+
+  .allCategoryPage_listingPagecontainer {
+    width: 90%;
+
     .allCategoryPage__listingPageCoverContainer {
-      width: '100%';
-      height: '100%';
-      border: 1px solid rgb(0 0 0 / 10%);
       margin-top: 50px;
-  
+      text-align: left;
+
+      .allCategoryPage_desktopCoverTextContainer {
+        padding: 4rem;
+
+        h1 {
+          font-size: x-large;
+        }
+
+        h3 {
+          font-size: large;
+          padding-right: 10%;
+          padding-bottom: 2%;
+        }
+      }
+    }
+  }
+
+  .leaderboard__grid {
+    grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+    grid-gap: 20px;
+  }
+}
+
+@media only screen and (max-width: 1100px) and (min-width: 901px) {
+
+  .allCategoryPage_listingPagecontainer {
+    width: 90%;
+
+    .allCategoryPage__listingPageCoverContainer {
+      margin-top: 50px;
+      text-align: left;
+
       .allCategoryPage_desktopCoverTextContainer {
         padding-top: 2rem;
         padding-left: 5rem;
         padding-right: 5rem;
-  
+
         h1 {
-          font-size: 33px;
-          text-align: left;
+          font-size: x-large;
         }
-  
+
         h3 {
-          font-size: 20px;
-          color: rgba(18, 17, 17, 0.3);
-          text-align: left;
+          font-size: large;
           padding-right: 10%;
-          //padding-bottom: 2%;
+          padding-bottom: 2%;
         }
       }
     }
-  
+  }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 766px) {
+
+  .allCategoryPage_listingPagecontainer {
+    width: 90%;
+
+    .allCategoryPage__listingPageCoverContainer {
+      margin-top: 50px;
+      text-align: left;
+
+      .allCategoryPage_desktopCoverTextContainer {
+        padding-top: 2rem;
+        padding-left: 5rem;
+        padding-right: 5rem;
+
+        h1 {
+          font-size: large;
+        }
+
+        h3 {
+          font-size: medium;
+          padding-right: 10%;
+          padding-bottom: 2%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 601px) {
+
+  .allCategoryPage_listingPagecontainer {
+    width: 90%;
+
+    .allCategoryPage__listingPageCoverContainer {
+      margin-top: 50px;
+      text-align: left;
+
+      .allCategoryPage_desktopCoverTextContainer {
+        padding-top: 2rem;
+        padding-left: 5rem;
+        padding-right: 5rem;
+
+        h1 {
+          font-size: medium;
+        }
+
+        h3 {
+          font-size: small;
+          padding-right: 10%;
+          padding-bottom: 2%;
+        }
+      }
+    }
+
     .listingContainer {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      padding: 10px;
       align-items: center;
-  
+
       .category-card {
         width: 100%;
         height: 90%;
-        transition: 0.3s;
         background-color: #fafafa;
-        //padding-top: 10px;
-        //padding-bottom: 100px;
-        margin-bottom: 15px;
       }
     }
   }
-  
-  
-  .leaderboard__grid {
-    display: grid;
-    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-    background: #fff;
-    grid-gap: 32px;
-    min-height: 0;  /* NEW */
-    min-width: 0;  
-  }
-  
-  
-  /* tablet breakpoint */
-  @media (min-width:768px) {
-    .responsive-two-column-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-  }
-  
-  @media only screen and (max-width: 1200px) and (min-width: 1101px) {
-  
-    .allCategoryPage_listingPagecontainer {
-      width: 90%;
-  
-      .allCategoryPage__listingPageCoverContainer {
-        margin-top: 50px;
-        text-align: left;
-  
-        .allCategoryPage_desktopCoverTextContainer {
-          padding: 4rem;
-  
-          h1 {
-            font-size: x-large;
-          }
-  
-          h3 {
-            font-size: large;
-            padding-right: 10%;
-            padding-bottom: 2%;
-          }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 400px) {
+
+  .allCategoryPage_listingPagecontainer {
+    width: 90%;
+
+    .allCategoryPage__listingPageCoverContainer {
+      margin-top: 50px;
+      text-align: center;
+
+      .allCategoryPage_desktopCoverTextContainer {
+        padding-top: 2rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
+
+        h1 {
+          font-size: large;
+          text-align: center;
+        }
+
+        h3 {
+          font-size: medium;
+          text-align: center;
+          padding-left: 5%;
+          padding-right: 5%;
+          padding-bottom: 2%;
         }
       }
     }
-    .leaderboard__grid {
-      grid-template: repeat(2, 1fr) / repeat(2, 1fr); 
-      grid-gap: 20px;
-    } 
-  }
-  
-  @media only screen and (max-width: 1100px) and (min-width: 901px) {
-    
-    .categoryDetailPage_container {
-      margin-top: 15%;
+
+    .listingContainer {
+      padding: 10px;
+      align-items: center;
+
+      .category-card {
+        width: 100%;
+        height: 90%;
+        background-color: #fafafa;
+      }
     }
-  
-    .allCategoryPage_listingPagecontainer {
-      width: 90%;
-  
-      .allCategoryPage__listingPageCoverContainer {
-        margin-top: 50px;
-        text-align: left;
-  
-        .allCategoryPage_desktopCoverTextContainer {
-          padding-top: 2rem;
-          padding-left: 5rem;
-          padding-right: 5rem;
-  
-          h1 {
-            font-size: x-large;
-          }
-  
-          h3 {
-            font-size: large;
-            padding-right: 10%;
-            padding-bottom: 2%;
-          }
+  }
+}
+
+@media only screen and (max-width: 399px) {
+
+  .allCategoryPage_listingPagecontainer {
+    width: 90%;
+
+    .allCategoryPage__listingPageCoverContainer {
+      margin-top: 50px;
+
+      .allCategoryPage_desktopCoverTextContainer {
+        padding: 1rem;
+
+        h1 {
+          font-size: small;
+          text-align: center;
+        }
+
+        h3 {
+          font-size: smaller;
+          text-align: center;
+          padding-left: 10%;
+          padding-right: 10%;
+          padding-bottom: 2%;
         }
       }
     }
-  
-    .leaderboard__grid {
-      grid-template: repeat(2, 1fr) / repeat(2, 1fr); 
-      grid-gap: 20px;
-    } 
-  }
-  
-  @media only screen and (max-width: 900px) and (min-width: 766px) {
-  
-    .categoryDetailPage_container {
-      margin-top: 15%;
-    }
-  
-    .allCategoryPage_listingPagecontainer {
-      width: 90%;
-  
-      .allCategoryPage__listingPageCoverContainer {
-        margin-top: 50px;
-        text-align: left;
-  
-        .allCategoryPage_desktopCoverTextContainer {
-          padding-top: 2rem;
-          padding-left: 5rem;
-          padding-right: 5rem;
-  
-          h1 {
-            font-size: large;
-          }
-  
-          h3 {
-            font-size: medium;
-            padding-right: 10%;
-            padding-bottom: 2%;
-          }
-        }
+
+    .listingContainer {
+      padding: 10px;
+      align-items: center;
+
+      .category-card {
+        width: 100%;
+        height: 90%;
+        background-color: #fafafa;
       }
     }
-    .leaderboard__grid {
-      grid-template: repeat(2, 1fr) / repeat(2, 1fr); 
-      grid-gap: 20px;
-    } 
   }
-  
-  @media only screen and (max-width: 767px) and (min-width: 601px) {
-  
-    .categoryDetailPage_container {
-      margin-top: 15%;
-    }
-  
-    .allCategoryPage_listingPagecontainer {
-      width: 90%;
-  
-      .allCategoryPage__listingPageCoverContainer {
-        margin-top: 50px;
-        text-align: left;
-  
-        .allCategoryPage_desktopCoverTextContainer {
-          padding-top: 2rem;
-          padding-left: 5rem;
-          padding-right: 5rem;
-  
-          h1 {
-            font-size: medium;
-          }
-  
-          h3 {
-            font-size: small;
-            padding-right: 10%;
-            padding-bottom: 2%;
-          }
-        }
-      }
-  
-      .listingContainer {
-        padding: 10px;
-        align-items: center;
-  
-        .category-card {
-          width: 100%;
-          height: 90%;
-          background-color: #fafafa;
-        }
-      }
-    }
-    .leaderboard__grid {
-      grid-template: repeat(2, 1fr) / repeat(2, 1fr); 
-      grid-gap: 20px;
-    } 
-  }
-  
-  @media only screen and (max-width: 600px) and (min-width: 400px) {
-  
-    .categoryDetailPage_container {
-      margin-top: 15%;
-    }
-  
-    .allCategoryPage_listingPagecontainer {
-      width: 90%;
-  
-      .allCategoryPage__listingPageCoverContainer {
-        margin-top: 50px;
-        text-align: center;
-  
-        .allCategoryPage_desktopCoverTextContainer {
-          padding-top: 2rem;
-          padding-left: 3rem;
-          padding-right: 3rem;
-  
-          h1 {
-            font-size: large;
-            text-align: center;
-          }
-  
-          h3 {
-            font-size: medium;
-            text-align: center;
-            padding-left: 5%;
-            padding-right: 5%;
-            padding-bottom: 2%;
-          }
-        }
-      }
-  
-      .listingContainer {
-        padding: 10px;
-        align-items: center;
-  
-        .category-card {
-          width: 100%;
-          height: 90%;
-          background-color: #fafafa;
-        }
-      }
-    }
-    .leaderboard__grid {
-      grid-template: repeat(1, 1fr) / repeat(1, 1fr); 
-      grid-gap: 20px;
-    } 
-  }
-  
-  @media only screen and (max-width: 399px) {
-  
-    .categoryDetailPage_container {
-      margin-top: 15%;
-    }
-    
-    .allCategoryPage_listingPagecontainer {
-      width: 90%;
-  
-      .allCategoryPage__listingPageCoverContainer {
-        margin-top: 50px;
-  
-        .allCategoryPage_desktopCoverTextContainer {
-          padding: 1rem;
-  
-          h1 {
-            font-size: small;
-            text-align: center;
-          }
-  
-          h3 {
-            font-size: smaller;
-            text-align: center;
-            padding-left: 10%;
-            padding-right: 10%;
-            padding-bottom: 2%;
-          }
-        }
-      }
-  
-      .listingContainer {
-        padding: 10px;
-        align-items: center;
-        
-        .category-card {
-          width: 100%;
-          height: 90%;
-          background-color: #fafafa;
-        }
-      }
-    }
-    .leaderboard__grid {
-      grid-template: repeat(1, 1fr) / repeat(1, 1fr); 
-      grid-gap: 20px;
-    } 
-  }
-  
-  
-  
-  @media (min-width: 720px) {
-    .categoryDetailPage_submissionTabContainer {
-      grid-template-columns: auto auto auto;
-    }
-  }
-  
-  @media (min-width: 1020px) {
-    .categoryDetailPage_submissionTabContainer {
-      grid-template-columns: auto auto auto auto;
-    }
-  }
+}

@@ -67,7 +67,7 @@ const AllCategoryPage = ({
         setAllCategory(categories);
     }, [user, artistListData, categories]);
 
-    const getAllContests = (allCategories) => {
+    const GetApprovedCategories = (allCategories) => {
         const approvedCategories: Array<CategoryEntry> = [];
         let data = allCategories.length != 0 ? allCategories : [];
         data.sort((a, b) => b.artName - a.artName);
@@ -100,11 +100,11 @@ const AllCategoryPage = ({
                 <Loader />
             ) : (
                 <>
-                    <div className="allContestPage_listingPagecontainer">
-                        <div className="allContestPage__listingPageCoverContainer">
+                    <div className="allCategoryPage_listingPagecontainer">
+                        <div className="allCategoryPage__listingPageCoverContainer">
                             <div className="row ">
                                 <div className="col-sm-8" style={{ backgroundColor: "#ECCFD6" }}>
-                                    <div className="allContestPage_desktopCoverTextContainer">
+                                    <div className="allCategoryPage_desktopCoverTextContainer">
                                         <h1 className="common-h1-style">
                                             List of categories which are available on Wondor 😎
                                         </h1>
@@ -126,9 +126,10 @@ const AllCategoryPage = ({
                         </div>
                         <div className="col-md-12 listingContainer">
                             <List
+                                style={{width: "100%"}}
                                 bordered
                                 itemLayout="horizontal"
-                                dataSource={getAllContests(categories)}
+                                dataSource={GetApprovedCategories(categories)}
                                 renderItem={(item) => (
                                     <List.Item>
                                         <List.Item.Meta
