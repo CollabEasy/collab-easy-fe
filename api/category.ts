@@ -54,7 +54,7 @@ export const getArtistsByCategorySlugAPI = async (slug: string) => {
 };
 
 export const getAllCategories = async () => {
-  const config = getConfigWithToken();
+  const config = getConfig();
   try {
     const categories = await api.call("api/v1/category/all", config);
     return categories;

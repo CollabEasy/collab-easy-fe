@@ -49,6 +49,7 @@ export function getPublicRoutes() {
     "/contact-us",
     "/discover-artist/[id]",
     "/all-contest",
+    "/all-category",
     "/contest/[id]",
   ];
 }
