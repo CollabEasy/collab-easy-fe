@@ -232,7 +232,7 @@ const AnalyticsPage = ({
   ];
 
   const getCategories = (categories) => {
-    categories.sort((a, b) => a.id - b.id);
+    categories.sort((a, b) => a.artName - b.artName);
     let updatedData = [];
     categories.forEach((element: { id: any; artName: any; slug: any; description: any; approved: any; }) => {
       let obj = {
