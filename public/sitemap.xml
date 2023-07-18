@@ -2,206 +2,357 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://www.wondor.art</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/get-inspired</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/all-contest</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/tutorial</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/about-us</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/privacy</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/terms-and-policy</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/contact-us</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/all-categories</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <!-- popular categories -->
     <url>
         <loc>https://www.wondor.art/discover-artist/creative-writing</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/writing</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/poetry</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/spoken-words</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/calligraphy</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/hand-lettering</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/photography</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/illustration</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/photography</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/digital-art</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/dancing</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/choreography</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/music</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/journaling</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/art-journaling</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/creative-journaling</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/bullet-journaling</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/scrapbooking</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/collage-making</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/singing</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/standup-comedy</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/painting</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/caricature-drawing</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/sketching</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.wondor.art/discover-artist/doodling</loc>
-        <lastmod>2023-07-15</lastmod>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+     <!-- categories wiki -->
+    <url>
+        <loc>https://www.wondor.art/category/wiki/creative-writing</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/writing</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/poetry</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/spoken-words</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/calligraphy</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/hand-lettering</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/photography</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/illustration</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/photography</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/digital-art</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/dancing</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/choreography</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/music</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/journaling</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/art-journaling</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/creative-journaling</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/bullet-journaling</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/scrapbooking</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/collage-making</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/singing</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/standup-comedy</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/painting</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/caricature-drawing</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/sketching</loc>
+        <lastmod>2023-07-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/wiki/doodling</loc>
+        <lastmod>2023-07-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
