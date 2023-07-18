@@ -10,6 +10,7 @@ import Image from 'next/image';
 import detailsImage from '../../../public/images/contestDetails.svg';
 import { useRoutesContext } from "components/routeContext";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
+import { GetCategoryWikiData } from "helpers/categoryHelper";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -35,6 +36,7 @@ const CategoryPage = ({
     const { toArtist } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [categoryMetadata, setCategoryMetadata] = useState(GetListingHeaderData(slug));
+    const [categoryWikidata, setCategoryWikiData] = useState(GetCategoryWikiData(slug));
 
     useEffect(() => { }, []);
 
@@ -72,21 +74,11 @@ const CategoryPage = ({
                         </div>
                         <div className="categoryDetailPage_tabContainer">
                             <b className="common-text-style">
-                                Unleash your inner artist on Wonder - the platform for collaborative culture among artists.
-                                Connect and express yourself with fellow art enthusiasts, and participate
-                                in our monthly contests for inspiration to create something new and exciting.
-                                Join us and discover the power of art to bring people together.
+                                <h1>{categoryWikidata["name"]}</h1>
                             </b>
-                            <br></br><br></br>
-
-                            <h2 className="common-h1-style">
-                                Contest Details
-                            </h2>
                             <p className="common-p-style">
-                                <b>Theme:</b>
+                                {categoryWikidata["paragraph"]}
                             </p>
-                            <h2 className="common-h2-style">Rules and Regulations:</h2>
-                            <b className="common-text-style">Are you ready? Let your imagination soar and join the ultimate art showdown!</b>
                         </div>
                     </div>
                 </div>

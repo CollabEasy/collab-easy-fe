@@ -132,10 +132,10 @@ const AllCategoryPage = ({
                                 dataSource={GetApprovedCategories(categories)}
                                 renderItem={(item) => (
                                     <List.Item
-                                        actions={[<a key="find-artist" href={toArtist().href + item.slug}>Find artists</a>]}
+                                        actions={[<a key="wiki" href={routeToHref(toCategoryPage(item.slug as string))} >Wiki</a>, <a key="find-artist" href={toArtist().href + item.slug}>Find artists</a>]}
                                     >
                                         <List.Item.Meta
-                                            title={<Link href={routeToHref(toCategoryPage(item.slug as string))} passHref>{item.artName}</Link>}
+                                            title={item.artName}
                                             description={item.description}
                                         />
                                     </List.Item>
