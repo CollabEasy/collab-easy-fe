@@ -63,7 +63,7 @@ const NavBar = ({
 
   const { toWondorHome, toArtistProfile, toEditProfile, toAnalyticsPage } =
     useRoutesContext();
-  const { toGetInspired, toAllContestPage, toTutorial } = useRoutesContext();
+  const { toAllCategoryPage, toGetInspired, toAllContestPage, toTutorial } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = document.querySelector("#p-h");
@@ -164,7 +164,7 @@ const NavBar = ({
               id="sign-up-desktop"
               type="primary"
               onClick={openLoginModal}
-              style={{paddingTop: "6px"}}
+              style={{ paddingTop: "6px" }}
             >
               Sign Up
             </Button>
@@ -195,9 +195,8 @@ const NavBar = ({
             )}
             {showLoginOptions && (
               <div
-                className={`login-options-container ${
-                  checkDevice() ? "animate__animated animate__slideInRight" : ""
-                }`}
+                className={`login-options-container ${checkDevice() ? "animate__animated animate__slideInRight" : ""
+                  }`}
               >
                 <div className={"login-mobile-userdetails"}>
                   {user?.profile_pic_url ? (
