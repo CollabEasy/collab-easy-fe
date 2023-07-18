@@ -81,7 +81,7 @@ const CategoryPage = ({
                                 <p className="common-p-style">
                                     {categoryWikidata["paragraph"]}
                                     {categoryWikidata["source"].length !== 0 && (
-                                        <a href={categoryWikidata["source"]} target="_blank"> source</a>
+                                        <Link href={categoryWikidata["source"]} passHref> source</Link>
                                     )}
                                 </p>
                                 <Button
