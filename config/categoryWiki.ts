@@ -1,4 +1,4 @@
-export const LISTING_BANNERS = [
+export const CATEGORY_WIKI = [
     {
         "slugs": ["artist"],
         "name": "you",

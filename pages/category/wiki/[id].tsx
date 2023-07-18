@@ -9,6 +9,7 @@ import NewUserModal from '@/components/modal/newUserModal';
 import Image from 'next/image';
 import detailsImage from '../../../public/images/contestDetails.svg';
 import { useRoutesContext } from "components/routeContext";
+import { GetListingHeaderData } from "helpers/listingPageHelper";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -29,11 +30,11 @@ const CategoryPage = ({
     loginModalDetails,
     artistListData,
 }: Props) => {
-
     const router = useRouter();
-    const { toCategoryPage } = useRoutesContext();
-    const [showProfileModal, setShowProfileModal]   = useState(false);
     const { id: slug } = router.query;
+    const { toArtist } = useRoutesContext();
+    const [showProfileModal, setShowProfileModal]   = useState(false);
+    const [categoryMetadata, setCategoryMetadata] = useState(GetListingHeaderData(slug));
 
     useEffect(() => { }, []);
 
@@ -59,17 +60,17 @@ const CategoryPage = ({
             )
             }
             <>
-                <div className="contestDetailPage_container">
+                <div className="categoryDetailPage_container">
                     <div className="responsive-two-column-grid">
-                        <div>
+                        <div style={{margin: "4px", borderRadius: "5px", background: categoryMetadata["background_color"]}}>
                             <Image
                                 alt="Image Alt"
-                                src={detailsImage}
+                                src={categoryMetadata["image"]}
                                 layout="responsive"
                                 objectFit="contain" // Scale your image down to fit into the container
                             />
                         </div>
-                        <div className="contestDetailPage_tabContainer">
+                        <div className="categoryDetailPage_tabContainer">
                             <b className="common-text-style">
                                 Unleash your inner artist on Wonder - the platform for collaborative culture among artists.
                                 Connect and express yourself with fellow art enthusiasts, and participate
