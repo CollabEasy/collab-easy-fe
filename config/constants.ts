@@ -4014,7 +4014,7 @@ export const LISTING_BANNERS = [
     "background_color": "#EDC5CD",
   },
   {
-    "slugs": ["doodling", "caricaturing"],
+    "slugs": ["doodling", "caricature-drawing"],
     "category": "Doodling",
     "image": doodleImage,
     "background_color": "#B5EAD7",
@@ -4136,15 +4136,15 @@ export const SIMILAR_CATEGORIES = [
     ]
   },
   {
-    "slugs": ["painting", "caricaturing", "sketching", "doodling"],
+    "slugs": ["painting", "caricature-drawing", "sketching", "doodling"],
     "similar_categories": [
       {
         "name": "Painting",
         "slug": "painting"
       },
       {
-        "name": "caricaturing",
-        "slug": "caricaturing"
+        "name": "Caricature Drawing",
+        "slug": "caricature-drawing"
       },
       {
         "name": "Sketching",

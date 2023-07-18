@@ -62,26 +62,32 @@ const CategoryPage = ({
             )
             }
             <>
-                <div className="categoryDetailPage_container">
-                    <div className="responsive-two-column-grid">
-                        <div style={{ margin: "4px", borderRadius: "5px", background: categoryMetadata["background_color"] }}>
-                            <Image
-                                alt="Image Alt"
-                                src={categoryMetadata["image"]}
-                                layout="responsive"
-                                objectFit="contain" // Scale your image down to fit into the container
-                            />
-                        </div>
-                        <div className="categoryDetailPage_tabContainer">
-                            <b className="common-text-style">
-                                <h1>{categoryWikidata["name"]}</h1>
-                            </b>
-                            <p className="common-p-style">
-                                {categoryWikidata["paragraph"]}
-                            </p>
+                {"name" in categoryWikidata ? (
+                    <div className="categoryDetailPage_container">
+                        <div className="responsive-two-column-grid">
+                            <div style={{ margin: "4px", borderRadius: "5px", background: categoryMetadata["background_color"] }}>
+                                <Image
+                                    alt="Image Alt"
+                                    src={categoryMetadata["image"]}
+                                    layout="responsive"
+                                    objectFit="contain" // Scale your image down to fit into the container
+                                />
+                            </div>
+                            <div className="categoryDetailPage_tabContainer">
+                                <b className="common-text-style">
+                                    <h1>{categoryWikidata["name"]}</h1>
+                                </b>
+                                <p className="common-p-style">
+                                    {categoryWikidata["paragraph"]}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                ) : (
+                    <div className="categoryDetailPage_container">
+                        <h5 style={{ textAlign: "center" }} className="common-h5-text">We are working on adding wiki for the selected category. In meantime, explore others!</h5>
+                    </div>
+                )}
             </>
         </>
     );
