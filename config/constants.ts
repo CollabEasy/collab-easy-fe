@@ -4010,8 +4010,8 @@ export const LISTING_BANNERS = [
   {
     "slugs": ["journaling", "art-journaling", "creative-journaling", "bullet-journaling", "scrapbooking", "collage-making"],
     "category": "Journaling",
-    "image": photographerImage,
-    "background_color": "#E2F0CB",
+    "image": writerImage,
+    "background_color": "#EDC5CD",
   },
   {
     "slugs": ["doodling", "caricaturing"],

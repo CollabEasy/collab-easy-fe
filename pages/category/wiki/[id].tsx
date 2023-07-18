@@ -33,7 +33,7 @@ const CategoryPage = ({
     const router = useRouter();
     const { id: slug } = router.query;
     const { toArtist } = useRoutesContext();
-    const [showProfileModal, setShowProfileModal]   = useState(false);
+    const [showProfileModal, setShowProfileModal] = useState(false);
     const [categoryMetadata, setCategoryMetadata] = useState(GetListingHeaderData(slug));
 
     useEffect(() => { }, []);
@@ -62,7 +62,7 @@ const CategoryPage = ({
             <>
                 <div className="categoryDetailPage_container">
                     <div className="responsive-two-column-grid">
-                        <div style={{margin: "4px", borderRadius: "5px", background: categoryMetadata["background_color"]}}>
+                        <div style={{ margin: "4px", borderRadius: "5px", background: categoryMetadata["background_color"] }}>
                             <Image
                                 alt="Image Alt"
                                 src={categoryMetadata["image"]}
