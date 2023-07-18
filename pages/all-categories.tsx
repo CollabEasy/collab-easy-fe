@@ -45,7 +45,7 @@ const AllCategoryPage = ({
     isFetchingCategories,
     getAllCategories,
 }: Props) => {
-    const { toArtist } = useRoutesContext();
+    const { toArtist, toCategoryPage } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [allCategories, setAllCategory] = useState([]);
 
@@ -132,10 +132,10 @@ const AllCategoryPage = ({
                                 dataSource={GetApprovedCategories(categories)}
                                 renderItem={(item) => (
                                     <List.Item
-                                        actions={[<a key="find-artist" href={toArtist().href + item.slug}>Find artists</a>]}
+                                        actions={[<a key="wiki" href={routeToHref(toCategoryPage(item.slug as string))} >Wiki</a>, <a key="find-artist" href={toArtist().href + item.slug}>Find artists</a>]}
                                     >
                                         <List.Item.Meta
-                                            title={<a href={toArtist().href + item.slug}>{item.artName}</a>}
+                                            title={item.artName}
                                             description={item.description}
                                         />
                                     </List.Item>
