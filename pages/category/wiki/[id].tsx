@@ -7,7 +7,7 @@ import { Dispatch } from "redux";
 import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
 import Image from 'next/image';
-import detailsImage from '../../../public/images/contestDetails.svg';
+import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
 import { GetCategoryWikiData } from "helpers/categoryHelper";
@@ -77,9 +77,18 @@ const CategoryPage = ({
                                 <b className="common-text-style">
                                     <h1>{categoryWikidata["name"]}</h1>
                                 </b>
+                                <div className="divider mb-4"> </div>
                                 <p className="common-p-style">
                                     {categoryWikidata["paragraph"]}
+                                    {categoryWikidata["source"].length !== 0 && (
+                                        <a href={categoryWikidata["source"]} target="_blank"> source</a>
+                                    )}
                                 </p>
+                                <Button
+                                    type="primary"
+                                >
+                                    <Link href={toArtist().href + categoryWikidata["slug"]} passHref>Find artists</Link>
+                                </Button>
                             </div>
                         </div>
                     </div>

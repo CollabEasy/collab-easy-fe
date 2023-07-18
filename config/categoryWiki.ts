@@ -2,7 +2,7 @@ export const CATEGORY_WIKI = [
     {
         "slugs": "writing",
         "name": "Writing",
-        "paragraph": "Writing is the act of expressing thoughts, ideas, and emotions through the use of written language. It is a fundamental form of communication that allows individuals to convey information, tell stories, express opinions, and explore the depths of human imagination. A skilled writer possesses the capacity to adapt their writing style to various audiences and purposes, whether it's persuasive, informative, or creative. They can organize thoughts coherently, develop engaging narratives, and employ persuasive techniques to captivate readers. Writing as a skill requires practice, attention to detail, and a willingness to continuously improve and refine one's written expression.",
+        "paragraph": "Writing is the act of expressing thoughts, ideas, and emotions through the use of written language. It is a fundamental form of communication that allows individuals to convey information, tell stories, express opinions, and explore the depths of human imagination. A skilled writer possesses the capacity to adapt their writing style to various audiences and purposes, whether it's persuasive, informative, or creative. They can organize thoughts coherently, develop engaging narratives, and employ persuasive techniques to captivate readers. Writing as a skill requires practice, attention to detail, and a willingness to continuously improve and refine one's written expression. ",
         "source": ""
     },
     {
