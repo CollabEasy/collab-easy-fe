@@ -15,7 +15,7 @@ import {
 import { Dispatch } from "redux";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import * as action from "./../state/action";
-import { CollabRequestStatus } from "config/constants";
+import { CollabRequestStatus } from "constants/constants";
 import CollabDetailCard from "./collabDetailCard";
 import Loader from "./loader";
 import { useRoutesContext } from "./routeContext";

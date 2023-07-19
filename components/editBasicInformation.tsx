@@ -11,7 +11,7 @@ import { SizeType } from "antd/lib/config-provider/SizeContext";
 import {
     updateArtistProfile,
 } from "state/action";
-import { COUNTRIES, GENDERS } from "config/constants";
+import { COUNTRIES, GENDERS } from "constants/constants";
 import { User } from "types/model";
 
 const mapStateToProps = (state: AppState) => {

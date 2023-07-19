@@ -12,7 +12,7 @@ import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { User, UserSocialProspectus } from "types/model";
 import * as actions from "state/action";
-import { SOCIAL_PLATFORMS } from "config/constants";
+import { SOCIAL_PLATFORMS } from "constants/constants";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";

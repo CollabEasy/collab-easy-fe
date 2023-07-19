@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Title from "components/title";
 import { useRouter } from "next/router";
-import { LISTING_BANNERS } from "../../config/constants";
-import { SIMILAR_CATEGORIES } from "../../config/constants";
+import { LISTING_METADATA, SIMILAR_CATEGORIES } from "../../constants/listing";
 import { Card, Button } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import Link from "next/link";
@@ -21,6 +20,7 @@ import Loader from "@/components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
 import SendCollabRequestModal from "../../components/modal/sendCollabRequestModal";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
+import PageMetadata from "@/components/pageMetadata";
 
 const { Meta } = Card;
 
@@ -112,6 +112,11 @@ const DiscoverArtist = ({
     saveUserIdForCollab(userId);
   }
 
+  // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
+  const prismicLoader = ({ src, width, quality }) => {
+    return `${src}?w=${width}&q=${quality || 75}`
+  }
+
   const getUserSkills = (skills: string[]) => {
     const skillsHtml: JSX.Element[] = [];
     if (skills.length > 0) {
@@ -150,11 +155,6 @@ const DiscoverArtist = ({
       }
     })
     return similarCategoriesHtml;
-  }
-
-  // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
-  const prismicLoader = ({ src, width, quality }) => {
-    return `${src}?w=${width}&q=${quality || 75}`
   }
 
   const getArtists = (color, category) => {
@@ -242,6 +242,20 @@ const DiscoverArtist = ({
     return resultArtists;
   };
 
+  const getListingPageMetadata = (selectedCategorySlug) => {
+    let genericMetadata = {
+      "slug": "artist",
+      "meta_title": "Artists available for collaboration",
+      "meta_content": "Connect with like-minded artist and unleash your skills as an artist."
+    };
+    LISTING_METADATA.forEach((element) => {
+      if (element["slug"] === selectedCategorySlug) {
+        genericMetadata = element;
+      }
+    })
+    return genericMetadata;
+  }
+
   return (
     <>
       {loginModalDetails.openModal && !user.new_user && (
@@ -257,7 +271,11 @@ const DiscoverArtist = ({
       ) : (
         <div>
           <div>
-            <Title title={"Artist to collaborate for " + GetListingHeaderData(artSlug)["category"].toLowerCase()} />
+            <PageMetadata
+              title={getListingPageMetadata(artSlug)["meta_title"]}
+              name={"description"}
+              content={getListingPageMetadata(artSlug)["meta_content"]}
+            />
             <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
               <div className="discoverArtists__listingPageCoverContainer">
                 <div className="row ">

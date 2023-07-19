@@ -1,4 +1,4 @@
-import { SOCIAL_PLATFORMS } from "config/constants";
+import { SOCIAL_PLATFORMS } from "constants/constants";
 
 export function GetSocialPlatformName(id) {
     for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {

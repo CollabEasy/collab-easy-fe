@@ -4,7 +4,7 @@ import {
 } from "@ant-design/icons";
 import Modal from "antd/lib/modal/Modal";
 import moment from "moment";
-import { SOCIAL_PLATFORMS } from "config/constants";
+import { SOCIAL_PLATFORMS } from "constants/constants";
 import { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
