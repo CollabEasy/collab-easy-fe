@@ -238,3 +238,44 @@ export const SIMILAR_CATEGORIES = [
         ]
     },
 ]
+
+export const LISTING_METADATA = [
+    {
+        "slug": "art-journaling",
+        "meta_title": "Art journalers available for collaboration",
+        "meta_content": "Connect with like-minded art journalers, share your visual stories, and find endless inspiration.",
+    },
+    {
+        "slug": "bullet-journaling",
+        "meta_title": "Bullet journalers available for collaboration",
+        "meta_content": "Connect with like-minded bulltet journalers, track your goals, and unlock your productivity potential.",
+    },
+    {
+        "slug": "calligraphy",
+        "meta_title": "Calligraphers available for collaboration",
+        "meta_content": "Connect with fellow calligraphers, hone your skills, and showcase your intricate lettering.",
+    },
+    {
+        "slug": "caricature-drawing",
+        "meta_title": "Caricature artists available for collaboration",
+        "meta_content": "Connect with fellow caricature artists, showcase your unique style, and unleash your humor and creativity as a caricature artist.",
+    },
+    {
+        "slug": "choreography",
+        "meta_title": "Coreographers available for collaboration",
+        "meta_content": "Connect with fellow coreographers, craft mesmerizing routines, and inspire audiences.",
+    },
+    {
+        "slug": "collage-making",
+        "meta_title": "Collage makers available for collaboration",
+        "meta_content": "Connect with like-minded collage makers, experiment with mixed media, and unleash your artistic expression through collage making.",
+    },
+
+
+
+    {
+        "slug": "writing",
+        "meta_title": "Writers available for collaboration",
+        "meta_content": "Connect with fellow writers, explore creative ideas, and craft compelling stories on our platform.",
+    }
+]
