@@ -56,7 +56,7 @@ const CategoryPage = ({
     return (
         <>
             <PageMetadata
-                title={"What is " + categoryWikidata["name"] + "?"} name={"description"} content={"you are"}
+                title={categoryWikidata["meta_title"]} name={"description"} content={categoryWikidata["meta_content"]}
             />
 
             {loginModalDetails.openModal && !user.new_user && (
