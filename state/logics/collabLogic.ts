@@ -1,4 +1,4 @@
-import { CollabRequestStatus } from "config/constants";
+import { CollabRequestStatus } from "constants/constants";
 import { createLogic } from "redux-logic";
 import { LogicDeps } from "state";
 import * as actions from "../action/collabAction";

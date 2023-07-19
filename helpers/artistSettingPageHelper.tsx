@@ -1,4 +1,4 @@
-import { COUNTRIES, SOCIAL_PLATFORMS } from "config/constants";
+import { COUNTRIES, SOCIAL_PLATFORMS } from "constants/constants";
 
 export function GetSocialPlatformId(name: string) {
     for (var i = 0; i < SOCIAL_PLATFORMS.length; i++) {

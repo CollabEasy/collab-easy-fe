@@ -1,4 +1,4 @@
-import { CATEGORY_WIKI } from "config/categoryWiki";
+import { CATEGORY_WIKI } from "constants/categoryWiki";
 
 export function GetCategoryWikiData(selectedCategorySlug) {
     let general = {};

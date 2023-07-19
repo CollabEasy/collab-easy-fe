@@ -11,6 +11,8 @@ import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
 import { GetCategoryWikiData } from "helpers/categoryHelper";
+import Head from 'next/head'
+import PageMetadata from "@/components/pageMetadata";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -53,6 +55,10 @@ const CategoryPage = ({
 
     return (
         <>
+            <PageMetadata
+                title={"What is " + categoryWikidata["name"] + "?"} name={"description"} content={"you are"}
+            />
+
             {loginModalDetails.openModal && !user.new_user && (
                 <LoginModal />
             )

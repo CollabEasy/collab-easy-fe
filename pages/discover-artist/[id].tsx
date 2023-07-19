@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Title from "components/title";
 import { useRouter } from "next/router";
-import { LISTING_BANNERS } from "../../config/constants";
-import { SIMILAR_CATEGORIES } from "../../config/constants";
+import { LISTING_BANNERS } from "../../constants/constants";
+import { SIMILAR_CATEGORIES } from "../../constants/constants";
 import { Card, Button } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import Link from "next/link";

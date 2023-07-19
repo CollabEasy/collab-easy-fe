@@ -1,6 +1,6 @@
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import { LOADER_QUOTES } from "config/constants";
+import { LOADER_QUOTES } from "constants/constants";
 
 const antIcon = <LoadingOutlined style={{ fontSize: 54 }} spin />;
 

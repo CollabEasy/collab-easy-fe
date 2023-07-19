@@ -1,4 +1,4 @@
-import { LISTING_BANNERS, SIMILAR_CATEGORIES } from "config/constants";
+import { LISTING_BANNERS, SIMILAR_CATEGORIES } from "constants/constants";
 
 export function GetCategoryFromSlug(selectedCategorySlug) {
     var selectedCategory = "Artists";
