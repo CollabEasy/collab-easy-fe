@@ -15,6 +15,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
+import PageMetadata from '@/components/pageMetadata';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -63,7 +64,12 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
         <NewUserModal />
       )
       }
-      <Title title="Terms of Service" />
+      <PageMetadata
+          title={"Terms and Policy | Wondor"}
+          name={"description"}
+          content={"Terms and policy for using Wondor."}
+      />
+      
       <div className='footer_termsContainer'>
         <div className="footer_termsSectionContainer">
           <h1 className="common-h1-style">Terms & Conditions</h1>

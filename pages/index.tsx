@@ -31,6 +31,7 @@ import { updateLoginData } from 'state/action';
 import React, { useEffect, useState } from 'react';
 import { LoginModalDetails } from 'types/model';
 import { AppState } from 'types/states';
+import PageMetadata from '@/components/pageMetadata';
 
 const { Meta } = Card;
 
@@ -82,6 +83,13 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
         <NewUserModal />
       )
       }
+
+      <PageMetadata
+        title={"Wondor | Collaborate with Artists, Manage your Schedule, Join Monthly Art Contests"}
+        name={"description"}
+        content={"Collaborate with artists, schedule & manage, join contests, find inspiration - Wondor: Your all-in-one creative hub."}
+      />
+
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="header-text">
           <div className="text-content">
@@ -154,7 +162,7 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
           <h5 className="common-h5-style popular-text">Want to collaborate? Checkout what&apos;s</h5>
           <h1 style={{ color: "black", marginBottom: "1px" }} className="common-h1-style"> <b>Popular Among Artists</b></h1>
           <Link href={routeToHref(toAllCategoryPage())} passHref >
-            <em style={{textDecoration: "underline"}} className="cursor-pointer"> show more categories</em>
+            <em style={{ textDecoration: "underline" }} className="cursor-pointer"> show more categories</em>
           </Link>
         </div>
         <div className="row mt-2 g-4">

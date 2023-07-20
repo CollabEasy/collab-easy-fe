@@ -24,6 +24,7 @@ import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { ContestSubmission } from "types/model/contest";
 import { Config } from "config/config";
+import PageMetadata from "@/components/pageMetadata";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -291,6 +292,12 @@ const ContestPage = ({
                     <NewUserModal />
                 )
                 }
+                <PageMetadata
+                    title={"Join our " + contest.contest[0]?.data.slug + "contest."}
+                    name={"description"}
+                    content={"Join our monthy contest. The theme is " + contest.contest[0]?.data.title}
+                />
+
                 {isFetchingContest && isFetchingSubmissions && isFetchingSubmissionVotes ? (
                     <Loader />
                 ) : (

@@ -16,6 +16,7 @@ import NewUserModal from '../components/modal/newUserModal';
 import createProfileGif from "public/images/createProfile.gif";
 import contactUsImage from "public/images/contactUs.svg";
 import Title from '../components/title';
+import PageMetadata from '@/components/pageMetadata';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -65,7 +66,12 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
         <NewUserModal />
       )
       }
-      <Title title="About Wondor" />
+      <PageMetadata
+          title={"How Wondor works?"}
+          name={"description"}
+          content={"Simple steps to create your account, manage collaboration requests and become the next viral artist."}
+      />
+
       <div className="footer_tutorialContainer">
         <div className="footer_tutorialHeadingContainer">
           <h3 className="common-h3-style">You are just 4 steps away from your next collaboration 🤗</h3>
