@@ -85,9 +85,9 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
       }
 
       <PageMetadata
-        title={"Wondor | Collaborate with Artists, Manage your Schedule, Join Monthly Art Contests"}
+        title={"Wondor | Collaborate with Artists, Manage your Schedule, Join Monthly Art Contests!"}
         name={"description"}
-        content={"Collaborate with artists, schedule & manage, join contests, find inspiration - Wondor: Your all-in-one creative hub."}
+        content={"Meet with artists, schedule & manage your collaboration requests, join monthly contests, find themes and ideas for your next work on Wondor!"}
       />
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
