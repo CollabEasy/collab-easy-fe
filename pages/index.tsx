@@ -74,7 +74,6 @@ const Home = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
 
   return (
     <>
-      <Title title="Wondor - a doorway to meet creatives around you" />
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />
       )

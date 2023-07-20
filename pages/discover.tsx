@@ -9,7 +9,6 @@ const Login = () => {
 
   return (
     <div className='container'>
-      <Title title="Discover" />
       <h1>Collab Discover</h1>
     </div>
   )
