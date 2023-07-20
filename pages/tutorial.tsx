@@ -67,9 +67,9 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
       )
       }
       <PageMetadata
-          title={"Privacy Policy | Wondor"}
+          title={"How Wondor works?"}
           name={"description"}
-          content={"Privacy policy for using Wondor."}
+          content={"Simple steps to create your account, manage collaboration requests and become the next viral artist."}
       />
 
       <div className="footer_tutorialContainer">
