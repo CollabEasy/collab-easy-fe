@@ -14,6 +14,7 @@ import headerImage from '../public/images/popularCategories/artist.svg';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
 import { CategoryEntry } from "types/states/category";
+import PageMetadata from "@/components/pageMetadata";
 
 
 
@@ -96,6 +97,12 @@ const AllCategoryPage = ({
                 <NewUserModal />
             )
             }
+            <PageMetadata
+                title={"Art Categories on Wondor - Information about Category, Artists available to Collaborate."}
+                name={"description"}
+                content={"All of the popular categories among categories for collaboration on instagram, tik-tok, youtube etc. Find artists who are available and send them request to work on an idea together."}
+            />
+            
             {isFetchingCategories ? (
                 <Loader />
             ) : (

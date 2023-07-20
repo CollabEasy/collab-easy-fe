@@ -16,6 +16,7 @@ import * as actions from "state/action";
 import Loader from "@/components/loader";
 import { GetContestStatus, GetDateString } from "helpers/contest";
 import { IsAdmin } from "helpers/helper";
+import PageMetadata from "@/components/pageMetadata";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -122,6 +123,12 @@ const AllContestPage = ({
                 <NewUserModal />
             )
             }
+            <PageMetadata
+                title={"Join Monthly Art Contest | Wondor"}
+                name={"description"}
+                content={"Participate in the Wondor monthly art contests, and master your artistic skills. Get all the information about the contests hosted every month."}
+            />
+
             {isFetchingContest ? (
                 <Loader />
             ) : (

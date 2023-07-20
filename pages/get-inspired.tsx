@@ -14,6 +14,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
+import PageMetadata from '@/components/pageMetadata';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -62,7 +63,12 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
         <NewUserModal />
       )
       }
-      <Title title="Ideas for your next hit" />
+      <PageMetadata
+        title={"New Topics, Themes, Quotes for Upcoming Work | Wondor"}
+        name={"description"}
+        content={"Find inspiration for your upcoming work. New topics, themes, quotes posted every week on Wondor"}
+      />
+      
       <div className="getInspired-parentContainer">
         <div className="getInspired-sectionContainer">
           <div className="getInspired-happyImage">

@@ -15,6 +15,7 @@ import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
 import Title from '../components/title';
+import PageMetadata from '@/components/pageMetadata';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -64,7 +65,12 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         <NewUserModal />
       )
       }
-      <Title title="About Wondor" />
+      <PageMetadata
+          title={"About us - What do we do | Wondor"}
+          name={"description"}
+          content={"What is Wondor? What is our mission? and Why artists should join Wondor?"}
+      />
+      
       <div className="footer_aboutUsContainer">
         <div className="footer_aboutUsBodyTextContainer">
           <h3 className="common-h5-style">Through Wondor, we are brining artists together everyday 🤗</h3>

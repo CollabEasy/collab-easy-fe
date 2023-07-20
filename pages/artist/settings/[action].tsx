@@ -34,6 +34,7 @@ import NewUserModal from '@/components/modal/newUserModal';
 import EditBasicInformation from "@/components/editBasicInformation";
 import EditPreferences from "@/components/editPreferences";
 import EditSocialProspectus from "@/components/editSocialProspectus";
+import PageMetadata from "@/components/pageMetadata";
 
 const { Sider, Content } = Layout;
 
@@ -191,6 +192,13 @@ const EditProfile = ({
         <NewUserModal />
       )
       }
+      
+      <PageMetadata
+          title={"Portal for " + user.first_name + " " + user.last_name + " to manage their account"}
+          name={"description"}
+          content={user.first_name + ", manage your basic information, prefernces, collab schedule, linked social media accounts, notes etc all in one place."}
+      />
+
       {!isLoggedIn ? (
         <>
           <NotAuthorised />
