@@ -232,7 +232,7 @@ const NavBar = ({
                       onClick={() => setShowLoginOptions(false)}
                     >
                       <span className="f-14 common-text-style">
-                        Artist Portal
+                        Portal
                       </span>
                     </div>
                   </Link>
@@ -243,7 +243,7 @@ const NavBar = ({
                         onClick={() => setShowLoginOptions(false)}
                       >
                         <span className="f-14 common-text-style">
-                          Admin Portal
+                          Admin
                         </span>
                       </div>
                     </Link>
