@@ -321,9 +321,10 @@ const DiscoverArtist = ({
               </div>
 
               {getSimilarCategories(artSlug).length > 0 && (
-                <div className="flex-row flex-wrap d-flex align-items-center justify-content-center colors my-2 scrolling-wrapper">
-                  <div className="btn-group">
-                    <p className="common-text-style" style={{ paddingLeft: "15px", paddingTop: "20px" }}>Similar categories:</p> {getSimilarCategories(artSlug)}
+                <div className="flex-row  d-flex align-items-center justify-content-center colors my-2 scrolling-wrapper">
+                  <div className="btn-group flex-wrap">
+                    {/* <p className="common-text-style" style={{ paddingLeft: "15px", paddingTop: "20px" }}>Similar categories:</p>  */}
+                    {getSimilarCategories(artSlug)}
                   </div>
                 </div>
               )}
