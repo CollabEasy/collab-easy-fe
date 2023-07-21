@@ -35,6 +35,7 @@ import EditBasicInformation from "@/components/editBasicInformation";
 import EditPreferences from "@/components/editPreferences";
 import EditSocialProspectus from "@/components/editSocialProspectus";
 import PageMetadata from "@/components/pageMetadata";
+import Navbar from "@/components/navbar";
 
 const { Sider, Content } = Layout;
 
@@ -201,6 +202,7 @@ const EditProfile = ({
 
       {!isLoggedIn ? (
         <>
+          <Navbar />
           <NotAuthorised />
         </>
       ) : (
