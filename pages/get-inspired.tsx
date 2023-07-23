@@ -90,9 +90,9 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
             </p >
             <div className="theme">
               {/* <h5 className="card-text common-h5-style">Important events of the month</h5> */}
-              <p className="card-text common-p-style">
+              {/* <p className="card-text common-p-style">
                 Celebrate the month of June with Wondor.art. Make art on any of topics below or beyond with the artists you have been wanting to work with on your next big hit!
-              </p>
+              </p> */}
             </div>
             <div className="theme">
               <h5 className="card-text common-h5-style">Themes for the week</h5>
