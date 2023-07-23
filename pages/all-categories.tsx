@@ -15,6 +15,7 @@ import * as actions from "state/action";
 import Loader from "@/components/loader";
 import { CategoryEntry } from "types/states/category";
 import PageMetadata from "@/components/pageMetadata";
+import CategoryModal from "@/components/modal/categoryModal";
 
 
 
@@ -24,13 +25,17 @@ const mapStateToProps = (state: AppState) => {
     const loginModalDetails = state.home.loginModalDetails;
     const artistListData = state.home.artistListDetails;
     const categories = state.category.categories;
+    const showCategoryModal = state.category.showCategoryModal;
     const isFetchingCategories = state.category.isFetchingCategories;
 
-    return { user, isLoggedIn, loginModalDetails, artistListData, categories, isFetchingCategories }
+
+    return { user, isLoggedIn, loginModalDetails, artistListData, categories, showCategoryModal, isFetchingCategories }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getAllCategories: () => dispatch(actions.getAllCategories()),
+    setShowCategoryModal: (show: boolean) =>
+        dispatch(actions.setShowCategoryModal(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -43,9 +48,19 @@ const AllCategoryPage = ({
     loginModalDetails,
     artistListData,
     categories,
+    showCategoryModal,
     isFetchingCategories,
     getAllCategories,
+    setShowCategoryModal,
 }: Props) => {
+    const emptyNewCategoryDetails: CategoryEntry = {
+        slug: "",
+        artName: "",
+        description: "",
+        id: 0,
+        approved: false
+    };
+
     const { toArtist, toCategoryPage } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [allCategories, setAllCategory] = useState([]);
@@ -87,6 +102,21 @@ const AllCategoryPage = ({
         return approvedCategories;
     };
 
+    const [newCategoryDetails, setNewCategoryDetails] = useState(
+        emptyNewCategoryDetails
+
+    );
+
+    const ShowNewCategoryModal = () => {
+        setNewCategoryDetails(emptyNewCategoryDetails);
+        setShowCategoryModal(true);
+    };
+
+    const HideCatgeoryEntryModal = () => {
+        setShowCategoryModal(false);
+    };
+
+
     return (
         <>
             {loginModalDetails.openModal && !user.new_user && (
@@ -102,7 +132,7 @@ const AllCategoryPage = ({
                 name={"description"}
                 content={"All of the popular categories among categories for collaboration on instagram, tik-tok, youtube etc. Find artists who are available and send them request to work on an idea together."}
             />
-            
+
             {isFetchingCategories ? (
                 <Loader />
             ) : (
@@ -131,9 +161,13 @@ const AllCategoryPage = ({
                                 </div>
                             </div>
                         </div>
+                        <div style={{ height: 'auto', marginTop: '20px', textAlign: "center" }}>
+                            Unable to see the art category in the list? Click <a href="#" onClick={ShowNewCategoryModal}>here</a> to add a category.
+                            After a thorough review, we will include it.
+                        </div>
                         <div className="col-md-12 listingContainer">
                             <List
-                                style={{width: "100%"}}
+                                style={{ width: "100%" }}
                                 bordered
                                 itemLayout="horizontal"
                                 dataSource={GetApprovedCategories(categories)}
@@ -151,6 +185,15 @@ const AllCategoryPage = ({
                         </div>
                     </div>
                 </>
+            )}
+            {showCategoryModal && (
+                <CategoryModal
+                    onCancel={() => {
+                        HideCatgeoryEntryModal();
+                    }}
+                    isViewMode={true}
+                    categoryEntry={newCategoryDetails}
+                />
             )}
         </>
     );
