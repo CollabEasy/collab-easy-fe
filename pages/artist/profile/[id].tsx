@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Layout from '../../../components/layout';
 import avatar from "../../../public/images/avatar.png";
 import React, { useEffect, useState } from "react";
 import { Pagination, Space, Tabs } from "antd";
@@ -87,7 +88,11 @@ const ArtistProfile = ({
 
   // console.log("rabbal", user);
   return (
-    <>
+    <Layout
+          title={user.first_name + " " + user.last_name + " - Send Collaboration Request Now | Wondor"}
+          name={"description"}
+          content={"Work with " + user.first_name + " " + user.last_name + ". Send them a collaboration request."}
+      >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
       {showProfileModal && <NewUserModal />}
       {!isLoggedIn ? (
@@ -102,7 +107,7 @@ const ArtistProfile = ({
           user={isSelf ? user : otherUser}
         />
       )}
-    </>
+    </Layout>
   );
 };
 

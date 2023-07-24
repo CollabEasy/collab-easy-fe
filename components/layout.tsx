@@ -1,4 +1,5 @@
 import { footerLinkColumns } from "copy/footer";
+import Head from 'next/head'
 import Footer from "./footer";
 import Navbar from "./navbar";
 import { useRouter } from "next/router";
@@ -34,10 +35,16 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
   children: any;
+  title: string;
+  name: string;
+  content: string;
 } & ConnectedProps<typeof connector>;
 
 const Layout = ({
   user,
+  title,
+  name,
+  content,
   children,
   isFetchingUser,
   notification,
@@ -72,6 +79,10 @@ const Layout = ({
 
   return (
     <div>
+      <Head>
+        <title>{title}</title>
+        <meta name={name} content={content} />
+      </Head>
       <Notification
         showNotification={notification.showNotification}
         isSuccess={notification.isSuccess}

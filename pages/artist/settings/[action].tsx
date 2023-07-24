@@ -1,14 +1,15 @@
 import { CollabRequestData, User } from "types/model";
-import Image from 'next/image';
-import titleDesktopImg from '../../../public/images/Wondor.svg';
-import titleMobileImg from '../../../public/images/logo.svg';
-import {Tooltip } from "antd";
+import Image from "next/image";
+import titleDesktopImg from "../../../public/images/Wondor.svg";
+import titleMobileImg from "../../../public/images/logo.svg";
+import { Tooltip } from "antd";
 import React, { useEffect, useState } from "react";
 import { SearchCollab } from "types/model";
 import CollabRequestTab from "../../../components/collabRequestTab";
+import { default as DefaultLayout } from "../../../components/layout";
 import NotAuthorised from "@/components/error/notAuthorised";
-import { Select} from "antd";
-import { Layout, Menu } from 'antd';
+import { Select } from "antd";
+import { Layout, Menu } from "antd";
 import {
   SearchOutlined,
   CheckCircleOutlined,
@@ -29,8 +30,8 @@ import { Dispatch } from "redux";
 import * as actions from "state/action";
 import { useRouter } from "next/router";
 import Loader from "@/components/loader";
-import LoginModal from '@/components/modal/loginModal';
-import NewUserModal from '@/components/modal/newUserModal';
+import LoginModal from "@/components/modal/loginModal";
+import NewUserModal from "@/components/modal/newUserModal";
 import EditBasicInformation from "@/components/editBasicInformation";
 import EditPreferences from "@/components/editPreferences";
 import EditSocialProspectus from "@/components/editSocialProspectus";
@@ -48,16 +49,17 @@ const mapStateToProps = (state: AppState) => {
     isLoggedIn: state.user.isLoggedIn,
     isFetchingSamples: state.sample.isFetchingSamples,
     isFetchingCollabs: state.collab.isFetchingCollabDetails,
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistSamples: (slug: string) =>
     dispatch(actions.fetchArtistSamples(slug)),
 
-  getCollabRequestsAction: (data: SearchCollab) => dispatch(actions.getCollabRequestsAction(data)),
+  getCollabRequestsAction: (data: SearchCollab) =>
+    dispatch(actions.getCollabRequestsAction(data)),
 
-  resetUserLoggedIn: () => dispatch(resetUserLoggedIn())
+  resetUserLoggedIn: () => dispatch(resetUserLoggedIn()),
 });
 
 const normFile = (e: any) => {
@@ -82,7 +84,6 @@ const EditProfile = ({
   getCollabRequestsAction,
   resetUserLoggedIn,
 }: Props) => {
-
   const emptyCollabDetails: CollabRequestData = {
     id: "",
     senderId: "",
@@ -90,42 +91,48 @@ const EditProfile = ({
     collabDate: undefined,
     requestData: {
       message: "",
-      collabTheme: ""
+      collabTheme: "",
     },
     status: "",
     createdAt: undefined,
-    updatedAt: undefined
+    updatedAt: undefined,
   };
-
 
   const [collapsed, setCollapsed] = useState(false);
   const [activeTabKey, setActiveTabKey] = useState("1");
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
+  const [collabRequestDetails, setCollabRequestDetails] =
+    useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
-
 
   const { Option } = Select;
 
   useEffect(() => {
     fetchArtistSamples(user.slug);
-    getCollabRequestsAction({
-    })
+    getCollabRequestsAction({});
   }, [getCollabRequestsAction]);
 
-
   useEffect(() => {
-    if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {
+    if (
+      collab.collabDetails.sent.pending.length > 0 ||
+      collab.collabDetails.sent.active.length > 0
+    ) {
       setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
       setHasPendingCollab(true);
-    } else if (collab.collabDetails.received.pending.length > 0 || collab.collabDetails.received.active.length > 0) {
+    } else if (
+      collab.collabDetails.received.pending.length > 0 ||
+      collab.collabDetails.received.active.length > 0
+    ) {
       setHasPendingCollab(true);
       setCollabRequestDetails(collab.collabDetails.received.active[0]);
     } else {
       setHasPendingCollab(false);
       setCollabRequestDetails(emptyCollabDetails);
     }
-  }, [collab.collabDetails.received.pending, collab.collabDetails.sent.pending])
+  }, [
+    collab.collabDetails.received.pending,
+    collab.collabDetails.sent.pending,
+  ]);
 
   const router = useRouter();
   const { action, tab } = router.query;
@@ -153,9 +160,7 @@ const EditProfile = ({
     } else if (tabIndex === "7") {
       logoutUser();
       return;
-    }
-
-    else if (tabIndex === "1") {
+    } else if (tabIndex === "1") {
       tab = "basic-information";
     } else if (tabIndex === "2") {
       tab = "preferences";
@@ -173,33 +178,28 @@ const EditProfile = ({
 
   const getActiveTab = () => {
     return activeTabKey;
-  }
+  };
 
   const logoutUser = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     resetUserLoggedIn();
     router.push("/");
-  }
+  };
 
-  if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails) return <Loader />;
+  if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails)
+    return <Loader />;
 
   return (
-    <>
-      {loginModalDetails.openModal && !user.new_user && (
-        <LoginModal />
-      )
+    <DefaultLayout
+      title="Settings"
+      name={"description"}
+      content={
+        user.first_name +
+        ", manage your basic information, prefernces, collab schedule, linked social media accounts, notes etc all in one place."
       }
-      {showProfileModal && (
-        <NewUserModal />
-      )
-      }
-      
-      <PageMetadata
-          title={"Portal for " + user.first_name + " " + user.last_name + " to manage their account"}
-          name={"description"}
-          content={user.first_name + ", manage your basic information, prefernces, collab schedule, linked social media accounts, notes etc all in one place."}
-      />
-
+    >
+      {loginModalDetails.openModal && !user.new_user && <LoginModal />}
+      {showProfileModal && <NewUserModal />}
       {!isLoggedIn ? (
         <>
           <Navbar />
@@ -208,7 +208,11 @@ const EditProfile = ({
       ) : (
         <div>
           <Layout style={{ minHeight: "100vh", overflow: "auto" }} hasSider>
-            <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+            <Sider
+              collapsible
+              collapsed={collapsed}
+              onCollapse={(value) => setCollapsed(value)}
+            >
               <div className="logo">
                 {!collapsed ? (
                   <Image src={titleDesktopImg} alt="Landing page" />
@@ -219,7 +223,7 @@ const EditProfile = ({
               <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={['1']}
+                defaultSelectedKeys={["1"]}
                 onClick={handleClick}
               >
                 <Menu.Item key="0">
@@ -251,7 +255,7 @@ const EditProfile = ({
                   <CalendarOutlined />
                   <span>Collab Requests</span>
                 </Menu.Item>
-                <Menu.Item key="7" danger >
+                <Menu.Item key="7" danger>
                   <LogoutOutlined />
                   <span>Log out</span>
                 </Menu.Item>
@@ -261,7 +265,11 @@ const EditProfile = ({
               <>
                 {getActiveTab() === "1" && (
                   <Content
-                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
                   >
                     <div className="settings__basicProfileCard">
                       <h2 className="f-20 ">Your basic personal information</h2>
@@ -272,7 +280,11 @@ const EditProfile = ({
 
                 {getActiveTab() === "2" && (
                   <Content
-                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
                   >
                     <div className="settings__basicProfileCardSecond">
                       <h2 className="f-20 ">Your preferences</h2>
@@ -283,13 +295,17 @@ const EditProfile = ({
 
                 {getActiveTab() === "3" && (
                   <Content
-                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
                   >
                     <div className="settings__basicProfileCardThird">
                       <h2 className="f-20 ">You work samples</h2>
                       <p>
-                        You can upload 6 of them now and flaunt your best work to
-                        others!
+                        You can upload 6 of them now and flaunt your best work
+                        to others!
                       </p>
                       <SamplePage
                         isSelf
@@ -303,7 +319,11 @@ const EditProfile = ({
 
                 {getActiveTab() === "4" && (
                   <Content
-                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
                   >
                     <div className="settings__basicProfileCardFourth">
                       <h2 className="f-20 ">Your social media accounts</h2>
@@ -314,10 +334,22 @@ const EditProfile = ({
 
                 {getActiveTab() === "5" && (
                   <Content
-                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
                   >
                     <div className="settings__basicProfileCardThird">
-                      <h2 className="f-20 ">Your space to take notes <Tooltip placement="topLeft" title="Please, do not write any personal information."><InfoCircleOutlined /></Tooltip></h2>
+                      <h2 className="f-20 ">
+                        Your space to take notes{" "}
+                        <Tooltip
+                          placement="topLeft"
+                          title="Please, do not write any personal information."
+                        >
+                          <InfoCircleOutlined />
+                        </Tooltip>
+                      </h2>
                       <ScratchpadPage />
                     </div>
                   </Content>
@@ -325,14 +357,20 @@ const EditProfile = ({
 
                 {getActiveTab() === "6" && (
                   <Content
-                    style={{ padding: 24, background: '#fff', minHeight: 280 }}
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
                   >
                     <div className="settings__basicProfileCardThird">
                       <h2 className="f-20 ">Your collab requests</h2>
                       <CollabRequestTab
                         otherUser={user.artist_id}
                         collabRequests={collab.collabDetails}
-                        onClickCollabRequest={(collabDetails: CollabRequestData) => {
+                        onClickCollabRequest={(
+                          collabDetails: CollabRequestData
+                        ) => {
                           setCollabRequestDetails(collabDetails);
                         }}
                       />
@@ -344,7 +382,7 @@ const EditProfile = ({
           </Layout>
         </div>
       )}
-    </>
+    </DefaultLayout>
   );
 };
 
