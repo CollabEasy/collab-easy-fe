@@ -1,5 +1,3 @@
-import { NextPage } from 'next'
-import Title from 'components/title'
 import { Button } from "antd";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
@@ -13,7 +11,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
-import PageMetadata from '@/components/pageMetadata';
+import Layout from '@/components/layout';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -55,7 +53,11 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
 
   // console.log("loginModalDetails ", loginModalDetails);
   return (
-    <>
+    <Layout
+      title={"Privacy Policy | Wondor"}
+      name={"description"}
+      content={"Privacy policy for using Wondor."}
+    >
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />
       )
@@ -64,12 +66,7 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         <NewUserModal />
       )
       }
-      <PageMetadata
-          title={"Privacy Policy | Wondor"}
-          name={"description"}
-          content={"Privacy policy for using Wondor."}
-      />
-      
+
       <div className='footer_privacyContainer'>
         <div className="footer_privacySectionContainer">
           <h1 className="common-h1-style">Privacy</h1>
@@ -204,7 +201,7 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
           </Button>
         </div>
       </div>
-    </>
+    </Layout>
   )
 }
 

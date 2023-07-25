@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Layout from "./layout";
 import RoutesContext from "./routeContext";
 import { useRouter } from 'next/router'
@@ -25,7 +25,7 @@ const App = ({ children, routes }) => {
   return (
     <>
       <RoutesContext.Provider value={routes}>
-        <Layout {...props} />
+        <div {...props}/>
       </RoutesContext.Provider>
     </>
   );

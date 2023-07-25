@@ -18,6 +18,7 @@ import SendCollabRequestModal from "./modal/sendCollabRequestModal";
 import CollabRequest from "./collabRequestSend";
 import { encryptContent } from "../helpers/helper";
 import { routeToHref } from "config/routes";
+import Layout from 'components/layout';
 import {
   StarFilled,
   CloseOutlined,
@@ -29,7 +30,6 @@ import avatarImage from '../public/images/avatar.png';
 import { GetPendingCollabRequest, GetUserSkills, ShowIncompleteProfileBanner } from '../helpers/profilePageHelper';
 import { ConvertTimestampToDate } from '../helpers/collabCardHelper';
 import ProfilePicture from "./profilePicture";
-import PageMetadata from "./pageMetadata";
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -136,12 +136,6 @@ const Profile = ({
 
   return (
     <>
-      <PageMetadata
-          title={user.first_name + " " + user.last_name + " - Send Collaboration Request Now | Wondor"}
-          name={"description"}
-          content={"Work with " + user.first_name + " " + user.last_name + ". Send them a collaboration request."}
-      />
-
       <div
         className="artistProfile__profileContainer"
       >

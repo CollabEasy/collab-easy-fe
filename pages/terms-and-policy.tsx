@@ -15,7 +15,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
-import PageMetadata from '@/components/pageMetadata';
+import Layout from '@/components/layout';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -55,7 +55,11 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
   }, [artistListData]);
 
   return (
-    <>
+    <Layout
+      title={"Terms and Policy | Wondor"}
+      name={"description"}
+      content={"Terms and policy for using Wondor."}
+    >
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />
       )
@@ -64,18 +68,13 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
         <NewUserModal />
       )
       }
-      <PageMetadata
-          title={"Terms and Policy | Wondor"}
-          name={"description"}
-          content={"Terms and policy for using Wondor."}
-      />
-      
+
       <div className='footer_termsContainer'>
         <div className="footer_termsSectionContainer">
           <h1 className="common-h1-style">Terms & Conditions</h1>
           <p className="common-p-style">
             <b>Welcome to Wondor!.</b> When we say “Wondor”, “Company”, “we”, “our”, or “us” in this document,
-            we are referring to wondor.art a product built by us. When we say “Services”, we mean any 
+            we are referring to wondor.art a product built by us. When we say “Services”, we mean any
             product created and maintained in as part of Wondor.
           </p>
         </div>
@@ -105,16 +104,16 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
         <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Eligibility</h5>
           <p className="common-p-style">
-          You must be 18 years or older to use our service. By using our service, you represent and 
-          warrant that you are at least 18 years old.
+            You must be 18 years or older to use our service. By using our service, you represent and
+            warrant that you are at least 18 years old.
           </p>
         </div>
         <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Account Creation</h5>
           <p className="common-p-style">
-          To use our service, you may be required to create an account. You agree to 
-          provide accurate, current, and complete information during the account creation process and 
-          to update such information as necessary to ensure its accuracy.
+            To use our service, you may be required to create an account. You agree to
+            provide accurate, current, and complete information during the account creation process and
+            to update such information as necessary to ensure its accuracy.
           </p>
         </div>
         {/* <div className="footer_termsSectionContainer">
@@ -134,8 +133,8 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
         <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Prohibited Conduct</h5>
           <p className="common-p-style">
-          You agree not to use our service for any unlawful or prohibited purpose. You may not post any 
-          content that is offensive, harmful, or violates any third-party rights.
+            You agree not to use our service for any unlawful or prohibited purpose. You may not post any
+            content that is offensive, harmful, or violates any third-party rights.
           </p>
         </div>
         <div className="footer_termsSectionContainer">
@@ -165,11 +164,11 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
         <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Governing Law</h5>
           <p className="common-p-style">
-          These terms and conditions will be governed by and construed in accordance with the laws of 
-          the State of California, United States of America, without giving effect to any principles of 
-          conflicts of law.
+            These terms and conditions will be governed by and construed in accordance with the laws of
+            the State of California, United States of America, without giving effect to any principles of
+            conflicts of law.
           </p>
-        </div> 
+        </div>
         <div className="footer_termsSectionContainer">
           <h5 className="common-h5-style">Contact Us</h5>
           <p className="common-p-style">
@@ -178,8 +177,8 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
         </div>
         <div className="footer_termsSectionContainer">
           <p className="common-p-style">
-          By using our service, you agree to these terms and conditions. If you do not agree to these 
-          terms and conditions, you should not use our service.
+            By using our service, you agree to these terms and conditions. If you do not agree to these
+            terms and conditions, you should not use our service.
           </p>
         </div>
         <div className="footer_termsSectionContainer">
@@ -191,7 +190,7 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
           </Button>
         </div>
       </div>
-    </>
+    </Layout>
   )
 }
 
