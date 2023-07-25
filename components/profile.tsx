@@ -11,7 +11,6 @@ import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { CollabRequestData, SearchCollab, User } from "types/model";
-import Title from "./title";
 import * as action from "../state/action";
 import Loader from "./loader";
 import SendCollabRequestModal from "./modal/sendCollabRequestModal";

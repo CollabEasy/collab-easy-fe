@@ -1,5 +1,4 @@
 import { NextPage } from 'next'
-import Title from 'components/title'
 
 const FAQ: NextPage<{}> = () => {
   return (

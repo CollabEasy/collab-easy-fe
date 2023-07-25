@@ -1,4 +1,3 @@
-import Title from "../components/title";
 import NewUserModal from "../components/modal/newUserModal";
 import LoginModal from "../components/modal/loginModal";
 import Layout from "../components/layout";
@@ -442,7 +441,7 @@ const Home = ({
                       <div>
                         <Button type="primary">
                           <Link href={routeToHref(toAllContestPage())} passHref>
-                           
+
                             Enter now
                           </Link>
                         </Button>

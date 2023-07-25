@@ -1,4 +1,3 @@
-import Title from "components/title";
 import { AppState } from "state";
 import { Dispatch } from "redux";
 import * as actions from "state/action";

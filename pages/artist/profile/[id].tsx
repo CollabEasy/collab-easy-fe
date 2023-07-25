@@ -1,12 +1,10 @@
-import Image from "next/image";
 import Layout from '../../../components/layout';
-import avatar from "../../../public/images/avatar.png";
 import React, { useEffect, useState } from "react";
-import { Pagination, Space, Tabs } from "antd";
-import { Button, Card, Avatar, Result, Skeleton } from "antd";
+import { Tabs } from "antd";
+import { Card } from "antd";
 import Profile from "components/profile";
 import { AppState } from "state";
-import { connect, ConnectedProps, useStore } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import * as artistApi from "api/artist-user";
@@ -14,12 +12,8 @@ import { User } from "types/model";
 import * as actions from "state/action";
 import Loader from "@/components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
-
 import LoginModal from "@/components/modal/loginModal";
-import { updateLoginData } from "state/action";
-import { LoginModalDetails } from "types/model";
 import NewUserModal from "@/components/modal/newUserModal";
-import Title from "../../../components/title";
 
 // https://ant.design/components/card/
 const { Meta } = Card;

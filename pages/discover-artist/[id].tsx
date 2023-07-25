@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Title from "components/title";
 import { useRouter } from "next/router";
 import { LISTING_METADATA, SIMILAR_CATEGORIES } from "../../constants/listing";
 import { Card, Button } from "antd";

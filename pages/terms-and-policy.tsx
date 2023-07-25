@@ -1,12 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 // eslint-disable-next-line react/no-unescaped-entities
-import { NextPage } from 'next'
 import { Button } from "antd";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
-import Title from 'components/title'
-
 import LoginModal from '../components/modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
