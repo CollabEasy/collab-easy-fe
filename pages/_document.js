@@ -4,7 +4,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable import/no-extraneous-dependencies */
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import Title from '../components/title'
 
 export default class MyDocument extends Document {
 

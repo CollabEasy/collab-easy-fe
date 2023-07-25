@@ -364,8 +364,7 @@ const Home = ({
                       <div className="cursor-pointer">
                         <Button>
                           <Link href={routeToHref(toGetInspired())} passHref>
-                            {" "}
-                            Get Inspiration{" "}
+                            Get Inspiration
                           </Link>
                         </Button>
                       </div>
@@ -413,8 +412,7 @@ const Home = ({
                             )}
                             passHref
                           >
-                            {" "}
-                            Take notes{" "}
+                            Take notes
                           </Link>
                         </Button>
                       </div>
@@ -444,8 +442,8 @@ const Home = ({
                       <div>
                         <Button type="primary">
                           <Link href={routeToHref(toAllContestPage())} passHref>
-                            {" "}
-                            Enter now{" "}
+                           
+                            Enter now
                           </Link>
                         </Button>
                       </div>
