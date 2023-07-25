@@ -68,7 +68,7 @@ export const LISTING_BANNERS = [
         "background_color": "#FADAC1",
     },
     {
-        "slugs": ["music"],
+        "slugs": ["musician"],
         "category": "Music",
         "image": musicImage,
         "background_color": "#E2F0CB",
@@ -228,15 +228,6 @@ export const SIMILAR_CATEGORIES = [
             }
         ]
     },
-    {
-        "slugs": ["music"],
-        "similar_categories": [
-            {
-                "name": "Music",
-                "slug": "music"
-            },
-        ]
-    },
 ]
 
 export const LISTING_METADATA = [
@@ -313,10 +304,10 @@ export const LISTING_METADATA = [
     {
         "slug": "journaling",
         "meta_title": "Top Journalers available for collaboration | Wondor",
-        "meta_content": "Connect with like-minded illustrators, express, and document your journey | Wondor",
+        "meta_content": "Connect with like-minded journalers, express, and document your journey | Wondor",
     },
     {
-        "slug": "musicians",
+        "slug": "musician",
         "meta_title": "Top Musicians available for collaboration | Wondor",
         "meta_content": "Join fellow musicians in a harmonious space. Connect, collaborate, and share your melodies dedicated to passionate music makers | Wondor",
     },

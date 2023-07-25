@@ -118,9 +118,9 @@ const AllCategoryPage = ({
 
     return (
         <Layout
-            title={"Art Categories on Wondor - Information about Category, Artists available to Collaborate."}
+            title={"Information about Art Categories, Artists Available to Collaborate."}
             name={"description"}
-            content={"All of the popular categories among categories for collaboration on instagram, tik-tok, youtube etc. Find artists who are available and send them request to work on an idea together."}
+            content={"Popular categories among artists for collaboration on instagram, tik-tok etc. Send collaboration request to available artists to work on an idea together."}
 
         >
             {loginModalDetails.openModal && !user.new_user && (

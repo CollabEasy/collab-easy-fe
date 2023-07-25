@@ -10,7 +10,7 @@ export const CATEGORY_WIKI = [
     {
         "slug": "bullet-journaling",
         "name": "Bullet Journaling",
-        "meta_title": "What is Bullet Journaling - collaborate with buller journalers | Wondor",
+        "meta_title": "What is Bullet Journaling - collaborate with bullet journalers | Wondor",
         "meta_content": "Discover the art of bullet journaling - a versatile and organized way to plan, track, and express your life. Get started on your creative journey now!",
         "paragraph": "Bullet Journaling is just one of many journaling methods that can improve your mental health, boost creativity, and even help you sleep better. But it differs from most types of journaling in that it specifically involves goal planning, organization, and, in many cases, wildly creative visual imagery. Bullet Journaling allows you to organize your mind and life while also expressing your individual style.",
         "source": "https://www.dailyom.com/journal/bullet-journaling-for-beginners-tips-to-get-started/",
@@ -121,8 +121,8 @@ export const CATEGORY_WIKI = [
         "source": "https://www.thecoach.zone/journaling-what-is-it-and-how-to-do-it/",
     },
     {
-        "slug": "musicians",
-        "name": "musicians",
+        "slug": "musician",
+        "name": "musician",
         "meta_title": "Who are Musicians - collaborate with musicians | Wondor",
         "meta_content": "Discover Music Making: Unleash your musical talent and creativity. Learn to compose, produce, and share your melodies with the world!",
         "paragraph": "A musician is a person who composes and/or performs music, usually as an occupation but often as a hobby. He or she may play a musical instrument or several musical instruments, or he or she may be a vocalist instead.",
