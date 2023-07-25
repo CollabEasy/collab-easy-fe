@@ -20,7 +20,7 @@ import Loader from "@/components/loader";
 import NotAuthorised from "@/components/error/notAuthorised";
 import SendCollabRequestModal from "../../components/modal/sendCollabRequestModal";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
-import PageMetadata from "@/components/pageMetadata";
+import Layout from "@/components/layout";
 
 const { Meta } = Card;
 
@@ -257,7 +257,11 @@ const DiscoverArtist = ({
   }
 
   return (
-    <>
+    <Layout
+      title={getListingPageMetadata(artSlug)["meta_title"]}
+      name={"description"}
+      content={getListingPageMetadata(artSlug)["meta_content"]}
+    >
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />
       )
@@ -271,11 +275,6 @@ const DiscoverArtist = ({
       ) : (
         <div>
           <div>
-            <PageMetadata
-              title={getListingPageMetadata(artSlug)["meta_title"]}
-              name={"description"}
-              content={getListingPageMetadata(artSlug)["meta_content"]}
-            />
             <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
               <div className="discoverArtists__listingPageCoverContainer">
                 <div className="row ">
@@ -344,7 +343,7 @@ const DiscoverArtist = ({
           collabDetails={collabRequestDetails}
         />
       )}
-    </>
+    </Layout >
   );
 };
 

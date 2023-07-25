@@ -1,4 +1,4 @@
-import { Tabs, Input, Button, Comment } from "antd";
+import { Tabs, Input } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -9,14 +9,12 @@ import NewUserModal from '@/components/modal/newUserModal';
 import { Card, Tag } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
-import Link from "next/link";
 import Image from 'next/image';
 import headerImage from '../public/images/contest.svg';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
-import { GetContestStatus, GetDateString } from "helpers/contest";
-import { IsAdmin } from "helpers/helper";
-import PageMetadata from "@/components/pageMetadata";
+import { GetContestStatus } from "helpers/contest";
+import Layout from "@/components/layout";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -76,7 +74,7 @@ const AllContestPage = ({
         const resultArtists: JSX.Element[] = [];
         const now = new Date();
         let data = allContests.length != 0 ? allContests[0].data : [];
-        data.sort((a,b) => b.startDate - a.startDate);
+        data.sort((a, b) => b.startDate - a.startDate);
         data.forEach(contest => {
             let status = GetContestStatus(now.getTime(), contest.startDate, contest.endDate);
             resultArtists.push(
@@ -114,7 +112,12 @@ const AllContestPage = ({
     };
 
     return (
-        <>
+        <Layout
+            title={"Join Monthly Art Contest | Wondor"}
+            name={"description"}
+            content={"Participate in the Wondor monthly art contests, and master your artistic skills. Get all the information about the contests hosted every month."}
+
+        >
             {loginModalDetails.openModal && !user.new_user && (
                 <LoginModal />
             )
@@ -123,11 +126,6 @@ const AllContestPage = ({
                 <NewUserModal />
             )
             }
-            <PageMetadata
-                title={"Join Monthly Art Contest | Wondor"}
-                name={"description"}
-                content={"Participate in the Wondor monthly art contests, and master your artistic skills. Get all the information about the contests hosted every month."}
-            />
 
             {isFetchingContest ? (
                 <Loader />
@@ -163,7 +161,7 @@ const AllContestPage = ({
                     </div>
                 </>
             )}
-        </>
+        </Layout>
     );
 };
 

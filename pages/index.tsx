@@ -31,7 +31,6 @@ import { updateLoginData } from "state/action";
 import React, { useEffect, useState } from "react";
 import { LoginModalDetails } from "types/model";
 import { AppState } from "types/states";
-import PageMetadata from "@/components/pageMetadata";
 
 const { Meta } = Card;
 

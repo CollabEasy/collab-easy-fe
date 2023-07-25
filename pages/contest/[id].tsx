@@ -24,7 +24,7 @@ import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { ContestSubmission } from "types/model/contest";
 import { Config } from "config/config";
-import PageMetadata from "@/components/pageMetadata";
+import Layout from "@/components/layout";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -179,7 +179,7 @@ const ContestPage = ({
 
     const GetMetaText = (status, submissionId, description, votesCount) => {
         if (status === "Past") {
-            if ( submissionId in votesCount) {
+            if (submissionId in votesCount) {
                 return <span> {votesCount[submissionId]} votes recieved</span>
             } else {
                 return <span>{description}</span>
@@ -193,7 +193,7 @@ const ContestPage = ({
         const resultArtists: JSX.Element[] = [];
         let data = allSubmissions.length != 0 ? allSubmissions[0].data : [];
         let artistsVotesData = allSubmissionsVotes.length != 0 ? allSubmissionsVotes[0].data : []
-    
+
         let artistVotes = []
         artistsVotesData.forEach(votes => {
             if (votes.artistId === user.artist_id && votes.vote === true) {
@@ -243,7 +243,8 @@ const ContestPage = ({
                                                 message.error("You cannot vote for your own submission");
                                                 return;
                                             }
-                                            upvoteArtwork(submission.id, slug, status)}
+                                            upvoteArtwork(submission.id, slug, status)
+                                        }
                                         }
                                     />
                                 ) : (
@@ -260,7 +261,7 @@ const ContestPage = ({
 
                             </>) : (
                                 <FireFilled key="upvote"
-                                    style={{ color: "grey"}}
+                                    style={{ color: "grey" }}
                                     onClick={() => message.error("You cannot vote for your own submission")}
                                 />
                             ),
@@ -269,9 +270,9 @@ const ContestPage = ({
                             />
                         ]}
                     >
-                        <Meta className="common-text-style" title={GetMetaText(status, submission.id, submission.description, votesCount)}/>
+                        <Meta className="common-text-style" title={GetMetaText(status, submission.id, submission.description, votesCount)} />
                         <div className="mt16 common-text-style"><a href={profileLink} >{artistName}</a></div>
-                        
+
                     </Card>
                 </div>
             )
@@ -282,7 +283,11 @@ const ContestPage = ({
     const now = new Date();
     let status = GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate);
     return (
-        <>
+        <Layout
+            title={"Join our " + contest.contest[0]?.data.slug + "contest."}
+            name={"description"}
+            content={"Join our monthy contest. The theme is " + contest.contest[0]?.data.title}
+        >
             <>
                 {loginModalDetails.openModal && !user.new_user && (
                     <LoginModal />
@@ -292,11 +297,6 @@ const ContestPage = ({
                     <NewUserModal />
                 )
                 }
-                <PageMetadata
-                    title={"Join our " + contest.contest[0]?.data.slug + "contest."}
-                    name={"description"}
-                    content={"Join our monthy contest. The theme is " + contest.contest[0]?.data.title}
-                />
 
                 {isFetchingContest && isFetchingSubmissions && isFetchingSubmissionVotes ? (
                     <Loader />
@@ -323,7 +323,7 @@ const ContestPage = ({
                                             />
                                         </div>
                                         <div className="contestDetailPage_tabContainer">
-                                            <div style={{paddingTop: "10px", paddingBottom: "10px"}}> 
+                                            <div style={{ paddingTop: "10px", paddingBottom: "10px" }}>
                                                 {status === "Ongoing" && (
                                                     <Tag color="green">{status}</Tag>
                                                 )}
@@ -457,7 +457,7 @@ const ContestPage = ({
                     </Modal>
                 }
             </div>
-        </>
+        </Layout>
     );
 };
 

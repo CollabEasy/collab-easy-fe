@@ -30,7 +30,6 @@ import avatarImage from '../public/images/avatar.png';
 import { GetPendingCollabRequest, GetUserSkills, ShowIncompleteProfileBanner } from '../helpers/profilePageHelper';
 import { ConvertTimestampToDate } from '../helpers/collabCardHelper';
 import ProfilePicture from "./profilePicture";
-import PageMetadata from "./pageMetadata";
 
 const { Meta } = Card;
 const { TabPane } = Tabs;

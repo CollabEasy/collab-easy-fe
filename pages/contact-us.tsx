@@ -1,4 +1,3 @@
-import { NextPage } from 'next'
 import Image from "next/image";
 import { Button } from "antd";
 import Link from "next/link";
@@ -14,8 +13,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
-import Title from '../components/title';
-import PageMetadata from '@/components/pageMetadata';
+import Layout from '@/components/layout';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -56,7 +54,11 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
   }, [artistListData]);
 
   return (
-    <>
+    <Layout
+      title={"Contact Us | Wondor"}
+      name={"description"}
+      content={"Contact us for any questions."}
+    >
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />
       )
@@ -65,12 +67,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
         <NewUserModal />
       )
       }
-      <PageMetadata
-          title={"Contact Us | Wondor"}
-          name={"description"}
-          content={"Contact us for any questions."}
-      />
-            
+
       <div className="footer_contactUsContainer">
         <div className="footer_contactUsSectionContainer">
           <div className="footer_contactUsImage">
@@ -114,7 +111,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   )
 }
 

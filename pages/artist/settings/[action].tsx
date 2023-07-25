@@ -35,7 +35,6 @@ import NewUserModal from "@/components/modal/newUserModal";
 import EditBasicInformation from "@/components/editBasicInformation";
 import EditPreferences from "@/components/editPreferences";
 import EditSocialProspectus from "@/components/editSocialProspectus";
-import PageMetadata from "@/components/pageMetadata";
 import Navbar from "@/components/navbar";
 
 const { Sider, Content } = Layout;
@@ -194,8 +193,8 @@ const EditProfile = ({
       title="Settings"
       name={"description"}
       content={
-        user.first_name +
-        ", manage your basic information, prefernces, collab schedule, linked social media accounts, notes etc all in one place."
+        (user.first_name.length > 0 ? user.first_name  + " | ": "") +
+        "Manage your basic information, prefernces, collab schedule, linked social media accounts, notes etc all in one place."
       }
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}

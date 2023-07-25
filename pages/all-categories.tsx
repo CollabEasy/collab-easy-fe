@@ -8,14 +8,13 @@ import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
-import Link from "next/link";
 import Image from 'next/image';
 import headerImage from '../public/images/popularCategories/artist.svg';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
 import { CategoryEntry } from "types/states/category";
-import PageMetadata from "@/components/pageMetadata";
 import CategoryModal from "@/components/modal/categoryModal";
+import Layout from "@/components/layout";
 
 
 
@@ -118,7 +117,12 @@ const AllCategoryPage = ({
 
 
     return (
-        <>
+        <Layout
+            title={"Art Categories on Wondor - Information about Category, Artists available to Collaborate."}
+            name={"description"}
+            content={"All of the popular categories among categories for collaboration on instagram, tik-tok, youtube etc. Find artists who are available and send them request to work on an idea together."}
+
+        >
             {loginModalDetails.openModal && !user.new_user && (
                 <LoginModal />
             )
@@ -127,11 +131,6 @@ const AllCategoryPage = ({
                 <NewUserModal />
             )
             }
-            <PageMetadata
-                title={"Art Categories on Wondor - Information about Category, Artists available to Collaborate."}
-                name={"description"}
-                content={"All of the popular categories among categories for collaboration on instagram, tik-tok, youtube etc. Find artists who are available and send them request to work on an idea together."}
-            />
 
             {isFetchingCategories ? (
                 <Loader />
@@ -195,7 +194,7 @@ const AllCategoryPage = ({
                     categoryEntry={newCategoryDetails}
                 />
             )}
-        </>
+        </Layout>
     );
 };
 

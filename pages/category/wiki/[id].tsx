@@ -11,8 +11,7 @@ import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
 import { GetCategoryWikiData } from "helpers/categoryHelper";
-import Head from 'next/head'
-import PageMetadata from "@/components/pageMetadata";
+import Layout from "@/components/layout";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -54,10 +53,9 @@ const CategoryPage = ({
     }, [user, artistListData])
 
     return (
-        <>
-            <PageMetadata
-                title={categoryWikidata["meta_title"]} name={"description"} content={categoryWikidata["meta_content"]}
-            />
+        <Layout
+            title={categoryWikidata["meta_title"]} name={"description"} content={categoryWikidata["meta_content"]}
+        >
 
             {loginModalDetails.openModal && !user.new_user && (
                 <LoginModal />
@@ -104,7 +102,7 @@ const CategoryPage = ({
                     </div>
                 )}
             </>
-        </>
+        </Layout>
     );
 };
 
