@@ -202,7 +202,9 @@ const EditProfile = ({
       {!isLoggedIn ? (
         <>
           <Navbar />
-          <NotAuthorised />
+          <NotAuthorised 
+            error={"Please, login to access your account details."}
+          />
         </>
       ) : (
         <div>

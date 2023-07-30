@@ -141,7 +141,9 @@ const CollabPage = ({
       }
       {!isLoggedIn ? (
         <>
-          <NotAuthorised />
+          <NotAuthorised 
+            error={"Please login to see details of this collaboration request!"}
+          />
         </>
       ) : (
         <div className="collabDetailsPage_container">

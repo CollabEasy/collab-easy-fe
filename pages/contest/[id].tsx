@@ -5,7 +5,6 @@ import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { routeToHref } from "config/routes";
-import NotAuthorised from "@/components/error/notAuthorised";
 import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
 import SamplePage from "@/components/samplePage";

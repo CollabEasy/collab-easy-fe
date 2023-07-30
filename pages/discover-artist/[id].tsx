@@ -16,7 +16,6 @@ import { updateLoginData } from 'state/action';
 import { LoginModalDetails, CollabRequestData } from 'types/model';
 import NewUserModal from '../../components/modal/newUserModal';
 import Loader from "@/components/loader";
-import NotAuthorised from "@/components/error/notAuthorised";
 import SendCollabRequestModal from "../../components/modal/sendCollabRequestModal";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
 import Layout from "@/components/layout";

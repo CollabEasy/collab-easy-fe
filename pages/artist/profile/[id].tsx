@@ -40,6 +40,7 @@ const ArtistProfile = ({
   user,
   isLoggedIn,
   loginModalDetails,
+  artistListData,
   fetchArtistSocialProspectus,
 }: Props) => {
   const router = useRouter();
@@ -61,6 +62,7 @@ const ArtistProfile = ({
     }
 
     const { id: slug } = router.query;
+
     if (user.slug === slug) {
       setIsSelf(true);
     } else {
@@ -80,7 +82,7 @@ const ArtistProfile = ({
     return <Loader />;
   }
 
-  // console.log("rabbal", user);
+  console.log("rabbal", user, artistListData);
   return (
     <Layout
           title={user.first_name + " " + user.last_name + " - Send Collaboration Request Now | Wondor"}
@@ -91,7 +93,9 @@ const ArtistProfile = ({
       {showProfileModal && <NewUserModal />}
       {!isLoggedIn ? (
         <>
-          <NotAuthorised />
+          <NotAuthorised 
+            error={"Please login to see the profile of the artist."}
+          />
         </>
       ) : (
         <Profile
