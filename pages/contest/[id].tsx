@@ -284,7 +284,7 @@ const ContestPage = ({
     let status = GetContestStatus(now.getTime(), contest.contest[0]?.data.startDate, contest.contest[0]?.data.endDate);
     return (
         <Layout
-            title={"Join our " + contest.contest[0]?.data.slug + "contest."}
+            title={"Join monthly art contests and win exciting prizes | Wondor"}
             name={"description"}
             content={"Join our monthy contest. The theme is " + contest.contest[0]?.data.title}
         >
