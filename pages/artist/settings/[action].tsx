@@ -20,6 +20,7 @@ import {
   LogoutOutlined,
   InfoCircleOutlined,
   UserOutlined,
+  DollarOutlined,
 } from "@ant-design/icons";
 import { resetUserLoggedIn } from "state/action";
 import SamplePage from "@/components/samplePage";
@@ -36,6 +37,7 @@ import EditBasicInformation from "@/components/editBasicInformation";
 import EditPreferences from "@/components/editPreferences";
 import EditSocialProspectus from "@/components/editSocialProspectus";
 import Navbar from "@/components/navbar";
+import Rewards from "@/components/rewards";
 
 const { Sider, Content } = Layout;
 
@@ -152,11 +154,11 @@ const EditProfile = ({
   const redirect = (tabIndex: string) => {
     let action = "profile";
     let tab = "";
-    // 0 is for discover and 7 is for logout.
+    // 0 is for discover and 8 is for logout.
     if (tabIndex === "0") {
       router.push("/");
       return;
-    } else if (tabIndex === "7") {
+    } else if (tabIndex === "8") {
       logoutUser();
       return;
     } else if (tabIndex === "1") {
@@ -171,6 +173,8 @@ const EditProfile = ({
       tab = "scratchpad";
     } else if (tabIndex === "6") {
       tab = "collab-request";
+    } else if (tabIndex === "7") {
+      tab = "rewards";
     }
     router.push("/artist/settings/" + action + "?tab=" + tab);
   };
@@ -193,7 +197,6 @@ const EditProfile = ({
       title="Settings"
       name={"description"}
       content={
-        (user.first_name.length > 0 ? user.first_name  + " | ": "") +
         "Manage your basic information, prefernces, collab schedule, linked social media accounts, notes etc all in one place."
       }
     >
@@ -256,7 +259,11 @@ const EditProfile = ({
                   <CalendarOutlined />
                   <span>Collab Requests</span>
                 </Menu.Item>
-                <Menu.Item key="7" danger>
+                <Menu.Item key="7">
+                  <DollarOutlined />
+                  <span>Rewards</span>
+                </Menu.Item>
+                <Menu.Item key="8" danger>
                   <LogoutOutlined />
                   <span>Log out</span>
                 </Menu.Item>
@@ -375,6 +382,21 @@ const EditProfile = ({
                           setCollabRequestDetails(collabDetails);
                         }}
                       />
+                    </div>
+                  </Content>
+                )}
+
+                {getActiveTab() === "7" && (
+                  <Content
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
+                  >
+                    <div className="settings__basicProfileCardThird">
+                      <h2 className="f-20 ">Your rewards</h2>
+                      <Rewards/>
                     </div>
                   </Content>
                 )}
