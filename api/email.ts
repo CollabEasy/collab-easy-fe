@@ -34,6 +34,20 @@ export const sendEmail = async (
   }
 };
 
+export const sendEmailToSlug = async (
+  slug: string,
+  subject: string,
+  content: string
+) => {
+  const config = postConfig({"slug": slug, "subject" : subject, "content": content});
+  try {
+    const result = await api.call(`api/v1/notify/user/any`, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 export const sendEmailToAll = async (
   subject: string,

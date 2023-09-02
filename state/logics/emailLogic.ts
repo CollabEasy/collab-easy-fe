@@ -37,6 +37,28 @@ export const sendEmailToOneUser = createLogic<
   },
 });
 
+export const sendEmailToSlug = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.sendEmailToSlug>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.SEND_EMAIL_TO_SLUG],
+  async process({ action, api }, dispatch, done) {
+    try {
+      const result = await emailApi.sendEmailToSlug(
+        action.payload['slug'],
+        action.payload["subject"],
+        encryptContent(action.payload["content"])
+      );
+    } catch (error) {
+        const error_response = error.response.data;
+    } finally {
+      done();
+    }
+  },
+});
+
 export const sendEmailToAllUsers = createLogic<
   AppState,
   FSACreatorPayload<typeof actions.sendEmailToAllUsers>,

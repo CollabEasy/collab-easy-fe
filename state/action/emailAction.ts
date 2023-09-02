@@ -9,6 +9,15 @@ export const sendEmailToOneUser = (subject: string, content: string, fromAdmin: 
   }
 });
 
+export const sendEmailToSlug = (slug: string, subject: string, content: string) => ({
+  type: actionType.SEND_EMAIL_TO_SLUG,
+  payload: {
+    slug,
+    subject,
+    content,
+  }
+})
+
 export const sendEmailToOneUserRequest = () => ({
   type: actionType.SEND_EMAIL_TO_ONE_USER_REQUEST,
   payload: {}

@@ -1,6 +1,7 @@
 import * as actionTypes from "../actionTypes/collabActionTypes";
 import { CollabRequestState } from "types/states/collab";
 import { CollabRequestData } from "types/model";
+import { getCollabRequestEmailContent } from "helpers/email/newUserCollabInvitation";
 
 const initialState: CollabRequestState = {
   collabDetails: {

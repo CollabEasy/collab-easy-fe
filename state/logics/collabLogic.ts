@@ -2,10 +2,12 @@ import { CollabRequestStatus } from "constants/constants";
 import { createLogic } from "redux-logic";
 import { LogicDeps } from "state";
 import * as actions from "../action/collabAction";
+import * as emailActions from "../action/emailAction";
 import * as notifActions from "../action/notificationAction";
 import * as actionTypes from "../actionTypes/collabActionTypes";
 import { AppState } from "types/states";
 import { FSACreatorPayload } from "types/states/FSACreator";
+import { getCollabRequestEmailContent } from "helpers/email/newUserCollabInvitation";
 
 export const sendCollabRequestLogic = createLogic<
   AppState,
@@ -22,6 +24,9 @@ export const sendCollabRequestLogic = createLogic<
       dispatch(notifActions.showNotification(true, 'Collab Request sent successfully 🥳'))
       dispatch(actions.setShowCollabModalState(false, ''));
       dispatch(actions.sendCollabRequestSuccess(response['data']));
+      const data = response['data'];
+      const emailContent = getCollabRequestEmailContent(data);
+      emailActions.sendEmailToSlug(data['receiverSlug'], 'You have a new collaboration request..!!', emailContent);
     } catch (error) {
       const error_response = error.response.data;
       dispatch(notifActions.showNotification(false, error_response['err_str']));
