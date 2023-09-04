@@ -30,6 +30,7 @@ import { updateLoginData } from "state/action";
 import React, { useEffect, useState } from "react";
 import { LoginModalDetails } from "types/model";
 import { AppState } from "types/states";
+import RefferalCodeModal from "@/components/modal/RefferalCodeModal";
 
 const { Meta } = Card;
 
@@ -61,6 +62,7 @@ const Home = ({
   artistListData,
 }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
   const {
     toArtist,
     toEditProfile,
@@ -74,12 +76,16 @@ const Home = ({
       if (user.new_user) {
         setShowProfileModal(true);
       }
+      if (!user.is_referral_done) {
+        setShowRefferalCodeModal(true);
+      }
     }
   }, [user]);
 
   useEffect(() => {
     if (artistListData.status === "success") {
       setShowProfileModal(false);
+      setShowRefferalCodeModal(false);
     }
   }, [artistListData]);
 
@@ -94,7 +100,11 @@ const Home = ({
       }
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
+
+      {loginModalDetails.openModal && showRefferalCodeModal && <RefferalCodeModal />}
+
       {showProfileModal && <NewUserModal />}
+
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="header-text">
           <div className="text-content">
