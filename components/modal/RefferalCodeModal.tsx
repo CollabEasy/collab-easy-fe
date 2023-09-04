@@ -7,6 +7,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
 import * as actions from "../../state/action";
 import { RefferalCode } from "types/model/refferalCode";
+import { User } from "types/model";
 
 const layout = {
   labelCol: {
@@ -37,7 +38,8 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch) => ({
   setNewUser: (newUser: boolean) => dispatch(actions.setNewUser(newUser)),
-  postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
+  verifyRefferalCode: (refferalCode: string) => dispatch(actions.verifyRefferalCode(refferalCode)),
+  updateArtistProfile: (user: any) => dispatch(actions.updateArtistProfile(user)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -46,12 +48,16 @@ type Props = {} & ConnectedProps<typeof connector>;
 
 const RefferalCodeModal = ({
   user,
-  setNewUser,
-  postArtistArt,
+  verifyRefferalCode,
 }: Props) => {
   const emptyRefferalCode: RefferalCode = {
     code: "",
   };
+
+  const userDataCached: User = {
+    is_referral_done: false,
+  };
+
   const windowWidth = 1000;
 
   const [visible, setVisible] = useState(true);
@@ -75,11 +81,7 @@ const RefferalCodeModal = ({
   };
 
   const onFinish = () => {
-    let dataToSend = {
-      code: refferalCode.code
-    };
-
-    postArtistArt(dataToSend);
+    verifyRefferalCode(refferalCode.code);
     setVisible(false);
   };
 

@@ -26,3 +26,24 @@ export const fetchRewardsActivityLogic = createLogic<
   },
 });
 
+export const verifyRefferalCodeLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.verifyRefferalCode>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.FETCH_REWARDS],
+  async process({ action, api }, dispatch, done) {
+    try {
+      const refferalCode = action.payload.refferalCode;
+      dispatch(actions.verifyRefferalCodeRequest());
+      const result = await rewardsApi.verifyRewardsActivity(refferalCode);
+      dispatch(actions.verifyRefferalCodeSuccess([result]));
+    } catch (error) {
+
+    } finally {
+      done();
+    }
+  },
+});
+

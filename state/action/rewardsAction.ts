@@ -36,3 +36,22 @@ export const fetchRewardsSuccess = (data: any) => ({
         data
     }
 })
+
+export const verifyRefferalCode = (refferalCode: string) => ({
+    type: actionType.VERIFY_REFFERAL_CODE,
+    payload: {
+        refferalCode,
+    }
+})
+
+export const verifyRefferalCodeRequest = () => ({
+    type: actionType.VERIFY_REFFERAL_CODE_REQUEST,
+    payload: {}
+})
+
+export const verifyRefferalCodeSuccess = (data: any) => ({
+    type: actionType.VERIFY_REFFERAL_CODE_SUCCESS,
+    payload: {
+        data
+    }
+})
