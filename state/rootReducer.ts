@@ -13,6 +13,7 @@ import notification from "./reducers/notificationReducer";
 import contest from "./reducers/contestReducer";
 import contestSubmission from "./reducers/contestSubmissionReducer";
 import contestSubmissionVote from "./reducers/contestSubmissionVoteReducer";
+import rewardsActivity from "./reducers/rewardsReducer";
 
 const appReducer = combineReducers<AppState>({
   home,
@@ -28,6 +29,7 @@ const appReducer = combineReducers<AppState>({
   contest,
   contestSubmission,
   contestSubmissionVote,
+  rewardsActivity,
 });
 
 const rootReducer = (state, action) => {

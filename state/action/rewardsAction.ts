@@ -1,0 +1,38 @@
+import * as actionType from '../actionTypes/rewardsTypes';
+
+export const fetchRewardsActivity = () => ({
+    type: actionType.FETCH_REWARDS_ACTIVITY,
+    payload: {}
+})
+
+export const fetchRewardsActivityRequest = () => ({
+    type: actionType.FETCH_REWARDS_ACTIVITY_REQUEST,
+    payload: {}
+})
+
+export const fetchRewardsActivitySuccess = (data: any[]) => ({
+    type: actionType.FETCH_REWARDS_ACTIVITY_SUCCESS,
+    payload: {
+        data
+    }
+})
+
+
+export const fetchRewards = (slug: string) => ({
+    type: actionType.FETCH_REWARDS,
+    payload: {
+        slug,
+    }
+})
+
+export const fetchRewardsRequest = () => ({
+    type: actionType.FETCH_REWARDS_REQUEST,
+    payload: {}
+})
+
+export const fetchRewardsSuccess = (data: any) => ({
+    type: actionType.FETCH_REWARDS_SUCCESS,
+    payload: {
+        data
+    }
+})

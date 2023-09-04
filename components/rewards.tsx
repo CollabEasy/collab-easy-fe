@@ -1,4 +1,4 @@
-import { Button, Col, Row, Statistic, Space, Table, Tag } from 'antd';
+import { Col, Row, Statistic, Table, Alert } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
@@ -22,6 +22,7 @@ import { useRoutesContext } from "components/routeContext";
 import { ContestSubmission } from "types/model/contest";
 import { Config } from "config/config";
 import Layout from "@/components/layout";
+import { GetRewardsEarningSummary } from 'helpers/rewardsHelper';
 
   
 
@@ -107,24 +108,32 @@ const RewardsPage = ({
                 ) : (
                     <>
                         <div className="rewardsPage_container">
+                            <Alert 
+                                message="Ways to Earn Points" 
+                                description={GetRewardsEarningSummary(user["referral_code"])}
+                                type="info" 
+                                className="display-linebreak"
+                                showIcon
+                                closable
+                            />
                             <div style={{marginTop: "20px"}}>
-                                <h5>Statistics</h5>
+                                <h5>Summary</h5>
                             </div>
                             <div>
                                 <Row gutter={16}>
                                     <Col span={8}>
                                         <Card bordered={true}>
-                                            <Statistic title="Current Points" value={112893} />
+                                            <Statistic title="Current points" value={112893} />
                                         </Card>
                                     </Col>
                                     <Col span={8}>
                                         <Card bordered={true}>
-                                            <Statistic title="Lifetime Earned Points" value={112893} />
+                                            <Statistic title="Lifetime earned points" value={112893} />
                                         </Card>
                                     </Col>
                                     <Col span={8}>
                                         <Card bordered={true}>
-                                            <Statistic title="Redeemed Points" value={112893} />
+                                            <Statistic title="Redeemed points" value={112893} />
                                         </Card>
                                     </Col>
                                 </Row>

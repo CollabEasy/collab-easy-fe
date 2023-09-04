@@ -19,6 +19,7 @@ import * as collabConversationApi from "api/collab-conversation"
 import * as analyticsApi from "api/analytics";
 import * as contestApi from "api/contest";
 import * as emailApi from "api/email";
+import * as rewardsApi from "api/rewards";
 
 import { AppRouteCreators } from "types/core";
 
@@ -35,6 +36,7 @@ export const APIs = {
   analyticsApi,
   contestApi,
   emailApi,
+  rewardsApi,
 };
 
 export interface LogicDeps {
