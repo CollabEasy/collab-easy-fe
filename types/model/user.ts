@@ -17,7 +17,7 @@ export interface User {
   updated_at?: number;
   date_of_birth?: Date;
   new_user?: boolean;
-  is_refferal_done?: boolean;
+  is_referral_done?: boolean;
   skills?: string[];
   sample?: string[];
 }

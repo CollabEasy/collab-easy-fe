@@ -75,9 +75,9 @@ const Home = ({
     if (user) {
       if (user.new_user) {
         setShowProfileModal(true);
-      }
-      if (!user.is_referral_done) {
-        setShowRefferalCodeModal(true);
+        if (!user.is_referral_done) {
+          setShowRefferalCodeModal(true);
+        }
       }
     }
   }, [user]);
