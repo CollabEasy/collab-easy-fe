@@ -68,19 +68,7 @@ const Home = ({
     toEditProfile,
     toGetInspired,
     toAllContestPage,
-    toAllCategoryPage,
   } = useRoutesContext();
-
-  useEffect(() => {
-    if (user) {
-      if (user.new_user) {
-        setShowProfileModal(true);
-        if (!user.is_referral_done) {
-          setShowRefferalCodeModal(true);
-        }
-      }
-    }
-  }, [user]);
 
   useEffect(() => {
     if (artistListData.status === "success") {
@@ -101,9 +89,7 @@ const Home = ({
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
 
-      {loginModalDetails.openModal && showRefferalCodeModal && <RefferalCodeModal />}
-
-      {showProfileModal && <NewUserModal />}
+      {isLoggedIn && (<NewUserModal />)}
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="header-text">
@@ -185,7 +171,7 @@ const Home = ({
             {" "}
             <b>Popular Among Artists</b>
           </h1>
-          <Link href={routeToHref(toAllCategoryPage())} passHref>
+          {/* <Link href={routeToHref(toAllCategoryPage())} passHref>
             <em
               style={{ textDecoration: "underline" }}
               className="cursor-pointer"
@@ -193,7 +179,7 @@ const Home = ({
               {" "}
               show more categories
             </em>
-          </Link>
+          </Link> */}
         </div>
         <div className="row mt-2 g-4">
           <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">

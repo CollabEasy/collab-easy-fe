@@ -38,18 +38,19 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch) => ({
   setNewUser: (newUser: boolean) => dispatch(actions.setNewUser(newUser)),
-  verifyRefferalCode: (refferalCode: string) => dispatch(actions.verifyRefferalCode(refferalCode)),
-  updateArtistProfile: (user: any) => dispatch(actions.updateArtistProfile(user)),
+  verifyRefferalCode: (refferalCode: string) =>
+    dispatch(actions.verifyRefferalCode(refferalCode)),
+  updateArtistProfile: (user: any) =>
+    dispatch(actions.updateArtistProfile(user)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {} & ConnectedProps<typeof connector>;
+type Props = {
+  handleNext: () => void;
+} & ConnectedProps<typeof connector>;
 
-const RefferalCodeModal = ({
-  user,
-  verifyRefferalCode,
-}: Props) => {
+const RefferalCodeModal = ({ user, handleNext, verifyRefferalCode }: Props) => {
   const emptyRefferalCode: RefferalCode = {
     code: "",
   };
@@ -60,12 +61,18 @@ const RefferalCodeModal = ({
 
   const windowWidth = 1000;
 
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const [userName, setUserName] = useState("");
-  const [refferalCode, setRefferalCode] = useState<RefferalCode>(emptyRefferalCode);
+  const [refferalCode, setRefferalCode] =
+    useState<RefferalCode>(emptyRefferalCode);
 
   useEffect(() => {
-
+    console.log("user : ", user);
+    if (user && !user.is_referral_done) {
+      setVisible(true);
+    } else {
+      handleNext();
+    }
   }, []);
 
   useEffect(() => {
@@ -74,7 +81,6 @@ const RefferalCodeModal = ({
       setUserName(name);
     }
   }, [user]);
-
 
   const handleCancel = () => {
     setVisible(false);
@@ -86,7 +92,7 @@ const RefferalCodeModal = ({
   };
 
   const onSkip = () => {
-    setVisible(false);
+    handleNext();
   };
 
   const tailLayout = {
@@ -95,56 +101,47 @@ const RefferalCodeModal = ({
 
   return (
     <>
-      <Modal
-        visible={visible}
-        destroyOnClose={true}
-        onCancel={handleCancel}
-        footer={null}
-        width={windowWidth > 680 ? 750 : 500}
-        bodyStyle={{ padding: 0 }}
-      >
-        <div className="container">
-          <div className="left-image">
-            <Image src={landingPageImg} alt="Profile left" layout="fill" />
-          </div>
-          <div className="profile-form">
-            <div className="profile-title">
-              <h1 className="common-h1-style">Have a Refferal code?</h1>
-              <h1>{userName}</h1>
-            </div>
-            <p className="common-p-style">
-              If you were reffered by another artist, please enter their refferal code
-              and earn bonus points.
-            </p>
-            <Form
-              {...layout}
-              layout="vertical"
-              onFinish={onFinish}
-              requiredMark={false}
-            >
-              <Form.Item>
-                <Input
-                  placeholder="Enter refferal code"
-                  onChange={(e) => {
-                    setRefferalCode((prevState) => ({
-                      ...prevState,
-                      code: e.target.value,
-                    }));
-                  }}
-                />
-              </Form.Item>
-              <Form.Item {...tailLayout}>
-                <Button htmlType="button" onClick={onSkip}>
-                  Skip
-                </Button>
-                <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
-              </Form.Item>
-            </Form>
-          </div>
+      <div className="container">
+        <div className="left-image">
+          <Image src={landingPageImg} alt="Profile left" layout="fill" />
         </div>
-      </Modal>
+        <div className="profile-form">
+          <div className="profile-title">
+            <h1 className="common-h1-style">Have a Refferal code?</h1>
+            <h1>{userName}</h1>
+          </div>
+          <p className="common-p-style">
+            If you were reffered by another artist, please enter their refferal
+            code and earn bonus points.
+          </p>
+          <Form
+            {...layout}
+            layout="vertical"
+            onFinish={onFinish}
+            requiredMark={false}
+          >
+            <Form.Item>
+              <Input
+                placeholder="Enter refferal code"
+                onChange={(e) => {
+                  setRefferalCode((prevState) => ({
+                    ...prevState,
+                    code: e.target.value,
+                  }));
+                }}
+              />
+            </Form.Item>
+            <Form.Item {...tailLayout}>
+              <Button htmlType="button" onClick={onSkip}>
+                Skip
+              </Button>
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
+        </div>
+      </div>
     </>
   );
 };
