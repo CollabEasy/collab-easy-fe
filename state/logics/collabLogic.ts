@@ -8,6 +8,7 @@ import * as actionTypes from "../actionTypes/collabActionTypes";
 import { AppState } from "types/states";
 import { FSACreatorPayload } from "types/states/FSACreator";
 import { getCollabRequestEmailContent } from "helpers/email/newUserCollabInvitation";
+import { getNewCollabRequestEmailData } from "helpers/email/newCollabRequest";
 
 export const sendCollabRequestLogic = createLogic<
   AppState,
@@ -25,8 +26,8 @@ export const sendCollabRequestLogic = createLogic<
       dispatch(actions.setShowCollabModalState(false, ''));
       dispatch(actions.sendCollabRequestSuccess(response['data']));
       const data = response['data'];
-      const emailContent = getCollabRequestEmailContent(data);
-      emailActions.sendEmailToSlug(data['receiverSlug'], 'You have a new collaboration request..!!', emailContent);
+      const emailContent = getNewCollabRequestEmailData(data);
+      dispatch(emailActions.sendEmailToSlug(data['receiverSlug'], 'You have a new collaboration request..!!', emailContent));
     } catch (error) {
       const error_response = error.response.data;
       dispatch(notifActions.showNotification(false, error_response['err_str']));
