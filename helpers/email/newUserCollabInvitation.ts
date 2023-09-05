@@ -1,6 +1,5 @@
-export const getCollabRequestEmailContent = (collabRequestData: any) => {
-    const receiverName = collabRequestData['receiverName'];
-    const html = getHTML(receiverName);
+export const getCollabRequestEmailContent = (artistName: string) => {
+   const html = getHTML(artistName);
     return html;
 }
 
