@@ -32,12 +32,12 @@ export const verifyRefferalCodeLogic = createLogic<
   any,
   LogicDeps
 >({
-  type: [actionTypes.FETCH_REWARDS],
+  type: [actionTypes.VERIFY_REFFERAL_CODE],
   async process({ action, api }, dispatch, done) {
     try {
       const refferalCode = action.payload.refferalCode;
       dispatch(actions.verifyRefferalCodeRequest());
-      const result = await rewardsApi.verifyRewardsActivity(refferalCode);
+      const result = await rewardsApi.verifyRefferalCode(refferalCode);
       dispatch(actions.verifyRefferalCodeSuccess([result]));
     } catch (error) {
 

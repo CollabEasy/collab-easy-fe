@@ -50,7 +50,12 @@ type Props = {
   handleNext: () => void;
 } & ConnectedProps<typeof connector>;
 
-const RefferalCodeModal = ({ user, handleNext, verifyRefferalCode }: Props) => {
+const RefferalCodeModal = ({ 
+  user, 
+  handleNext, 
+  verifyRefferalCode,
+  updateArtistProfile,
+}: Props) => {
   const emptyRefferalCode: RefferalCode = {
     code: "",
   };
@@ -67,7 +72,6 @@ const RefferalCodeModal = ({ user, handleNext, verifyRefferalCode }: Props) => {
     useState<RefferalCode>(emptyRefferalCode);
 
   useEffect(() => {
-    console.log("user : ", user);
     if (user && !user.is_referral_done) {
       setVisible(true);
     } else {
@@ -82,16 +86,14 @@ const RefferalCodeModal = ({ user, handleNext, verifyRefferalCode }: Props) => {
     }
   }, [user]);
 
-  const handleCancel = () => {
-    setVisible(false);
-  };
-
   const onFinish = () => {
     verifyRefferalCode(refferalCode.code);
-    setVisible(false);
+    handleNext();
   };
 
   const onSkip = () => {
+    user.is_referral_done = true;
+    updateArtistProfile(user);
     handleNext();
   };
 
@@ -108,10 +110,9 @@ const RefferalCodeModal = ({ user, handleNext, verifyRefferalCode }: Props) => {
         <div className="profile-form">
           <div className="profile-title">
             <h1 className="common-h1-style">Have a Refferal code?</h1>
-            <h1>{userName}</h1>
           </div>
           <p className="common-p-style">
-            If you were reffered by another artist, please enter their refferal
+            {userName}, if you were reffered by another artist, please enter their refferal
             code and earn bonus points.
           </p>
           <Form

@@ -74,7 +74,7 @@ const NewUserModal = ({
   };
 
   const handleCancel = () => {
-    setVisible(true);
+    setVisible(false);
   };
 
   const onFinish = (values: any) => {

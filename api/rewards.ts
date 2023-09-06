@@ -26,14 +26,11 @@ const postConfig = (dataToSend?: object) => {
 };
 
 
-export const verifyRewardsActivity = async (referralCode: string) => {
+export const verifyRefferalCode = async (referralCode: string) => {
   const config = postConfig();
   try {
-    const result = await api.call(
-      `/api/v1/rewards/referral/verify/` + referralCode,
-      config
-    );
-    console.log("inside api", referralCode);
+    let url = `/api/v1/rewards/referral/verify/` + referralCode;
+    const result = await api.call(url, config);
     return result;
   } catch (error) {
     throw error;

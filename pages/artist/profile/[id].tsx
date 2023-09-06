@@ -82,7 +82,6 @@ const ArtistProfile = ({
     return <Loader />;
   }
 
-  console.log("rabbal", user, artistListData);
   return (
     <Layout
           title={user.first_name + " " + user.last_name + " - Send Collaboration Request Now | Wondor"}
