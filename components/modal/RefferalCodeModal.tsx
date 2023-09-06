@@ -59,10 +59,6 @@ const RefferalCodeModal = ({
     code: "",
   };
 
-  const userDataCached: User = {
-    is_referral_done: false,
-  };
-
   const windowWidth = 1000;
 
   const [visible, setVisible] = useState(false);
