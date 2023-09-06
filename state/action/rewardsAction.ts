@@ -55,3 +55,20 @@ export const verifyRefferalCodeSuccess = (data: any) => ({
         data
     }
 })
+
+export const skipRefferalCode = () => ({
+    type: actionType.SKIP_REFFERAL_CODE,
+    payload: {}
+})
+
+export const skipRefferalCodeRequest = () => ({
+    type: actionType.SKIP_REFFERAL_CODE_REQUEST,
+    payload: {}
+})
+
+export const skipRefferalCodeSuccess = (data: any) => ({
+    type: actionType.SKIP_REFFERAL_CODE_SUCCESS,
+    payload: {
+        data
+    }
+})

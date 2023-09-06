@@ -4,6 +4,7 @@ import { RewardsActivityState } from "types/states";
 const initialState: RewardsActivityState = {
     isVerifyingRefferalCode: false,
     isFetchingRewardsActivity: false,
+    isSkippingRefferalCode: false,
     rewardsActivity: [],
 };
 
@@ -41,6 +42,21 @@ const RewardsActivityReducer = (state = initialState, action): RewardsActivitySt
             return {
                 ...state,
                 isVerifyingRefferalCode: false,
+            };
+        case actionType.SKIP_REFFERAL_CODE:
+            return {
+                ...state,
+                isSkippingRefferalCode: true,
+            };
+        case actionType.SKIP_REFFERAL_CODE_SUCCESS:
+            return {
+                ...state,
+                isSkippingRefferalCode: false,
+            };
+        case actionType.SKIP_REFFERAL_CODE_FAILURE:
+            return {
+                ...state,
+                isSkippingRefferalCode: false,
             };
         
         default:

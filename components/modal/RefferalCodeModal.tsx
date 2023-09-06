@@ -40,8 +40,7 @@ const mapDispatchToProps = (dispatch) => ({
   setNewUser: (newUser: boolean) => dispatch(actions.setNewUser(newUser)),
   verifyRefferalCode: (refferalCode: string) =>
     dispatch(actions.verifyRefferalCode(refferalCode)),
-  updateArtistProfile: (user: any) =>
-    dispatch(actions.updateArtistProfile(user)),
+  skipRefferalCode: () => dispatch(actions.skipRefferalCode()),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -54,7 +53,7 @@ const RefferalCodeModal = ({
   user, 
   handleNext, 
   verifyRefferalCode,
-  updateArtistProfile,
+  skipRefferalCode,
 }: Props) => {
   const emptyRefferalCode: RefferalCode = {
     code: "",
@@ -92,8 +91,7 @@ const RefferalCodeModal = ({
   };
 
   const onSkip = () => {
-    user.is_referral_done = true;
-    updateArtistProfile(user);
+    skipRefferalCode();
     handleNext();
   };
 

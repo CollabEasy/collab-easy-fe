@@ -37,6 +37,16 @@ export const verifyRefferalCode = async (referralCode: string) => {
   }
 };
 
+export const skipRefferalCode = async () => {
+  const config = postConfig();
+  try {
+    let url = `/api/v1/rewards/referral/noref`;
+    const result = await api.call(url, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const fetchRewardsActivity = async () => {
   const config = getConfig();
