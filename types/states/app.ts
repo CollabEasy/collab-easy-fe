@@ -9,6 +9,7 @@ import { CollabConversationState } from "./collabConversation";
 import { AnalyticsState } from "./analyticsState";
 import { NotificationState } from "./notificationState";
 import { ContestState, ContestSubmissionState, ContestSubmissionVoteState } from "./contestState";
+import { RewardsActivityState } from "./rewardsState";
 
 export interface AppState {
   home: HomeState;
@@ -24,4 +25,5 @@ export interface AppState {
   contest: ContestState,
   contestSubmission: ContestSubmissionState,
   contestSubmissionVote: ContestSubmissionVoteState,
+  rewardsActivity: RewardsActivityState,
 }

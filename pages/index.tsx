@@ -30,6 +30,7 @@ import { updateLoginData } from "state/action";
 import React, { useEffect, useState } from "react";
 import { LoginModalDetails } from "types/model";
 import { AppState } from "types/states";
+import RefferalCodeModal from "@/components/modal/RefferalCodeModal";
 
 const { Meta } = Card;
 
@@ -61,25 +62,18 @@ const Home = ({
   artistListData,
 }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
   const {
     toArtist,
     toEditProfile,
     toGetInspired,
     toAllContestPage,
-    toAllCategoryPage,
   } = useRoutesContext();
-
-  useEffect(() => {
-    if (user) {
-      if (user.new_user) {
-        setShowProfileModal(true);
-      }
-    }
-  }, [user]);
 
   useEffect(() => {
     if (artistListData.status === "success") {
       setShowProfileModal(false);
+      setShowRefferalCodeModal(false);
     }
   }, [artistListData]);
 
@@ -94,7 +88,9 @@ const Home = ({
       }
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
-      {showProfileModal && <NewUserModal />}
+
+      {isLoggedIn && (<NewUserModal />)}
+
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="header-text">
           <div className="text-content">
@@ -175,7 +171,7 @@ const Home = ({
             {" "}
             <b>Popular Among Artists</b>
           </h1>
-          <Link href={routeToHref(toAllCategoryPage())} passHref>
+          {/* <Link href={routeToHref(toAllCategoryPage())} passHref>
             <em
               style={{ textDecoration: "underline" }}
               className="cursor-pointer"
@@ -183,7 +179,7 @@ const Home = ({
               {" "}
               show more categories
             </em>
-          </Link>
+          </Link> */}
         </div>
         <div className="row mt-2 g-4">
           <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer">

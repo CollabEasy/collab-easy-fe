@@ -8,3 +8,4 @@ export * from "./collabConversationLogic";
 export * from "./analyticsLogic";
 export * from "./contestLogic";
 export * from "./emailLogic";
+export * from "./rewardsLogic";
