@@ -8,6 +8,9 @@ export function GetRewardsEarningSummary(refferalCode: string) {
     // Earn points by successful collab
     summary += "- Earn 50 points for successfully completing a collab request. \n";
 
+    // Earn points by completing profile
+    summary += "- Earn 50 points for completing your profile. \n";
+
     return summary
 }
 
