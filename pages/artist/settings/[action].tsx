@@ -205,7 +205,7 @@ const EditProfile = ({
       {!isLoggedIn ? (
         <>
           <Navbar />
-          <NotAuthorised 
+          <NotAuthorised
             error={"Please, login to access your account details."}
           />
         </>
@@ -396,7 +396,7 @@ const EditProfile = ({
                   >
                     <div className="settings__basicProfileCardThird">
                       <h2 className="f-20 ">Your rewards</h2>
-                      <Rewards/>
+                      <Rewards />
                     </div>
                   </Content>
                 )}

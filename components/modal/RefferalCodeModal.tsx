@@ -106,7 +106,7 @@ const RefferalCodeModal = ({
             <h1 className="common-h1-style">Have a Refferal code?</h1>
           </div>
           <p className="common-p-style">
-            {userName}, if you were reffered by another artist, please enter their refferal
+            <b>{userName}</b>, if you were reffered by another artist, please enter their refferal
             code and earn bonus points.
           </p>
           <Form

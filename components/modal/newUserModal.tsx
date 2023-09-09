@@ -34,74 +34,23 @@ const layout = {
 
 const { Option } = Select;
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    categories: state.category.categories,
-    user: state.user.user,
-  };
-};
+const mapStateToProps = (state: AppState) => {};
 
-const mapDispatchToProps = (dispatch) => ({
-  setNewUser: (newUser: boolean) => dispatch(actions.setNewUser(newUser)),
-  getAllCategories: () => dispatch(actions.getAllCategories()),
-  postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
-  updateArtistPreference: (key: string, value: any) =>
-    dispatch(actions.updateArtistPreference(key, value)),
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const NewUserModal = ({
-  user,
-  categories,
-  setNewUser,
-  postArtistArt,
-  getAllCategories,
-  updateArtistPreference,
-}: Props) => {
-  const [loading, setLoading] = useState(false);
+const NewUserModal = ({}: Props) => {
+
   const [visible, setVisible] = useState(true);
-  const [selectedCategories, setSelectedCategories] = useState("");
-  const [collaborationCheck, setCollaborationCheck] = useState(false);
-  const [userName, setUserName] = useState("");
   const windowWidth = 1000;
   const [modal, setModal] = useState(0);
-
-  const showModal = () => {
-    setVisible(true);
-  };
 
   const handleCancel = () => {
     setVisible(false);
   };
-
-  const onFinish = (values: any) => {
-    alert(JSON.stringify(values));
-    handleCancel();
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    // console.log("Failed:", errorInfo);
-  };
-
-  const getModalWidth = (): number => {
-    const width = window.innerWidth;
-    if (width < 680) return 450;
-    return 900;
-  };
-
-  useEffect(() => {
-    if (categories.length === 0) getAllCategories();
-  }, [categories.length, getAllCategories]);
-
-  useEffect(() => {
-    if (user?.first_name) {
-      let name = `${user?.first_name} ${user?.last_name}`;
-      setUserName(name);
-    }
-  }, [user]);
 
   function handleNextModal() {
     if (modal === 1) {
@@ -109,26 +58,6 @@ const NewUserModal = ({
     }
     setModal(modal + 1);
   }
-
-  const handleSubmit = () => {
-    if (selectedCategories.length === 0) {
-      message.error("You need to select atleast one art style.")
-      return;
-    }
-    let dataToSend = {
-      initial: user.new_user,
-      artNames: selectedCategories,
-    };
-
-    postArtistArt(dataToSend);
-    updateArtistPreference("upForCollaboration", collaborationCheck);
-    setNewUser(false);
-    setVisible(false);
-  };
-
-  const onChange = (val) => {
-    setCollaborationCheck(val);
-  };
 
   return (
     <>
@@ -139,6 +68,7 @@ const NewUserModal = ({
         footer={null}
         width={windowWidth > 680 ? 900 : 450}
         bodyStyle={{ padding: 0 }}
+        //bodyStyle={{ height: "500px", padding: "0px" }}
       >
         {modal === 0 && (<NewUser handleNext={handleNextModal}/>)}
         {modal === 1 && (<RefferalCodeModal handleNext={handleNextModal}/>)}

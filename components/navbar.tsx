@@ -17,14 +17,18 @@ import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 import { openLoginModalAction, resetUserLoggedIn } from "state/action";
 import { IsAdmin, IsLandingPage } from "helpers/helper";
+import * as actions from "state/action";
 
 const mapStateToProps = (state: AppState) => {
   const isLoggedIn = state.user.isLoggedIn;
   const userModel = state.user;
-  return { isLoggedIn, userModel };
+  const isFetchingRewardPoints = state.rewardsActivity.isFetchingRewardsPoints;
+  const rewardPoints = state.rewardsActivity.rewardPoints;
+  return { isLoggedIn, userModel, rewardPoints, isFetchingRewardPoints };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchRewards: () => dispatch(actions.fetchRewards()),
   openLoginModalAction: () => dispatch(openLoginModalAction()),
   resetUserLoggedIn: () => dispatch(resetUserLoggedIn()),
 });
@@ -34,10 +38,13 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type Props = {} & ConnectedProps<typeof connector>;
 
 const NavBar = ({
-  openLoginModalAction,
   isLoggedIn,
   userModel,
+  isFetchingRewardPoints,
+  rewardPoints,
+  fetchRewards,
   resetUserLoggedIn,
+  openLoginModalAction,
 }: Props) => {
   const [ref, inView, entry] = useInView({
     root: null,
@@ -83,6 +90,7 @@ const NavBar = ({
   useEffect(() => {
     if (isLoggedIn) {
       setHideSignUp(true);
+      fetchRewards();
     }
   }, [isLoggedIn]);
 
@@ -213,6 +221,21 @@ const NavBar = ({
                   </div>
                 </div>
                 <div className="common-login-option">
+                  <Link
+                    href={routeToHref(
+                      toEditProfile("profile", "rewards")
+                    )}
+                    passHref
+                  >
+                    <div
+                      className="selected-option-shadow settings-option"
+                      onClick={() => setShowLoginOptions(false)}
+                    >
+                      <span className="f-14 common-text-style">
+                        {rewardPoints["totalPoints"]} Rewards
+                      </span>
+                    </div>
+                  </Link>
                   <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
                     <div
                       className="selected-option-shadow profile-option"
