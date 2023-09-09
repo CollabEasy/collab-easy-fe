@@ -47,7 +47,6 @@ export const fetchRewards = async () => {
   try {
     let url = `/api/v1/rewards/points/get`;
     const result = await api.call(url, config);
-    console.log(result);
     return result;
   } catch (error) {
     throw error;
@@ -59,7 +58,6 @@ export const fetchRewardsActivity = async () => {
   try {
     let url = `/api/v1/rewards/get`;
     const result = await api.call(url, config);
-    console.log(result);
     return result;
   } catch (error) {
     throw error;

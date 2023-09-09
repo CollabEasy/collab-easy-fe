@@ -22,9 +22,9 @@ import { useRoutesContext } from "components/routeContext";
 import { ContestSubmission } from "types/model/contest";
 import { Config } from "config/config";
 import Layout from "@/components/layout";
-import { GetRewardsEarningSummary } from 'helpers/rewardsHelper';
+import { GetRewardsEarningSummary, GetPointsByCategory } from 'helpers/rewardsHelper';
 
-  
+
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -32,9 +32,11 @@ const mapStateToProps = (state: AppState) => {
     const loginModalDetails = state.home.loginModalDetails;
     const artistListData = state.home.artistListDetails;
     const isFetchingRewardsActivity = state.rewardsActivity.isFetchingRewardsActivity;
+    const isFetchingRewardPoints = state.rewardsActivity.isFetchingRewardsPoints;
     const rewardsActivity = state.rewardsActivity.rewardsActivity;
+    const rewardPoints = state.rewardsActivity.rewardPoints;
 
-    return { user, isLoggedIn, artistListData, loginModalDetails, isFetchingRewardsActivity, rewardsActivity}
+    return { user, isLoggedIn, artistListData, loginModalDetails, isFetchingRewardsActivity, isFetchingRewardPoints, rewardsActivity, rewardPoints }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -52,7 +54,9 @@ const RewardsPage = ({
     loginModalDetails,
     artistListData,
     isFetchingRewardsActivity,
+    isFetchingRewardPoints,
     rewardsActivity,
+    rewardPoints,
     fetchRewards,
     fetchRewardsActivity
 }: Props) => {
@@ -76,27 +80,28 @@ const RewardsPage = ({
     }, [user, artistListData])
 
     const columns = [
-        { title: "description", dataIndex: "description", key: "description" },
-        { title: "date", dataIndex: "date", key: "date" },
-        { title: "type", dataIndex: "type", key: "type" },
-        { title: "points", dataIndex: "points", key: "points" },
+        { title: "Category", dataIndex: "category", key: "category" },
+        { title: "Date", dataIndex: "date", key: "date" },
+        { title: "Type", dataIndex: "type", key: "type" },
+        { title: "Points", dataIndex: "points", key: "points" },
     ];
 
     const getPointsActivity = () => {
         let updatedData = []
-        let fake = {
-            "description": "fake transaction",
-            "date": "12/01/23",
-            "type": "earned",
-            "points": 123,
-        }
-        for (var i = 0; i < 5; i++) {
-            updatedData.push(fake);
-        }
+        let data = rewardsActivity.length != 0 ? rewardsActivity[0].data : [];
+
+        data.forEach(element => {
+            let entry = {
+                "category": element["action"],
+                "date": GetDateString(element["createdAt"]),
+                "type": element["added"] ? "Earned points" : "Redeemed points",
+                "points": element["points"],
+            }
+            updatedData.push(entry);
+        });
+
         return <Table columns={columns} dataSource={updatedData} />;
     };
-
-    console.log(rewardsActivity);
 
     return (
         <Layout
@@ -114,42 +119,42 @@ const RewardsPage = ({
                 )
                 }
 
-                {false ? (
+                {isFetchingRewardsActivity && isFetchingRewardPoints ? (
                     <Loader />
                 ) : (
                     <>
                         <div className="rewardsPage_container">
-                            <Alert 
-                                message="Ways to Earn Points" 
+                            <Alert
+                                message="Ways to Earn Points"
                                 description={GetRewardsEarningSummary(user["referral_code"])}
-                                type="info" 
+                                type="info"
                                 className="display-linebreak"
                                 showIcon
                                 closable
                             />
-                            <div style={{marginTop: "20px"}}>
+                            <div style={{ marginTop: "20px" }}>
                                 <h5>Summary</h5>
                             </div>
                             <div>
                                 <Row gutter={16}>
                                     <Col span={8}>
                                         <Card bordered={true}>
-                                            <Statistic title="Current points" value={112893} />
+                                            <Statistic title="Current points" value={rewardPoints["totalPoints"]} />
                                         </Card>
                                     </Col>
                                     <Col span={8}>
                                         <Card bordered={true}>
-                                            <Statistic title="Lifetime earned points" value={112893} />
+                                            <Statistic title="Lifetime earned points" value={rewardPoints["lifetimePoints"]} />
                                         </Card>
                                     </Col>
                                     <Col span={8}>
                                         <Card bordered={true}>
-                                            <Statistic title="Redeemed points" value={112893} />
+                                            <Statistic title="Redeemed points" value={rewardPoints["lifetimePoints"] - rewardPoints["totalPoints"]} />
                                         </Card>
                                     </Col>
                                 </Row>
                             </div>
-                            <div style={{marginTop: "20px"}}>
+                            <div style={{ marginTop: "20px" }}>
                                 <h5>Points earned by category</h5>
                             </div>
                             <div>
@@ -157,33 +162,33 @@ const RewardsPage = ({
                                     <Col span={8}>
                                         <Card bordered={true}>
                                             <Statistic
-                                            title="Successful refferals"
-                                            value={11}
-                                            valueStyle={{ color: '#3f8600' }}
+                                                title="Successful refferals"
+                                                value={GetPointsByCategory(rewardsActivity, "REFERRAL_USER")}
+                                                valueStyle={{ color: '#3f8600' }}
                                             />
                                         </Card>
                                     </Col>
                                     <Col span={8}>
                                         <Card bordered={true}>
                                             <Statistic
-                                            title="Collaboration requests"
-                                            value={93}
-                                            valueStyle={{ color: '#3f8600' }}
+                                                title="Collaboration requests"
+                                                value={GetPointsByCategory(rewardsActivity, "SUCCESSFUL_COLLAB")}
+                                                valueStyle={{ color: '#3f8600' }}
                                             />
                                         </Card>
                                     </Col>
                                     <Col span={8}>
                                         <Card bordered={true}>
                                             <Statistic
-                                            title="Montly contests"
-                                            value={9}
-                                            valueStyle={{ color: '#3f8600' }}
+                                                title="Montly contests"
+                                                value={GetPointsByCategory(rewardsActivity, "MONTHLY_CONTEST")}
+                                                valueStyle={{ color: '#3f8600' }}
                                             />
                                         </Card>
                                     </Col>
                                 </Row>
                             </div>
-                            <div style={{marginTop: "20px"}}>
+                            <div style={{ marginTop: "20px" }}>
                                 <h5>Recent points activity</h5>
                             </div>
                             <div>

@@ -5,7 +5,7 @@ const initialState: RewardsActivityState = {
     isVerifyingRefferalCode: false,
     isFetchingRewardsActivity: false,
     isSkippingRefferalCode: false,
-    isFetchingRewards: false,
+    isFetchingRewardsPoints: false,
     rewardsActivity: [],
     rewardPoints: {
         totalPoints: 0,
@@ -18,19 +18,18 @@ const RewardsActivityReducer = (state = initialState, action): RewardsActivitySt
         case actionType.FETCH_REWARDS:
             return {
                 ...state,
-                rewardsActivity: [],
-                isFetchingRewards: true,
+                isFetchingRewardsPoints: true,
             };
         case actionType.FETCH_REWARDS_SUCCESS:
             return {
                 ...state,
-                rewardPoints: action.payload.data,
-                isFetchingRewards: false,
+                rewardPoints: action.payload.data[0].data,
+                isFetchingRewardsPoints: false,
             };
         case actionType.FETCH_REWARDS_FAILURE:
             return {
                 ...state,
-                isFetchingRewards: false,
+                isFetchingRewardsPoints: false,
             };
 
         case actionType.FETCH_REWARDS_ACTIVITY:
