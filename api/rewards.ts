@@ -2,12 +2,6 @@ import api from "./client";
 
 const getConfig = () => {
   return {
-    method: 'get',
-  }
-}
-
-const getConfigWithToken = () => {
-  return {
     method: "get",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -48,13 +42,24 @@ export const skipRefferalCode = async () => {
   }
 };
 
+export const fetchRewards = async () => {
+  const config = getConfig();
+  try {
+    let url = `/api/v1/rewards/points/get`;
+    const result = await api.call(url, config);
+    console.log(result);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const fetchRewardsActivity = async () => {
   const config = getConfig();
   try {
-    const result = await api.call(
-      `api/v1/contest/all/`,
-      config
-    );
+    let url = `/api/v1/rewards/get`;
+    const result = await api.call(url, config);
+    console.log(result);
     return result;
   } catch (error) {
     throw error;

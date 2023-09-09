@@ -7,13 +7,33 @@ import * as actions from "../action/";
 import * as actionTypes from "../actionTypes/rewardsTypes";
 import * as notifActions from "../action/notificationAction";
 
+export const fetchRewardsLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.fetchRewards>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.FETCH_REWARDS_ACTIVITY],
+  async process({ action, api }, dispatch, done) {
+    try {
+      dispatch(actions.fetchRewardsRequest());
+      const result = await rewardsApi.fetchRewards();
+      dispatch(actions.fetchRewardsSuccess([result]));
+    } catch (error) {
+
+    } finally {
+      done();
+    }
+  },
+});
+
 export const fetchRewardsActivityLogic = createLogic<
   AppState,
   FSACreatorPayload<typeof actions.fetchRewardsActivity>,
   any,
   LogicDeps
 >({
-  type: [actionTypes.FETCH_REWARDS],
+  type: [actionTypes.FETCH_REWARDS_ACTIVITY],
   async process({ action, api }, dispatch, done) {
     try {
       dispatch(actions.fetchRewardsActivityRequest());
@@ -64,8 +84,6 @@ export const skipRefferalCodeLogic = createLogic<
       dispatch(actions.skipRefferalCodeSuccess([result]));
       dispatch(notifActions.showNotification(true, 'You have skipped earning points by referral program.'));
     } catch (error) {
-      const error_response = error.response.data;
-      dispatch(notifActions.showNotification(false, error_response['err_str']));
     } finally {
       done();
     }

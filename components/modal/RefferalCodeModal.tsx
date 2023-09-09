@@ -6,7 +6,7 @@ import landingPageImg from "public/images/profile.png";
 import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
 import * as actions from "../../state/action";
-import { RefferalCode } from "types/model/refferalCode";
+import { RefferalCode } from "types/model/rewards";
 import { User } from "types/model";
 
 const layout = {

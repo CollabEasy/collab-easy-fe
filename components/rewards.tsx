@@ -31,11 +31,15 @@ const mapStateToProps = (state: AppState) => {
     const isLoggedIn = state.user.isLoggedIn;
     const loginModalDetails = state.home.loginModalDetails;
     const artistListData = state.home.artistListDetails;
-    return { user, isLoggedIn, artistListData, loginModalDetails }
+    const isFetchingRewardsActivity = state.rewardsActivity.isFetchingRewardsActivity;
+    const rewardsActivity = state.rewardsActivity.rewardsActivity;
+
+    return { user, isLoggedIn, artistListData, loginModalDetails, isFetchingRewardsActivity, rewardsActivity}
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-
+    fetchRewards: () => dispatch(actions.fetchRewards()),
+    fetchRewardsActivity: () => dispatch(actions.fetchRewardsActivity()),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -47,12 +51,17 @@ const RewardsPage = ({
     isLoggedIn,
     loginModalDetails,
     artistListData,
+    isFetchingRewardsActivity,
+    rewardsActivity,
+    fetchRewards,
+    fetchRewardsActivity
 }: Props) => {
     const router = useRouter();
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     useEffect(() => {
-
+        fetchRewards();
+        fetchRewardsActivity();
     }, []);
 
     useEffect(() => {
@@ -86,6 +95,8 @@ const RewardsPage = ({
         }
         return <Table columns={columns} dataSource={updatedData} />;
     };
+
+    console.log(rewardsActivity);
 
     return (
         <Layout

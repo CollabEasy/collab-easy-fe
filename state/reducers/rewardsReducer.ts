@@ -5,11 +5,34 @@ const initialState: RewardsActivityState = {
     isVerifyingRefferalCode: false,
     isFetchingRewardsActivity: false,
     isSkippingRefferalCode: false,
+    isFetchingRewards: false,
     rewardsActivity: [],
+    rewardPoints: {
+        totalPoints: 0,
+        lifetimePoints: 0
+    },
 };
 
 const RewardsActivityReducer = (state = initialState, action): RewardsActivityState => {
     switch (action.type) {
+        case actionType.FETCH_REWARDS:
+            return {
+                ...state,
+                rewardsActivity: [],
+                isFetchingRewards: true,
+            };
+        case actionType.FETCH_REWARDS_SUCCESS:
+            return {
+                ...state,
+                rewardPoints: action.payload.data,
+                isFetchingRewards: false,
+            };
+        case actionType.FETCH_REWARDS_FAILURE:
+            return {
+                ...state,
+                isFetchingRewards: false,
+            };
+
         case actionType.FETCH_REWARDS_ACTIVITY:
             return {
                 ...state,
@@ -27,7 +50,7 @@ const RewardsActivityReducer = (state = initialState, action): RewardsActivitySt
                 ...state,
                 isFetchingRewardsActivity: false,
             };
-        
+
         case actionType.VERIFY_REFFERAL_CODE:
             return {
                 ...state,
@@ -58,7 +81,7 @@ const RewardsActivityReducer = (state = initialState, action): RewardsActivitySt
                 ...state,
                 isSkippingRefferalCode: false,
             };
-        
+
         default:
             return state;
     }

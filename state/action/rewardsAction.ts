@@ -18,11 +18,9 @@ export const fetchRewardsActivitySuccess = (data: any[]) => ({
 })
 
 
-export const fetchRewards = (slug: string) => ({
+export const fetchRewards = () => ({
     type: actionType.FETCH_REWARDS,
-    payload: {
-        slug,
-    }
+    payload: {}
 })
 
 export const fetchRewardsRequest = () => ({
