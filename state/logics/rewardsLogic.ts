@@ -60,7 +60,7 @@ export const verifyRefferalCodeLogic = createLogic<
       dispatch(actions.verifyRefferalCodeRequest());
       const result = await rewardsApi.verifyRefferalCode(refferalCode);
       dispatch(actions.verifyRefferalCodeSuccess([result]));
-      dispatch(notifActions.showNotification(true, 'Woo Hoo, you have earned 200 points by referral program  🥳'));
+      dispatch(notifActions.showNotification(true, 'Woo Hoo, you have earned 100 points by referral program  🥳'));
     } catch (error) {
       const error_response = error.response.data;
       dispatch(notifActions.showNotification(false, error_response['err_str']));

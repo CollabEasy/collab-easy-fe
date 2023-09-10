@@ -80,19 +80,33 @@ const RewardsPage = ({
     }, [user, artistListData])
 
     const columns = [
-        { title: "Category", dataIndex: "category", key: "category" },
+        { title: "Category", dataIndex: "description", key: "description" },
         { title: "Date", dataIndex: "date", key: "date" },
         { title: "Type", dataIndex: "type", key: "type" },
         { title: "Points", dataIndex: "points", key: "points" },
     ];
+
+    const buildLink = (obj: {text: string, link: string, linkText: string}) => {
+        console.log("obj : ", obj);
+        return(
+           <p>
+             {obj.text}<a href={obj.link}>{obj.linkText}</a>
+           </p>
+         );
+     }
 
     const getPointsActivity = () => {
         let updatedData = []
         let data = rewardsActivity.length != 0 ? rewardsActivity[0].data : [];
 
         data.forEach(element => {
+            const details = JSON.parse(element['details']);
+            const text = ('referred_by' in details) ? 'You were referred by ' :  'You referred '
+            const linkText = ('referred_by' in details) ? details['referred_by_name'] : details['referred_to_name'];
+            const origin = typeof window !== 'undefined' && window.location.origin ? window.location.origin : '';
+            const link = origin + '/artist/profile/' + (('referred_by' in details) ?  details['referred_by_slug'] : details['referred_to_slug']);
             let entry = {
-                "category": element["action"],
+                "description": buildLink({text: text, linkText: linkText, link: link}),
                 "date": GetDateString(element["createdAt"]),
                 "type": element["added"] ? "Earned points" : "Redeemed points",
                 "points": element["points"],
