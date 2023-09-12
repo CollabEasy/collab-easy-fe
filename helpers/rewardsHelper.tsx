@@ -1,6 +1,6 @@
 export function GetRewardsEarningSummary(refferalCode: string) {
     // Earn points by refferal
-    var summary = "- Share code " + refferalCode + " with your friends to earn 150 points for successful refferal.\n";
+    var summary = "- Share code " + refferalCode + " with your friends to earn 100 points for successful refferal.\n";
 
     // Earn points by montly contest
     // summary += "- Earn 50 points for each successful submission in our monthly contest. \n";
