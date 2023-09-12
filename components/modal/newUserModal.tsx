@@ -34,7 +34,9 @@ const layout = {
 
 const { Option } = Select;
 
-const mapStateToProps = (state: AppState) => {};
+const mapStateToProps = (state: AppState) => ({
+  user: state.user.user,
+});
 
 const mapDispatchToProps = (dispatch) => ({});
 
@@ -42,15 +44,14 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const NewUserModal = ({}: Props) => {
+const NewUserModal = ({
+  user,
+}: Props) => {
 
   const [visible, setVisible] = useState(true);
   const windowWidth = 1000;
   const [modal, setModal] = useState(0);
 
-  const handleCancel = () => {
-    setVisible(false);
-  };
 
   function handleNextModal() {
     if (modal === 1) {
@@ -61,18 +62,22 @@ const NewUserModal = ({}: Props) => {
 
   return (
     <>
-      <Modal
-        visible={visible}
-        destroyOnClose={true}
-        onCancel={handleCancel}
-        footer={null}
-        width={windowWidth > 680 ? 900 : 450}
-        bodyStyle={{ padding: 0 }}
-        //bodyStyle={{ height: "500px", padding: "0px" }}
-      >
-        {modal === 0 && (<NewUser handleNext={handleNextModal}/>)}
-        {modal === 1 && (<RefferalCodeModal handleNext={handleNextModal}/>)}
-      </Modal>
+      {user.new_user || !user.is_referral_done &&
+        <>
+        <Modal
+          visible={visible}
+          destroyOnClose={true}
+          closable={false}
+          footer={null}
+          width={windowWidth > 680 ? 900 : 450}
+          bodyStyle={{ padding: 0 }}
+          //bodyStyle={{ height: "500px", padding: "0px" }}
+        >
+          {modal === 0 && (<NewUser handleNext={handleNextModal}/>)}
+          {modal === 1 && (<RefferalCodeModal handleNext={handleNextModal}/>)}
+        </Modal>
+        </>
+      }
     </>
   );
 };

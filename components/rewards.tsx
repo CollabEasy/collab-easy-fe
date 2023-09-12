@@ -146,6 +146,14 @@ const RewardsPage = ({
                                 showIcon
                                 closable
                             />
+                            <Alert
+                                message="Ways to Reedem Points"
+                                description="100 points are equivalent to $1. You can redeem these points for an amazon coupons after you have 1000 or more points."
+                                type="warning"
+                                className="display-linebreak"
+                                showIcon
+                                closable
+                            />
                             <div style={{ marginTop: "20px" }}>
                                 <h5>Summary</h5>
                             </div>

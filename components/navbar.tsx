@@ -232,7 +232,7 @@ const NavBar = ({
                       onClick={() => setShowLoginOptions(false)}
                     >
                       <span className="f-14 common-text-style">
-                        {rewardPoints["totalPoints"]} Rewards
+                        Reward Points
                       </span>
                     </div>
                   </Link>
