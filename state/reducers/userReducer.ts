@@ -145,6 +145,15 @@ const userReducer = (state = initialState, action): UserState => {
         ...state,
         isUpdatingProfilePic: false,
       };
+
+    case actionType.SET_IS_REFERRAL_DONE:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          is_referral_done: true,
+        },
+      };
     default:
       return state;
   }

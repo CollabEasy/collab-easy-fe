@@ -191,3 +191,8 @@ export const showProfilePictureUpdateModal = (show: boolean) => ({
     show
   }
 })
+
+export const setIsReferralDone = () => ({
+  type: actionType.SET_IS_REFERRAL_DONE,
+  payload: {}
+})

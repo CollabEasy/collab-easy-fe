@@ -62,8 +62,7 @@ const NewUserModal = ({
 
   return (
     <>
-      {user.new_user || !user.is_referral_done &&
-        <>
+      <>
         <Modal
           visible={visible}
           destroyOnClose={true}
@@ -71,13 +70,12 @@ const NewUserModal = ({
           footer={null}
           width={windowWidth > 680 ? 900 : 450}
           bodyStyle={{ padding: 0 }}
-          //bodyStyle={{ height: "500px", padding: "0px" }}
+        //bodyStyle={{ height: "500px", padding: "0px" }}
         >
-          {modal === 0 && (<NewUser handleNext={handleNextModal}/>)}
-          {modal === 1 && (<RefferalCodeModal handleNext={handleNextModal}/>)}
+          {modal === 0 && (<NewUser handleNext={handleNextModal} />)}
+          {modal === 1 && (<RefferalCodeModal handleNext={handleNextModal} />)}
         </Modal>
-        </>
-      }
+      </>
     </>
   );
 };

@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
-    handleNext: () => void;
+  handleNext: () => void;
 } & ConnectedProps<typeof connector>;
 
 const NewUser = ({
@@ -141,86 +141,86 @@ const NewUser = ({
 
   return (
     <>
-        <div className="container">
-          <div className="left-image">
-            <Image src={landingPageImg} alt="Profile left" layout="fill" />
-          </div>
-          <div className="profile-form">
-            <div className="profile-title">
-              <h1 className="common-h1-style">Welcome aboard,</h1>
-              <h1>{userName}</h1>
-            </div>
-            <p className="common-p-style">
-              You are just one step away from collaborating with the artists on
-              your next greatest work. Let’s gather some information about you
-              first.
-            </p>
-            <Form
-              {...layout}
-              layout="vertical"
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
-              requiredMark={false}
-            >
-              <Form.Item
-                name="art"
-                label="Art Styles"
-                rules={[
-                  {
-                    validator(_, value) {
-                      if (value === undefined) {
-                        return Promise.reject();
-                      }
-                      return Promise.resolve();
-                    },
-                  },
-                ]}
-              >
-                <Select
-                  mode="multiple"
-                  style={{ width: "100%" }}
-                  className="common-text-style"
-                  placeholder="select atleast one art style"
-                  onChange={(value) => {
-                    if (value?.length > 5) {
-                      value.pop();
-                      message.error("You can select maximum 5 art styles");
-                    } else {
-                      handleChange(value);
-                    }
-                  }}
-                  optionLabelProp="label"
-                >
-                  {categories.length > 0 &&
-                    categories.map((category, index) => (
-                      <Option value={category.artName} label={category.artName} key={category.artName}>
-                        <div className="demo-option-label-item">{category.artName}</div>
-                      </Option>
-                    ))}
-                </Select>
-              </Form.Item>
-              <Form.Item name="collab" label="You up for collabaration">
-                <Switch onChange={onChange} checked={collaborationCheck} />
-              </Form.Item>
-              <Form.Item noStyle={true}>
-                <div className="submit-container">
-                  <p className="submit-text common-p-style">Let’s collaborate</p>
-                  <Button
-                    type="text"
-                    onClick={handleSubmit}
-                    shape="circle"
-                    icon={
-                      <RightCircleFilled
-                        style={{ color: "black", fontSize: 30 }}
-                      />
-                    }
-                  ></Button>
-                </div>
-              </Form.Item>
-            </Form>
-          </div>
+      <div className="container">
+        <div className="left-image">
+          <Image src={landingPageImg} alt="Profile left" layout="fill" />
         </div>
-     
+        <div className="profile-form">
+          <div className="profile-title">
+            <h1 className="common-h1-style">Welcome aboard,</h1>
+            <h1>{userName}</h1>
+          </div>
+          <p className="common-p-style">
+            You are just one step away from collaborating with the artists on
+            your next greatest work. Let’s gather some information about you
+            first.
+          </p>
+          <Form
+            {...layout}
+            layout="vertical"
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+            requiredMark={false}
+          >
+            <Form.Item
+              name="art"
+              label="Art Styles"
+              rules={[
+                {
+                  validator(_, value) {
+                    if (value === undefined) {
+                      return Promise.reject();
+                    }
+                    return Promise.resolve();
+                  },
+                },
+              ]}
+            >
+              <Select
+                mode="multiple"
+                style={{ width: "100%" }}
+                className="common-text-style"
+                placeholder="select atleast one art style"
+                onChange={(value) => {
+                  if (value?.length > 5) {
+                    value.pop();
+                    message.error("You can select maximum 5 art styles");
+                  } else {
+                    handleChange(value);
+                  }
+                }}
+                optionLabelProp="label"
+              >
+                {categories.length > 0 &&
+                  categories.map((category, index) => (
+                    <Option value={category.artName} label={category.artName} key={category.artName}>
+                      <div className="demo-option-label-item">{category.artName}</div>
+                    </Option>
+                  ))}
+              </Select>
+            </Form.Item>
+            <Form.Item name="collab" label="You up for collabaration">
+              <Switch onChange={onChange} checked={collaborationCheck} />
+            </Form.Item>
+            <Form.Item noStyle={true}>
+              <div className="submit-container">
+                <p className="submit-text common-p-style">Let’s collaborate</p>
+                <Button
+                  type="text"
+                  onClick={handleSubmit}
+                  shape="circle"
+                  icon={
+                    <RightCircleFilled
+                      style={{ color: "black", fontSize: 30 }}
+                    />
+                  }
+                ></Button>
+              </div>
+            </Form.Item>
+          </Form>
+        </div>
+      </div>
+
     </>
   );
 };
