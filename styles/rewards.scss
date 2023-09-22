@@ -1,16 +1,45 @@
-
 .rewardsPage_container {
-    position: relative;
-    width: 100%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: scroll;
+  position: relative;
+  width: 100%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  .points-earn-container {
+    background-color: #e6f7ff;
+    border: 1px solid #91d5ff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+		.points-part-heading{
+			font-size: 16px;
+			color: rgba(0, 0, 0, 0.85);
+		}
+		.clipboard-text-cnt{
+			display: inline-block;
+			border-radius: 8px;
+			padding: 5px 10px;
+			border: 1px dotted;
+		}
+		.copy-btn{
+			display: inline-block;
+			background-color: black;
+			color: white;
+			margin-left: 10px;
+			cursor: pointer;
+			border-radius: 8px;
+			padding: 2px 10px;
+		}
+		.clipboard-text{
+			// color: white;
+			font-weight: 700;
+		}
+  }
 }
 
 .display-linebreak {
-    white-space: pre-line;
+  white-space: pre-line;
 }
