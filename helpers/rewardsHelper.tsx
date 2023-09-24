@@ -70,7 +70,7 @@ export function GetRewardTableMessage(actionType: string, details: any) {
 
 export function ConstructReferralMessage(element: any) {
   const details = JSON.parse(element["details"]);
-  let desc = "";
+  let desc = null;
   if (
     "referred_by" in details &&
     details["referred_by_slug"] === "wondor-wondor-1"

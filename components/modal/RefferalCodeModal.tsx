@@ -47,7 +47,6 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
   visible: boolean;
-  // setVisibility: (visible: boolean) => void;
   handleNext: () => void;
 } & ConnectedProps<typeof connector>;
 
@@ -55,7 +54,6 @@ type Props = {
 const RefferalCodeModal = ({ 
   user, 
   visible,
-  // setVisibility,
   handleNext, 
   verifyRefferalCode,
   skipRefferalCode,
@@ -72,7 +70,6 @@ const RefferalCodeModal = ({
 
   useEffect(() => {
     if (user && user.is_referral_done) {
-      // setVisibility(false);
       handleNext();
     }
   }, []);

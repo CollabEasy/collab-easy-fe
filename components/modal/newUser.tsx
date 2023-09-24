@@ -51,14 +51,12 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
   visible: boolean;
-  setVisibility: (visible: boolean) => void;
   handleNext: () => void;
 } & ConnectedProps<typeof connector>;
 
 const NewUser = ({
   user,
   visible,
-  // setVisibility,
   categories,
   handleNext,
   setNewUser,
