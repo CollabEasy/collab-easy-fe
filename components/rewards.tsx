@@ -25,6 +25,7 @@ import Layout from "@/components/layout";
 import {
   GetRewardsEarningSummary,
   GetPointsByCategory,
+  GetRewardTableMessage,
 } from "helpers/rewardsHelper";
 
 const mapStateToProps = (state: AppState) => {
@@ -97,62 +98,19 @@ const RewardsPage = ({
     { title: "Points", dataIndex: "points", key: "points" },
   ];
 
-  const buildLink = (obj: { text: string; link: string; linkText: string }) => {
-    console.log("obj : ", obj);
-    return (
-      <p>
-        {obj.text}
-        <a href={obj.link}>{obj.linkText}</a>
-      </p>
-    );
-  };
-
   const getPointsActivity = () => {
     let updatedData = [];
     let data = rewardsActivity.length != 0 ? rewardsActivity[0].data : [];
 
     data.forEach((element) => {
-      if (element["action"] === "REFERRAL_USER") {
-        const details = JSON.parse(element["details"]);
-        let desc = "";
-        if (
-          "referred_by" in details &&
-          details["referred_by_slug"] === "wondor-wondor-1"
-        ) {
-          desc = "You used Wondor signup code.";
-        } else {
-          const text =
-            "referred_by" in details
-              ? "You were referred by "
-              : "You referred ";
-          const linkText =
-            "referred_by" in details
-              ? details["referred_by_name"]
-              : details["referred_to_name"];
-          const origin =
-            typeof window !== "undefined" && window.location.origin
-              ? window.location.origin
-              : "";
-          const link =
-            origin +
-            "/artist/profile/" +
-            ("referred_by" in details
-              ? details["referred_by_slug"]
-              : details["referred_to_slug"]);
-          desc = buildLink({
-            text: text,
-            linkText: linkText,
-            link: link,
-          });
-        }
-        let entry = {
-          description: desc,
-          date: GetDateString(element["createdAt"]),
-          type: element["added"] ? "Earned points" : "Redeemed points",
-          points: element["points"],
-        };
-        updatedData.push(entry);
-      }
+      const description = GetRewardTableMessage(element["action"], element);
+      let entry = {
+        description: description,
+        date: GetDateString(element["createdAt"]),
+        type: element["added"] ? "Earned points" : "Redeemed points",
+        points: element["points"],
+      };
+      updatedData.push(entry);
     });
 
     return <Table columns={columns} dataSource={updatedData} />;
