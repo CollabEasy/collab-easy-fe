@@ -50,11 +50,15 @@ const mapDispatchToProps = (dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
+  visible: boolean;
+  setVisibility: (visible: boolean) => void;
   handleNext: () => void;
 } & ConnectedProps<typeof connector>;
 
 const NewUser = ({
   user,
+  visible,
+  // setVisibility,
   categories,
   handleNext,
   setNewUser,
@@ -62,35 +66,20 @@ const NewUser = ({
   getAllCategories,
   updateArtistPreference,
 }: Props) => {
-  const [loading, setLoading] = useState(false);
-  const [visible, setVisible] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState("");
   const [collaborationCheck, setCollaborationCheck] = useState(false);
   const [userName, setUserName] = useState("");
   const windowWidth = 1000;
 
-
   useEffect(() => {
-    if (user) {
-      if (user.new_user) {
-        setVisible(true);
-      } else {
-        handleNext();
-      }
+    if (user && !user.new_user) {
+      // setVisibility(false);
+      handleNext();
     }
   }, [user]);
 
-  const showModal = () => {
-    setVisible(true);
-  };
-
-  const handleCancel = () => {
-    setVisible(true);
-  };
-
   const onFinish = (values: any) => {
     alert(JSON.stringify(values));
-    handleCancel();
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -120,7 +109,7 @@ const NewUser = ({
 
   const handleSubmit = () => {
     if (selectedCategories.length === 0) {
-      message.error("You need to select atleast one art style.")
+      message.error("You need to select atleast one art style.");
       return;
     }
     let dataToSend = {
@@ -131,7 +120,6 @@ const NewUser = ({
     postArtistArt(dataToSend);
     updateArtistPreference("upForCollaboration", collaborationCheck);
     setNewUser(false);
-    setVisible(false);
     handleNext();
   };
 
@@ -140,7 +128,15 @@ const NewUser = ({
   };
 
   return (
-    <>
+    <Modal
+      visible={visible}
+      destroyOnClose={true}
+      closable={false}
+      footer={null}
+      width={windowWidth > 680 ? 900 : 450}
+      bodyStyle={{ padding: 0 }}
+      //bodyStyle={{ height: "500px", padding: "0px" }}
+    >
       <div className="container">
         <div className="left-image">
           <Image src={landingPageImg} alt="Profile left" layout="fill" />
@@ -193,8 +189,14 @@ const NewUser = ({
               >
                 {categories.length > 0 &&
                   categories.map((category, index) => (
-                    <Option value={category.artName} label={category.artName} key={category.artName}>
-                      <div className="demo-option-label-item">{category.artName}</div>
+                    <Option
+                      value={category.artName}
+                      label={category.artName}
+                      key={category.artName}
+                    >
+                      <div className="demo-option-label-item">
+                        {category.artName}
+                      </div>
                     </Option>
                   ))}
               </Select>
@@ -220,8 +222,7 @@ const NewUser = ({
           </Form>
         </div>
       </div>
-
-    </>
+    </Modal>
   );
 };
 

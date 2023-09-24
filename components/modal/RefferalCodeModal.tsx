@@ -46,11 +46,16 @@ const mapDispatchToProps = (dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
+  visible: boolean;
+  // setVisibility: (visible: boolean) => void;
   handleNext: () => void;
 } & ConnectedProps<typeof connector>;
 
+
 const RefferalCodeModal = ({ 
   user, 
+  visible,
+  // setVisibility,
   handleNext, 
   verifyRefferalCode,
   skipRefferalCode,
@@ -61,15 +66,13 @@ const RefferalCodeModal = ({
 
   const windowWidth = 1000;
 
-  const [visible, setVisible] = useState(false);
   const [userName, setUserName] = useState("");
   const [refferalCode, setRefferalCode] =
     useState<RefferalCode>(emptyRefferalCode);
 
   useEffect(() => {
-    if (user && !user.is_referral_done) {
-      setVisible(true);
-    } else {
+    if (user && user.is_referral_done) {
+      // setVisibility(false);
       handleNext();
     }
   }, []);
@@ -83,11 +86,13 @@ const RefferalCodeModal = ({
 
   const onFinish = () => {
     verifyRefferalCode(refferalCode.code);
+    // setVisibility(false);
     handleNext();
   };
 
   const onSkip = () => {
     skipRefferalCode();
+    // setVisibility(false);
     handleNext();
   };
 
@@ -96,7 +101,15 @@ const RefferalCodeModal = ({
   };
 
   return (
-    <>
+    <Modal
+      visible={visible}
+      destroyOnClose={true}
+      closable={false}
+      footer={null}
+      width={windowWidth > 680 ? 900 : 450}
+      bodyStyle={{ padding: 0 }}
+      //bodyStyle={{ height: "500px", padding: "0px" }}
+    >
       <div className="container">
         <div className="left-image">
           <Image src={landingPageImg} alt="Profile left" layout="fill" />
@@ -137,7 +150,7 @@ const RefferalCodeModal = ({
           </Form>
         </div>
       </div>
-    </>
+    </Modal>
   );
 };
 

@@ -44,14 +44,10 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const NewUserModal = ({
-  user,
-}: Props) => {
-
+const NewUserModal = ({ user }: Props) => {
   const [visible, setVisible] = useState(true);
   const windowWidth = 1000;
   const [modal, setModal] = useState(0);
-
 
   function handleNextModal() {
     if (modal === 1) {
@@ -60,22 +56,14 @@ const NewUserModal = ({
     setModal(modal + 1);
   }
 
+  function setVisibility(visible: boolean) {
+    setVisible(visible);
+  }
+
   return (
     <>
-      <>
-        <Modal
-          visible={visible}
-          destroyOnClose={true}
-          closable={false}
-          footer={null}
-          width={windowWidth > 680 ? 900 : 450}
-          bodyStyle={{ padding: 0 }}
-        //bodyStyle={{ height: "500px", padding: "0px" }}
-        >
-          {modal === 0 && (<NewUser handleNext={handleNextModal} />)}
-          {modal === 1 && (<RefferalCodeModal handleNext={handleNextModal} />)}
-        </Modal>
-      </>
+      {modal === 0 && <NewUser visible={visible} handleNext={handleNextModal} />}
+      {modal === 1 && <RefferalCodeModal visible={visible} handleNext={handleNextModal} />}
     </>
   );
 };
