@@ -3,7 +3,7 @@ import Image from "next/image";
 import titleDesktopImg from "../../../public/images/Wondor.svg";
 import titleMobileImg from "../../../public/images/logo.svg";
 import { Tooltip } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SearchCollab } from "types/model";
 import CollabRequestTab from "../../../components/collabRequestTab";
 import { default as DefaultLayout } from "../../../components/layout";
@@ -100,13 +100,14 @@ const EditProfile = ({
   };
 
   const [collapsed, setCollapsed] = useState(false);
-  const [activeTabKey, setActiveTabKey] = useState("1");
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [collabRequestDetails, setCollabRequestDetails] =
     useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
 
   const { Option } = Select;
+
+  const activeTabKey = useRef("1");
 
   useEffect(() => {
     fetchArtistSamples(user.slug);
@@ -138,6 +139,12 @@ const EditProfile = ({
   const router = useRouter();
   const { action, tab } = router.query;
 
+  useEffect(() => {
+    if (tab === "rewards"){
+      activeTabKey.current = "7";
+    }
+  }, [tab]);
+
   if (
     typeof window !== "undefined" &&
     action !== "profile" &&
@@ -147,7 +154,7 @@ const EditProfile = ({
   }
 
   function handleClick(e: any) {
-    setActiveTabKey(e.key);
+    activeTabKey.current = e.key;
     redirect(e.key);
   }
 
@@ -180,7 +187,7 @@ const EditProfile = ({
   };
 
   const getActiveTab = () => {
-    return activeTabKey;
+    return activeTabKey.current;
   };
 
   const logoutUser = () => {
@@ -227,7 +234,7 @@ const EditProfile = ({
               <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={["1"]}
+                selectedKeys={[activeTabKey.current]}
                 onClick={handleClick}
               >
                 <Menu.Item key="0">
