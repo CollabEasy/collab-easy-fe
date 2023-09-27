@@ -94,7 +94,19 @@ const Home = ({
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="header-text">
           <div className="text-content">
-            <h1 className="common-h1-style">Connect. Collaborate. Conquer.</h1>
+            <div className="animation__content">
+              <div className="animation__content__container">
+                <p className="animation__content__container__text">
+                  Connect and Collaborate with 
+                </p>
+                <ul className="animation__content__container__list">
+                  <li className="animation__content__container__list__item">Painters !</li>
+                  <li className="animation__content__container__list__item">Photographers !</li>
+                  <li className="animation__content__container__list__item">Singers !</li>
+                  <li className="animation__content__container__list__item">Poets !</li>
+                </ul>
+              </div>
+            </div>
             <h6 className="common-p-style">
               Unlock new avenues for creativity, collaboration, and success in
               the world of creators 🤝 💡 🎉
