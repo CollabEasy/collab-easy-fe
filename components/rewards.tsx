@@ -1,32 +1,22 @@
 import { Col, Row, Statistic, Table, Alert } from "antd";
-import type { ColumnsType } from "antd/es/table";
 import { AppState } from "state";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
-import { routeToHref } from "config/routes";
 import LoginModal from "@/components/modal/loginModal";
 import NewUserModal from "@/components/modal/newUserModal";
-import { Card, notification } from "antd";
-import Image from "next/image";
-import { Modal } from "antd";
-import { FireOutlined, FireFilled, ReadOutlined } from "@ant-design/icons";
+import { Card } from "antd";
 import * as actions from "state/action";
 import Loader from "@/components/loader";
-import { GetContestStatus, GetDateString } from "helpers/contest";
-import { IsAdmin } from "helpers/helper";
-import UploadContestArtworkPage from "@/components/contestArtworkPage";
-import Link from "next/link";
-import { useRoutesContext } from "components/routeContext";
-import { ContestSubmission } from "types/model/contest";
-import { Config } from "config/config";
+import { GetDateString } from "helpers/contest";
 import Layout from "@/components/layout";
 import {
   GetRewardsEarningSummary,
   GetPointsByCategory,
   GetRewardTableMessage,
 } from "helpers/rewardsHelper";
+import {CopyFilled} from "@ant-design/icons";
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
@@ -74,6 +64,8 @@ const RewardsPage = ({
 }: Props) => {
   const router = useRouter();
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const textRef = useRef(null);
+  const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     fetchRewards();
@@ -98,6 +90,16 @@ const RewardsPage = ({
     { title: "Points", dataIndex: "points", key: "points" },
   ];
 
+  const buildLink = (obj: { text: string; link: string; linkText: string }) => {
+    console.log("obj : ", obj);
+    return (
+      <p>
+        {obj.text}
+        <a href={obj.link}>{obj.linkText}</a>
+      </p>
+    );
+  };
+
   const getPointsActivity = () => {
     let updatedData = [];
     let data = rewardsActivity.length != 0 ? rewardsActivity[0].data : [];
@@ -116,6 +118,16 @@ const RewardsPage = ({
     return <Table columns={columns} dataSource={updatedData} />;
   };
 
+  const handleCopyClick = () => {
+    if (textRef.current) {
+      navigator.clipboard.writeText(textRef.current.value);
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    }
+  };
+
   return (
     <Layout
       title={"Rewards | Wondor"}
@@ -131,14 +143,39 @@ const RewardsPage = ({
         ) : (
           <>
             <div className="rewardsPage_container">
-              <Alert
-                message="Ways to Earn Points"
-                description={GetRewardsEarningSummary(user["referral_code"])}
-                type="info"
-                className="display-linebreak"
-                showIcon
-                closable
-              />
+              <div className="points-earn-container">
+                <div className="points-part-heading">
+                  Ways to Earn Points
+                </div>
+                <div className="points-info-cnt">
+                  <div className="points-list-cnt">
+                    <ol style={{marginBottom: 0, listStyleType: 'disc'}}>
+                      <li>
+                        Share code {" "}
+                        <div className="clipboard-text-cnt">
+                          <span className="clipboard-text">{user["referral_code"]}</span>
+                          <div className="copy-btn" onClick={handleCopyClick}>
+                            {isCopied ? 'Copied!' : 'Copy'}
+                          </div>
+                        </div>
+                        {" "} with your friends to earn 100 points for successful refferal.
+                      </li>
+                      <li>Earn 50 points for completing your profile.</li>
+                    </ol>
+                  </div>
+                  <input
+                    type="text"
+                    ref={textRef}
+                    defaultValue={user["referral_code"]}
+                    style={{
+                      opacity: 0,
+                      position: "absolute",
+                      pointerEvents: "none",
+                    }}
+                  />
+                </div>
+                {/* <div className="close-icon"></div> */}
+              </div>
               <Alert
                 message="Ways to Reedem Points"
                 description="100 points are equivalent to $1. You can redeem these points for an amazon coupons after you have 1000 or more points."
