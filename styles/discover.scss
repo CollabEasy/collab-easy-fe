@@ -1,18 +1,6 @@
 @import './common/_variable';
 @import './common/_font-size';
 
-// @keyframes pulse-animation {
-//   0% {
-//     transform: scale(1);
-//   }
-//   50% {
-//     transform: scale(1.1);
-//   }
-//   100% {
-//     transform: scale(1);
-//   }
-// }
-
 .header-text {
   height: 350px;
   width: 100%;
@@ -24,7 +12,9 @@
   word-wrap: break-word;
   text-align: center;
   position: absolute;
-
+  .heading{
+    font-size: 48px;
+  }
   h1 {
     font-size: 48px;
     font-weight: 700;
@@ -160,6 +150,40 @@
   display: flex;
 }
 
+.main-content-container{
+  margin-bottom: 20px;
+}
+
+.animation-content{
+  overflow: hidden;
+  position: relative;
+  // float: right;
+  height: 65px;
+  li {
+    height: 45px;
+    margin-bottom: 45px;
+    padding: 0 10px;
+  }
+  .flip5 { 
+    animation: flip5 12s cubic-bezier(0.23, 1, 0.32, 1.2) infinite; 
+  }
+}
+
+@keyframes flip5 {
+  0% { margin-top: -450px; }
+  5% { margin-top: -360px; }
+  20% { margin-top: -360px; }
+  25% { margin-top: -270px; }
+  40% { margin-top: -270px; }
+  45% { margin-top: -180px; }
+  60% { margin-top: -180px; }
+  65% { margin-top: -90px; }
+  80% { margin-top: -90px; }
+  85% { margin-top: 0px; }
+  99.99% { margin-top: 0px; }
+  100% { margin-top: -450px; }
+}
+
 @media only screen and (max-width: 1600px) and (min-width: 1201px) {
   .header-text {
     height: 350px;
@@ -167,7 +191,9 @@
 
   .text-content {
     top: 5%;
-  
+    .heading{
+      font-size: 45px;
+    }
     h1 {
       font-size: 45px;
       padding-left: 20%;
@@ -189,7 +215,9 @@
 
   .text-content {
     top: 5%;
-  
+    .heading{
+      font-size: 40px;
+    }
     h1 {
       font-size: 40px;
       padding-left: 20%;
@@ -211,7 +239,9 @@
 
   .text-content {
     top: 4%;
-  
+    .heading{
+      font-size: 35px;
+    }
     h1 {
       font-size: 35px;
       padding-left: 10%;
@@ -236,7 +266,9 @@
 
   .text-content {
     top: 3%;
-  
+    .heading{
+      font-size: 30px;
+    }
     h1 {
       font-size: 30px;
       padding-left: 10%;
@@ -268,6 +300,9 @@
   .inspire-box{
     margin: 5% 7%;
   }
+  .main-content-container{
+    margin-bottom: 0px;
+  }
 }
 
 @media only screen and (max-width: 550px) {
@@ -277,7 +312,9 @@
 
   .text-content {
     top: 2.5%;
-  
+    .heading{
+      font-size: 28px;
+    }
     h1 {
       font-size: 28px;
       padding-left: 10%;
@@ -308,7 +345,9 @@
   
   .text-content {
     top: 2%;
-  
+    .heading{
+      font-size: 28px;
+    }
     h1 {
       font-size: 28px;
       padding-left: 10%;

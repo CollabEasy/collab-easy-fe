@@ -89,12 +89,24 @@ const Home = ({
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
 
-      {isLoggedIn && (<NewUserModal />)}
+      {isLoggedIn && <NewUserModal />}
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="header-text">
           <div className="text-content">
-            <h1 className="common-h1-style">Connect. Collaborate. Conquer.</h1>
+            <div className="main-content-container">
+              <div className="common-h1-style heading">Connect and Collaborate with </div>
+              {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
+              <div className="animation-content">
+                <ul className="flip5">
+                    <li className="heading common-h1-style">Painters!</li>
+                    <li className="heading common-h1-style">Photographers!</li>
+                    <li className="heading common-h1-style">Singers!</li>
+                    <li className="heading common-h1-style">Dancers!</li>
+                    <li className="heading common-h1-style">Poets !</li>
+                </ul>
+              </div>
+            </div>
             <h6 className="common-p-style">
               Unlock new avenues for creativity, collaboration, and success in
               the world of creators 🤝 💡 🎉
@@ -437,7 +449,6 @@ const Home = ({
                       <div>
                         <Button type="primary">
                           <Link href={routeToHref(toAllContestPage())} passHref>
-
                             Enter now
                           </Link>
                         </Button>
