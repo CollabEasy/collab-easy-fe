@@ -96,6 +96,7 @@ const Home = ({
           <div className="text-content">
             <div className="main-content-container">
               <div className="common-h1-style heading">Connect and Collaborate with </div>
+              {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
               <div className="animation-content">
                 <ul className="flip5">
                     <li className="heading common-h1-style">Painters!</li>
