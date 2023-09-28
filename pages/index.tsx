@@ -89,21 +89,20 @@ const Home = ({
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
 
-      {isLoggedIn && (<NewUserModal />)}
+      {isLoggedIn && <NewUserModal />}
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="header-text">
           <div className="text-content">
-            <div className="animation__content">
-              <div className="animation__content__container">
-                <p className="animation__content__container__text">
-                  Connect and Collaborate with 
-                </p>
-                <ul className="animation__content__container__list">
-                  <li className="animation__content__container__list__item">Painters !</li>
-                  <li className="animation__content__container__list__item">Photographers !</li>
-                  <li className="animation__content__container__list__item">Singers !</li>
-                  <li className="animation__content__container__list__item">Poets !</li>
+            <div className="main-content-container">
+              <div className="common-h1-style heading">Connect and Collaborate with </div>
+              <div className="animation-content">
+                <ul className="flip5">
+                    <li className="heading common-h1-style">Painters!</li>
+                    <li className="heading common-h1-style">Photographers!</li>
+                    <li className="heading common-h1-style">Singers!</li>
+                    <li className="heading common-h1-style">Dancers!</li>
+                    <li className="heading common-h1-style">Poets !</li>
                 </ul>
               </div>
             </div>
@@ -449,7 +448,6 @@ const Home = ({
                       <div>
                         <Button type="primary">
                           <Link href={routeToHref(toAllContestPage())} passHref>
-
                             Enter now
                           </Link>
                         </Button>
