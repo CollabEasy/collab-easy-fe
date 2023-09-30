@@ -1,4 +1,4 @@
-import { Tabs, Input } from "antd";
+import { Col, Row, Statistic, Table, Alert } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -10,14 +10,10 @@ import { Card, Tag } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import Image from 'next/image';
-import headerImage from '../public/images/contest.svg';
+import headerImage from '../public/images/reward.svg';
 import * as actions from "state/action";
-import Loader from "@/components/loader";
-import { GetContestStatus } from "helpers/contest";
 import Layout from "@/components/layout";
 
-const { TextArea } = Input;
-const { TabPane } = Tabs;
 const { Meta } = Card;
 
 const mapStateToProps = (state: AppState) => {
@@ -68,9 +64,9 @@ const RewardsInfoPage = ({
 
     return (
         <Layout
-            title={"Rewards for You | Wondor"}
+            title={"How to earn rewards on Wondor? | Wondor"}
             name={"description"}
-            content={"Lean how to earn reward points and redeem them for real money. Join Wondor now to start earning."}
+            content={"Learn how to earn reward points and redeem them for real money. Join Wondor now to start earning."}
 
         >
             {loginModalDetails.openModal && !user.new_user && (
@@ -86,17 +82,18 @@ const RewardsInfoPage = ({
                 <div className="allContestPage_listingPagecontainer">
                     <div className="allContestPage__listingPageCoverContainer">
                         <div className="row ">
-                            <div className="col-sm-8" style={{ backgroundColor: "#F8F5E7" }}>
+                            <div className="col-sm-8" style={{ backgroundColor: "#D1C4E9" }}>
                                 <div className="allContestPage_desktopCoverTextContainer">
                                     <h1 className="common-h1-style">
-                                        Artists, unite! Enter our contest and let the world see your talent 😎
+                                        Earn rewards points for everything you do on Wondor, big or small 😎
                                     </h1>
                                     <h3 className="common-h3-style">
-                                        Join our contest and let your creativity be the judge!
+                                        Yes, we reward our amazing artists for being awesome members of Wondor.
+                                        These points can be redeem for exclusive prizes.
                                     </h3>
                                 </div>
                             </div>
-                            <div className="col-sm-4" style={{ backgroundColor: "#F8F5E7" }}>
+                            <div className="col-sm-4" style={{ backgroundColor: "#D1C4E9" }}>
                                 <Image
                                     alt="Image Alt"
                                     className="discoverArtists_desktopCoverImageContainer"
@@ -105,6 +102,49 @@ const RewardsInfoPage = ({
                                     objectFit="contain" // Scale your image down to fit into the container
                                 />
                             </div>
+                        </div>
+                    </div>
+                    <div className="rewardsPage_container">
+                        <p className="common-p-style">Ways to earn point</p>
+                        <div>
+                            <Row gutter={16}>
+                                <Col span={8}>
+                                    <Card bordered={true}>
+                                        <Statistic
+                                            title="Refer you friends and you both earn"
+                                            value={100}
+                                            valueStyle={{ color: "#3f8600" }}
+                                        />
+                                    </Card>
+                                </Col>
+                                <Col span={8}>
+                                    <Card bordered={true}>
+                                        <Statistic
+                                            title="Collaborate with artists to get"
+                                            value={50}
+                                            valueStyle={{ color: "#3f8600" }}
+                                        />
+                                    </Card>
+                                </Col>
+                                <Col span={8}>
+                                    <Card bordered={true}>
+                                        <Statistic
+                                            title="Collaborate with artists to get"
+                                            value={50}
+                                            valueStyle={{ color: "#3f8600" }}
+                                        />
+                                    </Card>
+                                </Col>
+                                <Col span={8}>
+                                    <Card bordered={true}>
+                                        <Statistic
+                                            title="Participate in montly contests to get"
+                                            value={50}
+                                            valueStyle={{ color: "#3f8600" }}
+                                        />
+                                    </Card>
+                                </Col>
+                            </Row>
                         </div>
                     </div>
                 </div>
