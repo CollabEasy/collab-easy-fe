@@ -99,11 +99,11 @@ const Home = ({
               {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
               <div className="animation-content">
                 <ul className="flip5">
-                    <li className="heading common-h1-style">Painters!</li>
-                    <li className="heading common-h1-style">Photographers!</li>
-                    <li className="heading common-h1-style">Singers!</li>
-                    <li className="heading common-h1-style">Dancers!</li>
-                    <li className="heading common-h1-style">Poets !</li>
+                  <li className="heading common-h1-style">Painters!</li>
+                  <li className="heading common-h1-style">Photographers!</li>
+                  <li className="heading common-h1-style">Singers!</li>
+                  <li className="heading common-h1-style">Dancers!</li>
+                  <li className="heading common-h1-style">Poets !</li>
                 </ul>
               </div>
             </div>
@@ -436,13 +436,12 @@ const Home = ({
                   <div className="p-4 text-center">
                     <div className="mt-4 mb-3">
                       <h3 className="common-h3-style">
-                        Want to win a prize? enter Wondor monthly contests 🤑
+                        Want to earn real money? Enter Wondor monthly contests 🤑
                       </h3>
                       <p className="common-p-style">
-                        We provide invaluable support to artists in times of
-                        need by publishing curated lists of themes and topics,
-                        serving as inspiration for their next creative
-                        masterpiece.
+                        Join our monthly contest and let your creativity be the judge. 
+                        For your participation, you will get reward points which can be 
+                        redeemed for real money. Winner of the contests get more!
                       </p>
                     </div>
                     <div className="mt-4 inspire-btn">
