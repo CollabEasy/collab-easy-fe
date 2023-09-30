@@ -84,9 +84,9 @@ const ArtistProfile = ({
 
   return (
     <Layout
-      title={user.first_name + " " + user.last_name + " - Send Collaboration Request Now | Wondor"}
+      title={(isSelf ? user.first_name : otherUser.first_name) + " " + (isSelf ? user.last_name : otherUser.last_name) + " - Send Collaboration Request Now | Wondor"}
       name={"description"}
-      content={"Work with " + user.first_name + " " + user.last_name + ". Send them a collaboration request."}
+      content={"Work with " + (isSelf ? user.first_name : otherUser.first_name) + " " + (isSelf ? user.last_name : otherUser.last_name) + ". Send them a collaboration request."}
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
       {showProfileModal && <NewUserModal />}
