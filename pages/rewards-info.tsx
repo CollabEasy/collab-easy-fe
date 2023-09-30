@@ -105,47 +105,109 @@ const RewardsInfoPage = ({
                         </div>
                     </div>
                     <div className="rewardsPage_container">
-                        <p className="common-p-style">Ways to earn point</p>
-                        <div>
-                            <Row gutter={16}>
-                                <Col span={8}>
-                                    <Card bordered={true}>
-                                        <Statistic
-                                            title="Refer you friends and you both earn"
-                                            value={100}
-                                            valueStyle={{ color: "#3f8600" }}
-                                        />
-                                    </Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card bordered={true}>
-                                        <Statistic
-                                            title="Collaborate with artists to get"
-                                            value={50}
-                                            valueStyle={{ color: "#3f8600" }}
-                                        />
-                                    </Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card bordered={true}>
-                                        <Statistic
-                                            title="Collaborate with artists to get"
-                                            value={50}
-                                            valueStyle={{ color: "#3f8600" }}
-                                        />
-                                    </Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card bordered={true}>
-                                        <Statistic
-                                            title="Participate in montly contests to get"
-                                            value={50}
-                                            valueStyle={{ color: "#3f8600" }}
-                                        />
-                                    </Card>
-                                </Col>
-                            </Row>
-                        </div>
+                        <section className="bg-light-primary">
+                            <h5 className="common-h5-style">Ways to earn points</h5>
+                            <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center justify-content-center px-xl-6">
+                                <div className="col my-3">
+                                    <div className="card border-hover-primary">
+                                        <div className="card-body">
+                                            <h4 className="font-weight-bold mb-3">150 points</h4>
+                                            <h6 className="font-weight-bold mb-3">Sign up</h6>
+                                            <p className="text-muted mb-0">Create an account and enter code WONDOR-ART to earn 150 points.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col my-3">
+                                    <div className="card border-hover-primary hover-scale">
+                                        <div className="card-body">
+                                            <h4 className="font-weight-bold mb-3">150 points</h4>
+                                            <h6 className="font-weight-bold mb-3">Referral</h6>
+                                            <p className="text-muted mb-0">Refer your friends to wondor by sharing your code and you both earn 150 points each.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col my-3">
+                                    <div className="card border-hover-primary hover-scale">
+                                        <div className="card-body">
+                                            <h4 className="font-weight-bold mb-3">50 points</h4>
+                                            <h6 className="font-weight-bold mb-3">Complete Profile</h6>
+                                            <p className="text-muted mb-0">Complete your profile by adding bio, skills, samples, and social accounts to earn 50 points.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col my-3">
+                                    <div className="card border-hover-primary hover-scale">
+                                        <div className="card-body">
+                                            <h4 className="font-weight-bold mb-3">50 points</h4>   
+                                            <h6 className="font-weight-bold mb-3">Successful Collaboration</h6>
+                                            <p className="text-muted mb-0">Collaborate with artists and all of the involved parties get 50 points each for finishing a collaboration.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col my-3">
+                                    <div className="card border-hover-primary hover-scale">
+                                        <div className="card-body">
+                                            <h4 className="font-weight-bold mb-3">50 points</h4>
+                                            <h6 className="font-weight-bold mb-3">Monhtly Contest</h6>
+                                            <p className="text-muted mb-0">Enter in out monthly contests to earn 50 points.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* <div className="col my-3">
+                                    <div className="card border-hover-primary hover-scale">
+                                        <div className="card-body">
+                                            <div className="text-primary mb-5">
+
+                                            </div>
+                                            <h6 className="font-weight-bold mb-3">Graphics and Logo Design</h6>
+                                            <p className="text-muted mb-0">Embed holistics charts directly to your application</p>
+                                        </div>
+                                    </div>
+                                </div> */}
+                                {/* <div className="col my-3">
+                                    <div className="card border-hover-primary hover-scale">
+                                        <div className="card-body">
+                                            <div className="text-primary mb-5">
+
+                                            </div>
+                                            <h6 className="font-weight-bold mb-3">Project Management</h6>
+                                            <p className="text-muted mb-0">Embed holistics charts directly to your application</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col my-3">
+                                    <div className="card border-hover-primary hover-scale">
+                                        <div className="card-body">
+                                            <div className="text-primary mb-5">
+
+                                            </div>
+                                            <h6 className="font-weight-bold mb-3">Task management</h6>
+                                            <p className="text-muted mb-0">Embed holistics charts directly to your application</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col mb-0 mt-3 mb-lg-3">
+                                    <div className="card border-hover-primary hover-scale">
+                                        <div className="card-body">
+                                            <div className="text-primary mb-5">
+
+                                            </div>
+                                            <h6 className="font-weight-bold mb-3">Client Dashboards</h6>
+                                            <p className="text-muted mb-0">Embed holistics charts directly to your application</p>
+                                        </div>
+                                    </div>
+                                </div> */}
+                            </div>
+                        </section>
+                    </div>
+                    <div className="rewardsPage_container">
+                        <section className="bg-light-primary">
+                            <h5 className="common-h5-style">Ways to redeem points</h5>
+                            <p>You can redeem your points for real money. 
+                                In order to redeem, you have to have minimum of 1000 points.
+                                1000 points = $10
+                            </p>
+                        </section>
                     </div>
                 </div>
             </>
