@@ -64,6 +64,8 @@ export function GetPointsByCategory(rewardsActivity, category) {
 export function GetRewardTableMessage(actionType: string, details: any) {
   if (actionType === "REFERRAL_USER") {
     return ConstructReferralMessage(details);
+  } else if (actionType === "REFERRAL_SHARER") {
+    return ConstructReferralMessage(details);
   }
 }
 
@@ -77,7 +79,7 @@ export function ConstructReferralMessage(element: any) {
     desc = "You used Wondor signup code.";
   } else {
     const text =
-      "referred_by" in details ? "You were referred by " : "You referred ";
+      "referred_by" in details ? "You were referred by " : "You referral was accepted by ";
     const linkText =
       "referred_by" in details
         ? details["referred_by_name"]
@@ -102,7 +104,6 @@ export function ConstructReferralMessage(element: any) {
 }
 
 const buildLink = (obj: { text: string; link: string; linkText: string }) => {
-  console.log("obj : ", obj);
   return (
     <p>
       {obj.text}

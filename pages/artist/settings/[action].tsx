@@ -140,9 +140,22 @@ const EditProfile = ({
   const { action, tab } = router.query;
 
   useEffect(() => {
-    if (tab === "rewards"){
+    activeTabKey.current = "1";
+    if (tab === "basic-information") {
+      activeTabKey.current = "1";
+    } else if (tab === "preferences") {
+      activeTabKey.current = "2";
+    } else if (tab === "samples") {
+      activeTabKey.current = "3";
+    } else if (tab === "social-prospectus") {
+      activeTabKey.current = "4";
+    } else if (tab === "scratchpad") {
+      activeTabKey.current = "5";
+    } else if (tab === "collab-request") {
+      activeTabKey.current = "6";
+    } else if (tab === "rewards") {
       activeTabKey.current = "7";
-    }
+    } 
   }, [tab]);
 
   if (

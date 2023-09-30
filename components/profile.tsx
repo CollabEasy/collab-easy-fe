@@ -26,7 +26,7 @@ import {
 } from "@ant-design/icons";
 import { useRoutesContext } from "components/routeContext";
 import avatarImage from '../public/images/avatar.png';
-import { GetPendingCollabRequest, GetUserSkills, ShowIncompleteProfileBanner } from '../helpers/profilePageHelper';
+import { GetPendingCollabRequest, GetUserSkills } from '../helpers/profilePageHelper';
 import { ConvertTimestampToDate } from '../helpers/collabCardHelper';
 import ProfilePicture from "./profilePicture";
 
@@ -90,7 +90,7 @@ const Profile = ({
   const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
 
-  const { toEditProfile } = useRoutesContext();
+  const { toEditProfile, toDiscover } = useRoutesContext();
 
   useEffect(() => {
     fetchArtistSamples(user.slug);
@@ -140,7 +140,7 @@ const Profile = ({
       >
         {isSelf &&
           <>
-            {ShowIncompleteProfileBanner(user) ?
+            {user.profile_bits !== 7 ?
               (
                 <div style={{ backgroundColor: "#EDC5CD", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
                   <p><b>{user.first_name}</b>, looks like your profile is not complete 😔. For maximum reach, please complete it
@@ -148,8 +148,8 @@ const Profile = ({
                 </div>
               ) : (
                 <div style={{ backgroundColor: "#E2F0CB", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-                  <p><b>{user.first_name}</b> well done, your profile is complete 🎉. Don&apos;t forget to show off your creation by linking your social media accounts
-                    <Link href={routeToHref(toEditProfile("profile", "social-prospectus"))} passHref> here.</Link></p>
+                  <p><b>{user.first_name}</b> well done, your profile is complete 🎉. Don&apos;t forget to collaborate. Find artists
+                    <Link href={routeToHref(toDiscover())} passHref> now.</Link></p>
                 </div>
               )
 

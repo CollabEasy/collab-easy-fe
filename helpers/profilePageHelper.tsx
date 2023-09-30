@@ -19,17 +19,6 @@ export function GetUserSkills(user: User, all: boolean) {
     return skills;
 };
 
-
-export function ShowIncompleteProfileBanner(user: User) {
-    if (!user.bio || user.bio.length === 0) {
-        return true;
-    } else if (!user.skills || user.skills.length === 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 export function GetCollabDataForUser(collabs, senderUserId, recieverUserId) {
     const emptyCollabDetails: CollabRequestData = {
         id: "",

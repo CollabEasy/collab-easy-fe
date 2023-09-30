@@ -90,16 +90,6 @@ const RewardsPage = ({
     { title: "Points", dataIndex: "points", key: "points" },
   ];
 
-  const buildLink = (obj: { text: string; link: string; linkText: string }) => {
-    console.log("obj : ", obj);
-    return (
-      <p>
-        {obj.text}
-        <a href={obj.link}>{obj.linkText}</a>
-      </p>
-    );
-  };
-
   const getPointsActivity = () => {
     let updatedData = [];
     let data = rewardsActivity.length != 0 ? rewardsActivity[0].data : [];

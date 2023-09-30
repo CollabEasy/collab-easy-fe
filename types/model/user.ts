@@ -5,6 +5,7 @@ export interface User {
   first_name?: string;
   last_name?: string;
   email?: string;
+  profile_bits?: number;
   phone_number?: number;
   country?: string;
   profile_pic_url?: string;
