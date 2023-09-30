@@ -150,7 +150,9 @@ const RewardsPage = ({
                         </div>
                         {" "} with your friends to earn 100 points for successful refferal.
                       </li>
-                      <li>Earn 50 points for completing your profile.</li>
+                      <li>Earn 50 points for completing your profile. A complete profile has bio, skills, atleast one social account connected and one sample submitted.
+
+                      </li>
                     </ol>
                   </div>
                   <input
