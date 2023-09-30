@@ -84,15 +84,15 @@ const ArtistProfile = ({
 
   return (
     <Layout
-          title={user.first_name + " " + user.last_name + " - Send Collaboration Request Now | Wondor"}
-          name={"description"}
-          content={"Work with " + user.first_name + " " + user.last_name + ". Send them a collaboration request."}
-      >
+      title={user.first_name + " " + user.last_name + " - Send Collaboration Request Now | Wondor"}
+      name={"description"}
+      content={"Work with " + user.first_name + " " + user.last_name + ". Send them a collaboration request."}
+    >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
       {showProfileModal && <NewUserModal />}
       {!isLoggedIn ? (
         <>
-          <NotAuthorised 
+          <NotAuthorised
             error={"Please login to see the profile of the artist."}
           />
         </>

@@ -158,7 +158,7 @@ const Profile = ({
           <div className="artistProfile__profileCoverContainer">
             <div className="graph"></div>
           </div>
-          <ProfilePicture isSelf={isSelf} userProfileOpened={user}/>
+          <ProfilePicture isSelf={isSelf} userProfileOpened={user} />
         </div>
         <div className="artistProfile__artistDetailContainer common-text-style">
           <h2 className="f-20 common-h2-style">{user.first_name + " " + user.last_name}</h2>

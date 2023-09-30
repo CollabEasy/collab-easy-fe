@@ -16,7 +16,7 @@ import {
   GetPointsByCategory,
   GetRewardTableMessage,
 } from "helpers/rewardsHelper";
-import {CopyFilled} from "@ant-design/icons";
+import { CopyFilled } from "@ant-design/icons";
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
@@ -139,7 +139,7 @@ const RewardsPage = ({
                 </div>
                 <div className="points-info-cnt">
                   <div className="points-list-cnt">
-                    <ol style={{marginBottom: 0, listStyleType: 'disc'}}>
+                    <ol style={{ marginBottom: 0, listStyleType: 'disc' }}>
                       <li>
                         Share code {" "}
                         <div className="clipboard-text-cnt">
@@ -220,7 +220,12 @@ const RewardsPage = ({
                         value={GetPointsByCategory(
                           rewardsActivity,
                           "REFERRAL_USER"
-                        )}
+                        ) +
+                          GetPointsByCategory(
+                            rewardsActivity,
+                            "REFERRAL_SHARER"
+                          )
+                        }
                         valueStyle={{ color: "#3f8600" }}
                       />
                     </Card>

@@ -439,8 +439,8 @@ const Home = ({
                         Want to earn real money? Enter Wondor monthly contests 🤑
                       </h3>
                       <p className="common-p-style">
-                        Join our monthly contest and let your creativity be the judge. 
-                        For your participation, you will get reward points which can be 
+                        Join our monthly contest and let your creativity be the judge.
+                        For your participation, you will get reward points which can be
                         redeemed for real money. Winner of the contests get more!
                       </p>
                     </div>
