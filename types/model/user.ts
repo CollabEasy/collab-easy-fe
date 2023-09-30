@@ -22,6 +22,7 @@ export interface User {
   is_referral_done?: boolean;
   skills?: string[];
   sample?: string[];
+  profile_complete: boolean;
 }
 
 export interface Artist {
@@ -45,7 +46,8 @@ export interface Artist {
   role: string,
   detailsUpdated: string,
   isNewUser: string,
-  token: string
+  token: string,
+  profile_complete: boolean,
 }
 
 export interface UserSample {

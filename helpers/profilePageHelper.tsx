@@ -19,6 +19,9 @@ export function GetUserSkills(user: User, all: boolean) {
     return skills;
 };
 
+export function ShowIncompleteProfileBanner(user: User) {
+    return !user.profile_complete;
+}
 export function GetCollabDataForUser(collabs, senderUserId, recieverUserId) {
     const emptyCollabDetails: CollabRequestData = {
         id: "",
