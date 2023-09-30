@@ -66,6 +66,8 @@ export function GetRewardTableMessage(actionType: string, details: any) {
     return ConstructReferralMessage(details);
   } else if (actionType === "REFERRAL_SHARER") {
     return ConstructReferralMessage(details);
+  } else if (actionType === "PROFILE_COMPLETION") {
+    return "You completed your profile.";
   }
 }
 
