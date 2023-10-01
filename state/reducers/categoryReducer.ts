@@ -111,6 +111,16 @@ const categoryReducer = (state = initialState, action): CategoryState => {
         isFetchingCategories: true,
       };
     case actionType.FETCH_ALL_PUBLISHED_CATEGORIES_SUCCESS:
+      let publishedCategories = []
+      if (state.socialProspectus.length > 0 ) {
+        const oldSocialProspectus = state.socialProspectus[0]["data"];
+        oldSocialProspectus.forEach((prospectusEntry, index) => {
+          if (prospectusEntry.socialPlatformId !== action.payload.data.data.socialPlatformId) {
+            updatedSocialProspectus.push(prospectusEntry);
+          }
+        });
+      }
+      updatedSocialProspectus.push(action.payload.data.data);
       return {
         ...state,
         isFetchingCategories: false,

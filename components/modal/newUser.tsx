@@ -34,14 +34,14 @@ const { Option } = Select;
 
 const mapStateToProps = (state: AppState) => {
   return {
-    categories: state.category.categories,
+    publishedCategories: state.category.publishedCategories,
     user: state.user.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   setNewUser: (newUser: boolean) => dispatch(actions.setNewUser(newUser)),
-  getAllCategories: () => dispatch(actions.getAllPublishedCategories()),
+  getAllPublishedCategories: () => dispatch(actions.getAllPublishedCategories()),
   postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistPreference: (key: string, value: any) =>
     dispatch(actions.updateArtistPreference(key, value)),
@@ -57,11 +57,11 @@ type Props = {
 const NewUser = ({
   user,
   visible,
-  categories,
+  publishedCategories,
   handleNext,
   setNewUser,
   postArtistArt,
-  getAllCategories,
+  getAllPublishedCategories,
   updateArtistPreference,
 }: Props) => {
   const [selectedCategories, setSelectedCategories] = useState("");
@@ -91,8 +91,8 @@ const NewUser = ({
   };
 
   useEffect(() => {
-    if (categories.length === 0) getAllCategories();
-  }, [categories.length, getAllCategories]);
+    if (publishedCategories.length === 0) getAllPublishedCategories();
+  }, [publishedCategories.length, getAllPublishedCategories]);
 
   useEffect(() => {
     if (user?.first_name) {
@@ -133,7 +133,7 @@ const NewUser = ({
       footer={null}
       width={windowWidth > 680 ? 900 : 450}
       bodyStyle={{ padding: 0 }}
-      //bodyStyle={{ height: "500px", padding: "0px" }}
+    //bodyStyle={{ height: "500px", padding: "0px" }}
     >
       <div className="container">
         <div className="left-image">
@@ -185,8 +185,8 @@ const NewUser = ({
                 }}
                 optionLabelProp="label"
               >
-                {categories.length > 0 &&
-                  categories.map((category, index) => (
+                {publishedCategories.length > 0 &&
+                  publishedCategories.map((category, index) => (
                     <Option
                       value={category.artName}
                       label={category.artName}

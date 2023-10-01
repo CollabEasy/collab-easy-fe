@@ -21,6 +21,7 @@ const mapStateToProps = (state: AppState) => {
         user: state.user.user,
         preferences: state.user.preferences,
         categories: state.category.categories,
+        publishedCategories: state.category.publishedCategories,
         isUpdatingPrefs: state.user.isUpdatingPrefs,
         isUpdatingProfile: state.user.isUpdatingProfile,
         showCategoryModal: state.category.showCategoryModal,
@@ -28,7 +29,7 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    getAllCategories: () => dispatch(getAllPublishedCategories()),
+    getAllPublishedCategories: () => dispatch(getAllPublishedCategories()),
 
     fetchArtistPreferences: () => dispatch(fetchArtistPreferences()),
 
@@ -51,10 +52,11 @@ const EditPreferences = ({
     user,
     preferences,
     categories,
+    publishedCategories,
     isUpdatingPrefs,
     isUpdatingProfile,
     showCategoryModal,
-    getAllCategories,
+    getAllPublishedCategories,
     fetchArtistSkills,
     fetchArtistPreferences,
     updateArtistPreference,
@@ -73,8 +75,8 @@ const EditPreferences = ({
     const { Option } = Select;
 
     useEffect(() => {
-        if (categories.length === 0) {
-            getAllCategories();
+        if (publishedCategories.length === 0) {
+            getAllPublishedCategories();
         }
         fetchArtistPreferences();
         fetchArtistSkills();

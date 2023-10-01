@@ -57,6 +57,9 @@ export const getAllPublishedCategories = async () => {
   const config = getConfig();
   try {
     const categories = await api.call("api/v1/category/all", config);
+    categories.forEach(category => {
+      console.log(category);
+    });
     return categories;
   } catch (error) {
     throw error;

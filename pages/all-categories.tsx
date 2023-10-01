@@ -23,16 +23,16 @@ const mapStateToProps = (state: AppState) => {
     const isLoggedIn = state.user.isLoggedIn;
     const loginModalDetails = state.home.loginModalDetails;
     const artistListData = state.home.artistListDetails;
-    const categories = state.category.categories;
+    const publishedCategories = state.category.publishedCategories;
     const showCategoryModal = state.category.showCategoryModal;
     const isFetchingCategories = state.category.isFetchingCategories;
 
 
-    return { user, isLoggedIn, loginModalDetails, artistListData, categories, showCategoryModal, isFetchingCategories }
+    return { user, isLoggedIn, loginModalDetails, artistListData, publishedCategories, showCategoryModal, isFetchingCategories }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    getAllCategories: () => dispatch(actions.getAllPublishedCategories()),
+    getAllPublishedCategories: () => dispatch(actions.getAllPublishedCategories()),
     setShowCategoryModal: (show: boolean) =>
         dispatch(actions.setShowCategoryModal(show)),
 });
@@ -46,10 +46,10 @@ const AllCategoryPage = ({
     isLoggedIn,
     loginModalDetails,
     artistListData,
-    categories,
+    publishedCategories,
     showCategoryModal,
     isFetchingCategories,
-    getAllCategories,
+    getAllPublishedCategories,
     setShowCategoryModal,
 }: Props) => {
     const emptyNewCategoryDetails: CategoryEntry = {
@@ -62,12 +62,12 @@ const AllCategoryPage = ({
 
     const { toArtist, toCategoryPage } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
-    const [allCategories, setAllCategory] = useState([]);
+    const [allCategories, setAllPublishedCategory] = useState([]);
 
     const router = useRouter();
 
     useEffect(() => {
-        getAllCategories();
+        getAllPublishedCategories();
     }, []);
 
     useEffect(() => {
@@ -79,8 +79,8 @@ const AllCategoryPage = ({
         if (artistListData.status === "success") {
             setShowProfileModal(false);
         }
-        setAllCategory(categories);
-    }, [user, artistListData, categories]);
+        setAllPublishedCategory(publishedCategories);
+    }, [user, artistListData, publishedCategories]);
 
     const GetApprovedCategories = (allCategories) => {
         const approvedCategories: Array<CategoryEntry> = [];
@@ -169,7 +169,7 @@ const AllCategoryPage = ({
                                 style={{ width: "100%" }}
                                 bordered
                                 itemLayout="horizontal"
-                                dataSource={GetApprovedCategories(categories)}
+                                dataSource={GetApprovedCategories(publishedCategories)}
                                 renderItem={(item) => (
                                     <List.Item
                                         actions={[<a key="wiki" href={routeToHref(toCategoryPage(item.slug as string))} >Wiki</a>, <a key="find-artist" href={toArtist().href + item.slug}>Find artists</a>]}
