@@ -10,8 +10,11 @@ import { default as DefaultLayout } from "../../../components/layout";
 import NotAuthorised from "@/components/error/notAuthorised";
 import { Select } from "antd";
 import { Layout, Menu } from "antd";
+import { routeToHref } from "config/routes";
 import {
   SearchOutlined,
+  HomeOutlined,
+  ProfileOutlined,
   CheckCircleOutlined,
   CalendarOutlined,
   EditOutlined,
@@ -38,6 +41,8 @@ import EditPreferences from "@/components/editPreferences";
 import EditSocialProspectus from "@/components/editSocialProspectus";
 import Navbar from "@/components/navbar";
 import Rewards from "@/components/rewards";
+import Link from "next/link";
+import { useRoutesContext } from "components/routeContext";
 
 const { Sider, Content } = Layout;
 
@@ -109,6 +114,8 @@ const EditProfile = ({
 
   const activeTabKey = useRef("1");
 
+  const { toDiscover } = useRoutesContext();
+
   useEffect(() => {
     fetchArtistSamples(user.slug);
     getCollabRequestsAction({});
@@ -155,7 +162,7 @@ const EditProfile = ({
       activeTabKey.current = "6";
     } else if (tab === "rewards") {
       activeTabKey.current = "7";
-    } 
+    }
   }, [tab]);
 
   if (
@@ -195,6 +202,9 @@ const EditProfile = ({
       tab = "collab-request";
     } else if (tabIndex === "7") {
       tab = "rewards";
+    } else if (tabIndex === "9") {
+      router.push("/artist/profile/" + user.slug);
+      return;
     }
     router.push("/artist/settings/" + action + "?tab=" + tab);
   };
@@ -237,13 +247,15 @@ const EditProfile = ({
               collapsed={collapsed}
               onCollapse={(value) => setCollapsed(value)}
             >
-              <div className="logo">
-                {!collapsed ? (
-                  <Image src={titleDesktopImg} alt="Landing page" />
-                ) : (
-                  <Image src={titleMobileImg} alt="Landing page" />
-                )}
-              </div>
+              <Link href={routeToHref(toDiscover())} passHref>
+                <div className="logo" style={{ cursor: "pointer" }}>
+                  {!collapsed ? (
+                    <Image src={titleDesktopImg} alt="Landing page" />
+                  ) : (
+                    <Image src={titleMobileImg} alt="Landing page" />
+                  )}
+                </div>
+              </Link>
               <Menu
                 theme="dark"
                 mode="inline"
@@ -251,12 +263,15 @@ const EditProfile = ({
                 onClick={handleClick}
               >
                 <Menu.Item key="0">
-                  <SearchOutlined />
-                  <span>Discover</span>
+                  <HomeOutlined />
+                  <span>Home</span>
                 </Menu.Item>
-
-                <Menu.Item key="1">
+                <Menu.Item key="9">
                   <UserOutlined />
+                  <span>Profile</span>
+                </Menu.Item>
+                <Menu.Item key="1">
+                  <ProfileOutlined />
                   <span>Basic Information</span>
                 </Menu.Item>
                 <Menu.Item key="2">
