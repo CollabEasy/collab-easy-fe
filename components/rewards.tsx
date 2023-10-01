@@ -252,6 +252,18 @@ const RewardsPage = ({
                       />
                     </Card>
                   </Col>
+                  <Col span={8}>
+                    <Card bordered={true}>
+                      <Statistic
+                        title="Complete profile"
+                        value={GetPointsByCategory(
+                          rewardsActivity,
+                          "PROFILE_COMPLETION"
+                        )}
+                        valueStyle={{ color: "#3f8600" }}
+                      />
+                    </Card>
+                  </Col>
                 </Row>
               </div>
               <div style={{ marginTop: "20px" }}>
