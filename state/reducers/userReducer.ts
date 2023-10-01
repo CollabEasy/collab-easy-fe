@@ -2,8 +2,13 @@ import * as actionType from "../actionTypes/userActionTypes";
 import { UserState } from "types/states";
 
 const initialState: UserState = {
-  user: { new_user: false },
-  otherUser: {},
+  user: {
+    new_user: false,
+    profile_complete: false
+  },
+  otherUser: {
+    profile_complete: false
+  },
   isUpdatingProfile: false,
   isUpdatingPrefs: "",
   isLoggedIn: false,
@@ -47,14 +52,20 @@ const userReducer = (state = initialState, action): UserState => {
       return {
         ...state,
         isLoggedIn: false,
-        user: { new_user: false },
+        user: {
+          new_user: false,
+          profile_complete: false
+        },
         errors: {},
       };
     case actionType.USER_LOGIN_REQUEST:
       return {
         ...state,
         isFetchingUser: false,
-        user: { new_user: false },
+        user: {
+          new_user: false,
+          profile_complete: false
+        },
         isLoggedIn: false,
         errors: {},
       };

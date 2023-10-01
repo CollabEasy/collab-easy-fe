@@ -43,12 +43,18 @@ const ArtistProfile = ({
   artistListData,
   fetchArtistSocialProspectus,
 }: Props) => {
+
+  const emptyOtherUser: User = {
+    profile_complete: false
+  };
+
+
   const router = useRouter();
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
   const [isSelf, setIsSelf] = useState(false);
   const [upForCollab, setCollaborationStatus] = useState(true);
-  const [otherUser, setOtherUser] = useState<User>({});
+  const [otherUser, setOtherUser] = useState<User>(emptyOtherUser);
 
   useEffect(() => {
     async function fetchOtherUser() {
