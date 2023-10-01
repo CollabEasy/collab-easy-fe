@@ -70,7 +70,7 @@ const NavBar = ({
 
   const { toWondorHome, toArtistProfile, toEditProfile, toAnalyticsPage } =
     useRoutesContext();
-  const { toAllCategoryPage, toGetInspired, toAllContestPage, toTutorial } = useRoutesContext();
+  const { toRewardsInfoPage, toGetInspired, toAllContestPage, toTutorial } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = document.querySelector("#p-h");
@@ -149,6 +149,11 @@ const NavBar = ({
                   </li>
                   <li>
                     <p className="common-p-style nav-text">
+                      <a href={routeToHref(toRewardsInfoPage())}>Rewards</a>
+                    </p>
+                  </li>
+                  <li>
+                    <p className="common-p-style nav-text">
                       <a href={routeToHref(toTutorial())}>Tutorial</a>
                     </p>
                   </li>
@@ -159,14 +164,14 @@ const NavBar = ({
         </div>
         {!hideSignUp ? (
           <div className="login-signup-cnt">
-            <Button
+            {/* <Button
               className="common-text-style login-btn"
               id="sign-up-desktop"
               type="primary"
               onClick={openLoginModal}
             >
               Log in
-            </Button>
+            </Button> */}
             <Button
               className="common-text-style"
               id="sign-up-desktop"
