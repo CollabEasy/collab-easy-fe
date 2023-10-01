@@ -96,8 +96,8 @@ const categoryReducer = (state = initialState, action): CategoryState => {
       };
     case actionType.FETCH_ALL_CATEGORIES_SUCCESS:
       let publishedCategoriesList = []
-      if (state.categories.length > 0) {
-          const oldCategories= state.categories;
+      if (action.payload.data.data.length > 0) {
+          const oldCategories= action.payload.data.data;
           oldCategories.forEach((category, index) => {
             if (category.approved) {
               publishedCategoriesList.push(category);
