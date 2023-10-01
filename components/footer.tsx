@@ -70,7 +70,7 @@ export const Footer: React.FC<FooterProps> = ({
   return (
     <>
       {IsLandingPage(router.pathname) ? (
-        <footer className="footer-body">
+        <footer style={{background: "#F8F9FA"}} className="footer-body">
           {GetFooter()}
         </footer>
       ) : (

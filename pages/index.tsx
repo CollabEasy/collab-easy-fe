@@ -21,6 +21,7 @@ import musicImage from "../public/images/popularCategories/music.svg";
 import inspireImage from "../public/images/inspire.svg";
 import ideaImage from "../public/images/idea.svg";
 import allContestImage from "../public/images/competition.svg";
+import rewardsInfoImage from "../public/images/rewards.svg";
 
 import { routeToHref } from "config/routes";
 
@@ -68,6 +69,7 @@ const Home = ({
     toEditProfile,
     toGetInspired,
     toAllContestPage,
+    toRewardsInfoPage,
   } = useRoutesContext();
 
   useEffect(() => {
@@ -419,7 +421,7 @@ const Home = ({
                             )}
                             passHref
                           >
-                            Take notes
+                            Take Notes
                           </Link>
                         </Button>
                       </div>
@@ -448,7 +450,46 @@ const Home = ({
                       <div>
                         <Button type="primary">
                           <Link href={routeToHref(toAllContestPage())} passHref>
-                            Enter now
+                            Enter Now
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* rewards D4C7E8 */}
+      <div className="row">
+        <div className="container">
+          <div className="row d-flex justify-content-center rewards-box">
+            <div className="col-md-12">
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="text-center">
+                    <Image src={rewardsInfoImage} height={400} width={400} />
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="inspire-cnt">
+                    <div className="inspire-text text-center">
+                      <h3 className="common-h3-style">
+                        Get rewarded for almost everything you do on Wondor! 🥳
+                      </h3>
+                      <p className="common-p-style">
+                        Big or small, every action you take gets you points which can be
+                        redeemed for real money.
+                      </p>
+                    </div>
+                    <div className="mt-4 mb-4 inspire-btn">
+                      <div className="cursor-pointer">
+                        <Button>
+                          <Link href={routeToHref(toRewardsInfoPage())} passHref>
+                            Earn Rewards
                           </Link>
                         </Button>
                       </div>
