@@ -20,7 +20,7 @@ const mapStateToProps = (state: AppState) => {
     return {
         user: state.user.user,
         preferences: state.user.preferences,
-        categories: state.category.categories,
+        publishedCategories: state.category.publishedCategories,
         isUpdatingPrefs: state.user.isUpdatingPrefs,
         isUpdatingProfile: state.user.isUpdatingProfile,
         showCategoryModal: state.category.showCategoryModal,
@@ -50,7 +50,7 @@ type Props = {} & ConnectedProps<typeof connector>;
 const EditPreferences = ({
     user,
     preferences,
-    categories,
+    publishedCategories,
     isUpdatingPrefs,
     isUpdatingProfile,
     showCategoryModal,
@@ -73,7 +73,7 @@ const EditPreferences = ({
     const { Option } = Select;
 
     useEffect(() => {
-        if (categories.length === 0) {
+        if (publishedCategories.length === 0) {
             getAllCategories();
         }
         fetchArtistPreferences();
@@ -128,7 +128,7 @@ const EditPreferences = ({
     };
 
     const [isViewMode, setViewMode] = useState(false);
-    
+
     function handleChange(value: string[]) {
         if (value.length <= 5) {
             setSelectedCategories(value);
@@ -196,8 +196,8 @@ const EditPreferences = ({
                             value={selectedCategories}
                             defaultValue={user.skills}
                         >
-                            {categories.length > 0 &&
-                                categories.map((category, index) => (
+                            {publishedCategories.length > 0 &&
+                                publishedCategories.map((category, index) => (
                                     <Option
                                         value={category.artName}
                                         label={category.artName}

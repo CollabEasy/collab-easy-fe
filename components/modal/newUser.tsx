@@ -34,7 +34,7 @@ const { Option } = Select;
 
 const mapStateToProps = (state: AppState) => {
   return {
-    categories: state.category.categories,
+    publishedCategories: state.category.publishedCategories,
     user: state.user.user,
   };
 };
@@ -57,7 +57,7 @@ type Props = {
 const NewUser = ({
   user,
   visible,
-  categories,
+  publishedCategories,
   handleNext,
   setNewUser,
   postArtistArt,
@@ -91,8 +91,8 @@ const NewUser = ({
   };
 
   useEffect(() => {
-    if (categories.length === 0) getAllCategories();
-  }, [categories.length, getAllCategories]);
+    if (publishedCategories.length === 0) getAllCategories();
+  }, [publishedCategories.length, getAllCategories]);
 
   useEffect(() => {
     if (user?.first_name) {
@@ -185,8 +185,8 @@ const NewUser = ({
                 }}
                 optionLabelProp="label"
               >
-                {categories.length > 0 &&
-                  categories.map((category, index) => (
+                {publishedCategories.length > 0 &&
+                  publishedCategories.map((category, index) => (
                     <Option
                       value={category.artName}
                       label={category.artName}
