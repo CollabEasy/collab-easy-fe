@@ -12,7 +12,7 @@ export interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({
   footerLinkColumns
 }) => {
-  const { toEditProfile, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext()
+  const { toEditProfile, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext()
 
   const router = useRouter();
 
@@ -49,6 +49,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <li><a href={toGetInspired().href} >Inspiration</a></li>
                 <li><a href={toAllContestPage().href} >Contests</a></li>
                 <li><a href={toAllCategoryPage().href} >Wiki</a></li>
+                <li><a href={toRewardsInfoPage().href} >Rewards</a></li>
               </ul>
             </div>
             <div className="col-md-4 col-4">
