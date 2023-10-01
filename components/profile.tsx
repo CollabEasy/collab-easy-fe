@@ -143,7 +143,8 @@ const Profile = ({
             {!user.profile_complete ?
               (
                 <div style={{ backgroundColor: "#EDC5CD", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-                  <p><b>{user.first_name}</b>, looks like your profile is not complete 😔. For maximum reach, please complete it
+                  <p><b>{user.first_name}</b>, looks like your profile is not complete 😔. 
+                    For maximum reach, please complete it by adding bio, skills, samples, and social account.
                     <Link href={routeToHref(toEditProfile("profile", "profile"))} passHref> here.</Link></p>
                 </div>
               ) : (
