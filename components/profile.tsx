@@ -140,7 +140,7 @@ const Profile = ({
       >
         {isSelf &&
           <>
-            {user.profile_complete ?
+            {!user.profile_complete ?
               (
                 <div style={{ backgroundColor: "#EDC5CD", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
                   <p><b>{user.first_name}</b>, looks like your profile is not complete 😔. For maximum reach, please complete it
@@ -148,7 +148,7 @@ const Profile = ({
                 </div>
               ) : (
                 <div style={{ backgroundColor: "#E2F0CB", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-                  <p><b>{user.first_name}</b> well done, your profile is complete 🎉. Don&apos;t forget to collaborate. Find artists
+                  <p><b>{user.first_name}</b> well done, your profile is complete 🎉. Don&apos;t forget to collaborate with fellow artists! Find who is available
                     <Link href={routeToHref(toDiscover())} passHref> now.</Link></p>
                 </div>
               )

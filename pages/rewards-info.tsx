@@ -13,6 +13,7 @@ import Image from 'next/image';
 import headerImage from '../public/images/reward.svg';
 import * as actions from "state/action";
 import Layout from "@/components/layout";
+import Link from "next/link";
 
 const { Meta } = Card;
 
@@ -43,7 +44,7 @@ const RewardsInfoPage = ({
     isFetchingContest,
     fetchAllContests,
 }: Props) => {
-    const { toDiscover } = useRoutesContext();
+    const { toEditProfile } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     const router = useRouter();
@@ -122,7 +123,9 @@ const RewardsInfoPage = ({
                                         <div className="card-body">
                                             <h4 className="font-weight-bold mb-3">150 points</h4>
                                             <h6 className="font-weight-bold mb-3">Referral</h6>
-                                            <p className="text-muted mb-0">Refer your friends to wondor by sharing your code and you both earn 150 points each.</p>
+                                            <p className="text-muted mb-0">Refer your friends to wondor by
+                                                <Link href={routeToHref(toEditProfile("profile", "rewards"))} passHref> sharing your code </Link>
+                                                and you both earn 150 points each.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +141,7 @@ const RewardsInfoPage = ({
                                 <div className="col my-3">
                                     <div className="card border-hover-primary hover-scale">
                                         <div className="card-body">
-                                            <h4 className="font-weight-bold mb-3">50 points</h4>   
+                                            <h4 className="font-weight-bold mb-3">50 points</h4>
                                             <h6 className="font-weight-bold mb-3">Successful Collaboration</h6>
                                             <p className="text-muted mb-0">Collaborate with artists and all of the involved parties get 50 points each for finishing a collaboration.</p>
                                         </div>
@@ -203,7 +206,7 @@ const RewardsInfoPage = ({
                     <div className="rewardsPage_container">
                         <section className="bg-light-primary">
                             <h5 className="common-h5-style">Ways to redeem points</h5>
-                            <p>You can redeem your points for real money. 
+                            <p>You can redeem your points for real money.
                                 In order to redeem, you have to have minimum of 1000 points.
                                 1000 points = $10
                             </p>

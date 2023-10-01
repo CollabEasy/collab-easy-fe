@@ -11,12 +11,15 @@ import * as actions from "state/action";
 import Loader from "@/components/loader";
 import { GetDateString } from "helpers/contest";
 import Layout from "@/components/layout";
+import { useRoutesContext } from "components/routeContext";
 import {
   GetRewardsEarningSummary,
   GetPointsByCategory,
   GetRewardTableMessage,
 } from "helpers/rewardsHelper";
 import { CopyFilled } from "@ant-design/icons";
+import Link from "next/link";
+import { routeToHref } from "config/routes";
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
@@ -66,6 +69,8 @@ const RewardsPage = ({
   const [showProfileModal, setShowProfileModal] = useState(false);
   const textRef = useRef(null);
   const [isCopied, setIsCopied] = useState(false);
+
+  const { toRewardsInfoPage } = useRoutesContext();
 
   useEffect(() => {
     fetchRewards();
@@ -133,10 +138,11 @@ const RewardsPage = ({
         ) : (
           <>
             <div className="rewardsPage_container">
-              <div className="points-earn-container" style={{backgroundColor: "#FFFBE6", border:"1px solid #f2a114"}}>
+              <div className="points-earn-container" style={{ backgroundColor: "#FFFBE6", border: "1px solid #f2a114" }}>
                 <div className="points-info-cnt">
                   <div className="points-list-cnt">
-                    Hello { user.first_name}, learn how to earn and redeem points here
+                    Hello {user.first_name}, learn how to earn and redeem points here
+                    <Link href={routeToHref(toRewardsInfoPage())} passHref> here.</Link>
                   </div>
                 </div>
                 {/* <div className="close-icon"></div> */}
