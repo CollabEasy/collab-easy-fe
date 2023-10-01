@@ -8,6 +8,7 @@ const initialState: CategoryState = {
   isFetchingCategories: false,
   errorInFetchingArtists: false,
   categories: [],
+  publishedCategories: [],
   artists: [],
   isUpdatingCategory: false,
   showCategoryModal: false,
@@ -94,10 +95,20 @@ const categoryReducer = (state = initialState, action): CategoryState => {
         isFetchingCategories: true,
       };
     case actionType.FETCH_ALL_CATEGORIES_SUCCESS:
+      let publishedCategoriesList = []
+      if (action.payload.data.data.length > 0) {
+          const oldCategories= action.payload.data.data;
+          oldCategories.forEach((category, index) => {
+            if (category.approved) {
+              publishedCategoriesList.push(category);
+            }
+          });
+      }
       return {
         ...state,
         isFetchingCategories: false,
         categories: action.payload.data.data,
+        publishedCategories: publishedCategoriesList,
       };
     case actionType.FETCH_ALL_CATEGORIES_FAILURE:
       return {
