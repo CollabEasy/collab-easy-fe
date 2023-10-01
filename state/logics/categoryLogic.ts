@@ -51,7 +51,7 @@ export const fetchArtistsByCategorySlugLogic = createLogic<
   },
 });
 
-export const fetchArtistCategoriesLogic = createLogic<
+export const fetchAllCategoriesLogic = createLogic<
   AppState,
   FSACreatorPayload<typeof actions.getAllCategories>,
   any,
@@ -63,6 +63,25 @@ export const fetchArtistCategoriesLogic = createLogic<
       dispatch(actions.getAllCategoriesRequest())
       const categoriesData = await categoryApi.getAllCategories();
       dispatch(actions.getAllCategoriesSuccess(categoriesData));
+    } catch (error) {
+    } finally {
+      done();
+    }
+  },
+});
+
+export const fetchAllPublishedCategoriesLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.getAllPublishedCategories>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.FETCH_ALL_PUBLISHED_CATEGORIES],
+  async process({ api }, dispatch, done) {
+    try {
+      dispatch(actions.getAllPublishedCategoriesRequest())
+      const categoriesData = await categoryApi.getAllPublishedCategories();
+      dispatch(actions.getAllPublishedCategoriesSuccess(categoriesData));
     } catch (error) {
     } finally {
       done();

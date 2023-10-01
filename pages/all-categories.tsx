@@ -32,7 +32,7 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    getAllCategories: () => dispatch(actions.getAllCategories()),
+    getAllCategories: () => dispatch(actions.getAllPublishedCategories()),
     setShowCategoryModal: (show: boolean) =>
         dispatch(actions.setShowCategoryModal(show)),
 });

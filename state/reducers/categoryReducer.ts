@@ -17,31 +17,31 @@ const categoryReducer = (state = initialState, action): CategoryState => {
   switch (action.type) {
 
     case actionType.ADD_CATEGORY:
-        return {
-            ...state,
-            isUpdatingCategory: false,
-        };
+      return {
+        ...state,
+        isUpdatingCategory: false,
+      };
     case actionType.ADD_CATEGORY_SUCCESS:
-        let updatedCategories = []
-        if (state.categories.length > 0) {
-            const oldCategories= state.categories;
-            oldCategories.forEach((category, index) => {
-              if (category.id !== action.payload.data.data.id ) {
-                updatedCategories.push(category);
-              }
-            });
-        }
-        updatedCategories.push(action.payload.data.data);
-        return {
-            ...state,
-            categories:  updatedCategories,
-            isUpdatingCategory: false,
-        };
+      let updatedCategories = []
+      if (state.categories.length > 0) {
+        const oldCategories = state.categories;
+        oldCategories.forEach((category, index) => {
+          if (category.id !== action.payload.data.data.id) {
+            updatedCategories.push(category);
+          }
+        });
+      }
+      updatedCategories.push(action.payload.data.data);
+      return {
+        ...state,
+        categories: updatedCategories,
+        isUpdatingCategory: false,
+      };
     case actionType.ADD_CATEGORY_FAILURE:
-        return {
-            ...state,
-            isUpdatingCategory: false,
-        };
+      return {
+        ...state,
+        isUpdatingCategory: false,
+      };
 
     case actionType.SET_SELETECTED_CATEGORY_ID:
       return {
@@ -104,7 +104,24 @@ const categoryReducer = (state = initialState, action): CategoryState => {
         ...state,
         isFetchingCategories: false,
       };
-    
+
+    case actionType.FETCH_ALL_PUBLISHED_CATEGORIES_REQUEST:
+      return {
+        ...state,
+        isFetchingCategories: true,
+      };
+    case actionType.FETCH_ALL_PUBLISHED_CATEGORIES_SUCCESS:
+      return {
+        ...state,
+        isFetchingCategories: false,
+        categories: action.payload.data.data,
+      };
+    case actionType.FETCH_ALL_PUBLISHED_CATEGORIES_FAILURE:
+      return {
+        ...state,
+        isFetchingCategories: false,
+      };
+
     case actionType.SET_SHOW_CATEGORY_MODAL:
       return {
         ...state,

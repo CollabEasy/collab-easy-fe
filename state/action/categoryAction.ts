@@ -85,6 +85,24 @@ export const getAllCategoriesSuccess = (data: any) => ({
   },
 });
 
+export const getAllPublishedCategories = () => ({
+  type: actionType.FETCH_ALL_PUBLISHED_CATEGORIES,
+  payload: {},
+});
+
+
+export const getAllPublishedCategoriesRequest = () => ({
+  type: actionType.FETCH_ALL_PUBLISHED_CATEGORIES_REQUEST,
+  payload: {},
+});
+
+export const getAllPublishedCategoriesSuccess = (data: any) => ({
+  type: actionType.FETCH_ALL_PUBLISHED_CATEGORIES_SUCCESS,
+  payload: {
+    data
+  },
+});
+
 export const addCategory = (data: any) => ({
   type: actionType.ADD_CATEGORY,
   payload: {

@@ -41,7 +41,7 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch) => ({
   setNewUser: (newUser: boolean) => dispatch(actions.setNewUser(newUser)),
-  getAllCategories: () => dispatch(actions.getAllCategories()),
+  getAllCategories: () => dispatch(actions.getAllPublishedCategories()),
   postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistPreference: (key: string, value: any) =>
     dispatch(actions.updateArtistPreference(key, value)),

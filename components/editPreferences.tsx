@@ -5,7 +5,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
 import { SizeType } from "antd/lib/config-provider/SizeContext";
 import {
-    getAllCategories,
+    getAllPublishedCategories,
     fetchArtistSkills,
     fetchArtistPreferences,
     updateArtistArt,
@@ -28,7 +28,7 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    getAllCategories: () => dispatch(getAllCategories()),
+    getAllCategories: () => dispatch(getAllPublishedCategories()),
 
     fetchArtistPreferences: () => dispatch(fetchArtistPreferences()),
 
