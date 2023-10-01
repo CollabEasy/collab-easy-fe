@@ -133,30 +133,25 @@ const RewardsPage = ({
         ) : (
           <>
             <div className="rewardsPage_container">
-              <div className="points-earn-container">
-                <div className="points-part-heading">
-                  Ways to Earn Points
-                </div>
+              <div className="points-earn-container" style={{backgroundColor: "#FFFBE6", border:"1px solid #f2a114"}}>
                 <div className="points-info-cnt">
                   <div className="points-list-cnt">
-                    <ol style={{ marginBottom: 0, listStyleType: 'disc' }}>
-                      <li>
-                        Share code {" "}
-                        <div className="clipboard-text-cnt">
-                          <span className="clipboard-text">{user["referral_code"]}</span>
-                          <div className="copy-btn" onClick={handleCopyClick}>
-                            {isCopied ? 'Copied!' : 'Copy'}
-                          </div>
-                        </div>
-                        {" "} with your friends to earn 100 points for successful refferal.
-                      </li>
-                      <li>
-                        Earn 50 points for completing your profile. 
-                        A complete profile has bio, skills, 
-                        atleast one social account connected and 
-                        one sample submitted.
-                      </li>
-                    </ol>
+                    Hello { user.first_name}, learn how to earn and redeem points here
+                  </div>
+                </div>
+                {/* <div className="close-icon"></div> */}
+              </div>
+              <div className="points-earn-container">
+                <div className="points-info-cnt">
+                  <div className="points-list-cnt">
+                    Share code {" "}
+                    <div className="clipboard-text-cnt">
+                      <span className="clipboard-text">{user["referral_code"]}</span>
+                      <div className="copy-btn" onClick={handleCopyClick}>
+                        {isCopied ? 'Copied!' : 'Copy'}
+                      </div>
+                    </div>
+                    {" "} with your friends to earn 100 points for successful refferal.
                   </div>
                   <input
                     type="text"
@@ -171,14 +166,6 @@ const RewardsPage = ({
                 </div>
                 {/* <div className="close-icon"></div> */}
               </div>
-              <Alert
-                message="Ways to Reedem Points"
-                description="100 points are equivalent to $1. You can redeem these points for an amazon coupons after you have 1000 or more points."
-                type="warning"
-                className="display-linebreak"
-                showIcon
-                closable
-              />
               <div style={{ marginTop: "20px" }}>
                 <h5>Summary</h5>
               </div>
