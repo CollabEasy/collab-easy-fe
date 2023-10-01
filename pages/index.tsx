@@ -117,7 +117,7 @@ const Home = ({
         </div>
       </div>
 
-      <div className="row" style={{ padding: "20px", display: "flex" }}>
+      <div className="row" style={{ padding: "50px", display: "flex" }}>
         <div className="container">
           <div className="column" style={{ padding: "10px" }}>
             <div
@@ -202,7 +202,7 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold">
+                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
                       Creative Writing
                     </p>{" "}
                   </div>
@@ -221,7 +221,9 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold">Photography</p>{" "}
+                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                      Photography
+                    </p>{" "}
                   </div>
                   <div>
                     {" "}
@@ -238,7 +240,9 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold">Dancing</p>{" "}
+                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                      Dancing
+                    </p>{" "}
                   </div>
                   <div>
                     {" "}
@@ -255,7 +259,9 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold">Digital Art</p>{" "}
+                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                      Digital Art
+                    </p>{" "}
                   </div>
                   <div>
                     {" "}
@@ -276,7 +282,9 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold">Music</p>{" "}
+                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                      Music
+                    </p>{" "}
                   </div>
                   <div>
                     {" "}
@@ -293,7 +301,9 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold">Journaling</p>{" "}
+                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                      Journaling
+                    </p>{" "}
                   </div>
                   <div>
                     {" "}
@@ -314,7 +324,9 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold">Singing</p>{" "}
+                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                      Singing
+                    </p>{" "}
                   </div>
                   <div>
                     {" "}
@@ -331,7 +343,9 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold">Painting</p>{" "}
+                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                      Painting
+                    </p>{" "}
                   </div>
                   <div>
                     {" "}
