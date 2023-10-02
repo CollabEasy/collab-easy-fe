@@ -75,7 +75,7 @@ export function GetRewardTableMessage(actionType: string, details: any) {
 
 export function ConstructContestParticipatedMessage(element: any) {
   const details = JSON.parse(element["details"]);
-  const slug = details['slug'];
+  const slug = details['contest_slug'];
   const origin =
       typeof window !== "undefined" && window.location.origin
         ? window.location.origin
