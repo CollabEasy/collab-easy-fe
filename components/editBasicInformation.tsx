@@ -13,7 +13,6 @@ import {
 } from "state/action";
 import { COUNTRIES, GENDERS } from "constants/constants";
 import { User } from "types/model";
-import { AboveEighteen } from "helpers/artistSettingPageHelper";
 
 const mapStateToProps = (state: AppState) => {
     return {
@@ -126,7 +125,7 @@ const EditBasicInformation = ({
                                 : currentDate
                         )}
                         onChange={(e) => {
-                            if (!AboveEighteen(e, currentDate)) {
+                            if (!AboveEighteen(e)) {
                                 message.error("You must be above 18 to use Wondor.art!");
                             } else {
                                 setUserDataCached((prevState) => ({
