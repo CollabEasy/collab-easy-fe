@@ -68,7 +68,23 @@ export function GetRewardTableMessage(actionType: string, details: any) {
     return ConstructReferralMessage(details);
   } else if (actionType === "PROFILE_COMPLETION") {
     return "You completed your profile.";
+  } else if (actionType === "MONTHLY_CONTEST") {
+    return ConstructContestParticipatedMessage(details);
   }
+}
+
+export function ConstructContestParticipatedMessage(element: any) {
+  const details = JSON.parse(element["details"]);
+  const slug = details['slug'];
+  const origin =
+      typeof window !== "undefined" && window.location.origin
+        ? window.location.origin
+        : "";
+  return buildLink({
+    text: 'You participated in ',
+    linkText: 'Wondor monthly contest',
+    link: origin + `/contest/${slug}?tab=details`,
+  });
 }
 
 export function ConstructReferralMessage(element: any) {
