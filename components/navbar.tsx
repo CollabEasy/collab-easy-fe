@@ -226,21 +226,6 @@ const NavBar = ({
                   </div>
                 </div>
                 <div className="common-login-option">
-                  <Link
-                    href={routeToHref(
-                      toEditProfile("profile", "rewards")
-                    )}
-                    passHref
-                  >
-                    <div
-                      className="selected-option-shadow settings-option"
-                      onClick={() => setShowLoginOptions(false)}
-                    >
-                      <span className="f-14 common-text-style">
-                        Reward Points
-                      </span>
-                    </div>
-                  </Link>
                   <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
                     <div
                       className="selected-option-shadow profile-option"
@@ -261,6 +246,36 @@ const NavBar = ({
                     >
                       <span className="f-14 common-text-style">
                         Portal
+                      </span>
+                    </div>
+                  </Link>
+                  <Link
+                    href={routeToHref(
+                      toEditProfile("profile", "rewards")
+                    )}
+                    passHref
+                  >
+                    <div
+                      className="selected-option-shadow settings-option"
+                      onClick={() => setShowLoginOptions(false)}
+                    >
+                      <span className="f-14 common-text-style">
+                        Reward Points
+                      </span>
+                    </div>
+                  </Link>
+                  <Link
+                    href={routeToHref(
+                      toEditProfile("profile", "collab-request")
+                    )}
+                    passHref
+                  >
+                    <div
+                      className="selected-option-shadow settings-option"
+                      onClick={() => setShowLoginOptions(false)}
+                    >
+                      <span className="f-14 common-text-style">
+                        Collab Requests
                       </span>
                     </div>
                   </Link>
