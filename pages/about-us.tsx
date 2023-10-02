@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage, NextPageContext } from 'next'
 import Image from "next/image";
 import { Button } from "antd";
 import Link from "next/link";
@@ -15,6 +15,8 @@ import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
 import Layout from '@/components/layout';
+import * as actions from "state/action";
+import api from 'api/client';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -25,6 +27,7 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
+  setUserLocation: (location: any) => dispatch(actions.setUserLocation(location))
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -32,13 +35,20 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type Props = {
   loginModalDetails: LoginModalDetails,
   user: any,
-  artistListData: any
+  artistListData: any,
+  userLocationData: any
 } & ConnectedProps<typeof connector>;
 
 
-const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
+const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, userLocationData, user, artistListData, setUserLocation }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const { toDiscover } = useRoutesContext();
+
+  console.log( "User location" + userLocationData.city);
+
+  useEffect(() => {
+    setUserLocation(userLocationData.city)
+  }, [userLocationData])
 
   useEffect(() => {
     if (user) {
@@ -119,5 +129,17 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
     </Layout>
   )
 }
+
+export const getServerSideProps = async (context: NextPageContext) => {
+  console.log("IP", context.req.socket.remoteAddress);
+  var result = await api.callIpWho("142.181.228.11" /*context.req.socket.remoteAddress*/);
+  console.log("result", result);
+  return {
+    props: {
+      userLocationData: result,
+    },
+  }
+}
+
 
 export default connector(AboutUs);

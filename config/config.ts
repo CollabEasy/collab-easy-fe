@@ -11,4 +11,5 @@ export const Config = {
 
   // backendEndpoint: process.env.API_ENDPOINT || 'http://localhost:3001',
   backendEndpoint: process.env.API_ENDPOINT || 'https://yy1qb3cpqf.execute-api.us-west-2.amazonaws.com/prod',
+  IpWhoEndpoint: 'http://ipwho.is'
 }

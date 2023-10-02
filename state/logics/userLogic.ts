@@ -241,3 +241,23 @@ export const updateProfilePicture = createLogic<
     }
   },
 });
+
+
+export const setUserLocationLogic = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.setUserLocation>,
+  any,
+  LogicDeps
+>({
+  type: [actionType.SET_USER_LOCATION],
+  async process({ action }, dispatch, done) {
+    try {
+      console.log("Payload", action.payload)
+     // dispatch(actions.setUserLocation(action.payload));
+    } catch (error) {
+      console.error(error.response);
+    } finally {
+      done();
+    }
+  },
+});
