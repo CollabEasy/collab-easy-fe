@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Input, DatePicker, Select } from "antd";
+import { Button, Form, Input, DatePicker, Select, message } from "antd";
 import { AppState } from "state";
 import { connect, ConnectedProps } from "react-redux";
 import { useRouter } from "next/router";
@@ -13,6 +13,7 @@ import {
 } from "state/action";
 import { COUNTRIES, GENDERS } from "constants/constants";
 import { User } from "types/model";
+import { AboveEighteen } from "helpers/artistSettingPageHelper";
 
 const mapStateToProps = (state: AppState) => {
     return {
@@ -56,6 +57,10 @@ const EditBasicInformation = ({
     const tailLayout = {
         wrapperCol: { offset: 8, span: 16 },
     };
+
+    function AboveEighteen(dob) {
+        return moment().diff(dob, 'years') >= 18;
+    }
 
     return (
         <>
@@ -121,10 +126,14 @@ const EditBasicInformation = ({
                                 : currentDate
                         )}
                         onChange={(e) => {
-                            setUserDataCached((prevState) => ({
-                                ...prevState,
-                                date_of_birth: e.toDate(),
-                            }));
+                            if (!AboveEighteen(e, currentDate)) {
+                                message.error("You must be above 18 to use Wondor.art!");
+                            } else {
+                                setUserDataCached((prevState) => ({
+                                    ...prevState,
+                                    date_of_birth: e.toDate(),
+                                }));
+                            }
                         }}
                     />
                 </Form.Item>

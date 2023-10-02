@@ -98,7 +98,7 @@ const RewardsPage = ({
   const getPointsActivity = () => {
     let updatedData = [];
     let data = rewardsActivity.length != 0 ? rewardsActivity[0].data : [];
-
+    data.sort((a, b) => b.createdAt - a.createdAt);
     data.forEach((element) => {
       const description = GetRewardTableMessage(element["action"], element);
       let entry = {
