@@ -133,7 +133,7 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, userLocati
 export const getServerSideProps = async (context: NextPageContext) => {
   // console.log("IP", context.req.socket.remoteAddress);
   var result = await api.callIpWho(context.req.socket.remoteAddress);
-  console.log("result", result);
+  // console.log("result", result);
   return {
     props: {
       userLocationData: result,
