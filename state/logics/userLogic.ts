@@ -252,8 +252,8 @@ export const setUserLocationLogic = createLogic<
   type: [actionType.SET_USER_LOCATION],
   async process({ action }, dispatch, done) {
     try {
-      console.log("Payload", action.payload)
-     // dispatch(actions.setUserLocation(action.payload));
+      // console.log("Payload", action.payload)
+      dispatch(actions.setUserLocation(action.payload));
     } catch (error) {
       console.error(error.response);
     } finally {

@@ -44,7 +44,7 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, userLocati
   const [showProfileModal, setShowProfileModal] = useState(false);
   const { toDiscover } = useRoutesContext();
 
-  console.log( "User location" + userLocationData.city);
+  // console.log( "User location" + userLocationData.city);
 
   useEffect(() => {
     setUserLocation(userLocationData.city)
@@ -131,8 +131,8 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, userLocati
 }
 
 export const getServerSideProps = async (context: NextPageContext) => {
-  console.log("IP", context.req.socket.remoteAddress);
-  var result = await api.callIpWho("142.181.228.11" /*context.req.socket.remoteAddress*/);
+  // console.log("IP", context.req.socket.remoteAddress);
+  var result = await api.callIpWho(context.req.socket.remoteAddress);
   console.log("result", result);
   return {
     props: {
