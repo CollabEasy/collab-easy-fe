@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Input, DatePicker, Select, message } from "antd";
 import { AppState } from "state";
 import { connect, ConnectedProps } from "react-redux";
-import { useRouter } from "next/router";
 import moment from "moment";
 import { Dispatch } from "redux";
-import { useRoutesContext } from "components/routeContext";
 import ProfilePicture from "./profilePicture";
 import { SizeType } from "antd/lib/config-provider/SizeContext";
 import {
@@ -27,17 +25,25 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {} & ConnectedProps<typeof connector>;
+type Props = {
+    userLocationData: any
+} & ConnectedProps<typeof connector>;
 
 const EditBasicInformation = ({
     user,
     isUpdatingProfile,
     updateArtistProfile,
-}: Props) => {
-    const router = useRouter();
-    const { toEditProfile } = useRoutesContext();
+    userLocationData
+    }: Props) => {
 
     const [userDataCached, setUserDataCached] = useState<User>(user);
+
+    useEffect(() => {
+        setUserDataCached({
+            ...user,
+            city: userLocationData.city
+        })
+    }, [userLocationData.city])
 
     const [componentSize, setComponentSize] = useState<SizeType | "default">(
         "default"

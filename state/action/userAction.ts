@@ -197,9 +197,3 @@ export const setIsReferralDone = () => ({
   payload: {}
 })
 
-export const setUserLocation = (location: any) => ({
-  type: actionType.SET_USER_LOCATION,
-  payload: {
-    location
-  }
-})

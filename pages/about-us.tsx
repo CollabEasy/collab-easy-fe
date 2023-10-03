@@ -27,7 +27,7 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
-  setUserLocation: (location: any) => dispatch(actions.setUserLocation(location))
+  setUserCity: (location: any) => dispatch(actions.setUserCity(location))
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -40,15 +40,9 @@ type Props = {
 } & ConnectedProps<typeof connector>;
 
 
-const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, userLocationData, user, artistListData, setUserLocation }: Props) => {
+const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const { toDiscover } = useRoutesContext();
-
-  // console.log( "User location" + userLocationData.city);
-
-  useEffect(() => {
-    setUserLocation(userLocationData.city)
-  }, [userLocationData])
 
   useEffect(() => {
     if (user) {
@@ -129,17 +123,5 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, userLocati
     </Layout>
   )
 }
-
-export const getServerSideProps = async (context: NextPageContext) => {
-  // console.log("IP", context.req.socket.remoteAddress);
-  var result = await api.callIpWho(context.req.socket.remoteAddress);
-  // console.log("result", result);
-  return {
-    props: {
-      userLocationData: result,
-    },
-  }
-}
-
 
 export default connector(AboutUs);
