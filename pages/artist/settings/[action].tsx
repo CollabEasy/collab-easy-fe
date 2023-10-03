@@ -68,6 +68,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(actions.getCollabRequestsAction(data)),
 
   resetUserLoggedIn: () => dispatch(resetUserLoggedIn()),
+  setUserCity: (city: string) => dispatch(actions.setUserCity(city))
 });
 
 const normFile = (e: any) => {
@@ -93,7 +94,8 @@ const EditProfile = ({
   fetchArtistSamples,
   getCollabRequestsAction,
   resetUserLoggedIn,
-  userLocationData
+  userLocationData,
+  setUserCity
 }: Props) => {
   const emptyCollabDetails: CollabRequestData = {
     id: "",
@@ -120,6 +122,13 @@ const EditProfile = ({
   const activeTabKey = useRef("1");
 
   const { toDiscover } = useRoutesContext();
+
+  useEffect(() => {
+    console.log("in eidt", user)
+    if(user.city == ''){
+      setUserCity(userLocationData.city)
+    }
+  },[userLocationData.city])
 
   useEffect(() => {
     fetchArtistSamples(user.slug);
@@ -321,7 +330,7 @@ const EditProfile = ({
                   >
                     <div className="settings__basicProfileCard">
                       <h2 className="f-20 ">Your basic personal information</h2>
-                      <EditBasicInformation userLocationData={userLocationData}/>
+                      <EditBasicInformation userLocationData={userLocationData} />
                     </div>
                   </Content>
                 )}
@@ -452,7 +461,7 @@ const EditProfile = ({
 
 export const getServerSideProps = async (context: NextPageContext) => {
   console.log("IP", context.req.socket.remoteAddress);
-  var result = await api.callIpWho("142.181.228.11"/*context.req.socket.remoteAddress*/);
+  var result = await api.callIpWho(context.req.socket.remoteAddress);
   console.log("result from api", result);
   return {
     props: {

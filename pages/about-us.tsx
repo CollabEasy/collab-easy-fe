@@ -27,7 +27,6 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
-  setUserCity: (location: any) => dispatch(actions.setUserCity(location))
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

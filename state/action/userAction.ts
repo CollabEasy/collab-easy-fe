@@ -197,3 +197,9 @@ export const setIsReferralDone = () => ({
   payload: {}
 })
 
+export const setUserCity = (data: any) => ({
+  type: actionType.SET_USER_CITY,
+  payload: {
+    data
+  }
+})

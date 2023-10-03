@@ -39,11 +39,13 @@ const EditBasicInformation = ({
     const [userDataCached, setUserDataCached] = useState<User>(user);
 
     useEffect(() => {
-        setUserDataCached({
-            ...user,
-            city: userLocationData.city
-        })
-    }, [userLocationData.city])
+        if(user.city == '') {
+            setUserDataCached({
+                ...userDataCached,
+                city: userLocationData.city
+            })
+        }
+    },[userLocationData.city])
 
     const [componentSize, setComponentSize] = useState<SizeType | "default">(
         "default"
