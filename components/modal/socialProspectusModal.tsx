@@ -1,4 +1,4 @@
-import { Form, Button, Input, Select, Switch, Tooltip } from "antd";
+import { Form, Button, Input, Select, Switch, Tooltip, message } from "antd";
 import {
     InfoCircleOutlined,
 } from "@ant-design/icons";
@@ -10,7 +10,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { Dispatch } from "redux";
 import { AppState } from "state";
 import * as action from "../../state/action";
-import {ProspectusEntry} from "types/model";
+import { ProspectusEntry } from "types/model";
 import { UserSocialProspectus } from "types/model/user";
 
 const mapStateToProps = (state: AppState) => ({
@@ -86,8 +86,10 @@ const ArtistSocialProspectusModal = ({
                 >
                     <Form.Item label="Platform">
                         <Select
-                            //disabled={prospectusData.social_platform_name != ""}
-                            value={prospectusData.socialPlaformName}
+                            disabled={prospectusData.socialPlaformName !== ""}
+                            value={
+                                prospectusData.socialPlaformName.length !== 0 ? prospectusData.socialPlaformName : "Facebook"
+                            }
                             onChange={(e) => {
                                 setProspectusData((prevState) => ({
                                     ...prevState,
@@ -102,11 +104,15 @@ const ArtistSocialProspectusModal = ({
                             ))}
                         </Select>
                     </Form.Item>
-                    <Form.Item 
-                        label="Handle" 
-                        tooltip={{ 
+                    <Form.Item
+                        label="Handle"
+                        rules={[{ 
+                            required: true, 
+                            type: "string"
+                        }]}
+                        tooltip={{
                             title: "NOTE: If you have selected 'Personal Website' from listed platforms, then make sure you enter the complete URL in handle. For other platforms just eneter your handle. The valid example for complete URL is 'www.personalwesbite.com/myhandle' and handle 'myhandle'.",
-                            icon: <InfoCircleOutlined /> 
+                            icon: <InfoCircleOutlined />
                         }}
                     >
                         <Input
@@ -133,20 +139,20 @@ const ArtistSocialProspectusModal = ({
                         />
                     </Form.Item>
                     <Form.Item
-                      label="Collaborate with others"
-                      valuePropName="checked"
+                        label="Collaborate with others"
+                        valuePropName="checked"
                     >
-                      <Switch
-                        onChange={(e) => {
-                            setProspectusData((prevState) => ({
-                                ...prevState,
-                                upForCollab: e ?  "true": "false",
-                            }));
-                        }}
-                        checked={prospectusData.upForCollab == "true"}
-                        checkedChildren="active"
-                        unCheckedChildren="inactive"
-                      />
+                        <Switch
+                            onChange={(e) => {
+                                setProspectusData((prevState) => ({
+                                    ...prevState,
+                                    upForCollab: e ? "true" : "false",
+                                }));
+                            }}
+                            checked={prospectusData.upForCollab == "true"}
+                            checkedChildren="active"
+                            unCheckedChildren="inactive"
+                        />
                     </Form.Item>
 
                     <Form.Item>
@@ -167,9 +173,9 @@ const ArtistSocialProspectusModal = ({
             </div>
             <div>
                 <p className="mt4">
-                NOTE: If you have selected &apos;Personal Website&apos; from listed platforms, then make sure you
-                enter the complete URL in handle. For other platforms just eneter your handle. 
-                The valid example for complete URL is &apos;www.personalwesbite.com/myhandle&apos; and handle &apos;myhandle&apos;.
+                    NOTE: If you have selected &apos;Personal Website&apos; from listed platforms, then make sure you
+                    enter the complete URL in handle. For other platforms just eneter your handle.
+                    The valid example for complete URL is &apos;www.personalwesbite.com/myhandle&apos; and handle &apos;myhandle&apos;.
                 </p>
             </div>
         </Modal>
