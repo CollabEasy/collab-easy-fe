@@ -202,7 +202,7 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                    <p className="common-p-style font-bold" style={{ paddingLeft: "10px" }}>
                       Creative Writing
                     </p>{" "}
                   </div>
@@ -221,7 +221,7 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                    <p className="common-p-style font-bold" style={{ paddingLeft: "10px" }}>
                       Photography
                     </p>{" "}
                   </div>
@@ -240,7 +240,7 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                    <p className="common-p-style font-bold" style={{ paddingLeft: "10px" }}>
                       Dancing
                     </p>{" "}
                   </div>
@@ -259,7 +259,7 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                    <p className="common-p-style font-bold" style={{ paddingLeft: "10px" }}>
                       Digital Art
                     </p>{" "}
                   </div>
@@ -282,7 +282,7 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                    <p className="common-p-style font-bold" style={{ paddingLeft: "10px" }}>
                       Music
                     </p>{" "}
                   </div>
@@ -301,7 +301,7 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                    <p className="common-p-style font-bold" style={{ paddingLeft: "10px" }}>
                       Journaling
                     </p>{" "}
                   </div>
@@ -324,7 +324,7 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                    <p className="common-p-style font-bold" style={{ paddingLeft: "10px" }}>
                       Singing
                     </p>{" "}
                   </div>
@@ -343,7 +343,7 @@ const Home = ({
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     {" "}
-                    <p className="common-p-style font-bold" style={{paddingLeft: "10px"}}>
+                    <p className="common-p-style font-bold" style={{ paddingLeft: "10px" }}>
                       Painting
                     </p>{" "}
                   </div>
@@ -495,8 +495,10 @@ const Home = ({
                         Get rewarded for almost everything you do on Wondor! 🥳
                       </h3>
                       <p className="common-p-style">
-                        Big or small, every action you take gets you points which can be
-                        redeemed for real money.
+                        Big or small, every action you take gets you points that can be 
+                        redeemed for real money, and the best part is, there's no limit 
+                        on how many points you can earn. So what are you waiting for? 
+                        Hurry up and start earning!
                       </p>
                     </div>
                     <div className="mt-4 mb-4 inspire-btn">
