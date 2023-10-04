@@ -11,6 +11,7 @@ import NotAuthorised from "@/components/error/notAuthorised";
 import { Select } from "antd";
 import { Layout, Menu } from "antd";
 import { routeToHref } from "config/routes";
+import { NextPageContext } from "next";
 import {
   SearchOutlined,
   HomeOutlined,
@@ -43,6 +44,7 @@ import Navbar from "@/components/navbar";
 import Rewards from "@/components/rewards";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
+import api from "api/client";
 
 const { Sider, Content } = Layout;
 
@@ -66,6 +68,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(actions.getCollabRequestsAction(data)),
 
   resetUserLoggedIn: () => dispatch(resetUserLoggedIn()),
+  setUserCity: (city: string) => dispatch(actions.setUserCity(city))
 });
 
 const normFile = (e: any) => {
@@ -77,7 +80,9 @@ const normFile = (e: any) => {
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {} & ConnectedProps<typeof connector>;
+type Props = {
+  userLocationData: any
+} & ConnectedProps<typeof connector>;
 
 const EditProfile = ({
   user,
@@ -89,6 +94,8 @@ const EditProfile = ({
   fetchArtistSamples,
   getCollabRequestsAction,
   resetUserLoggedIn,
+  userLocationData,
+  setUserCity
 }: Props) => {
   const emptyCollabDetails: CollabRequestData = {
     id: "",
@@ -115,6 +122,13 @@ const EditProfile = ({
   const activeTabKey = useRef("1");
 
   const { toDiscover } = useRoutesContext();
+
+  useEffect(() => {
+    console.log("in eidt", user)
+    if(user.city == ''){
+      setUserCity(userLocationData.city)
+    }
+  },[userLocationData.city])
 
   useEffect(() => {
     fetchArtistSamples(user.slug);
@@ -316,7 +330,7 @@ const EditProfile = ({
                   >
                     <div className="settings__basicProfileCard">
                       <h2 className="f-20 ">Your basic personal information</h2>
-                      <EditBasicInformation />
+                      <EditBasicInformation userLocationData={userLocationData} />
                     </div>
                   </Content>
                 )}
@@ -443,5 +457,17 @@ const EditProfile = ({
     </DefaultLayout>
   );
 };
+
+
+export const getServerSideProps = async (context: NextPageContext) => {
+  console.log("IP", context.req.socket.remoteAddress);
+  var result = await api.callIpWho(context.req.socket.remoteAddress);
+  console.log("result from api", result);
+  return {
+    props: {
+      userLocationData: result,
+    },
+  }
+}
 
 export default connector(EditProfile);

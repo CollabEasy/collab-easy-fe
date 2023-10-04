@@ -27,11 +27,13 @@ import { routeToHref } from "config/routes";
 
 import { Button, Card } from "antd";
 import { useRoutesContext } from "components/routeContext";
-import { updateLoginData } from "state/action";
+import { setUserCity, updateLoginData } from "state/action";
 import React, { useEffect, useState } from "react";
-import { LoginModalDetails } from "types/model";
+import { LoginModalDetails, User } from "types/model";
 import { AppState } from "types/states";
 import RefferalCodeModal from "@/components/modal/RefferalCodeModal";
+import { NextPageContext } from "next";
+import api from "api/client";
 
 const { Meta } = Card;
 
@@ -45,14 +47,16 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateLoggedInData: (loginDetails: any) =>
     dispatch(updateLoginData(loginDetails)),
+  setUserCity: (city: string) => dispatch(setUserCity(city)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
   loginModalDetails: LoginModalDetails;
-  user: any;
+  user: User;
   artistListData: any;
+  userLocationData: any;
 } & ConnectedProps<typeof connector>;
 
 const Home = ({
@@ -61,6 +65,8 @@ const Home = ({
   loginModalDetails,
   user,
   artistListData,
+  userLocationData,
+  setUserCity
 }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
@@ -78,6 +84,12 @@ const Home = ({
       setShowRefferalCodeModal(false);
     }
   }, [artistListData]);
+
+  useEffect(() => {
+    if (user.city == ''){
+      setUserCity(userLocationData.city)
+    }
+  },[userLocationData.city]);
 
   return (
     <Layout
@@ -520,5 +532,17 @@ const Home = ({
     </Layout>
   );
 };
+
+
+export const getServerSideProps = async (context: NextPageContext) => {
+  console.log("IP", context.req.socket.remoteAddress);
+  var result = await api.callIpWho(context.req.socket.remoteAddress);
+  console.log("result from api", result);
+  return {
+    props: {
+      userLocationData: result,
+    },
+  }
+}
 
 export default connector(Home);
