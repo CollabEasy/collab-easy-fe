@@ -27,12 +27,11 @@ import { routeToHref } from "config/routes";
 
 import { Button, Card } from "antd";
 import { useRoutesContext } from "components/routeContext";
-import { setUserCity, updateLoginData } from "state/action";
+import { updateLoginData } from "state/action";
 import React, { useEffect, useState } from "react";
 import { LoginModalDetails, User } from "types/model";
 import { AppState } from "types/states";
 import RefferalCodeModal from "@/components/modal/RefferalCodeModal";
-import { GetServerSideProps, NextPageContext } from "next";
 import api from "api/client";
 
 const { Meta } = Card;
@@ -46,8 +45,7 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateLoggedInData: (loginDetails: any) =>
-    dispatch(updateLoginData(loginDetails)),
-  setUserCity: (city: string) => dispatch(setUserCity(city)),
+    dispatch(updateLoginData(loginDetails))
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -56,7 +54,6 @@ type Props = {
   loginModalDetails: LoginModalDetails;
   user: User;
   artistListData: any;
-  userLocationData: any;
 } & ConnectedProps<typeof connector>;
 
 const Home = ({
@@ -65,8 +62,6 @@ const Home = ({
   loginModalDetails,
   user,
   artistListData,
-  userLocationData,
-  setUserCity
 }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
@@ -84,13 +79,6 @@ const Home = ({
       setShowRefferalCodeModal(false);
     }
   }, [artistListData]);
-
-  useEffect(() => {
-    console.log('in index', userLocationData);
-    if (user.city == ''){
-      setUserCity(userLocationData.city)
-    }
-  },[userLocationData.city]);
 
   return (
     <Layout
@@ -533,27 +521,5 @@ const Home = ({
     </Layout>
   );
 };
-
-
-// export const getServerSideProps = async (context: NextPageContext) => {
-//   var result = await api.fetcher("142.181.228.11" /*context.req.socket.remoteAddress*/);
-//   return {
-//     props: {
-//       userLocationData: result,
-//     },
-//   }
-// }
-
-export const getServerSideProps: GetServerSideProps = async ctx => {
-  // ... implementations
-   const result = await api.fetcher(ctx.req.socket.remoteAddress);
-  
-   console.log(result)
-   return {
-      props: {
-          userLocationData: result,
-      },
-  }
-}
 
 export default connector(Home);

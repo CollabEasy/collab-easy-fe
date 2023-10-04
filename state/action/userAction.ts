@@ -196,10 +196,3 @@ export const setIsReferralDone = () => ({
   type: actionType.SET_IS_REFERRAL_DONE,
   payload: {}
 })
-
-export const setUserCity = (data: any) => ({
-  type: actionType.SET_USER_CITY,
-  payload: {
-    data
-  }
-})

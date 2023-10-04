@@ -11,7 +11,6 @@ import NotAuthorised from "@/components/error/notAuthorised";
 import { Select } from "antd";
 import { Layout, Menu } from "antd";
 import { routeToHref } from "config/routes";
-import { NextPageContext } from "next";
 import {
   SearchOutlined,
   HomeOutlined,
@@ -44,7 +43,6 @@ import Navbar from "@/components/navbar";
 import Rewards from "@/components/rewards";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
-import api from "api/client";
 
 const { Sider, Content } = Layout;
 
@@ -67,8 +65,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   getCollabRequestsAction: (data: SearchCollab) =>
     dispatch(actions.getCollabRequestsAction(data)),
 
-  resetUserLoggedIn: () => dispatch(resetUserLoggedIn()),
-  setUserCity: (city: string) => dispatch(actions.setUserCity(city))
+  resetUserLoggedIn: () => dispatch(resetUserLoggedIn())
 });
 
 const normFile = (e: any) => {
@@ -80,9 +77,7 @@ const normFile = (e: any) => {
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {
-  userLocationData: any
-} & ConnectedProps<typeof connector>;
+type Props = {} & ConnectedProps<typeof connector>;
 
 const EditProfile = ({
   user,
@@ -94,8 +89,6 @@ const EditProfile = ({
   fetchArtistSamples,
   getCollabRequestsAction,
   resetUserLoggedIn,
-  userLocationData,
-  setUserCity
 }: Props) => {
   const emptyCollabDetails: CollabRequestData = {
     id: "",
@@ -122,13 +115,6 @@ const EditProfile = ({
   const activeTabKey = useRef("1");
 
   const { toDiscover } = useRoutesContext();
-
-  useEffect(() => {
-    console.log('userlocation', userLocationData)
-    if(user.city == ''){
-      setUserCity(userLocationData.city)
-    }
-  },[userLocationData.city])
 
   useEffect(() => {
     fetchArtistSamples(user.slug);
@@ -330,7 +316,7 @@ const EditProfile = ({
                   >
                     <div className="settings__basicProfileCard">
                       <h2 className="f-20 ">Your basic personal information</h2>
-                      <EditBasicInformation userLocationData={userLocationData} />
+                      <EditBasicInformation />
                     </div>
                   </Content>
                 )}
@@ -457,16 +443,5 @@ const EditProfile = ({
     </DefaultLayout>
   );
 };
-
-
-export const getServerSideProps = async (context: NextPageContext) => {
-  console.log(context)
-  var result = await api.fetcher(context.req.socket.remoteAddress);
-  return {
-    props: {
-      userLocationData: result,
-    },
-  }
-}
 
 export default connector(EditProfile);

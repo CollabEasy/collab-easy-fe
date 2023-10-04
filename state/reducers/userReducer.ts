@@ -54,7 +54,7 @@ const userReducer = (state = initialState, action): UserState => {
       return {
         ...state,
         isFetchingUser: false,
-        user: { new_user: false, ...state.user },
+        user: { new_user: false },
         isLoggedIn: false,
         errors: {},
       };
@@ -122,13 +122,6 @@ const userReducer = (state = initialState, action): UserState => {
           new_user: action.payload.data,
         },
       };
-    case actionType.SET_USER_CITY:
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          city: action.payload.data,
-        }};
     case actionType.SHOW_PROFILE_PICTURE_UPDATE_MODAL:
       return {
         ...state,
