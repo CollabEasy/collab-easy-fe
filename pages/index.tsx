@@ -86,6 +86,7 @@ const Home = ({
   }, [artistListData]);
 
   useEffect(() => {
+    console.log('in index', userLocationData);
     if (user.city == ''){
       setUserCity(userLocationData.city)
     }
@@ -545,7 +546,7 @@ const Home = ({
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   // ... implementations
-   const result = await api.fetcher("142.181.228.11" /*context.req.socket.remoteAddress*/);
+   const result = await api.fetcher(ctx.req.socket.remoteAddress);
   
    console.log(result)
    return {
