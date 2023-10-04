@@ -496,7 +496,7 @@ const Home = ({
                       </h3>
                       <p className="common-p-style">
                         Big or small, every action you take gets you points that can be 
-                        redeemed for real money, and the best part is, there's no limit 
+                        redeemed for real money, and the best part is, there&apos;s no limit 
                         on how many points you can earn. So what are you waiting for? 
                         Hurry up and start earning!
                       </p>
