@@ -32,7 +32,7 @@ import React, { useEffect, useState } from "react";
 import { LoginModalDetails, User } from "types/model";
 import { AppState } from "types/states";
 import RefferalCodeModal from "@/components/modal/RefferalCodeModal";
-import { NextPageContext } from "next";
+import { GetServerSideProps, NextPageContext } from "next";
 import api from "api/client";
 
 const { Meta } = Card;
@@ -534,12 +534,24 @@ const Home = ({
 };
 
 
-export const getServerSideProps = async (context: NextPageContext) => {
-  var result = await api.callIpWho(context.req.socket.remoteAddress);
-  return {
-    props: {
-      userLocationData: result,
-    },
+// export const getServerSideProps = async (context: NextPageContext) => {
+//   var result = await api.fetcher("142.181.228.11" /*context.req.socket.remoteAddress*/);
+//   return {
+//     props: {
+//       userLocationData: result,
+//     },
+//   }
+// }
+
+export const getServerSideProps: GetServerSideProps = async ctx => {
+  // ... implementations
+   const result = await api.fetcher("142.181.228.11" /*context.req.socket.remoteAddress*/);
+  
+   console.log(result)
+   return {
+      props: {
+          userLocationData: result,
+      },
   }
 }
 
