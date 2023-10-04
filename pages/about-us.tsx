@@ -15,8 +15,6 @@ import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
 import Layout from '@/components/layout';
-import * as actions from "state/action";
-import api from 'api/client';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -35,7 +33,6 @@ type Props = {
   loginModalDetails: LoginModalDetails,
   user: any,
   artistListData: any,
-  userLocationData: any
 } & ConnectedProps<typeof connector>;
 
 
