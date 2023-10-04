@@ -8,6 +8,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
 import * as actions from "../../state/action";
 import { User } from "types/model";
+import { Country, State, City }  from 'country-state-city';
 // import SubmitImg from 'public/images/submit.png';
 
 const layout = {
@@ -129,6 +130,8 @@ const NewUser = ({
     setCollaborationCheck(val);
   };
 
+  console.log(Country.getAllCountries());
+  console.log(State.getStatesOfCountry("US"));
   return (
     <Modal
       visible={true}
