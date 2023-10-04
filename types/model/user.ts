@@ -8,6 +8,7 @@ export interface User {
   profile_bits?: number;
   phone_number?: number;
   country?: string;
+  state?: string;
   city?: string;
   profile_pic_url?: string;
   timezone?: string;
