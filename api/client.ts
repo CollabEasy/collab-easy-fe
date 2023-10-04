@@ -6,9 +6,4 @@ export default class api {
     const url = `${Config.backendEndpoint}/${path}`
     return axios({ url, ...options }).then((res) => res.data);
   }
-
-  static async callIpWho(IP : string, options?: object) {
-    const url = `${Config.IpWhoEndpoint}/${IP}`
-    return axios({ url, ...options }).then((res) => res.data);
-  }
 }

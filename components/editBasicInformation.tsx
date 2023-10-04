@@ -25,27 +25,16 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {
-    userLocationData: any
-} & ConnectedProps<typeof connector>;
+type Props = {} & ConnectedProps<typeof connector>;
 
 const EditBasicInformation = ({
     user,
     isUpdatingProfile,
     updateArtistProfile,
-    userLocationData
     }: Props) => {
 
     const [userDataCached, setUserDataCached] = useState<User>(user);
 
-    useEffect(() => {
-        if(user.city == '') {
-            setUserDataCached({
-                ...userDataCached,
-                city: userLocationData.city
-            })
-        }
-    },[userLocationData.city])
 
     const [componentSize, setComponentSize] = useState<SizeType | "default">(
         "default"
