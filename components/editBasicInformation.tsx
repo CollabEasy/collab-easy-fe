@@ -39,6 +39,7 @@ const EditBasicInformation = ({
     const [userDataCached, setUserDataCached] = useState<User>(user);
 
     useEffect(() => {
+        console.log('in edit', userLocationData);
         if(user.city == '') {
             setUserDataCached({
                 ...userDataCached,
