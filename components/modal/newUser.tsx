@@ -46,6 +46,7 @@ const mapDispatchToProps = (dispatch) => ({
   postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistPreference: (key: string, value: any) =>
     dispatch(actions.updateArtistPreference(key, value)),
+  updateArtistProfile: (user: any) => dispatch(actions.updateArtistProfile(user)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -64,6 +65,7 @@ const NewUser = ({
   postArtistArt,
   getAllCategories,
   updateArtistPreference,
+  updateArtistProfile,
 }: Props) => {
   const [userDataCached, setUserDataCached] = useState<User>(user);
   const [selectedCategories, setSelectedCategories] = useState("");
@@ -119,6 +121,7 @@ const NewUser = ({
     postArtistArt(dataToSend);
     updateArtistPreference("upForCollaboration", collaborationCheck);
     setNewUser(false);
+    updateArtistProfile(userDataCached);
     handleNext();
   };
 
@@ -163,7 +166,8 @@ const NewUser = ({
                   setUserDataCached((prevState) => ({
                     ...prevState,
                     city: e.target.value,
-                  }))}}
+                  }))
+                }}
               />
             </Form.Item>
             <Form.Item
