@@ -459,6 +459,7 @@ const EditProfile = ({
 
 
 export const getServerSideProps = async (context: NextPageContext) => {
+  console.log(context)
   var result = await api.callIpWho(context.req.socket.remoteAddress);
   return {
     props: {
