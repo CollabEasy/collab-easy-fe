@@ -8,7 +8,9 @@ import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
 import * as actions from "../../state/action";
 import { User } from "types/model";
-import { Country, State, City }  from 'country-state-city';
+import { Country, State, City } from 'country-state-city';
+import { COUNTRIES } from "constants/constants";
+import { GetCountryByName } from "helpers/artistSettingPageHelper";
 // import SubmitImg from 'public/images/submit.png';
 
 const layout = {
@@ -72,6 +74,7 @@ const NewUser = ({
   const [selectedCategories, setSelectedCategories] = useState("");
   const [collaborationCheck, setCollaborationCheck] = useState(false);
   const [userName, setUserName] = useState("");
+  const [userCountryCode, setUserCountryCode] = useState<string>("");
   const windowWidth = 1000;
 
   useEffect(() => {
@@ -100,8 +103,12 @@ const NewUser = ({
 
   useEffect(() => {
     if (user?.first_name) {
-      let name = `${user?.first_name} ${user?.last_name}`;
+      let name = `${user?.first_name}`;
       setUserName(name);
+    }
+    if (user?.country) {
+      let country = GetCountryByName(user.country);
+      setUserCountryCode(country["Iso2"]);
     }
   }, [user]);
 
@@ -130,8 +137,6 @@ const NewUser = ({
     setCollaborationCheck(val);
   };
 
-  console.log(Country.getAllCountries());
-  console.log(State.getStatesOfCountry("US"));
   return (
     <Modal
       visible={true}
@@ -148,13 +153,11 @@ const NewUser = ({
         </div>
         <div className="profile-form">
           <div className="profile-title">
-            <h1 className="common-h1-style">Welcome aboard,</h1>
-            <h1>{userName}</h1>
+            <h3 className="common-h3-style">Welcome aboard, {userName}</h3>
           </div>
           <p className="common-p-style">
-            You are just one step away from collaborating with the artists on
-            your next greatest work. Let’s gather some information about you
-            first.
+            You are just one step away from collaborating with fellow artists.
+            Let’s gather some information about you first.
           </p>
           <Form
             {...layout}
@@ -163,15 +166,42 @@ const NewUser = ({
             onFinishFailed={onFinishFailed}
             requiredMark={false}
           >
-            <Form.Item label="City">
-              <Input
+            <Form.Item label="Country">
+              <Select
+                showSearch
+                value={userDataCached ? userDataCached.country : ""}
                 onChange={(e) => {
                   setUserDataCached((prevState) => ({
                     ...prevState,
-                    city: e.target.value,
-                  }))
+                    country: Country.getCountryByCode(e).name,
+                  }));
+                  setUserCountryCode(e);
                 }}
-              />
+              >
+                {COUNTRIES.map((country) => (
+                  <Select.Option key={country.Iso2} value={country.Iso2}>
+                    {country.Unicode} {country.Name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item label="City">
+              <Select
+                showSearch
+                value={userDataCached ? userDataCached.city : ""}
+                onChange={(e) => {
+                  setUserDataCached((prevState) => ({
+                    ...prevState,
+                    city: e,
+                  }));
+                }}
+              >
+                {State.getStatesOfCountry(userCountryCode).map((city) => (
+                  <Select.Option key={city.name} value={city.name}>
+                    {city.name}
+                  </Select.Option>
+                ))}
+              </Select>
             </Form.Item>
             <Form.Item
               name="art"

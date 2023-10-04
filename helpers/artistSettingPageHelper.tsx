@@ -18,9 +18,19 @@ export function GetSocialPlatformName(id: number) {
     return "";
 };
 
-export function GetCountryName(country_iso: string) {
+export function GetCountryByISO(country_iso: string) {
     for (var i = 0; i < COUNTRIES.length; i++) {
-        if (COUNTRIES[i]["Dial"] == country_iso) {
+        if (COUNTRIES[i]["Dial"] === country_iso) {
+            return COUNTRIES[i];
+        }
+    }
+    return {};
+};
+
+export function GetCountryByName(country_name: string) {
+    console.log(country_name);
+    for (var i = 0; i < COUNTRIES.length; i++) {
+        if (COUNTRIES[i]["Name"] === country_name) {
             return COUNTRIES[i];
         }
     }
