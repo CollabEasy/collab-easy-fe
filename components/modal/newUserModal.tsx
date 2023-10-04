@@ -51,9 +51,9 @@ const NewUserModal = ({ user }: Props) => {
 
   function handleNextModal() {
     if (modal === 1) {
-      setVisible(false);
+      setVisible(true);
     }
-    setModal(modal + 1);
+    setModal(0);
   }
 
   function setVisibility(visible: boolean) {
@@ -62,7 +62,7 @@ const NewUserModal = ({ user }: Props) => {
 
   return (
     <>
-      {modal === 0 && <NewUser visible={visible} handleNext={handleNextModal} />}
+      {<NewUser visible={true} handleNext={handleNextModal} />}
       {modal === 1 && <RefferalCodeModal visible={visible} handleNext={handleNextModal} />}
     </>
   );
