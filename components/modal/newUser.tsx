@@ -12,6 +12,7 @@ import { Country, State, City } from 'country-state-city';
 import { COUNTRIES } from "constants/constants";
 import { GetCountryByName } from "helpers/artistSettingPageHelper";
 // import SubmitImg from 'public/images/submit.png';
+// https://www.npmjs.com/package/country-state-city
 
 const layout = {
   labelCol: {
@@ -196,7 +197,7 @@ const NewUser = ({
                   }));
                 }}
               >
-                {State.getStatesOfCountry(userCountryCode).map((city) => (
+                {City.getCitiesOfCountry(userCountryCode).map((city) => (
                   <Select.Option key={city.name} value={city.name}>
                     {city.name}
                   </Select.Option>
