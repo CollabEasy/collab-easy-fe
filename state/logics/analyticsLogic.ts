@@ -22,7 +22,6 @@ export const fetchUserAnalytics = createLogic<
       );
       dispatch(actions.fetchUserAnalyticsSuccess(result));
     } catch (error) {
-      // console.log("error : ", error);
     } finally {
       done();
     }

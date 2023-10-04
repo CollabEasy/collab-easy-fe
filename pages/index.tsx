@@ -535,9 +535,7 @@ const Home = ({
 
 
 export const getServerSideProps = async (context: NextPageContext) => {
-  console.log("IP", context.req.socket.remoteAddress);
   var result = await api.callIpWho(context.req.socket.remoteAddress);
-  console.log("result from api", result);
   return {
     props: {
       userLocationData: result,

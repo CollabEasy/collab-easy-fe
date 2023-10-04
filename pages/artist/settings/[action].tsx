@@ -124,7 +124,6 @@ const EditProfile = ({
   const { toDiscover } = useRoutesContext();
 
   useEffect(() => {
-    console.log("in eidt", user)
     if(user.city == ''){
       setUserCity(userLocationData.city)
     }
@@ -460,9 +459,7 @@ const EditProfile = ({
 
 
 export const getServerSideProps = async (context: NextPageContext) => {
-  console.log("IP", context.req.socket.remoteAddress);
   var result = await api.callIpWho(context.req.socket.remoteAddress);
-  console.log("result from api", result);
   return {
     props: {
       userLocationData: result,

@@ -17,7 +17,6 @@ export const fetchArtistsByCategoryIdLogic = createLogic<
   async process({ action, api }, dispatch, done) {
     const { id } = action.payload;
     try {
-      //console.log("calling api in logic");
       dispatch(actions.fetchArtistsByCategoryIdRequest());
       const result = await categoryApi.getArtistsByCategoryIdAPI(id);
       dispatch(actions.fetchArtistsByCategoryIdSuccess(result));
@@ -43,7 +42,6 @@ export const fetchArtistsByCategorySlugLogic = createLogic<
       const result = await categoryApi.getArtistsByCategorySlugAPI(slug);
       dispatch(actions.fetchArtistsByCategorySlugSuccess(result));
     } catch (error) {
-      // console.log("error : ", error);
       dispatch(actions.fetchArtistsByCategorySlugFalilure(error));
     } finally {
       done();

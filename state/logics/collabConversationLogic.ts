@@ -20,7 +20,6 @@ export const fetchCollabConversationByCollabIdLogic = createLogic<
       const result = await collabConversationApi.fetchCollabConversationAPI(collabId);
       dispatch(actions.fetchCollabConversationByCollabIdSuccess([result]));
     } catch (error) {
-     // console.log("error : ", error);
     } finally {
       done();
     }

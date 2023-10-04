@@ -81,7 +81,6 @@ const NewUser = ({
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    // console.log("Failed:", errorInfo);
   };
 
   const getModalWidth = (): number => {

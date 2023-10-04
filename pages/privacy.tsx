@@ -51,7 +51,6 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
     }
   }, [artistListData]);
 
-  // console.log("loginModalDetails ", loginModalDetails);
   return (
     <Layout
       title={"Privacy Policy | Wondor"}

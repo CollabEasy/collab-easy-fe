@@ -68,7 +68,7 @@ const ArtistSocialProspectusModal = ({
     const hideProspectusEntryModal = (isUpdatingSocialProspectus) => {
         setViewModal(isUpdatingSocialProspectus);
     }
-    //console.log("isViewMode ", isViewMode, "isUpdatingSocialProspectus ", isUpdatingSocialProspectus, "showModal ", showModal);
+
     return (
         <Modal
             closable
