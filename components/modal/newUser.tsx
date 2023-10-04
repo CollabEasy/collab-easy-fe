@@ -76,6 +76,7 @@ const NewUser = ({
   const [collaborationCheck, setCollaborationCheck] = useState(false);
   const [userName, setUserName] = useState("");
   const [userCountryCode, setUserCountryCode] = useState<string>("");
+  const [userStateCode, setUserStateCode] = useState<string>("");
   const windowWidth = 1000;
 
   useEffect(() => {
@@ -110,6 +111,14 @@ const NewUser = ({
     if (user?.country) {
       let country = GetCountryByName(user.country);
       setUserCountryCode(country["Iso2"]);
+      if (user?.state) {
+        let states = State.getStatesOfCountry(userCountryCode);
+        states.forEach((state) => {
+          if (state["name"] === user.state) {
+            setUserStateCode(state["isoCode"]);
+          }
+        });
+      }
     }
   }, [user]);
 
@@ -186,6 +195,25 @@ const NewUser = ({
                 ))}
               </Select>
             </Form.Item>
+            <Form.Item label="State">
+              <Select
+                showSearch
+                value={userDataCached ? userDataCached.state : ""}
+                onChange={(e) => {
+                  setUserDataCached((prevState) => ({
+                    ...prevState,
+                    state: State.getStateByCodeAndCountry(e, userCountryCode).name,
+                  }));
+                  setUserStateCode(e);
+                }}
+              >
+                {State.getStatesOfCountry(userCountryCode).map((state) => (
+                  <Select.Option key={state.name} value={state.isoCode}>
+                    {state.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
             <Form.Item label="City">
               <Select
                 showSearch
@@ -197,7 +225,7 @@ const NewUser = ({
                   }));
                 }}
               >
-                {City.getCitiesOfCountry(userCountryCode).map((city) => (
+                {City.getCitiesOfState(userCountryCode, userStateCode).map((city) => (
                   <Select.Option key={city.name} value={city.name}>
                     {city.name}
                   </Select.Option>
