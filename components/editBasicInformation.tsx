@@ -168,6 +168,17 @@ const EditBasicInformation = ({
                         ))}
                     </Select>
                 </Form.Item>
+                <Form.Item label="State">
+                    <Input
+                        value={userDataCached ? userDataCached.state : ""}
+                        onChange={(e) => {
+                            setUserDataCached((prevState) => ({
+                                ...prevState,
+                                state: e.target.value,
+                            }));
+                        }}
+                    />
+                </Form.Item>
                 <Form.Item label="City">
                     <Input
                         value={userDataCached ? userDataCached.city : ""}
