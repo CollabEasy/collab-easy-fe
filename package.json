@@ -19,6 +19,7 @@
     "bootstrap": "^5.0.2",
     "chart.js": "^4.2.1",
     "chartjs": "0.3.24",
+    "country-state-city": "^3.2.1",
     "crypto-js": "^4.1.1",
     "date-fns": "2.29.3",
     "dompurify": "^2.3.6",

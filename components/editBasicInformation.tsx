@@ -9,8 +9,10 @@ import { SizeType } from "antd/lib/config-provider/SizeContext";
 import {
     updateArtistProfile,
 } from "state/action";
+import { Country, State, City } from 'country-state-city';
 import { COUNTRIES, GENDERS } from "constants/constants";
 import { User } from "types/model";
+import { GetCountryByName } from "helpers/artistSettingPageHelper";
 
 const mapStateToProps = (state: AppState) => {
     return {
@@ -31,10 +33,11 @@ const EditBasicInformation = ({
     user,
     isUpdatingProfile,
     updateArtistProfile,
-    }: Props) => {
+}: Props) => {
 
     const [userDataCached, setUserDataCached] = useState<User>(user);
-
+    const [userCountryCode, setUserCountryCode] = useState<string>("");
+    const [userStateCode, setUserStateCode] = useState<string>("");
 
     const [componentSize, setComponentSize] = useState<SizeType | "default">(
         "default"
@@ -53,6 +56,21 @@ const EditBasicInformation = ({
     const tailLayout = {
         wrapperCol: { offset: 8, span: 16 },
     };
+
+    useEffect(() => {
+        if (user?.country) {
+            let country = GetCountryByName(user.country);
+            setUserCountryCode(country["Iso2"]);
+            if (user?.state) {
+                let states = State.getStatesOfCountry(userCountryCode);
+                states.forEach((state) => {
+                    if (state["name"] === user.state) {
+                        setUserStateCode(state["isoCode"]);
+                    }
+                });
+            }
+        }
+    }, [user]);
 
     function AboveEighteen(dob) {
         return moment().diff(dob, 'years') >= 18;
@@ -159,36 +177,52 @@ const EditBasicInformation = ({
                                 ...prevState,
                                 country: e,
                             }));
+                            setUserCountryCode(e);
                         }}
                     >
                         {COUNTRIES.map((country) => (
-                            <Select.Option key={country.Iso2} value={country.Name}>
+                            <Select.Option key={country.Iso2} value={country.Iso2}>
                                 {country.Unicode} {country.Name}
                             </Select.Option>
                         ))}
                     </Select>
                 </Form.Item>
                 <Form.Item label="State">
-                    <Input
+                    <Select
+                        showSearch
                         value={userDataCached ? userDataCached.state : ""}
                         onChange={(e) => {
                             setUserDataCached((prevState) => ({
                                 ...prevState,
-                                state: e.target.value,
+                                state: State.getStateByCodeAndCountry(e, userCountryCode).name,
                             }));
+                            setUserStateCode(e);
                         }}
-                    />
+                    >
+                        {State.getStatesOfCountry(userCountryCode).map((state) => (
+                            <Select.Option key={state.name} value={state.isoCode}>
+                                {state.name}
+                            </Select.Option>
+                        ))}
+                    </Select>
                 </Form.Item>
                 <Form.Item label="City">
-                    <Input
+                    <Select
+                        showSearch
                         value={userDataCached ? userDataCached.city : ""}
                         onChange={(e) => {
                             setUserDataCached((prevState) => ({
                                 ...prevState,
-                                city: e.target.value,
+                                city: e,
                             }));
                         }}
-                    />
+                    >
+                        {City.getCitiesOfState(userCountryCode, userStateCode).map((city) => (
+                            <Select.Option key={city.name} value={city.name}>
+                                {city.name}
+                            </Select.Option>
+                        ))}
+                    </Select>
                 </Form.Item>
                 <Form.Item label="Bio">
                     <Input.TextArea

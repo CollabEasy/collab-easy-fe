@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import { RightCircleFilled } from "@ant-design/icons";
-import { Form, Switch, Modal, Button, Select, message } from "antd";
+import { Form, Switch, Modal, Button, Select, message, Input } from "antd";
 import Image from "next/image";
 import landingPageImg from "public/images/profile.png";
 import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
 import * as actions from "../../state/action";
+import { User } from "types/model";
+import { Country, State, City } from 'country-state-city';
+import { COUNTRIES } from "constants/constants";
+import { GetCountryByName } from "helpers/artistSettingPageHelper";
 // import SubmitImg from 'public/images/submit.png';
+// https://www.npmjs.com/package/country-state-city
 
 const layout = {
   labelCol: {
@@ -45,6 +50,7 @@ const mapDispatchToProps = (dispatch) => ({
   postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistPreference: (key: string, value: any) =>
     dispatch(actions.updateArtistPreference(key, value)),
+  updateArtistProfile: (user: any) => dispatch(actions.updateArtistProfile(user)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -63,10 +69,14 @@ const NewUser = ({
   postArtistArt,
   getAllCategories,
   updateArtistPreference,
+  updateArtistProfile,
 }: Props) => {
+  const [userDataCached, setUserDataCached] = useState<User>(user);
   const [selectedCategories, setSelectedCategories] = useState("");
   const [collaborationCheck, setCollaborationCheck] = useState(false);
   const [userName, setUserName] = useState("");
+  const [userCountryCode, setUserCountryCode] = useState<string>("");
+  const [userStateCode, setUserStateCode] = useState<string>("");
   const windowWidth = 1000;
 
   useEffect(() => {
@@ -95,8 +105,20 @@ const NewUser = ({
 
   useEffect(() => {
     if (user?.first_name) {
-      let name = `${user?.first_name} ${user?.last_name}`;
+      let name = `${user?.first_name}`;
       setUserName(name);
+    }
+    if (user?.country) {
+      let country = GetCountryByName(user.country);
+      setUserCountryCode(country["Iso2"]);
+      if (user?.state) {
+        let states = State.getStatesOfCountry(userCountryCode);
+        states.forEach((state) => {
+          if (state["name"] === user.state) {
+            setUserStateCode(state["isoCode"]);
+          }
+        });
+      }
     }
   }, [user]);
 
@@ -117,6 +139,7 @@ const NewUser = ({
     postArtistArt(dataToSend);
     updateArtistPreference("upForCollaboration", collaborationCheck);
     setNewUser(false);
+    updateArtistProfile(userDataCached);
     handleNext();
   };
 
@@ -130,9 +153,8 @@ const NewUser = ({
       destroyOnClose={true}
       closable={false}
       footer={null}
-      width={windowWidth > 680 ? 900 : 450}
+      width={windowWidth > 680 ? 1100 : 450}
       bodyStyle={{ padding: 0 }}
-      //bodyStyle={{ height: "500px", padding: "0px" }}
     >
       <div className="container">
         <div className="left-image">
@@ -140,13 +162,11 @@ const NewUser = ({
         </div>
         <div className="profile-form">
           <div className="profile-title">
-            <h1 className="common-h1-style">Welcome aboard,</h1>
-            <h1>{userName}</h1>
+            <h3 className="common-h3-style">Welcome aboard, {userName}</h3>
           </div>
           <p className="common-p-style">
-            You are just one step away from collaborating with the artists on
-            your next greatest work. Let’s gather some information about you
-            first.
+            You are just one step away from collaborating with fellow artists.
+            Let’s gather some information about you first.
           </p>
           <Form
             {...layout}
@@ -155,6 +175,62 @@ const NewUser = ({
             onFinishFailed={onFinishFailed}
             requiredMark={false}
           >
+            <Form.Item label="Country">
+              <Select
+                showSearch
+                value={userDataCached ? userDataCached.country : ""}
+                onChange={(e) => {
+                  setUserDataCached((prevState) => ({
+                    ...prevState,
+                    country: Country.getCountryByCode(e).name,
+                  }));
+                  setUserCountryCode(e);
+                }}
+              >
+                {COUNTRIES.map((country) => (
+                  <Select.Option key={country.Iso2} value={country.Iso2}>
+                    {country.Unicode} {country.Name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item label="State">
+              <Select
+                showSearch
+                value={userDataCached ? userDataCached.state : ""}
+                onChange={(e) => {
+                  setUserDataCached((prevState) => ({
+                    ...prevState,
+                    state: State.getStateByCodeAndCountry(e, userCountryCode).name,
+                  }));
+                  setUserStateCode(e);
+                }}
+              >
+                {State.getStatesOfCountry(userCountryCode).map((state) => (
+                  <Select.Option key={state.name} value={state.isoCode}>
+                    {state.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item label="City">
+              <Select
+                showSearch
+                value={userDataCached ? userDataCached.city : ""}
+                onChange={(e) => {
+                  setUserDataCached((prevState) => ({
+                    ...prevState,
+                    city: e,
+                  }));
+                }}
+              >
+                {City.getCitiesOfState(userCountryCode, userStateCode).map((city) => (
+                  <Select.Option key={city.name} value={city.name}>
+                    {city.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
             <Form.Item
               name="art"
               label="Art Styles"
