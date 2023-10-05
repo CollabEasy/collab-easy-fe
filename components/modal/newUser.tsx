@@ -153,9 +153,8 @@ const NewUser = ({
       destroyOnClose={true}
       closable={false}
       footer={null}
-      width={windowWidth > 680 ? 1000 : 450}
+      width={windowWidth > 680 ? 1100 : 450}
       bodyStyle={{ padding: 0 }}
-    //bodyStyle={{ height: "500px", padding: "0px" }}
     >
       <div className="container">
         <div className="left-image">
