@@ -149,7 +149,7 @@ const NewUser = ({
 
   return (
     <Modal
-      visible={true}
+      visible={visible}
       destroyOnClose={true}
       closable={false}
       footer={null}
