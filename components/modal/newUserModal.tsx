@@ -62,7 +62,7 @@ const NewUserModal = ({ user }: Props) => {
 
   return (
     <>
-      {modal === 0 && <NewUser visible={true} handleNext={handleNextModal} />}
+      {modal === 0 && <NewUser visible={visible} handleNext={handleNextModal} />}
       {modal === 1 && <RefferalCodeModal visible={visible} handleNext={handleNextModal} />}
     </>
   );
