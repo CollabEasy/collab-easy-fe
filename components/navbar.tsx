@@ -12,7 +12,6 @@ import { AppState } from "types/states";
 import Image from "next/image";
 import titleDesktopImg from "../public/images/title-desktop.svg";
 import titleMobileImg from "../public/images/logo.svg";
-import hamburgerImg from "../public/images/hamburger.png";
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 import { openLoginModalAction, resetUserLoggedIn } from "state/action";
