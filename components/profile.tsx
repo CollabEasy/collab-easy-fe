@@ -198,8 +198,7 @@ const Profile = ({
                   🎉. Don&apos;t forget to collaborate with fellow artists! Find
                   who is available
                   <Link href={routeToHref(toDiscover())} passHref>
-                    {" "}
-                    now.
+                    {" now"}
                   </Link>
                 </p>
               </div>
@@ -230,7 +229,6 @@ const Profile = ({
                 href={routeToHref(toEditProfile("profile", "profile"))}
                 passHref
               >
-                {" "}
                 Edit profile.
               </Link>
             </Button>
