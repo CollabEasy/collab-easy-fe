@@ -17,7 +17,7 @@ import SendCollabRequestModal from "./modal/sendCollabRequestModal";
 import CollabRequest from "./collabRequestSend";
 import { encryptContent } from "../helpers/helper";
 import { routeToHref } from "config/routes";
-import Layout from 'components/layout';
+import Layout from "components/layout";
 import {
   StarFilled,
   CloseOutlined,
@@ -25,9 +25,12 @@ import {
   PictureOutlined,
 } from "@ant-design/icons";
 import { useRoutesContext } from "components/routeContext";
-import avatarImage from '../public/images/avatar.png';
-import { GetPendingCollabRequest, GetUserSkills } from '../helpers/profilePageHelper';
-import { ConvertTimestampToDate } from '../helpers/collabCardHelper';
+import avatarImage from "../public/images/avatar.png";
+import {
+  GetPendingCollabRequest,
+  GetUserSkills,
+} from "../helpers/profilePageHelper";
+import { ConvertTimestampToDate } from "../helpers/collabCardHelper";
 import ProfilePicture from "./profilePicture";
 
 const { Meta } = Card;
@@ -39,14 +42,22 @@ const mapStateToProps = (state: AppState) => {
   const userSamples = state.sample.samples;
   const isFetchingSamples = state.sample.isFetchingSamples;
   const showCollabModal = state.collab.showCollabModal;
-  return { showCollabModal, userSamples, collab, isFetchingCollabs, isFetchingSamples };
+  return {
+    showCollabModal,
+    userSamples,
+    collab,
+    isFetchingCollabs,
+    isFetchingSamples,
+  };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistSamples: (slug: string) =>
     dispatch(action.fetchArtistSamples(slug)),
-  getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
-  setShowCollabModalState: (show: boolean, id: string) => dispatch(action.setShowCollabModalState(show, id)),
+  getCollabRequestsAction: (data: SearchCollab) =>
+    dispatch(action.getCollabRequestsAction(data)),
+  setShowCollabModalState: (show: boolean, id: string) =>
+    dispatch(action.setShowCollabModalState(show, id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -70,7 +81,7 @@ const Profile = ({
   isFetchingSamples,
   setShowCollabModalState,
   fetchArtistSamples,
-  getCollabRequestsAction
+  getCollabRequestsAction,
 }: Props) => {
   const router = useRouter();
   const emptyCollabDetails: CollabRequestData = {
@@ -80,14 +91,15 @@ const Profile = ({
     collabDate: undefined,
     requestData: {
       message: "",
-      collabTheme: ""
+      collabTheme: "",
     },
     status: "",
     createdAt: undefined,
-    updatedAt: undefined
+    updatedAt: undefined,
   };
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);
-  const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
+  const [collabRequestDetails, setCollabRequestDetails] =
+    useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
 
   const { toEditProfile, toDiscover } = useRoutesContext();
@@ -95,19 +107,28 @@ const Profile = ({
   useEffect(() => {
     fetchArtistSamples(user.slug);
     if (isSelf) {
-      getCollabRequestsAction({
-      })
+      getCollabRequestsAction({});
     } else {
       getCollabRequestsAction({
         otherUserId: user.artist_id,
       });
     }
-  }, [fetchArtistSamples, getCollabRequestsAction, isSelf, user.slug, user.artist_id]);
+  }, [
+    fetchArtistSamples,
+    getCollabRequestsAction,
+    isSelf,
+    user.slug,
+    user.artist_id,
+  ]);
 
   useEffect(() => {
-    if (!isFetchingCollabs && (loggedInUserId !== user.artist_id)) {
+    if (!isFetchingCollabs && loggedInUserId !== user.artist_id) {
       // you are checking someone else page therefore fetch collab status.
-      var filteredCollab = GetPendingCollabRequest(collab, loggedInUserId, user.artist_id);
+      var filteredCollab = GetPendingCollabRequest(
+        collab,
+        loggedInUserId,
+        user.artist_id
+      );
       if (filteredCollab.id !== "") {
         // empty collab receieved.
         setCollabRequestDetails(filteredCollab);
@@ -121,40 +142,70 @@ const Profile = ({
       setHasPendingCollab(false);
       setCollabRequestDetails(emptyCollabDetails);
     }
-  }, [collab.collabDetails.received.pending, collab.collabDetails.sent.pending])
+  }, [
+    collab.collabDetails.received.pending,
+    collab.collabDetails.sent.pending,
+  ]);
 
   // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
   const prismicLoader = ({ src, width, quality }) => {
-    return `${src}?w=${width}&q=${quality || 75}`
-  }
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
 
   // show loader till the collab requests of other user is fetched (for collaborate button status)
   if (!isSelf && collab.isFetchingCollabDetails) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
     <>
-      <div
-        className="artistProfile__profileContainer"
-      >
-        {isSelf &&
+      <div className="artistProfile__profileContainer">
+        {isSelf && (
           <>
-            {!user.profile_complete ?
-              (
-                <div style={{ backgroundColor: "#EDC5CD", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-                  <p><b>{user.first_name}</b>, looks like your profile is not complete 😔. 
-                    For maximum reach, please complete it by adding bio, skills, samples, and social account.
-                    <Link href={routeToHref(toEditProfile("profile", "profile"))} passHref> here.</Link></p>
-                </div>
-              ) : (
-                <div style={{ backgroundColor: "#E2F0CB", paddingBottom: '.5px', paddingTop: '1%', textAlign: 'center' }}>
-                  <p><b>{user.first_name}</b> well done, your profile is complete 🎉. Don&apos;t forget to collaborate with fellow artists! Find who is available
-                    <Link href={routeToHref(toDiscover())} passHref> now.</Link></p>
-                </div>
-              )
-
-            } </>}
+            {!user.profile_complete ? (
+              <div
+                style={{
+                  backgroundColor: "#EDC5CD",
+                  paddingBottom: ".5px",
+                  paddingTop: "1%",
+                  textAlign: "center",
+                }}
+              >
+                <p>
+                  <b>{user.first_name}</b>, looks like your profile is not
+                  complete 😔. For maximum reach, please complete it by adding
+                  bio, skills, samples, and social account.
+                  <Link
+                    href={routeToHref(toEditProfile("profile", "profile"))}
+                    passHref
+                  >
+                    {" "}
+                    here.
+                  </Link>
+                </p>
+              </div>
+            ) : (
+              <div
+                style={{
+                  backgroundColor: "#E2F0CB",
+                  paddingBottom: ".5px",
+                  paddingTop: "1%",
+                  textAlign: "center",
+                }}
+              >
+                <p>
+                  <b>{user.first_name}</b> well done, your profile is complete
+                  🎉. Don&apos;t forget to collaborate with fellow artists! Find
+                  who is available
+                  <Link href={routeToHref(toDiscover())} passHref>
+                    {" "}
+                    now.
+                  </Link>
+                </p>
+              </div>
+            )}{" "}
+          </>
+        )}
         <div className="container">
           <div className="artistProfile__profileCoverContainer">
             <div className="graph"></div>
@@ -162,17 +213,27 @@ const Profile = ({
           <ProfilePicture isSelf={isSelf} userProfileOpened={user} />
         </div>
         <div className="artistProfile__artistDetailContainer common-text-style">
-          <h2 className="f-20 common-h2-style">{user.first_name + " " + user.last_name}</h2>
+          <h2 className="f-20 common-h2-style">
+            {user.first_name + " " + user.last_name}
+          </h2>
           <h3 className="f-15 common-h3-style">{GetUserSkills(user, false)}</h3>
-          {isSelf ? (<Button
-            type="primary"
-            className="common-medium-btn"
-            style={{ height: 'auto', marginTop: '10px' }}
-            onClick={() => {
-              router.push("/artist/settings/edit");
-            }}
-          > Edit profile</Button>
-
+          {isSelf ? (
+            <Button
+              type="primary"
+              className="common-medium-btn"
+              style={{ height: "auto", marginTop: "10px" }}
+              // onClick={() => {
+              //   router.push("/artist/settings/edit");
+              // }}
+            >
+              <Link
+                href={routeToHref(toEditProfile("profile", "profile"))}
+                passHref
+              >
+                {" "}
+                Edit profile.
+              </Link>
+            </Button>
           ) : (
             <>
               {hasPendingCollab ? (
@@ -180,32 +241,28 @@ const Profile = ({
                   <Button
                     type="primary"
                     className="common-medium-btn"
-                    style={{ height: 'auto', marginTop: '10px' }}
+                    style={{ height: "auto", marginTop: "10px" }}
                     onClick={() => {
                       setShowCollabModalState(true, collabRequestDetails.id);
                       setCollabRequestDetails(collabRequestDetails);
                     }}
                   >
-                    {collabRequestDetails.status === "PENDING" ? (
-                      "Show pending request"
-                    ) : (
-                      "Show active request"
-                    )
-                    }
+                    {collabRequestDetails.status === "PENDING"
+                      ? "Show pending request"
+                      : "Show active request"}
                     {/* <Link
                       href={routeToHref(toEditProfile("profile", "collab-request"))}
                       passHref
                     >Show pending requests</Link> */}
-
                   </Button>
                   {collabRequestDetails.status === "PENDING" ? (
                     <span className="common-text-style">
-                      <StarFilled style={{ color: 'orange', margin: '5px' }} />
+                      <StarFilled style={{ color: "orange", margin: "5px" }} />
                       You have a pending collab request with {user.first_name}.
                     </span>
                   ) : (
                     <span className="common-text-style">
-                      <StarFilled style={{ color: 'orange', margin: '5px' }} />
+                      <StarFilled style={{ color: "orange", margin: "5px" }} />
                       You have an active collab request with {user.first_name}.
                     </span>
                   )}
@@ -215,60 +272,87 @@ const Profile = ({
                   <Button
                     type="primary"
                     className="common-medium-btn"
-                    style={{ height: 'auto', marginTop: '10px' }}
+                    style={{ height: "auto", marginTop: "10px" }}
                     disabled={!upForCollab}
                     onClick={() => {
                       setShowCollabModalState(true, collabRequestDetails.id);
                     }}
-                  >  Let&apos;s collaborate</Button>
+                  >
+                    {" "}
+                    Let&apos;s collaborate
+                  </Button>
                   {!upForCollab ? (
-                    <span className="common-text-style"><CloseOutlined style={{ color: 'red', marginTop: '20px' }} />{user.first_name} is not available to collab! </span>
+                    <span className="common-text-style">
+                      <CloseOutlined
+                        style={{ color: "red", marginTop: "20px" }}
+                      />
+                      {user.first_name} is not available to collab!{" "}
+                    </span>
                   ) : (
-                    <span className="common-text-style"><CheckOutlined style={{ color: 'green', marginTop: '20px' }} />{user.first_name} is available to collab! </span>
+                    <span className="common-text-style">
+                      <CheckOutlined
+                        style={{ color: "green", marginTop: "20px" }}
+                      />
+                      {user.first_name} is available to collab!{" "}
+                    </span>
                   )}
                 </>
               )}
-
             </>
-
           )}
         </div>
         <div className="artistProfile__tabsContainer common-text-style">
           <Tabs defaultActiveKey="1" type="card" size={"large"} centered>
             <TabPane tab="About" key="1">
               <div className="artistProfile__tabContainer">
-                <b className="f-16 mb4 common-text-style">
-                  Bio
-                </b>
-                <p className="mt4 artistProfile__bioContainer common-p-style">{user.bio}</p>
+                <b className="f-16 mb4 common-text-style">Bio</b>
+                <p className="mt4 artistProfile__bioContainer common-p-style">
+                  {user.bio}
+                </p>
                 <b className="f-16 mb4 f-w-b common-text-style">Skills</b>
-                <p className="mt4 common-p-style">{GetUserSkills(user, true)} </p>
+                <p className="mt4 common-p-style">
+                  {GetUserSkills(user, true)}{" "}
+                </p>
               </div>
             </TabPane>
             <TabPane tab="Samples" key="2">
               <div className="artistProfile__tabContainer">
                 {userSamples.length == 0 ? (
-                  <div
-                    className="samplePage__container"
-                  >
+                  <div className="samplePage__container">
                     <div className="samplePage__nosample">
                       {!isSelf ? (
-                        <p className="common-p-style">Oops, looks like {user.first_name} has not uploaded any samples.</p>
+                        <p className="common-p-style">
+                          Oops, looks like {user.first_name} has not uploaded
+                          any samples.
+                        </p>
                       ) : (
                         <>
-                          <p className="common-p-style">You have not uploaded any samples. You can upload 6 of them now and flaunt your best work to others!</p>
+                          <p className="common-p-style">
+                            You have not uploaded any samples. You can upload 6
+                            of them now and flaunt your best work to others!
+                          </p>
                           <Button className="common-medium-btn" type="primary">
                             <Link
-                              href={routeToHref(toEditProfile("profile", "samples"))}
+                              href={routeToHref(
+                                toEditProfile("profile", "samples")
+                              )}
                               passHref
-                            >Upload Samples</Link>
+                            >
+                              Upload Samples
+                            </Link>
                           </Button>
                         </>
                       )}
                     </div>
-                  </div>) : (
+                  </div>
+                ) : (
                   <>
-                    <SamplePage isSelf={isSelf} user={user} samples={userSamples} showLoader={isFetchingSamples} />
+                    <SamplePage
+                      isSelf={isSelf}
+                      user={user}
+                      samples={userSamples}
+                      showLoader={isFetchingSamples}
+                    />
                   </>
                 )}
               </div>
@@ -287,10 +371,7 @@ const Profile = ({
             </TabPane> */}
             <TabPane tab="Social prospectus" key="4">
               <div className="artistProfile__tabContainer">
-                <SocialProspectusPage
-                  isSelf={isSelf}
-                  user={user}
-                />
+                <SocialProspectusPage isSelf={isSelf} user={user} />
               </div>
             </TabPane>
           </Tabs>
@@ -300,7 +381,7 @@ const Profile = ({
         <SendCollabRequestModal
           otherUser={user.artist_id}
           onCancel={() => {
-            setShowCollabModalState(false, '');
+            setShowCollabModalState(false, "");
           }}
           collabDetails={collabRequestDetails}
         />
