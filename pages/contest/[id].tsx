@@ -101,6 +101,8 @@ const ContestPage = ({
     emptyContestSubmissionDetails
   );
 
+  const { toRewardsInfoPage } = useRoutesContext();
+
   useEffect(() => {
     fetchContestAction(slug as string);
     fetchContestSubmissions(slug as string);
@@ -338,8 +340,8 @@ const ContestPage = ({
         {showProfileModal && <NewUserModal />}
 
         {isFetchingContest &&
-        isFetchingSubmissions &&
-        isFetchingSubmissionVotes ? (
+          isFetchingSubmissions &&
+          isFetchingSubmissionVotes ? (
           <Loader />
         ) : (
           <>
@@ -406,8 +408,8 @@ const ContestPage = ({
                         {Math.floor(
                           (contest.contest[0]?.data.endDate -
                             contest.contest[0]?.data.startDate) /
-                            (1000 * 86400) +
-                            1
+                          (1000 * 86400) +
+                          1
                         )}{" "}
                         days
                       </p>
@@ -417,36 +419,36 @@ const ContestPage = ({
                       </h2>
                       <ul className="common-text-style">
                         <li>
-                          Any artist with a valid account on Wondor is eligible
+                          - Any artist with a valid account on Wondor is eligible
                           to participate.
                         </li>
                         <li>
-                          Post about the contest on social media such as
+                          -  Post about the contest on social media such as
                           instagram.
                         </li>
                         <li>
-                          Your work should be inspired from the theme of the
+                          - Your work should be inspired from the theme of the
                           contest.
                         </li>
                         <li>
-                          Submit an image of your artwork. You can submit only
+                          - Submit an image or a video of your artwork. You can submit only
                           one piece for the contest.
                         </li>
                         <li>
-                          You work will be judged by the number of votes you
+                          - You work will be judged by the number of votes you
                           have recieved. Share with your friends and get votes.
                         </li>
                         <li>
-                          Final decision will include things like creativity,
+                          - Final decision will include things like creativity,
                           technique, adherence to the theme, and overall impact.
                         </li>
                         <li>
-                          You will be disqualified from the contest for
+                          - You will be disqualified from the contest for
                           plagiarism, offensive content, or failure to adhere to
                           the rules and guidelines
                         </li>
                         <li>
-                          You can also send in your queries in an email to
+                          - You can also send in your queries in an email to
                           admin@wondor.com, during the contest.
                         </li>
                       </ul>
@@ -456,13 +458,17 @@ const ContestPage = ({
                         We believe anyone who participates is a winner. However,
                         we will give an amazon gift card to 2 artists whose work
                         is most upvoted. Gift card will be sent to their
-                        registered email id
+                        registered email id.
                       </p>
                       <p className="common-p-style">
                         <b>1st winner:</b> USD 15
                       </p>
                       <p className="common-p-style">
-                        <b>2nd winner</b> USD 10
+                        <b>2nd winner:</b> USD 10
+                      </p>
+                      <p className="common-p-style">
+                        <b>Other participants: </b> 
+                        <Link href={routeToHref(toRewardsInfoPage())} passHref> 50 reward points </Link>
                       </p>
                       <b className="common-text-style">
                         Are you ready? Let your imagination soar and join the
@@ -477,66 +483,66 @@ const ContestPage = ({
                   contest.contest[0]?.data.startDate,
                   contest.contest[0]?.data.endDate
                 ) === "Ongoing" && (
-                  <TabPane tab="Submit your work" key="2">
-                    <div className="contestDetailPage_tabContainer">
-                      <div style={{ alignItems: "center" }}>
-                        <UploadContestArtworkPage />
+                    <TabPane tab="Submit your work" key="2">
+                      <div className="contestDetailPage_tabContainer">
+                        <div style={{ alignItems: "center" }}>
+                          <UploadContestArtworkPage />
+                        </div>
                       </div>
-                    </div>
-                  </TabPane>
-                )}
+                    </TabPane>
+                  )}
 
                 {GetContestStatus(
                   now.getTime(),
                   contest.contest[0]?.data.startDate,
                   contest.contest[0]?.data.endDate
                 ) !== "Upcoming" && (
-                  <TabPane tab="Leaderboard" key="3">
-                    <div className="contestDetailPage_tabContainer">
-                      {allSubmissions.length != 0 && (
-                        <h2
-                          className="common-h2-style"
-                          style={{ textAlign: "center", marginBottom: "20px" }}
-                        >
-                          {GetContestStatus(
-                            now.getTime(),
-                            contest.contest[0]?.data.startDate,
-                            contest.contest[0]?.data.endDate
-                          ) === "Ongoing" ? (
-                            <>
-                              <b>{allSubmissions[0].data.length}</b> artists
-                              have submitted their work! Dont miss out and
-                              <Link
-                                href={routeToHref(
-                                  toContestPage(slug as string, "submit")
-                                )}
-                                passHref
-                              >
-                                {" "}
-                                submit
-                              </Link>{" "}
-                              your work if you have not already!
-                            </>
-                          ) : (
-                            <>
-                              <b>{allSubmissions[0].data.length}</b> artists
-                              participated in the contest.
-                            </>
-                          )}
-                        </h2>
-                      )}
-                      <div className="leaderboard__grid">
-                        {getSubmissions(
-                          GetContestStatus(
-                            now.getTime(),
-                            contest.contest[0]?.data.startDate,
-                            contest.contest[0]?.data.endDate
-                          )
+                    <TabPane tab="Leaderboard" key="3">
+                      <div className="contestDetailPage_tabContainer">
+                        {allSubmissions.length != 0 && (
+                          <h2
+                            className="common-h2-style"
+                            style={{ textAlign: "center", marginBottom: "20px" }}
+                          >
+                            {GetContestStatus(
+                              now.getTime(),
+                              contest.contest[0]?.data.startDate,
+                              contest.contest[0]?.data.endDate
+                            ) === "Ongoing" ? (
+                              <>
+                                <b>{allSubmissions[0].data.length}</b> artists
+                                have submitted their work! Dont miss out and
+                                <Link
+                                  href={routeToHref(
+                                    toContestPage(slug as string, "submit")
+                                  )}
+                                  passHref
+                                >
+                                  {" "}
+                                  submit
+                                </Link>{" "}
+                                your work if you have not already!
+                              </>
+                            ) : (
+                              <>
+                                <b>{allSubmissions[0].data.length}</b> artists
+                                participated in the contest.
+                              </>
+                            )}
+                          </h2>
                         )}
+                        <div className="leaderboard__grid">
+                          {getSubmissions(
+                            GetContestStatus(
+                              now.getTime(),
+                              contest.contest[0]?.data.startDate,
+                              contest.contest[0]?.data.endDate
+                            )
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </TabPane>
-                )}
+                    </TabPane>
+                  )}
               </Tabs>
             </div>
           </>
