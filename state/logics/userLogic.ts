@@ -241,3 +241,22 @@ export const updateProfilePicture = createLogic<
     }
   },
 });
+
+export const updateProfileCompleteStatus = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.updateProfileCompleteStatus>,
+  any,
+  LogicDeps
+>({
+  type: [actionType.UPDATE_PROFILE_COMPLETE_STATUS],
+  async process({ action, api }, dispatch, done) {
+    try {
+      const result = await api.artistApi.fetchProfileCompleteStatus();
+      dispatch(actions.updateProfileCompleteStatusSuccess(result));
+    } catch (error) {
+
+    } finally {
+      done();
+    }
+  },
+});
