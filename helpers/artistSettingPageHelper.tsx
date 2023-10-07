@@ -18,6 +18,15 @@ export function GetSocialPlatformName(id: number) {
     return "";
 };
 
+export function GetCountryCodeFromName(name: string) {
+    for (var i = 0; i < COUNTRIES.length; i++) {
+        if (COUNTRIES[i]["Name"] === name) {
+            return COUNTRIES[i]["Iso2"];
+        }
+    }
+    return "";
+};
+
 export function GetCountryByISO(country_iso: string) {
     for (var i = 0; i < COUNTRIES.length; i++) {
         if (COUNTRIES[i]["Dial"] === country_iso) {

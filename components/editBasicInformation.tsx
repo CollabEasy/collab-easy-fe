@@ -12,7 +12,7 @@ import {
 import { Country, State, City } from 'country-state-city';
 import { COUNTRIES, GENDERS } from "constants/constants";
 import { User } from "types/model";
-import { GetCountryByName } from "helpers/artistSettingPageHelper";
+import { GetCountryByName, GetCountryCodeFromName } from "helpers/artistSettingPageHelper";
 
 const mapStateToProps = (state: AppState) => {
     return {
@@ -177,12 +177,12 @@ const EditBasicInformation = ({
                                 ...prevState,
                                 country: e,
                             }));
-                            setUserCountryCode(e);
+                            setUserCountryCode(GetCountryCodeFromName(e));
                             setShowCity(false);
                         }}
                     >
                         {COUNTRIES.map((country) => (
-                            <Select.Option key={country.Iso2} value={country.Iso2}>
+                            <Select.Option key={country.Iso2} value={country.Name}>
                                 {country.Unicode} {country.Name}
                             </Select.Option>
                         ))}

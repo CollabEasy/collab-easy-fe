@@ -10,7 +10,7 @@ import * as actions from "../../state/action";
 import { User } from "types/model";
 import { Country, State, City } from 'country-state-city';
 import { COUNTRIES } from "constants/constants";
-import { GetCountryByName } from "helpers/artistSettingPageHelper";
+import { GetCountryByName, GetCountryCodeFromName } from "helpers/artistSettingPageHelper";
 // import SubmitImg from 'public/images/submit.png';
 // https://www.npmjs.com/package/country-state-city
 
@@ -183,14 +183,14 @@ const NewUser = ({
                 onChange={(e) => {
                   setUserDataCached((prevState) => ({
                     ...prevState,
-                    country: Country.getCountryByCode(e).name,
+                    country: e,
                   }));
-                  setUserCountryCode(e);
-                  setShowCity(true);
+                  setUserCountryCode(GetCountryCodeFromName(e));
+                  setShowCity(false);
                 }}
               >
                 {COUNTRIES.map((country) => (
-                  <Select.Option key={country.Iso2} value={country.Iso2}>
+                  <Select.Option key={country.Iso2} value={country.Name}>
                     {country.Unicode} {country.Name}
                   </Select.Option>
                 ))}
