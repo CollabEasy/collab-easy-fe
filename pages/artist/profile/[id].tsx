@@ -49,10 +49,9 @@ const ArtistProfile = ({
   const [isSelf, setIsSelf] = useState(false);
   const [upForCollab, setCollaborationStatus] = useState(true);
   const [otherUser, setOtherUser] = useState<User>({});
-  const [isProfileComplete, setIsProfileComplete] = useState(user.profile_complete);
+  const [isProfileComplete, setIsProfileComplete] = useState(null);
 
   useEffect(() => {
-    console.log("user : ", user);
     async function fetchOtherUser() {
       let res = await artistApi.fetchUserByHandle(slug.toString());
       if (res.data !== undefined) {
@@ -73,7 +72,7 @@ const ArtistProfile = ({
     const { id: slug } = router.query;
     if (user.slug === slug) {
       setIsSelf(true);
-      if (!isProfileComplete) {
+      if (!isProfileComplete || isProfileComplete === null) {
         updateProfileCompleteStatus();
       }
     } else {

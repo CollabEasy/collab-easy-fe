@@ -153,7 +153,7 @@ const Profile = ({
   return (
     <>
       <div className="artistProfile__profileContainer">
-        {isProfileComplete !== undefined && isSelf && (
+        {isProfileComplete !== null && isSelf && (
           <>
             {!isProfileComplete ? (
               <div
