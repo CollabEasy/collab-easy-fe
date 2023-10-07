@@ -179,8 +179,7 @@ const Profile = ({
                     href={routeToHref(toEditProfile("profile", "profile"))}
                     passHref
                   >
-                    {" "}
-                    here.
+                    {" here."}
                   </Link>
                 </p>
               </div>
