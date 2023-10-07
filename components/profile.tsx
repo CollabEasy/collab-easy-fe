@@ -137,7 +137,8 @@ const Profile = ({
   const [isEditCategoriesClicked, setIsEditCategoriesClicked] = useState(false);
   const [saveArtistCategoryTrigger, setSaveArtistCategoryTrigger] =
     useState(false);
-
+  const [updating, setUpdating] = useState("");
+  
   const { toEditProfile, toDiscover } = useRoutesContext();
 
   useEffect(() => {
@@ -195,7 +196,7 @@ const Profile = ({
   };
 
   const getIconForEditBio = () => {
-    if (isUpdatingProfile && isEditBioClicked) {
+    if (isUpdatingProfile && updating === "bio") {
       return <LoadingOutlined />;
     }
 
@@ -213,13 +214,14 @@ const Profile = ({
         style={{ display: "flex", alignItems: "center" }}
         onClick={() => {
           setIsEditBioClicked(true);
+          setUpdating("bio");
         }}
       />
     );
   };
 
   const getIconForEditCategories = () => {
-    if (isUpdatingProfile && isEditCategoriesClicked) {
+    if (isUpdatingProfile && updating === "categories") {
       return <LoadingOutlined />;
     }
 
@@ -239,6 +241,7 @@ const Profile = ({
         style={{ display: "flex", alignItems: "center" }}
         onClick={() => {
           setIsEditCategoriesClicked(true);
+          setUpdating("categories");
         }}
       />
     );
@@ -344,12 +347,6 @@ const Profile = ({
               type="primary"
               className="common-medium-btn"
               style={{ height: "auto", marginTop: "10px" }}
-
-              // onClick={() => {
-
-              // router.push("/artist/settings/edit");
-
-              // }}
             >
               <Link
                 href={routeToHref(toEditProfile("profile", "profile"))}
@@ -374,14 +371,6 @@ const Profile = ({
                     {collabRequestDetails.status === "PENDING"
                       ? "Show pending request"
                       : "Show active request"}
-
-                    {/* <Link
-
-href={routeToHref(toEditProfile("profile", "collab-request"))}
-
-passHref
-
->Show pending requests</Link> */}
                   </Button>
 
                   {collabRequestDetails.status === "PENDING" ? (
@@ -506,30 +495,6 @@ passHref
                 )}
               </div>
             </TabPane>
-
-            {/* <TabPane tab="Collab Requests" key="3">
-
-<div className="artistProfile__tabContainer">
-
-<CollabRequestTab
-
-otherUser={user.artist_id}
-
-collabRequests={collab.collabDetails}
-
-onClickCollabRequest={(collabDetails: CollabRequestData) => {
-
-setCollabRequestDetails(collabDetails);
-
-setShowCollabModalState(true);
-
-}}
-
-/>
-
-</div>
-
-</TabPane> */}
 
             <TabPane tab="Social prospectus" key="4">
               <div className="artistProfile__tabContainer">
