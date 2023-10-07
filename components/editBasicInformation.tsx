@@ -50,7 +50,33 @@ const EditBasicInformation = ({
     };
 
     const submitForm = () => {
+        if (userDataCached.country.length === 0){
+            message.error("Please submit the country you are based in.");
+            return;
+        }
+        
+        if (userCountryCode && 
+            userDataCached.country && 
+            userDataCached.state.length === 0 && 
+            State.getStatesOfCountry(userCountryCode).length !== 0) 
+            
+            {
+                message.error("Please submit the state along with the country you are based in.");
+                return;
+        }
+
+        if (userCountryCode && 
+            userStateCode && 
+            userDataCached.city.length === 0 && 
+            City.getCitiesOfState(userCountryCode, userStateCode).length !== 0) 
+            
+            {
+                message.error("Please submit the city along with the state and country you are based in.");
+                return;
+        } 
+        
         updateArtistProfile(userDataCached);
+        
     };
 
     const tailLayout = {
