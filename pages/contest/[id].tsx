@@ -386,24 +386,23 @@ const ContestPage = ({
                       </b>
                       <br></br>
                       <br></br>
-
-                      <h2 className="common-h1-style">Contest Details</h2>
-                      <p className="common-p-style">
+                      <h2>Contest Details</h2>
+                      <p>
                         <b>Theme:</b> {contest.contest[0]?.data.title}
                       </p>
-                      <p className="common-p-style">
+                      <p>
                         <b>Description:</b>{" "}
                         {contest.contest[0]?.data.description}
                       </p>
-                      <p className="common-p-style">
+                      <p>
                         <b>Start date:</b>{" "}
                         {GetDateString(contest.contest[0]?.data.startDate)}
                       </p>
-                      <p className="common-p-style">
+                      <p>
                         <b>End date:</b>{" "}
                         {GetDateString(contest.contest[0]?.data.endDate)}
                       </p>
-                      <p className="common-p-style">
+                      <p >
                         <b>Duration:</b>{" "}
                         {Math.floor(
                           (contest.contest[0]?.data.endDate -
@@ -414,7 +413,7 @@ const ContestPage = ({
                         days
                       </p>
 
-                      <h2 className="common-h2-style">
+                      <h2>
                         Rules and Regulations:
                       </h2>
                       <ul className="common-text-style">
@@ -453,7 +452,7 @@ const ContestPage = ({
                         </li>
                       </ul>
 
-                      <h2 className="common-h2-style">Prize</h2>
+                      <h2>Prize</h2>
                       <p className="common-p-style">
                         We believe anyone who participates is a winner. However,
                         we will give an amazon gift card to 2 artists whose work
@@ -467,7 +466,7 @@ const ContestPage = ({
                         <b>2nd winner:</b> USD 10
                       </p>
                       <p className="common-p-style">
-                        <b>Other participants: </b> 
+                        <b>Other participants: </b>
                         <Link href={routeToHref(toRewardsInfoPage())} passHref> 50 reward points </Link>
                       </p>
                       <b className="common-text-style">
