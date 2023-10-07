@@ -77,6 +77,7 @@ const NewUser = ({
   const [userName, setUserName] = useState("");
   const [userCountryCode, setUserCountryCode] = useState<string>("");
   const [userStateCode, setUserStateCode] = useState<string>("");
+  const [showUserCity, setShowCity] = useState<boolean>(false);
   const windowWidth = 1000;
 
   useEffect(() => {
@@ -185,6 +186,7 @@ const NewUser = ({
                     country: Country.getCountryByCode(e).name,
                   }));
                   setUserCountryCode(e);
+                  setShowCity(true);
                 }}
               >
                 {COUNTRIES.map((country) => (
@@ -204,6 +206,9 @@ const NewUser = ({
                     state: State.getStateByCodeAndCountry(e, userCountryCode).name,
                   }));
                   setUserStateCode(e);
+                  if (City.getCitiesOfState(userCountryCode, e).length !== 0) {
+                    setShowCity(true);
+                  }
                 }}
               >
                 {State.getStatesOfCountry(userCountryCode).map((state) => (
@@ -213,7 +218,7 @@ const NewUser = ({
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item label="City">
+            {showUserCity && <Form.Item label="City">
               <Select
                 showSearch
                 value={userDataCached ? userDataCached.city : ""}
@@ -231,6 +236,7 @@ const NewUser = ({
                 ))}
               </Select>
             </Form.Item>
+            }
             <Form.Item
               name="art"
               label="Art Styles"
