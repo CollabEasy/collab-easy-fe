@@ -38,7 +38,7 @@ const EditBasicInformation = ({
     const [userDataCached, setUserDataCached] = useState<User>(user);
     const [userCountryCode, setUserCountryCode] = useState<string>("");
     const [userStateCode, setUserStateCode] = useState<string>("");
-
+    const [showUserCity, setShowCity] = useState<boolean>(false);
     const [componentSize, setComponentSize] = useState<SizeType | "default">(
         "default"
     );
@@ -197,6 +197,9 @@ const EditBasicInformation = ({
                                 state: State.getStateByCodeAndCountry(e, userCountryCode).name,
                             }));
                             setUserStateCode(e);
+                            if (City.getCitiesOfState(userCountryCode, e).length !== 0) {
+                                setShowCity(true);
+                            }
                         }}
                     >
                         {State.getStatesOfCountry(userCountryCode).map((state) => (
@@ -206,7 +209,7 @@ const EditBasicInformation = ({
                         ))}
                     </Select>
                 </Form.Item>
-                <Form.Item label="City">
+                {showUserCity && <Form.Item label="City">
                     <Select
                         showSearch
                         value={userDataCached ? userDataCached.city : ""}
@@ -224,6 +227,7 @@ const EditBasicInformation = ({
                         ))}
                     </Select>
                 </Form.Item>
+                }
                 <Form.Item label="Bio">
                     <Input.TextArea
                         value={userDataCached ? userDataCached.bio : ""}
