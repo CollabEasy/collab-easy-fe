@@ -427,13 +427,13 @@ const Profile = ({
               <div className="artistProfile__tabContainer">
                 <div className="artistProfile__bioButtonsContainer">
                   <b className="f-16 common-text-style">Bio</b>
-                  {getIconForEditBio()}
+                  { isSelf && getIconForEditBio()}
                 </div>
                 {getBioComponent()}
                 <div>
                   <div className="artistProfile__bioButtonsContainer">
                     <b className="f-16 common-text-style">Skills</b>
-                    {getIconForEditCategories()}
+                    {isSelf && getIconForEditCategories()}
                   </div>
                   {!isEditCategoriesClicked ? (
                     <p className="mt4 common-p-style">
