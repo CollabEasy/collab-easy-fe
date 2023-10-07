@@ -67,6 +67,7 @@ type Props = {
   upForCollab: boolean;
   loggedInUserId: string;
   user: User;
+  isProfileComplete: boolean;
 } & ConnectedProps<typeof connector>;
 
 const Profile = ({
@@ -79,6 +80,7 @@ const Profile = ({
   showCollabModal,
   isFetchingCollabs,
   isFetchingSamples,
+  isProfileComplete,
   setShowCollabModalState,
   fetchArtistSamples,
   getCollabRequestsAction,
@@ -97,7 +99,7 @@ const Profile = ({
     createdAt: undefined,
     updatedAt: undefined,
   };
-  const [userSocialProspectus, setUserSocialProspectus] = useState([]);
+  // const [userSocialProspectus, setUserSocialProspectus] = useState([]);
   const [collabRequestDetails, setCollabRequestDetails] =
     useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
@@ -113,13 +115,7 @@ const Profile = ({
         otherUserId: user.artist_id,
       });
     }
-  }, [
-    fetchArtistSamples,
-    getCollabRequestsAction,
-    isSelf,
-    user.slug,
-    user.artist_id,
-  ]);
+  }, []);
 
   useEffect(() => {
     if (!isFetchingCollabs && loggedInUserId !== user.artist_id) {
@@ -142,10 +138,7 @@ const Profile = ({
       setHasPendingCollab(false);
       setCollabRequestDetails(emptyCollabDetails);
     }
-  }, [
-    collab.collabDetails.received.pending,
-    collab.collabDetails.sent.pending,
-  ]);
+  }, []);
 
   // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
   const prismicLoader = ({ src, width, quality }) => {
@@ -160,9 +153,9 @@ const Profile = ({
   return (
     <>
       <div className="artistProfile__profileContainer">
-        {isSelf && (
+        {isProfileComplete !== null && isSelf && (
           <>
-            {!user.profile_complete ? (
+            {!isProfileComplete ? (
               <div
                 style={{
                   backgroundColor: "#EDC5CD",
@@ -179,8 +172,7 @@ const Profile = ({
                     href={routeToHref(toEditProfile("profile", "profile"))}
                     passHref
                   >
-                    {" "}
-                    here.
+                    {" here."}
                   </Link>
                 </p>
               </div>

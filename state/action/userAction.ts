@@ -196,3 +196,21 @@ export const setIsReferralDone = () => ({
   type: actionType.SET_IS_REFERRAL_DONE,
   payload: {}
 })
+
+
+export const updateProfileCompleteStatus = () => ({
+  type: actionType.UPDATE_PROFILE_COMPLETE_STATUS,
+  payload: {},
+})
+
+export const updateProfileCompleteStatusRequest = () => ({
+  type: actionType.UPDATE_PROFILE_COMPLETE_STATUS_REQUEST,
+  payload: {},
+})
+
+export const updateProfileCompleteStatusSuccess = (data: any) => ({
+  type: actionType.UPDATE_PROFILE_COMPLETE_STATUS_SUCCESS,
+  payload: {
+    data
+  },
+})

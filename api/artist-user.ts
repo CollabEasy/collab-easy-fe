@@ -111,3 +111,9 @@ export const getArtistData = async (): Promise<User> => {
   const result = await api.call<any>("api/v1/artist/details", getConfig());
   return result.data as User;
 };
+
+export const fetchProfileCompleteStatus = async() => {
+  const config = getConfig();
+  const result = await api.call<any>("api/v1/artist/profile/complete", config);
+  return result;
+}

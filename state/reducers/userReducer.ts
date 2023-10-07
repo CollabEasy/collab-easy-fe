@@ -154,6 +154,15 @@ const userReducer = (state = initialState, action): UserState => {
           is_referral_done: true,
         },
       };
+    case actionType.UPDATE_PROFILE_COMPLETE_STATUS_SUCCESS:
+      const isComplete = action.payload.data.data;
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          profile_complete: true,
+        },
+      };
     default:
       return state;
   }

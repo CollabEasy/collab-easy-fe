@@ -1,4 +1,4 @@
-import Layout from '../../../components/layout';
+import Layout from "../../../components/layout";
 import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
 import { Card } from "antd";
@@ -49,6 +49,7 @@ const ArtistProfile = ({
   const [isSelf, setIsSelf] = useState(false);
   const [upForCollab, setCollaborationStatus] = useState(true);
   const [otherUser, setOtherUser] = useState<User>({});
+  const [isProfileComplete, setIsProfileComplete] = useState(null);
 
   useEffect(() => {
     async function fetchOtherUser() {
@@ -61,10 +62,19 @@ const ArtistProfile = ({
       }
     }
 
-    const { id: slug } = router.query;
+    async function updateProfileCompleteStatus() {
+      let res = await artistApi.fetchProfileCompleteStatus();
+      if (res.data !== undefined) {
+        setIsProfileComplete(res.data);
+      }
+    }
 
+    const { id: slug } = router.query;
     if (user.slug === slug) {
       setIsSelf(true);
+      if (!isProfileComplete || isProfileComplete === null) {
+        updateProfileCompleteStatus();
+      }
     } else {
       setShowLoader(true);
       setIsSelf(false);
@@ -84,9 +94,20 @@ const ArtistProfile = ({
 
   return (
     <Layout
-      title={(isSelf ? user.first_name : otherUser.first_name) + " " + (isSelf ? user.last_name : otherUser.last_name) + " - Send Collaboration Request Now | Wondor"}
+      title={
+        (isSelf ? user.first_name : otherUser.first_name) +
+        " " +
+        (isSelf ? user.last_name : otherUser.last_name) +
+        " - Send Collaboration Request Now | Wondor"
+      }
       name={"description"}
-      content={"Work with " + (isSelf ? user.first_name : otherUser.first_name) + " " + (isSelf ? user.last_name : otherUser.last_name) + ". Send them a collaboration request."}
+      content={
+        "Work with " +
+        (isSelf ? user.first_name : otherUser.first_name) +
+        " " +
+        (isSelf ? user.last_name : otherUser.last_name) +
+        ". Send them a collaboration request."
+      }
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
       {showProfileModal && <NewUserModal />}
@@ -102,6 +123,7 @@ const ArtistProfile = ({
           upForCollab={upForCollab}
           loggedInUserId={isLoggedIn ? user.artist_id : ""}
           user={isSelf ? user : otherUser}
+          isProfileComplete={isProfileComplete}
         />
       )}
     </Layout>
