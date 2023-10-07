@@ -69,6 +69,9 @@ const EditBasicInformation = ({
                     }
                 });
             }
+            if (user?.city) {
+                setShowCity(true);
+            }
         }
     }, [user]);
 
@@ -176,6 +179,8 @@ const EditBasicInformation = ({
                             setUserDataCached((prevState) => ({
                                 ...prevState,
                                 country: e,
+                                state: "",
+                                city: "",
                             }));
                             setUserCountryCode(GetCountryCodeFromName(e));
                             setShowCity(false);
@@ -196,6 +201,7 @@ const EditBasicInformation = ({
                             setUserDataCached((prevState) => ({
                                 ...prevState,
                                 state: State.getStateByCodeAndCountry(e, userCountryCode).name,
+                                city: "",
                             }));
                             setUserStateCode(e);
                             if (City.getCitiesOfState(userCountryCode, e).length !== 0) {
