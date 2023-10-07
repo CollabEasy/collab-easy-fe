@@ -178,6 +178,7 @@ const EditBasicInformation = ({
                                 country: e,
                             }));
                             setUserCountryCode(e);
+                            setShowCity(false);
                         }}
                     >
                         {COUNTRIES.map((country) => (
