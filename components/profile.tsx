@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import avatar from "../public/images/avatar.png";
 import React, { useEffect, useState } from "react";
-import { Card, Button, Avatar, Pagination, Space, Tabs } from "antd";
+import { Card, Button, Avatar, Pagination, Space, Tabs, Input } from "antd";
 import CollabRequestTab from "./collabRequestTab";
 import SamplePage from "./samplePage";
 import SocialProspectusPage from "./socialProspectus";
@@ -17,12 +17,15 @@ import SendCollabRequestModal from "./modal/sendCollabRequestModal";
 import CollabRequest from "./collabRequestSend";
 import { encryptContent } from "../helpers/helper";
 import { routeToHref } from "config/routes";
+1;
 import Layout from "components/layout";
 import {
   StarFilled,
   CloseOutlined,
   CheckOutlined,
-  PictureOutlined,
+  EditOutlined,
+  SaveOutlined,
+  LoadingOutlined,
 } from "@ant-design/icons";
 import { useRoutesContext } from "components/routeContext";
 import avatarImage from "../public/images/avatar.png";
@@ -32,21 +35,37 @@ import {
 } from "../helpers/profilePageHelper";
 import { ConvertTimestampToDate } from "../helpers/collabCardHelper";
 import ProfilePicture from "./profilePicture";
+import CategorySelector from "./categorySelector";
+import { fetchArtistSkills } from "../state/action";
 
 const { Meta } = Card;
+
 const { TabPane } = Tabs;
 
 const mapStateToProps = (state: AppState) => {
   const collab = state.collab;
+
   const isFetchingCollabs = state.collab.isFetchingCollabDetails;
+
   const userSamples = state.sample.samples;
+
   const isFetchingSamples = state.sample.isFetchingSamples;
+
   const showCollabModal = state.collab.showCollabModal;
+
+  const isUpdatingProfile = state.user.isUpdatingProfile;
+
   return {
+    isUpdatingProfile,
+
     showCollabModal,
+
     userSamples,
+
     collab,
+
     isFetchingCollabs,
+
     isFetchingSamples,
   };
 };
@@ -58,15 +77,21 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(action.getCollabRequestsAction(data)),
   setShowCollabModalState: (show: boolean, id: string) =>
     dispatch(action.setShowCollabModalState(show, id)),
+  updateArtistProfile: (user: any) =>
+    dispatch(action.updateArtistProfile(user)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
   isSelf: boolean;
+
   upForCollab: boolean;
+
   loggedInUserId: string;
+
   user: User;
+
   isProfileComplete: boolean;
 } & ConnectedProps<typeof connector>;
 
@@ -80,12 +105,15 @@ const Profile = ({
   showCollabModal,
   isFetchingCollabs,
   isFetchingSamples,
+  isUpdatingProfile,
   isProfileComplete,
   setShowCollabModalState,
   fetchArtistSamples,
   getCollabRequestsAction,
+  updateArtistProfile,
 }: Props) => {
   const router = useRouter();
+
   const emptyCollabDetails: CollabRequestData = {
     id: "",
     senderId: "",
@@ -99,15 +127,22 @@ const Profile = ({
     createdAt: undefined,
     updatedAt: undefined,
   };
+
   // const [userSocialProspectus, setUserSocialProspectus] = useState([]);
   const [collabRequestDetails, setCollabRequestDetails] =
     useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
+  const [userDataCached, setUserDataCached] = useState<User>(user);
+  const [isEditBioClicked, setIsEditBioClicked] = useState(false);
+  const [isEditCategoriesClicked, setIsEditCategoriesClicked] = useState(false);
+  const [saveArtistCategoryTrigger, setSaveArtistCategoryTrigger] =
+    useState(false);
 
   const { toEditProfile, toDiscover } = useRoutesContext();
 
   useEffect(() => {
     fetchArtistSamples(user.slug);
+
     if (isSelf) {
       getCollabRequestsAction({});
     } else {
@@ -120,11 +155,13 @@ const Profile = ({
   useEffect(() => {
     if (!isFetchingCollabs && loggedInUserId !== user.artist_id) {
       // you are checking someone else page therefore fetch collab status.
+
       var filteredCollab = GetPendingCollabRequest(
         collab,
         loggedInUserId,
         user.artist_id
       );
+
       if (filteredCollab.id !== "") {
         // empty collab receieved.
         setCollabRequestDetails(filteredCollab);
@@ -141,14 +178,97 @@ const Profile = ({
   }, []);
 
   // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
+
   const prismicLoader = ({ src, width, quality }) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
 
   // show loader till the collab requests of other user is fetched (for collaborate button status)
+
   if (!isSelf && collab.isFetchingCollabDetails) {
     return <Loader />;
   }
+
+  const onSave = () => {
+    updateArtistProfile(userDataCached);
+    setIsEditBioClicked(false);
+  };
+
+  const getIconForEditBio = () => {
+    if (isUpdatingProfile && isEditBioClicked) {
+      return <LoadingOutlined />;
+    }
+
+    if (isEditBioClicked) {
+      return (
+        <SaveOutlined
+          style={{ display: "flex", alignItems: "center" }}
+          onClick={onSave}
+        />
+      );
+    }
+
+    return (
+      <EditOutlined
+        style={{ display: "flex", alignItems: "center" }}
+        onClick={() => {
+          setIsEditBioClicked(true);
+        }}
+      />
+    );
+  };
+
+  const getIconForEditCategories = () => {
+    if (isUpdatingProfile && isEditCategoriesClicked) {
+      return <LoadingOutlined />;
+    }
+
+    if (isEditCategoriesClicked) {
+      return (
+        <SaveOutlined
+          style={{ display: "flex", alignItems: "center" }}
+          onClick={() => {
+            setSaveArtistCategoryTrigger(true);
+          }}
+        />
+      );
+    }
+
+    return (
+      <EditOutlined
+        style={{ display: "flex", alignItems: "center" }}
+        onClick={() => {
+          setIsEditCategoriesClicked(true);
+        }}
+      />
+    );
+  };
+
+  const getBioComponent = () => {
+    if (!isEditBioClicked) {
+      return (
+        <p className="mt4 artistProfile__bioContainer common-p-style">
+          {user.bio}
+        </p>
+      );
+    }
+
+    return (
+      <Input.TextArea
+        className="mt4 artistProfile__bioContainer common-p-style"
+        value={userDataCached.bio}
+        maxLength={300}
+        showCount
+        onChange={(e) => {
+          setUserDataCached((prevState) => ({
+            ...prevState,
+
+            bio: e.target.value,
+          }));
+        }}
+      />
+    );
+  };
 
   return (
     <>
@@ -159,8 +279,11 @@ const Profile = ({
               <div
                 style={{
                   backgroundColor: "#EDC5CD",
+
                   paddingBottom: ".5px",
+
                   paddingTop: "1%",
+
                   textAlign: "center",
                 }}
               >
@@ -180,8 +303,11 @@ const Profile = ({
               <div
                 style={{
                   backgroundColor: "#E2F0CB",
+
                   paddingBottom: ".5px",
+
                   paddingTop: "1%",
+
                   textAlign: "center",
                 }}
               >
@@ -197,24 +323,32 @@ const Profile = ({
             )}{" "}
           </>
         )}
+
         <div className="container">
           <div className="artistProfile__profileCoverContainer">
             <div className="graph"></div>
           </div>
+
           <ProfilePicture isSelf={isSelf} userProfileOpened={user} />
         </div>
+
         <div className="artistProfile__artistDetailContainer common-text-style">
           <h2 className="f-20 common-h2-style">
             {user.first_name + " " + user.last_name}
           </h2>
+
           <h3 className="f-15 common-h3-style">{GetUserSkills(user, false)}</h3>
+
           {isSelf ? (
             <Button
               type="primary"
               className="common-medium-btn"
               style={{ height: "auto", marginTop: "10px" }}
+
               // onClick={() => {
-              //   router.push("/artist/settings/edit");
+
+              // router.push("/artist/settings/edit");
+
               // }}
             >
               <Link
@@ -240,11 +374,16 @@ const Profile = ({
                     {collabRequestDetails.status === "PENDING"
                       ? "Show pending request"
                       : "Show active request"}
+
                     {/* <Link
-                      href={routeToHref(toEditProfile("profile", "collab-request"))}
-                      passHref
-                    >Show pending requests</Link> */}
+
+href={routeToHref(toEditProfile("profile", "collab-request"))}
+
+passHref
+
+>Show pending requests</Link> */}
                   </Button>
+
                   {collabRequestDetails.status === "PENDING" ? (
                     <span className="common-text-style">
                       <StarFilled style={{ color: "orange", margin: "5px" }} />
@@ -271,6 +410,7 @@ const Profile = ({
                     {" "}
                     Let&apos;s collaborate
                   </Button>
+
                   {!upForCollab ? (
                     <span className="common-text-style">
                       <CloseOutlined
@@ -291,20 +431,38 @@ const Profile = ({
             </>
           )}
         </div>
+
         <div className="artistProfile__tabsContainer common-text-style">
           <Tabs defaultActiveKey="1" type="card" size={"large"} centered>
             <TabPane tab="About" key="1">
               <div className="artistProfile__tabContainer">
-                <b className="f-16 mb4 common-text-style">Bio</b>
-                <p className="mt4 artistProfile__bioContainer common-p-style">
-                  {user.bio}
-                </p>
-                <b className="f-16 mb4 f-w-b common-text-style">Skills</b>
-                <p className="mt4 common-p-style">
-                  {GetUserSkills(user, true)}{" "}
-                </p>
+                <div className="artistProfile__bioButtonsContainer">
+                  <b className="f-16 common-text-style">Bio</b>
+                  {getIconForEditBio()}
+                </div>
+                {getBioComponent()}
+                <div>
+                  <div className="artistProfile__bioButtonsContainer">
+                    <b className="f-16 common-text-style">Skills</b>
+                    {getIconForEditCategories()}
+                  </div>
+                  {!isEditCategoriesClicked ? (
+                    <p className="mt4 common-p-style">
+                      {GetUserSkills(user, true)}{" "}
+                    </p>
+                  ) : (
+                    <CategorySelector
+                      saveArtistTrigger={saveArtistCategoryTrigger}
+                      setSaveArtistTrigger={(value: boolean) => {
+                        setSaveArtistCategoryTrigger(value);
+                        setIsEditCategoriesClicked(false);
+                      }}
+                    />
+                  )}
+                </div>
               </div>
             </TabPane>
+
             <TabPane tab="Samples" key="2">
               <div className="artistProfile__tabContainer">
                 {userSamples.length == 0 ? (
@@ -321,6 +479,7 @@ const Profile = ({
                             You have not uploaded any samples. You can upload 6
                             of them now and flaunt your best work to others!
                           </p>
+
                           <Button className="common-medium-btn" type="primary">
                             <Link
                               href={routeToHref(
@@ -347,18 +506,31 @@ const Profile = ({
                 )}
               </div>
             </TabPane>
+
             {/* <TabPane tab="Collab Requests" key="3">
-              <div className="artistProfile__tabContainer">
-                <CollabRequestTab
-                  otherUser={user.artist_id}
-                  collabRequests={collab.collabDetails}
-                  onClickCollabRequest={(collabDetails: CollabRequestData) => {
-                    setCollabRequestDetails(collabDetails);
-                    setShowCollabModalState(true);
-                  }}
-                />
-              </div>
-            </TabPane> */}
+
+<div className="artistProfile__tabContainer">
+
+<CollabRequestTab
+
+otherUser={user.artist_id}
+
+collabRequests={collab.collabDetails}
+
+onClickCollabRequest={(collabDetails: CollabRequestData) => {
+
+setCollabRequestDetails(collabDetails);
+
+setShowCollabModalState(true);
+
+}}
+
+/>
+
+</div>
+
+</TabPane> */}
+
             <TabPane tab="Social prospectus" key="4">
               <div className="artistProfile__tabContainer">
                 <SocialProspectusPage isSelf={isSelf} user={user} />
@@ -367,6 +539,7 @@ const Profile = ({
           </Tabs>
         </div>
       </div>
+
       {showCollabModal.show && (
         <SendCollabRequestModal
           otherUser={user.artist_id}

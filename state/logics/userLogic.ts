@@ -106,7 +106,7 @@ export const updateArtistArtLogic = createLogic<
       const { data } = action.payload;
       const result = await api.artistApi.updateArtistCategories(data);
       dispatch(notifActions.showNotification(true, 'Art styles saved successfully 🥳'));
-      dispatch(actions.updateArtistArtSuccess(result));
+      dispatch(actions.updateArtistArtSuccess(data.artNames));
     } catch (error) {
       const error_response = error.response.data;
       dispatch(notifActions.showNotification(false, error_response['err_str']));
