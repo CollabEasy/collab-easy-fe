@@ -467,7 +467,7 @@ const ContestPage = ({
                       </p>
                       <p className="common-p-style">
                         <b>Other participants: </b>
-                        <Link href={routeToHref(toRewardsInfoPage())} passHref> 50 reward points </Link>
+                        <Link href={routeToHref(toRewardsInfoPage())} passHref>{"50 reward points"} </Link>
                       </p>
                       <b className="common-text-style">
                         Are you ready? Let your imagination soar and join the
@@ -517,8 +517,7 @@ const ContestPage = ({
                                   )}
                                   passHref
                                 >
-                                  {" "}
-                                  submit
+                                  {" submit"}
                                 </Link>{" "}
                                 your work if you have not already!
                               </>
