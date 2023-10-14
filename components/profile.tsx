@@ -156,6 +156,9 @@ const Profile = ({
   useEffect(() => {
     fetchArtistSamples(user.slug);
 
+    if (!isLoggedIn) {
+      return;
+    }
     if (isSelf) {
       getCollabRequestsAction({});
     } else {
@@ -198,7 +201,7 @@ const Profile = ({
 
   // show loader till the collab requests of other user is fetched (for collaborate button status)
 
-  if (!isSelf && collab.isFetchingCollabDetails) {
+  if (isLoggedIn && !isSelf && collab.isFetchingCollabDetails) {
     return <Loader />;
   }
 
@@ -260,6 +263,19 @@ const Profile = ({
   };
 
   const getButton = () => {
+    if (!isLoggedIn) {
+      return !upForCollab ? (
+          <span className="common-text-style">
+            <CloseOutlined style={{ color: "red", marginTop: "20px" }} />
+            {user.first_name} is not available to collab!{" "}
+          </span>
+        ) : (
+          <span className="common-text-style">
+            <CheckOutlined style={{ color: "green", marginTop: "20px" }} />
+            {user.first_name} is available to collab!{" "}
+          </span>
+        )
+    }
     return isSelf ? (
       <Tooltip title={isLoggedIn ? "" : "Login to send collab request"}>
         <Button
@@ -506,7 +522,7 @@ const Profile = ({
                 ) : (
                   <>
                     <SamplePage
-                      isSelf={isSelf}
+                      isSelf={isSelf && isLoggedIn}
                       user={user}
                       samples={userSamples}
                       showLoader={isFetchingSamples}

@@ -21,6 +21,10 @@ export const fetchLoginDataLogic = createLogic<
       dispatch(actions.userLoginRequest());
       const loginData = await api.loginApi.getLoginData(token);
       dispatch(homeActions.closeLoginModalAction());
+      const tokenData: any = loginData;
+      if (tokenData.data !== undefined) {
+        localStorage.setItem("token", tokenData.data.token);
+      }
       dispatch(actions.setUserLoggedIn(loginData));
     } catch (error) {
       const error_response = error.response;

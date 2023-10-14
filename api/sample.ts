@@ -30,6 +30,7 @@ export const uploadSampleApi = async (data: FormData) => {
 
 export const fetchSampleApi = async (slug: string) => {
   const config = getConfigWithoutToken();
+
   try {
     const result = await api.call("api/v1/artist/" + slug + "/sample/list", config);
     return result;

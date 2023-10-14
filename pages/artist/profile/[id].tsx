@@ -72,7 +72,7 @@ const ArtistProfile = ({
     const { id: slug } = router.query;
     if (user.slug === slug) {
       setIsSelf(true);
-      if (!isProfileComplete || isProfileComplete === null) {
+      if (isLoggedIn && (!isProfileComplete || isProfileComplete === null)) {
         updateProfileCompleteStatus();
       }
     } else {
