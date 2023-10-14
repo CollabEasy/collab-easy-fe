@@ -2,7 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import avatar from "../public/images/avatar.png";
 import React, { useEffect, useState } from "react";
-import { Card, Button, Avatar, Pagination, Space, Tabs, Input } from "antd";
+import {
+  Card,
+  Button,
+  Avatar,
+  Pagination,
+  Space,
+  Tabs,
+  Input,
+  Tooltip,
+} from "antd";
 import CollabRequestTab from "./collabRequestTab";
 import SamplePage from "./samplePage";
 import SocialProspectusPage from "./socialProspectus";
@@ -93,6 +102,8 @@ type Props = {
   user: User;
 
   isProfileComplete: boolean;
+
+  isLoggedIn: boolean;
 } & ConnectedProps<typeof connector>;
 
 const Profile = ({
@@ -102,6 +113,7 @@ const Profile = ({
   loggedInUserId,
   userSamples,
   collab,
+  isLoggedIn,
   showCollabModal,
   isFetchingCollabs,
   isFetchingSamples,
@@ -138,7 +150,7 @@ const Profile = ({
   const [saveArtistCategoryTrigger, setSaveArtistCategoryTrigger] =
     useState(false);
   const [updating, setUpdating] = useState("");
-  
+
   const { toEditProfile, toDiscover } = useRoutesContext();
 
   useEffect(() => {
@@ -247,6 +259,90 @@ const Profile = ({
     );
   };
 
+  const getButton = () => {
+    return isSelf ? (
+      <Tooltip title={isLoggedIn ? "" : "Login to send collab request"}>
+        <Button
+          type="primary"
+          disabled={!isLoggedIn}
+          className="common-medium-btn"
+          style={{ height: "auto", marginTop: "10px" }}
+        >
+          <Link
+            href={routeToHref(toEditProfile("profile", "profile"))}
+            passHref
+          >
+            Edit profile.
+          </Link>
+        </Button>
+      </Tooltip>
+    ) : (
+      <>
+        {hasPendingCollab ? (
+          <>
+            <Tooltip title={isLoggedIn ? "" : "Login to view collab status"}>
+              <Button
+                type="primary"
+                className="common-medium-btn"
+                disabled={!isLoggedIn}
+                style={{ height: "auto", marginTop: "10px" }}
+                onClick={() => {
+                  setShowCollabModalState(true, collabRequestDetails.id);
+                  setCollabRequestDetails(collabRequestDetails);
+                }}
+              >
+                {collabRequestDetails.status === "PENDING"
+                  ? "Show pending request"
+                  : "Show active request"}
+              </Button>
+            </Tooltip>
+
+            {collabRequestDetails.status === "PENDING" ? (
+              <span className="common-text-style">
+                <StarFilled style={{ color: "orange", margin: "5px" }} />
+                You have a pending collab request with {user.first_name}.
+              </span>
+            ) : (
+              <span className="common-text-style">
+                <StarFilled style={{ color: "orange", margin: "5px" }} />
+                You have an active collab request with {user.first_name}.
+              </span>
+            )}
+          </>
+        ) : (
+          <>
+           <Tooltip title={isLoggedIn ? "" : "Login to send collab request"}>
+            <Button
+              type="primary"
+              className="common-medium-btn"
+              style={{ height: "auto", marginTop: "10px" }}
+              disabled={!isLoggedIn || !upForCollab}
+              onClick={() => {
+                setShowCollabModalState(true, collabRequestDetails.id);
+              }}
+            >
+              {" "}
+              Let&apos;s collaborate
+            </Button>
+            </Tooltip>
+
+            {!upForCollab ? (
+              <span className="common-text-style">
+                <CloseOutlined style={{ color: "red", marginTop: "20px" }} />
+                {user.first_name} is not available to collab!{" "}
+              </span>
+            ) : (
+              <span className="common-text-style">
+                <CheckOutlined style={{ color: "green", marginTop: "20px" }} />
+                {user.first_name} is available to collab!{" "}
+              </span>
+            )}
+          </>
+        )}
+      </>
+    );
+  };
+
   const getBioComponent = () => {
     if (!isEditBioClicked) {
       return (
@@ -342,83 +438,7 @@ const Profile = ({
 
           <h3 className="f-15 common-h3-style">{GetUserSkills(user, false)}</h3>
 
-          {isSelf ? (
-            <Button
-              type="primary"
-              className="common-medium-btn"
-              style={{ height: "auto", marginTop: "10px" }}
-            >
-              <Link
-                href={routeToHref(toEditProfile("profile", "profile"))}
-                passHref
-              >
-                Edit profile.
-              </Link>
-            </Button>
-          ) : (
-            <>
-              {hasPendingCollab ? (
-                <>
-                  <Button
-                    type="primary"
-                    className="common-medium-btn"
-                    style={{ height: "auto", marginTop: "10px" }}
-                    onClick={() => {
-                      setShowCollabModalState(true, collabRequestDetails.id);
-                      setCollabRequestDetails(collabRequestDetails);
-                    }}
-                  >
-                    {collabRequestDetails.status === "PENDING"
-                      ? "Show pending request"
-                      : "Show active request"}
-                  </Button>
-
-                  {collabRequestDetails.status === "PENDING" ? (
-                    <span className="common-text-style">
-                      <StarFilled style={{ color: "orange", margin: "5px" }} />
-                      You have a pending collab request with {user.first_name}.
-                    </span>
-                  ) : (
-                    <span className="common-text-style">
-                      <StarFilled style={{ color: "orange", margin: "5px" }} />
-                      You have an active collab request with {user.first_name}.
-                    </span>
-                  )}
-                </>
-              ) : (
-                <>
-                  <Button
-                    type="primary"
-                    className="common-medium-btn"
-                    style={{ height: "auto", marginTop: "10px" }}
-                    disabled={!upForCollab}
-                    onClick={() => {
-                      setShowCollabModalState(true, collabRequestDetails.id);
-                    }}
-                  >
-                    {" "}
-                    Let&apos;s collaborate
-                  </Button>
-
-                  {!upForCollab ? (
-                    <span className="common-text-style">
-                      <CloseOutlined
-                        style={{ color: "red", marginTop: "20px" }}
-                      />
-                      {user.first_name} is not available to collab!{" "}
-                    </span>
-                  ) : (
-                    <span className="common-text-style">
-                      <CheckOutlined
-                        style={{ color: "green", marginTop: "20px" }}
-                      />
-                      {user.first_name} is available to collab!{" "}
-                    </span>
-                  )}
-                </>
-              )}
-            </>
-          )}
+          {getButton()}
         </div>
 
         <div className="artistProfile__tabsContainer common-text-style">
@@ -427,7 +447,7 @@ const Profile = ({
               <div className="artistProfile__tabContainer">
                 <div className="artistProfile__bioButtonsContainer">
                   <b className="f-16 common-text-style">Bio</b>
-                  { isSelf && getIconForEditBio()}
+                  {isSelf && getIconForEditBio()}
                 </div>
                 {getBioComponent()}
                 <div>

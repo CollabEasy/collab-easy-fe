@@ -111,21 +111,14 @@ const ArtistProfile = ({
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
       {showProfileModal && <NewUserModal />}
-      {!isLoggedIn ? (
-        <>
-          <NotAuthorised
-            error={"Please login to see the profile of the artist."}
-          />
-        </>
-      ) : (
-        <Profile
+      <Profile
           isSelf={isSelf}
           upForCollab={upForCollab}
+          isLoggedIn={isLoggedIn}
           loggedInUserId={isLoggedIn ? user.artist_id : ""}
           user={isSelf ? user : otherUser}
           isProfileComplete={isProfileComplete}
         />
-      )}
     </Layout>
   );
 };
