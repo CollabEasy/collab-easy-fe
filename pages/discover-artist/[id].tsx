@@ -166,7 +166,6 @@ const DiscoverArtist = ({
     }
     artists.forEach((artist, index) => {
       if (artist !== null) {
-        console.log(artist);
         resultArtists.push(
           //https://bbbootstrap.com/snippets/bootstrap-ecommerce-category-product-list-page-93685579
           <div className="row p-2 bg-white border rounded artits-card">
@@ -184,7 +183,7 @@ const DiscoverArtist = ({
             <div className="col-md-6 mt-1 common-text-style">
               <h5 className="common-h5-style">{artist.first_name} {artist?.last_name}</h5>
               {artist.country && (
-                <div className="d-flex flex-row" style={{justifyContent: "center"}}>
+                <div className="d-flex flex-row artist-location">
                   <span>{artist.country}</span>
                   {artist.state && (
                     <span>, {artist.state}</span>
