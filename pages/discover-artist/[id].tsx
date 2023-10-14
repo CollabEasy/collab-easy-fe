@@ -184,7 +184,7 @@ const DiscoverArtist = ({
             <div className="col-md-6 mt-1 common-text-style">
               <h5 className="common-h5-style">{artist.first_name} {artist?.last_name}</h5>
               {artist.country && (
-                <div className="d-flex flex-row">
+                <div className="d-flex flex-row" style={{justifyContent: "center"}}>
                   <span>{artist.country}</span>
                   {artist.state && (
                     <span>, {artist.state}</span>
