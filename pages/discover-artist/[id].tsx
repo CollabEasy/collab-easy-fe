@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { LISTING_METADATA, SIMILAR_CATEGORIES } from "../../constants/listing";
 import { Card, Button } from "antd";
-import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
+import { CloseOutlined, CheckOutlined, HomeOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useRoutesContext } from "../../components/routeContext";
 import { routeToHref } from "config/routes";
@@ -166,6 +166,7 @@ const DiscoverArtist = ({
     }
     artists.forEach((artist, index) => {
       if (artist !== null) {
+        console.log(artist);
         resultArtists.push(
           //https://bbbootstrap.com/snippets/bootstrap-ecommerce-category-product-list-page-93685579
           <div className="row p-2 bg-white border rounded artits-card">
@@ -182,20 +183,31 @@ const DiscoverArtist = ({
 
             <div className="col-md-6 mt-1 common-text-style">
               <h5 className="common-h5-style">{artist.first_name} {artist?.last_name}</h5>
+              {artist.country && (
+                <div className="d-flex flex-row">
+                  <span>{artist.country}</span>
+                  {artist.state && (
+                    <span>, {artist.state}</span>
+                  )}
+                  {artist.city && (
+                    <span>, {artist.city}</span>
+                  )}
+                </div>
+              )}
               <div className="mt-1 mb-1 spec-1">
                 {getUserSkills(artist.skills)}
               </div>
               <p className="text-justify break-word common-p-style">{artist.bio}<br></br><br></br></p>
+            </div>
+            <div className="align-items-center align-content-center col-md-3 border-left mt-1">
               <div className="mt-1 mb-1 spec-1">
                 {artist.up_for_collab == "false" ? (
-                  <span className="common-text-style"><CloseOutlined style={{ color: 'red', margin: '5px' }} />{artist.first_name} is not available to collab! </span>
+                  <span className="common-text-style"><CloseOutlined style={{ color: 'red', margin: '5px' }} />Not available to collab! </span>
                 ) : (
-                  <span className="common-text-style"><CheckOutlined style={{ color: 'green', margin: '5px' }} />{artist.first_name} is available to collab! </span>
+                  <span className="common-text-style"><CheckOutlined style={{ color: 'green', margin: '5px' }} />Available to collab! </span>
                 )}
                 {/* <span><PictureOutlined /> Sample work uploaded</span> */}
               </div>
-            </div>
-            <div className="align-items-center align-content-center col-md-3 border-left mt-1">
               <div className="d-flex flex-column mt-4">
                 {!isLoggedIn && (
                   <div className="login-message">
