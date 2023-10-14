@@ -15,9 +15,6 @@ const postConfig = (dataToSend) => {
 const getConfig = () => {
   return {
     method: "get",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
   };
 };
 
