@@ -12,12 +12,9 @@ const postConfig = (dataToSend) => {
   };
 };
 
-const getConfig = () => {
+const getConfigWithoutToken = () => {
   return {
     method: "get",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
   };
 };
 
@@ -32,7 +29,7 @@ export const uploadSampleApi = async (data: FormData) => {
 };
 
 export const fetchSampleApi = async (slug: string) => {
-  const config = getConfig();
+  const config = getConfigWithoutToken();
   try {
     const result = await api.call("api/v1/artist/" + slug + "/sample/list", config);
     return result;
