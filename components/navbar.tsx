@@ -12,6 +12,7 @@ import { AppState } from "types/states";
 import Image from "next/image";
 import titleDesktopImg from "../public/images/title-desktop.svg";
 import titleMobileImg from "../public/images/logo.svg";
+import titleMobileBlueImg from "../public/images/mobile-blue.jpg";
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
 import { openLoginModalAction, resetUserLoggedIn } from "state/action";
@@ -122,7 +123,7 @@ const NavBar = ({
         <div id="app-logo-mobile">
           <Link href={routeToHref(toWondorHome())} passHref>
             <Image
-              src={titleMobileImg}
+              src={titleMobileBlueImg}
               alt="Landing page"
               onClick={() => setShowLoginOptions(false)}
             />
