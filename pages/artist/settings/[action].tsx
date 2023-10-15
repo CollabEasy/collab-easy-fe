@@ -138,6 +138,11 @@ const EditProfile = ({
       setHasPendingCollab(false);
       setCollabRequestDetails(emptyCollabDetails);
     }
+
+    if (window.innerWidth < 500) {
+      setCollapsed(true);
+    }
+    
   }, [
     collab.collabDetails.received.pending,
     collab.collabDetails.sent.pending,
