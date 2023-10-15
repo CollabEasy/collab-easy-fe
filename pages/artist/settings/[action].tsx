@@ -227,7 +227,7 @@ const EditProfile = ({
 
   return (
     <DefaultLayout
-      title="Settings"
+      title="Portal | Wondor"
       name={"description"}
       content={
         "Manage your basic information, prefernces, collab schedule, linked social media accounts, notes etc all in one place."

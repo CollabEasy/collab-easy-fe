@@ -106,7 +106,7 @@ const ArtistProfile = ({
         (isSelf ? user.first_name : otherUser.first_name) +
         " " +
         (isSelf ? user.last_name : otherUser.last_name) +
-        ". Send them a collaboration request."
+        ". Send them a collaboration request | Wondor"
       }
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
