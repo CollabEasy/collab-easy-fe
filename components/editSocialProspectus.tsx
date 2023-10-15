@@ -91,7 +91,7 @@ const EditSocialProspectus = ({
     };
 
     const [isViewMode, setViewMode] = useState(false);
-    
+
     const columns = [
         { title: "Platform", dataIndex: "name", key: "name" },
         { title: "Handle", dataIndex: "handle", key: "handle" },
@@ -113,6 +113,37 @@ const EditSocialProspectus = ({
         },
     ];
 
+    const deviceColumns = [
+        {
+            render: (record, key, index) => {
+                const platform = record.name;
+                const handle = record.handle;
+                const description = record.description;
+                const upForCollab = record.upForCollab;
+                return (
+                    <div>
+                        <span>
+                            <p><b>Platform:</b> {platform}</p>
+                        </span>
+                        <span>
+                            <p><b>Handle:</b> {handle}</p>
+                        </span>
+                        <span>
+                            <p><b>Description:</b> {description}</p>
+                        </span>
+                        <span>
+                            <p><b>Up for collab:</b> {upForCollab? "Yes" : "No"}</p>
+                        </span>
+                        <Button type="primary" onClick={() => updateUserProspectus(record)}>
+                            Update
+                        </Button>
+                        <Button onClick={() => deleteUserProspectus(record)}>Delete</Button>
+                    </div>
+                )
+            }
+        }
+    ];
+
     const getCurrentSocialProspectus = () => {
         let data =
             userSocialProspectus.length != 0 ? userSocialProspectus[0].data : [];
@@ -126,7 +157,7 @@ const EditSocialProspectus = ({
             };
             updatedData.push(obj);
         });
-        return <Table columns={columns} dataSource={updatedData} />;
+        return <Table columns={ window.innerWidth < 500 ? deviceColumns : columns} dataSource={updatedData} />;
     };
 
     return (
