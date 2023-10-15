@@ -51,7 +51,6 @@ const mapStateToProps = (state: AppState) => {
     user: state.user.user,
     loginModalDetails: state.home.loginModalDetails,
     collab: state.collab,
-    samples: state.sample.samples,
     isLoggedIn: state.user.isLoggedIn,
     isFetchingSamples: state.sample.isFetchingSamples,
     isFetchingCollabs: state.collab.isFetchingCollabDetails,
@@ -84,7 +83,6 @@ const EditProfile = ({
   isLoggedIn,
   loginModalDetails,
   collab,
-  samples,
   isFetchingSamples,
   fetchArtistSamples,
   getCollabRequestsAction,
@@ -357,7 +355,6 @@ const EditProfile = ({
                       </p>
                       <SamplePage
                         isSelf
-                        samples={samples}
                         user={user}
                         showLoader={isFetchingSamples}
                       />

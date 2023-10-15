@@ -524,7 +524,6 @@ const Profile = ({
                     <SamplePage
                       isSelf={isSelf && isLoggedIn}
                       user={user}
-                      samples={userSamples}
                       showLoader={isFetchingSamples}
                     />
                   </>

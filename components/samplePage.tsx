@@ -28,14 +28,17 @@ const { Meta } = Card;
 const { TabPane } = Tabs;
 
 const mapStateToProps = (state: AppState) => {
+  const samples = state.sample.samples;
   const isDeleting = state.sample.isDeleting;
   const isDeleted = state.sample.isDeleted;
   const isUploading = state.sample.isUploading;
   const isUploaded = state.sample.isUploaded;
-  return { isDeleting, isDeleted, isUploading, isUploaded }
+  return { samples, isDeleting, isDeleted, isUploading, isUploaded }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchArtistSamples: (slug: string) =>
+    dispatch(action.fetchArtistSamples(slug)),
   clearUploadSampleState: () => dispatch(action.clearUploadSampleState()),
   clearDeleteSampleState: () => dispatch(action.clearDeleteSampleState()),
   deleteSample: (sample: UserSample) => dispatch(action.deleteSample(sample)),
@@ -48,7 +51,6 @@ type Props = {
   user: User;
   isSelf: boolean;
   showLoader: boolean;
-  samples: UserSample[];
 } & ConnectedProps<typeof connector>;
 
 const SamplePage = ({
@@ -60,6 +62,7 @@ const SamplePage = ({
   isUploading,
   isUploaded,
   showLoader,
+  fetchArtistSamples,
   deleteSample,
   uploadSample,
   clearUploadSampleState,
@@ -82,6 +85,10 @@ const SamplePage = ({
     setUploadFile(null);
     setShowUploadModal(false);
   };
+
+  useEffect(() => {
+    fetchArtistSamples(user.slug);
+  }, [fetchArtistSamples]);
 
   const { toEditProfile } = useRoutesContext();
 
