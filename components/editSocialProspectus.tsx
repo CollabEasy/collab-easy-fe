@@ -115,6 +115,7 @@ const EditSocialProspectus = ({
 
     const deviceColumns = [
         {
+            // eslint-disable-next-line react/display-name
             render: (record, key, index) => {
                 const platform = record.name;
                 const handle = record.handle;
@@ -132,7 +133,7 @@ const EditSocialProspectus = ({
                             <p><b>Description:</b> {description}</p>
                         </span>
                         <span>
-                            <p><b>Up for collab:</b> {upForCollab? "Yes" : "No"}</p>
+                            <p><b>Up for collab:</b> {upForCollab ? "Yes" : "No"}</p>
                         </span>
                         <Button type="primary" onClick={() => updateUserProspectus(record)}>
                             Update
@@ -157,7 +158,7 @@ const EditSocialProspectus = ({
             };
             updatedData.push(obj);
         });
-        return <Table columns={ window.innerWidth < 500 ? deviceColumns : columns} dataSource={updatedData} />;
+        return <Table columns={window.innerWidth < 500 ? deviceColumns : columns} dataSource={updatedData} />;
     };
 
     return (
