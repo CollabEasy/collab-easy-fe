@@ -230,7 +230,7 @@ const EditProfile = ({
     return (
       <Menu
         theme="dark"
-        mode= {mobile? "horizontal" : "inline"}
+        mode={mobile ? "horizontal" : "inline"}
         selectedKeys={[activeTabKey.current]}
         onClick={handleClick}
       >
@@ -299,8 +299,7 @@ const EditProfile = ({
         <div>
           <Layout style={{ minHeight: "100vh", overflow: "auto" }} >
             {window.innerWidth < 500 ? (
-              <Header
-              >
+              <Header>
                 {GetMenu(true)}
               </Header>
             ) : (
