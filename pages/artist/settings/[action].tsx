@@ -10,6 +10,7 @@ import { default as DefaultLayout } from "../../../components/layout";
 import NotAuthorised from "@/components/error/notAuthorised";
 import { Select } from "antd";
 import { Layout, Menu } from "antd";
+import { Icon } from 'antd';
 import { routeToHref } from "config/routes";
 import {
   SearchOutlined,
@@ -43,6 +44,7 @@ import Navbar from "@/components/navbar";
 import Rewards from "@/components/rewards";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
+import { Header } from "antd/lib/layout/layout";
 
 const { Sider, Content } = Layout;
 
@@ -140,7 +142,7 @@ const EditProfile = ({
     if (window.innerWidth < 500) {
       setCollapsed(true);
     }
-    
+
   }, [
     collab.collabDetails.received.pending,
     collab.collabDetails.sent.pending,
@@ -225,6 +227,58 @@ const EditProfile = ({
   if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails)
     return <Loader />;
 
+  const GetMenu = (mobile) => {
+    return (
+      <Menu
+        theme="dark"
+        mode={mobile ? "horizontal" : "inline"}
+        selectedKeys={[activeTabKey.current]}
+        onClick={handleClick}
+      >
+        <Menu.Item key="0">
+          <HomeOutlined />
+          <span>Home</span>
+        </Menu.Item>
+        <Menu.Item key="9">
+          <UserOutlined />
+          <span>Profile</span>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <ProfileOutlined />
+          <span>Basic Information</span>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <CheckCircleOutlined />
+          <span>Preferences</span>
+        </Menu.Item>
+        <Menu.Item key="3">
+          <PictureOutlined />
+          <span>Samples</span>
+        </Menu.Item>
+        <Menu.Item key="4">
+          <InstagramOutlined />
+          <span>Social Prospectus</span>
+        </Menu.Item>
+        <Menu.Item key="5">
+          <EditOutlined />
+          <span>Scratchpad</span>
+        </Menu.Item>
+        <Menu.Item key="6">
+          <CalendarOutlined />
+          <span>Collab Requests</span>
+        </Menu.Item>
+        <Menu.Item key="7">
+          <DollarOutlined />
+          <span>Rewards</span>
+        </Menu.Item>
+        <Menu.Item key="8" danger>
+          <LogoutOutlined />
+          <span>Log out</span>
+        </Menu.Item>
+      </Menu>
+    );
+  }
+
   return (
     <DefaultLayout
       title="Portal | Wondor"
@@ -244,69 +298,37 @@ const EditProfile = ({
         </>
       ) : (
         <div>
-          <Layout style={{ minHeight: "100vh", overflow: "auto" }} hasSider>
-            <Sider
-              collapsible
-              collapsed={collapsed}
-              onCollapse={(value) => setCollapsed(value)}
-            >
-              <Link href={routeToHref(toDiscover())} passHref>
-                <div className="logo" style={{ cursor: "pointer" }}>
-                  {!collapsed ? (
-                    <Image src={titleDesktopImg} alt="Landing page" />
-                  ) : (
-                    <Image src={titleMobileImg} alt="Landing page" />
-                  )}
+          <Layout style={{ minHeight: "100vh", overflow: "auto" }} >
+            {window.innerWidth < 500 ? (
+              <Header>
+                <div style={{
+                  float: "left",
+                  paddingTop: "12px",
+                  cursor: "pointer"
+                }}
+                >
+                  <Image src={titleMobileImg} alt="logo" height="30px" width="30px" />
                 </div>
-              </Link>
-              <Menu
-                theme="dark"
-                mode="inline"
-                selectedKeys={[activeTabKey.current]}
-                onClick={handleClick}
+                {GetMenu(true)}
+              </Header>
+            ) : (
+              <Sider
+                collapsible
+                collapsed={collapsed}
+                onCollapse={(value) => setCollapsed(value)}
               >
-                <Menu.Item key="0">
-                  <HomeOutlined />
-                  <span>Home</span>
-                </Menu.Item>
-                <Menu.Item key="9">
-                  <UserOutlined />
-                  <span>Profile</span>
-                </Menu.Item>
-                <Menu.Item key="1">
-                  <ProfileOutlined />
-                  <span>Basic Information</span>
-                </Menu.Item>
-                <Menu.Item key="2">
-                  <CheckCircleOutlined />
-                  <span>Preferences</span>
-                </Menu.Item>
-                <Menu.Item key="3">
-                  <PictureOutlined />
-                  <span>Samples</span>
-                </Menu.Item>
-                <Menu.Item key="4">
-                  <InstagramOutlined />
-                  <span>Social Prospectus</span>
-                </Menu.Item>
-                <Menu.Item key="5">
-                  <EditOutlined />
-                  <span>Scratchpad</span>
-                </Menu.Item>
-                <Menu.Item key="6">
-                  <CalendarOutlined />
-                  <span>Collab Requests</span>
-                </Menu.Item>
-                <Menu.Item key="7">
-                  <DollarOutlined />
-                  <span>Rewards</span>
-                </Menu.Item>
-                <Menu.Item key="8" danger>
-                  <LogoutOutlined />
-                  <span>Log out</span>
-                </Menu.Item>
-              </Menu>
-            </Sider>
+                <Link href={routeToHref(toDiscover())} passHref>
+                  <div className="logo" style={{ cursor: "pointer" }}>
+                    {!collapsed ? (
+                      <Image src={titleDesktopImg} alt="Landing page" />
+                    ) : (
+                      <Image src={titleMobileImg} alt="Landing page" />
+                    )}
+                  </div>
+                </Link>
+                {GetMenu(false)}
+              </Sider>
+            )}
             <Layout>
               <>
                 {getActiveTab() === "1" && (
