@@ -9,7 +9,8 @@ import CollabRequestTab from "../../../components/collabRequestTab";
 import { default as DefaultLayout } from "../../../components/layout";
 import NotAuthorised from "@/components/error/notAuthorised";
 import { Select } from "antd";
-import { Layout, Menu, Icon } from "antd";
+import { Layout, Menu } from "antd";
+import { Icon } from 'antd';
 import { routeToHref } from "config/routes";
 import {
   SearchOutlined,
@@ -300,6 +301,14 @@ const EditProfile = ({
           <Layout style={{ minHeight: "100vh", overflow: "auto" }} >
             {window.innerWidth < 500 ? (
               <Header>
+                <div style={{
+                  float: "left",
+                  paddingTop: "12px",
+                  cursor: "pointer"
+                }}
+                >
+                  <Image src={titleMobileImg} alt="logo" height="30px" width="30px" />
+                </div>
                 {GetMenu(true)}
               </Header>
             ) : (
