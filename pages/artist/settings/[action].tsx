@@ -10,7 +10,6 @@ import { default as DefaultLayout } from "../../../components/layout";
 import NotAuthorised from "@/components/error/notAuthorised";
 import { Select } from "antd";
 import { Layout, Menu } from "antd";
-import { Icon } from 'antd';
 import { routeToHref } from "config/routes";
 import {
   SearchOutlined,
