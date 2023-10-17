@@ -233,45 +233,46 @@ const EditProfile = ({
         mode={mobile ? "horizontal" : "inline"}
         selectedKeys={[activeTabKey.current]}
         onClick={handleClick}
+        style={{justifyContent:"flex-end"}}
       >
         <Menu.Item key="0">
-          <HomeOutlined />
+          {!mobile && <HomeOutlined />}
           <span>Home</span>
         </Menu.Item>
         <Menu.Item key="9">
-          <UserOutlined />
+          {!mobile && <UserOutlined />}
           <span>Profile</span>
         </Menu.Item>
         <Menu.Item key="1">
-          <ProfileOutlined />
+          {!mobile && <ProfileOutlined />}
           <span>Basic Information</span>
         </Menu.Item>
         <Menu.Item key="2">
-          <CheckCircleOutlined />
+          {!mobile && <CheckCircleOutlined />}
           <span>Preferences</span>
         </Menu.Item>
         <Menu.Item key="3">
-          <PictureOutlined />
+          {!mobile && <PictureOutlined />}
           <span>Samples</span>
         </Menu.Item>
         <Menu.Item key="4">
-          <InstagramOutlined />
+          {!mobile && <InstagramOutlined />}
           <span>Social Prospectus</span>
         </Menu.Item>
         <Menu.Item key="5">
-          <EditOutlined />
+          {!mobile && <EditOutlined />}
           <span>Scratchpad</span>
         </Menu.Item>
         <Menu.Item key="6">
-          <CalendarOutlined />
+          {!mobile && <CalendarOutlined />}
           <span>Collab Requests</span>
         </Menu.Item>
         <Menu.Item key="7">
-          <DollarOutlined />
+          {!mobile && <DollarOutlined />}
           <span>Rewards</span>
         </Menu.Item>
         <Menu.Item key="8" danger>
-          <LogoutOutlined />
+          {!mobile && <LogoutOutlined />}
           <span>Log out</span>
         </Menu.Item>
       </Menu>
