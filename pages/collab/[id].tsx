@@ -14,6 +14,7 @@ import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
 import { ConvertTimestampToDate } from 'helpers/collabCardHelper';
 import { GetCollabRequest, GetCollaboratorInfoFromCollab, DoHideNewCommentBox } from 'helpers/collabPageHelper';
+import Layout from "@/components/layout";
 
 // https://ant.design/components/card/
 const { TextArea } = Input;
@@ -130,56 +131,64 @@ const CollabPage = ({
   }
 
   return (
-    <>
-      {loginModalDetails.openModal && !user.new_user && (
-        <LoginModal />
-      )
+    <Layout
+      title={"Collab request | Wondor "}
+      name={"description"}
+      content={
+        "Manage your collab request on Wondor!"
       }
-      {showProfileModal && (
-        <NewUserModal />
-      )
-      }
-      {!isLoggedIn ? (
-        <>
-          <NotAuthorised 
-            error={"Please login to see details of this collaboration request!"}
-          />
-        </>
-      ) : (
-        <div className="collabDetailsPage_container">
-          {isFetchingCollabs ? (
-            <Loader />
-          ) : (
-            <CollabDetailCard showUser={true} collabDetails={GetCollabRequest(collab)} />
-          )}
+    >
+      <>
+        {loginModalDetails.openModal && !user.new_user && (
+          <LoginModal />
+        )
+        }
+        {showProfileModal && (
+          <NewUserModal />
+        )
+        }
+        {!isLoggedIn ? (
+          <>
+            <NotAuthorised
+              error={"Please login to see details of this collaboration request!"}
+            />
+          </>
+        ) : (
+          <div className="collabDetailsPage_container">
+            {isFetchingCollabs ? (
+              <Loader />
+            ) : (
+              <CollabDetailCard showUser={true} collabDetails={GetCollabRequest(collab)} />
+            )}
 
-          {isAddingCollabConversationComment ? (
-            <Loader />
-          ) : (
-            <div className="collabDetailsPage_newCommentContainer">
-              {getCollabConversationElement()}
-            </div>
-          )}
-
-          <div className="collabDetailsPage_newCommentContainer">
-            {DoHideNewCommentBox(GetCollabRequest(collab)["status"]) && (
-              <div>
-                <TextArea
-                  rows={4}
-                  placeholder="What is in your mind?"
-                  maxLength={500}
-                  showCount
-                  onChange={(e) =>
-                    setComment(e.target.value)}
-                  value={comment}
-                />
-                <Button type="primary" className="collabDetailsPage_buttonContainer" onClick={saveComment}>Send</Button>
+            {isAddingCollabConversationComment ? (
+              <Loader />
+            ) : (
+              <div className="collabDetailsPage_newCommentContainer">
+                {getCollabConversationElement()}
               </div>
             )}
+
+            <div className="collabDetailsPage_newCommentContainer">
+              {DoHideNewCommentBox(GetCollabRequest(collab)["status"]) && (
+                <div>
+                  <TextArea
+                    rows={4}
+                    placeholder="What is in your mind?"
+                    maxLength={500}
+                    showCount
+                    onChange={(e) =>
+                      setComment(e.target.value)}
+                    value={comment}
+                  />
+                  <Button type="primary" className="collabDetailsPage_buttonContainer" onClick={saveComment}>Send</Button>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-    </>
+        )}
+      </>
+    </Layout>
   );
 };
 
