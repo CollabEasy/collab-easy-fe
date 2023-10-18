@@ -32,6 +32,10 @@ export const routes: AppRouteCreators = {
     href: '/collab/[id]',
     as: `/collab/${id}`,
   }),
+  toSendCollabRequestPage: (slug) => ({
+    href: '/request/[slug]',
+    as: `/request/${slug}`,
+  }),
   toContestPage: (slug, tab) => ({
     href: '/contest/[slug]?tab=[tab]',
     as: `/contest/${slug}?tab=${tab}`,

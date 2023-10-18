@@ -1,0 +1,231 @@
+.requestPageContainer {
+    position: relative;
+    margin: auto;
+    width: 70%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    .requestContainer {
+        padding-top: 20%;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .artits-card {
+            width: 100%;
+            height: 90%;
+            transition: 0.3s;
+            background-color: #fafafa;
+            //padding-top: 10px;
+            //padding-bottom: 100px;
+            margin-bottom: 15px;
+            
+            .dot {
+                height: 7px;
+                width: 7px;
+                margin-left: 6px;
+                margin-right: 6px;
+                margin-top: 3px;
+                background-color: #1890FF;
+                border-radius: 50%;
+                display: inline-block
+            }
+            
+            .spec-1 {
+                color: #938787;
+                font-size: 15px
+            }
+            
+            h5 {
+                font-weight: 400
+            }
+            
+            .para {
+                font-size: 16px
+            }
+        }
+
+        .login-message {
+            color: red;
+            font-size: 12px;
+            text-align: center;
+        }
+    }
+    .collabCard {
+        position: relative;
+        margin-top: 10%;
+        margin-bottom: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        flex-direction: column;
+        width: 60%;
+        //box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+        border: 1px solid rgb(0 0 0 / 10%);
+        //background-color: rgb(0 0 0 / 5%);
+        transition: 0.3s;
+        border-radius: 5px;
+    }
+}
+  
+/* mobile/tablet css starts from here  */  
+
+@media only screen and (max-width: 1200px) and (min-width: 1101px) {
+    
+    .requestPageContainer {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1100px) and (min-width: 901px) {
+    
+    .requestPageContainer {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 766px) {
+    
+    .requestPageContainer {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 601px) {
+    
+    .requestPageContainer {
+        width: 90%;
+
+        .requestContainer {
+            padding-top: 30%;
+            padding-left: 20px;
+            .artits-card {
+                width: 100%;
+                height: 90%;
+                border: black;
+                background-color: #fafafa;
+                .artist-profile-picture {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 30%;
+                }
+                .dot {
+                    height: 8px;
+                    width: 8px;
+                }
+                
+                h5 {
+                    font-size: 20px;
+                    text-align: center;
+                }
+
+                .artist-location {
+                    justify-content: center;
+                }
+
+                .spec-1 {
+                    font-size: 18px;
+                    text-align: center;
+                }
+
+                .para {
+                    font-size: 15px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+  }
+
+@media only screen and (max-width: 600px) and  (min-width: 400px) {
+    .requestPageContainer {
+        width: 90%;
+        
+        .requestContainer {
+            padding-top: 30%;
+            padding-left: 20px;
+            .artits-card {
+                width: 100%;
+                height: 90%;
+                border: black;
+                background-color: #fafafa;
+                .artist-profile-picture {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 35%;
+                }
+                .dot {
+                    height: 8px;
+                    width: 8px;
+                }
+                
+                h5 {
+                    font-size: 20px;
+                    text-align: center;
+                }
+                
+                .artist-location {
+                    justify-content: center;
+                }
+
+                .spec-1 {
+                    font-size: 15px;
+                    text-align: center;
+                }
+
+                .para {
+                    font-size: 12px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+  
+@media only screen and (max-width: 399px) {
+    .requestPageContainer {
+        width: 90%;
+
+        .requestContainer {
+            padding-top: 30%;
+            padding-left: 20px;
+            .artits-card {
+                width: 100%;
+                height: 90%;
+                border: black;
+                background-color: #fafafa;
+                .artist-profile-picture {
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    width: 50%;
+                }
+                .dot {
+                    height: 5px;
+                    width: 5px;
+                }
+                
+                h5 {
+                    font-size: 15px;
+                    text-align: center;
+                }
+                
+                .artist-location {
+                    justify-content: center;
+                }
+
+                .spec-1 {
+                    font-size: 12px;
+                    text-align: center;
+                }
+
+                .para {
+                    font-size: 10px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
