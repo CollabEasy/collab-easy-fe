@@ -19,6 +19,7 @@ import Loader from "@/components/loader";
 import SendCollabRequestModal from "../../components/modal/sendCollabRequestModal";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
 import Layout from "@/components/layout";
+import { GetUserSkills } from "helpers/artistHelper";
 
 const { Meta } = Card;
 
@@ -115,21 +116,6 @@ const DiscoverArtist = ({
     return `${src}?w=${width}&q=${quality || 75}`
   }
 
-  const getUserSkills = (skills: string[]) => {
-    const skillsHtml: JSX.Element[] = [];
-    if (skills.length > 0) {
-      skills.forEach((skill: string, index: number) => {
-        skillsHtml.push(
-          <>
-            <span className="common-text-style">{skill}</span>
-            {index == skills.length - 1 ? (<></>) : (<span className="dot"></span>)}
-          </>
-        )
-      })
-    }
-    return skillsHtml;
-  }
-
   const getSimilarCategories = (selectedCategorySlug) => {
     const similarCategoriesHtml: JSX.Element[] = [];
     SIMILAR_CATEGORIES.forEach((element) => {
@@ -194,7 +180,7 @@ const DiscoverArtist = ({
                 </div>
               )}
               <div className="mt-1 mb-1 spec-1">
-                {getUserSkills(artist.skills)}
+                {GetUserSkills(artist.skills)}
               </div>
               <p className="text-justify break-word common-p-style">{artist.bio}<br></br><br></br></p>
             </div>
