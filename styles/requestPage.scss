@@ -52,6 +52,20 @@
             text-align: center;
         }
     }
+    .collabCard {
+        position: relative;
+        margin-top: 10%;
+        margin-bottom: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        flex-direction: column;
+        width: 60%;
+        //box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+        border: 1px solid rgb(0 0 0 / 10%);
+        //background-color: rgb(0 0 0 / 5%);
+        transition: 0.3s;
+        border-radius: 5px;
+    }
 }
   
 /* mobile/tablet css starts from here  */  

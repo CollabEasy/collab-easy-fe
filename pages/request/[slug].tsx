@@ -21,6 +21,7 @@ import { GetCollabRequest, GetCollaboratorInfoFromCollab, DoHideNewCommentBox } 
 import Layout from "@/components/layout";
 import { GetPendingCollabRequest } from "helpers/profilePageHelper";
 import Link from "next/link";
+import SendCollabRequestModal from "@/components/modal/sendCollabRequestModal";
 
 // https://ant.design/components/card/
 const { TextArea } = Input;
@@ -31,11 +32,13 @@ const mapStateToProps = (state: AppState) => {
     const loginModalDetails = state.home.loginModalDetails;
     const collab = state.collab;
     const isFetchingCollabs = state.collab.isFetchingCollabDetails;
-    return { user, collab, isLoggedIn, loginModalDetails, isFetchingCollabs }
+    const showCollabModal = state.collab.showCollabModal;
+    return { user, collab, isLoggedIn, loginModalDetails, isFetchingCollabs, showCollabModal }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getCollabRequestsAction: (data: SearchCollab) => dispatch(action.getCollabRequestsAction(data)),
+    setShowCollabModalState: (show: boolean, id: string) => dispatch(action.setShowCollabModalState(show, id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -48,7 +51,9 @@ const SendCollabRequestPage = ({
     isLoggedIn,
     loginModalDetails,
     isFetchingCollabs,
+    showCollabModal,
     getCollabRequestsAction,
+    setShowCollabModalState,
 }: Props) => {
     const emptyCollabDetails: CollabRequestData = {
         id: "",
@@ -66,6 +71,7 @@ const SendCollabRequestPage = ({
 
     const [isSelf, setIsSelf] = useState(false);
     const [showLoader, setShowLoader] = useState(true);
+    const [userIdForCollab, saveUserIdForCollab] = useState("");
     const [hasPendingCollab, setHasPendingCollab] = useState(false);
     const [collabDetails, setCollabRequestDetails] = useState<CollabRequestData>(emptyCollabDetails);
     const [showProfileModal, setShowProfileModal] = useState(false);
@@ -88,6 +94,8 @@ const SendCollabRequestPage = ({
         const { slug: slug } = router.query;
         if (user.slug === slug) {
             setIsSelf(true);
+            setHasPendingCollab(false);
+            setCollabRequestDetails(emptyCollabDetails);
         } else {
             setShowLoader(true);
             setIsSelf(false);
@@ -95,19 +103,12 @@ const SendCollabRequestPage = ({
             getCollabRequestsAction({
                 otherUserId: otherUser.artist_id,
             });
-        }
-        setShowLoader(false);
-    }, [router.query, user.slug]);
-
-    useEffect(() => {
-        if (!isFetchingCollabs && !isSelf) {
 
             var filteredCollab = GetPendingCollabRequest(
                 collab,
                 user.artist_id,
                 otherUser.artist_id,
             );
-
             if (filteredCollab.id !== "") {
                 // empty collab receieved.
                 setCollabRequestDetails(filteredCollab);
@@ -116,12 +117,9 @@ const SendCollabRequestPage = ({
                 setHasPendingCollab(false);
                 setCollabRequestDetails(emptyCollabDetails);
             }
-        } else {
-            // you are on your own profile and do not fetch anything.
-            setHasPendingCollab(false);
-            setCollabRequestDetails(emptyCollabDetails);
         }
-    }, []);
+        setShowLoader(false);
+    }, [router.query, user.slug]);
 
     if (
         showLoader ||
@@ -131,13 +129,14 @@ const SendCollabRequestPage = ({
         return <Loader />;
     }
 
+    const setUserIdForCollab = (userId) => {
+        saveUserIdForCollab(userId);
+    }
+
     // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
     const prismicLoader = ({ src, width, quality }) => {
         return `${src}?w=${width}&q=${quality || 75}`
     }
-
-    console.log(collab);
-    console.log(collabDetails);
 
     return (
         <Layout
@@ -165,74 +164,94 @@ const SendCollabRequestPage = ({
             {isFetchingCollabs ? (
                 <Loader />
             ) : (
-                <div>
+                <>
                     <div>
-                        <div className="fluid requestPageContainer">
-                            <div className="col-md-12 requestContainer">
-                                <div className="row p-2 bg-white border rounded artits-card">
-                                    <div className="col-md-3 mt-1 artist-profile-picture">
-                                        <Image
-                                            loader={prismicLoader}
-                                            src={otherUser?.profile_pic_url}
-                                            alt="cards"
-                                            className="img-fluid img-responsive rounded"
-                                            height={150}
-                                            width={150}
-                                        />
-                                    </div>
+                        <div>
+                            <div className="fluid requestPageContainer">
+                                <div className="col-md-12 requestContainer">
+                                    <div className="row p-2 bg-white border rounded artits-card">
+                                        <div className="col-md-3 mt-1 artist-profile-picture">
+                                            <Image
+                                                loader={prismicLoader}
+                                                src={otherUser?.profile_pic_url}
+                                                alt="cards"
+                                                className="img-fluid img-responsive rounded"
+                                                height={150}
+                                                width={150}
+                                            />
+                                        </div>
 
-                                    <div className="col-md-6 mt-1 common-text-style">
-                                        <h5 className="common-h5-style">{otherUser.first_name} {otherUser?.last_name}</h5>
-                                        <div className="mt-1 mb-1 spec-1">
-                                            {GetUserSkills(otherUser.skills)}
+                                        <div className="col-md-6 mt-1 common-text-style">
+                                            <h5 className="common-h5-style">{otherUser.first_name} {otherUser?.last_name}</h5>
+                                            <div className="mt-1 mb-1 spec-1">
+                                                {GetUserSkills(otherUser.skills)}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="align-items-center align-content-center col-md-3 border-left mt-1">
-                                        <div className="mt-1 mb-1 spec-1">
-                                            {otherUser.up_for_collab == "false" ? (
-                                                <span className="common-text-style"><CloseOutlined style={{ color: 'red', margin: '5px' }} />Not available to collab! </span>
-                                            ) : (
-                                                <span className="common-text-style"><CheckOutlined style={{ color: 'green', margin: '5px' }} />Available to collab! </span>
-                                            )}
-                                        </div>
-                                        <div className="d-flex flex-column mt-4">
-                                            {!isLoggedIn && (
-                                                <div className="login-message">
-                                                    <p>Please, login to send a collab request</p>
-                                                </div>
-                                            )}
-                                            {!isSelf && (
-                                                <Button
-                                                    block
-                                                    className="common-medium-btn"
-                                                    type="primary"
-                                                    disabled={otherUser.up_for_collab == "false" || !isLoggedIn}
-                                                    style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
-                                                    // onClick={() => {
-                                                    //     setShowCollabModalState(true, '');
-                                                    //     setUserIdForCollab(artist.artist_id);
-                                                    // }}
-                                                >
-                                                    Send collab request
-                                                </Button>
-                                            )}
+                                        <div className="align-items-center align-content-center col-md-3 border-left mt-1">
+                                            <div className="mt-1 mb-1 spec-1">
+                                                {otherUser.up_for_collab == "false" ? (
+                                                    <span className="common-text-style"><CloseOutlined style={{ color: 'red', margin: '5px' }} />Not available to collab! </span>
+                                                ) : (
+                                                    <span className="common-text-style"><CheckOutlined style={{ color: 'green', margin: '5px' }} />Available to collab! </span>
+                                                )}
+                                            </div>
+                                            <div className="d-flex flex-column mt-4">
+                                                {!isLoggedIn && (
+                                                    <div className="login-message">
+                                                        <p>Please, login to send a collab request</p>
+                                                    </div>
+                                                )}
+                                                {hasPendingCollab && (
+                                                    <>
+                                                        <div className="login-message">
+                                                            <p>You have a pending collab request</p>
+                                                        </div>
+                                                        <Button
+                                                            block
+                                                            className="common-medium-btn"
+                                                            type="primary"
+                                                            style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
+                                                            onClick={() => {
+                                                                router.push(`/collab/${collabDetails.id}`);
+                                                            }}
+                                                        >
+                                                            Go to details
+                                                        </Button>
+                                                    </>
+                                                )}
+                                                {!isSelf && !hasPendingCollab && (
+                                                    <Button
+                                                        block
+                                                        className="common-medium-btn"
+                                                        type="primary"
+                                                        disabled={otherUser.up_for_collab == "false" || !isLoggedIn || hasPendingCollab}
+                                                        style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
+                                                        onClick={() => {
+                                                            setShowCollabModalState(true, '');
+                                                            setUserIdForCollab(otherUser.artist_id);
+                                                        }}
+                                                    >
+                                                        Send collab request
+                                                    </Button>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </>
             )}
-            {/* {showCollabModal.show && (
+            {showCollabModal.show && (
                 <SendCollabRequestModal
                     otherUser={userIdForCollab}
                     onCancel={() => {
-                        setShowCollabModalState(false, collabRequestDetails.id);
+                        setShowCollabModalState(false, collabDetails.id);
                     }}
-                    collabDetails={collabRequestDetails}
+                    collabDetails={collabDetails}
                 />
-            )} */}
+            )}
         </Layout>
     );
 };
