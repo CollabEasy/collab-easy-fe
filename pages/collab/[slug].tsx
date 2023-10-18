@@ -225,7 +225,7 @@ const SendCollabRequestPage = ({
                                                             type="primary"
                                                             style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
                                                             onClick={() => {
-                                                                router.push(`/collab/${collabDetails.id}`);
+                                                                router.push(`/collab/details/${collabDetails.id}`);
                                                             }}
                                                         >
                                                             Go to details

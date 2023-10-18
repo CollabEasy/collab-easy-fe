@@ -29,12 +29,12 @@ export const routes: AppRouteCreators = {
     as: `/artist/settings/${action}?tab=${tab}`,
   }),
   toCollabPage: (id) => ({
-    href: '/collab/[id]',
-    as: `/collab/${id}`,
+    href: '/collab/details/[id]',
+    as: `/collab/details/${id}`,
   }),
   toSendCollabRequestPage: (slug) => ({
-    href: '/request/[slug]',
-    as: `/request/${slug}`,
+    href: '/collab/[slug]',
+    as: `/collab/${slug}`,
   }),
   toContestPage: (slug, tab) => ({
     href: '/contest/[slug]?tab=[tab]',
