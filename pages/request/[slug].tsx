@@ -3,7 +3,7 @@ import { Tabs, Input, Button, Comment } from "antd";
 import Image from "next/image";
 import { AppState } from "state";
 import { connect, ConnectedProps } from "react-redux";
-import { CloseOutlined, CheckOutlined, HomeOutlined } from "@ant-design/icons";
+import { CloseOutlined, CheckOutlined, StarFilled } from "@ant-design/icons";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import { CollabRequestData, SearchCollab, User } from "types/model";
@@ -103,23 +103,28 @@ const SendCollabRequestPage = ({
             getCollabRequestsAction({
                 otherUserId: otherUser.artist_id,
             });
+        }
+        setShowLoader(false);
+    }, [router.query, user.slug]);
 
+    useEffect(() => {
+        setHasPendingCollab(false);
+        setCollabRequestDetails(emptyCollabDetails);
+        if (!isFetchingCollabs && !isSelf) {
+            // you are checking someone else page therefore fetch collab status.
             var filteredCollab = GetPendingCollabRequest(
                 collab,
                 user.artist_id,
                 otherUser.artist_id,
             );
+
             if (filteredCollab.id !== "") {
                 // empty collab receieved.
                 setCollabRequestDetails(filteredCollab);
                 setHasPendingCollab(true);
-            } else {
-                setHasPendingCollab(false);
-                setCollabRequestDetails(emptyCollabDetails);
             }
         }
-        setShowLoader(false);
-    }, [router.query, user.slug]);
+    }, [collab, user.artist_id]);
 
     if (
         showLoader ||
@@ -203,9 +208,17 @@ const SendCollabRequestPage = ({
                                                 )}
                                                 {hasPendingCollab && (
                                                     <>
-                                                        <div className="login-message">
-                                                            <p>You have a pending collab request</p>
-                                                        </div>
+                                                        {collabDetails.status === "PENDING" ? (
+                                                            <span className="common-text-style">
+                                                                <StarFilled style={{ color: "orange", margin: "5px" }} />
+                                                                You have a pending collab request.
+                                                            </span>
+                                                        ) : (
+                                                            <span className="common-text-style">
+                                                                <StarFilled style={{ color: "orange", margin: "5px" }} />
+                                                                You have an active collab request.
+                                                            </span>
+                                                        )}
                                                         <Button
                                                             block
                                                             className="common-medium-btn"

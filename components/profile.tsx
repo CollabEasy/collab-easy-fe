@@ -166,12 +166,13 @@ const Profile = ({
         otherUserId: user.artist_id,
       });
     }
-  }, []);
+  }, [user.slug]);
 
   useEffect(() => {
-    if (!isFetchingCollabs && loggedInUserId !== user.artist_id) {
+    setHasPendingCollab(false);
+    setCollabRequestDetails(emptyCollabDetails);
+    if (!isFetchingCollabs && !isSelf) {
       // you are checking someone else page therefore fetch collab status.
-
       var filteredCollab = GetPendingCollabRequest(
         collab,
         loggedInUserId,
@@ -182,16 +183,9 @@ const Profile = ({
         // empty collab receieved.
         setCollabRequestDetails(filteredCollab);
         setHasPendingCollab(true);
-      } else {
-        setHasPendingCollab(false);
-        setCollabRequestDetails(emptyCollabDetails);
       }
-    } else {
-      // you are on your own profile and do not fetch anything.
-      setHasPendingCollab(false);
-      setCollabRequestDetails(emptyCollabDetails);
     }
-  }, []);
+  }, [collab, user.artist_id]);
 
   // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
 
@@ -265,16 +259,16 @@ const Profile = ({
   const getButton = () => {
     if (!isLoggedIn) {
       return !upForCollab ? (
-          <span className="common-text-style">
-            <CloseOutlined style={{ color: "red", marginTop: "20px" }} />
-            {user.first_name} is not available to collab!{" "}
-          </span>
-        ) : (
-          <span className="common-text-style">
-            <CheckOutlined style={{ color: "green", marginTop: "20px" }} />
-            {user.first_name} is available to collab!{" "}
-          </span>
-        )
+        <span className="common-text-style">
+          <CloseOutlined style={{ color: "red", marginTop: "20px" }} />
+          {user.first_name} is not available to collab!{" "}
+        </span>
+      ) : (
+        <span className="common-text-style">
+          <CheckOutlined style={{ color: "green", marginTop: "20px" }} />
+          {user.first_name} is available to collab!{" "}
+        </span>
+      )
     }
     return isSelf ? (
       <Tooltip title={isLoggedIn ? "" : "Login to send collab request"}>
@@ -327,19 +321,19 @@ const Profile = ({
           </>
         ) : (
           <>
-           <Tooltip title={isLoggedIn ? "" : "Login to send collab request"}>
-            <Button
-              type="primary"
-              className="common-medium-btn"
-              style={{ height: "auto", marginTop: "10px" }}
-              disabled={!isLoggedIn || !upForCollab}
-              onClick={() => {
-                setShowCollabModalState(true, collabRequestDetails.id);
-              }}
-            >
-              {" "}
-              Let&apos;s collaborate
-            </Button>
+            <Tooltip title={isLoggedIn ? "" : "Login to send collab request"}>
+              <Button
+                type="primary"
+                className="common-medium-btn"
+                style={{ height: "auto", marginTop: "10px" }}
+                disabled={!isLoggedIn || !upForCollab}
+                onClick={() => {
+                  setShowCollabModalState(true, collabRequestDetails.id);
+                }}
+              >
+                {" "}
+                Let&apos;s collaborate
+              </Button>
             </Tooltip>
 
             {!upForCollab ? (
