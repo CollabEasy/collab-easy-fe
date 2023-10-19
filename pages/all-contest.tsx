@@ -113,9 +113,9 @@ const AllContestPage = ({
 
     return (
         <Layout
-            title={"Join Monthly Art Contest | Wondor"}
+            title={"Monthly Art Contest | Wondor"}
             name={"description"}
-            content={"Participate in the Wondor monthly art contests, and master your artistic skills. Get all the information about the contests hosted every month."}
+            content={"Participate in the Wondor monthly art contests and earn exclusive prizes for winning. Get all the information about the contests hosted every month. Earn reward points for participation. Join now!"}
 
         >
             {loginModalDetails.openModal && !user.new_user && (

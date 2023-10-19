@@ -56,7 +56,7 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
 
       title={"How Wondor works?"}
       name={"description"}
-      content={"Simple steps to create your account, manage collaboration requests and become the next viral artist."}
+      content={"Find singers, photograhers etc to collaborate. Create account, send collab request, manage collaboration requests. Find ideas and themes for your work. Win money from winning art contests. Earn rewards by reffering your friends."}
 
     >
       {loginModalDetails.openModal && !user.new_user && (

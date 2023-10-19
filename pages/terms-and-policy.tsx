@@ -53,9 +53,9 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
 
   return (
     <Layout
-      title={"Terms and Policy | Wondor"}
+      title={"Terms and Policy | Wondor Help Center"}
       name={"description"}
-      content={"Terms and policy for using Wondor."}
+      content={"Know the Terms and Condition while using Wondor here. Learn how we collect, use and share user data to support you. Use tools to manage your privacy preferences."}
     >
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />

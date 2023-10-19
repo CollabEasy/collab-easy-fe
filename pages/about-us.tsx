@@ -56,9 +56,9 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
 
   return (
     <Layout
-      title={"About us - What do we do | Wondor"}
+      title={"Wondor - platform to bring artists together"}
       name={"description"}
-      content={"What is Wondor? What is our mission? and Why artists should join Wondor?"}
+      content={"Wondor is one-stop platform for all artists. We connect artists with each other and promote collaboration among artists. Win money for wining monthly contest. Earn rewards point by referring friends!"}
     >
 
       {loginModalDetails.openModal && !user.new_user && (

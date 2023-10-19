@@ -59,7 +59,7 @@ export const CATEGORY_WIKI = [
         "slug": "creative-writing",
         "name": "Creative Writing",
         "meta_title": "What is Creative Writing | Wondor",
-        "meta_content": "Explore the world of creative writing - its definition, techniques, and endless possibilities. Unleash your imagination and craft captivating stories",
+        "meta_content": "Explore the world of creative writing - its definition, techniques, and endless possibilities. Unleash your imagination and craft captivating stories. Connct with writers and collaborate | Wondor",
         "paragraph": "Creative writing is the process of crafting original and imaginative works of literature, poetry, prose, or scripts. It transcends conventional writing, encouraging individuals to explore language, structure, and narrative. Whether it's a heartfelt poem, a captivating short story, or a thought-provoking novel, creative writing allows us to communicate our unique perspectives and experiences with the world. Creative writing is a remarkable voyage that invites us to unleash our imagination, share our stories, and inspire others. It offers countless personal and professional benefits, nurturing self-expression, empathy, and creativity. So, grab a pen, open your mind, and embark on this enchanting journey of creative writing.",
         "source": "https://oxfordsummercourses.com/articles/what-is-creative-writing/"
     },
@@ -196,7 +196,7 @@ export const CATEGORY_WIKI = [
         "slug": "writing",
         "name": "Writing",
         "meta_title": "What is Writing | Wondor",
-        "meta_content": "Discover the essence of writing: its definition, importance, and influence on communication. Explore the art of expression through words",
+        "meta_content": "Discover the essence of writing: its definition, importance, and influence on communication. Explore the art of expression through words. Connect with writers and collaborate now!",
         "paragraph": "Writing is the act of expressing thoughts, ideas, and emotions through the use of written language. It is a fundamental form of communication that allows individuals to convey information, tell stories, express opinions, and explore the depths of human imagination. A skilled writer possesses the capacity to adapt their writing style to various audiences and purposes, whether it's persuasive, informative, or creative. They can organize thoughts coherently, develop engaging narratives, and employ persuasive techniques to captivate readers. Writing as a skill requires practice, attention to detail, and a willingness to continuously improve and refine one's written expression. ",
         "source": ""
     },

@@ -53,9 +53,9 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
 
   return (
     <Layout
-      title={"Privacy Policy | Wondor"}
+      title={"Privacy Policy | Wondor Help Center"}
       name={"description"}
-      content={"Privacy policy for using Wondor."}
+      content={"Privacy policy for using Wondor. Know the privacy Policy while using Wondor here."}
     >
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />

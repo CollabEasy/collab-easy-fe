@@ -57,7 +57,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
     <Layout
       title={"Contact Us | Wondor"}
       name={"description"}
-      content={"Contact us for any questions."}
+      content={"We are happy to help you with any concern you may have or suggestions you would like to share. Here are the ways to connect with us. Contact us for any questions."}
     >
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />

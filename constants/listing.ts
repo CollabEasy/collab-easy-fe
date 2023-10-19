@@ -324,7 +324,7 @@ export const LISTING_METADATA = [
     {
         "slug": "poetry",
         "meta_title": "Top Poets available for collaboration | Wondor",
-        "meta_content": "Find Poets available for collaboration. Compose verses that touch hearts. Connect with fellow poets, share your emotions, and let your words paint vivid emotions | Wondor",
+        "meta_content": "Find Poets available for collaboration. Connect with fellow poets, story writers, share your emotions, compose verses that touch hearts and let your words paint vivid emotions | Wondor",
     },
     {
         "slug": "scrapbooking",
@@ -339,21 +339,21 @@ export const LISTING_METADATA = [
     {
         "slug": "sketching",
         "meta_title": "Top Sketchers available for collaboration | Wondor",
-        "meta_content": "Find Sketchers available for collaboration. Connect with sketchers, share your sketches, and explore endless possibilities for passionate sketchers | Wondor",
+        "meta_content": "Find Sketchers available for collaboration. Connect with sketchers, share your sketches, and explore endless possibilities for passionate sketchers. Collaborate with sketchers | Wondor",
     },
     {
         "slug": "spoken-words",
         "meta_title": "Top Spoken Words artists available for collaboration | Wondor",
-        "meta_content": "Find Spoken Words artists available for collaboration. Embrace the power of spoken word. Connect with fellow artists, share your compelling performances, and ignite minds for spoken word artists | Wondor",
+        "meta_content": "Find Spoken Words artists available for collaboration. Connect with fellow poets, story writers, song writers, share your compelling performances, and ignite minds for spoken word artists. Embrace the power of spoken word | Wondor",
     },
     {
         "slug": "standup-comedy",
         "meta_title": "Top Standup Comedians available for collaboration | Wondor",
-        "meta_content": "Find Standup Comedians available for collaboration. Spread laughter with stand-up comedy. Connect with comedians, share your humor, and bring joy to audiences for stand-up performers | Wondor",
+        "meta_content": "Find Standup Comedians available for collaboration. Connect with comedians, share your humor, and bring joy to audiences for stand-up performers. Spread laughter with stand-up comedy. | Wondor",
     },
     {
         "slug": "writing",
         "meta_title": "Top Writers available for collaboration | Wondor",
-        "meta_content": "Find Writers available for collaboration. Connect with fellow writers, explore creative ideas, and craft compelling stories | Wondor",
+        "meta_content": "Find Writers available for collaboration. Connect with fellow writers, poets, script writers, story tellers, song writters, explore creative ideas, and craft compelling stories | Wondor",
     }
 ]
