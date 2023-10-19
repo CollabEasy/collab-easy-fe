@@ -83,11 +83,11 @@ const Home = ({
   return (
     <Layout
       title={
-        "Wondor | Collaborate with Artists, Manage your Schedule, Join Monthly Art Contests!"
+        "Wondor | Discover artists to collaborate!"
       }
       name={"description"}
       content={
-        "Meet with artists, schedule & manage your collaboration requests, join monthly contests, find themes and ideas for your next work on Wondor!"
+        "Discover artists to collaborate. Join vibrant community of artists, network and interact. Exchange ideas and collaborate on Wondor. Try for free now!"
       }
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
@@ -134,7 +134,7 @@ const Home = ({
               <div>
                 <h3 className="common-h3-style">Discover New Opportunities</h3>
                 <p className="common-p-style">
-                  Join vibrant community of artists, networking and interact
+                  Join vibrant community of artists, network and interact
                   with peers. Explore the profiles of fellow creators, discover
                   new talent, exchange ideas, and initiate collaborations
                   directly within the platform.
