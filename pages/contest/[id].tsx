@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Tabs, Input, Button, Comment, Tag, message } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
@@ -24,6 +25,7 @@ import { useRoutesContext } from "components/routeContext";
 import { ContestSubmission } from "types/model/contest";
 import { Config } from "config/config";
 import Layout from "@/components/layout";
+import SampleTile from "@/components/sampleTile";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -235,27 +237,37 @@ const ContestPage = ({
       const artistSlug = submissionData.slug;
       const profileLink = `${Config.baseUrl}/artist/profile/${artistSlug}`;
       const disabledVote = submission.artistId === user.artist_id;
+      const sample = {
+        originalUrl: submission.artworkUrl,
+        thumbnailUrl: submission.artworkUrl,
+        caption: submission.description,
+        fileType: "image",
+        createdAt: submission.createdAt,
+      };
       resultArtists.push(
-        <div className="sampleTile__imageTileContainer">
-          <Card
-            className="sampleTile__imageTile"
-            cover={
-              <Image
-                loader={prismicLoader}
-                src={submission.artworkUrl}
-                alt="cards"
-                height={250}
-                width={250}
-                priority
-              />
-            }
-            actions={[
-              !disabledVote ? (
+        <div className="tileCard">
+          <SampleTile
+            user={user}
+            isSelf={false}
+            sample={sample}
+            onClick={() => {
+              showContestModal(submission.artworkUrl, submission.description);
+            }}
+            onClickDelete={() => {}}
+          />
+          <div className="tileContainer">
+            <p className="caption">{submission.description}</p>
+            <div className="mt16 common-text-style">
+              <a href={profileLink}>{artistName}</a>
+            </div>
+            <hr style={{ margin: "4px" }}></hr>
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
+              {!disabledVote ? (
                 <>
                   {artistVotes.includes(submission.id) ? (
                     <FireFilled
                       key="upvote"
-                      style={{ color: "red" }}
+                      style={{ color: "red", padding: "12px" }}
                       onClick={() => {
                         if (disabledVote) {
                           message.error(
@@ -269,6 +281,7 @@ const ContestPage = ({
                   ) : (
                     <FireOutlined
                       key="downvote"
+                      style={{ padding: "12px" }}
                       onClick={() => {
                         if (disabledVote) {
                           message.error(
@@ -284,36 +297,24 @@ const ContestPage = ({
               ) : (
                 <FireFilled
                   key="upvote"
-                  style={{ color: "grey" }}
+                  style={{ color: "grey", padding: "12px" }}
                   onClick={() =>
                     message.error("You cannot vote for your own submission")
                   }
                 />
-              ),
+              )}
               <ReadOutlined
                 key="details"
+                style={{ padding: "12px" }}
                 onClick={() =>
                   showContestModal(
                     submission.artworkUrl,
                     submission.description
                   )
                 }
-              />,
-            ]}
-          >
-            <Meta
-              className="common-text-style"
-              title={GetMetaText(
-                status,
-                submission.id,
-                submission.description,
-                votesCount
-              )}
-            />
-            <div className="mt16 common-text-style">
-              <a href={profileLink}>{artistName}</a>
+              />
             </div>
-          </Card>
+          </div>
         </div>
       );
     });
@@ -529,7 +530,7 @@ const ContestPage = ({
                           )}
                         </h2>
                       )}
-                      <div className="leaderboard__grid">
+                      <div className="grid">
                         {getSubmissions(
                           GetContestStatus(
                             now.getTime(),
@@ -557,7 +558,6 @@ const ContestPage = ({
             <div
               style={{
                 overflow: "hidden",
-                height: "100%",
                 textAlign: "center",
                 marginTop: "20px",
                 marginBottom: "10px",
@@ -569,13 +569,11 @@ const ContestPage = ({
                                 width= "100%"
                                 src={contestSubmissionDetails.imageUrl}
                             /> */}
-              <Image
-                loader={prismicLoader}
+              <img
+                style={{height: "auto"}}
+                className="uploadModal__image"
                 src={contestSubmissionDetails.imageUrl}
-                alt="cards"
-                height={250}
-                width={250}
-                priority
+                alt=""
               />
             </div>
             <p style={{ textAlign: "center" }} className="common-text-style">

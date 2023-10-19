@@ -169,7 +169,7 @@ const SamplePage = ({
             }}
           />
           <div className="tileContainer">
-            <p>{sample.caption}</p>
+            <p className="caption">{sample.caption}</p>
           </div>
         </div>
       );
