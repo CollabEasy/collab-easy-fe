@@ -130,6 +130,7 @@ const Home = ({
                 height={300}
                 width={300}
                 priority
+                alt="landing page"
               />
               <div>
                 <h3 className="common-h3-style">Discover New Opportunities</h3>
@@ -153,7 +154,7 @@ const Home = ({
                 </p>
               </div>
               <div style={{ paddingRight: "5px" }}>
-                <Image src={connectImage} height={250} width={250} priority />
+                <Image src={connectImage} height={250} width={250} priority alt="landing page"/>
               </div>
             </div>
             <div className="small-card" style={{ background: "#FBF0C4" }}>
@@ -166,7 +167,7 @@ const Home = ({
                 </p>
               </div>
               <div style={{ paddingRight: "5px" }}>
-                <Image src={calendarImage} height={250} width={250} priority />
+                <Image src={calendarImage} height={250} width={250} priority alt="landing page" />
               </div>
             </div>
           </div>
@@ -209,7 +210,7 @@ const Home = ({
                   </div>
                   <div>
                     {" "}
-                    <Image src={writingImage} height={130} width={130} />{" "}
+                    <Image src={writingImage} height={130} width={130} alt="landing page" />{" "}
                   </div>
                 </div>
               </div>
@@ -228,7 +229,7 @@ const Home = ({
                   </div>
                   <div>
                     {" "}
-                    <Image src={cameramanImage} height={130} width={130} />{" "}
+                    <Image src={cameramanImage} height={130} width={130} alt="landing page" />{" "}
                   </div>
                 </div>
               </div>
@@ -247,7 +248,7 @@ const Home = ({
                   </div>
                   <div>
                     {" "}
-                    <Image src={dancingImage} height={130} width={130} />{" "}
+                    <Image src={dancingImage} height={130} width={130} alt="landing page" />{" "}
                   </div>
                 </div>
               </div>
@@ -270,6 +271,7 @@ const Home = ({
                       src={illustratorImage}
                       height={130}
                       width={130}
+                      alt="landing page"
                     />{" "}
                   </div>
                 </div>
@@ -289,7 +291,7 @@ const Home = ({
                   </div>
                   <div>
                     {" "}
-                    <Image src={musicImage} height={130} width={130} />{" "}
+                    <Image src={musicImage} height={130} width={130} alt="landing page" />{" "}
                   </div>
                 </div>
               </div>
@@ -312,6 +314,7 @@ const Home = ({
                       src={handLetteringImage}
                       height={130}
                       width={130}
+                      alt="landing page"
                     />{" "}
                   </div>
                 </div>
@@ -331,7 +334,7 @@ const Home = ({
                   </div>
                   <div>
                     {" "}
-                    <Image src={singingImage} height={130} width={130} />{" "}
+                    <Image src={singingImage} height={130} width={130} alt="landing page" />{" "}
                   </div>
                 </div>
               </div>
@@ -350,7 +353,7 @@ const Home = ({
                   </div>
                   <div>
                     {" "}
-                    <Image src={paintingImage} height={130} width={130} />{" "}
+                    <Image src={paintingImage} height={130} width={130} alt="landing page" />{" "}
                   </div>
                 </div>
               </div>
@@ -367,7 +370,7 @@ const Home = ({
               <div className="row">
                 <div className="col-md-6">
                   <div className="text-center">
-                    <Image src={inspireImage} height={400} width={400} />
+                    <Image src={inspireImage} height={400} width={400} alt="landing page" />
                   </div>
                 </div>
                 <div className="col-md-6">
@@ -412,7 +415,7 @@ const Home = ({
                   style={{ backgroundColor: "#EAEED8" }}
                 >
                   <div className="text-center">
-                    <Image src={ideaImage} height={300} width={300} />
+                    <Image src={ideaImage} height={300} width={300} alt="landing page" />
                   </div>
                   <div className="p-4 text-center">
                     <div className="mt-4 mb-3">
@@ -448,7 +451,7 @@ const Home = ({
                   style={{ backgroundColor: "#D8EBF7" }}
                 >
                   <div className="text-center">
-                    <Image src={allContestImage} height={300} width={300} />
+                    <Image src={allContestImage} height={300} width={300} alt="landing page" />
                   </div>
                   <div className="p-4 text-center">
                     <div className="mt-4 mb-3">
@@ -486,7 +489,7 @@ const Home = ({
               <div className="row">
                 <div className="col-md-6">
                   <div className="text-center">
-                    <Image src={rewardsInfoImage} height={400} width={400} />
+                    <Image src={rewardsInfoImage} height={400} width={400} alt="landing page" />
                   </div>
                 </div>
                 <div className="col-md-6">
