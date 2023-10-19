@@ -118,7 +118,7 @@ const Home = ({
         </div>
       </div>
 
-      <div className="row" style={{ padding: "50px", display: "flex" }}>
+      <div className="row" style={{ padding: "50px 20px", display: "flex" }}>
         <div className="container">
           <div className="column" style={{ padding: "10px" }}>
             <div
