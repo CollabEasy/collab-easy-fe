@@ -4,15 +4,17 @@
 .navbar-links {
   position: relative;
   top: 2px;
+
   ul {
     list-style: none;
     margin-bottom: 0;
   }
-  
+
   li {
     font-size: medium;
     display: inline-block;
-    margin-right: 20px; /* add spacing between items */
+    margin-right: 20px;
+    /* add spacing between items */
 
     a {
       color: black;
@@ -21,14 +23,16 @@
 
     a:hover {
       // color:#1890ff;
-      text-decoration:none; 
-      cursor:pointer;  
+      text-decoration: none;
+      cursor: pointer;
     }
   }
-  .nav-text{
+
+  .nav-text {
     margin-bottom: 0;
     height: 25px;
-    &:hover{
+
+    &:hover {
       border-bottom: 2px solid black;
     }
   }
@@ -37,11 +41,12 @@
 .animate__animated.animate__slideInRight {
   --animate-duration: 0.7s;
 }
+
 .animate__animated.animate__fadeInDown {
   --animate-duration: 0.7s;
 }
 
-#p-h{
+#p-h {
   right: 0px;
   z-index: 3;
 }
@@ -65,13 +70,15 @@
     // position: relative;
   }
 
-	& #app-logo-desktop {
-    width: 97px;
-    margin-left:20px;
-    img{
+  & #app-logo-desktop {
+    height: 40px;
+    width: 100px;
+    // margin-left: 20px;
+
+    img {
       cursor: pointer;
     }
-	}
+  }
 
   & #sign-up-desktop {
     width: 100px;
@@ -82,15 +89,15 @@
 
   & #app-logo-mobile {
     display: none;
-	}
+  }
 
   & #sign-up-mobile {
-    display: none; 
+    display: none;
   }
 
   & .navbar-menu {
     width: 10%;
-    
+
     & button {
       background: transparent;
       border: 0;
@@ -98,9 +105,10 @@
   }
 }
 
-.login-menu-container{
+.login-menu-container {
   position: relative;
-  .login-options-container{
+
+  .login-options-container {
     position: absolute;
     background: #fff;
     border-radius: 4px;
@@ -109,36 +117,43 @@
     width: 150px;
     box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
   }
+
   .common-login-option .selected-option-shadow {
     padding: 5px 10px;
     font-size: 20px;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
       background: #e6f7ff;
     }
-    &:last-child{
+
+    &:last-child {
       border-bottom: none;
     }
   }
 }
 
-.menu-icon{
+.menu-icon {
+  float: right;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
   cursor: pointer;
-  img{
+
+  img {
     max-width: 100%;
     border-radius: 50px;
   }
-  .default-profile{
+
+  .default-profile {
     height: 100%;
     text-align: center;
     padding: 10px 0px;
     background: white;
     border-radius: 50%;
-    .user-icon{
+
+    .user-icon {
       font-size: 20px;
     }
   }
@@ -156,7 +171,7 @@
   align-items: center;
 }
 
-.scroll-effect{
+.scroll-effect {
   position: fixed;
   background: white;
   box-shadow: 0 5px 6px -6px #777;
@@ -167,17 +182,18 @@
   display: none;
 }
 
-.login-signup-cnt{
+.login-signup-cnt {
   display: flex;
   gap: 10px;
 }
 
-.login-btn{
+.login-btn {
   background-color: #40576d12 !important;
   color: #000 !important;
   border-color: transparent !important;
   padding-top: 8px !important;
-  &:hover{
+
+  &:hover {
     background-color: #394c6026 !important;
   }
 }
@@ -187,13 +203,14 @@
   .navbar-links {
     li {
       font-size: medium;
-      margin-right: 15px; /* add spacing between items */
+      margin-right: 15px;
+      /* add spacing between items */
     }
   }
-  
+
   .nv-f-t {
 
-    & #app-logo-desktop{
+    & #app-logo-desktop {
       // width: 12%;
     }
 
@@ -205,13 +222,14 @@
       text-align: center;
     }
   }
-} 
+}
 
 @media only screen and (max-width: 992px) and (min-width: 768px) {
   .navbar-links {
     li {
       font-size: medium;
-      margin-right: 15px; /* add spacing between items */
+      margin-right: 15px;
+      /* add spacing between items */
     }
   }
 
@@ -235,13 +253,14 @@
       text-align: center;
     }
   }
-} 
+}
 
 @media only screen and (max-width: 767px) and (min-width: 601px) {
   .navbar-links {
     li {
       font-size: 14px;
-      margin-right: 10px; /* add spacing between items */
+      margin-right: 10px;
+      /* add spacing between items */
     }
   }
 
@@ -252,7 +271,7 @@
       justify-content: center;
     }
 
-    & #app-logo-desktop{
+    & #app-logo-desktop {
       width: 70px;
       margin-top: 3px;
       margin-left: 11px;
@@ -266,17 +285,19 @@
       text-align: center;
     }
   }
-  .menu-icon{
+
+  .menu-icon {
     width: 40px;
     height: 40px;
   }
 }
 
-@media only screen and (max-width: 600px) and  (min-width: 400px) {
+@media only screen and (max-width: 600px) and (min-width: 400px) {
   .navbar-links {
     li {
       font-size: 10px;
-      margin-right: 10px; /* add spacing between items */
+      margin-right: 10px;
+      /* add spacing between items */
     }
   }
 
@@ -291,18 +312,19 @@
     }
 
     & #app-logo-mobile {
-        display: block;
-        width: 40px;
-        position: relative;
-        top: 2px;
+      display: block;
+      width: 40px;
+      position: relative;
+      top: 2px;
     }
+
     & #app-logo-desktop {
-        display: none;
+      display: none;
     }
 
     & #sign-up-mobile {
-      display: block; 
-      margin-left:10px;
+      display: block;
+      margin-left: 10px;
       font-size: 15px;
     }
 
@@ -310,11 +332,13 @@
       display: none;
     }
   }
-  .menu-icon{
+
+  .menu-icon {
     width: 40px;
     height: 40px;
   }
-  .login-signup-cnt{
+
+  .login-signup-cnt {
     justify-content: right;
   }
 }
@@ -323,10 +347,11 @@
   .navbar-links {
     li {
       font-size: 10px;
-      margin-right: 10px; /* add spacing between items */
+      margin-right: 10px;
+      /* add spacing between items */
     }
   }
-  
+
   .animate__animated.animate__slideInRight {
     // width: 50%;
   }
@@ -341,15 +366,15 @@
       justify-content: center;
     }
 
-    & #app-logo-mobile{
-        display: block;
-        width: 40px;
-        position: relative;
-        top: 2px;
+    & #app-logo-mobile {
+      display: block;
+      width: 40px;
+      position: relative;
+      top: 2px;
     }
 
     & #sign-up-mobile {
-      display: block; 
+      display: block;
       font-size: 11px;
     }
 
@@ -357,15 +382,17 @@
       display: none;
     }
 
-    & #app-logo-desktop{
+    & #app-logo-desktop {
       display: none;
     }
   }
-  .menu-icon{
+
+  .menu-icon {
     width: 40px;
     height: 40px;
   }
-  .login-signup-cnt{
+
+  .login-signup-cnt {
     justify-content: right;
   }
 }

@@ -177,7 +177,6 @@ const NavBar = ({
               id="sign-up-desktop"
               type="primary"
               onClick={openLoginModal}
-              style={{ paddingTop: "6px" }}
             >
               Sign Up
             </Button>
