@@ -235,7 +235,7 @@ const SamplePage = ({
             gap: "12px"
           }}
         >
-          <Upload
+          {isSelf && (<Upload
             name="avatar"
             listType="picture-card"
             style={{ textAlign: "center" }}
@@ -244,7 +244,7 @@ const SamplePage = ({
             onChange={handleChange}
           >
             {samples.length >= 6 ? null : uploadButton}
-          </Upload>
+          </Upload>)}
 
           <div className="grid">{getSamples()}</div>
         </div>
