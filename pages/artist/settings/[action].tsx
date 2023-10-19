@@ -280,13 +280,7 @@ const EditProfile = ({
   }
 
   return (
-    <DefaultLayout
-      title="Portal | Wondor"
-      name={"description"}
-      content={
-        "Manage your basic information, prefernces, collab schedule, linked social media accounts, notes etc all in one place."
-      }
-    >
+    <>
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
       {showProfileModal && <NewUserModal />}
       {!isLoggedIn ? (
@@ -464,7 +458,7 @@ const EditProfile = ({
           </Layout>
         </div>
       )}
-    </DefaultLayout>
+      </>
   );
 };
 
