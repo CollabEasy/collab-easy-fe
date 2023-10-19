@@ -136,7 +136,7 @@ const NavBar = ({
               <Search />
             ) : (
               <div className="navbar-links">
-                <ul>
+                <ul style={{textAlign: "center"}}>
                   <li>
                     <p className="common-p-style nav-text">
                       <a href={routeToHref(toGetInspired())}>Inspiration</a>
