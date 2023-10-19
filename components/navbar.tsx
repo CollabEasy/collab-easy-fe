@@ -109,7 +109,7 @@ const NavBar = ({
     <div className="row">
       <div
         id="p-h"
-        className="col-lg-12 col-md-12 col-sm-12 nv-f-t animate__animated"
+        className="nv-f-t animate__animated"
       >
         <div id="app-logo-desktop">
           <Link href={routeToHref(toWondorHome())} passHref>
@@ -164,14 +164,14 @@ const NavBar = ({
         </div>
         {!hideSignUp ? (
           <div className="login-signup-cnt">
-            {/* <Button
+            <Button
               className="common-text-style login-btn"
               id="sign-up-desktop"
               type="primary"
               onClick={openLoginModal}
             >
               Log in
-            </Button> */}
+            </Button>
             <Button
               className="common-text-style"
               id="sign-up-desktop"

@@ -257,7 +257,7 @@ const ContestPage = ({
           />
           <div className="tileContainer">
             <p className="caption">{submission.description}</p>
-            <div className="mt16 common-text-style">
+            <div className="mt16 common-text-style" style={{textAlign: 'center'}}>
               <a href={profileLink}>{artistName}</a>
             </div>
             <hr style={{ margin: "4px" }}></hr>
