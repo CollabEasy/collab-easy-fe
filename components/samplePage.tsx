@@ -149,42 +149,31 @@ const SamplePage = ({
 
     samples.forEach((sample, index) => {
       sampleTiles.push(
-        <SampleTile
-          user={user}
-          isSelf={isSelf}
-          sample={sample}
-          onClick={() => {
-            clearUploadSampleState();
-            setFileType(sample.fileType);
-            setImageUrl(sample.originalUrl);
-            setCaption(sample.caption);
-            setEditable(false);
-            setShowUploadModal(true);
-          }}
-          onClickDelete={() => {
-            clearDeleteSampleState();
-            setSelectedSample(sample);
-            setShowConfirmationModal(true);
-          }}
-        />
-      );
-    });
-
-    if (isSelf) {
-      sampleTiles.push(
-        <div >
-          <Upload
-            name="avatar"
-            listType="picture-card"
-            showUploadList={false}
-            beforeUpload={beforeUpload}
-            onChange={handleChange}
-          >
-            {samples.length >= 6 ? null : uploadButton}
-          </Upload>
+        <div className="tileCard">
+          <SampleTile
+            user={user}
+            isSelf={isSelf}
+            sample={sample}
+            onClick={() => {
+              clearUploadSampleState();
+              setFileType(sample.fileType);
+              setImageUrl(sample.originalUrl);
+              setCaption(sample.caption);
+              setEditable(false);
+              setShowUploadModal(true);
+            }}
+            onClickDelete={() => {
+              clearDeleteSampleState();
+              setSelectedSample(sample);
+              setShowConfirmationModal(true);
+            }}
+          />
+          <div className="tileContainer">
+            <p>{sample.caption}</p>
+          </div>
         </div>
       );
-    }
+    });
 
     return sampleTiles;
   };
@@ -198,7 +187,7 @@ const SamplePage = ({
     uploadSample(formData);
   };
 
-  if (showLoader) return <Loader />
+  if (showLoader) return <Loader />;
 
   return (
     <>
@@ -235,10 +224,30 @@ const SamplePage = ({
             onCancel={() => {
               setShowConfirmationModal(false);
             }}
-
           />
         )}
-        <div className="samplePage__grid">{getSamples()}</div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignContent: "center",
+            gap: "12px"
+          }}
+        >
+          <Upload
+            name="avatar"
+            listType="picture-card"
+            style={{ textAlign: "center" }}
+            showUploadList={false}
+            beforeUpload={beforeUpload}
+            onChange={handleChange}
+          >
+            {samples.length >= 6 ? null : uploadButton}
+          </Upload>
+
+          <div className="grid">{getSamples()}</div>
+        </div>
       </div>
     </>
   );

@@ -2,7 +2,7 @@
 import avatar from "../public/images/avatar.png";
 import React, { ReactElement, useEffect, useState } from "react";
 import { Button, Card, Tabs } from "antd";
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from "@ant-design/icons";
 import { AppState } from "state";
 import { connect, ConnectedProps, useStore } from "react-redux";
 import router, { useRouter } from "next/router";
@@ -15,10 +15,9 @@ const { Meta } = Card;
 
 const { TabPane } = Tabs;
 
-const mapStateToProps = (state: AppState) => { };
+const mapStateToProps = (state: AppState) => {};
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-});
+const mapDispatchToProps = (dispatch: Dispatch) => ({});
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
@@ -39,13 +38,11 @@ const SampleTile = ({
 }: Props) => {
   const router = useRouter();
 
-
-
   return (
-    <div className="sampleTile__imageTileContainer">
+    <div className="gridItemContainer">
       <img
         onClick={onClick}
-        className="sampleTile__imageTile"
+        // className="sampleTile__imageTile"
         src={sample.thumbnailUrl}
         alt=""
       />
