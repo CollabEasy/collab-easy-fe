@@ -95,22 +95,50 @@ const RewardsPage = ({
     { title: "Points", dataIndex: "points", key: "points" },
   ];
 
+  const deviceColumns = [
+    {
+      // eslint-disable-next-line react/display-name
+      render: (activity, key, index) => {
+        const description = activity.description;
+        const date = GetDateString(activity["date"]);
+        const type = activity["added"] ? "Earned points" : "Redeemed points";
+        const points = activity.points;
+        return (
+          <div>
+            <span>
+              <p><b>Description:</b> {description}</p>
+            </span>
+            <span>
+              <p><b>Date:</b> {date}</p>
+            </span>
+            <span>
+              <p><b>Type:</b> {type}</p>
+            </span>
+            <span>
+              <p><b>Points:</b> {points}</p>
+            </span>
+          </div>
+        )
+      }
+    }
+  ];
+
   const getPointsActivity = () => {
     let updatedData = [];
     let data = rewardsActivity.length != 0 ? rewardsActivity[0].data : [];
     data.sort((a, b) => b.createdAt - a.createdAt);
-    data.forEach((element) => {
-      const description = GetRewardTableMessage(element["action"], element);
+    data.forEach((activity) => {
+      const description = GetRewardTableMessage(activity["action"], activity);
       let entry = {
         description: description,
-        date: GetDateString(element["createdAt"]),
-        type: element["added"] ? "Earned points" : "Redeemed points",
-        points: element["points"],
+        date: GetDateString(activity["createdAt"]),
+        type: activity["added"] ? "Earned points" : "Redeemed points",
+        points: activity["points"],
       };
       updatedData.push(entry);
     });
 
-    return <Table columns={columns} dataSource={updatedData} />;
+    return <Table columns={ window.innerWidth < 500 ? deviceColumns : columns } dataSource={updatedData} />;
   };
 
   const handleCopyClick = () => {
@@ -181,7 +209,7 @@ const RewardsPage = ({
                     <div className="col my-3">
                       <div className="card border-hover-primary">
                         <div className="card-body">
-                          <h4 className="font-weight-bold mb-3" style={{color: "green"}}>{rewardPoints["totalPoints"]}</h4>
+                          <h4 className="font-weight-bold mb-3" style={{ color: "green" }}>{rewardPoints["totalPoints"]}</h4>
                           <h6 className="font-weight-bold mb-3" >Current points</h6>
                           <p className="text-muted mb-0">Currently available points in your account.</p>
                         </div>
@@ -190,7 +218,7 @@ const RewardsPage = ({
                     <div className="col my-3">
                       <div className="card border-hover-primary hover-scale">
                         <div className="card-body">
-                          <h4 className="font-weight-bold mb-3" style={{color: "green"}}>{rewardPoints["lifetimePoints"]}</h4>
+                          <h4 className="font-weight-bold mb-3" style={{ color: "green" }}>{rewardPoints["lifetimePoints"]}</h4>
                           <h6 className="font-weight-bold mb-3">Lifetime earned points</h6>
                           <p className="text-muted mb-0">Total points earned since you joined Wondor.</p>
                         </div>
@@ -199,7 +227,7 @@ const RewardsPage = ({
                     <div className="col my-3">
                       <div className="card border-hover-primary hover-scale">
                         <div className="card-body">
-                          <h4 className="font-weight-bold mb-3" style={{color: "red"}}>{
+                          <h4 className="font-weight-bold mb-3" style={{ color: "red" }}>{
                             rewardPoints["lifetimePoints"] -
                             rewardPoints["totalPoints"]}</h4>
                           <h6 className="font-weight-bold mb-3">Redeemed points</h6>

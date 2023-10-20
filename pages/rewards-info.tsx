@@ -90,7 +90,7 @@ const RewardsInfoPage = ({
                                     </h1>
                                     <h3 className="common-h3-style">
                                         Yes, we reward our amazing artists for being awesome members of Wondor.
-                                        These points can be redeem for exclusive prizes.
+                                        These points can be redeemed for exclusive prizes.
                                     </h3>
                                 </div>
                             </div>
