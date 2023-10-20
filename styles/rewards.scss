@@ -79,3 +79,40 @@
 	min-height: 1px;
 	padding: 1.25rem;
 }
+
+@media only screen and (max-width: 1200px) and (min-width: 1101px) {
+	.card {
+		height: 200px;
+	}
+}
+
+@media only screen and (max-width: 1100px) and (min-width: 901px) {
+	.card {
+		height: 200px;
+	}
+}
+
+@media only screen and (max-width: 900px) and (min-width: 766px) {
+	.card {
+		height: 200px;
+	}
+}
+
+@media only screen and (max-width: 767px) and (min-width: 601px) {
+	.card {
+		height: 200px;
+	}
+}
+
+@media only screen and (max-width: 600px) and  (min-width: 400px) {
+	.card {
+		height: 225px;
+	}
+
+}
+  
+@media only screen and (max-width: 399px) {
+	.card {
+		height: 250px;
+	}
+}
