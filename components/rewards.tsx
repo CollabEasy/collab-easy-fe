@@ -127,7 +127,7 @@ const RewardsPage = ({
     <Layout
       title={"Rewards | Wondor"}
       name={"description"}
-      content={"Your rewards"}
+      content={"Learn how to earn rewards points for refferal, participating in contest, successful collaboration and much more. Redeem points for real money. Join Wondor now! "}
     >
       <>
         {loginModalDetails.openModal && !user.new_user && <LoginModal />}
@@ -176,6 +176,7 @@ const RewardsPage = ({
                 <h5>Summary</h5>
               </div>
               <div>
+                
                 <Row gutter={16}>
                   <Col span={8}>
                     <Card bordered={true}>
