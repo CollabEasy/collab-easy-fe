@@ -95,22 +95,50 @@ const RewardsPage = ({
     { title: "Points", dataIndex: "points", key: "points" },
   ];
 
+  const deviceColumns = [
+    {
+      // eslint-disable-next-line react/display-name
+      render: (activity, key, index) => {
+        const description = activity.description;
+        const date = GetDateString(activity["date"]);
+        const type = activity["added"] ? "Earned points" : "Redeemed points";
+        const points = activity.points;
+        return (
+          <div>
+            <span>
+              <p><b>Description:</b> {description}</p>
+            </span>
+            <span>
+              <p><b>Date:</b> {date}</p>
+            </span>
+            <span>
+              <p><b>Type:</b> {type}</p>
+            </span>
+            <span>
+              <p><b>Points:</b> {points}</p>
+            </span>
+          </div>
+        )
+      }
+    }
+  ];
+
   const getPointsActivity = () => {
     let updatedData = [];
     let data = rewardsActivity.length != 0 ? rewardsActivity[0].data : [];
     data.sort((a, b) => b.createdAt - a.createdAt);
-    data.forEach((element) => {
-      const description = GetRewardTableMessage(element["action"], element);
+    data.forEach((activity) => {
+      const description = GetRewardTableMessage(activity["action"], activity);
       let entry = {
         description: description,
-        date: GetDateString(element["createdAt"]),
-        type: element["added"] ? "Earned points" : "Redeemed points",
-        points: element["points"],
+        date: GetDateString(activity["createdAt"]),
+        type: activity["added"] ? "Earned points" : "Redeemed points",
+        points: activity["points"],
       };
       updatedData.push(entry);
     });
 
-    return <Table columns={columns} dataSource={updatedData} />;
+    return <Table columns={window.innerWidth < 500 ? deviceColumns : columns} dataSource={updatedData} />;
   };
 
   const handleCopyClick = () => {
@@ -175,97 +203,112 @@ const RewardsPage = ({
               <div style={{ marginTop: "20px" }}>
                 <h5>Summary</h5>
               </div>
-              <div>
-                
-                <Row gutter={16}>
-                  <Col span={8}>
-                    <Card bordered={true}>
-                      <Statistic
-                        title="Current points"
-                        value={rewardPoints["totalPoints"]}
-                      />
-                    </Card>
-                  </Col>
-                  <Col span={8}>
-                    <Card bordered={true}>
-                      <Statistic
-                        title="Lifetime earned points"
-                        value={rewardPoints["lifetimePoints"]}
-                      />
-                    </Card>
-                  </Col>
-                  <Col span={8}>
-                    <Card bordered={true}>
-                      <Statistic
-                        title="Redeemed points"
-                        value={
-                          rewardPoints["lifetimePoints"] -
-                          rewardPoints["totalPoints"]
-                        }
-                      />
-                    </Card>
-                  </Col>
-                </Row>
+              <div className="rewardsPage_container" style={{ marginTop: "0%" }}>
+                <section className="bg-light-primary">
+                  <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center px-xl-6">
+                    <div className="col my-3">
+                      <div className="card border-hover-primary">
+                        <div className="card-body">
+                          <h4 className="font-weight-bold mb-3" style={{ color: "green" }}>{rewardPoints["totalPoints"]}</h4>
+                          <h6 className="font-weight-bold mb-3" >Current points</h6>
+                          <p className="text-muted mb-0">Currently available points in your account.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col my-3">
+                      <div className="card border-hover-primary hover-scale">
+                        <div className="card-body">
+                          <h4 className="font-weight-bold mb-3" style={{ color: "green" }}>{rewardPoints["lifetimePoints"]}</h4>
+                          <h6 className="font-weight-bold mb-3">Lifetime earned points</h6>
+                          <p className="text-muted mb-0">Total points earned since you joined Wondor.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col my-3">
+                      <div className="card border-hover-primary hover-scale">
+                        <div className="card-body">
+                          <h4 className="font-weight-bold mb-3" style={{ color: "red" }}>{
+                            rewardPoints["lifetimePoints"] -
+                            rewardPoints["totalPoints"]}</h4>
+                          <h6 className="font-weight-bold mb-3">Redeemed points</h6>
+                          <p className="text-muted mb-0">Total points which you have redeemed so far.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
               <div style={{ marginTop: "20px" }}>
                 <h5>Points earned by category</h5>
               </div>
-              <div>
-                <Row gutter={16}>
-                  <Col span={8}>
-                    <Card bordered={true}>
-                      <Statistic
-                        title="Successful refferals"
-                        value={GetPointsByCategory(
-                          rewardsActivity,
-                          "REFERRAL_USER"
-                        ) +
-                          GetPointsByCategory(
-                            rewardsActivity,
-                            "REFERRAL_SHARER"
-                          )
-                        }
-                        valueStyle={{ color: "#3f8600" }}
-                      />
-                    </Card>
-                  </Col>
-                  <Col span={8}>
-                    <Card bordered={true}>
-                      <Statistic
-                        title="Collaboration requests"
-                        value={GetPointsByCategory(
-                          rewardsActivity,
-                          "SUCCESSFUL_COLLAB"
-                        )}
-                        valueStyle={{ color: "#3f8600" }}
-                      />
-                    </Card>
-                  </Col>
-                  <Col span={8}>
-                    <Card bordered={true}>
-                      <Statistic
-                        title="Montly contests"
-                        value={GetPointsByCategory(
-                          rewardsActivity,
-                          "MONTHLY_CONTEST"
-                        )}
-                        valueStyle={{ color: "#3f8600" }}
-                      />
-                    </Card>
-                  </Col>
-                  <Col span={8}>
-                    <Card bordered={true}>
-                      <Statistic
-                        title="Complete profile"
-                        value={GetPointsByCategory(
-                          rewardsActivity,
-                          "PROFILE_COMPLETION"
-                        )}
-                        valueStyle={{ color: "#3f8600" }}
-                      />
-                    </Card>
-                  </Col>
-                </Row>
+              <div className="rewardsPage_container" style={{ marginTop: "0%" }}>
+                <section className="bg-light-primary">
+                  <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center  px-xl-6">
+                    <div className="col my-3">
+                      <div className="card border-hover-primary">
+                        <div className="card-body">
+                          <h4 className="font-weight-bold mb-3">
+                            {GetPointsByCategory(
+                              rewardsActivity,
+                              "REFERRAL_USER"
+                            ) +
+                              GetPointsByCategory(
+                                rewardsActivity,
+                                "REFERRAL_SHARER"
+                              )
+                            }
+                          </h4>
+                          <h6 className="font-weight-bold mb-3">Successful refferals</h6>
+                          <p className="text-muted mb-0">Share your refferal code with your friends and when they join Wondor you both get 150 rewards points!</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col my-3">
+                      <div className="card border-hover-primary hover-scale">
+                        <div className="card-body">
+                          <h4 className="font-weight-bold mb-3">
+                            {GetPointsByCategory(
+                              rewardsActivity,
+                              "SUCCESSFUL_COLLAB"
+                            )}
+                          </h4>
+                          <h6 className="font-weight-bold mb-3">Collaboration requests</h6>
+                          <p className="text-muted mb-0">Successfully collaborate with an artist to earn 50 points. Start making collaborations now!</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col my-3">
+                      <div className="card border-hover-primary hover-scale">
+                        <div className="card-body">
+                          <h4 className="font-weight-bold mb-3"> {
+                            GetPointsByCategory(
+                              rewardsActivity,
+                              "MONTHLY_CONTEST")
+                          }
+                          </h4>
+                          <h6 className="font-weight-bold mb-3">Montly contests</h6>
+                          <p className="text-muted mb-0">
+                            Participate in our monthly contests and earn 50 points for your submission.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col my-3">
+                      <div className="card border-hover-primary hover-scale">
+                        <div className="card-body">
+                          <h4 className="font-weight-bold mb-3"> {
+                            GetPointsByCategory(
+                              rewardsActivity,
+                              "PROFILE_COMPLETION"
+                            )}
+                          </h4>
+                          <h6 className="font-weight-bold mb-3">Complete profile</h6>
+                          <p className="text-muted mb-0">Complete your profile by adding bio, skills, samples, and social accounts to earn 50 points.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </div>
               <div style={{ marginTop: "20px" }}>
                 <h5>Recent points activity</h5>
