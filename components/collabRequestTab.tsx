@@ -176,7 +176,7 @@ export const CollabRequestTab = ({
 
   return (
     <Layout
-      title={"Collab Calendar | Wondor"}
+      title={"Collab Requests | Wondor"}
       name={"description"}
       content={"Manager you collaborations on Wondor. Increase your reach by collaborating with artists around the world. Join Wondor now! "}
     >

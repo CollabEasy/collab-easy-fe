@@ -6,7 +6,12 @@ import { Dispatch } from "redux";
 import { useMemo } from 'react'
 import { Editable, withReact, Slate, ReactEditor } from 'slate-react'
 import { createEditor } from 'slate';
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
+import {
+
+    InfoCircleOutlined,
+
+} from "@ant-design/icons";
 import { useEffect } from "react";
 import Loader from "./loader";
 import * as action from "state/action/scratchpadAction";
@@ -128,6 +133,12 @@ const ScratchpadPage = ({
                                     {loggedInUserScratchpad.content.length == 0 ? (
                                         <div>
                                             <p>Write what is on your mind !</p>
+                                            <Tooltip
+                                                placement="topLeft"
+                                                title="Please, do not write any personal information."
+                                            >
+                                                <InfoCircleOutlined />
+                                            </Tooltip>
                                         </div>
                                     ) : (
                                         <div>
