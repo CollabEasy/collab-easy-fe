@@ -11,6 +11,7 @@ import {
   Tabs,
   Input,
   Tooltip,
+  Breadcrumb,
 } from "antd";
 import CollabRequestTab from "./collabRequestTab";
 import SamplePage from "./samplePage";
@@ -204,6 +205,22 @@ const Profile = ({
     setIsEditBioClicked(false);
   };
 
+  const getBreadcrum = () => {
+    return (
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          <a href={toDiscover().href}>Home</a>
+        </Breadcrumb.Item>
+        {/* <Breadcrumb.Item>
+          <a href={toArtistProfile(user.slug).as}>{user.first_name + " " + user.last_name}</a>
+        </Breadcrumb.Item> */}
+        <Breadcrumb.Item>
+          {user.first_name + " " + user.last_name}
+        </Breadcrumb.Item>
+      </Breadcrumb>
+    );
+  }
+
   const getIconForEditBio = () => {
     if (isUpdatingProfile && updating === "bio") {
       return <LoadingOutlined />;
@@ -381,6 +398,9 @@ const Profile = ({
 
   return (
     <>
+      <div className="artistProfile__breadcrumbContainer">
+        {getBreadcrum()}
+      </div>
       <div className="artistProfile__profileContainer">
         {isProfileComplete !== null && isSelf && (
           <>
