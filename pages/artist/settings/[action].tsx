@@ -229,7 +229,7 @@ const EditProfile = ({
           <a href={toDiscover().href}>Home</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href={toArtistProfile(user.slug).href}>{user.first_name + " " + user.last_name}</a>
+          <a href={toArtistProfile(user.slug).as}>{user.first_name + " " + user.last_name}</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
           {page}
@@ -436,7 +436,7 @@ const EditProfile = ({
                   >
                     {window.innerWidth > 500 &&
                       <>
-                        {GetBreadcrum("Scratchpad")} 
+                        {GetBreadcrum("Scratchpad")}
                       </>
                     }
                     <div className="settings__basicProfileCard">

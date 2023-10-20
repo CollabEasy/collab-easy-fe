@@ -132,13 +132,16 @@ const ScratchpadPage = ({
                                 <div>
                                     {loggedInUserScratchpad.content.length == 0 ? (
                                         <div>
-                                            <p>Write what is on your mind !</p>
-                                            <Tooltip
-                                                placement="topLeft"
-                                                title="Please, do not write any personal information."
-                                            >
-                                                <InfoCircleOutlined />
-                                            </Tooltip>
+                                            <p>
+                                                Your space to take notes{" "}
+                                                <Tooltip
+                                                    placement="topLeft"
+                                                    title="Please, do not write any personal information."
+                                                >
+                                                    <InfoCircleOutlined />
+                                                </Tooltip>
+                                            </p>
+
                                         </div>
                                     ) : (
                                         <div>
