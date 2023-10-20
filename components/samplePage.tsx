@@ -52,6 +52,7 @@ type Props = {
   user: User;
   isSelf: boolean;
   showLoader: boolean;
+  editSamplesfromPortal: boolean;
 } & ConnectedProps<typeof connector>;
 
 const SamplePage = ({
@@ -63,6 +64,7 @@ const SamplePage = ({
   isUploading,
   isUploaded,
   showLoader,
+  editSamplesfromPortal,
   fetchArtistSamples,
   deleteSample,
   uploadSample,
@@ -190,73 +192,87 @@ const SamplePage = ({
 
   if (showLoader) return <Loader />;
 
-  return (
-    <Layout
-      title={"Work Samples | Wondor"}
-      name={"description"}
-      content={"Upload your work samples and flaunt your skills. Let artists know your work style and techniques and collaborate with them. Join Wondor now!"}
-    >
-      <>
-        <div className="samplePage__container">
-          {showUploadModal && (
-            <UploadModal
-              user={user}
-              fileType={fileType}
-              caption={caption}
-              editable={editable}
-              file={uploadFile}
-              imageUrl={imageUrl}
-              isUploading={isUploading}
-              isUploaded={isUploaded}
-              onCancel={resetState}
-              onClickUpload={onClickUpload}
-              onChangeCaption={(caption: string) => {
-                setCaption(caption);
-              }}
-            />
-          )}
-          {showConfirmationModal && (
-            <ConfirmationModal
-              buttonLoading={isDeleting}
-              show={!isDeleted}
-              user={user}
-              headerText={"Delete Sample"}
-              confirmationText="Are you sure you want to delete the sample file?"
-              actionButtonText="Yes, delete"
-              onAction={() => {
-                deleteSample(selectedSample);
-                setSelectedSample(undefined);
-              }}
-              onCancel={() => {
-                setShowConfirmationModal(false);
-              }}
-            />
-          )}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignContent: "center",
-              gap: "12px"
-            }}
-          >
-            {isSelf && (<Upload
-              name="avatar"
-              listType="picture-card"
-              style={{ textAlign: "center" }}
-              showUploadList={false}
-              beforeUpload={beforeUpload}
-              onChange={handleChange}
-            >
-              {samples.length >= 6 ? null : uploadButton}
-            </Upload>)}
 
-            <div className="grid">{getSamples()}</div>
-          </div>
+  const getLayout = () => {
+    return (
+      <div className="samplePage__container">
+        {showUploadModal && (
+          <UploadModal
+            user={user}
+            fileType={fileType}
+            caption={caption}
+            editable={editable}
+            file={uploadFile}
+            imageUrl={imageUrl}
+            isUploading={isUploading}
+            isUploaded={isUploaded}
+            onCancel={resetState}
+            onClickUpload={onClickUpload}
+            onChangeCaption={(caption: string) => {
+              setCaption(caption);
+            }}
+          />
+        )}
+        {showConfirmationModal && (
+          <ConfirmationModal
+            buttonLoading={isDeleting}
+            show={!isDeleted}
+            user={user}
+            headerText={"Delete Sample"}
+            confirmationText="Are you sure you want to delete the sample file?"
+            actionButtonText="Yes, delete"
+            onAction={() => {
+              deleteSample(selectedSample);
+              setSelectedSample(undefined);
+            }}
+            onCancel={() => {
+              setShowConfirmationModal(false);
+            }}
+          />
+        )}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignContent: "center",
+            gap: "12px"
+          }}
+        >
+          {isSelf && (<Upload
+            name="avatar"
+            listType="picture-card"
+            style={{ textAlign: "center" }}
+            showUploadList={false}
+            beforeUpload={beforeUpload}
+            onChange={handleChange}
+          >
+            {samples.length >= 6 ? null : uploadButton}
+          </Upload>)}
+
+          <div className="grid">{getSamples()}</div>
         </div>
-      </>
-    </Layout>
+      </div>
+    );
+  }
+  return (
+    <>
+      {editSamplesfromPortal ? (
+        <Layout
+          title={"Work Samples | Wondor"}
+          name={"description"}
+          content={"Upload your work samples and flaunt your skills. Let artists know your work style and techniques and collaborate with them. Join Wondor now!"}
+        >
+          <>
+            {getLayout()}
+          </>
+        </Layout>
+      ) : (
+        <>
+          {getLayout()}
+        </>
+      )}
+    </>
   );
 };
 

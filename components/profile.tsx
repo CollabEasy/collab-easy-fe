@@ -519,6 +519,7 @@ const Profile = ({
                       isSelf={isSelf && isLoggedIn}
                       user={user}
                       showLoader={isFetchingSamples}
+                      editSamplesfromPortal={false}
                     />
                   </>
                 )}

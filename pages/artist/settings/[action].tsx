@@ -401,6 +401,7 @@ const EditProfile = ({
                         isSelf
                         user={user}
                         showLoader={isFetchingSamples}
+                        editSamplesfromPortal={true}
                       />
                     </div>
                   </Content>
