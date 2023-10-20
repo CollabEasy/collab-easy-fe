@@ -6,11 +6,11 @@ import { Tooltip } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { SearchCollab } from "types/model";
 import CollabRequestTab from "../../../components/collabRequestTab";
-import { default as DefaultLayout } from "../../../components/layout";
 import NotAuthorised from "@/components/error/notAuthorised";
 import { Select } from "antd";
 import { Layout, Menu } from "antd";
 import { routeToHref } from "config/routes";
+import { Breadcrumb } from 'antd';
 import {
   SearchOutlined,
   HomeOutlined,
@@ -112,8 +112,7 @@ const EditProfile = ({
   const { Option } = Select;
 
   const activeTabKey = useRef("1");
-
-  const { toDiscover } = useRoutesContext();
+  const { toDiscover, toArtistProfile } = useRoutesContext();
 
   useEffect(() => {
     fetchArtistSamples(user.slug);
@@ -190,7 +189,7 @@ const EditProfile = ({
       router.push("/");
       return;
     } else if (tabIndex === "8") {
-      logoutUser();
+      LogoutUser();
       return;
     } else if (tabIndex === "1") {
       tab = "basic-information";
@@ -213,15 +212,31 @@ const EditProfile = ({
     router.push("/artist/settings/" + action + "?tab=" + tab);
   };
 
-  const getActiveTab = () => {
+  const GetActiveTab = () => {
     return activeTabKey.current;
   };
 
-  const logoutUser = () => {
+  const LogoutUser = () => {
     localStorage.removeItem("token");
     resetUserLoggedIn();
     router.push("/");
   };
+
+  const GetBreadcrum = (page: string) => {
+    return (
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          <a href={toDiscover().href}>Home</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href={toArtistProfile(user.slug).as}>{user.first_name + " " + user.last_name}</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          {page}
+        </Breadcrumb.Item>
+      </Breadcrumb>
+    );
+  }
 
   if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails)
     return <Loader />;
@@ -233,7 +248,7 @@ const EditProfile = ({
         mode={mobile ? "horizontal" : "inline"}
         selectedKeys={[activeTabKey.current]}
         onClick={handleClick}
-        style={{justifyContent:"flex-end"}}
+        style={{ justifyContent: "flex-end" }}
       >
         <Menu.Item key="0">
           {!mobile && <HomeOutlined />}
@@ -280,13 +295,7 @@ const EditProfile = ({
   }
 
   return (
-    <DefaultLayout
-      title="Portal | Wondor"
-      name={"description"}
-      content={
-        "Manage your basic information, prefernces, collab schedule, linked social media accounts, notes etc all in one place."
-      }
-    >
+    <>
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
       {showProfileModal && <NewUserModal />}
       {!isLoggedIn ? (
@@ -331,7 +340,7 @@ const EditProfile = ({
             )}
             <Layout>
               <>
-                {getActiveTab() === "1" && (
+                {GetActiveTab() === "1" && (
                   <Content
                     style={{
                       padding: 24,
@@ -339,14 +348,18 @@ const EditProfile = ({
                       minHeight: 280,
                     }}
                   >
+                    {window.innerWidth > 500 &&
+                      <>
+                        {GetBreadcrum("Basic Information")}
+                      </>
+                    }
                     <div className="settings__basicProfileCard">
-                      <h2 className="f-20 ">Your basic personal information</h2>
                       <EditBasicInformation />
                     </div>
                   </Content>
                 )}
 
-                {getActiveTab() === "2" && (
+                {GetActiveTab() === "2" && (
                   <Content
                     style={{
                       padding: 24,
@@ -354,14 +367,18 @@ const EditProfile = ({
                       minHeight: 280,
                     }}
                   >
-                    <div className="settings__basicProfileCardSecond">
-                      <h2 className="f-20 ">Your preferences</h2>
+                    {window.innerWidth > 500 &&
+                      <>
+                        {GetBreadcrum("Preferences")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
                       <EditPreferences />
                     </div>
                   </Content>
                 )}
 
-                {getActiveTab() === "3" && (
+                {GetActiveTab() === "3" && (
                   <Content
                     style={{
                       padding: 24,
@@ -369,8 +386,13 @@ const EditProfile = ({
                       minHeight: 280,
                     }}
                   >
-                    <div className="settings__basicProfileCardThird">
-                      <h2 className="f-20 ">You work samples</h2>
+                    {window.innerWidth > 500 &&
+                      <>
+                        {GetBreadcrum("Work Samples")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
+
                       <p>
                         You can upload 6 of them now and flaunt your best work
                         to others!
@@ -384,7 +406,7 @@ const EditProfile = ({
                   </Content>
                 )}
 
-                {getActiveTab() === "4" && (
+                {GetActiveTab() === "4" && (
                   <Content
                     style={{
                       padding: 24,
@@ -392,14 +414,19 @@ const EditProfile = ({
                       minHeight: 280,
                     }}
                   >
-                    <div className="settings__basicProfileCardFourth">
-                      <h2 className="f-20 ">Your social media accounts</h2>
+                    {window.innerWidth > 500 &&
+                      <>
+                        {GetBreadcrum("Social Prospectus")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
+
                       <EditSocialProspectus />
                     </div>
                   </Content>
                 )}
 
-                {getActiveTab() === "5" && (
+                {GetActiveTab() === "5" && (
                   <Content
                     style={{
                       padding: 24,
@@ -407,22 +434,18 @@ const EditProfile = ({
                       minHeight: 280,
                     }}
                   >
-                    <div className="settings__basicProfileCardThird">
-                      <h2 className="f-20 ">
-                        Your space to take notes{" "}
-                        <Tooltip
-                          placement="topLeft"
-                          title="Please, do not write any personal information."
-                        >
-                          <InfoCircleOutlined />
-                        </Tooltip>
-                      </h2>
+                    {window.innerWidth > 500 &&
+                      <>
+                        {GetBreadcrum("Scratchpad")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
                       <ScratchpadPage />
                     </div>
                   </Content>
                 )}
 
-                {getActiveTab() === "6" && (
+                {GetActiveTab() === "6" && (
                   <Content
                     style={{
                       padding: 24,
@@ -430,8 +453,12 @@ const EditProfile = ({
                       minHeight: 280,
                     }}
                   >
-                    <div className="settings__basicProfileCardThird">
-                      <h2 className="f-20 ">Your collab requests</h2>
+                    {window.innerWidth > 500 &&
+                      <>
+                        {GetBreadcrum("Collab Requests")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
                       <CollabRequestTab
                         otherUser={user.artist_id}
                         collabRequests={collab.collabDetails}
@@ -445,7 +472,7 @@ const EditProfile = ({
                   </Content>
                 )}
 
-                {getActiveTab() === "7" && (
+                {GetActiveTab() === "7" && (
                   <Content
                     style={{
                       padding: 24,
@@ -453,8 +480,12 @@ const EditProfile = ({
                       minHeight: 280,
                     }}
                   >
-                    <div className="settings__basicProfileCardThird">
-                      <h2 className="f-20 ">Your rewards</h2>
+                    {window.innerWidth > 500 &&
+                      <>
+                        {GetBreadcrum("Rewards")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
                       <Rewards />
                     </div>
                   </Content>
@@ -464,7 +495,7 @@ const EditProfile = ({
           </Layout>
         </div>
       )}
-    </DefaultLayout>
+    </>
   );
 };
 

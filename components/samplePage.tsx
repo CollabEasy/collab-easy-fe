@@ -22,6 +22,7 @@ import UploadModal from "./modal/sampleUploadModal";
 import SampleTile from "./sampleTile";
 import ConfirmationModal from "./modal/confirmationModal";
 import Loader from "./loader";
+import Layout from "./layout";
 
 const { Meta } = Card;
 
@@ -190,66 +191,72 @@ const SamplePage = ({
   if (showLoader) return <Loader />;
 
   return (
-    <>
-      <div className="samplePage__container">
-        {showUploadModal && (
-          <UploadModal
-            user={user}
-            fileType={fileType}
-            caption={caption}
-            editable={editable}
-            file={uploadFile}
-            imageUrl={imageUrl}
-            isUploading={isUploading}
-            isUploaded={isUploaded}
-            onCancel={resetState}
-            onClickUpload={onClickUpload}
-            onChangeCaption={(caption: string) => {
-              setCaption(caption);
+    <Layout
+      title={"Work Samples | Wondor"}
+      name={"description"}
+      content={"Upload your work samples and flaunt your skills. Let artists know your work style and techniques and collaborate with them. Join Wondor now!"}
+    >
+      <>
+        <div className="samplePage__container">
+          {showUploadModal && (
+            <UploadModal
+              user={user}
+              fileType={fileType}
+              caption={caption}
+              editable={editable}
+              file={uploadFile}
+              imageUrl={imageUrl}
+              isUploading={isUploading}
+              isUploaded={isUploaded}
+              onCancel={resetState}
+              onClickUpload={onClickUpload}
+              onChangeCaption={(caption: string) => {
+                setCaption(caption);
+              }}
+            />
+          )}
+          {showConfirmationModal && (
+            <ConfirmationModal
+              buttonLoading={isDeleting}
+              show={!isDeleted}
+              user={user}
+              headerText={"Delete Sample"}
+              confirmationText="Are you sure you want to delete the sample file?"
+              actionButtonText="Yes, delete"
+              onAction={() => {
+                deleteSample(selectedSample);
+                setSelectedSample(undefined);
+              }}
+              onCancel={() => {
+                setShowConfirmationModal(false);
+              }}
+            />
+          )}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignContent: "center",
+              gap: "12px"
             }}
-          />
-        )}
-        {showConfirmationModal && (
-          <ConfirmationModal
-            buttonLoading={isDeleting}
-            show={!isDeleted}
-            user={user}
-            headerText={"Delete Sample"}
-            confirmationText="Are you sure you want to delete the sample file?"
-            actionButtonText="Yes, delete"
-            onAction={() => {
-              deleteSample(selectedSample);
-              setSelectedSample(undefined);
-            }}
-            onCancel={() => {
-              setShowConfirmationModal(false);
-            }}
-          />
-        )}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignContent: "center",
-            gap: "12px"
-          }}
-        >
-          {isSelf && (<Upload
-            name="avatar"
-            listType="picture-card"
-            style={{ textAlign: "center" }}
-            showUploadList={false}
-            beforeUpload={beforeUpload}
-            onChange={handleChange}
           >
-            {samples.length >= 6 ? null : uploadButton}
-          </Upload>)}
+            {isSelf && (<Upload
+              name="avatar"
+              listType="picture-card"
+              style={{ textAlign: "center" }}
+              showUploadList={false}
+              beforeUpload={beforeUpload}
+              onChange={handleChange}
+            >
+              {samples.length >= 6 ? null : uploadButton}
+            </Upload>)}
 
-          <div className="grid">{getSamples()}</div>
+            <div className="grid">{getSamples()}</div>
+          </div>
         </div>
-      </div>
-    </>
+      </>
+    </Layout>
   );
 };
 

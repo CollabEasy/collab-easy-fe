@@ -21,6 +21,7 @@ import Loader from "./loader";
 import { useRoutesContext } from "./routeContext";
 import router from "next/router";
 import CollabCalender from "./collabCalender";
+import Layout from "@/components/layout";
 import $ from "jquery";
 
 const { Option } = Select;
@@ -160,7 +161,7 @@ export const CollabRequestTab = ({
       }
     }
 
-    const nextDateDate = new Date(nextDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+    const nextDateDate = new Date(nextDate.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
     const message = `You do not have any collab requests for selected date. Your upcoming collabs or requests are on ${nextDateDate.toUTCString()}.`;
     return (
       <div style={{ padding: "32px 16px" }}>
@@ -174,17 +175,22 @@ export const CollabRequestTab = ({
   };
 
   return (
-    <>
-      <div className="collabRequestTab__container">
-        <div id="collab_calender" className="collabRequestTab__filterContainer">
-          <CollabCalender
-            events={dateToCollabRequestMap}
-            onSelectDate={(date: string) => {
-              setSelectedDate(date);
-              scrollSmoothlyToID("collab_cards");
-            }}
-          />
-          {/* <Select
+    <Layout
+      title={"Collab Requests | Wondor"}
+      name={"description"}
+      content={"Manager you collaborations on Wondor. Increase your reach by collaborating with artists around the world. Join Wondor now! "}
+    >
+      <>
+        <div className="collabRequestTab__container">
+          <div id="collab_calender" className="collabRequestTab__filterContainer">
+            <CollabCalender
+              events={dateToCollabRequestMap}
+              onSelectDate={(date: string) => {
+                setSelectedDate(date);
+                scrollSmoothlyToID("collab_cards");
+              }}
+            />
+            {/* <Select
             className="collabRequestTab__filter collabRequestTab__antFilter"
             defaultValue="all"
             onChange={(value) => {
@@ -208,20 +214,21 @@ export const CollabRequestTab = ({
             <Option value="rejected">Rejected</Option>
             <Option value="completed">Completed</Option>
           </Select> */}
+          </div>
         </div>
-      </div>
 
-      {isFetchingCollabDetails ? (
-        <Loader />
-      ) : (
-        <div
-          id="collab_cards"
-          className="collabRequestTab__collabListContainer"
-        >
-          {getCollabRequestCards()}
-        </div>
-      )}
-    </>
+        {isFetchingCollabDetails ? (
+          <Loader />
+        ) : (
+          <div
+            id="collab_cards"
+            className="collabRequestTab__collabListContainer"
+          >
+            {getCollabRequestCards()}
+          </div>
+        )}
+      </>
+    </Layout>
   );
 };
 

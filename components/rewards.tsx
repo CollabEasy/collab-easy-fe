@@ -138,7 +138,7 @@ const RewardsPage = ({
       updatedData.push(entry);
     });
 
-    return <Table columns={ window.innerWidth < 500 ? deviceColumns : columns } dataSource={updatedData} />;
+    return <Table columns={window.innerWidth < 500 ? deviceColumns : columns} dataSource={updatedData} />;
   };
 
   const handleCopyClick = () => {
@@ -155,7 +155,7 @@ const RewardsPage = ({
     <Layout
       title={"Rewards | Wondor"}
       name={"description"}
-      content={"Your rewards"}
+      content={"Learn how to earn rewards points for refferal, participating in contest, successful collaboration and much more. Redeem points for real money. Join Wondor now! "}
     >
       <>
         {loginModalDetails.openModal && !user.new_user && <LoginModal />}
@@ -203,7 +203,7 @@ const RewardsPage = ({
               <div style={{ marginTop: "20px" }}>
                 <h5>Summary</h5>
               </div>
-              <div className="rewardsPage_container" style={{marginTop: "0%"}}>
+              <div className="rewardsPage_container" style={{ marginTop: "0%" }}>
                 <section className="bg-light-primary">
                   <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center px-xl-6">
                     <div className="col my-3">
@@ -241,7 +241,7 @@ const RewardsPage = ({
               <div style={{ marginTop: "20px" }}>
                 <h5>Points earned by category</h5>
               </div>
-              <div className="rewardsPage_container" style={{marginTop: "0%"}}>
+              <div className="rewardsPage_container" style={{ marginTop: "0%" }}>
                 <section className="bg-light-primary">
                   <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center  px-xl-6">
                     <div className="col my-3">
