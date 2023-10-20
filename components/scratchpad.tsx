@@ -10,6 +10,7 @@ import { Button } from "antd";
 import { useEffect } from "react";
 import Loader from "./loader";
 import * as action from "state/action/scratchpadAction";
+import Layout from "@/components/layout";
 
 const serialize = value => {
     let finalString = "";
@@ -109,57 +110,63 @@ const ScratchpadPage = ({
         return formattedContent;
     }
 
-    
-    return (
-        <div>
-            {isFetchingScratchpad ? (
-                <Loader />
-            ) : (
-                <div>
-                    {isViewMode ? (
-                        <div>
-                            <div>
-                                {loggedInUserScratchpad.content.length == 0 ? (
-                                    <div>
-                                        <p>Write what is on your mind !</p>
-                                    </div>
-                                ) : (
-                                    <div>
-                                        <p>{getBlogFormattedContent(loggedInUserScratchpad.content)}</p>
-                                    </div>
-                                )}
 
+    return (
+        <Layout
+            title={"Scratchpad | Wondor"}
+            name={"description"}
+            content={"Write down your new ideas - polished or unpolished on the scratchpad before your forget it. Collaborate with artists around the world and improve your reach. Join Wondor now! "}
+        >
+            <div>
+                {isFetchingScratchpad ? (
+                    <Loader />
+                ) : (
+                    <div>
+                        {isViewMode ? (
+                            <div>
+                                <div>
+                                    {loggedInUserScratchpad.content.length == 0 ? (
+                                        <div>
+                                            <p>Write what is on your mind !</p>
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            <p>{getBlogFormattedContent(loggedInUserScratchpad.content)}</p>
+                                        </div>
+                                    )}
+
+                                </div>
+                                <div className="scratchpad__buttonContainer">
+                                    <Button type="primary" onClick={setWritingMode}>Edit</Button>
+                                </div>
                             </div>
-                            <div className="scratchpad__buttonContainer">
-                                <Button type="primary" onClick={setWritingMode}>Edit</Button>
+                        ) : (
+                            <div className="scratchpad_container">
+                                <div className="scratchpad_editorContainer">
+                                    <Slate
+                                        editor={editor}
+                                        value={deserialize(loggedInUserScratchpad.content)}
+                                        onChange={value => {
+                                            setBlogText(value)
+                                        }}
+                                    >
+                                        <Editable />
+                                    </Slate>
+                                </div>
+                                <div className="scratchpad__buttonContainer">
+                                    <Button loading={isUpdatingScratchpad} type="primary" onClick={saveBlog}>
+                                        Save
+                                    </Button>
+                                    <Button type="primary" onClick={doNotSaveBlog}>
+                                        Cancel
+                                    </Button>
+                                </div>
                             </div>
-                        </div>
-                    ) : (
-                        <div className="scratchpad_container">
-                            <div className="scratchpad_editorContainer">
-                                <Slate
-                                    editor={editor}
-                                    value={deserialize(loggedInUserScratchpad.content)}
-                                    onChange={value => {
-                                        setBlogText(value)
-                                    }}
-                                >
-                                    <Editable />
-                                </Slate>
-                            </div>
-                            <div className="scratchpad__buttonContainer">
-                                <Button loading={isUpdatingScratchpad} type="primary" onClick={saveBlog}>
-                                    Save
-                                </Button>
-                                <Button type="primary" onClick={doNotSaveBlog}>
-                                    Cancel
-                                </Button>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            )}
-        </div>
+                        )}
+                    </div>
+                )}
+            </div>
+        </Layout>
     )
 };
 

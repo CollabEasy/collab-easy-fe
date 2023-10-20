@@ -13,6 +13,7 @@ import { ProspectusEntry, User } from "types/model";
 import ArtistSocialProspectusModal from "@/components/modal/socialProspectusModal";
 import { GetSocialPlatformName } from "helpers/socialProspectusHelper";
 import { GetSocialPlatformId } from "helpers/artistSettingPageHelper";
+import Layout from "@/components/layout";
 
 const mapStateToProps = (state: AppState) => {
     return {
@@ -162,31 +163,37 @@ const EditSocialProspectus = ({
     };
 
     return (
-        <>
-            <div>
+        <Layout
+            title={"Social Prospectus | Wondor"}
+            name={"description"}
+            content={"Link you social media account - Facebook, Youtube, Instagram, Tik Tok and many more. Let artists know your work and collaborate with them. Join Wondor now!"}
+        >
+            <>
                 <div>
-                    {!isFetchingSocialProspectus && (
-                        <div>{getCurrentSocialProspectus()}</div>
+                    <div>
+                        {!isFetchingSocialProspectus && (
+                            <div>{getCurrentSocialProspectus()}</div>
+                        )}
+                    </div>
+                    <div className="socialProspectus__buttonContainer">
+                        <Button type="primary" onClick={ShowProspectusEntryModal}>
+                            Add
+                        </Button>
+                    </div>
+                </div>
+                <div>
+                    {showSocialProspectusModal && (
+                        <ArtistSocialProspectusModal
+                            onCancel={() => {
+                                HideProspectusEntryModal();
+                            }}
+                            isViewMode={true}
+                            prospectusEntryDetails={prospectusEntryRequestDetails}
+                        />
                     )}
                 </div>
-                <div className="socialProspectus__buttonContainer">
-                    <Button type="primary" onClick={ShowProspectusEntryModal}>
-                        Add
-                    </Button>
-                </div>
-            </div>
-            <div>
-                {showSocialProspectusModal && (
-                    <ArtistSocialProspectusModal
-                        onCancel={() => {
-                            HideProspectusEntryModal();
-                        }}
-                        isViewMode={true}
-                        prospectusEntryDetails={prospectusEntryRequestDetails}
-                    />
-                )}
-            </div>
-        </>
+            </>
+        </Layout>
     );
 };
 
