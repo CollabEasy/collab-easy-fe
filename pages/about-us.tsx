@@ -15,6 +15,7 @@ import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
 import Layout from '@/components/layout';
+import GenericBreadcrumb from '@/components/genericBreadcrumb';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -56,7 +57,7 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
 
   return (
     <Layout
-      title={"Wondor - platform to bring artists together"}
+      title={"Wondor - a platform to bring artists together!"}
       name={"description"}
       content={"Wondor is one-stop platform for all artists. We connect artists with each other and promote collaboration among artists. Win money for wining monthly contest. Earn rewards point by referring friends!"}
     >
@@ -70,6 +71,9 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
       )
       }
       <div className="footer_aboutUsContainer">
+        <GenericBreadcrumb 
+          page={"About Us"}
+        />
         <div className="footer_aboutUsBodyTextContainer">
           <h3 className="common-h5-style">Through Wondor, we are brining artists together everyday 🤗</h3>
           <div>

@@ -13,6 +13,7 @@ import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
 import Layout from '@/components/layout';
+import GenericBreadcrumb from "@/components/genericBreadcrumb";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -67,6 +68,9 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
       }
 
       <div className='footer_termsContainer'>
+        <GenericBreadcrumb 
+          page={"Terms & Conditions"}
+        />
         <div className="footer_termsSectionContainer">
           <h1 className="common-h1-style">Terms & Conditions</h1>
           <p className="common-p-style">

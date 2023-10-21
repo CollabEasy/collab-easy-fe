@@ -12,6 +12,7 @@ import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
 import Layout from '@/components/layout';
+import GenericBreadcrumb from "@/components/genericBreadcrumb";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -69,6 +70,9 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
       }
 
       <div className="footer_tutorialContainer">
+        <GenericBreadcrumb 
+          page={"Tutorial"}
+        />
         <div className="footer_tutorialHeadingContainer">
           <h3 className="common-h3-style">You are just 4 steps away from your next collaboration 🤗</h3>
           <p className="common-p-style">Are you ready to take your skills to the next level and collaborate with others on exciting projects?

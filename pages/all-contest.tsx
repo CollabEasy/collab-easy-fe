@@ -15,6 +15,7 @@ import * as actions from "state/action";
 import Loader from "@/components/loader";
 import { GetContestStatus } from "helpers/contest";
 import Layout from "@/components/layout";
+import GenericBreadcrumb from "@/components/genericBreadcrumb";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -132,6 +133,9 @@ const AllContestPage = ({
             ) : (
                 <>
                     <div className="allContestPage_listingPagecontainer">
+                        <GenericBreadcrumb 
+                            page={"All Contests"}
+                        />
                         <div className="allContestPage__listingPageCoverContainer">
                             <div className="row ">
                                 <div className="col-sm-8" style={{ backgroundColor: "#F8F5E7" }}>

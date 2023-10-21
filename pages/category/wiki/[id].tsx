@@ -104,7 +104,7 @@ const CategoryPage = ({
                     <a href={toAllCategoryPage().href}>Categories</a>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                    {category}
+                    Learn about {category}
                 </Breadcrumb.Item>
             </Breadcrumb>
         );

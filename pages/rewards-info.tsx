@@ -14,6 +14,7 @@ import headerImage from '../public/images/reward.svg';
 import * as actions from "state/action";
 import Layout from "@/components/layout";
 import Link from "next/link";
+import GenericBreadcrumb from "@/components/genericBreadcrumb";
 
 const { Meta } = Card;
 
@@ -65,7 +66,7 @@ const RewardsInfoPage = ({
 
     return (
         <Layout
-            title={"How to earn rewards on Wondor? | Wondor"}
+            title={"Earn Rewards on Wondor | Wondor"}
             name={"description"}
             content={"Learn how to earn reward points and redeem them for real money. Join Wondor now to start earning."}
 
@@ -81,6 +82,9 @@ const RewardsInfoPage = ({
 
             <>
                 <div className="allContestPage_listingPagecontainer">
+                    <GenericBreadcrumb
+                        page={"Rewards Info"}
+                    />
                     <div className="allContestPage__listingPageCoverContainer">
                         <div className="row ">
                             <div className="col-sm-8" style={{ backgroundColor: "#D1C4E9" }}>

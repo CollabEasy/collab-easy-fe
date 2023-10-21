@@ -37,8 +37,8 @@ export const Footer: React.FC<FooterProps> = ({
               <h6 className="common-h6-style">Company</h6>
               <ul className="common-text-style">
                 <li><a href={toAboutUs().href} >About Us</a></li>
-                <li><a href={toTerms().href} >Terms & Policy</a></li>
-                <li><a href={toPrivacy().href} >Privacy</a></li>
+                <li><a href={toTerms().href} >Terms & Conditions</a></li>
+                <li><a href={toPrivacy().href} >Privacy Policy</a></li>
                 <li><a href={toTutorial().href} >Tutorial</a></li>
               </ul>
             </div>
@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <li><a href={toEditProfile("profile", "basic-information").href} >Portal</a></li>
                 <li><a href={toGetInspired().href} >Inspiration</a></li>
                 <li><a href={toAllContestPage().href} >Contests</a></li>
-                <li><a href={toAllCategoryPage().href} >Wiki</a></li>
+                <li><a href={toAllCategoryPage().href} >Categories</a></li>
                 <li><a href={toRewardsInfoPage().href} >Rewards</a></li>
               </ul>
             </div>

@@ -13,6 +13,7 @@ import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
 import Layout from '@/components/layout';
+import GenericBreadcrumb from "@/components/genericBreadcrumb";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -68,6 +69,9 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
       }
 
       <div className="getInspired-parentContainer">
+        <GenericBreadcrumb 
+          page={"Inspiration"}
+        />
         <div className="getInspired-sectionContainer">
           <div className="getInspired-happyImage">
             <Image

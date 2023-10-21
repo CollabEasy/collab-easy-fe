@@ -15,6 +15,7 @@ import Loader from "@/components/loader";
 import { CategoryEntry } from "types/states/category";
 import CategoryModal from "@/components/modal/categoryModal";
 import Layout from "@/components/layout";
+import GenericBreadcrumb from "@/components/genericBreadcrumb";
 
 
 
@@ -118,7 +119,7 @@ const AllCategoryPage = ({
 
     return (
         <Layout
-            title={"Information about Art Categories, Artists Available to Collaborate."}
+            title={"Categories for Collaboration | Wondor"}
             name={"description"}
             content={"Popular categories among artists for collaboration on instagram, tik-tok etc. Send collaboration request to available artists to work on an idea together."}
 
@@ -137,6 +138,9 @@ const AllCategoryPage = ({
             ) : (
                 <>
                     <div className="allCategoryPage_listingPagecontainer">
+                        <GenericBreadcrumb 
+                            page={"Categories"}
+                        />
                         <div className="allCategoryPage__listingPageCoverContainer">
                             <div className="row ">
                                 <div className="col-sm-8" style={{ backgroundColor: "#ECCFD6" }}>

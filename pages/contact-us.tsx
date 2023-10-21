@@ -14,6 +14,7 @@ import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
 import Layout from '@/components/layout';
+import GenericBreadcrumb from "@/components/genericBreadcrumb";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -69,6 +70,9 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
       }
 
       <div className="footer_contactUsContainer">
+        <GenericBreadcrumb 
+          page={"Contact Us"}
+        />
         <div className="footer_contactUsSectionContainer">
           <div className="footer_contactUsImage">
             <Image

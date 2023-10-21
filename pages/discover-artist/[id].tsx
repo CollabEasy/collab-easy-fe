@@ -287,69 +287,69 @@ const DiscoverArtist = ({
         <Loader />
       ) : (
         <>
-        <div className="fluid discoverArtists__listingPageContainer">
-          {windowWidth > 500 &&
-            <>
-              {getBreadcrum(listingPageMetadata["name"])}
-            </>
-          }
-          <div className="discoverArtists__listingPageCoverContainer">
-            <div className="row ">
-              <div className="col-sm-8" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
-                <div className="discoverArtists_desktopCoverTextContainer">
-                  {Object.keys(GetListingHeaderData(artSlug)).length !== 0 ? (
-                    <div>
-                      <h1 className="common-h1-style">
-                        {artists.length} {artists.length === 1 ? (<>artist</>) : (<>artists</>)} for {GetListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit {artists.length >= 1 ? (<>🎉</>) : (<>😔</>)}<br></br>
-                      </h1>
-                      {artists.length > 0 ? (
+          <div className="fluid discoverArtists__listingPageContainer">
+            {windowWidth > 500 &&
+              <>
+                {getBreadcrum(listingPageMetadata["name"])}
+              </>
+            }
+            <div className="discoverArtists__listingPageCoverContainer">
+              <div className="row ">
+                <div className="col-sm-8" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
+                  <div className="discoverArtists_desktopCoverTextContainer">
+                    {Object.keys(GetListingHeaderData(artSlug)).length !== 0 ? (
+                      <div>
+                        <h1 className="common-h1-style">
+                          {artists.length} {artists.length === 1 ? (<>artist</>) : (<>artists</>)} for {GetListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit {artists.length >= 1 ? (<>🎉</>) : (<>😔</>)}<br></br>
+                        </h1>
+                        {artists.length > 0 ? (
+                          <h3 className="common-h3-style">
+                            send them a collab request to see if they are available.
+                          </h3>
+                        ) : (
+                          <h3 className="common-h3-style">
+                            artists in similar categories might be interested to collab.
+                          </h3>
+                        )}
+
+                      </div>
+                    ) : (
+                      <div>
+                        <h1 className="common-h1-style">
+                          {artists.length} artists to work with on your next big hit!<br></br>
+                        </h1>
                         <h3 className="common-h3-style">
                           send them a collab request to see if they are available.
                         </h3>
-                      ) : (
-                        <h3 className="common-h3-style">
-                          artists in similar categories might be interested to collab.
-                        </h3>
-                      )}
-
-                    </div>
-                  ) : (
-                    <div>
-                      <h1 className="common-h1-style">
-                        {artists.length} artists to work with on your next big hit!<br></br>
-                      </h1>
-                      <h3 className="common-h3-style">
-                        send them a collab request to see if they are available.
-                      </h3>
-                    </div>
-                  )}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="col-sm-4" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
-                <div className="discoverArtists_desktopCoverImageContainer">
-                  <Image
-                    alt="Image Alt"
-                    src={GetListingHeaderData(artSlug)["image"]}
-                    height={250}
-                    width={250}
-                  />
+                <div className="col-sm-4" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
+                  <div className="discoverArtists_desktopCoverImageContainer">
+                    <Image
+                      alt="Image Alt"
+                      src={GetListingHeaderData(artSlug)["image"]}
+                      height={250}
+                      width={250}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {getSimilarCategories(artSlug).length > 0 && (
-            <div className="flex-row  d-flex align-items-center justify-content-center colors my-2 scrolling-wrapper">
-              <div className="btn-group flex-wrap">
-                {/* <p className="common-text-style" style={{ paddingLeft: "15px", paddingTop: "20px" }}>Similar categories:</p>  */}
-                {getSimilarCategories(artSlug)}
+            {getSimilarCategories(artSlug).length > 0 && (
+              <div className="flex-row  d-flex align-items-center justify-content-center colors my-2 scrolling-wrapper">
+                <div className="btn-group flex-wrap">
+                  {/* <p className="common-text-style" style={{ paddingLeft: "15px", paddingTop: "20px" }}>Similar categories:</p>  */}
+                  {getSimilarCategories(artSlug)}
+                </div>
               </div>
+            )}
+            <div className="col-md-12 listingContainer">
+              {getArtists(GetListingHeaderData(artSlug)["background_color"], GetListingHeaderData(artSlug)["category"])}
             </div>
-          )}
-          <div className="col-md-12 listingContainer">
-            {getArtists(GetListingHeaderData(artSlug)["background_color"], GetListingHeaderData(artSlug)["category"])}
           </div>
-        </div>
         </>
       )}
       {showCollabModal.show && (
