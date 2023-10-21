@@ -189,7 +189,7 @@ const EditProfile = ({
       router.push("/");
       return;
     } else if (tabIndex === "8") {
-      LogoutUser();
+      logoutUser();
       return;
     } else if (tabIndex === "1") {
       tab = "basic-information";
@@ -212,17 +212,17 @@ const EditProfile = ({
     router.push("/artist/settings/" + action + "?tab=" + tab);
   };
 
-  const GetActiveTab = () => {
+  const getActiveTab = () => {
     return activeTabKey.current;
   };
 
-  const LogoutUser = () => {
+  const logoutUser = () => {
     localStorage.removeItem("token");
     resetUserLoggedIn();
     router.push("/");
   };
 
-  const GetBreadcrum = (page: string) => {
+  const getBreadcrum = (page: string) => {
     return (
       <Breadcrumb>
         <Breadcrumb.Item>
@@ -241,7 +241,7 @@ const EditProfile = ({
   if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails)
     return <Loader />;
 
-  const GetMenu = (mobile) => {
+  const getMenu = (mobile) => {
     return (
       <Menu
         theme="dark"
@@ -318,7 +318,7 @@ const EditProfile = ({
                 >
                   <Image src={titleMobileImg} alt="logo" height="30px" width="30px" />
                 </div>
-                {GetMenu(true)}
+                {getMenu(true)}
               </Header>
             ) : (
               <Sider
@@ -335,12 +335,12 @@ const EditProfile = ({
                     )}
                   </div>
                 </Link>
-                {GetMenu(false)}
+                {getMenu(false)}
               </Sider>
             )}
             <Layout>
               <>
-                {GetActiveTab() === "1" && (
+                {getActiveTab() === "1" && (
                   <Content
                     style={{
                       padding: 24,
@@ -350,7 +350,7 @@ const EditProfile = ({
                   >
                     {window.innerWidth > 500 &&
                       <>
-                        {GetBreadcrum("Basic Information")}
+                        {getBreadcrum("Basic Information")}
                       </>
                     }
                     <div className="settings__basicProfileCard">
@@ -359,7 +359,7 @@ const EditProfile = ({
                   </Content>
                 )}
 
-                {GetActiveTab() === "2" && (
+                {getActiveTab() === "2" && (
                   <Content
                     style={{
                       padding: 24,
@@ -369,7 +369,7 @@ const EditProfile = ({
                   >
                     {window.innerWidth > 500 &&
                       <>
-                        {GetBreadcrum("Preferences")}
+                        {getBreadcrum("Preferences")}
                       </>
                     }
                     <div className="settings__basicProfileCard">
@@ -378,7 +378,7 @@ const EditProfile = ({
                   </Content>
                 )}
 
-                {GetActiveTab() === "3" && (
+                {getActiveTab() === "3" && (
                   <Content
                     style={{
                       padding: 24,
@@ -388,7 +388,7 @@ const EditProfile = ({
                   >
                     {window.innerWidth > 500 &&
                       <>
-                        {GetBreadcrum("Work Samples")}
+                        {getBreadcrum("Work Samples")}
                       </>
                     }
                     <div className="settings__basicProfileCard">
@@ -407,7 +407,7 @@ const EditProfile = ({
                   </Content>
                 )}
 
-                {GetActiveTab() === "4" && (
+                {getActiveTab() === "4" && (
                   <Content
                     style={{
                       padding: 24,
@@ -417,7 +417,7 @@ const EditProfile = ({
                   >
                     {window.innerWidth > 500 &&
                       <>
-                        {GetBreadcrum("Social Prospectus")}
+                        {getBreadcrum("Social Prospectus")}
                       </>
                     }
                     <div className="settings__basicProfileCard">
@@ -427,7 +427,7 @@ const EditProfile = ({
                   </Content>
                 )}
 
-                {GetActiveTab() === "5" && (
+                {getActiveTab() === "5" && (
                   <Content
                     style={{
                       padding: 24,
@@ -437,7 +437,7 @@ const EditProfile = ({
                   >
                     {window.innerWidth > 500 &&
                       <>
-                        {GetBreadcrum("Scratchpad")}
+                        {getBreadcrum("Scratchpad")}
                       </>
                     }
                     <div className="settings__basicProfileCard">
@@ -446,7 +446,7 @@ const EditProfile = ({
                   </Content>
                 )}
 
-                {GetActiveTab() === "6" && (
+                {getActiveTab() === "6" && (
                   <Content
                     style={{
                       padding: 24,
@@ -456,7 +456,7 @@ const EditProfile = ({
                   >
                     {window.innerWidth > 500 &&
                       <>
-                        {GetBreadcrum("Collab Requests")}
+                        {getBreadcrum("Collab Requests")}
                       </>
                     }
                     <div className="settings__basicProfileCard">
@@ -473,7 +473,7 @@ const EditProfile = ({
                   </Content>
                 )}
 
-                {GetActiveTab() === "7" && (
+                {getActiveTab() === "7" && (
                   <Content
                     style={{
                       padding: 24,
@@ -483,7 +483,7 @@ const EditProfile = ({
                   >
                     {window.innerWidth > 500 &&
                       <>
-                        {GetBreadcrum("Rewards")}
+                        {getBreadcrum("Rewards")}
                       </>
                     }
                     <div className="settings__basicProfileCard">
