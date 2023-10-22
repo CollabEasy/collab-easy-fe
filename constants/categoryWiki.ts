@@ -2,7 +2,7 @@ export const CATEGORY_WIKI = [
     {
         "slug": "art-journaling",
         "name": "Art Journaling",
-        "meta_title": "What is Art Jornaling - collaborate with art journalers | Wondor",
+        "meta_title": "What is Art Jornaling - collaborate now | Wondor",
         "meta_content": "Learn about the enchanting world of art journaling - its definition, techniques, and how it fuses creativity and self-expression in a visual diary.",
         "paragraph": "Simply put, Art Journaling is a visual diary--it's record keeping combined with creativity! It’s a place to record your thoughts, memories, and emotions through images, art and words. An art journal is the same as a written journal, except that it incorporates colors, images, patterns, and other materials. Some art journals have a lot of writing, while others are purely filled with images. It’s a form of creative self-care.",
         "source": "https://shoptangiebaxter.com/pages/what-is-art-journaling",
@@ -10,7 +10,7 @@ export const CATEGORY_WIKI = [
     {
         "slug": "bullet-journaling",
         "name": "Bullet Journaling",
-        "meta_title": "What is Bullet Journaling - collaborate with bullet journalers | Wondor",
+        "meta_title": "What is Bullet Journaling - collaborate now | Wondor",
         "meta_content": "Discover the art of bullet journaling - a versatile and organized way to plan, track, and express your life. Get started on your creative journey now!",
         "paragraph": "Bullet Journaling is just one of many journaling methods that can improve your mental health, boost creativity, and even help you sleep better. But it differs from most types of journaling in that it specifically involves goal planning, organization, and, in many cases, wildly creative visual imagery. Bullet Journaling allows you to organize your mind and life while also expressing your individual style.",
         "source": "https://www.dailyom.com/journal/bullet-journaling-for-beginners-tips-to-get-started/",
@@ -26,7 +26,7 @@ export const CATEGORY_WIKI = [
     {
         "slug": "caricature-drawing",
         "name": "Caricature Drawing",
-        "meta_title": "What is Caricature Drawing - collaborate with caricature makers | Wondor",
+        "meta_title": "What is Caricature Drawing - collaborate now | Wondor",
         "meta_content": "Explore the world of Caricature Drawing: Learn its humor and artistry, create fun portraits with exaggerated features. Start sketching now!",
         "paragraph": "Caricature is a drawing style that often shows up as extreme portraits of political figures or wacky boardwalk souvenirs. But there’s more to caricatures than just big noses and other exaggerated facial features. Creating whimsical depictions of people — from the media or real life — by drawing caricatures can help you get better at illustrating real, three-dimensional characters. “A caricature gets to the essence of who someone is and not just what they look like, but what their personality is,” says caricaturist Greg Bigoni.",
         "source": "https://www.adobe.com/creativecloud/illustration/discover/how-to-draw-caricature.html",
@@ -42,7 +42,7 @@ export const CATEGORY_WIKI = [
     {
         "slug": "collage-making",
         "name": "Collage Making",
-        "meta_title": "What is Collage Making - collaborate with collage makers | Wondor",
+        "meta_title": "What is Collage Making - collaborate now | Wondor",
         "meta_content": "Discover Collage Making: Unleash your creativity through visual storytelling. Learn techniques to craft stunning collages. Start creating today!",
         "paragraph": "Collage is an art form which is made up of overlapping pieces of material, such as photographs, fabric, coloured and textured paper and other types of mixed media. The process focuses on the act of selecting materials and cutting them into the desired shape, before arranging them and pasting them onto the chosen surface.",
         "source": "https://www.riseart.com/guide/2371/a-guide-to-collage",
@@ -50,7 +50,7 @@ export const CATEGORY_WIKI = [
     {
         "slug": "creative-journaling",
         "name": "Creative Journaling",
-        "meta_title": "What is Creative Journaling - collaborate with creative journalers | Wondor",
+        "meta_title": "What is Creative Journaling - collaborate now | Wondor",
         "meta_content": "Explore Creative Journaling: A unique outlet for self-expression, imagination, and personal growth. Start your artistic journey now!",
         "paragraph": "Creative journals are essentially a place for you to store your creative ideas, practice your art and overall hone your skills. With it, you can keep your creative juices flowing and your motivation to create art going strong.",
         "source": "https://blog.journey.cloud/how-to-start-a-creative-journal",
@@ -74,7 +74,7 @@ export const CATEGORY_WIKI = [
     {
         "slug": "digital-art",
         "name": "Digital Art",
-        "meta_title": "What is Digital Art - collaborate with digital artists | Wondor",
+        "meta_title": "What is Digital Art - collaborate now | Wondor",
         "meta_content":
             "Discover Digital Art: The fusion of technology and creativity. Unleash your imagination with digital tools for stunning visual masterpieces!",
         "paragraph": "Digital art is any artwork that draws upon digital technology as an essential part of its creative process. It encompasses a wide range of techniques, from digital drawings, paintings and illustration, to photos, videos and even sculpture. All can be classed as digital art, so long as they’re created, enhanced or exhibited digitally.",
@@ -99,7 +99,7 @@ export const CATEGORY_WIKI = [
     {
         "slug": "hand-lettering",
         "name": "Hand Lettering",
-        "meta_title": "What is Hand Lettering - collaborate with hand letterers | Wondor",
+        "meta_title": "What is Hand Lettering - collaborate with now | Wondor",
         "meta_content": "Explore Hand Lettering: The art of creating beautiful, personalized letters by hand. Unlock your creativity and craft stunning designs now!",
         "paragraph": "Hand lettering is an art form that involves drawing letters by hand. Hand lettering allows artists to interpret letters in creative ways. The art of lettering varies depending on the style and the artist doing the lettering.",
         "source": "https://www.vectornator.io/blog/hand-lettering",
@@ -179,7 +179,7 @@ export const CATEGORY_WIKI = [
     {
         "slug": "spoken-words",
         "name": "Spoken Words",
-        "meta_title": "What is Spoken Word Portey - collaborate with spoken word poets | Wondor",
+        "meta_title": "What is Spoken Word Portey - collaborate with poets | Wondor",
         "meta_content": "Explore Spoken Word Poetry: The captivating blend of words, rhythm, and emotion. Unleash your voice and share powerful stories through spoken art!",
         "paragraph": "Spoken word poetry is a word-based performance art where speakers engage in powerful self-expression by sharing their views on particular topics for a live audience, focusing on sound and presentation. Spoken word performances require memorization, performative body language (like gestures and facial expressions), enunciation, and eye contact with viewers.",
         "source": "https://www.masterclass.com/articles/how-to-write-spoken-word-poetry"
@@ -187,7 +187,7 @@ export const CATEGORY_WIKI = [
     {
         "slug": "standup-comedy",
         "name": "Standup Comedy",
-        "meta_title": "What is Standup Comedy - collaborate with standup comedians | Wondor",
+        "meta_title": "What is Standup Comedy - collaborate with comedians | Wondor",
         "meta_content": "Discover Standup Comedy: The art of laughter and wit. Unleash your humor and entertain audiences with your comedic brilliance. Start performing now!",
         "paragraph": "Stand-up comedy is literally a comedian who tells funny stories through comedic performances by speaking directly to a live audience in an attempt to get that audience laughing.",
         "source": "https://cleancomedians.com/what-is-stand-up-comedy/",
