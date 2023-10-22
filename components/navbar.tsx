@@ -56,7 +56,7 @@ const NavBar = ({
   const [showLoginOptions, setShowLoginOptions] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [profilePic, setProfilePic] = useState("");
-  // const [isMobileVersion, setIsMobileVersion] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(-1);
 
   const router = useRouter();
 
@@ -85,6 +85,7 @@ const NavBar = ({
       navBarElement.classList.remove("animate__fadeInDown");
       setShowSearchBar(false);
     }
+    setWindowWidth(window.innerWidth);
   }, [inView, entry]);
 
   useEffect(() => {
@@ -136,7 +137,7 @@ const NavBar = ({
               <Search />
             ) : (
               <div className="navbar-links">
-                <ul style={{textAlign: "center"}}>
+                <ul style={{ textAlign: "center" }}>
                   <li>
                     <p className="common-p-style nav-text">
                       <a href={routeToHref(toGetInspired())}>Inspiration</a>
@@ -199,106 +200,97 @@ const NavBar = ({
                 </div>
               )}
             </div>
-            {checkDevice() && showLoginOptions && (
-              <div
-                className="sidebar-mask"
-                onClick={() => setShowLoginOptions(false)}
-              ></div>
-            )}
-            {showLoginOptions && (
-              <div
-                className={`login-options-container ${checkDevice() ? "animate__animated animate__slideInRight" : ""
-                  }`}
-              >
-                <div className={"login-mobile-userdetails"}>
-                  {user?.profile_pic_url ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={profilePic} alt="profile-pic" />
-                  ) : (
-                    <div className="default-profile">
-                      <UserOutlined className="user-icon" />
-                    </div>
-                  )}
-                  <div className="login-mobile-username">
-                    <h3> {user.first_name} </h3>
-                    <hr></hr>
+            {showLoginOptions && windowWidth > 500 &&
+              (
+                <div
+                  className={`login-options-container ${checkDevice() ? "animate__animated animate__slideInRight" : ""
+                    }`}
+                >
+                  <div className={"login-mobile-userdetails"}>
+                    {user?.profile_pic_url ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={profilePic} alt="profile-pic" />
+                    ) : (
+                      <div className="default-profile">
+                        <UserOutlined className="user-icon" />
+                      </div>
+                    )}
                   </div>
-                </div>
-                <div className="common-login-option">
-                  <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
-                    <div
-                      className="selected-option-shadow profile-option"
-                      onClick={() => setShowLoginOptions(false)}
+                  <div className="common-login-option">
+                    <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
+                      <div
+                        className="selected-option-shadow profile-option"
+                        onClick={() => setShowLoginOptions(false)}
+                      >
+                        <span className="f-14 common-text-style">Profile</span>
+                      </div>
+                    </Link>
+                    <Link
+                      href={routeToHref(
+                        toEditProfile("profile", "basic-information")
+                      )}
+                      passHref
                     >
-                      <span className="f-14 common-text-style">Profile</span>
-                    </div>
-                  </Link>
-                  <Link
-                    href={routeToHref(
-                      toEditProfile("profile", "basic-information")
-                    )}
-                    passHref
-                  >
-                    <div
-                      className="selected-option-shadow settings-option"
-                      onClick={() => setShowLoginOptions(false)}
-                    >
-                      <span className="f-14 common-text-style">
-                        Portal
-                      </span>
-                    </div>
-                  </Link>
-                  <Link
-                    href={routeToHref(
-                      toEditProfile("profile", "rewards")
-                    )}
-                    passHref
-                  >
-                    <div
-                      className="selected-option-shadow settings-option"
-                      onClick={() => setShowLoginOptions(false)}
-                    >
-                      <span className="f-14 common-text-style">
-                        Reward Points
-                      </span>
-                    </div>
-                  </Link>
-                  <Link
-                    href={routeToHref(
-                      toEditProfile("profile", "collab-request")
-                    )}
-                    passHref
-                  >
-                    <div
-                      className="selected-option-shadow settings-option"
-                      onClick={() => setShowLoginOptions(false)}
-                    >
-                      <span className="f-14 common-text-style">
-                        Collab Requests
-                      </span>
-                    </div>
-                  </Link>
-                  {IsAdmin(user.email) && (
-                    <Link href={routeToHref(toAnalyticsPage())} passHref>
                       <div
                         className="selected-option-shadow settings-option"
                         onClick={() => setShowLoginOptions(false)}
                       >
                         <span className="f-14 common-text-style">
-                          Admin
+                          Portal
                         </span>
                       </div>
                     </Link>
-                  )}
-                  <div
-                    className="selected-option-shadow logout-option"
-                    onClick={logoutUser}
-                  >
-                    <span className="f-14 common-text-style">Logout</span>
+                    <Link
+                      href={routeToHref(
+                        toEditProfile("profile", "rewards")
+                      )}
+                      passHref
+                    >
+                      <div
+                        className="selected-option-shadow settings-option"
+                        onClick={() => setShowLoginOptions(false)}
+                      >
+                        <span className="f-14 common-text-style">
+                          Reward Points
+                        </span>
+                      </div>
+                    </Link>
+                    <Link
+                      href={routeToHref(
+                        toEditProfile("profile", "collab-request")
+                      )}
+                      passHref
+                    >
+                      <div
+                        className="selected-option-shadow settings-option"
+                        onClick={() => setShowLoginOptions(false)}
+                      >
+                        <span className="f-14 common-text-style">
+                          Collab Requests
+                        </span>
+                      </div>
+                    </Link>
+                    {IsAdmin(user.email) && (
+                      <Link href={routeToHref(toAnalyticsPage())} passHref>
+                        <div
+                          className="selected-option-shadow settings-option"
+                          onClick={() => setShowLoginOptions(false)}
+                        >
+                          <span className="f-14 common-text-style">
+                            Admin
+                          </span>
+                        </div>
+                      </Link>
+                    )}
+                    <div
+                      className="selected-option-shadow logout-option"
+                      onClick={logoutUser}
+                    >
+                      <span className="f-14 common-text-style">Logout</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         )}
       </div>
