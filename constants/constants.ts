@@ -2,6 +2,10 @@ import facebookImage from '../public/images/facebook.png'
 import instagramImage from '../public/images/instagram.png'
 import tiktokImage from '../public/images/tiktok.png'
 import personalWebsiteImage from '../public/images/personalWebsite.png'
+import soundcloudImage from '../public/images/soundcloud.jpeg'
+import spotifyImage from  '../public/images/spotify.png'
+import dribbleImage from  '../public/images/dribble.png'
+import flickrImage from  '../public/images/flickr.png'
 
 export const COUNTRIES = [
   {
@@ -3972,7 +3976,39 @@ export const SOCIAL_PLATFORMS = [
     "approved": 1,
     "base_url": "",
     "image": personalWebsiteImage,
-  }
+  },
+  {
+    "id": 6,
+    "name": "Soundcloud",
+    "description": "Social media platform for sharing music.",
+    "approved": 1,
+    "base_url": "https://www.soundcloud.com",
+    "image": soundcloudImage,
+  },
+  {
+    "id": 7,
+    "name": "Spotify",
+    "description": "Social media platform for sharing music.",
+    "approved": 1,
+    "base_url": "https://www.spotify.com",
+    "image": spotifyImage,
+  },
+  {
+    "id": 8,
+    "name": "Flickr",
+    "description": "Social media platform for sharing pictures.",
+    "approved": 1,
+    "base_url": "https://www.flickr.com",
+    "image": flickrImage,
+  },
+  {
+    "id": 9,
+    "name": "Dribble",
+    "description": "Social media platform for sharing illustrations.",
+    "approved": 1,
+    "base_url": "https://www.dribble.com",
+    "image": dribbleImage,
+  },
 ]
 
 export const LOADER_QUOTES = [
