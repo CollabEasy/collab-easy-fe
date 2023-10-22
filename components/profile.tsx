@@ -41,6 +41,7 @@ import avatarImage from "../public/images/avatar.png";
 import {
   GetPendingCollabRequest,
   GetUserSkills,
+  GetUserSkillsTags,
 } from "../helpers/profilePageHelper";
 import { ConvertTimestampToDate } from "../helpers/collabCardHelper";
 import ProfilePicture from "./profilePicture";
@@ -282,7 +283,7 @@ const Profile = ({
             href={routeToHref(toEditProfile("profile", "profile"))}
             passHref
           >
-            Edit profile.
+            Edit profile
           </Link>
         </Button>
       </Tooltip>
@@ -467,7 +468,7 @@ const Profile = ({
                   </div>
                   {!isEditCategoriesClicked ? (
                     <p className="mt4 common-p-style">
-                      {GetUserSkills(user, true)}{" "}
+                      {GetUserSkillsTags(user, true)}{" "}
                     </p>
                   ) : (
                     <CategorySelector
