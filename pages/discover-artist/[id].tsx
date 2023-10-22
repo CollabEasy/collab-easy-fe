@@ -271,9 +271,9 @@ const DiscoverArtist = ({
 
   return (
     <Layout
-      title={listingPageMetadata["meta_title"]}
+      title={getListingPageMetadata(artSlug)["meta_title"]}
       name={"description"}
-      content={listingPageMetadata["meta_content"]}
+      content={getListingPageMetadata(artSlug)["meta_title"]}
     >
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />
