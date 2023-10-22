@@ -4,6 +4,14 @@ import Link from 'next/link';
 import { useRoutesContext } from "../components/routeContext";
 import { IsLandingPage } from 'helpers/helper';
 import { useRouter } from "next/router";
+import { routeToHref } from "config/routes";
+import {
+  SettingOutlined,
+  HomeOutlined,
+  CalendarOutlined,
+  UserOutlined,
+  DollarOutlined,
+} from "@ant-design/icons";
 
 export interface FooterProps {
   footerLinkColumns: FooterColumn[]
@@ -13,7 +21,7 @@ export const Footer: React.FC<FooterProps> = ({
   footerLinkColumns
 }) => {
   const [windowWidth, setWindowWidth] = useState(-1);
-  const { toEditProfile, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext()
+  const { toWondorHome, toArtistProfile, toEditProfile, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext()
 
   const router = useRouter();
 
@@ -83,38 +91,58 @@ export const Footer: React.FC<FooterProps> = ({
 
   const getMobileNavbar = () => {
     return (<>
-      <header className="header">
-        <div className="navbarcontainer">
+      <header className="navbar">
+        <div className="navbarContainer">
           <nav className="bottom-nav">
             <div className="bottom-nav-item active">
               <div className="bottom-nav-link">
-                <i className="material-icons">home</i>
-                <span>Home</span>
+                <Link href={routeToHref(toWondorHome())} passHref>
+                  <>
+                    <HomeOutlined />
+                    <span className="f-12 common-text-style">Discover</span>
+                  </>
+                </Link>
               </div>
             </div>
             <div className="bottom-nav-item">
               <div className="bottom-nav-link">
-                <i className="material-icons">favorite</i>
-                <span>Wishlist</span>
+                <Link href={routeToHref(toWondorHome())} passHref>
+                  <>
+                    <CalendarOutlined />
+                    <span className="f-12 common-text-style">Collab</span>
+                  </>
+                </Link>
               </div>
             </div>
             <div className="bottom-nav-item">
               <div className="bottom-nav-link">
-                <i className="material-icons">shopping_cart</i>
-                <span>Cart</span>
+                <Link href={routeToHref(toWondorHome())} passHref>
+                  <>
+                    <UserOutlined />
+                    <span className="f-12 common-text-style">Profile</span>
+                  </>
+                </Link>
               </div>
             </div>
             <div className="bottom-nav-item">
               <div className="bottom-nav-link">
-                <i className="material-icons">account_circle</i>
-                <span>Account</span>
+                <Link href={routeToHref(toWondorHome())} passHref>
+                  <>
+                    <DollarOutlined />
+                    <span className="f-12 common-text-style">Rewards</span>
+                  </>
+                </Link>
               </div>
             </div>
 
             <div className="bottom-nav-item">
               <div className="bottom-nav-link">
-                <i className="material-icons">settings</i>
-                <span>Setting</span>
+                <Link href={routeToHref(toWondorHome())} passHref>
+                  <>
+                    <SettingOutlined />
+                    <span className="f-12 common-text-style">Account</span>
+                  </>
+                </Link>
               </div>
             </div>
           </nav>
