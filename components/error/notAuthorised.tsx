@@ -21,7 +21,7 @@ export const NotAuthorised = (
 
   return (
     <Layout
-      title={"Create a new account or log in to your existing account to get the most from wondor!"}
+      title={"Join Wondor now!"}
       name={"description"}
       content="Create a new account or log in to your existing account to get the most from wondor!"
     >
