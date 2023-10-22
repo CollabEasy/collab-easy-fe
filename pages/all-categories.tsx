@@ -156,7 +156,6 @@ const AllCategoryPage = ({
                                 <div className="col-sm-4" style={{ backgroundColor: "#ECCFD6" }}>
                                     <Image
                                         alt="Image Alt"
-                                        className="discoverArtists_desktopCoverImageContainer"
                                         src={headerImage}
                                         layout="responsive"
                                         objectFit="contain" // Scale your image down to fit into the container

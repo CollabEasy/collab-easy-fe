@@ -81,14 +81,14 @@ const RewardsInfoPage = ({
             }
 
             <>
-                <div className="allContestPage_listingPagecontainer">
+                <div className="rewardsInfoPage_listingPagecontainer">
                     <GenericBreadcrumb
                         page={"Rewards Info"}
                     />
-                    <div className="allContestPage__listingPageCoverContainer">
+                    <div className="rewardsInfoPage__listingPageCoverContainer">
                         <div className="row ">
                             <div className="col-sm-8" style={{ backgroundColor: "#D1C4E9" }}>
-                                <div className="allContestPage_desktopCoverTextContainer">
+                                <div className="rewardsInfoPage_desktopCoverTextContainer">
                                     <h1 className="common-h1-style">
                                         Earn rewards points for everything you do on Wondor, big or small 😎
                                     </h1>
@@ -101,7 +101,6 @@ const RewardsInfoPage = ({
                             <div className="col-sm-4" style={{ backgroundColor: "#D1C4E9" }}>
                                 <Image
                                     alt="Image Alt"
-                                    className="discoverArtists_desktopCoverImageContainer"
                                     src={headerImage}
                                     layout="responsive"
                                     objectFit="contain" // Scale your image down to fit into the container
@@ -109,7 +108,7 @@ const RewardsInfoPage = ({
                             </div>
                         </div>
                     </div>
-                    <div className="rewardsPage_container">
+                    <div className="rewardsInfo_container">
                         <section className="bg-light-primary">
                             <h5 className="common-h5-style">Ways to earn points</h5>
                             <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center justify-content-center px-xl-6">
@@ -207,7 +206,7 @@ const RewardsInfoPage = ({
                             </div>
                         </section>
                     </div>
-                    <div className="rewardsPage_container">
+                    <div className="rewardsInfo_container">
                         <section className="bg-light-primary">
                             <h5 className="common-h5-style">Ways to redeem points</h5>
                             <p>You can redeem your points for real money.

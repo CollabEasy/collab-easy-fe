@@ -328,7 +328,6 @@ const DiscoverArtist = ({
                 <div className="col-sm-4" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
                   <Image
                     alt="Image Alt"
-                    className="discoverArtists_desktopCoverImageContainer"
                     src={GetListingHeaderData(artSlug)["image"]}
                     layout="responsive"
                     objectFit="contain" // Scale your image down to fit into the container

@@ -165,7 +165,7 @@ const RewardsPage = ({
           <Loader />
         ) : (
           <>
-            <div className="rewardsPage_container">
+            <div className="rewardsInfo_container">
               <div className="points-earn-container" style={{ backgroundColor: "#FFFBE6", border: "1px solid #f2a114" }}>
                 <div className="points-info-cnt">
                   <div className="points-list-cnt">
@@ -203,7 +203,7 @@ const RewardsPage = ({
               <div style={{ marginTop: "20px" }}>
                 <h5>Summary</h5>
               </div>
-              <div className="rewardsPage_container" style={{ marginTop: "0%" }}>
+              <div className="rewardsInfo_container" style={{ marginTop: "0%" }}>
                 <section className="bg-light-primary">
                   <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center px-xl-6">
                     <div className="col my-3">
@@ -241,7 +241,7 @@ const RewardsPage = ({
               <div style={{ marginTop: "20px" }}>
                 <h5>Points earned by category</h5>
               </div>
-              <div className="rewardsPage_container" style={{ marginTop: "0%" }}>
+              <div className="rewardsInfo_container" style={{ marginTop: "0%" }}>
                 <section className="bg-light-primary">
                   <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center  px-xl-6">
                     <div className="col my-3">

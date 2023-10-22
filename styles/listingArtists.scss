@@ -169,7 +169,8 @@
     
     .discoverArtists__listingPageContainer {
         width: 90%;
-        margin-top: 15%;
+        margin-top: 25%;
+
         .discoverArtists__listingPageCoverContainer {
             text-align: left;
             .discoverArtists_desktopCoverTextContainer {
@@ -232,7 +233,7 @@
 @media only screen and (max-width: 600px) and  (min-width: 400px) {
     .discoverArtists__listingPageContainer {
         width: 90%;
-        margin-top: 25%;
+        margin-top: 20%;
         .discoverArtists__listingPageCoverContainer {
             text-align: center;
             .discoverArtists_desktopCoverTextContainer {
@@ -298,8 +299,8 @@
 @media only screen and (max-width: 399px) {
     .discoverArtists__listingPageContainer {
         width: 90%;
+        margin-top: 20%;
         .discoverArtists__listingPageCoverContainer { 
-            margin-top: 50px;
             .discoverArtists_desktopCoverTextContainer {
                 padding: 1rem;
                 h1 {
