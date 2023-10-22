@@ -233,7 +233,7 @@ const CollabDetailCard = ({
                   block
                   type="primary"
                   onClick={() => {
-                    router.push(`/collab/${collabDetails.id}`);
+                    router.push(`/collab/details/${collabDetails.id}`);
                   }}
                   style={{ color: "white", border: "green", backgroundColor: "#9FBFF9", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px' }}
                   className="common-medium-btn"
