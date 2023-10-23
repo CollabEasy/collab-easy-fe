@@ -250,45 +250,49 @@ const EditProfile = ({
         onClick={handleClick}
         style={{ justifyContent: "flex-end" }}
       >
-        <Menu.Item key="0">
-          {!mobile && <HomeOutlined />}
-          <span>Home</span>
-        </Menu.Item>
-        <Menu.Item key="9">
-          {!mobile && <UserOutlined />}
-          <span>Profile</span>
-        </Menu.Item>
+        {!mobile &&
+          <Menu.Item key="0">
+            <HomeOutlined />
+            <span>Home</span>
+          </Menu.Item>
+        }
+        {!mobile &&
+          <Menu.Item key="9">
+            <UserOutlined />
+            <span>Profile</span>
+          </Menu.Item>
+        }
         <Menu.Item key="1">
           {!mobile && <ProfileOutlined />}
-          <span>Basic Information</span>
+          <span className="f-12 ">Information</span>
         </Menu.Item>
         <Menu.Item key="2">
           {!mobile && <CheckCircleOutlined />}
-          <span>Preferences</span>
+          <span className="f-12 ">Preferences</span>
         </Menu.Item>
         <Menu.Item key="3">
           {!mobile && <PictureOutlined />}
-          <span>Samples</span>
+          <span className="f-12 ">Samples</span>
         </Menu.Item>
         <Menu.Item key="4">
           {!mobile && <InstagramOutlined />}
-          <span>Social Prospectus</span>
+          <span className="f-12">Social Prospectus</span>
         </Menu.Item>
         <Menu.Item key="5">
           {!mobile && <EditOutlined />}
-          <span>Scratchpad</span>
+          <span className="f-12">Scratchpad</span>
         </Menu.Item>
         <Menu.Item key="6">
           {!mobile && <CalendarOutlined />}
-          <span>Collab Requests</span>
+          <span className="f-12">Collab Requests</span>
         </Menu.Item>
         <Menu.Item key="7">
           {!mobile && <TrophyOutlined />}
-          <span>Rewards</span>
+          <span className="f-12"> Rewards</span>
         </Menu.Item>
         <Menu.Item key="8" danger>
           {!mobile && <LogoutOutlined />}
-          <span>Log out</span>
+          <span className="f-12">Log out</span>
         </Menu.Item>
       </Menu>
     );
@@ -316,7 +320,6 @@ const EditProfile = ({
                   cursor: "pointer"
                 }}
                 >
-                  <Image src={titleMobileImg} alt="logo" height="30px" width="30px" />
                 </div>
                 {getMenu(true)}
               </Header>
