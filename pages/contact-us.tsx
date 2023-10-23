@@ -70,7 +70,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
       }
 
       <div className="footer_contactUsContainer">
-        <GenericBreadcrumb 
+        <GenericBreadcrumb
           page={"Contact Us"}
         />
         <div className="footer_contactUsSectionContainer">
