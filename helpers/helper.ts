@@ -15,6 +15,20 @@ export function IsProfilePage(pathname) {
   return false;
 }
 
+export function IsInspirationPage(pathname) {
+  if (pathname.includes("/get-inspired")) {
+    return true;
+  } 
+  return false;
+}
+
+export function IsContestPage(pathname) {
+  if (pathname.includes("/all-contest")) {
+    return true;
+  } 
+  return false;
+}
+
 export function IsCollabRequestPage(pathname) {
   if (pathname.includes("/artist/settings/profile?tab=collab-request")) {
     return true;
