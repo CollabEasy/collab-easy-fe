@@ -89,61 +89,55 @@ export const Footer: React.FC<FooterProps> = ({
       </div>
     </div>
   };
+  const reloadPage = (page) => {
+    if (page === "discover") {
+      router.push("/");
+    } else if (page === "collab-request") {
+      router.push("/artist/settings/profole?tab=collab-request");
+    } else if (page === "profile") {
+      router.push("/artist/profile/wondor-wondor-1");
+    } else if (page === "rewards") {
+      router.push("/artist/settings/profile?tab=rewards");
+    } else if (page === "account") {
+      router.push("/artist/settings/profile?tab=basic-information");
+    }
+  }
 
   const getMobileNavbar = () => {
     return (<>
       <header className="navbar">
         <div className="navbarContainer">
           <nav className="bottom-nav">
-            <div className="bottom-nav-item active">
+            <div className="bottom-nav-item active" onClick = {(e) => reloadPage("discover")}>
               <div className="bottom-nav-link">
-                <Link href={routeToHref(toWondorHome())} passHref>
-                  <>
-                    <HomeOutlined />
-                    <span className="f-12 common-text-style">Discover</span>
-                  </>
-                </Link>
+                <HomeOutlined />
+                <span className="f-12 common-text-style">Discover</span>
               </div>
             </div>
-            <div className="bottom-nav-item">
+            <div className="bottom-nav-item" onClick = {(e) => reloadPage("collab-request")}>
               <div className="bottom-nav-link">
-                <Link href={routeToHref(toWondorHome())} passHref>
-                  <>
                     <CalendarOutlined />
                     <span className="f-12 common-text-style">Collab</span>
-                  </>
-                </Link>
               </div>
             </div>
             <div className="bottom-nav-item">
-              <div className="bottom-nav-link">
-                <Link href={routeToHref(toWondorHome())} passHref>
-                  <>
+              <div className="bottom-nav-link" onClick = {(e) => reloadPage("profile")}>
                     <UserOutlined />
                     <span className="f-12 common-text-style">Profile</span>
-                  </>
-                </Link>
               </div>
             </div>
             <div className="bottom-nav-item">
-              <div className="bottom-nav-link">
-                <Link href={routeToHref(toWondorHome())} passHref>
-                  <>
+              <div className="bottom-nav-link" onClick = {(e) => reloadPage("rewards")}>
+
                     <DollarOutlined />
                     <span className="f-12 common-text-style">Rewards</span>
-                  </>
-                </Link>
+
               </div>
             </div>
-
-            <div className="bottom-nav-item">
+            <div className="bottom-nav-item" onClick = {(e) => reloadPage("account")}>
               <div className="bottom-nav-link">
-                <Link href={routeToHref(toWondorHome())} passHref>
-                  <>
                     <SettingOutlined />
                     <span className="f-12 common-text-style">Account</span>
-                  </>
-                </Link>
               </div>
             </div>
           </nav>
