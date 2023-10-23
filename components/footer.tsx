@@ -21,6 +21,7 @@ export const Footer: React.FC<FooterProps> = ({
   footerLinkColumns
 }) => {
   const [windowWidth, setWindowWidth] = useState(-1);
+  const [isActive, setIsActive] = useState(true);
   const { toWondorHome, toArtistProfile, toEditProfile, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext()
 
   const router = useRouter();
