@@ -89,7 +89,7 @@ const Footer = ({
   const getWebFooter = () => {
     return <div className="container-fluid footer-cnt">
       <div className="footer-card">
-        <div className="row mb-4">
+        <div className="row">
           <div className="col-md-4 col-sm-4 col-xs-4">
             <div className="footer-text pull-left">
               <div className="d-flex">
