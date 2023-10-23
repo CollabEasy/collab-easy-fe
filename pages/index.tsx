@@ -171,8 +171,8 @@ const Home = ({
               src={artistConnectImage}
               height={300}
               width={300}
-              priority
               alt="landing page"
+              loading="lazy"
             />
             <div>
               <h3 className="common-h3-style">Discover New Opportunities</h3>
@@ -200,8 +200,8 @@ const Home = ({
                 src={connectImage}
                 height={250}
                 width={250}
-                priority
                 alt="landing page"
+                loading="lazy"
               />
             </div>
           </div>
@@ -219,8 +219,8 @@ const Home = ({
                 src={calendarImage}
                 height={250}
                 width={250}
-                priority
                 alt="landing page"
+                loading="lazy"
               />
             </div>
           </div>
@@ -256,6 +256,7 @@ const Home = ({
                       height={130}
                       width={130}
                       alt="landing page"
+                      loading="lazy"
                     />{" "}
                   </div>
                 </div>
@@ -281,6 +282,7 @@ const Home = ({
                       height={400}
                       width={400}
                       alt="landing page"
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -334,6 +336,7 @@ const Home = ({
                       height={300}
                       width={300}
                       alt="landing page"
+                      loading="lazy"
                     />
                   </div>
                   <div className="p-4 text-center">
@@ -375,6 +378,7 @@ const Home = ({
                       height={300}
                       width={300}
                       alt="landing page"
+                      loading="lazy"
                     />
                   </div>
                   <div className="p-4 text-center">
@@ -423,6 +427,7 @@ const Home = ({
                       height={400}
                       width={400}
                       alt="landing page"
+                      loading="lazy"
                     />
                   </div>
                 </div>
