@@ -25,7 +25,7 @@ export const NotAuthorised = (
       name={"description"}
       content="Create a new account or log in to your existing account to get the most from wondor!"
     >
-      <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "10%", marginBottom: "15%" }}>
+      <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "25%", marginBottom: "15%" }}>
         <div className="discoverArtists__listingPageCoverContainer common-text-style">
           <Result
             title={message}

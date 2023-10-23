@@ -16,6 +16,7 @@ import { Dispatch } from "redux";
 import { getPublicRoutes } from "helpers/helper";
 import Loader from "./loader";
 import Notification from "./notifications/notification";
+import { useEffect, useState } from "react";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
@@ -56,6 +57,12 @@ const Layout = ({
   const router = useRouter();
   let accessToken = null;
   const publicRoutes = getPublicRoutes();
+  const [windowWidth, setWindowWidth] = useState(-1);
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+  }, []);
+
 
   if (!ISSERVER && (user === undefined || Object.keys(user).length === 1)) {
     const userDetailsCached = getLoginDetails();
@@ -99,7 +106,7 @@ const Layout = ({
         ) : (
           <main className="page-content">{children}</main>
         )}
-        {!IsArtistPortal() && (
+        {(!IsArtistPortal() || windowWidth < 500 ) && (
           <Footer footerLinkColumns={footerLinkColumns} />
         )}
       </div>
