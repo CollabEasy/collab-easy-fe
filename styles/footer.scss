@@ -75,6 +75,7 @@ ul>li {
     background-color: #F8F9FA;
     z-index: 99;
     will-change: transform;
+    color: grey;
     transform: translateZ(0);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
   }
@@ -86,15 +87,10 @@ ul>li {
     justify-content: center;
     text-align: center;
     font-size: 0.8rem;
-    color: black;
   }
 
   .bottom-nav-link {
     display: flex;
     flex-direction: column;
-  }
-
-  .bottom-nav .active {
-    color: #d32f2f;
   }
 }

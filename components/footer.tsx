@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FooterColumn } from 'types/model/footer';
 import Link from 'next/link';
 import { useRoutesContext } from "../components/routeContext";
-import { IsLandingPage } from 'helpers/helper';
+import { IsCollabRequestPage, IsLandingPage, IsProfilePage, IsRewardsPage, IsSettingPage } from 'helpers/helper';
 import { useRouter } from "next/router";
 import { routeToHref } from "config/routes";
 import {
+  SettingFilled,
   SettingOutlined,
+  HomeFilled,
   HomeOutlined,
+  CalendarFilled,
   CalendarOutlined,
-  UserOutlined,
+  SmileFilled,
+  SmileOutlined,
+  TrophyFilled,
+  TrophyOutlined,
   DollarOutlined,
 } from "@ant-design/icons";
 
@@ -21,22 +27,15 @@ export const Footer: React.FC<FooterProps> = ({
   footerLinkColumns
 }) => {
   const [windowWidth, setWindowWidth] = useState(-1);
-  const [isActive, setIsActive] = useState(true);
-  const { toWondorHome, toArtistProfile, toEditProfile, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext()
+  const [pathname, setPathname] = useState("");
+  const { toEditProfile, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext()
 
   const router = useRouter();
 
   useEffect(() => {
-    var navItems = document.querySelectorAll(".bottom-nav-item");
-
-    navItems.forEach(function (e, i) {
-      e.addEventListener("click", function (e) {
-        navItems.forEach(function (e2, i2) {
-          e2.classList.remove("active");
-        });
-        this.classList.add("active");
-      });
-    });
+    var fullUrl = window.location.href;
+    var hostname = window.location.hostname;
+    setPathname(fullUrl.split(hostname).pop());
     setWindowWidth(window.innerWidth);
   }, []);
 
@@ -89,11 +88,12 @@ export const Footer: React.FC<FooterProps> = ({
       </div>
     </div>
   };
+
   const reloadPage = (page) => {
     if (page === "discover") {
       router.push("/");
     } else if (page === "collab-request") {
-      router.push("/artist/settings/profole?tab=collab-request");
+      router.push("/artist/settings/profile?tab=collab-request");
     } else if (page === "profile") {
       router.push("/artist/profile/wondor-wondor-1");
     } else if (page === "rewards") {
@@ -108,36 +108,54 @@ export const Footer: React.FC<FooterProps> = ({
       <header className="navbar">
         <div className="navbarContainer">
           <nav className="bottom-nav">
-            <div className="bottom-nav-item active" onClick = {(e) => reloadPage("discover")}>
+            <div className="bottom-nav-item active" onClick={(e) => reloadPage("discover")}>
               <div className="bottom-nav-link">
-                <HomeOutlined />
+                {IsLandingPage(router.pathname) ? (
+                  <HomeFilled />
+                ) : (
+                  <HomeOutlined />
+                )}
                 <span className="f-12 common-text-style">Discover</span>
               </div>
             </div>
-            <div className="bottom-nav-item" onClick = {(e) => reloadPage("collab-request")}>
+            <div className="bottom-nav-item" onClick={(e) => reloadPage("collab-request")}>
               <div className="bottom-nav-link">
-                    <CalendarOutlined />
-                    <span className="f-12 common-text-style">Collab</span>
+                {IsCollabRequestPage(pathname) ? (
+                  <CalendarFilled />
+                ) : (
+                  <CalendarOutlined />
+                )}
+                <span className="f-12 common-text-style">Collab</span>
               </div>
             </div>
             <div className="bottom-nav-item">
-              <div className="bottom-nav-link" onClick = {(e) => reloadPage("profile")}>
-                    <UserOutlined />
-                    <span className="f-12 common-text-style">Profile</span>
+              <div className="bottom-nav-link" onClick={(e) => reloadPage("profile")}>
+                {IsProfilePage(pathname) ? (
+                  <SmileFilled />
+                ) : (
+                  <SmileOutlined />
+                )}
+                <span className="f-12 common-text-style">Profile</span>
               </div>
             </div>
             <div className="bottom-nav-item">
-              <div className="bottom-nav-link" onClick = {(e) => reloadPage("rewards")}>
-
-                    <DollarOutlined />
-                    <span className="f-12 common-text-style">Rewards</span>
-
+              <div className="bottom-nav-link" onClick={(e) => reloadPage("rewards")}>
+                {IsRewardsPage(pathname) ? (
+                  <TrophyFilled />
+                ) : (
+                  <TrophyOutlined />
+                )}
+                <span className="f-12 common-text-style">Rewards</span>
               </div>
             </div>
-            <div className="bottom-nav-item" onClick = {(e) => reloadPage("account")}>
+            <div className="bottom-nav-item" onClick={(e) => reloadPage("account")}>
               <div className="bottom-nav-link">
-                    <SettingOutlined />
-                    <span className="f-12 common-text-style">Account</span>
+                {IsSettingPage(pathname) ? (
+                  <SettingFilled />
+                ) : (
+                  <SettingOutlined />
+                )}
+                <span className="f-12 common-text-style">Account</span>
               </div>
             </div>
           </nav>

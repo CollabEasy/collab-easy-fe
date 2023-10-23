@@ -23,7 +23,7 @@ import {
   LogoutOutlined,
   InfoCircleOutlined,
   UserOutlined,
-  DollarOutlined,
+  TrophyOutlined,
 } from "@ant-design/icons";
 import { resetUserLoggedIn } from "state/action";
 import SamplePage from "@/components/samplePage";
@@ -283,7 +283,7 @@ const EditProfile = ({
           <span>Collab Requests</span>
         </Menu.Item>
         <Menu.Item key="7">
-          {!mobile && <DollarOutlined />}
+          {!mobile && <TrophyOutlined />}
           <span>Rewards</span>
         </Menu.Item>
         <Menu.Item key="8" danger>

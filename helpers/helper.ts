@@ -1,8 +1,41 @@
 import CryptoJS from 'crypto-js' ;
+import router from 'next/router';
 
 export function IsLandingPage(pathname) {
-  return pathname === "/";
+  if (pathname === "/") {
+    return true;
+  }
+  return false;
 }
+
+export function IsProfilePage(pathname) {
+  if (pathname.includes("/artist/profile/")) {
+    return true;
+  } 
+  return false;
+}
+
+export function IsCollabRequestPage(pathname) {
+  if (pathname.includes("/artist/settings/profile?tab=collab-request")) {
+    return true;
+  }
+  return false;
+}
+
+export function IsRewardsPage(pathname) {
+  if (pathname.includes("/artist/settings/profile?tab=rewards")) {
+    return true;
+  }
+  return false;
+}
+
+export function IsSettingPage(pathname) {
+  if (pathname.includes("/artist/settings/profile?tab=basic-information")) {
+    return true;
+  };
+  return false;
+}
+
 
 export function getLoginDetails() {
   const accessToken = localStorage.getItem("token");
