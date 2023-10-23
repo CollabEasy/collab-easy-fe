@@ -74,7 +74,7 @@ ul>li {
     left: 0;
     right: 0;
     padding: 0.8rem 0;
-    background-color: #F8F9FA;
+    background-color: white;
     z-index: 99;
     will-change: transform;
     color: grey;
@@ -94,5 +94,9 @@ ul>li {
   .bottom-nav-link {
     display: flex;
     flex-direction: column;
+  }
+
+  .bottom-nav-item .active {
+    color: black;
   }
 }

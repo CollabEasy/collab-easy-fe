@@ -144,22 +144,33 @@ const Footer = ({
             <div className="bottom-nav-item active" onClick={(e) => reloadPage("discover")}>
               <div className="bottom-nav-link">
                 {IsLandingPage(router.pathname) ? (
-                  <HomeFilled />
+                  <>
+                    <HomeOutlined style={{ color: "black" }} />
+                    <span className="f-10 common-text-style" style={{ color: "black" }}>Discover</span>
+                  </>
                 ) : (
-                  <HomeOutlined />
+                  <>
+                    <HomeOutlined style={{ color: "grey" }} />
+                    <span className="f-10 common-text-style" style={{ color: "grey" }}>Discover</span>
+                  </>
                 )}
-                <span className="f-12 common-text-style">Discover</span>
+
               </div>
             </div>
             {isLoggedIn && (
               <div className="bottom-nav-item" onClick={(e) => reloadPage("collab-request")}>
                 <div className="bottom-nav-link">
                   {IsCollabRequestPage(pathname) ? (
-                    <CalendarFilled />
+                    <>
+                      <CalendarOutlined style={{ color: "black" }} />
+                      <span className="f-10 common-text-style" style={{ color: "black" }}>Collab</span>
+                    </>
                   ) : (
-                    <CalendarOutlined />
+                    <>
+                      <CalendarOutlined style={{ color: "grey" }} />
+                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Collab</span>
+                    </>
                   )}
-                  <span className="f-12 common-text-style">Collab</span>
                 </div>
               </div>
             )}
@@ -167,11 +178,17 @@ const Footer = ({
               <div className="bottom-nav-item">
                 <div className="bottom-nav-link" onClick={(e) => reloadPage("profile")}>
                   {IsProfilePage(pathname) ? (
-                    <SmileFilled />
+                    <>
+                      <SmileOutlined style={{ color: "black" }} />
+                      <span className="f-10 common-text-style" style={{ color: "black" }}>Profile</span>
+                    </>
                   ) : (
-                    <SmileOutlined />
+                    <>
+                      <SmileOutlined style={{ color: "grey" }} />
+                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Profile</span>
+                    </>
                   )}
-                  <span className="f-12 common-text-style">Profile</span>
+
                 </div>
               </div>
             )}
@@ -179,11 +196,17 @@ const Footer = ({
               <div className="bottom-nav-item">
                 <div className="bottom-nav-link" onClick={(e) => reloadPage("inspiration")}>
                   {IsInspirationPage(pathname) ? (
-                    <BulbFilled />
+                    <>
+                      <BulbOutlined style={{ color: "black" }} />
+                      <span className="f-10 common-text-style" style={{ color: "black" }}>Inspiration</span>
+                    </>
                   ) : (
-                    <BulbOutlined />
+                    <>
+                      <BulbOutlined style={{ color: "grey" }} />
+                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Inspiration</span>
+                    </>
                   )}
-                  <span className="f-12 common-text-style">Inspiration</span>
+
                 </div>
               </div>
             )}
@@ -191,32 +214,50 @@ const Footer = ({
               <div className="bottom-nav-item">
                 <div className="bottom-nav-link" onClick={(e) => reloadPage("contest")}>
                   {IsContestPage(pathname) ? (
-                    <TrophyFilled />
+                    <>
+                      <TrophyOutlined style={{ color: "black" }} />
+                      <span className="f-10 common-text-style" style={{ color: "black" }}>Contest</span>
+                    </>
                   ) : (
-                    <TrophyOutlined />
+                    <>
+                      <TrophyOutlined style={{ color: "grey" }} />
+                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Contest</span>
+                    </>
                   )}
-                  <span className="f-12 common-text-style">Contest</span>
+
                 </div>
               </div>
             )}
             <div className="bottom-nav-item">
               <div className="bottom-nav-link" onClick={(e) => reloadPage("rewards")}>
                 {IsRewardsPage(pathname) ? (
-                  <DollarTwoTone twoToneColor={"black"}/>
+                  <>
+                    <DollarOutlined style={{ color: "black" }} />
+                    <span className="f-10 common-text-style" style={{ color: "black" }}>Rewards</span>
+                  </>
                 ) : (
-                  <DollarOutlined />
+                  <>
+                    <DollarOutlined style={{ color: "grey" }} />
+                    <span className="f-10 common-text-style" style={{ color: "grey" }}>Rewards</span>
+                  </>
                 )}
-                <span className="f-12 common-text-style">Rewards</span>
+
               </div>
             </div>
             <div className="bottom-nav-item" onClick={(e) => reloadPage("account")}>
               <div className="bottom-nav-link">
                 {IsSettingPage(pathname) ? (
-                  <SettingFilled />
+                  <>
+                    <SettingOutlined style={{ color: "black" }} />
+                    <span className="f-10 common-text-style" style={{ color: "black" }}>Account</span>
+                  </>
                 ) : (
-                  <SettingOutlined />
+                  <>
+                    <SettingOutlined style={{ color: "grey" }} />
+                    <span className="f-10 common-text-style" style={{ color: "grey" }}>Account</span>
+                  </>
                 )}
-                <span className="f-12 common-text-style">Account</span>
+
               </div>
             </div>
           </nav>
