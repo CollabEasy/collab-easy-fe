@@ -248,7 +248,7 @@ const EditProfile = ({
         mode={mobile ? "horizontal" : "inline"}
         selectedKeys={[activeTabKey.current]}
         onClick={handleClick}
-        style={{ justifyContent: "flex-end" }}
+        // style={{ justifyContent: "flex-end" }}
       >
         {!mobile &&
           <Menu.Item key="0">
