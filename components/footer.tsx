@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { Dispatch, useEffect, useRef, useState } from 'react'
 import { FooterColumn } from 'types/model/footer';
 import Link from 'next/link';
 import { useRoutesContext } from "../components/routeContext";
@@ -25,6 +25,7 @@ import {
 } from "@ant-design/icons";
 import { AppState } from 'state';
 import { ConnectedProps, connect } from 'react-redux';
+import { User } from 'types/model/user';
 
 export interface FooterProps {
   footerLinkColumns: FooterColumn[]
@@ -33,13 +34,16 @@ export interface FooterProps {
 const mapStateToProps = (state: AppState) => {
   return {
     user: state.user.user,
-    loginModalDetails: state.home.loginModalDetails,
     isLoggedIn: state.user.isLoggedIn,
   };
 };
 
-const connector = connect(mapStateToProps);
-type Props = {} & ConnectedProps<typeof connector>;
+const connector = connect(mapStateToProps, null);
+type Props = {
+  footerLinkColumns: FooterColumn[],
+  user: User;
+  isLoggedIn: boolean;
+} & ConnectedProps<typeof connector>;
 
 const Footer = ({
   isLoggedIn,
