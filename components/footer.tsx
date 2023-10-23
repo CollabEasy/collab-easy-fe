@@ -198,7 +198,7 @@ const Footer = ({
             <div className="bottom-nav-item">
               <div className="bottom-nav-link" onClick={(e) => reloadPage("rewards")}>
                 {IsRewardsPage(pathname) ? (
-                  <DollarTwoTone />
+                  <DollarTwoTone twoToneColor={"black"}/>
                 ) : (
                   <DollarOutlined />
                 )}
