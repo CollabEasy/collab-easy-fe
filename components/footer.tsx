@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FooterColumn } from 'types/model/footer';
 import Link from 'next/link';
 import { useRoutesContext } from "../components/routeContext";
-import { IsCollabRequestPage, IsLandingPage, IsProfilePage, IsRewardsPage, IsSettingPage } from 'helpers/helper';
+import { IsCollabRequestPage, IsContestPage, IsInspirationPage, IsLandingPage, IsProfilePage, IsRewardsPage, IsSettingPage } from 'helpers/helper';
 import { useRouter } from "next/router";
 import { routeToHref } from "config/routes";
 import {
@@ -17,15 +17,34 @@ import {
   TrophyFilled,
   TrophyOutlined,
   DollarOutlined,
+  BulbFilled,
+  BulbOutlined,
+  WalletFilled,
+  WalletOutlined,
+  DollarTwoTone,
 } from "@ant-design/icons";
+import { AppState } from 'state';
+import { ConnectedProps, connect } from 'react-redux';
 
 export interface FooterProps {
   footerLinkColumns: FooterColumn[]
 }
 
-export const Footer: React.FC<FooterProps> = ({
-  footerLinkColumns
-}) => {
+const mapStateToProps = (state: AppState) => {
+  return {
+    user: state.user.user,
+    loginModalDetails: state.home.loginModalDetails,
+    isLoggedIn: state.user.isLoggedIn,
+  };
+};
+
+const connector = connect(mapStateToProps);
+type Props = {} & ConnectedProps<typeof connector>;
+
+const Footer = ({
+  isLoggedIn,
+  user,
+}: Props) => {
   const [windowWidth, setWindowWidth] = useState(-1);
   const [pathname, setPathname] = useState("");
   const { toEditProfile, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext()
@@ -95,11 +114,21 @@ export const Footer: React.FC<FooterProps> = ({
     } else if (page === "collab-request") {
       router.push("/artist/settings/profile?tab=collab-request");
     } else if (page === "profile") {
-      router.push("/artist/profile/wondor-wondor-1");
+      if (isLoggedIn) {
+        router.push("/artist/profile/" + user.slug);
+      }
     } else if (page === "rewards") {
-      router.push("/artist/settings/profile?tab=rewards");
+      if (isLoggedIn) {
+        router.push("/artist/settings/profile?tab=rewards");
+      } else {
+        router.push("/rewards-info");
+      }
     } else if (page === "account") {
       router.push("/artist/settings/profile?tab=basic-information");
+    } else if (page === "inspiration") {
+      router.push("/get-inspired");
+    } else if (page === "contest") {
+      router.push("/all-contest");
     }
   }
 
@@ -118,32 +147,60 @@ export const Footer: React.FC<FooterProps> = ({
                 <span className="f-12 common-text-style">Discover</span>
               </div>
             </div>
-            <div className="bottom-nav-item" onClick={(e) => reloadPage("collab-request")}>
-              <div className="bottom-nav-link">
-                {IsCollabRequestPage(pathname) ? (
-                  <CalendarFilled />
-                ) : (
-                  <CalendarOutlined />
-                )}
-                <span className="f-12 common-text-style">Collab</span>
+            {isLoggedIn && (
+              <div className="bottom-nav-item" onClick={(e) => reloadPage("collab-request")}>
+                <div className="bottom-nav-link">
+                  {IsCollabRequestPage(pathname) ? (
+                    <CalendarFilled />
+                  ) : (
+                    <CalendarOutlined />
+                  )}
+                  <span className="f-12 common-text-style">Collab</span>
+                </div>
               </div>
-            </div>
-            <div className="bottom-nav-item">
-              <div className="bottom-nav-link" onClick={(e) => reloadPage("profile")}>
-                {IsProfilePage(pathname) ? (
-                  <SmileFilled />
-                ) : (
-                  <SmileOutlined />
-                )}
-                <span className="f-12 common-text-style">Profile</span>
+            )}
+            {isLoggedIn && (
+              <div className="bottom-nav-item">
+                <div className="bottom-nav-link" onClick={(e) => reloadPage("profile")}>
+                  {IsProfilePage(pathname) ? (
+                    <SmileFilled />
+                  ) : (
+                    <SmileOutlined />
+                  )}
+                  <span className="f-12 common-text-style">Profile</span>
+                </div>
               </div>
-            </div>
+            )}
+            {!isLoggedIn && (
+              <div className="bottom-nav-item">
+                <div className="bottom-nav-link" onClick={(e) => reloadPage("inspiration")}>
+                  {IsInspirationPage(pathname) ? (
+                    <BulbFilled />
+                  ) : (
+                    <BulbOutlined />
+                  )}
+                  <span className="f-12 common-text-style">Inspiration</span>
+                </div>
+              </div>
+            )}
+            {!isLoggedIn && (
+              <div className="bottom-nav-item">
+                <div className="bottom-nav-link" onClick={(e) => reloadPage("contest")}>
+                  {IsContestPage(pathname) ? (
+                    <TrophyFilled />
+                  ) : (
+                    <TrophyOutlined />
+                  )}
+                  <span className="f-12 common-text-style">Contest</span>
+                </div>
+              </div>
+            )}
             <div className="bottom-nav-item">
               <div className="bottom-nav-link" onClick={(e) => reloadPage("rewards")}>
                 {IsRewardsPage(pathname) ? (
-                  <TrophyFilled />
+                  <DollarTwoTone />
                 ) : (
-                  <TrophyOutlined />
+                  <DollarOutlined />
                 )}
                 <span className="f-12 common-text-style">Rewards</span>
               </div>
