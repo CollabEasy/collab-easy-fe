@@ -50,6 +50,10 @@ export function IsSettingPage(pathname) {
   return false;
 }
 
+export function IsArtistPortal(pathname) {
+  return pathname.includes("/artist/settings");
+}
+
 
 export function getLoginDetails() {
   const accessToken = localStorage.getItem("token");

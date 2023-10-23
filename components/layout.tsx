@@ -13,10 +13,10 @@ import {
 import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
 import { Dispatch } from "redux";
-import { getPublicRoutes } from "helpers/helper";
+import { getPublicRoutes, IsArtistPortal } from "helpers/helper";
 import Loader from "./loader";
 import Notification from "./notifications/notification";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
@@ -66,7 +66,6 @@ const Layout = ({
     setWindowWidth(window.innerWidth);
   }, []);
 
-
   if (!ISSERVER && (user === undefined || Object.keys(user).length === 1)) {
     const userDetailsCached = getLoginDetails();
     if (
@@ -83,10 +82,6 @@ const Layout = ({
     }
   }
 
-  function IsArtistPortal() {
-    return router.pathname.includes("/artist/settings");
-  }
-
   return (
     <div>
       <Head>
@@ -100,7 +95,7 @@ const Layout = ({
       />
 
       <div className="layout__layoutContainer">
-        {!IsArtistPortal() && (
+        {!IsArtistPortal(router.pathname) && (
           <Navbar />
         )}
 
@@ -109,9 +104,11 @@ const Layout = ({
         ) : (
           <main className="page-content">{children}</main>
         )}
-        {(!IsArtistPortal() || windowWidth < 500) && (
-          <Footer footerLinkColumns={footerLinkColumns} user={user} isLoggedIn={isLoggedIn} />
-        )}
+        <div>
+          {(!IsArtistPortal(router.pathname) || windowWidth < 500) && (
+            <Footer footerLinkColumns={footerLinkColumns} user={user} isLoggedIn={isLoggedIn} />
+          )}
+        </div>
       </div>
     </div>
   );

@@ -62,7 +62,31 @@ const Footer = ({
     setWindowWidth(window.innerWidth);
   }, []);
 
-  const GetFooter = () => {
+  const reloadPage = (page) => {
+    if (page === "discover") {
+      router.push("/");
+    } else if (page === "collab-request") {
+      router.push("/artist/settings/profile?tab=collab-request");
+    } else if (page === "profile") {
+      if (isLoggedIn) {
+        router.push("/artist/profile/" + user.slug);
+      }
+    } else if (page === "rewards") {
+      if (isLoggedIn) {
+        router.push("/artist/settings/profile?tab=rewards");
+      } else {
+        router.push("/rewards-info");
+      }
+    } else if (page === "account") {
+      router.push("/artist/settings/profile?tab=basic-information");
+    } else if (page === "inspiration") {
+      router.push("/get-inspired");
+    } else if (page === "contest") {
+      router.push("/all-contest");
+    }
+  }
+
+  const getWebFooter = () => {
     return <div className="container-fluid footer-cnt">
       <div className="footer-card">
         <div className="row mb-4">
@@ -111,30 +135,6 @@ const Footer = ({
       </div>
     </div>
   };
-
-  const reloadPage = (page) => {
-    if (page === "discover") {
-      router.push("/");
-    } else if (page === "collab-request") {
-      router.push("/artist/settings/profile?tab=collab-request");
-    } else if (page === "profile") {
-      if (isLoggedIn) {
-        router.push("/artist/profile/" + user.slug);
-      }
-    } else if (page === "rewards") {
-      if (isLoggedIn) {
-        router.push("/artist/settings/profile?tab=rewards");
-      } else {
-        router.push("/rewards-info");
-      }
-    } else if (page === "account") {
-      router.push("/artist/settings/profile?tab=basic-information");
-    } else if (page === "inspiration") {
-      router.push("/get-inspired");
-    } else if (page === "contest") {
-      router.push("/all-contest");
-    }
-  }
 
   const getMobileNavbar = () => {
     return (<>
@@ -272,11 +272,11 @@ const Footer = ({
         <>
           {IsLandingPage(router.pathname) ? (
             <footer style={{ background: "#F8F9FA" }} className="footer-body">
-              {GetFooter()}
+              {getWebFooter()}
             </footer>
           ) : (
             <footer style={{ background: "#F8F9FA" }} className="footer-body">
-              {GetFooter()}
+              {getWebFooter()}
             </footer>
           )}
         </>
