@@ -22,6 +22,8 @@ const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
   isFetchingUser: state.user.isFetchingUser,
   notification: state.notification,
+  loginModalDetails: state.home.loginModalDetails,
+  isLoggedIn: state.user.isLoggedIn,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -49,6 +51,7 @@ const Layout = ({
   children,
   isFetchingUser,
   notification,
+  isLoggedIn,
   updateLoggedInData,
   fetchArtistPreferences,
   setIsFetchingUser,
@@ -106,8 +109,8 @@ const Layout = ({
         ) : (
           <main className="page-content">{children}</main>
         )}
-        {(!IsArtistPortal() || windowWidth < 500 ) && (
-          <Footer footerLinkColumns={footerLinkColumns} />
+        {(!IsArtistPortal() || windowWidth < 500) && (
+          <Footer footerLinkColumns={footerLinkColumns} user={user} isLoggedIn={isLoggedIn} />
         )}
       </div>
     </div>
