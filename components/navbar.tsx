@@ -106,8 +106,36 @@ const NavBar = ({
     setShowLoginOptions(false);
   };
 
-  return (
-    <div className="row">
+  const getMobileNavbar = () => {
+    return(
+      <div className="row">
+      <div
+        id="p-h"
+        className="nv-f-t animate__animated"
+      >
+        <div id="app-logo-mobile">
+          <Link href={routeToHref(toWondorHome())} passHref>
+            <Image
+              src={titleMobileBlueImg}
+              alt="Landing page"
+              onClick={() => setShowLoginOptions(false)}
+            />
+          </Link>
+        </div>
+
+        <div className="navbar-search">
+          <>
+            <Search />
+          </>
+        </div>
+      </div>
+      <div ref={ref} className="dummy-div"></div>
+    </div>
+    );
+  }
+  const getWebNavbar = () => {
+    return(
+      <div className="row">
       <div
         id="p-h"
         className="nv-f-t animate__animated"
@@ -296,6 +324,21 @@ const NavBar = ({
       </div>
       <div ref={ref} className="dummy-div"></div>
     </div>
+    );
+  }
+
+  return (
+    <>
+      {windowWidth < 500 ? (
+        <>
+          {getMobileNavbar()}
+        </>
+      ) : (
+        <>
+          {getWebNavbar()}
+        </>
+      )}
+    </>
   );
 };
 
