@@ -57,6 +57,7 @@ const NavBar = ({
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   const [windowWidth, setWindowWidth] = useState(-1);
+  const [isMobile, setIsMobile] = useState(false);
 
   const router = useRouter();
 
@@ -86,6 +87,7 @@ const NavBar = ({
       setShowSearchBar(false);
     }
     setWindowWidth(window.innerWidth);
+    setIsMobile(window.innerWidth < 500 ? true : false);
   }, [inView, entry]);
 
   useEffect(() => {
@@ -112,6 +114,9 @@ const NavBar = ({
         id="p-h"
         className="nv-f-t animate__animated"
       >
+
+        {/* Wondor icon starts here */}
+
         <div id="app-logo-desktop">
           <Link href={routeToHref(toWondorHome())} passHref>
             <Image
@@ -130,6 +135,8 @@ const NavBar = ({
             />
           </Link>
         </div>
+
+        {/* Search bar code starts here */}
 
         <div className="navbar-search">
           <>
@@ -163,6 +170,10 @@ const NavBar = ({
             )}
           </>
         </div>
+
+        {/* Sign up buttons */}
+        {!isMobile && (
+          <>
         {!hideSignUp ? (
           <div className="login-signup-cnt">
             <Button
@@ -181,117 +192,117 @@ const NavBar = ({
             >
               Sign Up
             </Button>
-            <Button id="sign-up-mobile" shape="circle" onClick={openLoginModal}>
-              <UserOutlined />
-            </Button>
           </div>
-        ) : (
-          <div className="login-menu-container">
-            <div
-              className={`menu-icon ${showLoginOptions ? "hide-icon" : ""}`}
-              onClick={() => setShowLoginOptions(!showLoginOptions)}
-            >
-              {user?.profile_pic_url ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={profilePic} alt="profile-pic" />
-              ) : (
-                <div className="default-profile">
-                  <UserOutlined className="user-icon" />
-                </div>
-              )}
-            </div>
-            {showLoginOptions && windowWidth > 500 &&
-              (
-                <div
-                  className={`login-options-container ${checkDevice() ? "animate__animated animate__slideInRight" : ""
-                    }`}
-                >
-                  <div className={"login-mobile-userdetails"}>
-                    {user?.profile_pic_url ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={profilePic} alt="profile-pic" />
-                    ) : (
-                      <div className="default-profile">
-                        <UserOutlined className="user-icon" />
-                      </div>
-                    )}
+          ) : (
+            <div className="login-menu-container">
+              <div
+                className={`menu-icon ${showLoginOptions ? "hide-icon" : ""}`}
+                onClick={() => setShowLoginOptions(!showLoginOptions)}
+              >
+                {user?.profile_pic_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={profilePic} alt="profile-pic" />
+                ) : (
+                  <div className="default-profile">
+                    <UserOutlined className="user-icon" />
                   </div>
-                  <div className="common-login-option">
-                    <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
-                      <div
-                        className="selected-option-shadow profile-option"
-                        onClick={() => setShowLoginOptions(false)}
-                      >
-                        <span className="f-14 common-text-style">Profile</span>
-                      </div>
-                    </Link>
-                    <Link
-                      href={routeToHref(
-                        toEditProfile("profile", "basic-information")
+                )}
+              </div>
+              {showLoginOptions &&
+                (
+                  <div
+                    className={`login-options-container ${checkDevice() ? "animate__animated animate__slideInRight" : ""
+                      }`}
+                  >
+                    <div className={"login-mobile-userdetails"}>
+                      {user?.profile_pic_url ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={profilePic} alt="profile-pic" />
+                      ) : (
+                        <div className="default-profile">
+                          <UserOutlined className="user-icon" />
+                        </div>
                       )}
-                      passHref
-                    >
-                      <div
-                        className="selected-option-shadow settings-option"
-                        onClick={() => setShowLoginOptions(false)}
+                    </div>
+                    <div className="common-login-option">
+                      <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
+                        <div
+                          className="selected-option-shadow profile-option"
+                          onClick={() => setShowLoginOptions(false)}
+                        >
+                          <span className="f-14 common-text-style">Profile</span>
+                        </div>
+                      </Link>
+                      <Link
+                        href={routeToHref(
+                          toEditProfile("profile", "basic-information")
+                        )}
+                        passHref
                       >
-                        <span className="f-14 common-text-style">
-                          Portal
-                        </span>
-                      </div>
-                    </Link>
-                    <Link
-                      href={routeToHref(
-                        toEditProfile("profile", "rewards")
-                      )}
-                      passHref
-                    >
-                      <div
-                        className="selected-option-shadow settings-option"
-                        onClick={() => setShowLoginOptions(false)}
-                      >
-                        <span className="f-14 common-text-style">
-                          Reward Points
-                        </span>
-                      </div>
-                    </Link>
-                    <Link
-                      href={routeToHref(
-                        toEditProfile("profile", "collab-request")
-                      )}
-                      passHref
-                    >
-                      <div
-                        className="selected-option-shadow settings-option"
-                        onClick={() => setShowLoginOptions(false)}
-                      >
-                        <span className="f-14 common-text-style">
-                          Collab Requests
-                        </span>
-                      </div>
-                    </Link>
-                    {IsAdmin(user.email) && (
-                      <Link href={routeToHref(toAnalyticsPage())} passHref>
                         <div
                           className="selected-option-shadow settings-option"
                           onClick={() => setShowLoginOptions(false)}
                         >
                           <span className="f-14 common-text-style">
-                            Admin
+                            Portal
                           </span>
                         </div>
                       </Link>
-                    )}
-                    <div
-                      className="selected-option-shadow logout-option"
-                      onClick={logoutUser}
-                    >
-                      <span className="f-14 common-text-style">Logout</span>
+                      <Link
+                        href={routeToHref(
+                          toEditProfile("profile", "rewards")
+                        )}
+                        passHref
+                      >
+                        <div
+                          className="selected-option-shadow settings-option"
+                          onClick={() => setShowLoginOptions(false)}
+                        >
+                          <span className="f-14 common-text-style">
+                            Reward Points
+                          </span>
+                        </div>
+                      </Link>
+                      <Link
+                        href={routeToHref(
+                          toEditProfile("profile", "collab-request")
+                        )}
+                        passHref
+                      >
+                        <div
+                          className="selected-option-shadow settings-option"
+                          onClick={() => setShowLoginOptions(false)}
+                        >
+                          <span className="f-14 common-text-style">
+                            Collab Requests
+                          </span>
+                        </div>
+                      </Link>
+                      {IsAdmin(user.email) && (
+                        <Link href={routeToHref(toAnalyticsPage())} passHref>
+                          <div
+                            className="selected-option-shadow settings-option"
+                            onClick={() => setShowLoginOptions(false)}
+                          >
+                            <span className="f-14 common-text-style">
+                              Admin
+                            </span>
+                          </div>
+                        </Link>
+                      )}
+                      <div
+                        className="selected-option-shadow logout-option"
+                        onClick={logoutUser}
+                      >
+                        <span className="f-14 common-text-style">Logout</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-          </div>
+                )}
+            </div>
+          )
+        }
+        </>
         )}
       </div>
       <div ref={ref} className="dummy-div"></div>
