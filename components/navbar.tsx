@@ -57,7 +57,6 @@ const NavBar = ({
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   const [windowWidth, setWindowWidth] = useState(-1);
-  const [isMobile, setIsMobile] = useState(false);
 
   const router = useRouter();
 
@@ -87,7 +86,6 @@ const NavBar = ({
       setShowSearchBar(false);
     }
     setWindowWidth(window.innerWidth);
-    setIsMobile(window.innerWidth < 500 ? true : false);
   }, [inView, entry]);
 
   useEffect(() => {
@@ -107,92 +105,91 @@ const NavBar = ({
     setHideSignUp(false);
     setShowLoginOptions(false);
   };
+  const getMobileNavbar = () => {
+    return (
+      <div className="mobile-navbar">
+        <Search />
+      </div>
+    );
+  }
 
-  return (
-    <div className="row">
-      <div
-        id="p-h"
-        className="nv-f-t animate__animated"
-      >
-
-        {/* Wondor icon starts here */}
-
-        <div id="app-logo-desktop">
-          <Link href={routeToHref(toWondorHome())} passHref>
-            <Image
-              src={titleDesktopImg}
-              alt="Landing page"
-              onClick={() => setShowLoginOptions(false)}
-            />
-          </Link>
-        </div>
-        <div id="app-logo-mobile">
-          <Link href={routeToHref(toWondorHome())} passHref>
-            <Image
-              src={titleMobileBlueImg}
-              alt="Landing page"
-              onClick={() => setShowLoginOptions(false)}
-            />
-          </Link>
-        </div>
-
-        {/* Search bar code starts here */}
-
-        <div className="navbar-search">
-          <>
-            {!IsLandingPage(router.pathname) || showSearchBar ? (
-              <Search />
-            ) : (
-              <div className="navbar-links">
-                <ul style={{ textAlign: "center" }}>
-                  <li>
-                    <p className="common-p-style nav-text">
-                      <a href={routeToHref(toGetInspired())}>Inspiration</a>
-                    </p>
-                  </li>
-                  <li>
-                    <p className="common-p-style nav-text">
-                      <a href={routeToHref(toAllContestPage())}>Contests</a>
-                    </p>
-                  </li>
-                  <li>
-                    <p className="common-p-style nav-text">
-                      <a href={routeToHref(toRewardsInfoPage())}>Rewards</a>
-                    </p>
-                  </li>
-                  <li>
-                    <p className="common-p-style nav-text">
-                      <a href={routeToHref(toTutorial())}>Tutorial</a>
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            )}
-          </>
-        </div>
-
-        {/* Sign up buttons */}
-        {!isMobile && (
-          <>
-        {!hideSignUp ? (
-          <div className="login-signup-cnt">
-            <Button
-              className="common-text-style login-btn"
-              id="sign-up-desktop"
-              type="primary"
-              onClick={openLoginModal}
-            >
-              Log in
-            </Button>
-            <Button
-              className="common-text-style"
-              id="sign-up-desktop"
-              type="primary"
-              onClick={openLoginModal}
-            >
-              Sign Up
-            </Button>
+  const getWebNavbar = () => {
+    return (
+      <div className="row">
+        <div
+          id="p-h"
+          className="nv-f-t animate__animated"
+        >
+          <div id="app-logo-desktop">
+            <Link href={routeToHref(toWondorHome())} passHref>
+              <Image
+                src={titleDesktopImg}
+                alt="Landing page"
+                onClick={() => setShowLoginOptions(false)}
+              />
+            </Link>
           </div>
+          <div id="app-logo-mobile">
+            <Link href={routeToHref(toWondorHome())} passHref>
+              <Image
+                src={titleMobileBlueImg}
+                alt="Landing page"
+                onClick={() => setShowLoginOptions(false)}
+              />
+            </Link>
+          </div>
+
+          <div className="navbar-search">
+            <>
+              {!IsLandingPage(router.pathname) || showSearchBar ? (
+                <Search />
+              ) : (
+                <div className="navbar-links">
+                  <ul style={{ textAlign: "center" }}>
+                    <li>
+                      <p className="common-p-style nav-text">
+                        <a href={routeToHref(toGetInspired())}>Inspiration</a>
+                      </p>
+                    </li>
+                    <li>
+                      <p className="common-p-style nav-text">
+                        <a href={routeToHref(toAllContestPage())}>Contests</a>
+                      </p>
+                    </li>
+                    <li>
+                      <p className="common-p-style nav-text">
+                        <a href={routeToHref(toRewardsInfoPage())}>Rewards</a>
+                      </p>
+                    </li>
+                    <li>
+                      <p className="common-p-style nav-text">
+                        <a href={routeToHref(toTutorial())}>Tutorial</a>
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </>
+          </div>
+          {!hideSignUp ? (
+            <div className="login-signup-cnt">
+              <Button
+                className="common-text-style login-btn"
+                id="sign-up-desktop"
+                type="primary"
+                onClick={openLoginModal}
+              >
+                Log in
+              </Button>
+              <Button
+                className="common-text-style"
+                id="sign-up-desktop"
+                type="primary"
+                onClick={openLoginModal}
+              >
+                Sign Up
+              </Button>
+            </div>
           ) : (
             <div className="login-menu-container">
               <div
@@ -208,7 +205,7 @@ const NavBar = ({
                   </div>
                 )}
               </div>
-              {showLoginOptions &&
+              {showLoginOptions && windowWidth > 500 &&
                 (
                   <div
                     className={`login-options-container ${checkDevice() ? "animate__animated animate__slideInRight" : ""
@@ -300,13 +297,25 @@ const NavBar = ({
                   </div>
                 )}
             </div>
-          )
-        }
-        </>
-        )}
+          )}
+        </div>
+        <div ref={ref} className="dummy-div"></div>
       </div>
-      <div ref={ref} className="dummy-div"></div>
-    </div>
+    )
+  }
+
+  return (
+    <>
+      {windowWidth < 500 ? (
+        <>
+          {getMobileNavbar()}
+        </>
+      ) : (
+        <>
+          {getWebNavbar()}
+        </>
+      )}
+    </>
   );
 };
 

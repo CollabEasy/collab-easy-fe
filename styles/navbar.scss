@@ -292,7 +292,7 @@
   }
 }
 
-@media only screen and (max-width: 600px) and (min-width: 400px) {
+@media only screen and (max-width: 600px) and (min-width: 500px) {
   .navbar-links {
     li {
       font-size: 12px;
@@ -343,56 +343,20 @@
   }
 }
 
-@media only screen and (max-width: 399px) {
-  .navbar-links {
-    li {
-      font-size: 12px;
-      margin-right: 10px;
-      /* add spacing between items */
-    }
-  }
-
-  .animate__animated.animate__slideInRight {
-    // width: 50%;
-  }
-
-  .nv-f-t {
-    padding: 0.5rem 1rem;
-    grid-template-columns: 0.3fr 2fr 0.3fr;
-
-    .navbar-search {
-      display: flex;
-      // width: 90%;
-      justify-content: center;
-    }
-
-    & #app-logo-mobile {
-      display: block;
-      width: 40px;
-      position: relative;
-      top: 2px;
-    }
-
-    & #sign-up-mobile {
-      display: block;
-      font-size: 11px;
-    }
-
-    & #sign-up-desktop {
-      display: none;
-    }
-
-    & #app-logo-desktop {
-      display: none;
-    }
-  }
-
-  .menu-icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .login-signup-cnt {
-    justify-content: right;
+@media only screen and (max-width: 499px) {
+  .mobile-navbar {
+    overflow: hidden;
+    background-color: white;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    height: 60px;
+    z-index: 99;
+    border-color: #777;
+    will-change: transform;
+    color: grey;
+    transform: translateZ(0);
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 18%);
   }
 }
+
