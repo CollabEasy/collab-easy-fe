@@ -194,16 +194,13 @@ const ContestPage = ({
     }
   };
 
-  const GetMetaText = (status, submissionId, description, votesCount) => {
+  const GetMetaText = (status, submissionId, votesCount) => {
     if (status === "Past") {
       if (submissionId in votesCount) {
         return <span> {votesCount[submissionId]} votes recieved</span>;
-      } else {
-        return <span>{description}</span>;
       }
-    } else {
-      return <span>{description}</span>;
-    }
+    } 
+    return <></>;
   };
 
   const getSubmissions = (status) => {
@@ -256,6 +253,9 @@ const ContestPage = ({
             onClickDelete={() => {}}
           />
           <div className="tileContainer">
+            <p style={{textAlign: "center"}}>
+              {GetMetaText(status, submission.id, votesCount)}
+            </p>
             <p className="caption">{submission.description}</p>
             <div className="mt16 common-text-style" style={{textAlign: 'center'}}>
               <a href={profileLink}>{artistName}</a>
