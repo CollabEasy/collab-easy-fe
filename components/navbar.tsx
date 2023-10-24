@@ -149,16 +149,6 @@ const NavBar = ({
             />
           </Link>
         </div>
-        <div id="app-logo-mobile">
-          <Link href={routeToHref(toWondorHome())} passHref>
-            <Image
-              src={titleMobileBlueImg}
-              alt="Landing page"
-              onClick={() => setShowLoginOptions(false)}
-            />
-          </Link>
-        </div>
-
         <div className="navbar-search">
           <>
             {!IsLandingPage(router.pathname) || showSearchBar ? (
@@ -228,7 +218,7 @@ const NavBar = ({
                 </div>
               )}
             </div>
-            {showLoginOptions && windowWidth > 500 &&
+            {showLoginOptions &&
               (
                 <div
                   className={`login-options-container ${checkDevice() ? "animate__animated animate__slideInRight" : ""
