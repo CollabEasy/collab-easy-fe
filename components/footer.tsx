@@ -257,7 +257,6 @@ const Footer = ({
                     <span className="f-10 common-text-style" style={{ color: "grey" }}>Account</span>
                   </>
                 )}
-
               </div>
             </div>
           </nav>
@@ -268,17 +267,14 @@ const Footer = ({
 
   return (
     <>
-      {windowWidth < 500 ? (
-        <>
-          {getMobileFooter()}
-        </>
-      ) : (
-        <>
+        <div id="web-footer">
           <footer style={{ background: "#F8F9FA" }} className="footer-body">
             {getWebFooter()}
           </footer>
-        </>
-      )}
+        </div>
+        <div id="mobile-footer">
+          {getMobileFooter()}
+        </div>
     </>
   )
 }

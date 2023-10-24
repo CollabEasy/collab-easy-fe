@@ -96,6 +96,7 @@ const Layout = ({
 
       <div className="layout__layoutContainer">
         {!IsArtistPortal(router.pathname) && (
+          // Don't show navbar on the portal
           <Navbar />
         )}
 
@@ -105,7 +106,7 @@ const Layout = ({
           <main className="page-content">{children}</main>
         )}
         <div>
-          {(!IsArtistPortal(router.pathname) || windowWidth < 500) && (
+          {!IsArtistPortal(router.pathname) && (
             <Footer footerLinkColumns={footerLinkColumns} user={user} isLoggedIn={isLoggedIn} />
           )}
         </div>
