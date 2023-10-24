@@ -136,7 +136,7 @@ const Footer = ({
     </div>
   };
 
-  const getMobileNavbar = () => {
+  const getMobileFooter = () => {
     return (<>
       <header className="navbar">
         <div className="navbarContainer">
@@ -268,21 +268,15 @@ const Footer = ({
 
   return (
     <>
-      {windowWidth > 500 ? (
+      {windowWidth < 500 ? (
         <>
-          {IsLandingPage(router.pathname) ? (
-            <footer style={{ background: "#F8F9FA" }} className="footer-body">
-              {getWebFooter()}
-            </footer>
-          ) : (
-            <footer style={{ background: "#F8F9FA" }} className="footer-body">
-              {getWebFooter()}
-            </footer>
-          )}
+          {getMobileFooter()}
         </>
       ) : (
         <>
-          {getMobileNavbar()}
+          <footer style={{ background: "#F8F9FA" }} className="footer-body">
+            {getWebFooter()}
+          </footer>
         </>
       )}
     </>
