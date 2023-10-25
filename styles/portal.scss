@@ -1,0 +1,43 @@
+#web-protal-menu {
+    display: block;
+}
+
+#mobile-portal-menu {
+    display: none;
+}
+
+.scrollmenu {
+    background-color: white;
+    overflow: auto;
+    white-space: nowrap;
+
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
+    z-index: 100;
+
+    .tab {
+        display: inline-block;
+        color: black;
+        text-align: center;
+        padding: 14px;
+        text-decoration: none;
+    }
+}
+
+@media only screen and (max-width: 499px) {
+    #mobile-portal-menu {
+        display: block;
+    }
+
+    #web-portal-menu {
+        display: none;
+    }
+
+    .mobile-layout {
+        padding-top: 60px;
+    }
+}
