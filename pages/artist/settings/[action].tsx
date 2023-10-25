@@ -438,11 +438,11 @@ const EditProfile = ({
     <>
       <PageLayout
         title={
-          "Portal for artists | Wondor"
+          "Artist Portal | Wondor"
         }
         name={"description"}
         content={
-          "Portal for artists to manage their information."
+          "Portal for artists to manage their information at one place. Update your basic information, collab readiness etc here. Join Wondor now!"
         }
       >
         {loginModalDetails.openModal && !user.new_user && <LoginModal />}
