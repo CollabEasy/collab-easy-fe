@@ -241,57 +241,68 @@ const EditProfile = ({
   if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails)
     return <Loader />;
 
-  const getMenu = (mobile) => {
+  const getMobileMenu = () => {
+    return (<div className="scrollmenu">
+      <a href="#home">Home</a>
+      <a href="#news">Profile</a>
+      <a href="#contact">Basic Information</a>
+      <a href="#about">Preferences</a>
+      <a href="#home">Samples</a>
+      <a href="#news">Social Prospectus</a>
+      <a href="#contact">Scratchpad</a>
+      <a href="#about">Collab Requests</a>
+      <a href="#home">Rewards</a>
+      <a href="#news">Log out</a>
+    </div>
+    );
+
+  }
+  const getWebMenu = () => {
     return (
       <Menu
         theme="dark"
-        mode={mobile ? "horizontal" : "inline"}
+        mode={"inline"}
         selectedKeys={[activeTabKey.current]}
         onClick={handleClick}
-        // style={{ justifyContent: "flex-end" }}
       >
-        {!mobile &&
-          <Menu.Item key="0">
-            <HomeOutlined />
-            <span>Home</span>
-          </Menu.Item>
-        }
-        {!mobile &&
-          <Menu.Item key="9">
-            <UserOutlined />
-            <span>Profile</span>
-          </Menu.Item>
-        }
+        <Menu.Item key="0">
+          <HomeOutlined />
+          <span>Home</span>
+        </Menu.Item>
+        <Menu.Item key="9">
+          <UserOutlined />
+          <span>Profile</span>
+        </Menu.Item>
         <Menu.Item key="1">
-          {!mobile && <ProfileOutlined />}
-          <span className="f-12 ">Information</span>
+          <ProfileOutlined />
+          <span className="f-12 ">Basic Information</span>
         </Menu.Item>
         <Menu.Item key="2">
-          {!mobile && <CheckCircleOutlined />}
+          <CheckCircleOutlined />
           <span className="f-12 ">Preferences</span>
         </Menu.Item>
         <Menu.Item key="3">
-          {!mobile && <PictureOutlined />}
+          <PictureOutlined />
           <span className="f-12 ">Samples</span>
         </Menu.Item>
         <Menu.Item key="4">
-          {!mobile && <InstagramOutlined />}
+          <InstagramOutlined />
           <span className="f-12">Social Prospectus</span>
         </Menu.Item>
         <Menu.Item key="5">
-          {!mobile && <EditOutlined />}
+          <EditOutlined />
           <span className="f-12">Scratchpad</span>
         </Menu.Item>
         <Menu.Item key="6">
-          {!mobile && <CalendarOutlined />}
+          <CalendarOutlined />
           <span className="f-12">Collab Requests</span>
         </Menu.Item>
         <Menu.Item key="7">
-          {!mobile && <TrophyOutlined />}
+          <TrophyOutlined />
           <span className="f-12"> Rewards</span>
         </Menu.Item>
         <Menu.Item key="8" danger>
-          {!mobile && <LogoutOutlined />}
+          <LogoutOutlined />
           <span className="f-12">Log out</span>
         </Menu.Item>
       </Menu>
@@ -312,18 +323,10 @@ const EditProfile = ({
       ) : (
         <div>
           <Layout style={{ minHeight: "100vh", overflow: "auto" }} >
-            {window.innerWidth < 500 ? (
-              <Header>
-                <div style={{
-                  float: "left",
-                  paddingTop: "12px",
-                  cursor: "pointer"
-                }}
-                >
-                </div>
-                {getMenu(true)}
-              </Header>
-            ) : (
+            <div id="mobile-portal-menu">
+              {getMobileMenu()}
+            </div>
+            <div id="web-portal-menu">
               <Sider
                 collapsible
                 collapsed={collapsed}
@@ -338,9 +341,9 @@ const EditProfile = ({
                     )}
                   </div>
                 </Link>
-                {getMenu(false)}
+                {getWebMenu()}
               </Sider>
-            )}
+            </div>
             <Layout>
               <>
                 {getActiveTab() === "1" && (

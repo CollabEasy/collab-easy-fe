@@ -1,0 +1,37 @@
+#web-protal-menu {
+    display: block;
+}
+
+#mobile-portal-menu {
+    display: none;
+}
+
+.scrollmenu {
+    background-color: white;
+    overflow: auto;
+    white-space: nowrap;
+    transform: translateZ(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
+}
+
+.scrollmenu a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+.scrollmenu a:hover {
+    background-color: #777;
+}
+
+@media only screen and (max-width: 499px) {
+    #mobile-portal-menu {
+      display: block;
+    }
+  
+    #web-portal-menu {
+      display: none;
+    }
+  }
