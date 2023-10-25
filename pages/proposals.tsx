@@ -1,4 +1,4 @@
-import { Tabs, Input } from "antd";
+import { Tabs, Input, Button } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -16,6 +16,9 @@ import Loader from "@/components/loader";
 import { GetContestStatus } from "helpers/contest";
 import Layout from "@/components/layout";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
+import { User } from "types/model";
+import CreateProposalModal from "@/components/modal/createProposalModal";
+import { ProposalData } from "types/model/proposal";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -49,9 +52,21 @@ const ProposalsPage = ({
     isFetchingContest,
     fetchAllContests,
 }: Props) => {
+
+    const emptyProposalData: ProposalData = {
+        title: "",
+        description: "",
+        artistId: ""
+    };
+
+    const [proposalData, setProposalData] = useState(
+        emptyProposalData
+    );
+
     const { toContestPage } = useRoutesContext();
-    const [showProfileModal, setShowProfileModal] = useState(false);
     const [allContests, setAllContests] = useState([]);
+    const [showProfileModal, setShowProfileModal] = useState(false);
+    const [showProposalModal, setShowProposalModal] = useState(false);
 
     const router = useRouter();
 
@@ -133,7 +148,7 @@ const ProposalsPage = ({
             ) : (
                 <>
                     <div className="allProposalsPage_listingPagecontainer">
-                        <GenericBreadcrumb 
+                        <GenericBreadcrumb
                             page={"All Proposals"}
                         />
                         <div className="allProposalsPage__listingPageCoverContainer">
@@ -158,11 +173,31 @@ const ProposalsPage = ({
                                 </div>
                             </div>
                         </div>
+                        <div className="allProposalsPage-createProposalButton">
+                            <Button
+                                block
+                                className="common-medium-btn"
+                                onClick={() => {
+                                    setShowProposalModal(true);
+                                }}
+                            >
+                                Create Proposal
+                            </Button>
+                        </div>
                         <div className="col-md-12 listingContainer">
                             {getAllContests(allContests)}
                         </div>
                     </div>
                 </>
+            )}
+            {showProposalModal && (
+                <CreateProposalModal
+                    onCancel={() => {
+                        setShowProposalModal(false);
+                    }}
+                    isViewMode={true}
+                    proposalDetails={proposalData}
+                />
             )}
         </Layout>
     );
