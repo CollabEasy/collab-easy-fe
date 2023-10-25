@@ -1,5 +1,13 @@
 // https://bbbootstrap.com/snippets/bootstrap-simple-footer-template-68853430
 
+#web-footer {
+  display: block;
+}
+
+#mobile-footer {
+  display: none;
+}
+
 .footer-body {
   //background-color: #f3f6fd;
   background-color: #ffff;
@@ -98,5 +106,15 @@ ul>li {
 
   .bottom-nav-item .active {
     color: black;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  #mobile-footer {
+    display: block;
+  }
+
+  #web-footer {
+    display: none;
   }
 }

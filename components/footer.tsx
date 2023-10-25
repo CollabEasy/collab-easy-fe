@@ -13,6 +13,8 @@ import {
   CalendarFilled,
   CalendarOutlined,
   SmileFilled,
+  ProfileOutlined,
+  UserOutlined,
   SmileOutlined,
   TrophyFilled,
   TrophyOutlined,
@@ -179,12 +181,12 @@ const Footer = ({
                 <div className="bottom-nav-link" onClick={(e) => reloadPage("profile")}>
                   {IsProfilePage(pathname) ? (
                     <>
-                      <SmileOutlined style={{ color: "black" }} />
+                      <UserOutlined style={{ color: "black" }} />
                       <span className="f-10 common-text-style" style={{ color: "black" }}>Profile</span>
                     </>
                   ) : (
                     <>
-                      <SmileOutlined style={{ color: "grey" }} />
+                      <UserOutlined style={{ color: "grey" }} />
                       <span className="f-10 common-text-style" style={{ color: "grey" }}>Profile</span>
                     </>
                   )}
@@ -257,7 +259,6 @@ const Footer = ({
                     <span className="f-10 common-text-style" style={{ color: "grey" }}>Account</span>
                   </>
                 )}
-
               </div>
             </div>
           </nav>
@@ -268,17 +269,14 @@ const Footer = ({
 
   return (
     <>
-      {windowWidth < 500 ? (
-        <>
-          {getMobileFooter()}
-        </>
-      ) : (
-        <>
+        <div id="web-footer">
           <footer style={{ background: "#F8F9FA" }} className="footer-body">
             {getWebFooter()}
           </footer>
-        </>
-      )}
+        </div>
+        <div id="mobile-footer">
+          {getMobileFooter()}
+        </div>
     </>
   )
 }

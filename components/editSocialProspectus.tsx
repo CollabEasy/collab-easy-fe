@@ -163,37 +163,32 @@ const EditSocialProspectus = ({
     };
 
     return (
-        <Layout
-            title={"Social Prospectus | Wondor"}
-            name={"description"}
-            content={"Link you social media account - Facebook, Youtube, Instagram, Tik Tok and many more. Let artists know your work and collaborate with them. Join Wondor now!"}
-        >
-            <>
+
+        <>
+            <div>
                 <div>
-                    <div>
-                        {!isFetchingSocialProspectus && (
-                            <div>{getCurrentSocialProspectus()}</div>
-                        )}
-                    </div>
-                    <div className="socialProspectus__buttonContainer">
-                        <Button type="primary" onClick={ShowProspectusEntryModal}>
-                            Add
-                        </Button>
-                    </div>
-                </div>
-                <div>
-                    {showSocialProspectusModal && (
-                        <ArtistSocialProspectusModal
-                            onCancel={() => {
-                                HideProspectusEntryModal();
-                            }}
-                            isViewMode={true}
-                            prospectusEntryDetails={prospectusEntryRequestDetails}
-                        />
+                    {!isFetchingSocialProspectus && (
+                        <div>{getCurrentSocialProspectus()}</div>
                     )}
                 </div>
-            </>
-        </Layout>
+                <div className="socialProspectus__buttonContainer">
+                    <Button type="primary" onClick={ShowProspectusEntryModal}>
+                        Add
+                    </Button>
+                </div>
+            </div>
+            <div>
+                {showSocialProspectusModal && (
+                    <ArtistSocialProspectusModal
+                        onCancel={() => {
+                            HideProspectusEntryModal();
+                        }}
+                        isViewMode={true}
+                        prospectusEntryDetails={prospectusEntryRequestDetails}
+                    />
+                )}
+            </div>
+        </>
     );
 };
 
