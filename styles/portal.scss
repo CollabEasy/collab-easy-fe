@@ -1,19 +1,22 @@
-// #web-protal-menu {
-//     display: block;
-// }
+#web-protal-menu {
+    display: block;
+}
 
-// #mobile-portal-menu {
-//     display: none;
-// }
+#mobile-portal-menu {
+    display: none;
+}
 
 .scrollmenu {
     background-color: white;
     overflow: auto;
     white-space: nowrap;
 
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
     z-index: 100;
 
     .tab {
@@ -27,13 +30,14 @@
 
 @media only screen and (max-width: 499px) {
     #mobile-portal-menu {
-      display: block;
+        display: block;
     }
-  
+
     #web-portal-menu {
-      display: none;
+        display: none;
     }
+
     .mobile-layout {
         padding-top: 60px;
     }
-  }
+}

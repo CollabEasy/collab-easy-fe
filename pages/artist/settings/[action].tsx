@@ -22,6 +22,8 @@ import {
   PictureOutlined,
   LogoutOutlined,
   InfoCircleOutlined,
+  DollarCircleOutlined,
+  SmileOutlined,
   UserOutlined,
   TrophyOutlined,
 } from "@ant-design/icons";
@@ -250,44 +252,125 @@ const EditProfile = ({
     return (
       <div className="scrollmenu">
         <div className="tab" onClick={() => { handleMobileNavClick("0") }}>
-          <HomeOutlined />
-          <span className="f-12" style={{display: "block"}}>Home</span>
+          {activeTabKey.current === "0" ? (
+            <>
+              <HomeOutlined style={{ color: "black" }} />
+              <span className="f-12" style={{ display: "block", color: "black" }}>Home</span>
+            </>
+          ) : (
+            <>
+              <HomeOutlined style={{ color: "grey" }} />
+              <span className="f-12" style={{ display: "block", color: "grey" }}>Home</span>
+            </>
+          )}
         </div>
         <div className="tab" onClick={() => { handleMobileNavClick("9") }}>
-          <UserOutlined />
-          <span className="f-12" style={{display: "block"}}>Profile</span>
+          {activeTabKey.current === "9" ? (
+            <>
+              <UserOutlined style={{ color: "black" }} />
+              <span className="f-12" style={{ display: "block", color: "black" }}>Profile</span>
+            </>
+          ) : (
+            <>
+              <UserOutlined style={{ color: "grey" }} />
+              <span className="f-12" style={{ display: "block", color: "grey" }}>Profile</span>
+            </>
+          )}
         </div>
         <div className="tab" onClick={() => { handleMobileNavClick("1") }}>
-          <ProfileOutlined />
-          <span className="f-12" style={{display: "block"}}>Basic Information</span>
+          {activeTabKey.current === "1" ? (
+            <>
+              <ProfileOutlined style={{ color: "black" }} />
+              <span className="f-12" style={{ display: "block", color: "black" }}>Basic Information</span>
+            </>
+          ) : (
+            <>
+              <ProfileOutlined style={{ color: "grey" }} />
+              <span className="f-12" style={{ display: "block", color: "grey" }}>Basic Information</span>
+            </>
+          )}
         </div>
         <div className="tab" onClick={() => { handleMobileNavClick("2") }}>
-          <CheckCircleOutlined />
-          <span className="f-12" style={{display: "block"}}>Preferences</span>
+          {activeTabKey.current === "2" ? (
+            <>
+              <CheckCircleOutlined style={{ color: "black" }} />
+              <span className="f-12" style={{ display: "block", color: "black" }}>Preferences</span>
+            </>
+          ) : (
+            <>
+              <CheckCircleOutlined style={{ color: "grey" }} />
+              <span className="f-12" style={{ display: "block", color: "grey" }}>Preferences</span>
+            </>
+          )}
         </div>
         <div className="tab" onClick={() => { handleMobileNavClick("3") }}>
-          <PictureOutlined />
-          <span className="f-12" style={{display: "block"}}>Samples</span>
+          {activeTabKey.current === "3" ? (
+            <>
+              <PictureOutlined style={{ color: "black" }} />
+              <span className="f-12" style={{ display: "block", color: "black" }}>Samples</span>
+            </>
+          ) : (
+            <>
+              <PictureOutlined style={{ color: "grey" }} />
+              <span className="f-12" style={{ display: "block", color: "grey" }}>Samples</span>
+            </>
+          )}
         </div>
         <div className="tab" onClick={() => { handleMobileNavClick("4") }}>
-          <InstagramOutlined />
-          <span className="f-12" style={{display: "block"}}>Social Prospectus</span>
+          {activeTabKey.current === "4" ? (
+            <>
+              <InstagramOutlined style={{ color: "black" }} />
+              <span className="f-12" style={{ display: "block", color: "black" }}>Social Prospectus</span>
+            </>
+          ) : (
+            <>
+              <InstagramOutlined style={{ color: "grey" }} />
+              <span className="f-12" style={{ display: "block", color: "grey" }}>Social Prospectus</span>
+            </>
+          )}
         </div>
         <div className="tab" onClick={() => { handleMobileNavClick("5") }}>
-          <EditOutlined />
-          <span className="f-12" style={{display: "block"}}>Scratchpad</span>
+          {activeTabKey.current === "5" ? (
+            <>
+              <EditOutlined style={{ color: "black" }} />
+              <span className="f-12" style={{ display: "block", color: "black" }}>Scratchpad</span>
+            </>
+          ) : (
+            <>
+              <EditOutlined style={{ color: "grey" }} />
+              <span className="f-12" style={{ display: "block", color: "grey" }}>Scratchpad</span>
+            </>
+          )}
         </div>
         <div className="tab" onClick={() => { handleMobileNavClick("6") }}>
-          <CalendarOutlined />
-          <span className="f-12" style={{display: "block"}}>Collab Requests</span>
+          {activeTabKey.current === "6" ? (
+            <>
+              <CalendarOutlined style={{ color: "black" }} />
+              <span className="f-12" style={{ display: "block", color: "black" }}>Collab Requests</span>
+            </>
+          ) : (
+            <>
+              <CalendarOutlined style={{ color: "grey" }} />
+              <span className="f-12" style={{ display: "block", color: "grey" }}>Collab Requests</span>
+            </>
+          )}
         </div>
         <div className="tab" onClick={() => { handleMobileNavClick("7") }}>
-          <TrophyOutlined />
-          <span className="f-12" style={{display: "block"}}>Rewards</span>
+          {activeTabKey.current === "7" ? (
+            <>
+              <DollarCircleOutlined style={{ color: "black" }} />
+              <span className="f-12" style={{ display: "block", color: "black" }}>Rewards</span>
+            </>
+          ) : (
+            <>
+              <DollarCircleOutlined style={{ color: "grey" }} />
+              <span className="f-12" style={{ display: "block", color: "grey" }}>Rewards</span>
+            </>
+          )}
         </div>
         <div className="tab" onClick={() => { handleMobileNavClick("8") }}>
-          <LogoutOutlined />
-          <span className="f-12" style={{display: "block"}}>Log Out</span>
+          <LogoutOutlined style={{ color: "red" }} />
+          <span className="f-12" style={{ display: "block" }}>Log Out</span>
         </div>
       </div>
     );
@@ -334,7 +417,7 @@ const EditProfile = ({
           <span className="f-12">Collab Requests</span>
         </Menu.Item>
         <Menu.Item key="7">
-          <TrophyOutlined />
+          <DollarCircleOutlined />
           <span className="f-12"> Rewards</span>
         </Menu.Item>
         <Menu.Item key="8" danger>
@@ -359,15 +442,15 @@ const EditProfile = ({
       ) : (
         <div>
           <Layout style={{ minHeight: "100vh", overflow: "auto" }} >
-            {window.innerWidth < 500 ? (
-              <>
-                {getMobileMenu()}
-              </>
-            ) : (
+            <div id="mobile-portal-menu">
+              {getMobileMenu()}
+            </div>
+            <div id="web-portal-menu">
               <Sider
                 collapsible
                 collapsed={collapsed}
                 onCollapse={(value) => setCollapsed(value)}
+
               >
                 <Link href={routeToHref(toDiscover())} passHref>
                   <div className="logo" style={{ cursor: "pointer" }}>
@@ -380,7 +463,7 @@ const EditProfile = ({
                 </Link>
                 {getWebMenu()}
               </Sider>
-            )}
+            </div>
             <Layout className="mobile-layout">
               <>
                 {getActiveTab() === "1" && (
