@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, CSSProperties } from "react";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { Button, Result } from "antd";
@@ -21,6 +21,16 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
+
+const fixedModalStyle: CSSProperties = {
+  position: 'fixed',
+  top: '0',
+  bottom: '0',
+  left: '0',
+  right: '0',
+  zIndex: 4,
+  backgroundColor: '#fff',
+};
 
 type Props = {
   error,
@@ -51,8 +61,8 @@ const NotAuthorised = ({
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
       {showProfileModal && <NewUserModal />}
 
-      <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "20%", marginBottom: "15%" }}>
-        <div className="discoverArtists__listingPageCoverContainer common-text-style">
+      <div className="fluid" style={fixedModalStyle}>
+        <div className="common-text-style">
           <Result
             title={message}
             extra={
