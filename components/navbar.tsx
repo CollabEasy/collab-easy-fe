@@ -328,15 +328,12 @@ const NavBar = ({
 
   return (
     <>
-      {windowWidth < 500 ? (
-        <>
-          {getMobileNavbar()}
-        </>
-      ) : (
-        <>
-          {getWebNavbar()}
-        </>
-      )}
+      <div id="mobile-nav">
+        {getMobileNavbar()}
+      </div>
+      <div id="desktop-nav">
+        {getWebNavbar()}
+      </div>
     </>
   );
 };

@@ -198,6 +198,13 @@
   }
 }
 
+#desktop-nav{
+  display: block;
+}
+#mobile-nav{
+  display: none;
+}
+
 // Please write media query for all screen sizes below this line.
 @media only screen and (max-width: 1024px) and (min-width: 993px) {
   .navbar-links {
@@ -367,5 +374,11 @@
     & #app-logo-desktop {
       display: none;
     }
+  }
+  #desktop-nav{
+    display: none;
+  }
+  #mobile-nav{
+    display: block;
   }
 }
