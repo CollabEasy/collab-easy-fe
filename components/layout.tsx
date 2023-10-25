@@ -60,10 +60,9 @@ const Layout = ({
   const router = useRouter();
   let accessToken = null;
   const publicRoutes = getPublicRoutes();
-  const [windowWidth, setWindowWidth] = useState(-1);
 
   useEffect(() => {
-    setWindowWidth(window.innerWidth);
+
   }, []);
 
   if (!ISSERVER && (user === undefined || Object.keys(user).length === 1)) {
@@ -81,7 +80,6 @@ const Layout = ({
       fetchArtistPreferences();
     }
   }
-
   return (
     <div>
       <Head>
@@ -105,11 +103,8 @@ const Layout = ({
         ) : (
           <main className="page-content">{children}</main>
         )}
-        <div>
-          {!IsArtistPortal(router.pathname) && (
-            <Footer footerLinkColumns={footerLinkColumns} user={user} isLoggedIn={isLoggedIn} />
-          )}
-        </div>
+        
+        <Footer footerLinkColumns={footerLinkColumns} user={user} isLoggedIn={isLoggedIn} />
       </div>
     </div>
   );

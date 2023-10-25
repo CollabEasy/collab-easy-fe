@@ -152,173 +152,167 @@ const RewardsPage = ({
   };
 
   return (
-    <Layout
-      title={"Rewards | Wondor"}
-      name={"description"}
-      content={"Learn how to earn rewards points for refferal, participating in contest, successful collaboration and much more. Redeem points for real money. Join Wondor now! "}
-    >
-      <>
-        {loginModalDetails.openModal && !user.new_user && <LoginModal />}
-        {showProfileModal && <NewUserModal />}
+    <>
+      {loginModalDetails.openModal && !user.new_user && <LoginModal />}
+      {showProfileModal && <NewUserModal />}
 
-        {isFetchingRewardsActivity && isFetchingRewardPoints ? (
-          <Loader />
-        ) : (
-          <>
-            <div className="rewardsInfo_container">
-              <div className="points-earn-container" style={{ backgroundColor: "#FFFBE6", border: "1px solid #f2a114" }}>
-                <div className="points-info-cnt">
-                  <div className="points-list-cnt">
-                    Hello {user.first_name}, learn how to earn and redeem points here
-                    <Link href={routeToHref(toRewardsInfoPage())} passHref> here.</Link>
-                  </div>
+      {isFetchingRewardsActivity && isFetchingRewardPoints ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="rewardsInfo_container">
+            <div className="points-earn-container" style={{ backgroundColor: "#FFFBE6", border: "1px solid #f2a114" }}>
+              <div className="points-info-cnt">
+                <div className="points-list-cnt">
+                  Hello {user.first_name}, learn how to earn and redeem points here
+                  <Link href={routeToHref(toRewardsInfoPage())} passHref> here.</Link>
                 </div>
-                {/* <div className="close-icon"></div> */}
               </div>
-              <div className="points-earn-container">
-                <div className="points-info-cnt">
-                  <div className="points-list-cnt">
-                    Share code {" "}
-                    <div className="clipboard-text-cnt">
-                      <span className="clipboard-text">{user["referral_code"]}</span>
-                      <div className="copy-btn" onClick={handleCopyClick}>
-                        {isCopied ? 'Copied!' : 'Copy'}
-                      </div>
-                    </div>
-                    {" "} with your friends to earn 100 points for successful refferal.
-                  </div>
-                  <input
-                    type="text"
-                    ref={textRef}
-                    defaultValue={user["referral_code"]}
-                    style={{
-                      opacity: 0,
-                      position: "absolute",
-                      pointerEvents: "none",
-                    }}
-                  />
-                </div>
-                {/* <div className="close-icon"></div> */}
-              </div>
-              <div style={{ marginTop: "20px" }}>
-                <h5>Summary</h5>
-              </div>
-              <div className="rewardsInfo_container" style={{ marginTop: "0%" }}>
-                <section className="bg-light-primary">
-                  <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center px-xl-6">
-                    <div className="col my-3">
-                      <div className="card border-hover-primary">
-                        <div className="card-body">
-                          <h4 className="font-weight-bold mb-3" style={{ color: "green" }}>{rewardPoints["totalPoints"]}</h4>
-                          <h6 className="font-weight-bold mb-3" >Current points</h6>
-                          <p className="text-muted mb-0">Currently available points in your account.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col my-3">
-                      <div className="card border-hover-primary hover-scale">
-                        <div className="card-body">
-                          <h4 className="font-weight-bold mb-3" style={{ color: "green" }}>{rewardPoints["lifetimePoints"]}</h4>
-                          <h6 className="font-weight-bold mb-3">Lifetime earned points</h6>
-                          <p className="text-muted mb-0">Total points earned since you joined Wondor.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col my-3">
-                      <div className="card border-hover-primary hover-scale">
-                        <div className="card-body">
-                          <h4 className="font-weight-bold mb-3" style={{ color: "red" }}>{
-                            rewardPoints["lifetimePoints"] -
-                            rewardPoints["totalPoints"]}</h4>
-                          <h6 className="font-weight-bold mb-3">Redeemed points</h6>
-                          <p className="text-muted mb-0">Total points which you have redeemed so far.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-              <div style={{ marginTop: "20px" }}>
-                <h5>Points earned by category</h5>
-              </div>
-              <div className="rewardsInfo_container" style={{ marginTop: "0%" }}>
-                <section className="bg-light-primary">
-                  <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center  px-xl-6">
-                    <div className="col my-3">
-                      <div className="card border-hover-primary">
-                        <div className="card-body">
-                          <h4 className="font-weight-bold mb-3">
-                            {GetPointsByCategory(
-                              rewardsActivity,
-                              "REFERRAL_USER"
-                            ) +
-                              GetPointsByCategory(
-                                rewardsActivity,
-                                "REFERRAL_SHARER"
-                              )
-                            }
-                          </h4>
-                          <h6 className="font-weight-bold mb-3">Successful refferals</h6>
-                          <p className="text-muted mb-0">Share your refferal code with your friends and when they join Wondor you both get 150 rewards points!</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col my-3">
-                      <div className="card border-hover-primary hover-scale">
-                        <div className="card-body">
-                          <h4 className="font-weight-bold mb-3">
-                            {GetPointsByCategory(
-                              rewardsActivity,
-                              "SUCCESSFUL_COLLAB"
-                            )}
-                          </h4>
-                          <h6 className="font-weight-bold mb-3">Collaboration requests</h6>
-                          <p className="text-muted mb-0">Successfully collaborate with an artist to earn 50 points. Start making collaborations now!</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col my-3">
-                      <div className="card border-hover-primary hover-scale">
-                        <div className="card-body">
-                          <h4 className="font-weight-bold mb-3"> {
-                            GetPointsByCategory(
-                              rewardsActivity,
-                              "MONTHLY_CONTEST")
-                          }
-                          </h4>
-                          <h6 className="font-weight-bold mb-3">Montly contests</h6>
-                          <p className="text-muted mb-0">
-                            Participate in our monthly contests and earn 50 points for your submission.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col my-3">
-                      <div className="card border-hover-primary hover-scale">
-                        <div className="card-body">
-                          <h4 className="font-weight-bold mb-3"> {
-                            GetPointsByCategory(
-                              rewardsActivity,
-                              "PROFILE_COMPLETION"
-                            )}
-                          </h4>
-                          <h6 className="font-weight-bold mb-3">Complete profile</h6>
-                          <p className="text-muted mb-0">Complete your profile by adding bio, skills, samples, and social accounts to earn 50 points.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </div>
-              <div style={{ marginTop: "20px" }}>
-                <h5>Recent points activity</h5>
-              </div>
-              <div>{getPointsActivity()}</div>
+              {/* <div className="close-icon"></div> */}
             </div>
-          </>
-        )}
-      </>
-    </Layout>
+            <div className="points-earn-container">
+              <div className="points-info-cnt">
+                <div className="points-list-cnt">
+                  Share code {" "}
+                  <div className="clipboard-text-cnt">
+                    <span className="clipboard-text">{user["referral_code"]}</span>
+                    <div className="copy-btn" onClick={handleCopyClick}>
+                      {isCopied ? 'Copied!' : 'Copy'}
+                    </div>
+                  </div>
+                  {" "} with your friends to earn 100 points for successful refferal.
+                </div>
+                <input
+                  type="text"
+                  ref={textRef}
+                  defaultValue={user["referral_code"]}
+                  style={{
+                    opacity: 0,
+                    position: "absolute",
+                    pointerEvents: "none",
+                  }}
+                />
+              </div>
+              {/* <div className="close-icon"></div> */}
+            </div>
+            <div style={{ marginTop: "20px" }}>
+              <h5>Summary</h5>
+            </div>
+            <div className="rewardsInfo_container" style={{ marginTop: "0%" }}>
+              <section className="bg-light-primary">
+                <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center px-xl-6">
+                  <div className="col my-3">
+                    <div className="card border-hover-primary">
+                      <div className="card-body">
+                        <h4 className="font-weight-bold mb-3" style={{ color: "green" }}>{rewardPoints["totalPoints"]}</h4>
+                        <h6 className="font-weight-bold mb-3" >Current points</h6>
+                        <p className="text-muted mb-0">Currently available points in your account.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col my-3">
+                    <div className="card border-hover-primary hover-scale">
+                      <div className="card-body">
+                        <h4 className="font-weight-bold mb-3" style={{ color: "green" }}>{rewardPoints["lifetimePoints"]}</h4>
+                        <h6 className="font-weight-bold mb-3">Lifetime earned points</h6>
+                        <p className="text-muted mb-0">Total points earned since you joined Wondor.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col my-3">
+                    <div className="card border-hover-primary hover-scale">
+                      <div className="card-body">
+                        <h4 className="font-weight-bold mb-3" style={{ color: "red" }}>{
+                          rewardPoints["lifetimePoints"] -
+                          rewardPoints["totalPoints"]}</h4>
+                        <h6 className="font-weight-bold mb-3">Redeemed points</h6>
+                        <p className="text-muted mb-0">Total points which you have redeemed so far.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div style={{ marginTop: "20px" }}>
+              <h5>Points earned by category</h5>
+            </div>
+            <div className="rewardsInfo_container" style={{ marginTop: "0%" }}>
+              <section className="bg-light-primary">
+                <div className="row row-cols-lg-3 row-cols-md-2 row-cols-1 text-center  px-xl-6">
+                  <div className="col my-3">
+                    <div className="card border-hover-primary">
+                      <div className="card-body">
+                        <h4 className="font-weight-bold mb-3">
+                          {GetPointsByCategory(
+                            rewardsActivity,
+                            "REFERRAL_USER"
+                          ) +
+                            GetPointsByCategory(
+                              rewardsActivity,
+                              "REFERRAL_SHARER"
+                            )
+                          }
+                        </h4>
+                        <h6 className="font-weight-bold mb-3">Successful refferals</h6>
+                        <p className="text-muted mb-0">Share your refferal code with your friends and when they join Wondor you both get 150 rewards points!</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col my-3">
+                    <div className="card border-hover-primary hover-scale">
+                      <div className="card-body">
+                        <h4 className="font-weight-bold mb-3">
+                          {GetPointsByCategory(
+                            rewardsActivity,
+                            "SUCCESSFUL_COLLAB"
+                          )}
+                        </h4>
+                        <h6 className="font-weight-bold mb-3">Collaboration requests</h6>
+                        <p className="text-muted mb-0">Successfully collaborate with an artist to earn 50 points. Start making collaborations now!</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col my-3">
+                    <div className="card border-hover-primary hover-scale">
+                      <div className="card-body">
+                        <h4 className="font-weight-bold mb-3"> {
+                          GetPointsByCategory(
+                            rewardsActivity,
+                            "MONTHLY_CONTEST")
+                        }
+                        </h4>
+                        <h6 className="font-weight-bold mb-3">Montly contests</h6>
+                        <p className="text-muted mb-0">
+                          Participate in our monthly contests and earn 50 points for your submission.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col my-3">
+                    <div className="card border-hover-primary hover-scale">
+                      <div className="card-body">
+                        <h4 className="font-weight-bold mb-3"> {
+                          GetPointsByCategory(
+                            rewardsActivity,
+                            "PROFILE_COMPLETION"
+                          )}
+                        </h4>
+                        <h6 className="font-weight-bold mb-3">Complete profile</h6>
+                        <p className="text-muted mb-0">Complete your profile by adding bio, skills, samples, and social accounts to earn 50 points.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div style={{ marginTop: "20px" }}>
+              <h5>Recent points activity</h5>
+            </div>
+            <div>{getPointsActivity()}</div>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

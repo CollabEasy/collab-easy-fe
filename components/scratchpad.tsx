@@ -117,70 +117,65 @@ const ScratchpadPage = ({
 
 
     return (
-        <Layout
-            title={"Scratchpad | Wondor"}
-            name={"description"}
-            content={"Write down your new ideas - polished or unpolished on the scratchpad before your forget it. Collaborate with artists around the world and improve your reach. Join Wondor now! "}
-        >
-            <div>
-                {isFetchingScratchpad ? (
-                    <Loader />
-                ) : (
-                    <div>
-                        {isViewMode ? (
+
+        <div>
+            {isFetchingScratchpad ? (
+                <Loader />
+            ) : (
+                <div>
+                    {isViewMode ? (
+                        <div>
                             <div>
-                                <div>
-                                    {loggedInUserScratchpad.content.length == 0 ? (
-                                        <div>
-                                            <p>
-                                                Your space to take notes{" "}
-                                                <Tooltip
-                                                    placement="topLeft"
-                                                    title="Please, do not write any personal information."
-                                                >
-                                                    <InfoCircleOutlined />
-                                                </Tooltip>
-                                            </p>
+                                {loggedInUserScratchpad.content.length == 0 ? (
+                                    <div>
+                                        <p>
+                                            Your space to take notes{" "}
+                                            <Tooltip
+                                                placement="topLeft"
+                                                title="Please, do not write any personal information."
+                                            >
+                                                <InfoCircleOutlined />
+                                            </Tooltip>
+                                        </p>
 
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <p>{getBlogFormattedContent(loggedInUserScratchpad.content)}</p>
-                                        </div>
-                                    )}
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <p>{getBlogFormattedContent(loggedInUserScratchpad.content)}</p>
+                                    </div>
+                                )}
 
-                                </div>
-                                <div className="scratchpad__buttonContainer">
-                                    <Button type="primary" onClick={setWritingMode}>Edit</Button>
-                                </div>
                             </div>
-                        ) : (
-                            <div className="scratchpad_container">
-                                <div className="scratchpad_editorContainer">
-                                    <Slate
-                                        editor={editor}
-                                        value={deserialize(loggedInUserScratchpad.content)}
-                                        onChange={value => {
-                                            setBlogText(value)
-                                        }}
-                                    >
-                                        <Editable />
-                                    </Slate>
-                                </div>
-                                <div className="scratchpad__buttonContainer">
-                                    <Button loading={isUpdatingScratchpad} type="primary" onClick={saveBlog}>
-                                        Save
-                                    </Button>
-                                    <Button type="primary" onClick={doNotSaveBlog}>
-                                        Cancel
-                                    </Button>
-                                </div>
+                            <div className="scratchpad__buttonContainer">
+                                <Button type="primary" onClick={setWritingMode}>Edit</Button>
                             </div>
-                        )}
-                    </div>
-                )}
-            </div>
-        </Layout>
+                        </div>
+                    ) : (
+                        <div className="scratchpad_container">
+                            <div className="scratchpad_editorContainer">
+                                <Slate
+                                    editor={editor}
+                                    value={deserialize(loggedInUserScratchpad.content)}
+                                    onChange={value => {
+                                        setBlogText(value)
+                                    }}
+                                >
+                                    <Editable />
+                                </Slate>
+                            </div>
+                            <div className="scratchpad__buttonContainer">
+                                <Button loading={isUpdatingScratchpad} type="primary" onClick={saveBlog}>
+                                    Save
+                                </Button>
+                                <Button type="primary" onClick={doNotSaveBlog}>
+                                    Cancel
+                                </Button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
     )
 };
 
