@@ -12,3 +12,4 @@ export * from "./contestAction";
 export * from "./emailAction";
 export * from "./rewardsAction";
 export * from "./proposalAction";
+export * from "./proposalComment";

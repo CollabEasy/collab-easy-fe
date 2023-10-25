@@ -1,4 +1,4 @@
-import { HomeState, UserState } from ".";
+import { HomeState, ProposalState, UserState } from ".";
 import { CollabRequestState } from "./collab";
 import { ArtistCategoriesState } from "./artistCategories";
 import { UserSampleState } from "./sample";
@@ -10,6 +10,7 @@ import { AnalyticsState } from "./analyticsState";
 import { NotificationState } from "./notificationState";
 import { ContestState, ContestSubmissionState, ContestSubmissionVoteState } from "./contestState";
 import { RewardsActivityState } from "./rewardsState";
+import { ProposalComments } from "./proposalComments";
 
 export interface AppState {
   home: HomeState;
@@ -26,4 +27,6 @@ export interface AppState {
   contestSubmission: ContestSubmissionState,
   contestSubmissionVote: ContestSubmissionVoteState,
   rewardsActivity: RewardsActivityState,
+  proposal: ProposalState,
+  proposalComments: ProposalComments,
 }

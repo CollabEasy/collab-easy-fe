@@ -1,5 +1,7 @@
+import { ProposalData } from "types/model";
+
 export interface ProposalState {
     isFetchingAllProposals: boolean;
-    proposals: any[];
+    proposals: ProposalData[];
     isAddingProposal: boolean;
 }

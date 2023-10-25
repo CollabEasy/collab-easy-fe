@@ -10,13 +10,12 @@ import { Card, Tag } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import Image from 'next/image';
-import headerImage from '../public/images/contest.svg';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
 import { GetContestStatus } from "helpers/contest";
 import Layout from "@/components/layout";
+import detailsImage from "../public/images/proposal.svg";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
-import { User } from "types/model";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
 
@@ -63,8 +62,8 @@ const ProposalsPage = ({
         emptyProposalData
     );
 
-    const { toContestPage } = useRoutesContext();
-    const [allContests, setAllContests] = useState([]);
+    const { toProposalPage } = useRoutesContext();
+    const [allProposals, setAllContests] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showProposalModal, setShowProposalModal] = useState(false);
 
@@ -86,39 +85,26 @@ const ProposalsPage = ({
         setAllContests(contests.contest);
     }, [user, artistListData, contests]);
 
-    const getAllContests = (allContests) => {
+    const getAllProposals = (allProposals) => {
         const resultArtists: JSX.Element[] = [];
         const now = new Date();
-        let data = allContests.length != 0 ? allContests[0].data : [];
-        data.sort((a, b) => b.startDate - a.startDate);
-        data.forEach(contest => {
-            let status = GetContestStatus(now.getTime(), contest.startDate, contest.endDate);
+        let data = allProposals.length != 0 ? allProposals[0].data : [];
+        // data.sort((a, b) => b.createdDate - a.createdDate);
+        data.forEach(proposal => {
             resultArtists.push(
                 <div className="row p-2 bg-white rounded contest-card">
                     <Card
-                        title={contest.title}
+                        title={proposal.title}
                         style={{ height: '100%' }}
                         extra={
                             <>
-                                {status === "Ongoing" && (
-                                    <Tag color="green">{status}</Tag>
-                                )}
-                                {status === "Upcoming" && (
-                                    <Tag color="yellow">{status}</Tag>
-                                )}
-                                {status === "Past" && (
-                                    <Tag color="grey">{status}</Tag>
-                                )}
-                                {status === "Ongoing" ? (
-                                    <a href={routeToHref(toContestPage(contest.contestSlug, "details"))}>Enter</a>
-                                ) : (
-                                    <a href={routeToHref(toContestPage(contest.contestSlug, "details"))}>Check details</a>
-                                )}
+                                <Tag color="green">Open</Tag>
+                                <a href={routeToHref(toProposalPage(proposal.id))}>Check details</a>
                             </>
                         }
                     >
                         <div>
-                            {contest.description}
+                            {proposal.description}
                         </div>
                     </Card>
                 </div>
@@ -153,20 +139,20 @@ const ProposalsPage = ({
                         />
                         <div className="allProposalsPage__listingPageCoverContainer">
                             <div className="row ">
-                                <div className="col-sm-8" style={{ backgroundColor: "#F8F5E7" }}>
+                                <div className="col-sm-8" style={{ backgroundColor: "#FFF3C9" }}>
                                     <div className="allProposalsPage_desktopCoverTextContainer">
                                         <h1 className="common-h1-style">
-                                            Artists, unite! Enter our contest and let the world see your talent 😎
+                                            Artists, your next collaboration opportunity is here 😎
                                         </h1>
                                         <h3 className="common-h3-style">
-                                            Join our contest and let your creativity be the judge!
+                                            Let's work together and create something amazing!
                                         </h3>
                                     </div>
                                 </div>
-                                <div className="col-sm-4" style={{ backgroundColor: "#F8F5E7" }}>
+                                <div className="col-sm-4 " style={{ backgroundColor: "#FFF3C9" }}>
                                     <Image
                                         alt="Image Alt"
-                                        src={headerImage}
+                                        src={detailsImage}
                                         layout="responsive"
                                         objectFit="contain" // Scale your image down to fit into the container
                                     />
@@ -185,7 +171,7 @@ const ProposalsPage = ({
                             </Button>
                         </div>
                         <div className="col-md-12 listingContainer">
-                            {getAllContests(allContests)}
+                            {getAllProposals(allProposals)}
                         </div>
                     </div>
                 </>
