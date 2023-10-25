@@ -16,6 +16,7 @@ export const routes: AppRouteCreators = {
   toAllContestPage: () => ({ href: "/all-contest" }),
   toRewardsInfoPage: () => ({ href: "/rewards-info" }),
   toAllCategoryPage: () => ({ href: "/all-categories" }),
+  toAllProposalsPage: () => ({ href: "/proposals" }),
   toProfile: () => ({
     href: '/profile',
     as: `/profile/`,
