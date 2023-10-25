@@ -12,3 +12,4 @@ export * from "./notificationState";
 export * from "./contestState";
 export * from "./emailState";
 export * from "./rewardsState";
+export * from "./proposalState";
