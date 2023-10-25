@@ -176,9 +176,14 @@ const EditProfile = ({
     router.push("/artist/settings/profile?tab=basic-information");
   }
 
-  function handleClick(e: any) {
+  function handleWebNavClick(e: any) {
     activeTabKey.current = e.key;
     redirect(e.key);
+  }
+
+  function handleMobileNavClick(tab) {
+    activeTabKey.current = tab;
+    redirect(tab);
   }
 
   const redirect = (tabIndex: string) => {
@@ -242,28 +247,59 @@ const EditProfile = ({
     return <Loader />;
 
   const getMobileMenu = () => {
-    return (<div className="scrollmenu">
-      <a href="#home">Home</a>
-      <a href="#news">Profile</a>
-      <a href="#contact">Basic Information</a>
-      <a href="#about">Preferences</a>
-      <a href="#home">Samples</a>
-      <a href="#news">Social Prospectus</a>
-      <a href="#contact">Scratchpad</a>
-      <a href="#about">Collab Requests</a>
-      <a href="#home">Rewards</a>
-      <a href="#news">Log out</a>
-    </div>
+    return (
+      <div className="scrollmenu">
+        <div className="tab" onClick={() => { handleMobileNavClick("0") }}>
+          <HomeOutlined />
+          <span className="f-12" style={{display: "block"}}>Home</span>
+        </div>
+        <div className="tab" onClick={() => { handleMobileNavClick("9") }}>
+          <UserOutlined />
+          <span className="f-12" style={{display: "block"}}>Profile</span>
+        </div>
+        <div className="tab" onClick={() => { handleMobileNavClick("1") }}>
+          <ProfileOutlined />
+          <span className="f-12" style={{display: "block"}}>Basic Information</span>
+        </div>
+        <div className="tab" onClick={() => { handleMobileNavClick("2") }}>
+          <CheckCircleOutlined />
+          <span className="f-12" style={{display: "block"}}>Preferences</span>
+        </div>
+        <div className="tab" onClick={() => { handleMobileNavClick("3") }}>
+          <PictureOutlined />
+          <span className="f-12" style={{display: "block"}}>Samples</span>
+        </div>
+        <div className="tab" onClick={() => { handleMobileNavClick("4") }}>
+          <InstagramOutlined />
+          <span className="f-12" style={{display: "block"}}>Social Prospectus</span>
+        </div>
+        <div className="tab" onClick={() => { handleMobileNavClick("5") }}>
+          <EditOutlined />
+          <span className="f-12" style={{display: "block"}}>Scratchpad</span>
+        </div>
+        <div className="tab" onClick={() => { handleMobileNavClick("6") }}>
+          <CalendarOutlined />
+          <span className="f-12" style={{display: "block"}}>Collab Requests</span>
+        </div>
+        <div className="tab" onClick={() => { handleMobileNavClick("7") }}>
+          <TrophyOutlined />
+          <span className="f-12" style={{display: "block"}}>Rewards</span>
+        </div>
+        <div className="tab" onClick={() => { handleMobileNavClick("8") }}>
+          <LogoutOutlined />
+          <span className="f-12" style={{display: "block"}}>Log Out</span>
+        </div>
+      </div>
     );
-
   }
+
   const getWebMenu = () => {
     return (
       <Menu
         theme="dark"
         mode={"inline"}
         selectedKeys={[activeTabKey.current]}
-        onClick={handleClick}
+        onClick={handleWebNavClick}
       >
         <Menu.Item key="0">
           <HomeOutlined />
@@ -275,7 +311,7 @@ const EditProfile = ({
         </Menu.Item>
         <Menu.Item key="1">
           <ProfileOutlined />
-          <span className="f-12 ">Basic Information</span>
+          <span className="f-12 ">Information</span>
         </Menu.Item>
         <Menu.Item key="2">
           <CheckCircleOutlined />
@@ -323,10 +359,11 @@ const EditProfile = ({
       ) : (
         <div>
           <Layout style={{ minHeight: "100vh", overflow: "auto" }} >
-            <div id="mobile-portal-menu">
-              {getMobileMenu()}
-            </div>
-            <div id="web-portal-menu">
+            {window.innerWidth < 500 ? (
+              <>
+                {getMobileMenu()}
+              </>
+            ) : (
               <Sider
                 collapsible
                 collapsed={collapsed}
@@ -343,7 +380,7 @@ const EditProfile = ({
                 </Link>
                 {getWebMenu()}
               </Sider>
-            </div>
+            )}
             <Layout>
               <>
                 {getActiveTab() === "1" && (
