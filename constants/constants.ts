@@ -3928,6 +3928,12 @@ export const GENDERS = [
   'Don\'t want to disclose'
 ]
 
+export const COLLABTYPES = [
+  'Virtual',
+  'In-person',
+  'Any',
+]
+
 export enum CollabRequestStatus {
   ACTIVE = 'Active',
   PENDING = 'Pending',
