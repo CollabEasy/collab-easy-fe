@@ -381,7 +381,7 @@ const EditProfile = ({
                 {getWebMenu()}
               </Sider>
             )}
-            <Layout>
+            <Layout className="mobile-layout">
               <>
                 {getActiveTab() === "1" && (
                   <Content

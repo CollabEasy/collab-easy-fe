@@ -10,7 +10,11 @@
     background-color: white;
     overflow: auto;
     white-space: nowrap;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
+
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+    z-index: 100;
 
     .tab {
         display: inline-block;
@@ -21,12 +25,15 @@
     }
 }
 
-// @media only screen and (max-width: 499px) {
-//     #mobile-portal-menu {
-//       display: block;
-//     }
+@media only screen and (max-width: 499px) {
+    #mobile-portal-menu {
+      display: block;
+    }
   
-//     #web-portal-menu {
-//       display: none;
-//     }
-//   }
+    #web-portal-menu {
+      display: none;
+    }
+    .mobile-layout {
+        padding-top: 60px;
+    }
+  }
