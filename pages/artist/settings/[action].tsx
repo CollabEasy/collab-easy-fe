@@ -252,32 +252,6 @@ const EditProfile = ({
   const getMobileMenu = () => {
     return (
       <div className="scrollmenu">
-        <div className="tab" onClick={() => { handleMobileNavClick("0") }}>
-          {activeTabKey.current === "0" ? (
-            <>
-              <HomeOutlined style={{ color: "black" }} />
-              <span className="f-12" style={{ display: "block", color: "black" }}>Home</span>
-            </>
-          ) : (
-            <>
-              <HomeOutlined style={{ color: "grey" }} />
-              <span className="f-12" style={{ display: "block", color: "grey" }}>Home</span>
-            </>
-          )}
-        </div>
-        <div className="tab" onClick={() => { handleMobileNavClick("9") }}>
-          {activeTabKey.current === "9" ? (
-            <>
-              <UserOutlined style={{ color: "black" }} />
-              <span className="f-12" style={{ display: "block", color: "black" }}>Profile</span>
-            </>
-          ) : (
-            <>
-              <UserOutlined style={{ color: "grey" }} />
-              <span className="f-12" style={{ display: "block", color: "grey" }}>Profile</span>
-            </>
-          )}
-        </div>
         <div className="tab" onClick={() => { handleMobileNavClick("1") }}>
           {activeTabKey.current === "1" ? (
             <>
