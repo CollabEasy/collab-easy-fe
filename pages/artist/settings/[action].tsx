@@ -438,16 +438,13 @@ const EditProfile = ({
     <>
       <PageLayout
         title={
-
-          " - Send Collaboration Request Now | Wondor"
+          "Portal for artists | Wondor"
         }
         name={"description"}
         content={
-          "Work with  Send them a collaboration request | Wondor"
+          "Portal for artists to manage their information."
         }
       >
-
-
         {loginModalDetails.openModal && !user.new_user && <LoginModal />}
         {showProfileModal && <NewUserModal />}
         {!isLoggedIn ? (
