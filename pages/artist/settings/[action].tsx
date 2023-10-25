@@ -432,7 +432,7 @@ const EditProfile = ({
               <div id="mobile-portal-menu">
                 {getMobileMenu()}
               </div>
-              <div id="web-portal-menu">
+              <div id="web-portal-menu" className="web-portal-fixed-menu">
                 <Header>
                   {/* <Link href={routeToHref(toDiscover())} passHref>
                   <div className="logo" style={{ cursor: "pointer" }}>
@@ -446,7 +446,7 @@ const EditProfile = ({
                   {getWebMenu()}
                 </Header>
               </div>
-              <Layout className="mobile-layout">
+              <Layout className="portal-layout">
                 <>
                   {getActiveTab() === "1" && (
                     <Content
