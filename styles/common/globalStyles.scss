@@ -1,11 +1,8 @@
 @import "bootstrap/dist/css/bootstrap.css";
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'antd/dist/antd.css';
-@import "~video-react/styles/scss/video-react";
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Nova+Round|Varela+Round&display=swap');
-@import "./font-styler";
-@import "./font-size";
 @import "./variable";
 
 html {
@@ -64,12 +61,12 @@ h2 {
 	color: $C000000BF !important;
 	font-family: 'Varela Round', sans-serif;
 	text-decoration: none;
-	font-size: $font-size16;
+	font-size: 16px;
 	&:hover {
-		color: $black !important;
+		color: black !important;
 	}
 	&.active, .active:hover{
-		color: $black !important;
+		color: black !important;
 	}
 }
 
@@ -105,9 +102,9 @@ input[type=number]:focus,
 		cursor: pointer;
 	} & input[type=text]{
 		height: 10vh;
-		-webkit-box-shadow: 0 5px 6px -6px $plan-border;
-		-moz-box-shadow: 0 5px 6px -6px $plan-border;
-		box-shadow: 0 5px 6px -6px $plan-border;
+		-webkit-box-shadow: 0 5px 6px -6px #9b9b9b;
+		-moz-box-shadow: 0 5px 6px -6px #9b9b9b;
+		box-shadow: 0 5px 6px -6px #9b9b9b;
 		border: 1px solid #9b9b9b42;
 	} & label {
 		top: 11% !important;
@@ -125,12 +122,12 @@ input[type=number]:focus,
 	-webkit-border-radius: 20px !important;
 	-moz-border-radius: 20px !important;
 	 border-radius: 20px !important;
-	 border: 1px solid $gray_light_border;
+	 border: 1px solid #8C858554;
 }
 	
 #_hdr-id input[type=text]:focus, #_src-i input[type=text]:focus {
 	 outline: none !important;
-	 border: 1px solid $black;
+	 border: 1px solid black;
 }
 
 .layout__layoutContainer {
