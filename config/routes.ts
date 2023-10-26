@@ -35,7 +35,7 @@ export const routes: AppRouteCreators = {
   }),
   toProposalPage: (id) => ({
     href: '/proposal/[id]',
-    as: `/proposal//${id}`,
+    as: `/proposal/${id}`,
   }),
   toSendCollabRequestPage: (slug) => ({
     href: '/collab/[slug]',

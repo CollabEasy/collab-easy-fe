@@ -4,4 +4,5 @@ export interface ProposalState {
     isFetchingAllProposals: boolean;
     proposals: ProposalData[];
     isAddingProposal: boolean;
+    isfetchingProposal: boolean;
 }
