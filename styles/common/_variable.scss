@@ -1,95 +1,95 @@
-/* You can add global styles to this file, and also import other style files */
+// /* You can add global styles to this file, and also import other style files */
 
-$theme-color: #ca302d;
-$white: #ffffff;
-$black: #000000;
-$gray33: #545454;
-$text-color: #303030;
-$gray26: #424242;
-$cream: #f1f1f1;
-$white-smoke: #f5f5f5;
-$plan-border: #9b9b9b;
-$gray3: #a9a9a9;
-$input-color: #141414;
-$Gray82: #d1d1d1;
-$gray4: #8e8e8e;
-$gray5: #eaeaea;
-$gray6: #f8f8f8;
-$Gray53: #878787;
-$Gray40: #666666;
-$Gray19: #303030;
-$Gray54: #8a8a8a;
-$green: #6cb518;
-$tooltip-bg: #f5f6f9;
-$dimgray: #676767;
-$gainsboro: #E2E2E2;
-$gray_light_border:#8C858554;
-//Newly Added color: Name we added like $CC000000BF --> $ is required to define variable, 'C' stand for color custom defined then color code 000000BF
-$C000000BF:#000000BF;
+// $theme-color: #ca302d;
+// $white: #ffffff;
+// $black: #000000;
+// $gray33: #545454;
+// $text-color: #303030;
+// $gray26: #424242;
+// $cream: #f1f1f1;
+// $white-smoke: #f5f5f5;
+// $plan-border: #9b9b9b;
+// $gray3: #a9a9a9;
+// $input-color: #141414;
+// $Gray82: #d1d1d1;
+// $gray4: #8e8e8e;
+// $gray5: #eaeaea;
+// $gray6: #f8f8f8;
+// $Gray53: #878787;
+// $Gray40: #666666;
+// $Gray19: #303030;
+// $Gray54: #8a8a8a;
+// $green: #6cb518;
+// $tooltip-bg: #f5f6f9;
+// $dimgray: #676767;
+// $gainsboro: #E2E2E2;
+// $gray_light_border:#8C858554;
+// //Newly Added color: Name we added like $CC000000BF --> $ is required to define variable, 'C' stand for color custom defined then color code 000000BF
+// $C000000BF:#000000BF;
 
-$font-bolder:bold;
+// $font-bolder:bold;
 
-// Font Family
-$pacifico-cursive: "Pacifico";
-$varela-round: "VarelaRound";
-//
-//
-// mixins
-@mixin d-flex() {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
+// // Font Family
+// $pacifico-cursive: "Pacifico";
+// $varela-round: "VarelaRound";
+// //
+// //
+// // mixins
+// @mixin d-flex() {
+//   display: -webkit-box;
+//   display: -ms-flexbox;
+//   display: flex;
+// }
 
-@mixin flex-align-center() {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
+// @mixin flex-align-center() {
+//   -webkit-box-align: center;
+//   -ms-flex-align: center;
+//   align-items: center;
+// }
 
-@mixin flex-align-end() {
-  -webkit-box-align: end;
-  -ms-flex-align: end;
-  align-items: flex-end;
-}
+// @mixin flex-align-end() {
+//   -webkit-box-align: end;
+//   -ms-flex-align: end;
+//   align-items: flex-end;
+// }
 
-@mixin flex-justify-center() {
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
+// @mixin flex-justify-center() {
+//   -webkit-box-pack: center;
+//   -ms-flex-pack: center;
+//   justify-content: center;
+// }
 
-@mixin flex-column() {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
+// @mixin flex-column() {
+//   -webkit-box-orient: vertical;
+//   -webkit-box-direction: normal;
+//   -ms-flex-direction: column;
+//   flex-direction: column;
+// }
 
-@mixin flex-justify-space-between() {
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-@mixin flex-wrap() {
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
+// @mixin flex-justify-space-between() {
+//   -webkit-box-pack: justify;
+//   -ms-flex-pack: justify;
+//   justify-content: space-between;
+// }
+// @mixin flex-wrap() {
+//   -ms-flex-wrap: wrap;
+//   flex-wrap: wrap;
+// }
 
-@mixin triangle-4() {
-  border-style: solid;
-  border-color: $gray26 transparent transparent transparent;
-  border-width: 5px 4px 0 4px;
-  display: block;
-  width: 0;
-  height: 0;
-}
-@mixin flex-wrap() {
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
+// @mixin triangle-4() {
+//   border-style: solid;
+//   border-color: $gray26 transparent transparent transparent;
+//   border-width: 5px 4px 0 4px;
+//   display: block;
+//   width: 0;
+//   height: 0;
+// }
+// @mixin flex-wrap() {
+//   -ms-flex-wrap: wrap;
+//   flex-wrap: wrap;
+// }
 
-@mixin flip() {
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
+// @mixin flip() {
+//   -webkit-transform: scaleX(-1);
+//   transform: scaleX(-1);
+// }
