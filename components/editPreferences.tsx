@@ -134,86 +134,80 @@ const EditPreferences = ({
   const [isViewMode, setViewMode] = useState(false);
 
   return (
-    <Layout
-      title={"Preferences | Wondor"}
-      name={"description"}
-      content={"Edit your preferences and keep them up to date. Let artists know your readiness to collaborate and your preferred skills. Join Wondor now!"}
-    >
-      <>
-        <div>
-          <Form
-            className="settings__basicProfileForm"
-            labelCol={{ span: 4 }}
-            wrapperCol={{ span: 14 }}
-            layout="horizontal"
-            initialValues={{ size: componentSize }}
-            onValuesChange={onFormLayoutChange}
-            size={componentSize as SizeType}
-          >
-            <Form.Item label="Available to collab" valuePropName="checked">
-              <Switch
-                onChange={() => {
-                  updateArtistPreference(
-                    "upForCollaboration",
+    <>
+      <div>
+        <Form
+          className="settings__basicProfileForm"
+          labelCol={{ span: 4 }}
+          wrapperCol={{ span: 14 }}
+          layout="horizontal"
+          initialValues={{ size: componentSize }}
+          onValuesChange={onFormLayoutChange}
+          size={componentSize as SizeType}
+        >
+          <Form.Item label="Available to collab" valuePropName="checked">
+            <Switch
+              onChange={() => {
+                updateArtistPreference(
+                  "upForCollaboration",
 
-                    !upForCollaboration
-                  );
+                  !upForCollaboration
+                );
 
-                  setUpForCollaboration(!upForCollaboration);
-                }}
-                loading={isUpdatingPrefs === "upForCollaboration"}
-                checked={upForCollaboration}
-                checkedChildren="active"
-                unCheckedChildren="inactive"
-              />
-            </Form.Item>
-
-            <Form.Item>
-              <CategorySelector
-                saveArtistTrigger={saveArtistTrigger}
-                setSaveArtistTrigger={setSaveArtistTrigger}
-              />
-
-              <div style={{ height: "auto", marginTop: "20px" }}>
-                Unable to see the art category in the list? Click{" "}
-                <a href="#" onClick={ShowNewCategoryModal}>
-                  here
-                </a>{" "}
-                to add a category. After a thorough review, we will include it.
-              </div>
-            </Form.Item>
-
-            <Form.Item {...tailLayout}>
-              <div className="settings__basicProfileSubmitContainer">
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  onClick={() => {
-                    setSaveArtistTrigger(true);
-                    //   setSaveArtistTrigger(false);
-                  }}
-                  loading={isUpdatingProfile}
-                >
-                  {isUpdatingProfile ? "Saving..." : "Save"}
-                </Button>
-              </div>
-            </Form.Item>
-          </Form>
-        </div>
-
-        <div>
-          {showCategoryModal && (
-            <CategoryModal
-              onCancel={() => {
-                HideCatgeoryEntryModal();
+                setUpForCollaboration(!upForCollaboration);
               }}
-              isViewMode={true}
-              categoryEntry={newCategoryDetails}
+              loading={isUpdatingPrefs === "upForCollaboration"}
+              checked={upForCollaboration}
+              checkedChildren="active"
+              unCheckedChildren="inactive"
             />
-          )}
-        </div>
-      </>
-    </Layout>
+          </Form.Item>
+
+          <Form.Item>
+            <CategorySelector
+              saveArtistTrigger={saveArtistTrigger}
+              setSaveArtistTrigger={setSaveArtistTrigger}
+            />
+
+            <div style={{ height: "auto", marginTop: "20px" }}>
+              Unable to see the art category in the list? Click{" "}
+              <a href="#" onClick={ShowNewCategoryModal}>
+                here
+              </a>{" "}
+              to add a category. After a thorough review, we will include it.
+            </div>
+          </Form.Item>
+
+          <Form.Item {...tailLayout}>
+            <div className="settings__basicProfileSubmitContainer">
+              <Button
+                type="primary"
+                htmlType="submit"
+                onClick={() => {
+                  setSaveArtistTrigger(true);
+                  //   setSaveArtistTrigger(false);
+                }}
+                loading={isUpdatingProfile}
+              >
+                {isUpdatingProfile ? "Saving..." : "Save"}
+              </Button>
+            </div>
+          </Form.Item>
+        </Form>
+      </div>
+
+      <div>
+        {showCategoryModal && (
+          <CategoryModal
+            onCancel={() => {
+              HideCatgeoryEntryModal();
+            }}
+            isViewMode={true}
+            categoryEntry={newCategoryDetails}
+          />
+        )}
+      </div>
+    </>
   );
 };
 

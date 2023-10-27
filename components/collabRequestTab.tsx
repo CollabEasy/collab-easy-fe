@@ -175,22 +175,17 @@ export const CollabRequestTab = ({
   };
 
   return (
-    <Layout
-      title={"Collab Requests | Wondor"}
-      name={"description"}
-      content={"Manager you collaborations on Wondor. Increase your reach by collaborating with artists around the world. Join Wondor now! "}
-    >
-      <>
-        <div className="collabRequestTab__container">
-          <div id="collab_calender" className="collabRequestTab__filterContainer">
-            <CollabCalender
-              events={dateToCollabRequestMap}
-              onSelectDate={(date: string) => {
-                setSelectedDate(date);
-                scrollSmoothlyToID("collab_cards");
-              }}
-            />
-            {/* <Select
+    <>
+      <div className="collabRequestTab__container">
+        <div id="collab_calender" className="collabRequestTab__filterContainer">
+          <CollabCalender
+            events={dateToCollabRequestMap}
+            onSelectDate={(date: string) => {
+              setSelectedDate(date);
+              scrollSmoothlyToID("collab_cards");
+            }}
+          />
+          {/* <Select
             className="collabRequestTab__filter collabRequestTab__antFilter"
             defaultValue="all"
             onChange={(value) => {
@@ -214,21 +209,20 @@ export const CollabRequestTab = ({
             <Option value="rejected">Rejected</Option>
             <Option value="completed">Completed</Option>
           </Select> */}
-          </div>
         </div>
+      </div>
 
-        {isFetchingCollabDetails ? (
-          <Loader />
-        ) : (
-          <div
-            id="collab_cards"
-            className="collabRequestTab__collabListContainer"
-          >
-            {getCollabRequestCards()}
-          </div>
-        )}
-      </>
-    </Layout>
+      {isFetchingCollabDetails ? (
+        <Loader />
+      ) : (
+        <div
+          id="collab_cards"
+          className="collabRequestTab__collabListContainer"
+        >
+          {getCollabRequestCards()}
+        </div>
+      )}
+    </>
   );
 };
 

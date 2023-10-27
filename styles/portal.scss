@@ -1,9 +1,19 @@
 #web-protal-menu {
-    display: block;
+    display: block; 
 }
 
 #mobile-portal-menu {
     display: none;
+}
+
+.web-portal-fixed-menu {
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
+    z-index: 100;
 }
 
 .scrollmenu {
@@ -28,6 +38,10 @@
     }
 }
 
+.portal-layout {
+    padding-top: 60px;
+}
+
 @media only screen and (max-width: 499px) {
     #mobile-portal-menu {
         display: block;
@@ -35,9 +49,5 @@
 
     #web-portal-menu {
         display: none;
-    }
-
-    .mobile-layout {
-        padding-top: 60px;
     }
 }
