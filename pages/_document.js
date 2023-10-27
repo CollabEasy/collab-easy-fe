@@ -29,6 +29,17 @@ export default class MyDocument extends Document {
           <meta name="twitter:description" content="Meet with artists, schedule & manage your collaboration requests, join monthly contests, find themes and ideas for your next work on Wondor!" />
           <meta name="twitter:image" content="https://www.wondor.art/images/mobile-landing.svg" />
           <link rel="icon" href="favicon.ico" />
+          <link rel="preconnect" href="https://www.googletagmanager.com" />
+          <link rel="preconnect" href="https://www.google-analytics.com"/>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Nova+Round|Varela+Round&display=swap"
+            rel="stylesheet"
+          />
+          <link rel="stylesheet" href="/css/video-react.css" />
         </Head>
         <body>
           <Main />
