@@ -82,6 +82,7 @@
     height: 40px;
     border-radius: 20px;
     font-size: 16px;
+    color: white;
   }
 
   & #app-logo-mobile {
@@ -180,6 +181,7 @@
 }
 
 .login-signup-cnt {
+  justify-content: right;
   display: flex;
   gap: 10px;
 }
