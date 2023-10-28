@@ -24,7 +24,10 @@ const getConfigWithToken = () => {
 const getConfig = (dataToSend) => {
   return {
     method: "get",
-    data: dataToSend,
+    data: JSON.stringify(dataToSend),
+    headers: { 
+      "content-type": "application/json",
+    }
   };
 };
 
