@@ -21,31 +21,34 @@ const getConfigWithToken = () => {
   };
 };
 
-const getConfig = () => {
+const getConfig = (dataToSend) => {
   return {
     method: "get",
+    data: dataToSend,
   };
 };
 
 export const getAllProposals = async () => {
-    const config = getConfig();
-    try {
-    //   const categories = await api.call("api/v1/category/all", config);
-    //   return categories;
-    } catch (error) {
-      throw error;
-    }
-  };
-  
-  export const addProposalApi = async (data: ProposalData) => {
-    const config = postConfig(data);
-    try {
-    //   const categories = await api.call("api/v1/category/add", config);
-    //   return categories;
-    } catch (error) {
-      throw error;
-    }
-  };
+  let dataToSend = {"categories": []}
+  const config = getConfig(dataToSend);
+  console.log(config);
+  try {
+      const categories = await api.call("api/v1/proposal/get", config);
+      return categories;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const addProposalApi = async (data: ProposalData) => {
+  const config = postConfig(data);
+  try {
+    const proposal = await api.call("api/v1/proposal/create", config);
+    return proposal;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const getProposalByIdAPI = async (id: string) => {
   const config = getConfigWithToken();

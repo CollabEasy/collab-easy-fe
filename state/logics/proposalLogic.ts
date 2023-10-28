@@ -50,45 +50,45 @@ export const fetchAllProposalsLogic = createLogic<
 });
 
 
-export const fetchProposalByIdLogic = createLogic<
-    AppState,
-    FSACreatorPayload<typeof actions.fetchProposalById>,
-    any,
-    LogicDeps
->({
-    type: [actionTypes.FETCH_PROPOSAL_BY_ID],
-    async process({ action, api }, dispatch, done) {
-        const { id } = action.payload;
-        try {
-            dispatch(actions.fetchProposalByIdRequest());
-            const result = await proposalApi.getProposalByIdAPI(id);
-            dispatch(actions.fetchProposalByIdSuccess(result));
-        } catch (error) {
-            dispatch(actions.fetchProposalByIdFalilure(error));
-        } finally {
-            done();
-        }
-    },
-});
+// export const fetchProposalByIdLogic = createLogic<
+//     AppState,
+//     FSACreatorPayload<typeof actions.fetchProposalById>,
+//     any,
+//     LogicDeps
+// >({
+//     type: [actionTypes.FETCH_PROPOSAL_BY_ID],
+//     async process({ action, api }, dispatch, done) {
+//         const { id } = action.payload;
+//         try {
+//             dispatch(actions.fetchProposalByIdRequest());
+//             const result = await proposalApi.getProposalByIdAPI(id);
+//             dispatch(actions.fetchProposalByIdSuccess(result));
+//         } catch (error) {
+//             dispatch(actions.fetchProposalByIdFalilure(error));
+//         } finally {
+//             done();
+//         }
+//     },
+// });
 
-export const fetchProposalByArtistSlugLogic = createLogic<
-    AppState,
-    FSACreatorPayload<typeof actions.fetchProposalByArtistSlug>,
-    any,
-    LogicDeps
->({
-    type: [actionTypes.FETCH_PROPOSAL_BY_ARTIST_SLUG],
-    async process({ action, api }, dispatch, done) {
-        const { slug } = action.payload;
-        try {
-            dispatch(actions.fetchProposalByArtistSlugRequest());
-            const result = await proposalApi.getArtistsByCategorySlugAPI(slug);
-            dispatch(actions.fetchProposalByArtistSlugSuccess(result));
-        } catch (error) {
-            dispatch(actions.fetchProposalByArtistSlugFalilure(error));
-        } finally {
-            done();
-        }
-    },
-});
+// export const fetchProposalByArtistSlugLogic = createLogic<
+//     AppState,
+//     FSACreatorPayload<typeof actions.fetchProposalByArtistSlug>,
+//     any,
+//     LogicDeps
+// >({
+//     type: [actionTypes.FETCH_PROPOSAL_BY_ARTIST_SLUG],
+//     async process({ action, api }, dispatch, done) {
+//         const { slug } = action.payload;
+//         try {
+//             dispatch(actions.fetchProposalByArtistSlugRequest());
+//             const result = await proposalApi.getArtistsByCategorySlugAPI(slug);
+//             dispatch(actions.fetchProposalByArtistSlugSuccess(result));
+//         } catch (error) {
+//             dispatch(actions.fetchProposalByArtistSlugFalilure(error));
+//         } finally {
+//             done();
+//         }
+//     },
+// });
 

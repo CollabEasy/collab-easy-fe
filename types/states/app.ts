@@ -1,4 +1,4 @@
-import { HomeState, ProposalState, UserState } from ".";
+import { HomeState, UserState } from ".";
 import { CollabRequestState } from "./collab";
 import { ArtistCategoriesState } from "./artistCategories";
 import { UserSampleState } from "./sample";
@@ -10,9 +10,10 @@ import { AnalyticsState } from "./analyticsState";
 import { NotificationState } from "./notificationState";
 import { ContestState, ContestSubmissionState, ContestSubmissionVoteState } from "./contestState";
 import { RewardsActivityState } from "./rewardsState";
-import { ProposalComments } from "./proposalComments";
+import { ProposalState } from "./proposalState";
 
 export interface AppState {
+  isFetchingAllProposals: any;
   home: HomeState;
   user: UserState;
   collab: CollabRequestState;
@@ -28,5 +29,4 @@ export interface AppState {
   contestSubmissionVote: ContestSubmissionVoteState,
   rewardsActivity: RewardsActivityState,
   proposal: ProposalState,
-  proposalComments: ProposalComments,
 }

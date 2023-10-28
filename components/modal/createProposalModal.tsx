@@ -19,6 +19,7 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getAllCategories: () => dispatch(action.getAllCategories()),
+    createProposal: (data: any) => dispatch(action.addProposal(data)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -36,6 +37,7 @@ const CreateProposalModal = ({
     publishedCategories,
     onCancel,
     getAllCategories,
+    createProposal,
 }: Props) => {
     const { Option } = Select;
     const [showModal, setViewModal] = useState(isViewMode);

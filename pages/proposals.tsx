@@ -28,14 +28,14 @@ const mapStateToProps = (state: AppState) => {
     const isLoggedIn = state.user.isLoggedIn;
     const loginModalDetails = state.home.loginModalDetails;
     const artistListData = state.home.artistListDetails;
-    const contests = state.contest;
-    const isFetchingContest = state.contest.isFetchingContest;
-    return { user, isLoggedIn, artistListData, loginModalDetails, contests, isFetchingContest }
+    const proposal = state.proposal;
+    const isFetchingAllProposals = state.proposal.isFetchingAllProposals;
+    return { user, isLoggedIn, artistListData, loginModalDetails, proposal, isFetchingAllProposals }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    fetchAllContests: () =>
-        dispatch(actions.fetchAllContests()),
+    fetchAllProposals: () =>
+        dispatch(actions.getAllProposals()),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -46,10 +46,10 @@ const ProposalsPage = ({
     user,
     isLoggedIn,
     loginModalDetails,
-    contests,
     artistListData,
-    isFetchingContest,
-    fetchAllContests,
+    proposal,
+    isFetchingAllProposals,
+    fetchAllProposals,
 }: Props) => {
 
     const emptyProposalData: ProposalData = {
@@ -63,14 +63,14 @@ const ProposalsPage = ({
     );
 
     const { toProposalPage } = useRoutesContext();
-    const [allProposals, setAllContests] = useState([]);
+    const [allProposals, setAllProposals] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showProposalModal, setShowProposalModal] = useState(false);
 
     const router = useRouter();
 
     useEffect(() => {
-        fetchAllContests();
+        fetchAllProposals();
     }, []);
 
     useEffect(() => {
@@ -82,8 +82,8 @@ const ProposalsPage = ({
         if (artistListData.status === "success") {
             setShowProfileModal(false);
         }
-        setAllContests(contests.contest);
-    }, [user, artistListData, contests]);
+        setAllProposals(proposal.proposals);
+    }, [user, artistListData, proposal.proposals]);
 
     const getAllProposals = (allProposals) => {
         const resultArtists: JSX.Element[] = [];
@@ -129,7 +129,7 @@ const ProposalsPage = ({
             )
             }
 
-            {isFetchingContest ? (
+            {isFetchingAllProposals ? (
                 <Loader />
             ) : (
                 <>
