@@ -13,7 +13,6 @@ import { RewardsActivityState } from "./rewardsState";
 import { ProposalState } from "./proposalState";
 
 export interface AppState {
-  isFetchingAllProposals: any;
   home: HomeState;
   user: UserState;
   collab: CollabRequestState;
