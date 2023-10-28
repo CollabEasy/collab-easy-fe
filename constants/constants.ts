@@ -3929,9 +3929,9 @@ export const GENDERS = [
 ]
 
 export const COLLABTYPES = [
-  'Virtual',
-  'In-person',
-  'Any',
+  'VIRTUAL',
+  'INPERSON',
+  'ANY',
 ]
 
 export enum CollabRequestStatus {

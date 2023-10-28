@@ -158,11 +158,11 @@ const CreateProposalModal = ({
                             </Form.Item>
                             <Form.Item label="Collab Type">
                                 <Select
-                                    value={proposalData.collabType}
+                                    value={proposalData ? proposalData.collabType : "VIRTUAL"}
                                     onChange={(e) => {
                                         setProposalData((prevState) => ({
                                             ...prevState,
-                                            collab_type: e,
+                                            collabType: e,
                                         }));
                                     }}
                                 >
