@@ -55,7 +55,8 @@ const ProposalsPage = ({
     const emptyProposalData: ProposalData = {
         title: "",
         description: "",
-        artistId: ""
+        artistId: "",
+        status: ""
     };
 
     const [proposalData, setProposalData] = useState(
