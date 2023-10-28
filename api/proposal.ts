@@ -1,7 +1,7 @@
 import api from "./client";
 import { ProposalData } from "types/model";
 
-const postConfig = (dataToSend) => {
+const postConfigWithToken = (dataToSend) => {
   return {
     method: "post",
     data: dataToSend,
@@ -24,17 +24,22 @@ const getConfigWithToken = () => {
 const getConfig = (dataToSend) => {
   return {
     method: "get",
-    data: JSON.stringify(dataToSend),
-    headers: { 
+  };
+};
+
+const postConfig = (dataToSend) => {
+  return {
+    method: "post",
+    data: dataToSend,
+    headers: {
       "content-type": "application/json",
-    }
+    },
   };
 };
 
 export const getAllProposals = async () => {
   let dataToSend = {"categories": []}
-  const config = getConfig(dataToSend);
-  console.log(config);
+  const config = postConfig(dataToSend);
   try {
       const categories = await api.call("api/v1/proposal/get", config);
       return categories;
@@ -53,28 +58,28 @@ export const addProposalApi = async (data: ProposalData) => {
   }
 };
 
-export const getProposalByIdAPI = async (id: string) => {
-  const config = getConfigWithToken();
-  try {
-    // const result = await api.call(
-    //   `api/v1/artist/category/id/${id}/artists`,
-    //   config
-    // );
-    // return result;
-  } catch (error) {
-    throw error;
-  }
-};
+// export const getProposalByIdAPI = async (id: string) => {
+//   const config = getConfigWithToken();
+//   try {
+//     // const result = await api.call(
+//     //   `api/v1/artist/category/id/${id}/artists`,
+//     //   config
+//     // );
+//     // return result;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
-export const getProposalByArtistSlugAPI = async (slug: string) => {
-  const config = getConfig();
-  try {
-    // const result = await api.call(
-    //   `api/v1/artist/category/slug/${slug}/artists`,
-    //   config
-    // );
-    // return result;
-  } catch (error) {
-    throw error;
-  }
-};
+// export const getProposalByArtistSlugAPI = async (slug: string) => {
+//   const config = getConfig();
+//   try {
+//     // const result = await api.call(
+//     //   `api/v1/artist/category/slug/${slug}/artists`,
+//     //   config
+//     // );
+//     // return result;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
