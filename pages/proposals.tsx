@@ -90,12 +90,12 @@ const ProposalsPage = ({
         const resultArtists: JSX.Element[] = [];
         const now = new Date();
         let data = allProposals.length != 0 ? allProposals[0].data : [];
-        // data.sort((a, b) => b.createdDate - a.createdDate);
+        data.sort((a, b) => b.proposal.createdDate - a.proposal.createdDate);
         data.forEach(proposal => {
             resultArtists.push(
                 <div className="row p-2 bg-white rounded contest-card">
                     <Card
-                        title={proposal.title}
+                        title={proposal.proposal.title}
                         style={{ height: '100%' }}
                         extra={
                             <>
@@ -105,7 +105,7 @@ const ProposalsPage = ({
                         }
                     >
                         <div>
-                            {proposal.description}
+                            {proposal.proposal.description}
                         </div>
                     </Card>
                 </div>
@@ -146,7 +146,7 @@ const ProposalsPage = ({
                                             Artists, your next collaboration opportunity is here 😎
                                         </h1>
                                         <h3 className="common-h3-style">
-                                            Let's work together and create something amazing!
+                                            Checkout these amazing proposals by fellow artists and show interest!
                                         </h3>
                                     </div>
                                 </div>
@@ -160,16 +160,15 @@ const ProposalsPage = ({
                                 </div>
                             </div>
                         </div>
-                        <div className="allProposalsPage-createProposalButton">
-                            <Button
-                                block
-                                className="common-medium-btn"
+                        <div style={{ paddingTop: "10px" }}>
+                            <button
+                                className="createProposalButton common-medium-btn"
                                 onClick={() => {
                                     setShowProposalModal(true);
                                 }}
                             >
                                 Create Proposal
-                            </Button>
+                            </button>
                         </div>
                         <div className="col-md-12 listingContainer">
                             {getAllProposals(allProposals)}

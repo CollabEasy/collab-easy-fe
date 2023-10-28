@@ -37,12 +37,12 @@ const postConfig = (dataToSend) => {
   };
 };
 
-export const getAllProposals = async () => {
+export const getAllProposalsApi = async () => {
   let dataToSend = {"categories": []}
   const config = postConfig(dataToSend);
   try {
-      const categories = await api.call("api/v1/proposal/get", config);
-      return categories;
+      const proposals = await api.call("api/v1/proposal/get", config);
+      return proposals;
   } catch (error) {
     throw error;
   }

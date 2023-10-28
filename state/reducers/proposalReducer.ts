@@ -3,7 +3,7 @@ import * as actionType from "../actionTypes/proposalActionTypes";
 
 const initialState: ProposalState = {
   proposals: [],
-  proposalCount: 0,
+  proposalCount: -1,
   isAddingProposal: false,
   isfetchingProposal: false,
   isFetchingAllProposals: false,
