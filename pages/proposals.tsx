@@ -12,12 +12,14 @@ import { routeToHref } from "config/routes";
 import Image from 'next/image';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
-import { GetContestStatus } from "helpers/contest";
+import { GetContestStatus, GetDateString } from "helpers/contest";
 import Layout from "@/components/layout";
 import detailsImage from "../public/images/proposal.svg";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
+import moment from "moment";
+import { GetUserSkillsTags } from "helpers/proposalHelper";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -63,6 +65,8 @@ const ProposalsPage = ({
         emptyProposalData
     );
 
+    const { toArtist, toArtistProfile } = useRoutesContext();
+
     const { toProposalPage } = useRoutesContext();
     const [allProposals, setAllProposals] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
@@ -86,6 +90,7 @@ const ProposalsPage = ({
         setAllProposals(proposal.proposals);
     }, [user, artistListData, proposal.proposals]);
 
+    // https://bootsnipp.com/snippets/5MqgR
     const getAllProposals = (allProposals) => {
         const resultArtists: JSX.Element[] = [];
         const now = new Date();
@@ -94,39 +99,43 @@ const ProposalsPage = ({
         data.forEach(proposal => {
             resultArtists.push(
                 <div className="ui-block">
-                <article className="hentry post">
-                   <div className="m-link">
-                      <a href="#"  target="_blank">
-                         <h4>Why should I follow you, in five sentences?</h4>
-                      </a>
-                   </div>
-                   <div className="post__author author vcard inline-items">
-                      {/* <img src="https://a11.t26.net/taringa/avatares/9/1/2/F/7/8/Demon_King1/48x48_5C5.jpg" alt="author"> */}
-                      <div className="author-date">
-                         <a className="h6 post__author-name fn" href="#">Dipendra Singh</a>
-                         <div className="post__date">
-                            <time className="published" dateTime="2004-07-24T18:18">
-                            Answered 2h ago
-                            </time>
-                         </div>
-                      </div>
-                      <div className="more">
-                         <a href="#">
-                         <i className="fa fa-ellipsis-v"></i>
-                         </a>
-                      </div>
-                   </div>
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.
-                   </p>
-                   <div className="post-additional-info inline-items">
-                      <p>
-                         <a href="#" className="btn btn-sm btn-light"><span className="fa fa-pencil"></span> Answer</a>
-                         <a href="#" className="btn btn-sm btn-light"> Pass</a>
-                      </p>
-                   </div>
-                </article>
-             </div>
+                    <article className="hentry post">
+                        <div className="m-link">
+                            <a href={toProposalPage(proposal.proposal.proposalId).as} target="_blank">
+                                <h4>{proposal.proposal.title}</h4>
+                            </a>
+                        </div>
+                        <div className="post__author author vcard inline-items">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={proposal.creatorProfilePicUrl} alt="author" />
+                            <div className="author-date">
+                                <a className="h6 post__author-name fn" href={toArtistProfile(proposal.creatorSlug).as} target="_blank">
+                                    {proposal.creatorFirstName} {proposal.creatorLastName}
+                                </a>
+                                <div className="post__date">
+                                    <time className="published" dateTime="2004-07-24T18:18">
+                                        Created at  {GetDateString(proposal.proposal.createdAt)}
+                                    </time>
+                                </div>
+                            </div>
+                            <div className="more">
+                                <a href="#">
+                                    <i className="fa fa-ellipsis-v"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <p>
+                            {proposal.proposal.description}
+                        </p>
+                        <div className="post-additional-info inline-items">
+                            <p>
+                                {GetUserSkillsTags(proposal.proposal.categories)}
+                                {/* <a href="#" className="btn btn-sm btn-light"><span className="fa fa-pencil"></span> Answer</a>
+                                <a href="#" className="btn btn-sm btn-light"> Pass</a> */}
+                            </p>
+                        </div>
+                    </article>
+                </div>
             )
         });
         return resultArtists;
@@ -178,17 +187,17 @@ const ProposalsPage = ({
                                 </div>
                             </div>
                         </div>
-                        <div style={{ paddingTop: "10px" }}>
+                        <div className="col-md-12 listingContainer">
+                            <div>
                             <button
                                 className="createProposalButton common-medium-btn"
                                 onClick={() => {
                                     setShowProposalModal(true);
                                 }}
                             >
-                                Create Proposal
+                                Add Proposal
                             </button>
-                        </div>
-                        <div className="col-md-12 listingContainer">
+                            </div>
                             {getAllProposals(allProposals)}
                         </div>
                     </div>
