@@ -27,6 +27,7 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getAllCategories: () => dispatch(action.getAllCategories()),
     createProposal: (data: any) => dispatch(action.addProposal(data)),
+    // updateProposal: (data: any) => dispatch(action.)
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -51,7 +52,7 @@ const CreateProposalModal = ({
     onCancel,
     getAllCategories,
     createProposal,
-    updateProposal,
+    // updateProposal,
 }: Props) => {
     const newProposalData: ProposalData = {
         artistId: proposalDetails.artistId,
@@ -93,7 +94,7 @@ const CreateProposalModal = ({
             "proposal_status": "ACTIVE"
         }
         if (isEditMode) {
-            updateProposal(obj);
+            // updateProposal(obj);
         } else {
             createProposal(obj);
         }
