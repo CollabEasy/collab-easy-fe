@@ -132,7 +132,9 @@ const CreateProposalModal = ({
                                     type: "string"
                                 }]}
                             >
-                                <Input
+                                <Input.TextArea
+                                    maxLength={250}
+                                    showCount
                                     value={proposalData.title}
                                     onChange={(e) => {
                                         setProposalData((prevState) => ({

@@ -50,26 +50,26 @@ export const fetchAllProposalsLogic = createLogic<
 });
 
 
-// export const fetchProposalByIdLogic = createLogic<
-//     AppState,
-//     FSACreatorPayload<typeof actions.fetchProposalById>,
-//     any,
-//     LogicDeps
-// >({
-//     type: [actionTypes.FETCH_PROPOSAL_BY_ID],
-//     async process({ action, api }, dispatch, done) {
-//         const { id } = action.payload;
-//         try {
-//             dispatch(actions.fetchProposalByIdRequest());
-//             const result = await proposalApi.getProposalByIdAPI(id);
-//             dispatch(actions.fetchProposalByIdSuccess(result));
-//         } catch (error) {
-//             dispatch(actions.fetchProposalByIdFalilure(error));
-//         } finally {
-//             done();
-//         }
-//     },
-// });
+export const fetchProposalByIdLogic = createLogic<
+    AppState,
+    FSACreatorPayload<typeof actions.fetchProposalById>,
+    any,
+    LogicDeps
+>({
+    type: [actionTypes.FETCH_PROPOSAL_BY_ID],
+    async process({ action, api }, dispatch, done) {
+        const  id = action.payload.id;
+        try {
+            dispatch(actions.fetchProposalByIdRequest());
+            const result = await proposalApi.getProposalByIdAPI(id);
+            dispatch(actions.fetchProposalByIdSuccess(result));
+        } catch (error) {
+            dispatch(actions.fetchProposalByIdFalilure(error));
+        } finally {
+            done();
+        }
+    },
+});
 
 // export const fetchProposalByArtistSlugLogic = createLogic<
 //     AppState,

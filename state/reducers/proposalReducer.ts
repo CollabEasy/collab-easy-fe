@@ -2,6 +2,7 @@ import { ProposalState } from "types/states";
 import * as actionType from "../actionTypes/proposalActionTypes";
 
 const initialState: ProposalState = {
+    proposal: [],
     proposals: [],
     proposalCount: -1,
     isAddingProposal: false,
@@ -31,6 +32,24 @@ const proposalReducer = (state = initialState, action): ProposalState => {
                 isFetchingAllProposals: false,
             };
 
+        case actionType.FETCH_PROPOSAL_BY_ID_REQUEST:
+            return {
+                ...state,
+                proposal: [],
+                isfetchingProposal: true,
+            };
+        case actionType.FETCH_PROPOSAL_BY_ID_SUCCESS:
+            return {
+                ...state,
+                proposal: [action.payload.data],
+                isfetchingProposal: false,
+            };
+        case actionType.FETCH_PROPOSAL_BY_ID_FAILURE:
+            return {
+                ...state,
+                isfetchingProposal: false,
+            };
+
         case actionType.ADD_PROPOSAL_REQUEST:
             return {
                 ...state,
@@ -39,7 +58,7 @@ const proposalReducer = (state = initialState, action): ProposalState => {
         case actionType.ADD_PROPOSAL_SUCCESS:
             let updatedProposals = []
             if (state.proposals.length > 0) {
-                const oldProposals= state.proposals[0]["data"];
+                const oldProposals = state.proposals[0]["data"];
                 oldProposals.forEach((proposal, index) => {
                     updatedProposals.push(proposal);
                 });
@@ -47,7 +66,7 @@ const proposalReducer = (state = initialState, action): ProposalState => {
             updatedProposals.push(action.payload.data["data"]);
             return {
                 ...state,
-                proposals:  [{"data": updatedProposals}],
+                proposals: [{ "data": updatedProposals }],
                 proposalCount: updatedProposals.length,
                 isAddingProposal: false,
             };

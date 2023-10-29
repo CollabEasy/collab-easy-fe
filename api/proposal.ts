@@ -21,7 +21,7 @@ const getConfigWithToken = () => {
   };
 };
 
-const getConfig = (dataToSend) => {
+const getConfig = () => {
   return {
     method: "get",
   };
@@ -58,18 +58,18 @@ export const addProposalApi = async (data: ProposalData) => {
   }
 };
 
-// export const getProposalByIdAPI = async (id: string) => {
-//   const config = getConfigWithToken();
-//   try {
-//     // const result = await api.call(
-//     //   `api/v1/artist/category/id/${id}/artists`,
-//     //   config
-//     // );
-//     // return result;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+export const getProposalByIdAPI = async (id: string) => {
+  const config = getConfigWithToken();
+  try {
+    const result = await api.call(
+      `api/v1/proposal/${id}`,
+      config
+    );
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // export const getProposalByArtistSlugAPI = async (slug: string) => {
 //   const config = getConfig();

@@ -40,7 +40,9 @@ export const addProposalSuccess = (data: any) => ({
 
 export const fetchProposalById = (id : string) => ({
     type: actionType.FETCH_PROPOSAL_BY_ID,
-    payload: {}
+    payload: {
+        id
+    }
 })
 
 export const fetchProposalByIdRequest = () => ({
