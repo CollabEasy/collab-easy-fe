@@ -43,11 +43,7 @@ const NotAuthorised = ({
 
   let message = error.length !== 0 ? error : "Create a new account or log in to your existing account to get the most from wondor!";
   return (
-    <Layout
-      title={"Join Wondor now!"}
-      name={"description"}
-      content="Create a new account or log in to your existing account to get the most from wondor!"
-    >
+    <>
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
       {showProfileModal && <NewUserModal />}
 
@@ -67,7 +63,7 @@ const NotAuthorised = ({
           />
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

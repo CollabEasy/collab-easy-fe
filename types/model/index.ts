@@ -7,3 +7,4 @@ export * from "./collab";
 export * from "./searchResult";
 export * from "./prospectusEntry";
 export * from "./contest";
+export * from "./proposal";
