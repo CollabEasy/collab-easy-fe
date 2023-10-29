@@ -89,7 +89,6 @@ const CreateProposalModal = ({
             "collab_type": proposalData.collabType,
             "proposal_status": "ACTIVE"
         }
-        console.log(obj);
         createProposal(obj);
     };
 

@@ -95,7 +95,7 @@ const ProposalsPage = ({
         const resultArtists: JSX.Element[] = [];
         const now = new Date();
         let data = allProposals.length != 0 ? allProposals[0].data : [];
-        data.sort((a, b) => b.proposal.createdDate - a.proposal.createdDate);
+        data.sort((a, b) => b.proposal.createdAt - a.proposal.createdAt);
         data.forEach(proposal => {
             resultArtists.push(
                 <div className="ui-block">
@@ -189,14 +189,14 @@ const ProposalsPage = ({
                         </div>
                         <div className="col-md-12 listingContainer">
                             <div>
-                            <button
-                                className="createProposalButton common-medium-btn"
-                                onClick={() => {
-                                    setShowProposalModal(true);
-                                }}
-                            >
-                                Add Proposal
-                            </button>
+                                <button
+                                    className="createProposalButton common-medium-btn"
+                                    onClick={() => {
+                                        setShowProposalModal(true);
+                                    }}
+                                >
+                                    Add Proposal
+                                </button>
                             </div>
                             {getAllProposals(allProposals)}
                         </div>

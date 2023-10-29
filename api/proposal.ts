@@ -49,7 +49,7 @@ export const getAllProposalsApi = async () => {
 };
 
 export const addProposalApi = async (data: ProposalData) => {
-  const config = postConfig(data);
+  const config = postConfigWithToken(data);
   try {
     const proposal = await api.call("api/v1/proposal/create", config);
     return proposal;

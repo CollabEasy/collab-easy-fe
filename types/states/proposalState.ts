@@ -1,7 +1,7 @@
 import { ProposalData } from "types/model";
 
 export interface ProposalState {
-    proposals: ProposalData[];
+    proposals: any[];
     proposalCount: number;
     isAddingProposal: boolean;
     isfetchingProposal: boolean;
