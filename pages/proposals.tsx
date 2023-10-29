@@ -136,6 +136,14 @@ const ProposalsPage = ({
                                 {/* <a href="#" className="btn btn-sm btn-light"><span className="fa fa-pencil"></span> Answer</a>
                                 <a href="#" className="btn btn-sm btn-light"> Pass</a> */}
                             </p>
+                            <p className="social-icons">
+                                {proposal.proposal.proposalStatus === "ACTIVE" ? (
+                                    <Tag color="green">{proposal.proposal.proposalStatus}</Tag>
+                                ) : (
+                                    <Tag color="grey">{proposal.proposal.proposalStatus}</Tag>
+                                )}
+                                <Tag color="orange">{proposal.proposal.collabType}</Tag>  
+                            </p>
                         </div>
                     </article>
                 </div>
@@ -192,14 +200,15 @@ const ProposalsPage = ({
                         </div>
                         <div className="col-md-12 listingContainer">
                             <div>
-                                <button
+                                <Button 
+                                    type="text"
                                     className="createProposalButton common-medium-btn"
                                     onClick={() => {
                                         setShowCreateOrUpdateProposalModal(true);
                                     }}
                                 >
-                                    Add Proposal
-                                </button>
+                                Add Proposal
+                                </Button>
                             </div>
                             {getAllProposals(allProposals)}
                         </div>
