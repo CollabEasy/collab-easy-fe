@@ -32,12 +32,15 @@ const mapStateToProps = (state: AppState) => {
     const artistListData = state.home.artistListDetails;
     const proposal = state.proposal;
     const isFetchingAllProposals = state.proposal.isFetchingAllProposals;
-    return { user, isLoggedIn, artistListData, loginModalDetails, proposal, isFetchingAllProposals }
+    const showCreateOrEditProposalModal = state.proposal.showCreateOrUpdateProposalModal;
+    return { user, isLoggedIn, artistListData, loginModalDetails, proposal, isFetchingAllProposals, showCreateOrEditProposalModal }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     fetchAllProposals: () =>
         dispatch(actions.getAllProposals()),
+    setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(actions.setShowCreateOrUpdateProposalModal(show)),
+
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -50,8 +53,10 @@ const ProposalsPage = ({
     loginModalDetails,
     artistListData,
     proposal,
+    showCreateOrEditProposalModal,
     isFetchingAllProposals,
     fetchAllProposals,
+    setShowCreateOrUpdateProposalModal,
 }: Props) => {
 
     const emptyProposalData: ProposalData = {
@@ -69,7 +74,6 @@ const ProposalsPage = ({
     const { toArtistProfile, toProposalPage } = useRoutesContext();
     const [allProposals, setAllProposals] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
-    const [showProposalModal, setShowProposalModal] = useState(false);
 
     const router = useRouter();
 
@@ -92,7 +96,6 @@ const ProposalsPage = ({
     // https://bootsnipp.com/snippets/5MqgR
     const getAllProposals = (allProposals) => {
         const resultArtists: JSX.Element[] = [];
-        const now = new Date();
         let data = allProposals.length != 0 ? allProposals[0].data : [];
         data.sort((a, b) => b.proposal.createdAt - a.proposal.createdAt);
         data.forEach(proposal => {
@@ -125,7 +128,7 @@ const ProposalsPage = ({
                         </div>
                         <p className="common-p-style">
                             {proposal.proposal.description}
-                            
+
                         </p>
                         <div className="post-additional-info inline-items">
                             <p>
@@ -192,7 +195,7 @@ const ProposalsPage = ({
                                 <button
                                     className="createProposalButton common-medium-btn"
                                     onClick={() => {
-                                        setShowProposalModal(true);
+                                        setShowCreateOrUpdateProposalModal(true);
                                     }}
                                 >
                                     Add Proposal
@@ -203,10 +206,10 @@ const ProposalsPage = ({
                     </div>
                 </>
             )}
-            {showProposalModal && (
+            {showCreateOrEditProposalModal && (
                 <CreateProposalModal
                     onCancel={() => {
-                        setShowProposalModal(false);
+                        setShowCreateOrUpdateProposalModal(false);
                     }}
                     isViewMode={true}
                     isEditMode={false}

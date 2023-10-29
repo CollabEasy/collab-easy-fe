@@ -38,11 +38,11 @@ const postConfig = (dataToSend) => {
 };
 
 export const getAllProposalsApi = async () => {
-  let dataToSend = {"categories": []}
+  let dataToSend = { "categories": [] }
   const config = postConfig(dataToSend);
   try {
-      const proposals = await api.call("api/v1/proposal/get", config);
-      return proposals;
+    const proposals = await api.call("api/v1/proposal/get", config);
+    return proposals;
   } catch (error) {
     throw error;
   }
@@ -69,11 +69,11 @@ export const updateProposalApi = async (proposalId: string, data: ProposalData) 
   }
 };
 
-export const getProposalByIdAPI = async (id: string) => {
-  const config = getConfigWithToken();
+export const getProposalByIdApi = async (proposalId: string) => {
+  const config = getConfig();
   try {
     const result = await api.call(
-      `api/v1/proposal/${id}`,
+      `api/v1/proposal/${proposalId}`,
       config
     );
     return result;

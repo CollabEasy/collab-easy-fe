@@ -7,4 +7,5 @@ export interface ProposalState {
     isAddingProposal: boolean;
     isfetchingProposal: boolean;
     isFetchingAllProposals: boolean;
+    showCreateOrUpdateProposalModal: boolean;
 }

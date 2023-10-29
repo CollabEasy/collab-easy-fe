@@ -8,6 +8,7 @@ const initialState: ProposalState = {
     isAddingProposal: false,
     isfetchingProposal: false,
     isFetchingAllProposals: false,
+    showCreateOrUpdateProposalModal: false,
 };
 
 const proposalReducer = (state = initialState, action): ProposalState => {
@@ -96,6 +97,13 @@ const proposalReducer = (state = initialState, action): ProposalState => {
                 ...state,
                 isAddingProposal: false,
             };
+
+        case actionType.SHOW_CREATE_OR_UPDATE_PROPOSAL_MODAL:
+            return {
+                ...state,
+                showCreateOrUpdateProposalModal: action.payload.show,
+            }
+
         default:
             return state;
     }

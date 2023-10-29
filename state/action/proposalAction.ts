@@ -58,10 +58,10 @@ export const updateProposalSuccess = (data: any) => ({
     },
 });
 
-export const fetchProposalById = (id : string) => ({
+export const fetchProposalById = (proposalId : string) => ({
     type: actionType.FETCH_PROPOSAL_BY_ID,
     payload: {
-        id
+        proposalId
     }
 })
 
@@ -109,3 +109,10 @@ export const fetchProposalByArtistSlugFalilure = (data: any) => ({
         data
     }
 })
+
+export const setShowCreateOrUpdateProposalModal = (show: boolean) => ({
+	type: actionType.SHOW_CREATE_OR_UPDATE_PROPOSAL_MODAL,
+	payload: {
+		show
+	}
+});

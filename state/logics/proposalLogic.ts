@@ -81,10 +81,10 @@ export const fetchProposalByIdLogic = createLogic<
 >({
     type: [actionTypes.FETCH_PROPOSAL_BY_ID],
     async process({ action, api }, dispatch, done) {
-        const  id = action.payload.id;
+        const proposalId = action.payload.proposalId;
         try {
             dispatch(actions.fetchProposalByIdRequest());
-            const result = await proposalApi.getProposalByIdAPI(id);
+            const result = await proposalApi.getProposalByIdApi(proposalId);
             dispatch(actions.fetchProposalByIdSuccess(result));
         } catch (error) {
             dispatch(actions.fetchProposalByIdFalilure(error));

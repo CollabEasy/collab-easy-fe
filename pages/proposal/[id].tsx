@@ -26,15 +26,18 @@ const mapStateToProps = (state: AppState) => {
     const isLoggedIn = state.user.isLoggedIn;
     const loginModalDetails = state.home.loginModalDetails;
     const proposal = state.proposal;
+    const showCreateOrEditProposalModal = state.proposal.showCreateOrUpdateProposalModal;
     // const proposalComments = state.proposalComments;
     const isfetchingProposal = state.proposal.isfetchingProposal;
     // const isAddingProposalComment = state.proposalComments.isAddingProposalComment;
-    return { user, isLoggedIn, loginModalDetails, proposal, isfetchingProposal }
+    return { user, isLoggedIn, loginModalDetails, proposal, isfetchingProposal, showCreateOrEditProposalModal }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getProposalByIdAction: (id: string) => dispatch(action.fetchProposalById(id)),
     updateProposal: (proposalId: string, data: any) => dispatch(action.updateProposal(proposalId, data)),
+    setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(action.setShowCreateOrUpdateProposalModal(show)),
+
     // fetchProposalCommentById: (proposalId: string) => dispatch(action.fetchProposalCommentByProposalId(proposalId)),
     // addProposalComment: (data: any) => dispatch(action.addProposalComment(data)),
 });
@@ -49,9 +52,11 @@ const ProposalPage = ({
     loginModalDetails,
     isfetchingProposal,
     proposal,
+    showCreateOrEditProposalModal,
     // isAddingProposalComment,
     getProposalByIdAction,
-    updateProposal
+    updateProposal,
+    setShowCreateOrUpdateProposalModal,
     // fetchProposalCommentById,
     // addProposalComment,
 }: Props) => {
@@ -59,11 +64,8 @@ const ProposalPage = ({
     const { toArtistProfile } = useRoutesContext();
 
     const { confirm } = Modal;
-    const [showProposalModal, setShowProposalModal] = useState(false);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-    const [comment, setComment] = useState("");
     const [proposalData, setProposalData] = useState();
-    const [collabConversationComments, setProposalComments] = useState<any>([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     const router = useRouter();
@@ -71,32 +73,8 @@ const ProposalPage = ({
 
     useEffect(() => {
         getProposalByIdAction(proposalId as string);
-        // fetchProposalCommentById(proposalId as string);
     }, []);
 
-    // const saveComment = () => {
-    //     let obj = {
-    //         "proposal_id": proposalId,
-    //         "content": comment,
-    //     }
-    //     // addProposalComment({
-    //     //     obj
-    //     // });
-    //     setComment("");
-    // }
-
-    const showConfirm = () => {
-        confirm({
-            title: 'Are you sure you want to show inteerst?',
-            content: 'This will start an email thread between you two',
-            onOk() {
-                console.log('OK');
-            },
-            onCancel() {
-                console.log('Cancel');
-            },
-        });
-    };
     const confirmCloseProposal = (proposalData) => {
         confirm({
             title: 'Are you sure you want to close this proposal?',
@@ -108,7 +86,6 @@ const ProposalPage = ({
                     "collab_type": proposalData.collabType,
                     "proposal_status": "CLOSED",
                 }
-                console.log(obj);
                 updateProposal(proposalData.proposalId, obj);
             },
             onCancel() {
@@ -119,7 +96,6 @@ const ProposalPage = ({
 
     const getProposalCard = () => {
         let data = proposal.proposal.length != 0 ? proposal.proposal[0].data : [];
-        console.log(data);
         return (
             <div className="ui-block">
                 <>
@@ -164,7 +140,7 @@ const ProposalPage = ({
                                 <EditOutlined style={{ fontSize: "20px" }}
                                     onClick={() => {
                                         setProposalData(data.proposal);
-                                        setShowProposalModal(true);
+                                        setShowCreateOrUpdateProposalModal(true);
                                     }}
                                 />
                             </span>
@@ -231,34 +207,6 @@ const ProposalPage = ({
         );
     }
 
-    const getCollabConversationElement = () => {
-        const collabComments: JSX.Element[] = [];
-        // let data = collabConversationComments.length != 0 ? collabConversationComments[0].data : [];
-        let data = [
-            {
-                "author": "rahul-gupta-1",
-                "content": "this is a dummy comment",
-                "createdAt": "12-01-2302",
-            }
-        ];
-        data.forEach(element => {
-            collabComments.push(
-                <div>
-                    <Comment
-                        author={element["author"]}
-                        content={
-                            <p>{element["content"]}</p>
-                        }
-                        datetime={
-                            <span>{ConvertTimestampToDate(element["createdAt"]).toLocaleDateString("en-US")}</span>
-                        }
-                    />
-                </div>
-            )
-        });
-        return collabComments;
-    }
-
     return (
         <Layout
             title={"Collab request | Wondor "}
@@ -270,8 +218,7 @@ const ProposalPage = ({
             <>
                 {loginModalDetails.openModal && !user.new_user && (
                     <LoginModal />
-                )
-                }
+                )}
                 {showProfileModal && (
                     <NewUserModal />
                 )
@@ -291,36 +238,13 @@ const ProposalPage = ({
                                 {getProposalCard()}
                             </>
                         )}
-
-                        {/* {isAddingProposalComment ? (
-                            <Loader />
-                        ) : ( 
-                        <div className="collabDetailsPage_newCommentContainer">
-                            {getCollabConversationElement()}
-                        </div>
-                        )} */}
-
-                        {/* <div className="collabDetailsPage_newCommentContainer">
-                            <div>
-                                <TextArea
-                                    rows={4}
-                                    placeholder="What is in your mind?"
-                                    maxLength={500}
-                                    showCount
-                                    onChange={(e) =>
-                                        setComment(e.target.value)}
-                                    value={comment}
-                                />
-                                <Button type="primary" className="collabDetailsPage_buttonContainer" onClick={saveComment}>Send</Button>
-                            </div>
-                        </div> */}
                     </div>
                 )}
 
-                {showProposalModal && (
+                {showCreateOrEditProposalModal && (
                     <CreateProposalModal
                         onCancel={() => {
-                            setShowProposalModal(false);
+                            setShowCreateOrUpdateProposalModal(false);
                         }}
                         isViewMode={true}
                         isEditMode={true}
