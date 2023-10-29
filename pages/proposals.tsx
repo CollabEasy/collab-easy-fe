@@ -102,7 +102,7 @@ const ProposalsPage = ({
                     <article className="hentry post">
                         <div className="m-link">
                             <a href={toProposalPage(proposal.proposal.proposalId).as} target="_blank">
-                                <h4>{proposal.proposal.title}</h4>
+                                <h4 className="common-h4-style">{proposal.proposal.title}</h4>
                             </a>
                         </div>
                         <div className="post__author author vcard inline-items">
@@ -113,7 +113,7 @@ const ProposalsPage = ({
                                     {proposal.creatorFirstName} {proposal.creatorLastName}
                                 </a>
                                 <div className="post__date">
-                                    <time className="published" dateTime="2004-07-24T18:18">
+                                    <time className="published common-p-style ">
                                         Created at  {GetDateString(proposal.proposal.createdAt)}
                                     </time>
                                 </div>
@@ -124,7 +124,7 @@ const ProposalsPage = ({
                                 </a>
                             </div>
                         </div>
-                        <p>
+                        <p className="common-p-style">
                             {proposal.proposal.description}
                         </p>
                         <div className="post-additional-info inline-items">
