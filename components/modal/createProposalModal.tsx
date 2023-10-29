@@ -63,7 +63,7 @@ const CreateProposalModal = ({
         proposalId: proposalDetails.proposalId,
         title: proposalDetails.title,
         description: proposalDetails.description,
-        categories: Object.values(proposalDetails.categories),
+        categories: [],
         categories_ids: result,
         collabType: proposalDetails.collabType,
         status: proposalDetails.status,

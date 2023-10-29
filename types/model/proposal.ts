@@ -4,7 +4,7 @@ export interface ProposalData {
     title: string;
     description: string;
     collabType: string;
-    categories: string[];
+    categories: {};
     categories_ids: number[];
     status: string;
   }

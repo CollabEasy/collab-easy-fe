@@ -39,6 +39,7 @@ const proposalReducer = (state = initialState, action): ProposalState => {
                 isfetchingProposal: true,
             };
         case actionType.FETCH_PROPOSAL_BY_ID_SUCCESS:
+            console.log("fetch", action.payload.data);
             return {
                 ...state,
                 proposal: [action.payload.data],
@@ -83,23 +84,15 @@ const proposalReducer = (state = initialState, action): ProposalState => {
                 isAddingProposal: true,
             };
         case actionType.UPDATE_PROPOSAL_SUCCESS:
-            let updatedProposals = []
-            console.log(action.payload.data);
-            if (state.proposals.length > 0) {
-                const oldProposals = state.proposals[0]["data"];
-                oldProposals.forEach((proposal, index) => {
-                    updatedProposals.push(proposal);
-                });
-            }
-            updatedProposals.push(action.payload.data["data"]);
+            let updatedProposal = state.proposal;
+            updatedProposal[0].data["proposal"] = action.payload.data["data"];
             return {
                 ...state,
-                proposals: [{ "data": updatedProposals }],
-                proposalCount: updatedProposals.length,
+                proposal: updatedProposal,
                 isAddingProposal: false,
             };
 
-        case actionType.ADD_PROPOSAL_FAILURE:
+        case actionType.UPDATE_PROPOSAL_FAILURE:
             return {
                 ...state,
                 isAddingProposal: false,

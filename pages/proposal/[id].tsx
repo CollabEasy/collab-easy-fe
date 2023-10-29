@@ -101,16 +101,18 @@ const ProposalPage = ({
         return (
             <div className="ui-block">
                 <article className="hentry post">
-                    <div className="m-link" style={{display: "flex", flexDirection: "row"}}>
+                    <div className="m-link" style={{ display: "flex", flexDirection: "row" }}>
                         <span><h4 className="common-h4-style">{data.proposal.title}</h4></span>
-                        <span style={{marginLeft: "20px"}}>
-                            <EditOutlined style={{ fontSize: "20px" }}
-                                onClick={() => {
-                                    setProposalData(data.proposal);
-                                    setShowProposalModal(true);
-                                }}
-                            />
-                        </span>
+                        {user.artist_id === data.proposal.createdBy && (
+                            <span style={{ marginLeft: "20px" }}>
+                                <EditOutlined style={{ fontSize: "20px" }}
+                                    onClick={() => {
+                                        setProposalData(data.proposal);
+                                        setShowProposalModal(true);
+                                    }}
+                                />
+                            </span>
+                        )}
                     </div>
                     <div className="post__author author vcard inline-items">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -134,11 +136,28 @@ const ProposalPage = ({
                     <p className="common-p-style">
                         {data.proposal.description}
                     </p>
+                    <p>
+                        {GetUserSkillsTags(data.proposal.categories)}
+                    </p>
                     <div className="post-additional-info inline-items">
                         <p>
-                            {GetUserSkillsTags(data.proposal.categories)}
-                            {/* <a href="#" className="btn btn-sm btn-light"><span className="fa fa-pencil"></span> Answer</a>
-                                <a href="#" className="btn btn-sm btn-light"> Pass</a> */}
+                            {user.artist_id === data.proposal.createdBy ? (
+                                <Button
+                                    type="primary"
+                                >
+                                    Interested Artists
+                                </Button>
+                            ) : (
+                                <Button>
+                                    Show Interest
+                                </Button>
+                            )}
+
+                            {user.artist_id === data.proposal.createdBy && (
+                                <Button>
+                                    Close Proposal
+                                </Button>
+                            )}
                         </p>
                     </div>
                 </article>

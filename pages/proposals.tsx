@@ -125,6 +125,7 @@ const ProposalsPage = ({
                         </div>
                         <p className="common-p-style">
                             {proposal.proposal.description}
+                            
                         </p>
                         <div className="post-additional-info inline-items">
                             <p>
