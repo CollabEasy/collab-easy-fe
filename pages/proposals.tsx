@@ -103,7 +103,7 @@ const ProposalsPage = ({
                 <div className="ui-block">
                     <article className="hentry post">
                         <div className="m-link">
-                            <a href={toProposalPage(proposal.proposal.proposalId).as} target="_blank">
+                            <a href={toProposalPage(proposal.proposal.proposalId).as} target="_blank" rel="noreferrer">
                                 <h4 className="common-h4-style">{proposal.proposal.title}</h4>
                             </a>
                         </div>
@@ -111,7 +111,7 @@ const ProposalsPage = ({
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src={proposal.creatorProfilePicUrl} alt="author" />
                             <div className="author-date">
-                                <a className="h6 post__author-name fn" href={toArtistProfile(proposal.creatorSlug).as} target="_blank">
+                                <a className="h6 post__author-name fn" href={toArtistProfile(proposal.creatorSlug).as} target="_blank" rel="noreferrer">
                                     {proposal.creatorFirstName} {proposal.creatorLastName}
                                 </a>
                                 <div className="post__date">

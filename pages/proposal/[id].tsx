@@ -150,7 +150,7 @@ const ProposalPage = ({
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={data.creatorProfilePicUrl} alt="author" />
                         <div className="author-date">
-                            <a className="h6 post__author-name fn" href={toArtistProfile(data.creatorSlug).as} target="_blank">
+                            <a className="h6 post__author-name fn" href={toArtistProfile(data.creatorSlug).as} target="_blank" rel="noreferrer">
                                 {data.creatorFirstName} {data.creatorLastName}
                             </a>
                             <div className="post__date">
