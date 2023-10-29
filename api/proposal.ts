@@ -58,6 +58,17 @@ export const addProposalApi = async (data: ProposalData) => {
   }
 };
 
+export const updateProposalApi = async (proposalId: string, data: ProposalData) => {
+  const config = postConfigWithToken(data);
+  try {
+    let url = "api/v1/proposal/" + proposalId + "/update";
+    const proposal = await api.call(url, config);
+    return proposal;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getProposalByIdAPI = async (id: string) => {
   const config = getConfigWithToken();
   try {

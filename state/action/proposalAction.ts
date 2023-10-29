@@ -38,6 +38,26 @@ export const addProposalSuccess = (data: any) => ({
     },
 });
 
+export const updateProposal = (proposalId: string, data: any) => ({
+    type: actionType.UPDATE_PROPOSAL,
+    payload: {
+        proposalId,
+        data
+    },
+});
+
+export const updateProposalRequest = () => ({
+    type: actionType.UPDATE_PROPOSAL_REQUEST,
+    payload: {},
+})
+
+export const updateProposalSuccess = (data: any) => ({
+    type: actionType.UPDATE_PROPOSAL_SUCCESS,
+    payload: {
+        data
+    },
+});
+
 export const fetchProposalById = (id : string) => ({
     type: actionType.FETCH_PROPOSAL_BY_ID,
     payload: {

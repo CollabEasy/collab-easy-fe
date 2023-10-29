@@ -58,16 +58,15 @@ const ProposalsPage = ({
         title: "",
         description: "",
         artistId: "",
-        status: ""
+        status: "",
+        proposalId: "",
+        collabType: "",
+        categories: [],
+        categories_ids: []
     };
 
-    const [proposalData, setProposalData] = useState(
-        emptyProposalData
-    );
-
-    const { toArtist, toArtistProfile } = useRoutesContext();
-
-    const { toProposalPage } = useRoutesContext();
+    const [proposalData, setProposalData] = useState(emptyProposalData);
+    const { toArtistProfile, toProposalPage } = useRoutesContext();
     const [allProposals, setAllProposals] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showProposalModal, setShowProposalModal] = useState(false);

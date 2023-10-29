@@ -56,7 +56,35 @@ const proposalReducer = (state = initialState, action): ProposalState => {
                 isAddingProposal: true,
             };
         case actionType.ADD_PROPOSAL_SUCCESS:
+            let allProposals = []
+            if (state.proposals.length > 0) {
+                const oldProposals = state.proposals[0]["data"];
+                oldProposals.forEach((proposal, index) => {
+                    allProposals.push(proposal);
+                });
+            }
+            allProposals.push(action.payload.data["data"]);
+            return {
+                ...state,
+                proposals: [{ "data": allProposals }],
+                proposalCount: allProposals.length,
+                isAddingProposal: false,
+            };
+
+        case actionType.ADD_PROPOSAL_FAILURE:
+            return {
+                ...state,
+                isAddingProposal: false,
+            };
+
+        case actionType.UPDATE_PROPOSAL_REQUEST:
+            return {
+                ...state,
+                isAddingProposal: true,
+            };
+        case actionType.UPDATE_PROPOSAL_SUCCESS:
             let updatedProposals = []
+            console.log(action.payload.data);
             if (state.proposals.length > 0) {
                 const oldProposals = state.proposals[0]["data"];
                 oldProposals.forEach((proposal, index) => {

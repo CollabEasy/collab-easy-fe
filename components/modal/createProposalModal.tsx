@@ -27,7 +27,7 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getAllCategories: () => dispatch(action.getAllCategories()),
     createProposal: (data: any) => dispatch(action.addProposal(data)),
-    // updateProposal: (data: any) => dispatch(action.)
+    updateProposal: (proposalId: string, data: any) => dispatch(action.updateProposal(proposalId, data)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -52,13 +52,19 @@ const CreateProposalModal = ({
     onCancel,
     getAllCategories,
     createProposal,
-    // updateProposal,
+    updateProposal,
 }: Props) => {
+    
+    let result = Object.keys(proposalDetails.categories).map(function (key) {
+        return Number(key);
+    });
     const newProposalData: ProposalData = {
         artistId: proposalDetails.artistId,
+        proposalId: proposalDetails.proposalId,
         title: proposalDetails.title,
         description: proposalDetails.description,
         categories: Object.values(proposalDetails.categories),
+        categories_ids: result,
         collabType: proposalDetails.collabType,
         status: proposalDetails.status,
     };
@@ -66,6 +72,7 @@ const CreateProposalModal = ({
     const { Option } = Select;
     const [showModal, setViewModal] = useState(isViewMode);
     const [showProfileModal, setShowProfileModal] = useState(false);
+    const [proposalStatus, setProposalStatus] = useState("ACTIVE");
     const [proposalData, setProposalData] = useState<ProposalData>(newProposalData);
 
     useEffect(() => {
@@ -91,10 +98,10 @@ const CreateProposalModal = ({
             "proposal_description": proposalData.description,
             "category_ids": proposalData.categories,
             "collab_type": proposalData.collabType,
-            "proposal_status": "ACTIVE"
+            "proposal_status": proposalStatus,
         }
         if (isEditMode) {
-            // updateProposal(obj);
+            updateProposal(proposalData.proposalId, obj);
         } else {
             createProposal(obj);
         }
@@ -206,7 +213,7 @@ const CreateProposalModal = ({
                                         } else {
                                             setProposalData((prevState) => ({
                                                 ...prevState,
-                                                skills: value,
+                                                categories: value,
                                             }));
                                         }
                                     }}

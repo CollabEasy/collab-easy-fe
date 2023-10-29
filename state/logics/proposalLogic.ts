@@ -20,7 +20,30 @@ export const addProposalLogic = createLogic<
             const { data } = action.payload;
             const proposalData = await proposalApi.addProposalApi(data);
             dispatch(actions.addProposalSuccess(proposalData));
-            dispatch(notifActions.showNotification(true, 'The proposal has been successfully submitted for review 🥳'));
+            dispatch(notifActions.showNotification(true, 'The proposal has been successfully submitted 🥳'));
+        } catch (error) {
+            const error_response = error.response.data;
+            dispatch(notifActions.showNotification(false, error_response['err_str']));
+        } finally {
+            done();
+        }
+    },
+});
+
+export const updateProposalLogic = createLogic<
+    AppState,
+    FSACreatorPayload<typeof actions.updateProposal>,
+    any,
+    LogicDeps
+>({
+    type: [actionTypes.UPDATE_PROPOSAL],
+    async process({ action, api }, dispatch, done) {
+        try {
+            dispatch(actions.updateProposalRequest())
+            const { proposalId, data } = action.payload;
+            const proposalData = await proposalApi.updateProposalApi(proposalId, data);
+            dispatch(actions.updateProposalSuccess(proposalData));
+            dispatch(notifActions.showNotification(true, 'The proposal has been successfully updated 🥳'));
         } catch (error) {
             const error_response = error.response.data;
             dispatch(notifActions.showNotification(false, error_response['err_str']));
