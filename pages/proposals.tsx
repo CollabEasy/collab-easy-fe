@@ -209,6 +209,7 @@ const ProposalsPage = ({
                         setShowProposalModal(false);
                     }}
                     isViewMode={true}
+                    isEditMode={false}
                     proposalDetails={proposalData}
                 />
             )}

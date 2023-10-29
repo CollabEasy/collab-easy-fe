@@ -54,12 +54,13 @@ const ProposalPage = ({
     // addProposalComment,
 }: Props) => {
 
-    const { toArtist, toArtistProfile } = useRoutesContext();
+    const { toArtistProfile } = useRoutesContext();
 
     const { confirm } = Modal;
     const [showProposalModal, setShowProposalModal] = useState(false);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
     const [comment, setComment] = useState("");
+    const [proposalData, setProposalData] = useState();
     const [collabConversationComments, setProposalComments] = useState<any>([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
 
@@ -102,7 +103,14 @@ const ProposalPage = ({
                 <article className="hentry post">
                     <div className="m-link" style={{display: "flex", flexDirection: "row"}}>
                         <span><h4 className="common-h4-style">{data.proposal.title}</h4></span>
-                        <span style={{marginLeft: "20px"}}><EditOutlined style={{ fontSize: "20px" }}/></span>
+                        <span style={{marginLeft: "20px"}}>
+                            <EditOutlined style={{ fontSize: "20px" }}
+                                onClick={() => {
+                                    setProposalData(data.proposal);
+                                    setShowProposalModal(true);
+                                }}
+                            />
+                        </span>
                     </div>
                     <div className="post__author author vcard inline-items">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -224,15 +232,16 @@ const ProposalPage = ({
                     </div>
                 )}
 
-                {/* {showProposalModal && (
+                {showProposalModal && (
                     <CreateProposalModal
                         onCancel={() => {
                             setShowProposalModal(false);
                         }}
                         isViewMode={true}
-                        proposalDetails={emptyProposalData}
+                        isEditMode={true}
+                        proposalDetails={proposalData}
                     />
-                )} */}
+                )}
             </>
         </Layout>
     );

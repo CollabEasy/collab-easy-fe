@@ -34,6 +34,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type Props = {
     onCancel: () => void;
     isViewMode: boolean
+    isEditMode: boolean
     proposalDetails: ProposalData
 } & ConnectedProps<typeof connector>;
 
@@ -41,6 +42,7 @@ const CreateProposalModal = ({
     user,
     isLoggedIn,
     isViewMode,
+    isEditMode,
     loginModalDetails,
     artistListData,
     proposalDetails,
@@ -49,18 +51,19 @@ const CreateProposalModal = ({
     onCancel,
     getAllCategories,
     createProposal,
+    updateProposal,
 }: Props) => {
-    const { Option } = Select;
-    const [showModal, setViewModal] = useState(isViewMode);
-
     const newProposalData: ProposalData = {
         artistId: proposalDetails.artistId,
         title: proposalDetails.title,
         description: proposalDetails.description,
-        skills: proposalDetails.skills,
+        categories: Object.values(proposalDetails.categories),
+        collabType: proposalDetails.collabType,
         status: proposalDetails.status,
     };
 
+    const { Option } = Select;
+    const [showModal, setViewModal] = useState(isViewMode);
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [proposalData, setProposalData] = useState<ProposalData>(newProposalData);
 
@@ -85,11 +88,15 @@ const CreateProposalModal = ({
         let obj = {
             "proposal_title": proposalData.title,
             "proposal_description": proposalData.description,
-            "category_ids": proposalData.skills,
+            "category_ids": proposalData.categories,
             "collab_type": proposalData.collabType,
             "proposal_status": "ACTIVE"
         }
-        createProposal(obj);
+        if (isEditMode) {
+            updateProposal(obj);
+        } else {
+            createProposal(obj);
+        }
     };
 
     const hideProspectusEntryModal = (isUpdatingSocialProspectus) => {
@@ -203,8 +210,8 @@ const CreateProposalModal = ({
                                         }
                                     }}
                                     optionLabelProp="label"
-                                    value={proposalData.skills}
-                                    defaultValue={proposalData.skills}
+                                    value={proposalData.categories}
+                                    defaultValue={proposalData.categories}
                                 >
                                     {publishedCategories.length > 0 &&
                                         publishedCategories.map((category, index) => (
