@@ -10,4 +10,4 @@ export * from "./contestLogic";
 export * from "./emailLogic";
 export * from "./rewardsLogic";
 export * from "./proposalLogic";
-export * from "./proposalCommentLogic";
+export * from "./proposalQuestionAnswerLogic";

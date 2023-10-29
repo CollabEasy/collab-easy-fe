@@ -94,3 +94,38 @@ export const getProposalByIdAPI = async (id: string) => {
 //     throw error;
 //   }
 // };
+
+
+export const fetchProposalQuestionsAndAnswersAPI = async (proposalId: string) => {
+  const config = getConfig();
+  try {
+    let url = "api/v1/proposal/" + proposalId + "/questions/get";
+    const result = await api.call(url, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const addProposalQuestionApi = async (proposalId: string, data: any) => {
+  console.log("api", data);
+  const config = postConfigWithToken(data);
+	try {
+    let url = "api/v1/proposal/" + proposalId + "/ask";
+		const result = await api.call(url, config);
+		return result;
+	} catch (error) {
+		throw error;
+	}
+}
+
+export const addProposalAnswerApi = async (proposalId: string, data: any) => {
+  const config = postConfigWithToken(data);
+	try {
+    let url = "api/v1/proposal/" + proposalId + "/answer";
+		const result = await api.call(url, config);
+		return result;
+	} catch (error) {
+		throw error;
+	}
+}

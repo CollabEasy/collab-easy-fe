@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Button, Comment, Card, Tag, Modal } from "antd";
+import { Input, Button, Comment, Card, Tag, Modal, Collapse } from "antd";
 import { AppState } from "state";
 import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
@@ -26,17 +26,17 @@ const mapStateToProps = (state: AppState) => {
     const isLoggedIn = state.user.isLoggedIn;
     const loginModalDetails = state.home.loginModalDetails;
     const proposal = state.proposal;
-    // const proposalComments = state.proposalComments;
+    const proposalQuestionAnswer = state.proposalQuestionAnswer;
     const isfetchingProposal = state.proposal.isfetchingProposal;
-    // const isAddingProposalComment = state.proposalComments.isAddingProposalComment;
-    return { user, isLoggedIn, loginModalDetails, proposal, isfetchingProposal }
+    const isFetchingPrpoposalQuestionAnswer = state.proposalQuestionAnswer.isFetchingPrpoposalQuestionAnswwer;
+    return { user, isLoggedIn, loginModalDetails, proposal, proposalQuestionAnswer, isfetchingProposal, isFetchingPrpoposalQuestionAnswer }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getProposalByIdAction: (id: string) => dispatch(action.fetchProposalById(id)),
     updateProposal: (proposalId: string, data: any) => dispatch(action.updateProposal(proposalId, data)),
-    // fetchProposalCommentById: (proposalId: string) => dispatch(action.fetchProposalCommentByProposalId(proposalId)),
-    // addProposalComment: (data: any) => dispatch(action.addProposalComment(data)),
+    fetchProposalQuestionAnswerByProposalId: (proposalId: string) => dispatch(action.fetchProposalQuestionsByProposalId(proposalId)),
+    addProposalQuestion: (proposalId: string, data: any) => dispatch(action.addProposalQuestion(proposalId, data)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -49,19 +49,21 @@ const ProposalPage = ({
     loginModalDetails,
     isfetchingProposal,
     proposal,
-    // isAddingProposalComment,
+    proposalQuestionAnswer,
+    isFetchingPrpoposalQuestionAnswer,
     getProposalByIdAction,
-    updateProposal
-    // fetchProposalCommentById,
-    // addProposalComment,
+    fetchProposalQuestionAnswerByProposalId,
+    addProposalQuestion,
+    updateProposal,
 }: Props) => {
 
+    const { Panel } = Collapse;
+    const { confirm } = Modal;
     const { toArtistProfile } = useRoutesContext();
 
-    const { confirm } = Modal;
     const [showProposalModal, setShowProposalModal] = useState(false);
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-    const [comment, setComment] = useState("");
+    const [comment, setQuestion] = useState("");
     const [proposalData, setProposalData] = useState();
     const [collabConversationComments, setProposalComments] = useState<any>([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
@@ -71,18 +73,16 @@ const ProposalPage = ({
 
     useEffect(() => {
         getProposalByIdAction(proposalId as string);
-        // fetchProposalCommentById(proposalId as string);
+        fetchProposalQuestionAnswerByProposalId(proposalId as string);
     }, []);
 
     const saveComment = () => {
         let obj = {
-            "proposal_id": proposalId,
-            "content": comment,
+            "question": comment,
         }
-        // addProposalComment({
-        //     obj
-        // });
-        setComment("");
+        console.log(obj);
+        addProposalQuestion(proposalId as string, obj);
+        setQuestion("");
     }
 
     const showConfirm = () => {
@@ -108,7 +108,6 @@ const ProposalPage = ({
                     "collab_type": proposalData.collabType,
                     "proposal_status": "CLOSED",
                 }
-                console.log(obj);
                 updateProposal(proposalData.proposalId, obj);
             },
             onCancel() {
@@ -119,7 +118,6 @@ const ProposalPage = ({
 
     const getProposalCard = () => {
         let data = proposal.proposal.length != 0 ? proposal.proposal[0].data : [];
-        console.log(data);
         return (
             <div className="ui-block">
                 <>
@@ -133,7 +131,7 @@ const ProposalPage = ({
                             }}
                         >
                             <p>
-                                This proposal is active 🎉. Show interest now and take the first step 
+                                This proposal is active 🎉. Show interest now and take the first step
                                 towards a powerful collab!
                             </p>
                         </div>
@@ -231,32 +229,62 @@ const ProposalPage = ({
         );
     }
 
-    const getCollabConversationElement = () => {
-        const collabComments: JSX.Element[] = [];
-        // let data = collabConversationComments.length != 0 ? collabConversationComments[0].data : [];
-        let data = [
-            {
-                "author": "rahul-gupta-1",
-                "content": "this is a dummy comment",
-                "createdAt": "12-01-2302",
-            }
-        ];
-        data.forEach(element => {
-            collabComments.push(
-                <div>
-                    <Comment
-                        author={element["author"]}
-                        content={
-                            <p>{element["content"]}</p>
-                        }
-                        datetime={
-                            <span>{ConvertTimestampToDate(element["createdAt"]).toLocaleDateString("en-US")}</span>
-                        }
-                    />
-                </div>
-            )
-        });
-        return collabComments;
+    const getNewQuestionBox = () => {
+        let data = proposal.proposal.length != 0 ? proposal.proposal[0].data : [];
+        return (
+            <>
+                {data.proposal.proposalStatus === "ACTIVE" ? (
+                    <div className="proposalQuestionAnswerPage_newCommentContainer">
+                        <div>
+                            <TextArea
+                                rows={4}
+                                placeholder="What is in your mind?"
+                                maxLength={500}
+                                showCount
+                                onChange={(e) =>
+                                    setQuestion(e.target.value)}
+                                value={comment}
+                            />
+                            <Button type="primary" className="proposalQuestionAnswerPage_buttonContainer" onClick={saveComment}>Ask a Question</Button>
+                        </div>
+                    </div>
+                ) : (
+                    <>
+                    </>
+                )}
+            </>
+        )
+    }
+
+    const getQuestionAnswer = (element) => {
+        <div>
+            <Comment
+                // author={element["author"]}
+                content={
+                    <p>{element["content"]}</p>
+                }
+                datetime={
+                    <span>{ConvertTimestampToDate(element["createdAt"]).toLocaleDateString("en-US")}</span>
+                }
+            />
+        </div>
+
+
+
+    }
+
+    const getProposalQuestionAnswerElement = () => {
+        let data = proposalQuestionAnswer.proposalQuestionAnswers.length != 0 ? proposalQuestionAnswer.proposalQuestionAnswers[0].data : [];
+
+        return (
+            <Collapse defaultActiveKey={["0"]} accordion>
+                {data.map((question, index) => (
+                    <Panel header={question.question} key={index}>
+                        <p className="common-p-style">{question.answer}</p>
+                    </Panel>
+                ))}
+            </Collapse>
+        );
     }
 
     return (
@@ -283,37 +311,22 @@ const ProposalPage = ({
                         />
                     </>
                 ) : (
-                    <div className="collabDetailsPage_container">
-                        {isfetchingProposal ? (
+                    <div>
+                        {isfetchingProposal || isFetchingPrpoposalQuestionAnswer ? (
                             <Loader />
                         ) : (
                             <>
-                                {getProposalCard()}
+                                <div className="proposalQuestionAnswerPage_container">
+                                    {getProposalCard()}
+                                </div>
+                                <div className="proposalQuestionAnswerPage_questionContainer">
+                                    {getProposalQuestionAnswerElement()}
+                                </div>
+                                <div className="proposalQuestionAnswerPage_newQuestionContainer">
+                                    {getNewQuestionBox()}
+                                </div>
                             </>
                         )}
-
-                        {/* {isAddingProposalComment ? (
-                            <Loader />
-                        ) : ( */}
-                        <div className="collabDetailsPage_newCommentContainer">
-                            {getCollabConversationElement()}
-                        </div>
-                        {/* )} */}
-
-                        <div className="collabDetailsPage_newCommentContainer">
-                            <div>
-                                <TextArea
-                                    rows={4}
-                                    placeholder="What is in your mind?"
-                                    maxLength={500}
-                                    showCount
-                                    onChange={(e) =>
-                                        setComment(e.target.value)}
-                                    value={comment}
-                                />
-                                <Button type="primary" className="collabDetailsPage_buttonContainer" onClick={saveComment}>Send</Button>
-                            </div>
-                        </div>
                     </div>
                 )}
 

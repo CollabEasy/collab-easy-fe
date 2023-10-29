@@ -58,7 +58,7 @@ export const updateProposalSuccess = (data: any) => ({
     },
 });
 
-export const fetchProposalById = (id : string) => ({
+export const fetchProposalById = (id: string) => ({
     type: actionType.FETCH_PROPOSAL_BY_ID,
     payload: {
         id
