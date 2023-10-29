@@ -93,22 +93,40 @@ const ProposalsPage = ({
         data.sort((a, b) => b.proposal.createdDate - a.proposal.createdDate);
         data.forEach(proposal => {
             resultArtists.push(
-                <div className="row p-2 bg-white rounded contest-card">
-                    <Card
-                        title={proposal.proposal.title}
-                        style={{ height: '100%' }}
-                        extra={
-                            <>
-                                <Tag color="green">Open</Tag>
-                                <a href={routeToHref(toProposalPage(proposal.id))}>Check details</a>
-                            </>
-                        }
-                    >
-                        <div>
-                            {proposal.proposal.description}
-                        </div>
-                    </Card>
-                </div>
+                <div className="ui-block">
+                <article className="hentry post">
+                   <div className="m-link">
+                      <a href="#"  target="_blank">
+                         <h4>Why should I follow you, in five sentences?</h4>
+                      </a>
+                   </div>
+                   <div className="post__author author vcard inline-items">
+                      {/* <img src="https://a11.t26.net/taringa/avatares/9/1/2/F/7/8/Demon_King1/48x48_5C5.jpg" alt="author"> */}
+                      <div className="author-date">
+                         <a className="h6 post__author-name fn" href="#">Dipendra Singh</a>
+                         <div className="post__date">
+                            <time className="published" dateTime="2004-07-24T18:18">
+                            Answered 2h ago
+                            </time>
+                         </div>
+                      </div>
+                      <div className="more">
+                         <a href="#">
+                         <i className="fa fa-ellipsis-v"></i>
+                         </a>
+                      </div>
+                   </div>
+                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut
+                      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris consequat.
+                   </p>
+                   <div className="post-additional-info inline-items">
+                      <p>
+                         <a href="#" className="btn btn-sm btn-light"><span className="fa fa-pencil"></span> Answer</a>
+                         <a href="#" className="btn btn-sm btn-light"> Pass</a>
+                      </p>
+                   </div>
+                </article>
+             </div>
             )
         });
         return resultArtists;

@@ -1,266 +1,306 @@
   // --------- All contest page css ----------
   .allProposalsPage_listingPagecontainer {
-    //display: flex;
-    //padding: 200px;
-    position: relative;
-    margin-top: 10%;
-    margin-bottom: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    flex-direction: column;
-    width: 70%;
-    //box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
-    // border: 1px solid rgb(0 0 0 / 10%);
-    //background-color: rgb(0 0 0 / 5%);
-    overflow-x: hidden;
-    overflow-y: scroll;
+      //display: flex;
+      //padding: 200px;
+      position: relative;
+      margin-top: 10%;
+      margin-bottom: 5%;
+      margin-left: auto;
+      margin-right: auto;
+      flex-direction: column;
+      width: 70%;
+      //box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+      // border: 1px solid rgb(0 0 0 / 10%);
+      //background-color: rgb(0 0 0 / 5%);
+      overflow-x: hidden;
+      overflow-y: scroll;
 
-    .allProposalsPage__listingPageCoverContainer {
-        width: 100%;
-        height: 100%;
-        border: 1px solid rgb(0 0 0 / 10%);
-        // margin-top: 50px;
+      .allProposalsPage__listingPageCoverContainer {
+          width: 100%;
+          height: 100%;
+          border: 1px solid rgb(0 0 0 / 10%);
+          // margin-top: 50px;
 
-        .allProposalsPage_desktopCoverTextContainer {
-            padding-top: 2rem;
-            padding-left: 5rem;
-            padding-right: 5rem;
+          .allProposalsPage_desktopCoverTextContainer {
+              padding-top: 2rem;
+              padding-left: 5rem;
+              padding-right: 5rem;
 
-            h1 {
-                font-size: 33px;
-                text-align: left;
-            }
+              h1 {
+                  font-size: 33px;
+                  text-align: left;
+              }
 
-            h3 {
-                font-size: 20px;
-                color: rgba(18, 17, 17, 0.3);
-                text-align: left;
-                padding-right: 10%;
-                //padding-bottom: 2%;
-            }
-        }
-    }
+              h3 {
+                  font-size: 20px;
+                  color: rgba(18, 17, 17, 0.3);
+                  text-align: left;
+                  padding-right: 10%;
+                  //padding-bottom: 2%;
+              }
+          }
+      }
 
-    .createProposalButton {
-        width: 15%;
-        float: right;
-    }
+      .createProposalButton {
+          width: 15%;
+          float: right;
+      }
 
-    .listingContainer {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-
-        .contest-card {
-            width: 100%;
-            height: 90%;
-            transition: 0.3s;
-            background-color: #fafafa;
-            //padding-top: 10px;
-            //padding-bottom: 100px;
-            margin-bottom: 15px;
-        }
-    }
-}
+      .listingContainer {
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          align-items: center;
+      }
+  }
 
 
-@media only screen and (max-width: 1200px) and (min-width: 1101px) {
+  .ui-block {
+      background-color: #fff;
+      border-radius: 5px;
+      border: 1px solid #e6ecf5;
+      margin-bottom: 15px;
+  }
 
-    .allProposalsPage_listingPagecontainer {
-        width: 90%;
+  .post {
+      position: relative;
+      padding: 25px;
+      border-bottom: 1px solid #e6ecf5;
+  }
 
-        .allProposalsPage__listingPageCoverContainer {
-            text-align: left;
+  .post__author {
+      margin-bottom: 20px;
+  }
 
-            .allProposalsPage_desktopCoverTextContainer {
-                padding: 4rem;
+  .inline-items>* {
+      display: inline-block;
+      vertical-align: middle;
+  }
 
-                h1 {
-                    font-size: x-large;
-                }
+  .post .author-date a {
+      font-weight: 700;
+  }
 
-                h3 {
-                    font-size: large;
-                    padding-right: 10%;
-                    padding-bottom: 2%;
-                }
-            }
-        }
-    }
-}
+  .post__author .more {
+      float: right;
+      font-size: 16px;
+      margin-right: 20px;
+  }
 
-@media only screen and (max-width: 1100px) and (min-width: 901px) {
+  .more a {
+      color: #777;
+  }
 
-    .allProposalsPage_listingPagecontainer {
-        width: 90%;
+  button.btn.btn-light {
+      position: absolute;
+      background: transparent;
+      border: none;
+      height: 38px;
+  }
 
-        .allProposalsPage__listingPageCoverContainer {
-            text-align: left;
+  .post-additional-info {
+      padding: 20px 0 0;
+      border-top: 1px solid #e6ecf5;
+  }
 
-            .allProposalsPage_desktopCoverTextContainer {
-                padding-top: 2rem;
-                padding-left: 5rem;
-                padding-right: 5rem;
+  .post-additional-info>* {
+      margin-right: 15px;
+  }
 
-                h1 {
-                    font-size: x-large;
-                }
+  .m-link a {
+      color: #333;
+  }
 
-                h3 {
-                    font-size: large;
-                    padding-right: 10%;
-                    padding-bottom: 2%;
-                }
-            }
-        }
-    }
-}
+  .m-link a:hover {
+      color: #333;
+  }
 
-@media only screen and (max-width: 900px) and (min-width: 766px) {
+  .m-link h4 {
+      font-weight: bold;
+  }
 
-    .allProposalsPage_listingPagecontainer {
-        width: 90%;
+  .btn-light {
+      border-color: #dae0e5 !important;
+  }
 
-        .allProposalsPage__listingPageCoverContainer {
-            text-align: left;
+  @media only screen and (max-width: 1200px) and (min-width: 1101px) {
 
-            .allProposalsPage_desktopCoverTextContainer {
-                padding-top: 2rem;
-                padding-left: 5rem;
-                padding-right: 5rem;
+      .allProposalsPage_listingPagecontainer {
+          width: 90%;
 
-                h1 {
-                    font-size: large;
-                }
+          .allProposalsPage__listingPageCoverContainer {
+              text-align: left;
 
-                h3 {
-                    font-size: medium;
-                    padding-right: 10%;
-                    padding-bottom: 2%;
-                }
-            }
-        }
-    }
-}
+              .allProposalsPage_desktopCoverTextContainer {
+                  padding: 4rem;
 
-@media only screen and (max-width: 767px) and (min-width: 601px) {
+                  h1 {
+                      font-size: x-large;
+                  }
 
-    .allProposalsPage_listingPagecontainer {
-        width: 90%;
-        margin-top: 20%;
+                  h3 {
+                      font-size: large;
+                      padding-right: 10%;
+                      padding-bottom: 2%;
+                  }
+              }
+          }
+      }
+  }
 
-        .allProposalsPage__listingPageCoverContainer {
-            text-align: left;
+  @media only screen and (max-width: 1100px) and (min-width: 901px) {
 
-            .allProposalsPage_desktopCoverTextContainer {
-                padding-top: 2rem;
-                padding-left: 5rem;
-                padding-right: 5rem;
+      .allProposalsPage_listingPagecontainer {
+          width: 90%;
 
-                h1 {
-                    font-size: medium;
-                }
+          .allProposalsPage__listingPageCoverContainer {
+              text-align: left;
 
-                h3 {
-                    font-size: small;
-                    padding-right: 10%;
-                    padding-bottom: 2%;
-                }
-            }
-        }
+              .allProposalsPage_desktopCoverTextContainer {
+                  padding-top: 2rem;
+                  padding-left: 5rem;
+                  padding-right: 5rem;
 
-        .listingContainer {
-            padding: 10px;
-            align-items: center;
+                  h1 {
+                      font-size: x-large;
+                  }
 
-            .contest-card {
-                width: 100%;
-                height: 90%;
-                background-color: #fafafa;
-            }
-        }
-    }
-}
+                  h3 {
+                      font-size: large;
+                      padding-right: 10%;
+                      padding-bottom: 2%;
+                  }
+              }
+          }
+      }
+  }
 
-@media only screen and (max-width: 600px) and (min-width: 400px) {
+  @media only screen and (max-width: 900px) and (min-width: 766px) {
 
-    .allProposalsPage_listingPagecontainer {
-        width: 90%;
-        margin-top: 20%;
+      .allProposalsPage_listingPagecontainer {
+          width: 90%;
 
-        .allProposalsPage__listingPageCoverContainer {
-            text-align: center;
+          .allProposalsPage__listingPageCoverContainer {
+              text-align: left;
 
-            .allProposalsPage_desktopCoverTextContainer {
-                padding-top: 2rem;
-                padding-left: 3rem;
-                padding-right: 3rem;
+              .allProposalsPage_desktopCoverTextContainer {
+                  padding-top: 2rem;
+                  padding-left: 5rem;
+                  padding-right: 5rem;
 
-                h1 {
-                    font-size: large;
-                    text-align: center;
-                }
+                  h1 {
+                      font-size: large;
+                  }
 
-                h3 {
-                    font-size: medium;
-                    text-align: center;
-                    padding-left: 5%;
-                    padding-right: 5%;
-                    padding-bottom: 2%;
-                }
-            }
-        }
+                  h3 {
+                      font-size: medium;
+                      padding-right: 10%;
+                      padding-bottom: 2%;
+                  }
+              }
+          }
+      }
+  }
 
-        .listingContainer {
-            padding: 10px;
-            align-items: center;
+  @media only screen and (max-width: 767px) and (min-width: 601px) {
 
-            .contest-card {
-                width: 100%;
-                height: 90%;
-                background-color: #fafafa;
-            }
-        }
-    }
-}
+      .allProposalsPage_listingPagecontainer {
+          width: 90%;
+          margin-top: 20%;
 
-@media only screen and (max-width: 399px) {
+          .allProposalsPage__listingPageCoverContainer {
+              text-align: left;
 
-    .allProposalsPage_listingPagecontainer {
-        width: 90%;
-        margin-top: 20%;
+              .allProposalsPage_desktopCoverTextContainer {
+                  padding-top: 2rem;
+                  padding-left: 5rem;
+                  padding-right: 5rem;
 
-        .allProposalsPage__listingPageCoverContainer {
+                  h1 {
+                      font-size: medium;
+                  }
 
-            .allProposalsPage_desktopCoverTextContainer {
-                padding: 1rem;
+                  h3 {
+                      font-size: small;
+                      padding-right: 10%;
+                      padding-bottom: 2%;
+                  }
+              }
+          }
 
-                h1 {
-                    font-size: small;
-                    text-align: center;
-                }
+          .listingContainer {
+              padding: 10px;
+              align-items: center;
+          }
+      }
+  }
 
-                h3 {
-                    font-size: smaller;
-                    text-align: center;
-                    padding-left: 10%;
-                    padding-right: 10%;
-                    padding-bottom: 2%;
-                }
-            }
-        }
+  @media only screen and (max-width: 600px) and (min-width: 400px) {
 
-        .listingContainer {
-            padding: 10px;
-            align-items: center;
+      .allProposalsPage_listingPagecontainer {
+          width: 90%;
+          margin-top: 20%;
 
-            .contest-card {
-                width: 100%;
-                height: 90%;
-                background-color: #fafafa;
-            }
-        }
-    }
-}
+          .allProposalsPage__listingPageCoverContainer {
+              text-align: center;
+
+              .allProposalsPage_desktopCoverTextContainer {
+                  padding-top: 2rem;
+                  padding-left: 3rem;
+                  padding-right: 3rem;
+
+                  h1 {
+                      font-size: large;
+                      text-align: center;
+                  }
+
+                  h3 {
+                      font-size: medium;
+                      text-align: center;
+                      padding-left: 5%;
+                      padding-right: 5%;
+                      padding-bottom: 2%;
+                  }
+              }
+          }
+
+          .listingContainer {
+              padding: 10px;
+              align-items: center;
+          }
+      }
+  }
+
+  @media only screen and (max-width: 399px) {
+
+      .allProposalsPage_listingPagecontainer {
+          width: 90%;
+          margin-top: 20%;
+
+          .allProposalsPage__listingPageCoverContainer {
+
+              .allProposalsPage_desktopCoverTextContainer {
+                  padding: 1rem;
+
+                  h1 {
+                      font-size: small;
+                      text-align: center;
+                  }
+
+                  h3 {
+                      font-size: smaller;
+                      text-align: center;
+                      padding-left: 10%;
+                      padding-right: 10%;
+                      padding-bottom: 2%;
+                  }
+              }
+          }
+
+          .listingContainer {
+              padding: 10px;
+              align-items: center;
+          }
+      }
+  }
