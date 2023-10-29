@@ -34,6 +34,7 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getProposalByIdAction: (id: string) => dispatch(action.fetchProposalById(id)),
+    updateProposal: (proposalId: string, data: any) => dispatch(action.updateProposal(proposalId, data)),
     // fetchProposalCommentById: (proposalId: string) => dispatch(action.fetchProposalCommentByProposalId(proposalId)),
     // addProposalComment: (data: any) => dispatch(action.addProposalComment(data)),
 });
@@ -50,6 +51,7 @@ const ProposalPage = ({
     proposal,
     // isAddingProposalComment,
     getProposalByIdAction,
+    updateProposal
     // fetchProposalCommentById,
     // addProposalComment,
 }: Props) => {
@@ -95,15 +97,69 @@ const ProposalPage = ({
             },
         });
     };
+    const confirmCloseProposal = (proposalData) => {
+        confirm({
+            title: 'Are you sure you want to close this proposal?',
+            onOk() {
+                let obj = {
+                    "proposal_title": proposalData.title,
+                    "proposal_description": proposalData.description,
+                    "category_ids": Object.keys(proposalData.categories),
+                    "collab_type": proposalData.collabType,
+                    "proposal_status": "CLOSED",
+                }
+                console.log(obj);
+                updateProposal(proposalData.proposalId, obj);
+            },
+            onCancel() {
+                // Do nothing
+            },
+        });
+    };
 
     const getProposalCard = () => {
         let data = proposal.proposal.length != 0 ? proposal.proposal[0].data : [];
+        console.log(data);
         return (
             <div className="ui-block">
+                <>
+                    {data.proposal.proposalStatus === "ACTIVE" ? (
+                        <div
+                            style={{
+                                backgroundColor: "#E2F0CB",
+                                paddingBottom: ".5px",
+                                paddingTop: "1%",
+                                textAlign: "center",
+                            }}
+                        >
+                            <p>
+                                This proposal is active 🎉. Show interest now and take the first step 
+                                towards a powerful collab!
+                            </p>
+                        </div>
+                    ) : (
+                        <div
+                            style={{
+                                backgroundColor: "#EDC5CD",
+
+                                paddingBottom: ".5px",
+
+                                paddingTop: "1%",
+
+                                textAlign: "center",
+                            }}
+                        >
+                            <p>
+                                Looks like this is a closed proposal. But you can still reach out to
+                                the creator for a collab!
+                            </p>
+                        </div>
+                    )}{" "}
+                </>
                 <article className="hentry post">
                     <div className="m-link" style={{ display: "flex", flexDirection: "row" }}>
                         <span><h4 className="common-h4-style">{data.proposal.title}</h4></span>
-                        {user.artist_id === data.proposal.createdBy && (
+                        {user.artist_id === data.proposal.createdBy && data.proposal.proposalStatus !== "CLOSED" && (
                             <span style={{ marginLeft: "20px" }}>
                                 <EditOutlined style={{ fontSize: "20px" }}
                                     onClick={() => {
@@ -148,14 +204,24 @@ const ProposalPage = ({
                                     Interested Artists
                                 </Button>
                             ) : (
-                                <Button>
-                                    Show Interest
-                                </Button>
+                                <>
+                                    {data.proposal.proposalStatus !== "CLOSED" && (
+                                        <Button>
+                                            Show Interest
+                                        </Button>
+                                    )}
+                                </>
                             )}
 
                             {user.artist_id === data.proposal.createdBy && (
-                                <Button>
-                                    Close Proposal
+                                <Button
+                                    disabled={data.proposal.proposalStatus === "CLOSED"}
+                                    onClick={() => {
+                                        setProposalData(data.proposal);
+                                        confirmCloseProposal(data.proposal);
+                                    }}
+                                >
+                                    {data.proposal.proposalStatus === "CLOSED" ? "Closed Proposal" : "Close Proposal"}
                                 </Button>
                             )}
                         </p>

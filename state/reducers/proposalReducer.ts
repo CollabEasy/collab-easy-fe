@@ -39,7 +39,6 @@ const proposalReducer = (state = initialState, action): ProposalState => {
                 isfetchingProposal: true,
             };
         case actionType.FETCH_PROPOSAL_BY_ID_SUCCESS:
-            console.log("fetch", action.payload.data);
             return {
                 ...state,
                 proposal: [action.payload.data],
