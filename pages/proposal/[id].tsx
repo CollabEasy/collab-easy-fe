@@ -74,16 +74,16 @@ const ProposalPage = ({
         // fetchProposalCommentById(proposalId as string);
     }, []);
 
-    const saveComment = () => {
-        let obj = {
-            "proposal_id": proposalId,
-            "content": comment,
-        }
-        // addProposalComment({
-        //     obj
-        // });
-        setComment("");
-    }
+    // const saveComment = () => {
+    //     let obj = {
+    //         "proposal_id": proposalId,
+    //         "content": comment,
+    //     }
+    //     // addProposalComment({
+    //     //     obj
+    //     // });
+    //     setComment("");
+    // }
 
     const showConfirm = () => {
         confirm({
@@ -133,7 +133,7 @@ const ProposalPage = ({
                             }}
                         >
                             <p>
-                                This proposal is active 🎉. Show interest now and take the first step 
+                                This proposal is active 🎉. Show interest now and take the first step
                                 towards a powerful collab!
                             </p>
                         </div>
@@ -294,13 +294,13 @@ const ProposalPage = ({
 
                         {/* {isAddingProposalComment ? (
                             <Loader />
-                        ) : ( */}
+                        ) : ( 
                         <div className="collabDetailsPage_newCommentContainer">
                             {getCollabConversationElement()}
                         </div>
-                        {/* )} */}
+                        )} */}
 
-                        <div className="collabDetailsPage_newCommentContainer">
+                        {/* <div className="collabDetailsPage_newCommentContainer">
                             <div>
                                 <TextArea
                                     rows={4}
@@ -313,7 +313,7 @@ const ProposalPage = ({
                                 />
                                 <Button type="primary" className="collabDetailsPage_buttonContainer" onClick={saveComment}>Send</Button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 )}
 
