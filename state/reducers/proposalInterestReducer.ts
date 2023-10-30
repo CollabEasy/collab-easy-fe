@@ -57,11 +57,11 @@ const proposalInterest = (state = initialState, action): ProposalInterestState =
                 ...state,
                 isAddingProposalInterest: false,
             };
-        
+
         case actionType.SHOW_PROPOSAL_INTERESTED_ARTIST_MODAL:
             return {
                 ...state,
-                showProposalInterestedArtistModal: true,
+                showProposalInterestedArtistModal: action.payload.show,
             };
 
         default:

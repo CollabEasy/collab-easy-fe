@@ -300,10 +300,6 @@ const ProposalPage = ({
 
                 {showProposalInterestedArtistModal && (
                     <ProposalInterestedArtistModal
-                        onCancel={() => {
-                            setShowProposalInterestedArtistModal(false);
-                        }}
-                        isViewMode={true}
                         interestedArtists={interestedArtists}
                     />
                 )}

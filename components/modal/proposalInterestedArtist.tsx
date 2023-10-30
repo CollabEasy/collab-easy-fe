@@ -9,30 +9,26 @@ import { useRoutesContext } from "components/routeContext";
 
 const mapStateToProps = (state: AppState) => ({
     isUpdatingSocialProspectus: state.socialProspectus?.isUpdatingProspectus,
+    showProposalInterestedArtistModal: state.proposalInterest.showProposalInterestedArtistModal,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-
+    setShowProposalInterestedArtistModal: (show: boolean) => dispatch(action.setShowProposalInterestedArtistModal(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
-    onCancel: () => void;
-    isViewMode: boolean
     interestedArtists: any[]
 } & ConnectedProps<typeof connector>;
 
 const ProposalInterestedArtistModal = ({
-    onCancel,
-    isViewMode,
     interestedArtists,
+    setShowProposalInterestedArtistModal,
 }: Props) => {
-    const { toArtist, toArtistProfile } = useRoutesContext();
-    const [showModal, setViewModal] = useState(isViewMode);
-    const hideProspectusEntryModal = (isUpdatingSocialProspectus) => {
-        setViewModal(isUpdatingSocialProspectus);
-    }
+    const { toArtistProfile } = useRoutesContext();
+    const [showModal, setViewModal] = useState(true);
+
 
     const acceptInterestedArtist = (entry: any[]) => {
 
@@ -113,10 +109,15 @@ const ProposalInterestedArtistModal = ({
         return <Table columns={window.innerWidth < 500 ? deviceColumns : columns} dataSource={updatedData} />;
     };
 
+    const handleCancel = () => {
+        setShowProposalInterestedArtistModal(false);
+        setViewModal(false);
+    };
+
     return (
         <Modal
             closable
-            onCancel={onCancel}
+            onCancel={handleCancel}
             visible={showModal}
             footer={null}
         >
