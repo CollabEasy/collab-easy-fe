@@ -21,6 +21,7 @@ import * as contestApi from "api/contest";
 import * as emailApi from "api/email";
 import * as rewardsApi from "api/rewards";
 import * as proposalApi from "api/proposal";
+import * as proposalInterestApi from "api/proposal-interest";
 
 import { AppRouteCreators } from "types/core";
 
@@ -39,6 +40,7 @@ export const APIs = {
   emailApi,
   rewardsApi,
   proposalApi,
+  proposalInterestApi,
 };
 
 export interface LogicDeps {

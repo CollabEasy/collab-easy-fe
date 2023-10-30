@@ -37,6 +37,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     getProposalByIdAction: (id: string) => dispatch(action.fetchProposalById(id)),
     updateProposal: (proposalId: string, data: any) => dispatch(action.updateProposal(proposalId, data)),
     setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(action.setShowCreateOrUpdateProposalModal(show)),
+    addProposalInterest: (proposalId: string, data: any) => dispatch(action.addProposalInterest(proposalId, data)),
 
     // fetchProposalCommentById: (proposalId: string) => dispatch(action.fetchProposalCommentByProposalId(proposalId)),
     // addProposalComment: (data: any) => dispatch(action.addProposalComment(data)),
@@ -56,6 +57,7 @@ const ProposalPage = ({
     // isAddingProposalComment,
     getProposalByIdAction,
     updateProposal,
+    addProposalInterest,
     setShowCreateOrUpdateProposalModal,
     // fetchProposalCommentById,
     // addProposalComment,
@@ -87,6 +89,25 @@ const ProposalPage = ({
                     "proposal_status": "CLOSED",
                 }
                 updateProposal(proposalData.proposalId, obj);
+            },
+            onCancel() {
+                // Do nothing
+            },
+        });
+    };
+
+    const confirmShowInterest = (proposalData) => {
+        confirm({
+            title: 'We are glad to know that you are intersted',
+            content: 'Please click OK to confirm!',
+            onOk() {
+                let obj = {
+                    // for now we have harcoded, in future, we can ask artist
+                    // to type in custom message.
+                    "message": "I'm interested",
+                }
+                console.log("inside proposal modal", proposalData.proposalId, obj);
+                addProposalInterest(proposalData.proposalId, obj);
             },
             onCancel() {
                 // Do nothing
@@ -183,6 +204,10 @@ const ProposalPage = ({
                                 <>
                                     <Button
                                         disabled={data.proposal.proposalStatus === "CLOSED"}
+                                        onClick={() => {
+                                            setProposalData(data.proposal);
+                                            confirmShowInterest(data.proposal);
+                                        }}
                                     >
                                         Show Interest
                                     </Button>

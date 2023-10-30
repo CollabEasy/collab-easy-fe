@@ -11,3 +11,4 @@ export * from "./emailLogic";
 export * from "./rewardsLogic";
 export * from "./proposalLogic";
 export * from "./proposalCommentLogic";
+export * from "./proposalInterestLogic";
