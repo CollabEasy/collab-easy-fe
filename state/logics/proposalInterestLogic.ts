@@ -45,6 +45,7 @@ export const fetchProposalsInterestsLogic = createLogic<
             const proposalsData = await proposalInterestApi.getProposalsInterestsApi(proposalId);
             dispatch(actions.getProposalsInterestsSuccess([proposalsData]));
         } catch (error) {
+            dispatch(actions.getProposalsInterestsFailure());
         } finally {
             done();
         }
