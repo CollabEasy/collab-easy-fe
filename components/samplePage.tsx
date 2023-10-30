@@ -257,21 +257,7 @@ const SamplePage = ({
   }
   return (
     <>
-      {editSamplesfromPortal ? (
-        <Layout
-          title={"Work Samples | Wondor"}
-          name={"description"}
-          content={"Upload your work samples and flaunt your skills. Let artists know your work style and techniques and collaborate with them. Join Wondor now!"}
-        >
-          <>
-            {getLayout()}
-          </>
-        </Layout>
-      ) : (
-        <>
-          {getLayout()}
-        </>
-      )}
+      {getLayout()}
     </>
   );
 };
