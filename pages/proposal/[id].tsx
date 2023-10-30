@@ -255,7 +255,7 @@ const ProposalPage = ({
 
     return (
         <Layout
-            title={"Collab request | Wondor "}
+            title={"Proposal | Wondor "}
             name={"description"}
             content={
                 "Manage your collab request on Wondor!"
