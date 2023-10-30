@@ -181,11 +181,11 @@ const ProposalPage = ({
                                 </Button>
                             ) : (
                                 <>
-                                    {data.proposal.proposalStatus !== "CLOSED" && (
-                                        <Button>
-                                            Show Interest
-                                        </Button>
-                                    )}
+                                    <Button
+                                        disabled={data.proposal.proposalStatus === "CLOSED"}
+                                    >
+                                        Show Interest
+                                    </Button>
                                 </>
                             )}
 
@@ -197,7 +197,7 @@ const ProposalPage = ({
                                         confirmCloseProposal(data.proposal);
                                     }}
                                 >
-                                    {data.proposal.proposalStatus === "CLOSED" ? "Closed Proposal" : "Close Proposal"}
+                                    {data.proposal.proposalStatus === "CLOSED" ? "Closed Proposal" : "Mark Closed"}
                                 </Button>
                             )}
                         </p>
