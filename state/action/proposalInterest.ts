@@ -40,3 +40,10 @@ export const addProposalInterestSuccess = (data: any) => ({
     },
 });
 
+
+export const setShowProposalInterestedArtistModal = (show: boolean) => ({
+    type: actionType.SHOW_PROPOSAL_INTERESTED_ARTIST_MODAL,
+    payload: {
+        show
+    },
+});

@@ -21,7 +21,7 @@ const mapStateToProps = (state: AppState) => ({
     loginModalDetails: state.home.loginModalDetails,
     artistListData: state.home.artistListDetails,
     publishedCategories: state.category.publishedCategories,
-    isUpdatingSocialProspectus: state.socialProspectus?.isUpdatingProspectus,
+    isAddingProposal: state.proposal?.isAddingProposal,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -47,14 +47,14 @@ const CreateProposalModal = ({
     loginModalDetails,
     artistListData,
     proposalDetails,
-    isUpdatingSocialProspectus,
+    isAddingProposal,
     publishedCategories,
     onCancel,
     getAllCategories,
     createProposal,
     updateProposal,
 }: Props) => {
-    
+
     let result = Object.keys(proposalDetails.categories).map(function (key) {
         return Number(key);
     });
@@ -107,8 +107,8 @@ const CreateProposalModal = ({
         }
     };
 
-    const hideProspectusEntryModal = (isUpdatingSocialProspectus) => {
-        setViewModal(isUpdatingSocialProspectus);
+    const hideCreateProposalModal = (isAddingProposal) => {
+        setViewModal(isAddingProposal);
     }
 
     return (
@@ -238,12 +238,12 @@ const CreateProposalModal = ({
                                     <Button
                                         type="primary"
                                         htmlType="submit"
-                                        loading={isUpdatingSocialProspectus}
+                                        loading={isAddingProposal}
                                         onClick={() => {
-                                            hideProspectusEntryModal(isUpdatingSocialProspectus)
+                                            hideCreateProposalModal(isAddingProposal)
                                         }}
                                     >
-                                        {isUpdatingSocialProspectus ? "Saving..." : "Save"}
+                                        {isAddingProposal ? "Saving..." : "Save"}
                                     </Button>
                                 </div>
                             </Form.Item>

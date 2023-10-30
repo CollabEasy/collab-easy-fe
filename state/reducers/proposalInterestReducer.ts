@@ -5,7 +5,8 @@ const initialState: ProposalInterestState = {
     proposalInterests: [],
     proposalInterestsCount: 0,
     isAddingProposalInterest: false,
-    isFetchingProposalsInterests: false
+    isFetchingProposalsInterests: false,
+    showProposalInterestedArtistModal: false,
 };
 
 const proposalInterest = (state = initialState, action): ProposalInterestState => {
@@ -36,18 +37,18 @@ const proposalInterest = (state = initialState, action): ProposalInterestState =
                 isAddingProposalInterest: true,
             };
         case actionType.ADD_PROPOSAL_INTEREST_SUCCESS:
-            let allProposals = []
+            let allProposalsInterests = []
             if (state.proposalInterests.length > 0) {
-                const oldProposals = state.proposalInterests[0]["data"];
-                oldProposals.forEach((proposal, index) => {
-                    allProposals.push(proposal);
+                const oldProposalsInterests = state.proposalInterests[0]["data"];
+                oldProposalsInterests.forEach((proposal, index) => {
+                    allProposalsInterests.push(proposal);
                 });
             }
-            allProposals.push(action.payload.data["data"]);
+            allProposalsInterests.push(action.payload.data["data"]);
             return {
                 ...state,
-                proposalInterests: [{ "data": allProposals }],
-                proposalInterestsCount: allProposals.length,
+                proposalInterests: [{ "data": allProposalsInterests }],
+                proposalInterestsCount: allProposalsInterests.length,
                 isAddingProposalInterest: false,
             };
 
@@ -55,6 +56,12 @@ const proposalInterest = (state = initialState, action): ProposalInterestState =
             return {
                 ...state,
                 isAddingProposalInterest: false,
+            };
+        
+        case actionType.SHOW_PROPOSAL_INTERESTED_ARTIST_MODAL:
+            return {
+                ...state,
+                showProposalInterestedArtistModal: true,
             };
 
         default:

@@ -3,4 +3,5 @@ export interface ProposalInterestState {
     proposalInterestsCount: number;
     isAddingProposalInterest: boolean;
     isFetchingProposalsInterests: boolean;
+    showProposalInterestedArtistModal: boolean;
 }

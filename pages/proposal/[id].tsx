@@ -15,6 +15,7 @@ import { ConvertTimestampToDate } from 'helpers/collabCardHelper';
 import Layout from "@/components/layout";
 import Loader from "@/components/loader";
 import CreateProposalModal from "@/components/modal/createProposalModal";
+import ProposalInterestedArtistModal from "@/components/modal/proposalInterestedArtist";
 import { GetDateString, GetUserSkillsTags, HasShownInterest } from "helpers/proposalHelper";
 import { useRoutesContext } from "components/routeContext";
 
@@ -25,24 +26,30 @@ const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
     const isLoggedIn = state.user.isLoggedIn;
     const loginModalDetails = state.home.loginModalDetails;
+
     const proposal = state.proposal;
     const proposalInterest = state.proposalInterest;
+
     const showCreateOrEditProposalModal = state.proposal.showCreateOrUpdateProposalModal;
+    const showProposalInterestedArtistModal = state.proposalInterest.showProposalInterestedArtistModal;
     // const proposalComments = state.proposalComments;
     const isfetchingProposal = state.proposal.isfetchingProposal;
     const isfetchingProposalInterest = state.proposalInterest.isFetchingProposalsInterests;
     // const isAddingProposalComment = state.proposalComments.isAddingProposalComment;
-    return { user, isLoggedIn, loginModalDetails, proposal, proposalInterest, isfetchingProposal, isfetchingProposalInterest, showCreateOrEditProposalModal }
+    return { user, isLoggedIn, loginModalDetails, proposal, proposalInterest, isfetchingProposal, isfetchingProposalInterest, showCreateOrEditProposalModal, showProposalInterestedArtistModal }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getProposalByIdAction: (id: string) => dispatch(action.fetchProposalById(id)),
     updateProposal: (proposalId: string, data: any) => dispatch(action.updateProposal(proposalId, data)),
-    setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(action.setShowCreateOrUpdateProposalModal(show)),
+
     addProposalInterest: (proposalId: string, data: any) => dispatch(action.addProposalInterest(proposalId, data)),
-    getProposalsInterests: (proposalId: string ) => dispatch(action.getProposalsInterests(proposalId)),
+    getProposalsInterests: (proposalId: string) => dispatch(action.getProposalsInterests(proposalId)),
     // fetchProposalCommentById: (proposalId: string) => dispatch(action.fetchProposalCommentByProposalId(proposalId)),
     // addProposalComment: (data: any) => dispatch(action.addProposalComment(data)),
+
+    setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(action.setShowCreateOrUpdateProposalModal(show)),
+    setShowProposalInterestedArtistModal: (show: boolean) => dispatch(action.setShowProposalInterestedArtistModal(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -58,12 +65,14 @@ const ProposalPage = ({
     proposal,
     proposalInterest,
     showCreateOrEditProposalModal,
+    showProposalInterestedArtistModal,
     // isAddingProposalComment,
     getProposalByIdAction,
     getProposalsInterests,
     updateProposal,
     addProposalInterest,
     setShowCreateOrUpdateProposalModal,
+    setShowProposalInterestedArtistModal,
     // fetchProposalCommentById,
     // addProposalComment,
 }: Props) => {
@@ -73,6 +82,7 @@ const ProposalPage = ({
     const { confirm } = Modal;
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
     const [proposalData, setProposalData] = useState();
+    const [interestedArtists, setInterestedArtists] = useState();
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     const router = useRouter();
@@ -121,7 +131,7 @@ const ProposalPage = ({
     };
 
     const getProposalCard = () => {
-        let interests = proposalInterest.proposalInterests.length != 0 ? proposalInterest.proposalInterests[0].data: [];
+        let interests = proposalInterest.proposalInterests.length != 0 ? proposalInterest.proposalInterests[0].data : [];
         let data = proposal.proposal.length != 0 ? proposal.proposal[0].data : [];
         let hasShownInterest = HasShownInterest(interests, user.artist_id);
         return (
@@ -204,6 +214,10 @@ const ProposalPage = ({
                             {user.artist_id === data.proposal.createdBy ? (
                                 <Button
                                     type="primary"
+                                    onClick={() => {
+                                        setInterestedArtists(interests);
+                                        setShowProposalInterestedArtistModal(true);
+                                    }}
                                 >
                                     Interested Artists
                                 </Button>
@@ -216,7 +230,7 @@ const ProposalPage = ({
                                             confirmShowInterest(data.proposal);
                                         }}
                                     >
-                                        { hasShownInterest ? "You Marked Interested" : "Show Interest"}
+                                        {hasShownInterest ? "You Marked Interested" : "Show Interest"}
                                     </Button>
                                 </>
                             )}
@@ -263,7 +277,7 @@ const ProposalPage = ({
                     </>
                 ) : (
                     <div className="collabDetailsPage_container">
-                        {isfetchingProposal  || isfetchingProposalInterest ? (
+                        {isfetchingProposal || isfetchingProposalInterest ? (
                             <Loader />
                         ) : (
                             <>
@@ -281,6 +295,16 @@ const ProposalPage = ({
                         isViewMode={true}
                         isEditMode={true}
                         proposalDetails={proposalData}
+                    />
+                )}
+
+                {showProposalInterestedArtistModal && (
+                    <ProposalInterestedArtistModal
+                        onCancel={() => {
+                            setShowProposalInterestedArtistModal(false);
+                        }}
+                        isViewMode={true}
+                        interestedArtists={interestedArtists}
                     />
                 )}
             </>
