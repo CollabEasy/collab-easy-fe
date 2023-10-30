@@ -67,7 +67,6 @@ const ProposalsPage = ({
         proposalId: "",
         collabType: "",
         categories: [],
-        categories_ids: []
     };
 
     const [proposalData, setProposalData] = useState(emptyProposalData);
@@ -79,7 +78,7 @@ const ProposalsPage = ({
 
     useEffect(() => {
         fetchAllProposals();
-    }, []);
+    }, [user]);
 
     useEffect(() => {
         if (user) {
