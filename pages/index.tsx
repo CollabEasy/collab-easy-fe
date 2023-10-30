@@ -63,8 +63,8 @@ const Home = ({
   user,
   artistListData,
 }: Props) => {
-  const [showProfileModal, setShowProfileModal] = useState(false);
-  const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
+  // const [showProfileModal, setShowProfileModal] = useState(false);
+  // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
   const {
     toArtist,
     toEditProfile,
@@ -124,12 +124,12 @@ const Home = ({
     },
   ];
 
-  useEffect(() => {
-    if (artistListData.status === "success") {
-      setShowProfileModal(false);
-      setShowRefferalCodeModal(false);
-    }
-  }, [artistListData]);
+  // useEffect(() => {
+  //   if (artistListData.status === "success") {
+  //     setShowProfileModal(false);
+  //     setShowRefferalCodeModal(false);
+  //   }
+  // }, [artistListData]);
 
   const getMainContent = () => {
     return (
