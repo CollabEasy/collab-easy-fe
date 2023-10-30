@@ -20,6 +20,13 @@ export const getProposalsInterestsSuccess = (data: any) => ({
     },
 });
 
+export const getProposalsInterestsFailure = () => ({
+    type: actionType.FETCH_ALL_PROPOSAL_INTERESTS_FAILURE,
+    payload: {
+       
+    },
+});
+
 export const addProposalInterest = (proposalId: string, data: any) => ({
     type: actionType.ADD_PROPOSAL_INTEREST,
     payload: {

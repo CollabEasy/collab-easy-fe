@@ -132,6 +132,9 @@ const ProposalPage = ({
 
     const getProposalCard = () => {
         let interests = proposalInterest.proposalInterests.length != 0 ? proposalInterest.proposalInterests[0].data : [];
+        if (proposal.proposal.length === 0) {
+            return <></>;
+        }
         let data = proposal.proposal.length != 0 ? proposal.proposal[0].data : [];
         let hasShownInterest = HasShownInterest(interests, user.artist_id);
         return (
@@ -269,13 +272,13 @@ const ProposalPage = ({
                     <NewUserModal />
                 )
                 }
-                {!isLoggedIn ? (
+                {/* {!isLoggedIn ? (
                     <>
                         <NotAuthorised
                             error={"Please login to see details of this collaboration request!"}
                         />
                     </>
-                ) : (
+                ) : ( */}
                     <div className="allProposalsPage_listingPagecontainer">
                         {isfetchingProposal || isfetchingProposalInterest ? (
                             <Loader />
@@ -285,7 +288,7 @@ const ProposalPage = ({
                             </>
                         )}
                     </div>
-                )}
+                {/* )} */}
 
                 {showCreateOrEditProposalModal && (
                     <CreateProposalModal
