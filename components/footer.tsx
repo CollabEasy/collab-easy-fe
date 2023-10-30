@@ -51,9 +51,11 @@ const Footer = ({
   isLoggedIn,
   user,
 }: Props) => {
-  const [windowWidth, setWindowWidth] = useState(-1);
   const [pathname, setPathname] = useState("");
-  const { toEditProfile, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext()
+  const { toEditProfile, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext();
+  const [isScrollingUp, setIsScrollingUp] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   const router = useRouter();
 
@@ -61,7 +63,31 @@ const Footer = ({
     var fullUrl = window.location.href;
     var hostname = window.location.hostname;
     setPathname(fullUrl.split(hostname).pop());
-    setWindowWidth(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingUp = currentScrollY < lastScrollY.current;
+      setIsScrollingUp(scrollingUp);
+      lastScrollY.current = currentScrollY;
+
+      if (currentScrollY <= 0) {
+        // When at the top of the page, make the footer visible
+        setIsFooterVisible(true);
+      } else if (currentScrollY + window.innerHeight >= document.documentElement.scrollHeight) {
+        // When at the bottom of the page, make the footer visible
+        setIsFooterVisible(true);
+      } else {
+        setIsFooterVisible(scrollingUp);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const reloadPage = (page) => {
@@ -141,8 +167,11 @@ const Footer = ({
   const getMobileFooter = () => {
     return (<>
       <header className="navbar">
-        <div className="navbarContainer">
-          <nav className="bottom-nav">
+        {isFooterVisible ? (
+          <div
+            className={`navbarContainer`}
+          >
+            <nav className="bottom-nav">
             <div className="bottom-nav-item active" onClick={(e) => reloadPage("discover")}>
               <div className="bottom-nav-link">
                 {IsLandingPage(router.pathname) ? (
@@ -261,8 +290,10 @@ const Footer = ({
                 )}
               </div>
             </div>
-          </nav>
-        </div>
+            </nav>
+          </div>
+          ) : null
+        }
       </header>
     </>);
   };
