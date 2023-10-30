@@ -42,6 +42,7 @@ const ProposalInterestedArtistModal = ({
             title: "Artist",
             key: "artist",
             dataIndex: "artist",
+            // eslint-disable-next-line react/display-name
             render: (text: string, record: any) => (
                 <a
                     href={toArtistProfile(record.slug).as} target="_blank" rel="noreferrer"
