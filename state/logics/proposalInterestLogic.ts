@@ -51,24 +51,24 @@ export const fetchProposalsInterestsLogic = createLogic<
     },
 });
 
-// export const fetchProposalByArtistSlugLogic = createLogic<
-//     AppState,
-//     FSACreatorPayload<typeof actions.fetchProposalByArtistSlug>,
-//     any,
-//     LogicDeps
-// >({
-//     type: [actionTypes.FETCH_PROPOSAL_BY_ARTIST_SLUG],
-//     async process({ action, api }, dispatch, done) {
-//         const { slug } = action.payload;
-//         try {
-//             dispatch(actions.fetchProposalByArtistSlugRequest());
-//             const result = await proposalApi.getArtistsByCategorySlugAPI(slug);
-//             dispatch(actions.fetchProposalByArtistSlugSuccess(result));
-//         } catch (error) {
-//             dispatch(actions.fetchProposalByArtistSlugFalilure(error));
-//         } finally {
-//             done();
-//         }
-//     },
-// });
-
+export const acceptProposalInterestLogic = createLogic<
+    AppState,
+    FSACreatorPayload<typeof actions.acceptProposalInterest>,
+    any,
+    LogicDeps
+>({
+    type: [actionTypes.ACCEPT_PROPOSAL_INTEREST],
+    async process({ action, api }, dispatch, done) {
+        try {
+            dispatch(actions.acceptProposalInterestRequest())
+            const {proposalId, data } = action.payload;
+            const proposalData = await proposalInterestApi.acceptProposalInterestApi(proposalId, data);
+            dispatch(actions.acceptProposalInterestSuccess(proposalData));
+        } catch (error) {
+            const error_response = error.response.data;
+            dispatch(notifActions.showNotification(false, error_response['err_str']));
+        } finally {
+            done();
+        }
+    },
+});

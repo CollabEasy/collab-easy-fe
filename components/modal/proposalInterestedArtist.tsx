@@ -31,9 +31,10 @@ const ProposalInterestedArtistModal = ({
 
 
     const acceptInterestedArtist = (entry: any[]) => {
-
+        console.log("accept proposal");
     };
     const rejectInterestedArtist = (entry: any[]) => {
+        console.log("reject proposal");
     };
 
     const columns = [
@@ -120,6 +121,7 @@ const ProposalInterestedArtistModal = ({
             onCancel={handleCancel}
             visible={showModal}
             footer={null}
+            width={window.innerWidth < 500 ? "500px" : "800px"}
         >
             {getInterestedArtists()}
         </Modal>
