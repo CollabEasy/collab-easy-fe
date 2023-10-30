@@ -40,7 +40,6 @@ const postConfig = (dataToSend) => {
 export const getProposalsInterestsApi = async (proposalId: string) => {
   const config = getConfigWithToken();
   try {
-    console.log("inside pai");
     let url = "api/v1/proposal/" + proposalId + "/interests/get";
     const proposals = await api.call(url, config);
     return proposals;

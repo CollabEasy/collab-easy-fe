@@ -42,7 +42,6 @@ export const fetchProposalsInterestsLogic = createLogic<
         try {
             dispatch(actions.getProposalsInterestsRequest())
             const {proposalId } = action.payload;
-            console.log("Inside logic", proposalId);
             const proposalsData = await proposalInterestApi.getProposalsInterestsApi(proposalId);
             dispatch(actions.getProposalsInterestsSuccess([proposalsData]));
         } catch (error) {

@@ -15,7 +15,7 @@ import { ConvertTimestampToDate } from 'helpers/collabCardHelper';
 import Layout from "@/components/layout";
 import Loader from "@/components/loader";
 import CreateProposalModal from "@/components/modal/createProposalModal";
-import { GetDateString, GetUserSkillsTags } from "helpers/proposalHelper";
+import { GetDateString, GetUserSkillsTags, HasShownInterest } from "helpers/proposalHelper";
 import { useRoutesContext } from "components/routeContext";
 
 // https://ant.design/components/card/
@@ -26,11 +26,13 @@ const mapStateToProps = (state: AppState) => {
     const isLoggedIn = state.user.isLoggedIn;
     const loginModalDetails = state.home.loginModalDetails;
     const proposal = state.proposal;
+    const proposalInterest = state.proposalInterest;
     const showCreateOrEditProposalModal = state.proposal.showCreateOrUpdateProposalModal;
     // const proposalComments = state.proposalComments;
     const isfetchingProposal = state.proposal.isfetchingProposal;
+    const isfetchingProposalInterest = state.proposalInterest.isFetchingProposalsInterests;
     // const isAddingProposalComment = state.proposalComments.isAddingProposalComment;
-    return { user, isLoggedIn, loginModalDetails, proposal, isfetchingProposal, showCreateOrEditProposalModal }
+    return { user, isLoggedIn, loginModalDetails, proposal, proposalInterest, isfetchingProposal, isfetchingProposalInterest, showCreateOrEditProposalModal }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -52,7 +54,9 @@ const ProposalPage = ({
     isLoggedIn,
     loginModalDetails,
     isfetchingProposal,
+    isfetchingProposalInterest,
     proposal,
+    proposalInterest,
     showCreateOrEditProposalModal,
     // isAddingProposalComment,
     getProposalByIdAction,
@@ -108,7 +112,6 @@ const ProposalPage = ({
                     // to type in custom message.
                     "message": "I'm interested",
                 }
-                console.log("inside proposal modal", proposalData.proposalId, obj);
                 addProposalInterest(proposalData.proposalId, obj);
             },
             onCancel() {
@@ -118,7 +121,9 @@ const ProposalPage = ({
     };
 
     const getProposalCard = () => {
+        let interests = proposalInterest.proposalInterests.length != 0 ? proposalInterest.proposalInterests[0].data: [];
         let data = proposal.proposal.length != 0 ? proposal.proposal[0].data : [];
+        let hasShownInterest = HasShownInterest(interests, user.artist_id);
         return (
             <div className="ui-block">
                 <>
@@ -205,13 +210,13 @@ const ProposalPage = ({
                             ) : (
                                 <>
                                     <Button
-                                        disabled={data.proposal.proposalStatus === "CLOSED"}
+                                        disabled={data.proposal.proposalStatus === "CLOSED" || hasShownInterest}
                                         onClick={() => {
                                             setProposalData(data.proposal);
                                             confirmShowInterest(data.proposal);
                                         }}
                                     >
-                                        Show Interest
+                                        { hasShownInterest ? "You Marked Interested" : "Show Interest"}
                                     </Button>
                                 </>
                             )}
@@ -258,7 +263,7 @@ const ProposalPage = ({
                     </>
                 ) : (
                     <div className="collabDetailsPage_container">
-                        {isfetchingProposal ? (
+                        {isfetchingProposal  || isfetchingProposalInterest ? (
                             <Loader />
                         ) : (
                             <>
