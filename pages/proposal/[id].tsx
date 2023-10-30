@@ -230,7 +230,7 @@ const ProposalPage = ({
                         />
                     </>
                 ) : (
-                    <div className="collabDetailsPage_container">
+                    <div className="allProposalsPage_listingPagecontainer">
                         {isfetchingProposal ? (
                             <Loader />
                         ) : (
