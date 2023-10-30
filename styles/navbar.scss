@@ -51,6 +51,11 @@
   z-index: 3;
 }
 
+#desktop-p-h{
+  right: 0px;
+  z-index: 3;
+}
+
 .nv-f-t {
   position: absolute;
   // display: flex;
@@ -175,7 +180,7 @@
   position: fixed;
   background: white;
   box-shadow: 0 5px 6px -6px #777;
-  padding: 1rem 2rem 1rem 1rem;
+  padding: 1rem 2rem 1rem 1.8rem;
 }
 
 .login-mobile-userdetails {

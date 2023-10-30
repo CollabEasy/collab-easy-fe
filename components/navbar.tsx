@@ -73,7 +73,7 @@ const NavBar = ({
   const { toRewardsInfoPage, toGetInspired, toAllContestPage, toTutorial } = useRoutesContext();
 
   useEffect(() => {
-    const navBarElement = document.querySelector("#p-h");
+    const navBarElement = !checkDevice() ? document.querySelector("#desktop-p-h") : document.querySelector("#p-h");
     if (!inView && entry !== undefined) {
       navBarElement.classList.add("scroll-effect");
       navBarElement.classList.add("animate__fadeInDown");
@@ -108,11 +108,7 @@ const NavBar = ({
 
   const getMobileNavbar = () => {
     return(
-      <div className="row">
-      <div
-        id="p-h"
-        className="nv-f-t animate__animated"
-      >
+      <>
         <div id="app-logo-mobile">
           <Link href={routeToHref(toWondorHome())} passHref>
             <Image
@@ -128,18 +124,12 @@ const NavBar = ({
             <Search />
           </>
         </div>
-      </div>
-      <div ref={ref} className="dummy-div"></div>
-    </div>
+      </>
     );
   }
   const getWebNavbar = () => {
     return(
-      <div className="row">
-      <div
-        id="p-h"
-        className="nv-f-t animate__animated"
-      >
+      <>
         <div id="app-logo-desktop">
           <Link href={routeToHref(toWondorHome())} passHref>
             <Image
@@ -320,19 +310,33 @@ const NavBar = ({
               )}
           </div>
         )}
-      </div>
-      <div ref={ref} className="dummy-div"></div>
-    </div>
+      </>
     );
   }
 
   return (
     <>
       <div id="mobile-nav">
-        {getMobileNavbar()}
+        <div className="row">
+          <div
+            id="p-h"
+            className="nv-f-t animate__animated"
+          >
+            {getMobileNavbar()}
+          </div>
+        </div>
+        <div ref={ref} className="dummy-div"></div>
       </div>
       <div id="desktop-nav">
-        {getWebNavbar()}
+        <div className="row">
+          <div
+            id="desktop-p-h"
+            className="nv-f-t animate__animated"
+          >
+            {getWebNavbar()}
+          </div>
+        </div>
+        <div ref={ref} className="dummy-div"></div>
       </div>
     </>
   );
