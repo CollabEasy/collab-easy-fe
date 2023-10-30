@@ -54,17 +54,17 @@ const CreateProposalModal = ({
     createProposal,
     updateProposal,
 }: Props) => {
-    
-    let result = Object.keys(proposalDetails.categories).map(function (key) {
-        return Number(key);
+
+    let categoriesNames = Object.values(proposalDetails.categories).map(function (value) {
+        return value;
     });
+
     const newProposalData: ProposalData = {
         artistId: proposalDetails.artistId,
         proposalId: proposalDetails.proposalId,
         title: proposalDetails.title,
         description: proposalDetails.description,
-        categories: [],
-        categories_ids: result,
+        categories: categoriesNames,
         collabType: proposalDetails.collabType,
         status: proposalDetails.status,
     };
@@ -93,10 +93,19 @@ const CreateProposalModal = ({
     }, [user, artistListData]);
 
     const saveProposal = () => {
+        let updated_cat_ids = []
+        // This is a hack and we have to figure out how to fix this.
+        publishedCategories.forEach((category) => {
+            if (proposalData.categories.indexOf(category.artName) > -1
+                || proposalData.categories.indexOf(category.id) > -1) {
+                updated_cat_ids.push(category.id);
+            }
+        })
+
         let obj = {
             "proposal_title": proposalData.title,
             "proposal_description": proposalData.description,
-            "category_ids": proposalData.categories,
+            "category_ids": updated_cat_ids,
             "collab_type": proposalData.collabType,
             "proposal_status": proposalStatus,
         }
