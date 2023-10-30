@@ -38,8 +38,9 @@ const postConfig = (dataToSend) => {
 };
 
 export const getProposalsInterestsApi = async (proposalId: string) => {
-  const config = getConfig();
+  const config = getConfigWithToken();
   try {
+    console.log("inside pai");
     let url = "api/v1/proposal/" + proposalId + "/interests/get";
     const proposals = await api.call(url, config);
     return proposals;
@@ -51,7 +52,6 @@ export const getProposalsInterestsApi = async (proposalId: string) => {
 export const addProposalInterestApi = async (proposalId: string, data: ProposalData) => {
   const config = postConfigWithToken(data);
   try {
-    console.log("inside pai");
     let url = "api/v1/proposal/" + proposalId + "/show_interest"
     const proposal = await api.call(url, config);
     return proposal;

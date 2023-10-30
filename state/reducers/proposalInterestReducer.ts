@@ -18,6 +18,7 @@ const proposalInterest = (state = initialState, action): ProposalInterestState =
                 isFetchingProposalsInterests: true,
             };
         case actionType.FETCH_ALL_PROPOSAL_INTERESTS_SUCCESS:
+            console.log("reducer", action.payload.data);
             return {
                 ...state,
                 proposalInterests: action.payload.data,

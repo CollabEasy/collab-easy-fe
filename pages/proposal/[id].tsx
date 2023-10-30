@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     updateProposal: (proposalId: string, data: any) => dispatch(action.updateProposal(proposalId, data)),
     setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(action.setShowCreateOrUpdateProposalModal(show)),
     addProposalInterest: (proposalId: string, data: any) => dispatch(action.addProposalInterest(proposalId, data)),
-
+    getProposalsInterests: (proposalId: string ) => dispatch(action.getProposalsInterests(proposalId)),
     // fetchProposalCommentById: (proposalId: string) => dispatch(action.fetchProposalCommentByProposalId(proposalId)),
     // addProposalComment: (data: any) => dispatch(action.addProposalComment(data)),
 });
@@ -56,6 +56,7 @@ const ProposalPage = ({
     showCreateOrEditProposalModal,
     // isAddingProposalComment,
     getProposalByIdAction,
+    getProposalsInterests,
     updateProposal,
     addProposalInterest,
     setShowCreateOrUpdateProposalModal,
@@ -75,6 +76,7 @@ const ProposalPage = ({
 
     useEffect(() => {
         getProposalByIdAction(proposalId as string);
+        getProposalsInterests(proposalId as string);
     }, []);
 
     const confirmCloseProposal = (proposalData) => {

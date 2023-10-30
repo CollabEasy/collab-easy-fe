@@ -18,7 +18,6 @@ export const addProposalInterestLogic = createLogic<
         try {
             dispatch(actions.addProposalInterestRequest())
             const {proposalId, data } = action.payload;
-            console.log("Inside logic", proposalId, data);
             const proposalData = await proposalInterestApi.addProposalInterestApi(proposalId, data);
             dispatch(actions.addProposalInterestSuccess(proposalData));
             dispatch(notifActions.showNotification(true, 'Thanks for showing interest in this proposal 🥳'));
@@ -43,6 +42,7 @@ export const fetchProposalsInterestsLogic = createLogic<
         try {
             dispatch(actions.getProposalsInterestsRequest())
             const {proposalId } = action.payload;
+            console.log("Inside logic", proposalId);
             const proposalsData = await proposalInterestApi.getProposalsInterestsApi(proposalId);
             dispatch(actions.getProposalsInterestsSuccess([proposalsData]));
         } catch (error) {
