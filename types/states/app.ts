@@ -11,6 +11,7 @@ import { NotificationState } from "./notificationState";
 import { ContestState, ContestSubmissionState, ContestSubmissionVoteState } from "./contestState";
 import { RewardsActivityState } from "./rewardsState";
 import { ProposalState } from "./proposalState";
+import { ProposalInterestState } from "./proposalInterest";
 
 export interface AppState {
   home: HomeState;
@@ -28,4 +29,5 @@ export interface AppState {
   contestSubmissionVote: ContestSubmissionVoteState,
   rewardsActivity: RewardsActivityState,
   proposal: ProposalState,
+  proposalInterest: ProposalInterestState,
 }

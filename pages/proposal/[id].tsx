@@ -15,7 +15,8 @@ import { ConvertTimestampToDate } from 'helpers/collabCardHelper';
 import Layout from "@/components/layout";
 import Loader from "@/components/loader";
 import CreateProposalModal from "@/components/modal/createProposalModal";
-import { GetDateString, GetUserSkillsTags } from "helpers/proposalHelper";
+import ProposalInterestedArtistModal from "@/components/modal/proposalInterestedArtist";
+import { GetDateString, GetUserSkillsTags, HasShownInterest } from "helpers/proposalHelper";
 import { useRoutesContext } from "components/routeContext";
 
 // https://ant.design/components/card/
@@ -25,21 +26,30 @@ const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
     const isLoggedIn = state.user.isLoggedIn;
     const loginModalDetails = state.home.loginModalDetails;
+
     const proposal = state.proposal;
+    const proposalInterest = state.proposalInterest;
+
     const showCreateOrEditProposalModal = state.proposal.showCreateOrUpdateProposalModal;
+    const showProposalInterestedArtistModal = state.proposalInterest.showProposalInterestedArtistModal;
     // const proposalComments = state.proposalComments;
     const isfetchingProposal = state.proposal.isfetchingProposal;
+    const isfetchingProposalInterest = state.proposalInterest.isFetchingProposalsInterests;
     // const isAddingProposalComment = state.proposalComments.isAddingProposalComment;
-    return { user, isLoggedIn, loginModalDetails, proposal, isfetchingProposal, showCreateOrEditProposalModal }
+    return { user, isLoggedIn, loginModalDetails, proposal, proposalInterest, isfetchingProposal, isfetchingProposalInterest, showCreateOrEditProposalModal, showProposalInterestedArtistModal }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getProposalByIdAction: (id: string) => dispatch(action.fetchProposalById(id)),
     updateProposal: (proposalId: string, data: any) => dispatch(action.updateProposal(proposalId, data)),
-    setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(action.setShowCreateOrUpdateProposalModal(show)),
 
+    addProposalInterest: (proposalId: string, data: any) => dispatch(action.addProposalInterest(proposalId, data)),
+    getProposalsInterests: (proposalId: string) => dispatch(action.getProposalsInterests(proposalId)),
     // fetchProposalCommentById: (proposalId: string) => dispatch(action.fetchProposalCommentByProposalId(proposalId)),
     // addProposalComment: (data: any) => dispatch(action.addProposalComment(data)),
+
+    setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(action.setShowCreateOrUpdateProposalModal(show)),
+    setShowProposalInterestedArtistModal: (show: boolean) => dispatch(action.setShowProposalInterestedArtistModal(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -51,12 +61,18 @@ const ProposalPage = ({
     isLoggedIn,
     loginModalDetails,
     isfetchingProposal,
+    isfetchingProposalInterest,
     proposal,
+    proposalInterest,
     showCreateOrEditProposalModal,
+    showProposalInterestedArtistModal,
     // isAddingProposalComment,
     getProposalByIdAction,
+    getProposalsInterests,
     updateProposal,
+    addProposalInterest,
     setShowCreateOrUpdateProposalModal,
+    setShowProposalInterestedArtistModal,
     // fetchProposalCommentById,
     // addProposalComment,
 }: Props) => {
@@ -66,6 +82,7 @@ const ProposalPage = ({
     const { confirm } = Modal;
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
     const [proposalData, setProposalData] = useState();
+    const [interestedArtists, setInterestedArtists] = useState();
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     const router = useRouter();
@@ -73,6 +90,7 @@ const ProposalPage = ({
 
     useEffect(() => {
         getProposalByIdAction(proposalId as string);
+        getProposalsInterests(proposalId as string);
     }, []);
 
     const confirmCloseProposal = (proposalData) => {
@@ -94,8 +112,28 @@ const ProposalPage = ({
         });
     };
 
+    const confirmShowInterest = (proposalData) => {
+        confirm({
+            title: 'We are glad to know that you are intersted',
+            content: 'Please click OK to confirm!',
+            onOk() {
+                let obj = {
+                    // for now we have harcoded, in future, we can ask artist
+                    // to type in custom message.
+                    "message": "I'm interested",
+                }
+                addProposalInterest(proposalData.proposalId, obj);
+            },
+            onCancel() {
+                // Do nothing
+            },
+        });
+    };
+
     const getProposalCard = () => {
+        let interests = proposalInterest.proposalInterests.length != 0 ? proposalInterest.proposalInterests[0].data : [];
         let data = proposal.proposal.length != 0 ? proposal.proposal[0].data : [];
+        let hasShownInterest = HasShownInterest(interests, user.artist_id);
         return (
             <div className="ui-block">
                 <>
@@ -176,15 +214,23 @@ const ProposalPage = ({
                             {user.artist_id === data.proposal.createdBy ? (
                                 <Button
                                     type="primary"
+                                    onClick={() => {
+                                        setInterestedArtists(interests);
+                                        setShowProposalInterestedArtistModal(true);
+                                    }}
                                 >
                                     Interested Artists
                                 </Button>
                             ) : (
                                 <>
                                     <Button
-                                        disabled={data.proposal.proposalStatus === "CLOSED"}
+                                        disabled={data.proposal.proposalStatus === "CLOSED" || hasShownInterest}
+                                        onClick={() => {
+                                            setProposalData(data.proposal);
+                                            confirmShowInterest(data.proposal);
+                                        }}
                                     >
-                                        Show Interest
+                                        {hasShownInterest ? "You Marked Interested" : "Show Interest"}
                                     </Button>
                                 </>
                             )}
@@ -209,7 +255,7 @@ const ProposalPage = ({
 
     return (
         <Layout
-            title={"Collab request | Wondor "}
+            title={"Proposal | Wondor "}
             name={"description"}
             content={
                 "Manage your collab request on Wondor!"
@@ -231,7 +277,7 @@ const ProposalPage = ({
                     </>
                 ) : (
                     <div className="allProposalsPage_listingPagecontainer">
-                        {isfetchingProposal ? (
+                        {isfetchingProposal || isfetchingProposalInterest ? (
                             <Loader />
                         ) : (
                             <>
@@ -249,6 +295,12 @@ const ProposalPage = ({
                         isViewMode={true}
                         isEditMode={true}
                         proposalDetails={proposalData}
+                    />
+                )}
+
+                {showProposalInterestedArtistModal && (
+                    <ProposalInterestedArtistModal
+                        interestedArtists={interestedArtists}
                     />
                 )}
             </>

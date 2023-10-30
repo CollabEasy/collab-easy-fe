@@ -13,3 +13,4 @@ export * from "./contestState";
 export * from "./emailState";
 export * from "./rewardsState";
 export * from "./proposalState";
+export * from "./proposalInterest";

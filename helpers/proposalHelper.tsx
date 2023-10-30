@@ -33,3 +33,13 @@ export function GetUserSkillsTags(categories: any[]) {
     }
     return skills;
 };
+
+export function HasShownInterest(interests: any[], userId: string) {
+    let hasShownInterest = false
+    interests.forEach((interest) => {
+        if (interest.userId === userId) {
+            hasShownInterest = true;
+        }
+    });
+    return hasShownInterest;
+};
