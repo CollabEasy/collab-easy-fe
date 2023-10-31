@@ -254,7 +254,7 @@ const NavBar = ({
                     </Link>
                     <Link
                       href={routeToHref(
-                        toEditProfile("basic-information")
+                        toEditProfile("profile", "basic-information")
                       )}
                       passHref
                     >
@@ -269,7 +269,7 @@ const NavBar = ({
                     </Link>
                     <Link
                       href={routeToHref(
-                        toEditProfile("rewards")
+                        toEditProfile("profile", "rewards")
                       )}
                       passHref
                     >
@@ -284,7 +284,7 @@ const NavBar = ({
                     </Link>
                     <Link
                       href={routeToHref(
-                        toEditProfile("collab-request")
+                        toEditProfile("profile", "collab-request")
                       )}
                       passHref
                     >

@@ -280,7 +280,7 @@ const Profile = ({
           style={{ height: "auto", marginTop: "10px" }}
         >
           <Link
-            href={routeToHref(toEditProfile("profile"))}
+            href={routeToHref(toEditProfile("profile", "profile"))}
             passHref
           >
             Edit profile
@@ -402,7 +402,7 @@ const Profile = ({
                   complete 😔. For maximum reach, please complete it by adding
                   bio, skills, samples, and social account.
                   <Link
-                    href={routeToHref(toEditProfile("profile"))}
+                    href={routeToHref(toEditProfile("profile", "profile"))}
                     passHref
                   >
                     {" here."}
@@ -503,7 +503,7 @@ const Profile = ({
                           <Button className="common-medium-btn" type="primary">
                             <Link
                               href={routeToHref(
-                                toEditProfile("samples")
+                                toEditProfile("profile", "samples")
                               )}
                               passHref
                             >

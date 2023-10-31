@@ -150,7 +150,7 @@ const EditProfile = ({
   ]);
 
   const router = useRouter();
-  const { tab } = router.query;
+  const { action, tab } = router.query;
 
   useEffect(() => {
     activeTabKey.current = "1";
@@ -171,11 +171,13 @@ const EditProfile = ({
     }
   }, [tab]);
 
-  // if (
-  //   typeof window !== "undefined"
-  // ) {
-  //   router.push("/artist/settings?tab=basic-information");
-  // }
+  if (
+    typeof window !== "undefined" &&
+    action !== "profile" &&
+    action !== "account"
+  ) {
+    router.push("/artist/settings/profile?tab=basic-information");
+  }
 
   function handleWebNavClick(e: any) {
     activeTabKey.current = e.key;
@@ -212,10 +214,10 @@ const EditProfile = ({
     } else if (tabIndex === "7") {
       tab = "rewards";
     } else if (tabIndex === "9") {
-      router.push("/artist/" + user.slug);
+      router.push("/artist/profile/" + user.slug);
       return;
     }
-    router.push("/artist/portal/" + tab);
+    router.push("/artist/settings/" + action + "?tab=" + tab);
   };
 
   const getActiveTab = () => {
