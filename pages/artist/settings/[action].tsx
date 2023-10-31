@@ -252,100 +252,37 @@ const EditProfile = ({
   const getMobileMenu = () => {
     return (
       <div className="scrollmenu">
-        <div className="tab" onClick={() => { handleMobileNavClick("1") }}>
-          {activeTabKey.current === "1" ? (
-            <>
-              <ProfileOutlined style={{ color: "black" }} />
-              <span className="f-12" style={{ display: "block", color: "black" }}>Basic Information</span>
-            </>
-          ) : (
-            <>
-              <ProfileOutlined style={{ color: "grey" }} />
-              <span className="f-12" style={{ display: "block", color: "grey" }}>Basic Information</span>
-            </>
-          )}
+        <div tabIndex={1} className="tab" onClick={() => { handleMobileNavClick("1") }}>
+          <ProfileOutlined />
+          <span className="f-12" style={{ display: "block" }}>Basic Information</span>
         </div>
-        <div className="tab" onClick={() => { handleMobileNavClick("2") }}>
-          {activeTabKey.current === "2" ? (
-            <>
-              <CheckCircleOutlined style={{ color: "black" }} />
-              <span className="f-12" style={{ display: "block", color: "black" }}>Preferences</span>
-            </>
-          ) : (
-            <>
-              <CheckCircleOutlined style={{ color: "grey" }} />
-              <span className="f-12" style={{ display: "block", color: "grey" }}>Preferences</span>
-            </>
-          )}
+        <div tabIndex={2} className="tab" onClick={() => { handleMobileNavClick("2") }}>
+          <CheckCircleOutlined />
+          <span className="f-12" style={{ display: "block" }}>Preferences</span>
         </div>
-        <div className="tab" onClick={() => { handleMobileNavClick("3") }}>
-          {activeTabKey.current === "3" ? (
-            <>
-              <PictureOutlined style={{ color: "black" }} />
-              <span className="f-12" style={{ display: "block", color: "black" }}>Samples</span>
-            </>
-          ) : (
-            <>
-              <PictureOutlined style={{ color: "grey" }} />
-              <span className="f-12" style={{ display: "block", color: "grey" }}>Samples</span>
-            </>
-          )}
+        <div tabIndex={3} className="tab" onClick={() => { handleMobileNavClick("3") }}>
+          <PictureOutlined />
+          <span className="f-12" style={{ display: "block" }}>Samples</span>
         </div>
-        <div className="tab" onClick={() => { handleMobileNavClick("4") }}>
-          {activeTabKey.current === "4" ? (
-            <>
-              <InstagramOutlined style={{ color: "black" }} />
-              <span className="f-12" style={{ display: "block", color: "black" }}>Social Prospectus</span>
-            </>
-          ) : (
-            <>
-              <InstagramOutlined style={{ color: "grey" }} />
-              <span className="f-12" style={{ display: "block", color: "grey" }}>Social Prospectus</span>
-            </>
-          )}
+        <div tabIndex={4} className="tab" onClick={() => { handleMobileNavClick("4") }}>
+          <InstagramOutlined />
+          <span className="f-12" style={{ display: "block" }}>Social Prospectus</span>
         </div>
-        <div className="tab" onClick={() => { handleMobileNavClick("5") }}>
-          {activeTabKey.current === "5" ? (
-            <>
-              <EditOutlined style={{ color: "black" }} />
-              <span className="f-12" style={{ display: "block", color: "black" }}>Scratchpad</span>
-            </>
-          ) : (
-            <>
-              <EditOutlined style={{ color: "grey" }} />
-              <span className="f-12" style={{ display: "block", color: "grey" }}>Scratchpad</span>
-            </>
-          )}
+        <div tabIndex={5} className="tab" onClick={() => { handleMobileNavClick("5") }}>
+          <EditOutlined />
+          <span className="f-12" style={{ display: "block" }}>Scratchpad</span>
         </div>
-        <div className="tab" onClick={() => { handleMobileNavClick("6") }}>
-          {activeTabKey.current === "6" ? (
-            <>
-              <CalendarOutlined style={{ color: "black" }} />
-              <span className="f-12" style={{ display: "block", color: "black" }}>Collab Requests</span>
-            </>
-          ) : (
-            <>
-              <CalendarOutlined style={{ color: "grey" }} />
-              <span className="f-12" style={{ display: "block", color: "grey" }}>Collab Requests</span>
-            </>
-          )}
+        <div tabIndex={6} className="tab" onClick={() => { handleMobileNavClick("6") }}>
+          <CalendarOutlined />
+          <span className="f-12" style={{ display: "block" }}>Collab Requests</span>
         </div>
-        <div className="tab" onClick={() => { handleMobileNavClick("7") }}>
-          {activeTabKey.current === "7" ? (
-            <>
-              <DollarCircleOutlined style={{ color: "black" }} />
-              <span className="f-12" style={{ display: "block", color: "black" }}>Rewards</span>
-            </>
-          ) : (
-            <>
-              <DollarCircleOutlined style={{ color: "grey" }} />
-              <span className="f-12" style={{ display: "block", color: "grey" }}>Rewards</span>
-            </>
-          )}
+        <div tabIndex={7} className="tab" onClick={() => { handleMobileNavClick("7") }}>
+          <DollarCircleOutlined />
+          <span className="f-12" style={{ display: "block" }}>Rewards</span>
         </div>
         <div className="tab" onClick={() => { handleMobileNavClick("8") }}>
           <LogoutOutlined style={{ color: "red" }} />
-          <span className="f-12" style={{ display: "block" }}>Log Out</span>
+          <span className="f-12" style={{ display: "block" }} >Log Out</span>
         </div>
       </div>
     );
@@ -404,8 +341,8 @@ const EditProfile = ({
   }
 
   const getPageMetadata = () => {
-    
-  } 
+
+  }
 
 
   return (
@@ -429,12 +366,12 @@ const EditProfile = ({
           </>
         ) : (
           <div>
-              <div id="mobile-portal-menu">
-                {getMobileMenu()}
-              </div>
-              <div id="web-portal-menu" className="web-portal-fixed-menu">
-                <Header>
-                  {/* <Link href={routeToHref(toDiscover())} passHref>
+            <div id="mobile-portal-menu">
+              {getMobileMenu()}
+            </div>
+            <div id="web-portal-menu" className="web-portal-fixed-menu">
+              <Header>
+                {/* <Link href={routeToHref(toDiscover())} passHref>
                   <div className="logo" style={{ cursor: "pointer" }}>
                     {!collapsed ? (
                       <Image src={titleDesktopImg} alt="Landing page" />
@@ -443,164 +380,164 @@ const EditProfile = ({
                     )}
                   </div>
                 </Link> */}
-                  {getWebMenu()}
-                </Header>
-              </div>
-              <Layout className="portal-layout">
-                <>
-                  {getActiveTab() === "1" && (
-                    <Content
-                      style={{
-                        padding: 24,
-                        background: "#fff",
-                        minHeight: 280,
-                      }}
-                    >
-                      {window.innerWidth > 500 &&
-                        <>
-                          {getBreadcrum("Basic Information")}
-                        </>
-                      }
-                      <div className="settings__basicProfileCard">
-                        <EditBasicInformation />
-                      </div>
-                    </Content>
-                  )}
+                {getWebMenu()}
+              </Header>
+            </div>
+            <Layout className="portal-layout">
+              <>
+                {getActiveTab() === "1" && (
+                  <Content
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
+                  >
+                    {window.innerWidth > 500 &&
+                      <>
+                        {getBreadcrum("Basic Information")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
+                      <EditBasicInformation />
+                    </div>
+                  </Content>
+                )}
 
-                  {getActiveTab() === "2" && (
-                    <Content
-                      style={{
-                        padding: 24,
-                        background: "#fff",
-                        minHeight: 280,
-                      }}
-                    >
-                      {window.innerWidth > 500 &&
-                        <>
-                          {getBreadcrum("Preferences")}
-                        </>
-                      }
-                      <div className="settings__basicProfileCard">
-                        <EditPreferences />
-                      </div>
-                    </Content>
-                  )}
+                {getActiveTab() === "2" && (
+                  <Content
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
+                  >
+                    {window.innerWidth > 500 &&
+                      <>
+                        {getBreadcrum("Preferences")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
+                      <EditPreferences />
+                    </div>
+                  </Content>
+                )}
 
-                  {getActiveTab() === "3" && (
-                    <Content
-                      style={{
-                        padding: 24,
-                        background: "#fff",
-                        minHeight: 280,
-                      }}
-                    >
-                      {window.innerWidth > 500 &&
-                        <>
-                          {getBreadcrum("Work Samples")}
-                        </>
-                      }
-                      <div className="settings__basicProfileCard">
+                {getActiveTab() === "3" && (
+                  <Content
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
+                  >
+                    {window.innerWidth > 500 &&
+                      <>
+                        {getBreadcrum("Work Samples")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
 
-                        <p>
-                          You can upload 6 of them now and flaunt your best work
-                          to others!
-                        </p>
-                        <SamplePage
-                          isSelf
-                          user={user}
-                          showLoader={isFetchingSamples}
-                          editSamplesfromPortal={true}
-                        />
-                      </div>
-                    </Content>
-                  )}
+                      <p>
+                        You can upload 6 of them now and flaunt your best work
+                        to others!
+                      </p>
+                      <SamplePage
+                        isSelf
+                        user={user}
+                        showLoader={isFetchingSamples}
+                        editSamplesfromPortal={true}
+                      />
+                    </div>
+                  </Content>
+                )}
 
-                  {getActiveTab() === "4" && (
-                    <Content
-                      style={{
-                        padding: 24,
-                        background: "#fff",
-                        minHeight: 280,
-                      }}
-                    >
-                      {window.innerWidth > 500 &&
-                        <>
-                          {getBreadcrum("Social Prospectus")}
-                        </>
-                      }
-                      <div className="settings__basicProfileCard">
+                {getActiveTab() === "4" && (
+                  <Content
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
+                  >
+                    {window.innerWidth > 500 &&
+                      <>
+                        {getBreadcrum("Social Prospectus")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
 
-                        <EditSocialProspectus />
-                      </div>
-                    </Content>
-                  )}
+                      <EditSocialProspectus />
+                    </div>
+                  </Content>
+                )}
 
-                  {getActiveTab() === "5" && (
-                    <Content
-                      style={{
-                        padding: 24,
-                        background: "#fff",
-                        minHeight: 280,
-                      }}
-                    >
-                      {window.innerWidth > 500 &&
-                        <>
-                          {getBreadcrum("Scratchpad")}
-                        </>
-                      }
-                      <div className="settings__basicProfileCard">
-                        <ScratchpadPage />
-                      </div>
-                    </Content>
-                  )}
+                {getActiveTab() === "5" && (
+                  <Content
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
+                  >
+                    {window.innerWidth > 500 &&
+                      <>
+                        {getBreadcrum("Scratchpad")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
+                      <ScratchpadPage />
+                    </div>
+                  </Content>
+                )}
 
-                  {getActiveTab() === "6" && (
-                    <Content
-                      style={{
-                        padding: 24,
-                        background: "#fff",
-                        minHeight: 280,
-                      }}
-                    >
-                      {window.innerWidth > 500 &&
-                        <>
-                          {getBreadcrum("Collab Requests")}
-                        </>
-                      }
-                      <div className="settings__basicProfileCard">
-                        <CollabRequestTab
-                          otherUser={user.artist_id}
-                          collabRequests={collab.collabDetails}
-                          onClickCollabRequest={(
-                            collabDetails: CollabRequestData
-                          ) => {
-                            setCollabRequestDetails(collabDetails);
-                          }}
-                        />
-                      </div>
-                    </Content>
-                  )}
+                {getActiveTab() === "6" && (
+                  <Content
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
+                  >
+                    {window.innerWidth > 500 &&
+                      <>
+                        {getBreadcrum("Collab Requests")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
+                      <CollabRequestTab
+                        otherUser={user.artist_id}
+                        collabRequests={collab.collabDetails}
+                        onClickCollabRequest={(
+                          collabDetails: CollabRequestData
+                        ) => {
+                          setCollabRequestDetails(collabDetails);
+                        }}
+                      />
+                    </div>
+                  </Content>
+                )}
 
-                  {getActiveTab() === "7" && (
-                    <Content
-                      style={{
-                        padding: 24,
-                        background: "#fff",
-                        minHeight: 280,
-                      }}
-                    >
-                      {window.innerWidth > 500 &&
-                        <>
-                          {getBreadcrum("Rewards")}
-                        </>
-                      }
-                      <div className="settings__basicProfileCard">
-                        <Rewards />
-                      </div>
-                    </Content>
-                  )}
-                </>
-              </Layout>
+                {getActiveTab() === "7" && (
+                  <Content
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
+                  >
+                    {window.innerWidth > 500 &&
+                      <>
+                        {getBreadcrum("Rewards")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
+                      <Rewards />
+                    </div>
+                  </Content>
+                )}
+              </>
+            </Layout>
           </div>
         )}
       </PageLayout>
