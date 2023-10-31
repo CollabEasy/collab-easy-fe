@@ -94,19 +94,19 @@ const Footer = ({
     if (page === "discover") {
       router.push("/");
     } else if (page === "collab-request") {
-      router.push("/artist/settings/profile?tab=collab-request");
+      router.push("/artist/portal/collab-request");
     } else if (page === "profile") {
       if (isLoggedIn) {
         router.push("/artist/profile/" + user.slug);
       }
     } else if (page === "rewards") {
       if (isLoggedIn) {
-        router.push("/artist/settings/profile?tab=rewards");
+        router.push("/artist/portal/rewards");
       } else {
         router.push("/rewards-info");
       }
     } else if (page === "account") {
-      router.push("/artist/settings/profile?tab=basic-information");
+      router.push("/artist/portal/basic-information");
     } else if (page === "inspiration") {
       router.push("/get-inspired");
     } else if (page === "contest") {
@@ -143,7 +143,7 @@ const Footer = ({
               <div className="col-md-4 col-4">
                 <h6 className="common-h6-style">For artists</h6>
                 <ul className="common-text-style">
-                  <li><a href={toEditProfile("profile", "basic-information").href} >Portal</a></li>
+                  <li><a href={toEditProfile("basic-information").href} >Portal</a></li>
                   <li><a href={toGetInspired().href} >Inspiration</a></li>
                   <li><a href={toAllContestPage().href} >Contests</a></li>
                   <li><a href={toAllCategoryPage().href} >Categories</a></li>

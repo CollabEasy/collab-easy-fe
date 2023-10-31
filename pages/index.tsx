@@ -357,7 +357,7 @@ const Home = ({
                         <Button type="primary">
                           <Link
                             href={routeToHref(
-                              toEditProfile("profile", "scratchpad")
+                              toEditProfile("scratchpad")
                             )}
                             passHref
                           >

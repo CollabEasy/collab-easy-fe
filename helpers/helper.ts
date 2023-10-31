@@ -30,28 +30,28 @@ export function IsContestPage(pathname) {
 }
 
 export function IsCollabRequestPage(pathname) {
-  if (pathname.includes("/artist/settings/profile?tab=collab-request")) {
+  if (pathname.includes("/artist/portal/collab-request")) {
     return true;
   }
   return false;
 }
 
 export function IsRewardsPage(pathname) {
-  if (pathname.includes("/artist/settings/profile?tab=rewards")) {
+  if (pathname.includes("/artist/portal/rewards")) {
     return true;
   }
   return false;
 }
 
 export function IsSettingPage(pathname) {
-  if (pathname.includes("/artist/settings/profile?tab=basic-information")) {
+  if (pathname.includes("/artist/portal/basic-information")) {
     return true;
   };
   return false;
 }
 
 export function IsArtistPortal(pathname) {
-  return pathname.includes("/artist/settings");
+  return pathname.includes("/artist/portal");
 }
 
 
