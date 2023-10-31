@@ -16,7 +16,7 @@ import Layout from "@/components/layout";
 import Loader from "@/components/loader";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import ProposalInterestedArtistModal from "@/components/modal/proposalInterestedArtist";
-import { GetDateString, GetUserSkillsTags, HasShownInterest } from "helpers/proposalHelper";
+import { GetDateString, GetProposalTags, HasShownInterest } from "helpers/proposalHelper";
 import { useRoutesContext } from "components/routeContext";
 
 // https://ant.design/components/card/
@@ -210,7 +210,7 @@ const ProposalPage = ({
                         {data.proposal.description}
                     </p>
                     <p>
-                        {GetUserSkillsTags(data.proposal.categories)}
+                        {GetProposalTags(data.proposal)}
                     </p>
                     <div className="post-additional-info inline-items">
                         <p>

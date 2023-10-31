@@ -134,7 +134,8 @@ const CreateProposalModal = ({
                 closable
                 onCancel={onCancel}
                 className="sendSocialProspectus__modal"
-                visible={showModal}
+                visible={showModal} 
+                width={window.innerWidth < 500 ? "500px" : "800px"}
                 footer={null}
             >
                 {!isLoggedIn ? (
@@ -143,10 +144,10 @@ const CreateProposalModal = ({
                     />
                 ) : (
                     <div className="sendSocialProspectus__container">
-                        <h2 className="f-20 text-center">Create Proposal.</h2>
+                        <h2 className="f-20 text-center">Enter the details of your proposal</h2>
                         <Form
                             className="settings__basicProfileForm"
-                            layout="horizontal"
+                            layout="vertical"
                             onFinish={saveProposal}
                         >
                             <Form.Item
