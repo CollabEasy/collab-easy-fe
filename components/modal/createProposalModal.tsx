@@ -146,7 +146,7 @@ const CreateProposalModal = ({
                         <h2 className="f-20 text-center">Create Proposal.</h2>
                         <Form
                             className="settings__basicProfileForm"
-                            layout="horizontal"
+                            layout="vertical"
                             onFinish={saveProposal}
                         >
                             <Form.Item
