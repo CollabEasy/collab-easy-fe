@@ -17,7 +17,7 @@
 }
 
 .scrollmenu {
-    background-color: white;
+    background-color: #021529;
     overflow: auto;
     white-space: nowrap;
 
@@ -29,13 +29,23 @@
     /* Full width */
     z-index: 100;
 
+    color:grey;
+
+    div:focus {
+        background-color: #2A8FF7;
+        color:white;
+    }
+
     .tab {
         display: inline-block;
-        color: black;
         text-align: center;
         padding: 14px;
         text-decoration: none;
     }
+}
+
+.scrollmenu .a.active {
+    color: black;
 }
 
 .portal-layout {

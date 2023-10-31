@@ -37,7 +37,7 @@ export function IsCollabRequestPage(pathname) {
 }
 
 export function IsRewardsPage(pathname) {
-  if (pathname.includes("/artist/settings/profile?tab=rewards")) {
+  if (pathname.includes("/rewards-info")) {
     return true;
   }
   return false;
