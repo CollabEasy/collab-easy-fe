@@ -2,28 +2,16 @@ import React, { Dispatch, useEffect, useRef, useState } from 'react'
 import { FooterColumn } from 'types/model/footer';
 import Link from 'next/link';
 import { useRoutesContext } from "../components/routeContext";
-import { IsCollabRequestPage, IsContestPage, IsInspirationPage, IsLandingPage, IsProfilePage, IsRewardsPage, IsSettingPage } from 'helpers/helper';
+import { IsArtistPortal, IsContestPage, IsInspirationPage, IsLandingPage, IsProfilePage, IsRewardsPage } from 'helpers/helper';
 import { useRouter } from "next/router";
 import { routeToHref } from "config/routes";
 import {
-  SettingFilled,
   SettingOutlined,
-  HomeFilled,
   HomeOutlined,
-  CalendarFilled,
-  CalendarOutlined,
-  SmileFilled,
-  ProfileOutlined,
   UserOutlined,
-  SmileOutlined,
-  TrophyFilled,
   TrophyOutlined,
   DollarOutlined,
-  BulbFilled,
   BulbOutlined,
-  WalletFilled,
-  WalletOutlined,
-  DollarTwoTone,
 } from "@ant-design/icons";
 import { AppState } from 'state';
 import { ConnectedProps, connect } from 'react-redux';
@@ -63,8 +51,10 @@ const Footer = ({
     var fullUrl = window.location.href;
     var hostname = window.location.hostname;
     var pathname = fullUrl.split(hostname).pop();
-    
-    setPathname(fullUrl.split(hostname).pop());
+    if (pathname.includes(":3000")) {
+      pathname = pathname.replace(":3000", "");
+    }
+    setPathname(pathname);
   }, []);
 
   useEffect(() => {
@@ -98,7 +88,7 @@ const Footer = ({
     } else if (page === "collab-request") {
       router.push("/artist/settings/profile?tab=collab-request");
     } else if (page === "profile") {
-      router.push("/artist/profile/" + user.slug);
+      router.push("/artist/" + user.slug);
     } else if (page === "rewards") {
       router.push("/rewards-info");
     } else if (page === "account") {
@@ -257,7 +247,7 @@ const Footer = ({
               </div>
               <div className="bottom-nav-item" onClick={(e) => reloadPage("account")}>
                 <div className="bottom-nav-link">
-                  {IsSettingPage(pathname) ? (
+                  {IsArtistPortal(pathname) ? (
                     <>
                       <SettingOutlined style={{ color: "black" }} />
                       <span className="f-10 common-text-style" style={{ color: "black" }}>Account</span>

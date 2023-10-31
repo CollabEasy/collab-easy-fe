@@ -60,9 +60,16 @@ const Layout = ({
   const router = useRouter();
   let accessToken = null;
   const publicRoutes = getPublicRoutes();
+  const [pathname, setPathname] = useState("");
 
   useEffect(() => {
-
+    var fullUrl = window.location.href;
+    var hostname = window.location.hostname;
+    var pathname = fullUrl.split(hostname).pop();
+    if (pathname.includes(":3000")) {
+      pathname = pathname.replace(":3000", "");
+    }
+    setPathname(pathname);
   }, []);
 
   if (!ISSERVER && (user === undefined || Object.keys(user).length === 1)) {
@@ -93,7 +100,7 @@ const Layout = ({
       />
 
       <div className="layout__layoutContainer">
-        {!IsArtistPortal(router.pathname) && (
+        {!IsArtistPortal(pathname) && (
           // Don't show navbar on the portal
           <Navbar />
         )}
