@@ -91,7 +91,7 @@ const ProposalPage = ({
     useEffect(() => {
         getProposalByIdAction(proposalId as string);
         getProposalsInterests(proposalId as string);
-    }, []);
+    }, [user]);
 
     const confirmCloseProposal = (proposalData) => {
         confirm({
@@ -175,7 +175,7 @@ const ProposalPage = ({
                 </>
                 <article className="hentry post">
                     <div className="m-link" style={{ display: "flex", flexDirection: "row" }}>
-                        <span><h4 className="common-h4-style">{data.proposal.title}</h4></span>
+                        <span><h5 className="common-h4-style">{data.proposal.title}</h5></span>
                         {user.artist_id === data.proposal.createdBy && data.proposal.proposalStatus !== "CLOSED" && (
                             <span style={{ marginLeft: "20px" }}>
                                 <EditOutlined style={{ fontSize: "20px" }}
@@ -191,19 +191,12 @@ const ProposalPage = ({
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={data.creatorProfilePicUrl} alt="author" />
                         <div className="author-date">
-                            <a className="h6 post__author-name fn" href={toArtistProfile(data.creatorSlug).as} target="_blank" rel="noreferrer">
+                            <a className="post__author-name fn" href={toArtistProfile(data.creatorSlug).as} target="_blank" rel="noreferrer">
                                 {data.creatorFirstName} {data.creatorLastName}
                             </a>
-                            <div className="post__date">
-                                <time className="published common-p-style ">
-                                    Created at  {GetDateString(data.proposal.createdAt)}
-                                </time>
-                            </div>
-                        </div>
-                        <div className="more">
-                            <a href="#">
-                                <i className="fa fa-ellipsis-v"></i>
-                            </a>
+                            <p className="common-p-style">
+                                Created at  {GetDateString(data.proposal.createdAt)}
+                            </p>
                         </div>
                     </div>
                     <p className="common-p-style">
@@ -212,7 +205,7 @@ const ProposalPage = ({
                     <p>
                         {GetProposalTags(data.proposal)}
                     </p>
-                    <div className="post-additional-info inline-items">
+                    <div className="post-additional-info inline-items" style={{padding: "20px 0 0"}}>
                         <p>
                             {user.artist_id === data.proposal.createdBy ? (
                                 <Button
@@ -226,8 +219,13 @@ const ProposalPage = ({
                                 </Button>
                             ) : (
                                 <>
+                                    {!isLoggedIn && (
+                                        <div className="login-message">
+                                            <p>Please, login to send a show interest</p>
+                                        </div>
+                                    )}
                                     <Button
-                                        disabled={data.proposal.proposalStatus === "CLOSED" || hasShownInterest}
+                                        disabled={data.proposal.proposalStatus === "CLOSED" || hasShownInterest || !isLoggedIn}
                                         onClick={() => {
                                             setProposalData(data.proposal);
                                             confirmShowInterest(data.proposal);

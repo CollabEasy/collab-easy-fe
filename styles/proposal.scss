@@ -132,6 +132,12 @@
       border-color: #dae0e5 !important;
   }
 
+  .login-message {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+  }
+
   @media only screen and (max-width: 1200px) and (min-width: 1101px) {
 
       .allProposalsPage_listingPagecontainer {
@@ -277,6 +283,13 @@
               padding: 10px;
               align-items: center;
           }
+           
+          .post-additional-info>* {
+            .p {
+                display: flex;
+                justify-content: center;
+            }
+          }
       }
   }
 
@@ -308,7 +321,6 @@
 
           .listingContainer {
               padding: 10px;
-              // align-items: center;
           }
       }
   }
