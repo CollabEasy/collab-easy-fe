@@ -14,6 +14,7 @@ import { GetListingHeaderData } from "helpers/listingPageHelper";
 import { GetCategoryWikiData } from "helpers/categoryHelper";
 import Layout from "@/components/layout";
 import { SIMILAR_CATEGORIES } from "constants/listing";
+import { CATEGORY_WIKI } from "constants/categoryWiki";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -22,10 +23,7 @@ const mapStateToProps = (state: AppState) => {
     return { user, artistListData, loginModalDetails }
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-});
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(mapStateToProps, null);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
@@ -33,22 +31,17 @@ const CategoryPage = ({
     user,
     loginModalDetails,
     artistListData,
-}: Props) => {
-    const router = useRouter();
-    const { id: slug } = router.query;
+    categoryMetadata,
+    categoryWikidata,
+    slug
+}) => {
     const { toDiscover, toAllCategoryPage, toArtist, toCategoryPage } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
-    const [categoryMetadata, setCategoryMetadata] = useState(GetListingHeaderData(slug));
-    const [categoryWikidata, setCategoryWikiData] = useState(GetCategoryWikiData(slug));
     const [windowWidth, setWindowWidth] = useState(-1);
 
-    useEffect(() => { }, []);
-
     useEffect(() => {
-        if (user) {
-            if (user.new_user) {
-                setShowProfileModal(true);
-            }
+        if (user && user.new_user) {
+            setShowProfileModal(true);
         }
         if (artistListData.status === "success") {
             setShowProfileModal(false);
@@ -179,5 +172,24 @@ const CategoryPage = ({
         </Layout>
     );
 };
+
+
+export async function getStaticPaths() {
+    // Get the paths we want to pre-render
+    const paths = CATEGORY_WIKI.map((category) => ({
+      params: { id: category.slug },
+    }))
+    // We'll pre-render only these paths at build time.
+    // { fallback: false } means other routes should 404.
+    return { paths, fallback: false }
+  }
+
+  export async function getStaticProps({ params }) {
+    const categoryMetadata = GetListingHeaderData(params.id);
+    const categoryWikidata = GetCategoryWikiData(params.id);
+
+    // Pass post data to the page via props
+    return { props: { categoryMetadata, categoryWikidata, slug: params.id } }
+  }
 
 export default connector(CategoryPage);
