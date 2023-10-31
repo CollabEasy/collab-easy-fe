@@ -86,7 +86,7 @@ const ProposalPage = ({
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     const router = useRouter();
-    const { id: proposalId } = router.query;
+    const { title, proposalId } = router.query;
 
     useEffect(() => {
         getProposalByIdAction(proposalId as string);
