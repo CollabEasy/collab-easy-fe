@@ -232,7 +232,7 @@ const ContestPage = ({
       const artistName =
         submissionData.firstName + " " + submissionData.lastName;
       const artistSlug = submissionData.slug;
-      const profileLink = `${Config.baseUrl}/artist/profile/${artistSlug}`;
+      const profileLink = `${Config.baseUrl}/artist/${artistSlug}`;
       const disabledVote = submission.artistId === user.artist_id;
       const sample = {
         originalUrl: submission.artworkUrl,

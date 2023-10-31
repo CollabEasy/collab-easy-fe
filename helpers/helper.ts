@@ -9,7 +9,7 @@ export function IsLandingPage(pathname) {
 }
 
 export function IsProfilePage(pathname) {
-  if (pathname.includes("/artist/profile/")) {
+  if (pathname.includes("/artist/")) {
     return true;
   } 
   return false;

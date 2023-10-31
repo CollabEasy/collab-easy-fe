@@ -5,7 +5,7 @@ export interface AppRouteCreators {
   toDiscover: () => WebRoute;
   toArtist: () => WebRoute;
   toProfile: () => WebRoute;
-  toArtistProfile: (id: string) => WebRoute;
+  toArtistProfile: (slug: string) => WebRoute;
   toEditProfile: (action: string, tab: string) => WebRoute;
   toCollabPage: (id: string) => WebRoute;
   toSendCollabRequestPage: (slug: string) => WebRoute;
