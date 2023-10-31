@@ -108,7 +108,7 @@ export function ConstructReferralMessage(element: any) {
         : "";
     const link =
       origin +
-      "/artist/profile/" +
+      "/artist/" +
       ("referred_by" in details
         ? details["referred_by_slug"]
         : details["referred_to_slug"]);

@@ -1,4 +1,4 @@
-import Layout from "../../../components/layout";
+import Layout from "../../components/layout";
 import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
 import { Card } from "antd";
@@ -69,7 +69,7 @@ const ArtistProfile = ({
       }
     }
 
-    const { id: slug } = router.query;
+    const { slug: slug } = router.query;
     if (user.slug === slug) {
       setIsSelf(true);
       if (isLoggedIn && (!isProfileComplete || isProfileComplete === null)) {

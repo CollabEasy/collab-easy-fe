@@ -177,7 +177,7 @@ const CollabDetailCard = ({
                   e.stopPropagation();
                   e.preventDefault();
                   router.push(
-                    "/artist/profile/" +
+                    "/artist/" +
                     (collabDetails.senderId === user.artist_id
                       ? collabDetails.receiverSlug
                       : collabDetails.senderSlug)

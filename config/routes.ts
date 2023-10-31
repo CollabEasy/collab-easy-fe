@@ -21,9 +21,9 @@ export const routes: AppRouteCreators = {
     href: '/profile',
     as: `/profile/`,
   }),
-  toArtistProfile: (id) => ({
-    href: '/artist/profile/[id]',
-    as: `/artist/profile/${id}`,
+  toArtistProfile: (slug) => ({
+    href: '/artist/[slug]',
+    as: `/artist/${slug}`,
   }),
   toEditProfile: (action, tab) => ({
     href: '/artist/settings/[action]?tab=[tab]',
@@ -33,9 +33,9 @@ export const routes: AppRouteCreators = {
     href: '/collab/details/[id]',
     as: `/collab/details/${id}`,
   }),
-  toProposalPage: (id) => ({
-    href: '/proposal/[id]',
-    as: `/proposal/${id}`,
+  toProposalPage: (title, proposalId) => ({
+    href: '/proposal/[title]?proposalId=[proposalId]',
+    as: `/proposal/${title}?proposalId=${proposalId}`,
   }),
   toSendCollabRequestPage: (slug) => ({
     href: '/collab/[slug]',

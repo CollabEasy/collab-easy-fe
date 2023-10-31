@@ -1,3 +1,4 @@
+import { PORTAL_URL } from 'constants/constants';
 import CryptoJS from 'crypto-js' ;
 import router from 'next/router';
 
@@ -9,7 +10,7 @@ export function IsLandingPage(pathname) {
 }
 
 export function IsProfilePage(pathname) {
-  if (pathname.includes("/artist/profile/")) {
+  if (pathname.includes("/artist/") && pathname !== PORTAL_URL) {
     return true;
   } 
   return false;
@@ -29,13 +30,6 @@ export function IsContestPage(pathname) {
   return false;
 }
 
-export function IsCollabRequestPage(pathname) {
-  if (pathname.includes("/artist/settings/profile?tab=collab-request")) {
-    return true;
-  }
-  return false;
-}
-
 export function IsRewardsPage(pathname) {
   if (pathname.includes("/rewards-info")) {
     return true;
@@ -43,15 +37,11 @@ export function IsRewardsPage(pathname) {
   return false;
 }
 
-export function IsSettingPage(pathname) {
-  if (pathname.includes("/artist/settings/profile?tab=basic-information")) {
+export function IsArtistPortal(pathname) {
+  if (pathname === PORTAL_URL) {
     return true;
   };
   return false;
-}
-
-export function IsArtistPortal(pathname) {
-  return pathname.includes("/artist/settings");
 }
 
 

@@ -4022,3 +4022,5 @@ export const LOADER_QUOTES = [
   "Every child is an artist; the problem is staying an artist when you grow up – Pablo Picasso",
   "Creativity is contagious, pass it on. – Albert Einstein",
 ]
+
+export const PORTAL_URL = "/artist/settings/profile?tab=basic-information"

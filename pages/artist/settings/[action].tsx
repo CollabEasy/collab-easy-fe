@@ -214,7 +214,7 @@ const EditProfile = ({
     } else if (tabIndex === "7") {
       tab = "rewards";
     } else if (tabIndex === "9") {
-      router.push("/artist/profile/" + user.slug);
+      router.push("/artist/" + user.slug);
       return;
     }
     router.push("/artist/settings/" + action + "?tab=" + tab);
