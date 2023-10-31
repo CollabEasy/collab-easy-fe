@@ -62,6 +62,8 @@ const Footer = ({
   useEffect(() => {
     var fullUrl = window.location.href;
     var hostname = window.location.hostname;
+    var pathname = fullUrl.split(hostname).pop();
+    
     setPathname(fullUrl.split(hostname).pop());
   }, []);
 
@@ -97,7 +99,7 @@ const Footer = ({
       router.push("/artist/settings/profile?tab=collab-request");
     } else if (page === "profile") {
       if (isLoggedIn) {
-        router.push("/artist/profile/" + user.slug);
+        router.push("/artist/" + user.slug);
       }
     } else if (page === "rewards") {
       if (isLoggedIn) {
