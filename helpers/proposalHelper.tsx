@@ -19,19 +19,40 @@ export function GetDateString(time: number) {
     return dateStr
 }
 
-export function GetUserSkillsTags(categories: any[]) {
-    const skills: JSX.Element[] = [];
-    if (categories.length === 0) {
-        return skills;
-    }
+export function GetProposalTags(proposal: any) {
+    const tags: JSX.Element[] = [];
     let index = 0;
-    for (const key in categories) {
-        skills.push(
-            <Tag color={CATEGORY_COLORS[index]}>{categories[key]}</Tag>
+    for (const key in proposal.categories) {
+        tags.push(
+            <Tag style={{marginTop: "8px"}} color={CATEGORY_COLORS[index]}>{proposal.categories[key]}</Tag>
         )
         index++;
     }
-    return skills;
+    let status = proposal.proposalStatus;
+    if (status === "ACTIVE") {
+        tags.push(
+            <Tag style={{marginTop: "8px"}} color="green">Active</Tag>
+        );
+    } else {
+        tags.push(
+            <Tag style={{marginTop: "8px"}} color="grey">Closed</Tag>
+        );
+    }
+    let type = proposal.collabType
+    if (type === "VIRTUAL") {
+        tags.push(
+            <Tag style={{marginTop: "8px"}} color="orange">Virtual</Tag>
+        );
+    } else if (type === "INPERSON") {
+        tags.push(
+            <Tag style={{marginTop: "8px"}} color="orange">In-Person</Tag>
+        )
+    } else {
+        tags.push(
+            <Tag style={{marginTop: "8px"}} color="orange">Can be virtual or in-person</Tag>
+        );
+    }
+    return tags;
 };
 
 export function HasShownInterest(interests: any[], userId: string) {

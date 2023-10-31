@@ -19,7 +19,7 @@ import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
 import moment from "moment";
-import { GetUserSkillsTags } from "helpers/proposalHelper";
+import { GetProposalTags } from "helpers/proposalHelper";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -103,45 +103,27 @@ const ProposalsPage = ({
                     <article className="hentry post">
                         <div className="m-link">
                             <a href={toProposalPage(proposal.proposal.proposalId).as} target="_blank" rel="noreferrer">
-                                <h4 className="common-h4-style">{proposal.proposal.title}</h4>
+                                <h5 className="common-h4-style">{proposal.proposal.title}</h5>
                             </a>
                         </div>
-                        <div className="post__author author vcard inline-items">
+                        <div className="post__author author inline-items">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src={proposal.creatorProfilePicUrl} alt="author" />
                             <div className="author-date">
-                                <a className="h6 post__author-name fn" href={toArtistProfile(proposal.creatorSlug).as} target="_blank" rel="noreferrer">
+                                <a className="post__author-name fn" href={toArtistProfile(proposal.creatorSlug).as} target="_blank" rel="noreferrer">
                                     {proposal.creatorFirstName} {proposal.creatorLastName}
                                 </a>
-                                <div className="post__date">
-                                    <time className="published common-p-style ">
-                                        Created at  {GetDateString(proposal.proposal.createdAt)}
-                                    </time>
-                                </div>
-                            </div>
-                            <div className="more">
-                                <a href="#">
-                                    <i className="fa fa-ellipsis-v"></i>
-                                </a>
+                                <p className="common-p-style">
+                                    Created at  {GetDateString(proposal.proposal.createdAt)}
+                                </p>
                             </div>
                         </div>
                         <p className="common-p-style">
                             {proposal.proposal.description}
-
                         </p>
                         <div className="post-additional-info inline-items">
                             <p>
-                                {GetUserSkillsTags(proposal.proposal.categories)}
-                                {/* <a href="#" className="btn btn-sm btn-light"><span className="fa fa-pencil"></span> Answer</a>
-                                <a href="#" className="btn btn-sm btn-light"> Pass</a> */}
-                            </p>
-                            <p className="social-icons">
-                                {proposal.proposal.proposalStatus === "ACTIVE" ? (
-                                    <Tag color="green">{proposal.proposal.proposalStatus}</Tag>
-                                ) : (
-                                    <Tag color="grey">{proposal.proposal.proposalStatus}</Tag>
-                                )}
-                                <Tag color="orange">{proposal.proposal.collabType}</Tag>  
+                                {GetProposalTags(proposal.proposal)}
                             </p>
                         </div>
                     </article>
@@ -199,14 +181,14 @@ const ProposalsPage = ({
                         </div>
                         <div className="col-md-12 listingContainer">
                             <div>
-                                <Button 
+                                <Button
                                     type="text"
                                     className="createProposalButton common-medium-btn"
                                     onClick={() => {
                                         setShowCreateOrUpdateProposalModal(true);
                                     }}
                                 >
-                                Add Proposal
+                                    Add Proposal
                                 </Button>
                             </div>
                             {getAllProposals(allProposals)}
