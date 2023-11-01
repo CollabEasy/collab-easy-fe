@@ -68,7 +68,7 @@ const NavBar = ({
     return window.matchMedia("only screen and (max-width: 767px)").matches;
   };
 
-  const { toWondorHome, toArtistProfile, toEditProfile, toAnalyticsPage } =
+  const { toWondorHome, toArtistProfile, toArtistPortal, toAnalyticsPage } =
     useRoutesContext();
   const { toRewardsInfoPage, toGetInspired, toAllContestPage, toTutorial } = useRoutesContext();
 
@@ -254,7 +254,7 @@ const NavBar = ({
                     </Link>
                     <Link
                       href={routeToHref(
-                        toEditProfile("profile", "basic-information")
+                        toArtistPortal("basic-information")
                       )}
                       passHref
                     >
@@ -269,7 +269,7 @@ const NavBar = ({
                     </Link>
                     <Link
                       href={routeToHref(
-                        toEditProfile("profile", "rewards")
+                        toArtistPortal("rewards")
                       )}
                       passHref
                     >
@@ -284,7 +284,7 @@ const NavBar = ({
                     </Link>
                     <Link
                       href={routeToHref(
-                        toEditProfile("profile", "collab-request")
+                        toArtistPortal("collab-request")
                       )}
                       passHref
                     >

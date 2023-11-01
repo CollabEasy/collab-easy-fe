@@ -40,7 +40,7 @@ const Footer = ({
   user,
 }: Props) => {
   const [pathname, setPathname] = useState("");
-  const { toEditProfile, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext();
+  const { toArtistPortal, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext();
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(true);
   const lastScrollY = useRef(0);
@@ -86,13 +86,13 @@ const Footer = ({
     if (page === "discover") {
       router.push("/");
     } else if (page === "collab-request") {
-      router.push("/artist/settings/profile?tab=collab-request");
+      router.push("/portal/collab-request");
     } else if (page === "profile") {
       router.push("/artist/" + user.slug);
     } else if (page === "rewards") {
       router.push("/rewards-info");
     } else if (page === "account") {
-      router.push("/artist/settings/profile?tab=basic-information");
+      router.push("/portal/basic-information");
     } else if (page === "inspiration") {
       router.push("/get-inspired");
     } else if (page === "contest") {
@@ -129,7 +129,7 @@ const Footer = ({
               <div className="col-md-4 col-4">
                 <h6 className="common-h6-style">For artists</h6>
                 <ul className="common-text-style">
-                  <li><a href={toEditProfile("profile", "basic-information").href} >Portal</a></li>
+                  <li><a href={toArtistPortal("basic-information").href} >Portal</a></li>
                   <li><a href={toGetInspired().href} >Inspiration</a></li>
                   <li><a href={toAllContestPage().href} >Contests</a></li>
                   <li><a href={toAllCategoryPage().href} >Categories</a></li>

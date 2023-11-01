@@ -55,7 +55,7 @@ const SocialProspectusPage = ({
     setUserSocialProspectus(socialProspectus.socialProspectus);
   }, [socialProspectus])
 
-  const { toEditProfile } = useRoutesContext();
+  const { toArtistPortal } = useRoutesContext();
 
   const getSocialProspectus = () => {
     const prospectusCard: JSX.Element[] = [];
@@ -114,7 +114,7 @@ const SocialProspectusPage = ({
                       className="common-btn-dimension"
                     >
                       <Link
-                        href={routeToHref(toEditProfile("profile", "social-prospectus"))}
+                        href={routeToHref(toArtistPortal("social-prospectus"))}
                         passHref
                       >Add profiles</Link>
                     </Button>

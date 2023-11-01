@@ -1,6 +1,4 @@
-import { PORTAL_URL } from 'constants/constants';
 import CryptoJS from 'crypto-js' ;
-import router from 'next/router';
 
 export function IsLandingPage(pathname) {
   if (pathname === "/") {
@@ -10,7 +8,7 @@ export function IsLandingPage(pathname) {
 }
 
 export function IsProfilePage(pathname) {
-  if (pathname.includes("/artist/") && pathname !== PORTAL_URL) {
+  if (pathname.includes("/artist/")) {
     return true;
   } 
   return false;
@@ -38,7 +36,7 @@ export function IsRewardsPage(pathname) {
 }
 
 export function IsArtistPortal(pathname) {
-  if (pathname === PORTAL_URL) {
+  if (pathname.includes("/portal/")) {
     return true;
   };
   return false;

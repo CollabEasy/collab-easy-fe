@@ -45,7 +45,7 @@ const RewardsInfoPage = ({
     isFetchingContest,
     fetchAllContests,
 }: Props) => {
-    const { toEditProfile } = useRoutesContext();
+    const { toArtistPortal } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
 
     const router = useRouter();
@@ -127,7 +127,7 @@ const RewardsInfoPage = ({
                                             <h4 className="font-weight-bold mb-3">150 points</h4>
                                             <h6 className="font-weight-bold mb-3">Referral</h6>
                                             <p className="text-muted mb-0">Refer your friends to wondor by
-                                                <Link href={routeToHref(toEditProfile("profile", "rewards"))} passHref> sharing your code </Link>
+                                                <Link href={routeToHref(toArtistPortal("rewards"))} passHref> sharing your code </Link>
                                                 and you both earn 150 points each.</p>
                                         </div>
                                     </div>

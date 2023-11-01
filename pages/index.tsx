@@ -67,7 +67,7 @@ const Home = ({
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
   const {
     toArtist,
-    toEditProfile,
+    toArtistPortal,
     toGetInspired,
     toAllContestPage,
     toRewardsInfoPage,
@@ -357,7 +357,7 @@ const Home = ({
                         <Button type="primary">
                           <Link
                             href={routeToHref(
-                              toEditProfile("profile", "scratchpad")
+                              toArtistPortal("scratchpad")
                             )}
                             passHref
                           >
