@@ -242,8 +242,8 @@ const DiscoverArtist = ({
     let genericMetadata = {
       "slug": "artist",
       "name": "Artist",
-      "meta_title": "Artists available for collaboration",
-      "meta_content": "Connect with like-minded artist and unleash your skills as an artist."
+      "meta-title": "Artists available for collaboration",
+      "meta-content": "Connect with like-minded artist and unleash your skills as an artist."
     };
     LISTING_METADATA.forEach((element) => {
       if (element["slug"] === artSlug) {
@@ -271,9 +271,9 @@ const DiscoverArtist = ({
 
   return (
     <Layout
-      title={getListingPageMetadata(artSlug)["meta_title"]}
+      title={getListingPageMetadata(artSlug)["meta-title"]}
       name={"description"}
-      content={getListingPageMetadata(artSlug)["meta_title"]}
+      content={getListingPageMetadata(artSlug)["meta-content"]}
     >
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />

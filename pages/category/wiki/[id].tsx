@@ -105,7 +105,7 @@ const CategoryPage = ({
 
     return (
         <Layout
-            title={categoryWikidata["meta_title"]} name={"description"} content={categoryWikidata["meta_content"]}
+            title={categoryWikidata["meta-title"]} name={"description"} content={categoryWikidata["meta-content"]}
         >
 
             {loginModalDetails.openModal && !user.new_user && (
