@@ -243,8 +243,24 @@ const ProposalDetailCard = ({
     return (
         <>
             {getProposalCard()}
-        </>
+        
+            {showCreateOrEditProposalModal && (
+                <CreateProposalModal
+                    onCancel={() => {
+                        setShowCreateOrUpdateProposalModal(false);
+                    }}
+                    isViewMode={true}
+                    isEditMode={true}
+                    proposalDetails={proposalData}
+                />
+            )}
 
+            {showProposalInterestedArtistModal && (
+                <ProposalInterestedArtistModal
+                    interestedArtists={interestedArtists}
+                />
+            )}
+        </>
     );
 };
 

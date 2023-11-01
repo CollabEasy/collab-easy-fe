@@ -31,26 +31,16 @@ const mapStateToProps = (state: AppState) => {
     const proposal = state.proposal;
     const proposalInterest = state.proposalInterest;
 
-    const showCreateOrEditProposalModal = state.proposal.showCreateOrUpdateProposalModal;
-    const showProposalInterestedArtistModal = state.proposalInterest.showProposalInterestedArtistModal;
     // const proposalComments = state.proposalComments;
     const isfetchingProposal = state.proposal.isfetchingProposal;
     const isfetchingProposalInterest = state.proposalInterest.isFetchingProposalsInterests;
     // const isAddingProposalComment = state.proposalComments.isAddingProposalComment;
-    return { user, isLoggedIn, loginModalDetails, proposal, proposalInterest, isfetchingProposal, isfetchingProposalInterest, showCreateOrEditProposalModal, showProposalInterestedArtistModal }
+    return { user, isLoggedIn, loginModalDetails, proposal, proposalInterest, isfetchingProposal, isfetchingProposalInterest }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     getProposalByIdAction: (id: string) => dispatch(action.fetchProposalById(id)),
-    updateProposal: (proposalId: string, data: any) => dispatch(action.updateProposal(proposalId, data)),
-
-    addProposalInterest: (proposalId: string, data: any) => dispatch(action.addProposalInterest(proposalId, data)),
     getProposalsInterests: (proposalId: string) => dispatch(action.getProposalsInterests(proposalId)),
-    // fetchProposalCommentById: (proposalId: string) => dispatch(action.fetchProposalCommentByProposalId(proposalId)),
-    // addProposalComment: (data: any) => dispatch(action.addProposalComment(data)),
-
-    setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(action.setShowCreateOrUpdateProposalModal(show)),
-    setShowProposalInterestedArtistModal: (show: boolean) => dispatch(action.setShowProposalInterestedArtistModal(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -65,17 +55,8 @@ const ProposalPage = ({
     isfetchingProposalInterest,
     proposal,
     proposalInterest,
-    showCreateOrEditProposalModal,
-    showProposalInterestedArtistModal,
-    // isAddingProposalComment,
     getProposalByIdAction,
     getProposalsInterests,
-    updateProposal,
-    addProposalInterest,
-    setShowCreateOrUpdateProposalModal,
-    setShowProposalInterestedArtistModal,
-    // fetchProposalCommentById,
-    // addProposalComment,
 }: Props) => {
 
     const [showProfileModal, setShowProfileModal] = useState(false);
