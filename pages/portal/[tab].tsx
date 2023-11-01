@@ -5,13 +5,13 @@ import titleMobileImg from "../../../public/images/logo.svg";
 import { Tooltip } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { SearchCollab } from "types/model";
-import CollabRequestTab from "../../../components/collabRequestTab";
+import CollabRequestTab from "../../components/collabRequestTab";
 import NotAuthorised from "@/components/error/notAuthorised";
 import { Select } from "antd";
 import { Layout, Menu } from "antd";
 import { routeToHref } from "config/routes";
 import { Breadcrumb } from 'antd';
-import PageLayout from "../../../components/layout";
+import PageLayout from "../../components/layout";
 import {
   SearchOutlined,
   HomeOutlined,
@@ -82,7 +82,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
 
-const EditProfile = ({
+const ArtistPortal = ({
   user,
   isLoggedIn,
   loginModalDetails,
@@ -150,7 +150,7 @@ const EditProfile = ({
   ]);
 
   const router = useRouter();
-  const { action, tab } = router.query;
+  const { tab } = router.query;
 
   useEffect(() => {
     activeTabKey.current = "1";
@@ -170,14 +170,6 @@ const EditProfile = ({
       activeTabKey.current = "7";
     }
   }, [tab]);
-
-  if (
-    typeof window !== "undefined" &&
-    action !== "profile" &&
-    action !== "account"
-  ) {
-    router.push("/artist/settings/profile?tab=basic-information");
-  }
 
   function handleWebNavClick(e: any) {
     activeTabKey.current = e.key;
@@ -217,7 +209,7 @@ const EditProfile = ({
       router.push("/artist/" + user.slug);
       return;
     }
-    router.push("/artist/settings/" + action + "?tab=" + tab);
+    router.push("/portal/" + tab);
   };
 
   const getActiveTab = () => {
@@ -338,10 +330,6 @@ const EditProfile = ({
         </Menu.Item>
       </Menu>
     );
-  }
-
-  const getPageMetadata = () => {
-
   }
 
 
@@ -545,4 +533,4 @@ const EditProfile = ({
   );
 };
 
-export default connector(EditProfile);
+export default connector(ArtistPortal);

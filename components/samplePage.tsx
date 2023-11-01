@@ -93,7 +93,7 @@ const SamplePage = ({
     fetchArtistSamples(user.slug);
   }, [fetchArtistSamples]);
 
-  const { toEditProfile } = useRoutesContext();
+  const { toArtistPortal } = useRoutesContext();
 
   const uploadButton = (
     <div>

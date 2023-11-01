@@ -2,7 +2,7 @@
 export const getNewCollabRequestEmailData = (collabRequestData: any) => {
     const artistName = collabRequestData['receiverName'];
     const senderName = collabRequestData['senderName'];
-    const collabLink = 'https://www.wondor.art/artist/settings/profile?tab=collab-request';
+    const collabLink = 'https://www.wondor.art/portal/collab-request';
     return `
     <!-- You have a new collaboration request 🎉 -->
 

@@ -152,7 +152,7 @@ const Profile = ({
     useState(false);
   const [updating, setUpdating] = useState("");
 
-  const { toEditProfile, toDiscover } = useRoutesContext();
+  const { toArtistPortal, toDiscover } = useRoutesContext();
 
   useEffect(() => {
     fetchArtistSamples(user.slug);
@@ -272,7 +272,7 @@ const Profile = ({
       )
     }
     return isSelf ? (
-      <Tooltip title={isLoggedIn ? "" : "Login to send collab request"}>
+      <Tooltip title={isLoggedIn ? "" : "Login to edit your profile"}>
         <Button
           type="primary"
           disabled={!isLoggedIn}
@@ -280,7 +280,7 @@ const Profile = ({
           style={{ height: "auto", marginTop: "10px" }}
         >
           <Link
-            href={routeToHref(toEditProfile("profile", "profile"))}
+            href={routeToHref(toArtistPortal("basic-information"))}
             passHref
           >
             Edit profile
@@ -402,7 +402,7 @@ const Profile = ({
                   complete 😔. For maximum reach, please complete it by adding
                   bio, skills, samples, and social account.
                   <Link
-                    href={routeToHref(toEditProfile("profile", "profile"))}
+                    href={routeToHref(toArtistPortal("basic-information"))}
                     passHref
                   >
                     {" here."}
@@ -503,7 +503,7 @@ const Profile = ({
                           <Button className="common-medium-btn" type="primary">
                             <Link
                               href={routeToHref(
-                                toEditProfile("profile", "samples")
+                                toArtistPortal("samples")
                               )}
                               passHref
                             >
