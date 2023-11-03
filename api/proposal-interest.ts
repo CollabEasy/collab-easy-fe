@@ -59,7 +59,7 @@ export const addProposalInterestApi = async (proposalId: string, data: ProposalD
   }
 };
 
-export const acceptProposalInterestApi = async (proposalId: string, data: any[]) => {
+export const acceptProposalInterestApi = async (proposalId: string, data: any) => {
   const config = postConfigWithToken(data);
   try {
     let url = "api/v1/proposal/" + proposalId + "/accept"
@@ -70,13 +70,13 @@ export const acceptProposalInterestApi = async (proposalId: string, data: any[])
   }
 };
 
-// export const rejectProposalInterestApi = async (proposalId: string, data: any[]) => {
-//   const config = postConfigWithToken(data);
-//   try {
-//     let url = "api/v1/proposal/" + proposalId + "/show_interest"
-//     const proposal = await api.call(url, config);
-//     return proposal;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+export const rejectProposalInterestApi = async (proposalId: string, data: any) => {
+  const config = postConfigWithToken(data);
+  try {
+    let url = "api/v1/proposal/" + proposalId + "/reject"
+    const proposal = await api.call(url, config);
+    return proposal;
+  } catch (error) {
+    throw error;
+  }
+};

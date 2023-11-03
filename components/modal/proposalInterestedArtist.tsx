@@ -15,33 +15,40 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     setShowProposalInterestedArtistModal: (show: boolean) => dispatch(action.setShowProposalInterestedArtistModal(show)),
     acceptProposalInterest: (proposalId: string, data: any) => dispatch(action.acceptProposalInterest(proposalId, data)),
+    rejectProposalInterest: (proposalId: string, data: any) => dispatch(action.rejectProposalInterest(proposalId, data)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
+    proposalStatus: string
     proposalId: string
     interestedArtists: any[]
 } & ConnectedProps<typeof connector>;
 
 const ProposalInterestedArtistModal = ({
+    proposalStatus,
     proposalId,
     interestedArtists,
     acceptProposalInterest,
+    rejectProposalInterest,
     setShowProposalInterestedArtistModal,
 }: Props) => {
     const { toArtistProfile } = useRoutesContext();
     const [showModal, setViewModal] = useState(true);
 
 
-    const acceptInterestedArtist = (entry: any) => {
+    const acceptInterestedArtist = (proposal: any) => {
         let data = {
-            "user": entry.artistId,
+            "user": proposal.artistId,
         }
         acceptProposalInterest(proposalId, data);
     };
-    const rejectInterestedArtist = (entry: any) => {
-        console.log("reject proposal");
+    const rejectInterestedArtist = (proposal: any) => {
+        let data = {
+            "user": proposal.artistId,
+        }
+        rejectProposalInterest(proposalId, data);
     };
 
     const columns = [
@@ -66,16 +73,30 @@ const ProposalInterestedArtistModal = ({
             // eslint-disable-next-line react/display-name
             render: (_text: any, record: any) => (
                 <>
-                    {record.accepted ? (
+                    {record.accepted && (
+                        <>No action required, you have already accepted</>
+                    )}
+                    {record.rejected && (
+                        <>No action required, you have already rejected</>
+                    )}
+                    {!record.accepted && !record.rejected && (
                         <>
-                            No action required, you have already accepted
-                        </>
-                    ) : (
-                        <>
-                            <Button type="primary" onClick={() => acceptInterestedArtist(record)}>
+                            {proposalStatus === "CLOSED" && (
+                                <p style={{ color: "red" }}>No action allowed on a closed proposal</p>
+                            )}
+                            <Button
+                                type="primary"
+                                disabled={proposalStatus !== "ACTIVE"}
+                                onClick={() => acceptInterestedArtist(record)}
+                            >
                                 Accept
                             </Button>
-                            <Button onClick={() => rejectInterestedArtist(record)}>Reject</Button>
+                            <Button
+                                disabled={proposalStatus !== "ACTIVE"}
+                                onClick={() => rejectInterestedArtist(record)}
+                            >
+                                Reject
+                            </Button>
                         </>
                     )}
                 </>
@@ -101,10 +122,17 @@ const ProposalInterestedArtistModal = ({
                         <span>
                             <p><b>Message: </b> {message}</p>
                         </span>
-                        {record.accepted ? (
+                        {record.accepted && (
                             <>No action required, you have already accepted</>
-                        ) : (
+                        )}
+                        {record.rejected && (
+                            <>No action required, you have already rejected</>
+                        )}
+                        {!record.accepted && !record.rejected && (
                             <>
+                                {proposalStatus === "CLOSED" && (
+                                    <p style={{ color: "red" }}>No action allowed on a closed proposal</p>
+                                )}
                                 <Button
                                     type="primary"
                                     onClick={() => acceptInterestedArtist(record)}
@@ -123,11 +151,13 @@ const ProposalInterestedArtistModal = ({
     const getInterestedArtists = () => {
         let updatedData = [];
         interestedArtists.forEach((element) => {
+            console.log(element);
             let obj = {
                 artistId: element.userId,
                 artist: element.askedByFirstName + " " + element.askedByLastName,
                 slug: element.askedBySlug,
                 accepted: element.accepted,
+                rejected: element.rejected,
                 message: element.message.length === 0 ? "I'm interested" : element.message,
             };
             updatedData.push(obj);

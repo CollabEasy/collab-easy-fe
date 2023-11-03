@@ -74,3 +74,26 @@ export const acceptProposalInterestLogic = createLogic<
         }
     },
 });
+
+export const rejectProposalInterestLogic = createLogic<
+    AppState,
+    FSACreatorPayload<typeof actions.rejectProposalInterest>,
+    any,
+    LogicDeps
+>({
+    type: [actionTypes.REJECT_PROPOSAL_INTEREST],
+    async process({ action, api }, dispatch, done) {
+        try {
+            dispatch(actions.rejectProposalInterestRequest())
+            const {proposalId, data } = action.payload;
+            const proposalData = await proposalInterestApi.rejectProposalInterestApi(proposalId, data);
+            dispatch(actions.rejectProposalInterestSuccess(proposalData));
+            dispatch(notifActions.showNotification(true, 'Your rejection is successfully recorded'));
+        } catch (error) {
+            const error_response = error.response.data;
+            dispatch(notifActions.showNotification(false, error_response['err_str']));
+        } finally {
+            done();
+        }
+    },
+});

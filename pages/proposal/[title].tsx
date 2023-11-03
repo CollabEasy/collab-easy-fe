@@ -84,6 +84,7 @@ const ProposalPage = ({
     const [proposalData, setProposalData] = useState();
     const [interestedArtists, setInterestedArtists] = useState();
     const [showProfileModal, setShowProfileModal] = useState(false);
+    const [proposalStatus, setProposalStatus] = useState("false");
 
     const router = useRouter();
     const { title, proposalId } = router.query;
@@ -214,6 +215,7 @@ const ProposalPage = ({
                                     onClick={() => {
                                         setInterestedArtists(interests);
                                         setShowProposalInterestedArtistModal(true);
+                                        setProposalStatus(data.proposal.proposalStatus);
                                     }}
                                 >
                                     Interested Artists
@@ -301,6 +303,7 @@ const ProposalPage = ({
 
                 {showProposalInterestedArtistModal && (
                     <ProposalInterestedArtistModal
+                        proposalStatus={proposalStatus}
                         proposalId={proposalId as string}
                         interestedArtists={interestedArtists}
                     />
