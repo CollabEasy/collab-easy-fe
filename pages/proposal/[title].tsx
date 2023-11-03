@@ -270,23 +270,15 @@ const ProposalPage = ({
                     <NewUserModal />
                 )
                 }
-                {/* {!isLoggedIn ? (
-                    <>
-                        <NotAuthorised
-                            error={"Please login to see details of this collaboration request!"}
-                        />
-                    </>
-                ) : ( */}
-                    <div className="allProposalsPage_listingPagecontainer">
-                        {isfetchingProposal || isfetchingProposalInterest ? (
-                            <Loader />
-                        ) : (
-                            <>
-                                {getProposalCard()}
-                            </>
-                        )}
-                    </div>
-                {/* )} */}
+                <div className="allProposalsPage_listingPagecontainer">
+                    {isfetchingProposal || isfetchingProposalInterest ? (
+                        <Loader />
+                    ) : (
+                        <>
+                            {getProposalCard()}
+                        </>
+                    )}
+                </div>
 
                 {showCreateOrEditProposalModal && (
                     <CreateProposalModal

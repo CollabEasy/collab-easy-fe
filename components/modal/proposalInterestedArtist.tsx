@@ -72,19 +72,19 @@ const ProposalInterestedArtistModal = ({
         {
             // eslint-disable-next-line react/display-name
             render: (record, key, index) => {
-                const artist = record.name;
-                const message = record.description;
+                const artist = record.artist;
+                const message = record.message;
                 return (
                     <div>
                         <span>
-                            <p><b>Artist:</b>
+                            <p><b>Artist: </b>
                                 <a href={toArtistProfile(record.slug).as} target="_blank" rel="noreferrer">
                                     {artist}
                                 </a>
                             </p>
                         </span>
                         <span>
-                            <p><b>Message:</b> {message}</p>
+                            <p><b>Message: </b> {message}</p>
                         </span>
 
                         <Button type="primary" onClick={() => acceptInterestedArtist(record)}>
