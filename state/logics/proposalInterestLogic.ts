@@ -65,6 +65,7 @@ export const acceptProposalInterestLogic = createLogic<
             const {proposalId, data } = action.payload;
             const proposalData = await proposalInterestApi.acceptProposalInterestApi(proposalId, data);
             dispatch(actions.acceptProposalInterestSuccess(proposalData));
+            dispatch(notifActions.showNotification(true, 'Your acceptance is successfully recorded 🥳'));
         } catch (error) {
             const error_response = error.response.data;
             dispatch(notifActions.showNotification(false, error_response['err_str']));

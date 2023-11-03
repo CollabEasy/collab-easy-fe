@@ -16,7 +16,7 @@ import Layout from "@/components/layout";
 import Loader from "@/components/loader";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import ProposalInterestedArtistModal from "@/components/modal/proposalInterestedArtist";
-import { GetDateString, GetProposalTags, HasShownInterest } from "helpers/proposalHelper";
+import { GetDateString, GetProposalTags, HasShownInterest, InterestStatus } from "helpers/proposalHelper";
 import { useRoutesContext } from "components/routeContext";
 
 // https://ant.design/components/card/
@@ -137,6 +137,7 @@ const ProposalPage = ({
         }
         let data = proposal.proposal.length != 0 ? proposal.proposal[0].data : [];
         let hasShownInterest = HasShownInterest(interests, user.artist_id);
+        let interestAccepted = InterestStatus(interests, user.artist_id);
         return (
             <div className="ui-block">
                 <>
@@ -205,7 +206,7 @@ const ProposalPage = ({
                     <p>
                         {GetProposalTags(data.proposal)}
                     </p>
-                    <div className="post-additional-info inline-items" style={{padding: "20px 0 0"}}>
+                    <div className="post-additional-info inline-items" style={{ padding: "20px 0 0" }}>
                         <p>
                             {user.artist_id === data.proposal.createdBy ? (
                                 <Button
@@ -224,15 +225,22 @@ const ProposalPage = ({
                                             <p>Please, login to send a show interest</p>
                                         </div>
                                     )}
-                                    <Button
-                                        disabled={data.proposal.proposalStatus === "CLOSED" || hasShownInterest || !isLoggedIn}
-                                        onClick={() => {
-                                            setProposalData(data.proposal);
-                                            confirmShowInterest(data.proposal);
-                                        }}
-                                    >
-                                        {hasShownInterest ? "You Marked Interested" : "Show Interest"}
-                                    </Button>
+                                    {hasShownInterest ? (
+                                        <p className="common-text-style">
+                                            You have shown interest {interestAccepted ? ("and it got accepted too 🥳") : ("🥳")}
+                                        </p>
+
+                                    ) : (
+                                        <Button
+                                            disabled={data.proposal.proposalStatus === "CLOSED" || !isLoggedIn}
+                                            onClick={() => {
+                                                setProposalData(data.proposal);
+                                                confirmShowInterest(data.proposal);
+                                            }}
+                                        >
+                                            Show Interest
+                                        </Button>
+                                    )}
                                 </>
                             )}
 
@@ -293,6 +301,7 @@ const ProposalPage = ({
 
                 {showProposalInterestedArtistModal && (
                     <ProposalInterestedArtistModal
+                        proposalId={proposalId as string}
                         interestedArtists={interestedArtists}
                     />
                 )}

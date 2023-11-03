@@ -64,3 +64,13 @@ export function HasShownInterest(interests: any[], userId: string) {
     });
     return hasShownInterest;
 };
+
+export function InterestStatus(interests: any[], userId: string) {
+    let interestAccepted = false
+    interests.forEach((interest) => {
+        if (interest.userId === userId && interest.accepted === true) {
+            interestAccepted = true;
+        }
+    });
+    return interestAccepted;
+};

@@ -14,26 +14,33 @@ const mapStateToProps = (state: AppState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     setShowProposalInterestedArtistModal: (show: boolean) => dispatch(action.setShowProposalInterestedArtistModal(show)),
+    acceptProposalInterest: (proposalId: string, data: any) => dispatch(action.acceptProposalInterest(proposalId, data)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
+    proposalId: string
     interestedArtists: any[]
 } & ConnectedProps<typeof connector>;
 
 const ProposalInterestedArtistModal = ({
+    proposalId,
     interestedArtists,
+    acceptProposalInterest,
     setShowProposalInterestedArtistModal,
 }: Props) => {
     const { toArtistProfile } = useRoutesContext();
     const [showModal, setViewModal] = useState(true);
 
 
-    const acceptInterestedArtist = (entry: any[]) => {
-        console.log("accept proposal");
+    const acceptInterestedArtist = (entry: any) => {
+        let data = {
+            "user": entry.artistId,
+        }
+        acceptProposalInterest(proposalId, data);
     };
-    const rejectInterestedArtist = (entry: any[]) => {
+    const rejectInterestedArtist = (entry: any) => {
         console.log("reject proposal");
     };
 
@@ -59,10 +66,18 @@ const ProposalInterestedArtistModal = ({
             // eslint-disable-next-line react/display-name
             render: (_text: any, record: any) => (
                 <>
-                    <Button type="primary" onClick={() => acceptInterestedArtist(record)}>
-                        Accept
-                    </Button>
-                    <Button onClick={() => rejectInterestedArtist(record)}>Reject</Button>
+                    {record.accepted ? (
+                        <>
+                            No action required, you have already accepted
+                        </>
+                    ) : (
+                        <>
+                            <Button type="primary" onClick={() => acceptInterestedArtist(record)}>
+                                Accept
+                            </Button>
+                            <Button onClick={() => rejectInterestedArtist(record)}>Reject</Button>
+                        </>
+                    )}
                 </>
             ),
         },
@@ -86,11 +101,19 @@ const ProposalInterestedArtistModal = ({
                         <span>
                             <p><b>Message: </b> {message}</p>
                         </span>
-
-                        <Button type="primary" onClick={() => acceptInterestedArtist(record)}>
-                            Accept
-                        </Button>
-                        <Button onClick={() => rejectInterestedArtist(record)}>Reject</Button>
+                        {record.accepted ? (
+                            <>No action required, you have already accepted</>
+                        ) : (
+                            <>
+                                <Button
+                                    type="primary"
+                                    onClick={() => acceptInterestedArtist(record)}
+                                >
+                                    Accept
+                                </Button>
+                                <Button onClick={() => rejectInterestedArtist(record)}>Reject</Button>
+                            </>
+                        )}
                     </div>
                 )
             }
@@ -101,9 +124,10 @@ const ProposalInterestedArtistModal = ({
         let updatedData = [];
         interestedArtists.forEach((element) => {
             let obj = {
+                artistId: element.userId,
                 artist: element.askedByFirstName + " " + element.askedByLastName,
                 slug: element.askedBySlug,
-                accepedted: element.accepted,
+                accepted: element.accepted,
                 message: element.message.length === 0 ? "I'm interested" : element.message,
             };
             updatedData.push(obj);

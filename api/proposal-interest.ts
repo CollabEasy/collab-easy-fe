@@ -62,7 +62,7 @@ export const addProposalInterestApi = async (proposalId: string, data: ProposalD
 export const acceptProposalInterestApi = async (proposalId: string, data: any[]) => {
   const config = postConfigWithToken(data);
   try {
-    let url = "api/v1/proposal/" + proposalId + "/accept'"
+    let url = "api/v1/proposal/" + proposalId + "/accept"
     const proposal = await api.call(url, config);
     return proposal;
   } catch (error) {
