@@ -4,7 +4,7 @@ export function GetCategoryFromSlug(selectedCategorySlug) {
     var selectedCategory = "Artists";
     for (var i = 0; i < SIMILAR_CATEGORIES.length; i++) {
         if (SIMILAR_CATEGORIES[i]["slugs"].indexOf(selectedCategorySlug) > -1) {
-            SIMILAR_CATEGORIES[i]["similar_categories"].forEach((category) => {
+            SIMILAR_CATEGORIES[i]["similar-categories"].forEach((category) => {
                 if (category["slug"] == selectedCategorySlug) {
                     selectedCategory = category["name"];
                 }

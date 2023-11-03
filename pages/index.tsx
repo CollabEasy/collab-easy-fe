@@ -101,7 +101,7 @@ const Home = ({
     {
       id: 5,
       title: "Music",
-      link: `${toArtist().href}music`,
+      link: `${toArtist().href}musician`,
       imgUrl: musicImage,
     },
     {

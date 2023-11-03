@@ -90,7 +90,7 @@ export const LISTING_BANNERS = [
 export const SIMILAR_CATEGORIES = [
     {
         "slugs": ["writing", "creative-writing", "poetry", "spoken-words", "calligraphy"],
-        "similar_categories": [
+        "similar-categories": [
             {
                 "name": "Writing",
                 "slug": "writing"
@@ -115,7 +115,7 @@ export const SIMILAR_CATEGORIES = [
     },
     {
         "slugs": ["photography", "illustration"],
-        "similar_categories": [
+        "similar-categories": [
             {
                 "name": "Photography",
                 "slug": "photography"
@@ -128,7 +128,7 @@ export const SIMILAR_CATEGORIES = [
     },
     {
         "slugs": ["digital-art", "illustration"],
-        "similar_categories": [
+        "similar-categories": [
             {
                 "name": "Illustration",
                 "slug": "illustration"
@@ -141,7 +141,7 @@ export const SIMILAR_CATEGORIES = [
     },
     {
         "slugs": ["dancing", "choreography"],
-        "similar_categories": [
+        "similar-categories": [
             {
                 "name": "Dancing",
                 "slug": "dancing"
@@ -154,7 +154,7 @@ export const SIMILAR_CATEGORIES = [
     },
     {
         "slugs": ["painting", "caricature-drawing", "sketching", "doodling"],
-        "similar_categories": [
+        "similar-categories": [
             {
                 "name": "Painting",
                 "slug": "painting"
@@ -175,7 +175,7 @@ export const SIMILAR_CATEGORIES = [
     },
     {
         "slugs": ["journaling", "art-journaling", "creative-journaling", "bullet-journaling", "scrapbooking", "collage-making"],
-        "similar_categories": [
+        "similar-categories": [
             {
                 "name": "Art Journaling",
                 "slug": "art-journaling"
@@ -204,7 +204,7 @@ export const SIMILAR_CATEGORIES = [
     },
     {
         "slugs": ["hand-lettering", "calligraphy", "writing"],
-        "similar_categories": [
+        "similar-categories": [
             {
                 "name": "Hand Lettering",
                 "slug": "hand-lettering"
@@ -217,7 +217,7 @@ export const SIMILAR_CATEGORIES = [
     },
     {
         "slugs": ["singing", "standup-comedy"],
-        "similar_categories": [
+        "similar-categories": [
             {
                 "name": "Singing",
                 "slug": "singing"

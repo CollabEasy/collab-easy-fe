@@ -122,7 +122,7 @@ const DiscoverArtist = ({
     const similarCategoriesHtml: JSX.Element[] = [];
     SIMILAR_CATEGORIES.forEach((element) => {
       if (element["slugs"].indexOf(artSlug) > -1) {
-        element.similar_categories.forEach((category) => {
+        element["similar-categories"].forEach((category) => {
           if (category["slug"] != artSlug) {
             similarCategoriesHtml.push(
               <>

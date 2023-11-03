@@ -53,7 +53,7 @@ const CategoryPage = ({
         const similarCategoriesHtml: JSX.Element[] = [];
         SIMILAR_CATEGORIES.forEach((element) => {
             if (element["slugs"].indexOf(slug.toString()) > -1) {
-                element.similar_categories.forEach((category) => {
+                element["similar-categories"].forEach((category) => {
                     if (category["slug"] != slug) {
                         similarCategoriesHtml.push(
                             <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
@@ -72,7 +72,7 @@ const CategoryPage = ({
         const similarCategoriesHtml: JSX.Element[] = [];
         SIMILAR_CATEGORIES.forEach((element) => {
             if (element["slugs"].indexOf(slug.toString()) > -1) {
-                element.similar_categories.forEach((category) => {
+                element["similar-categories"].forEach((category) => {
                     if (category["slug"] != slug) {
                         similarCategoriesHtml.push(
                             <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
