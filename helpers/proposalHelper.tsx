@@ -55,22 +55,22 @@ export function GetProposalTags(proposal: any) {
     return tags;
 };
 
-export function HasShownInterest(interests: any[], userId: string) {
-    let hasShownInterest = false
+export function InterestStatus(interests: any[], userId: string) {
+    let interestStatus = {
+        "shown_interest": false,
+        "accepeted": false,
+        "rejected": false,
+    }
     interests.forEach((interest) => {
         if (interest.userId === userId) {
-            hasShownInterest = true;
+            interestStatus["shown_interest"] = true
+            if (interest.accepeted) {
+                interestStatus["accepeted"] = true
+            }
+            if (interest.rejected) {
+                interestStatus["rejected"] = true
+            }
         }
     });
-    return hasShownInterest;
-};
-
-export function InterestStatus(interests: any[], userId: string) {
-    let interestAccepted = false
-    interests.forEach((interest) => {
-        if (interest.userId === userId && interest.accepted === true) {
-            interestAccepted = true;
-        }
-    });
-    return interestAccepted;
+    return interestStatus;
 };

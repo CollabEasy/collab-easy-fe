@@ -16,7 +16,7 @@ import Layout from "@/components/layout";
 import Loader from "@/components/loader";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import ProposalInterestedArtistModal from "@/components/modal/proposalInterestedArtist";
-import { GetDateString, GetProposalTags, HasShownInterest, InterestStatus } from "helpers/proposalHelper";
+import { GetDateString, GetProposalTags, InterestStatus } from "helpers/proposalHelper";
 import { useRoutesContext } from "components/routeContext";
 
 // https://ant.design/components/card/
@@ -137,8 +137,7 @@ const ProposalPage = ({
             return <></>;
         }
         let data = proposal.proposal.length != 0 ? proposal.proposal[0].data : [];
-        let hasShownInterest = HasShownInterest(interests, user.artist_id);
-        let interestAccepted = InterestStatus(interests, user.artist_id);
+        let interestStatus = InterestStatus(interests, user.artist_id);
         return (
             <div className="ui-block">
                 <>
@@ -227,9 +226,9 @@ const ProposalPage = ({
                                             <p>Please, login to send a show interest</p>
                                         </div>
                                     )}
-                                    {hasShownInterest ? (
+                                    {interestStatus["shown_interest"] ? (
                                         <p className="common-text-style">
-                                            You have shown interest {interestAccepted ? ("and it got accepted too 🥳") : ("🥳")}
+                                            You have shown interest {interestStatus["accepeted"] ? ("and it got accepted too 🥳") : (interestStatus["rejected"] ? "but unfortunately it got rejected 😢" : "😎")}
                                         </p>
 
                                     ) : (
