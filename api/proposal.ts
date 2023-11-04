@@ -82,15 +82,15 @@ export const getProposalByIdApi = async (proposalId: string) => {
   }
 };
 
-// export const getProposalByArtistSlugAPI = async (slug: string) => {
-//   const config = getConfig();
-//   try {
-//     // const result = await api.call(
-//     //   `api/v1/artist/category/slug/${slug}/artists`,
-//     //   config
-//     // );
-//     // return result;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+export const getProposalByArtistSlugAPI = async (slug: string) => {
+  const config = getConfigWithToken();
+  try {
+    const result = await api.call(
+      `api/v1/proposal/${slug}/get`,
+      config
+    );
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};

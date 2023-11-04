@@ -25,6 +25,7 @@ import {
   InfoCircleOutlined,
   DollarCircleOutlined,
   SmileOutlined,
+  FileTextOutlined,
   UserOutlined,
   TrophyOutlined,
 } from "@ant-design/icons";
@@ -47,6 +48,7 @@ import Rewards from "@/components/rewards";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { Header } from "antd/lib/layout/layout";
+import ManageProposals from "@/components/manageProposals";
 
 const { Sider, Content } = Layout;
 
@@ -168,6 +170,8 @@ const ArtistPortal = ({
       activeTabKey.current = "6";
     } else if (tab === "rewards") {
       activeTabKey.current = "7";
+    } else if (tab === "proposals") {
+      activeTabKey.current = "10"; 
     }
   }, [tab]);
 
@@ -208,6 +212,8 @@ const ArtistPortal = ({
     } else if (tabIndex === "9") {
       router.push("/artist/" + user.slug);
       return;
+    } else if (tabIndex === "10") {
+      tab = "proposals";
     }
     router.push("/portal/" + tab);
   };
@@ -268,6 +274,10 @@ const ArtistPortal = ({
           <CalendarOutlined />
           <span className="f-12" style={{ display: "block" }}>Collab Requests</span>
         </div>
+        <div tabIndex={9} className="tab" onClick={() => { handleMobileNavClick("10") }}>
+          <FileTextOutlined />
+          <span className="f-12" style={{ display: "block" }}>Proposals</span>
+        </div>
         <div tabIndex={7} className="tab" onClick={() => { handleMobileNavClick("7") }}>
           <DollarCircleOutlined />
           <span className="f-12" style={{ display: "block" }}>Rewards</span>
@@ -319,6 +329,10 @@ const ArtistPortal = ({
         <Menu.Item key="6">
           <CalendarOutlined />
           <span className="f-12">Collab Requests</span>
+        </Menu.Item>
+        <Menu.Item key="10">
+          <FileTextOutlined />
+          <span className="f-12"> Proposals</span>
         </Menu.Item>
         <Menu.Item key="7">
           <DollarCircleOutlined />
@@ -521,6 +535,25 @@ const ArtistPortal = ({
                     }
                     <div className="settings__basicProfileCard">
                       <Rewards />
+                    </div>
+                  </Content>
+                )}
+
+                {getActiveTab() === "10" && (
+                  <Content
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
+                  >
+                    {window.innerWidth > 500 &&
+                      <>
+                        {getBreadcrum("Proposals")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
+                      <ManageProposals />
                     </div>
                   </Content>
                 )}

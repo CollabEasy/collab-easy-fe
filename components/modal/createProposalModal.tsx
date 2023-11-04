@@ -114,6 +114,8 @@ const CreateProposalModal = ({
         } else {
             createProposal(obj);
         }
+        // This is a hack until we can doit from reducer.
+        location.reload();
     };
 
     const hideCreateProposalModal = (isAddingProposal) => {
