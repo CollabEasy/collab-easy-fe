@@ -32,8 +32,8 @@ const mapStateToProps = (state: AppState) => {
 
     const proposal = state.proposal;
     const showCreateOrEditProposalModal = state.proposal.showCreateOrUpdateProposalModal;
-    const isfetchingProposal = state.proposal.isfetchingProposal;
-    return { user, isLoggedIn, loginModalDetails, proposal, isfetchingProposal, showCreateOrEditProposalModal }
+    const isfetchingUserProposals = state.proposal.isfetchingUserProposals;
+    return { user, isLoggedIn, loginModalDetails, proposal, isfetchingUserProposals, showCreateOrEditProposalModal }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -50,7 +50,7 @@ const ManageProposals = ({
     user,
     isLoggedIn,
     loginModalDetails,
-    isfetchingProposal,
+    isfetchingUserProposals,
     proposal,
     showCreateOrEditProposalModal,
     fetchProposalByArtistSlug,
@@ -110,9 +110,16 @@ const ManageProposals = ({
             // eslint-disable-next-line react/display-name
             render: (_text: any, proposal: any) => (
                 <>
-                    <Button type="primary" onClick={() => confirmCloseProposal(proposal)}>
-                        Update
-                    </Button>
+                    {user.artist_id === proposal.createdBy &&
+                        <Button type="primary"
+                            onClick={() => {
+                                setProposalData(proposal);
+                                setShowCreateOrUpdateProposalModal(true);
+                            }}
+                        >
+                            Update
+                        </Button>
+                    }
                     <Button >
                         <Link
                             href={toProposalPage(proposal.title.replace(/\s+/g, '-').toLowerCase(), proposal.proposalId).as}
@@ -138,9 +145,16 @@ const ManageProposals = ({
                         <span>
                             <p>{GetProposalTags(proposal)}</p>
                         </span>
-                        <Button type="primary" onClick={() => confirmCloseProposal(proposal)}>
-                            Update
-                        </Button>
+                        {user.artist_id === proposal.createdBy &&
+                            <Button type="primary"
+                                onClick={() => {
+                                    setProposalData(proposal);
+                                    setShowCreateOrUpdateProposalModal(true);
+                                }}
+                            >
+                                Update
+                            </Button>
+                        }
                         <Button >
                             <Link
                                 href={toProposalPage(proposal.title.replace(/\s+/g, '-').toLowerCase(), proposal.proposalId).as}
@@ -172,10 +186,11 @@ const ManageProposals = ({
     }
 
     const getMyProposalsList = () => {
-        if (proposal.proposal.length === 0) {
+        console.log(proposal);
+        if (proposal.userProposals.length === 0) {
             return <></>;
         }
-        let data = proposal.proposal.length != 0 ? proposal.proposal[0].data : [];
+        let data = proposal.userProposals.length != 0 ? proposal.userProposals[0].data : [];
         return (
             <>
                 <Tabs defaultActiveKey="1" type="card" size={"middle"} >
@@ -200,7 +215,7 @@ const ManageProposals = ({
             )
             }
 
-            {isfetchingProposal ? (
+            {isfetchingUserProposals ? (
                 <Loader />
             ) : (
                 <div className="proposalInfo_container">
@@ -217,6 +232,16 @@ const ManageProposals = ({
                     </div>
                 </div>
 
+            )}
+            {showCreateOrEditProposalModal && (
+                <CreateProposalModal
+                    onCancel={() => {
+                        setShowCreateOrUpdateProposalModal(false);
+                    }}
+                    isViewMode={true}
+                    isEditMode={true}
+                    proposalDetails={proposalData}
+                />
             )}
         </>
     );

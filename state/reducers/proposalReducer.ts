@@ -4,10 +4,12 @@ import * as actionType from "../actionTypes/proposalActionTypes";
 const initialState: ProposalState = {
     proposal: [],
     proposals: [],
+    userProposals: [],
     proposalCount: -1,
     isAddingProposal: false,
     isfetchingProposal: false,
     isFetchingAllProposals: false,
+    isfetchingUserProposals: false,
     showCreateOrUpdateProposalModal: false,
 };
 
@@ -54,19 +56,19 @@ const proposalReducer = (state = initialState, action): ProposalState => {
         case actionType.FETCH_PROPOSAL_BY_ARTIST_SLUG_REQUEST:
             return {
                 ...state,
-                proposal: [],
-                isfetchingProposal: true,
+                userProposals: [],
+                isfetchingUserProposals: true,
             };
         case actionType.FETCH_PROPOSAL_BY_ARTIST_SLUG_SUCCESS:
             return {
                 ...state,
-                proposal: [action.payload.data],
-                isfetchingProposal: false,
+                userProposals: [action.payload.data],
+                isfetchingUserProposals: false,
             };
         case actionType.FETCH_PROPOSAL_BY_ARTIST_SLUG_FAILURE:
             return {
                 ...state,
-                isfetchingProposal: false,
+                isfetchingUserProposals: false,
             };
         case actionType.ADD_PROPOSAL_REQUEST:
             return {
