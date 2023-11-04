@@ -89,7 +89,6 @@ export const getProposalByArtistSlugAPI = async (slug: string) => {
       `api/v1/proposal/${slug}/get`,
       config
     );
-    console.log("api", result);
     return result;
   } catch (error) {
     throw error;

@@ -58,37 +58,25 @@ const ManageProposals = ({
     setShowCreateOrUpdateProposalModal,
 }: Props) => {
 
+    const emptyProposalData: ProposalData = {
+        title: "",
+        description: "",
+        artistId: "",
+        status: "",
+        proposalId: "",
+        collabType: "",
+        categories: [],
+    };
+
     const { toAllProposalsPage, toProposalPage } = useRoutesContext();
 
-    const { confirm } = Modal;
-    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
     const [proposalData, setProposalData] = useState();
-    const [interestedArtists, setInterestedArtists] = useState();
     const [showProfileModal, setShowProfileModal] = useState(false);
-    const [proposalStatus, setProposalStatus] = useState("false");
+    const [createOrEditProposals, setCreateOrEditProposals] = useState("EDIT");
 
     useEffect(() => {
         fetchProposalByArtistSlug(user.slug as string);
     }, [user]);
-
-    const confirmCloseProposal = (proposalData) => {
-        confirm({
-            title: 'Are you sure you want to close this proposal?',
-            onOk() {
-                let obj = {
-                    "proposal_title": proposalData.title,
-                    "proposal_description": proposalData.description,
-                    "category_ids": Object.keys(proposalData.categories),
-                    "collab_type": proposalData.collabType,
-                    "proposal_status": "CLOSED",
-                }
-                updateProposal(proposalData.proposalId, obj);
-            },
-            onCancel() {
-                // Do nothing
-            },
-        });
-    };
 
     const columns = [
         { title: "Title", dataIndex: "title", key: "title" },
@@ -185,15 +173,14 @@ const ManageProposals = ({
         );
     }
 
-    const getMyProposalsList = () => {
-        console.log(proposal);
+    const getProposalsTabs = () => {
         if (proposal.userProposals.length === 0) {
             return <></>;
         }
         let data = proposal.userProposals.length != 0 ? proposal.userProposals[0].data : [];
         return (
             <>
-                <Tabs defaultActiveKey="1" type="card" size={"middle"} >
+                <Tabs defaultActiveKey="1" type="card" size={"small"} >
                     <TabPane tab="Created" key="1">
                         {getProposalsList(data["created"])};
                     </TabPane>
@@ -220,15 +207,25 @@ const ManageProposals = ({
             ) : (
                 <div className="proposalInfo_container">
                     <div className="banner-container" style={{ backgroundColor: "#FFFBE6", border: "1px solid #f2a114" }}>
-                        Hello {user.first_name}, find all of the proposals
-                        <Link href={routeToHref((toAllProposalsPage()))} passHref> here.</Link>
-                        You can also use this to
-                        <Button>
-                            add proposals
-                        </Button>
+                        <h4 className="common-h4-style">Hello {user.first_name}</h4> 
+                        <div style={{ marginBottom: 16, marginTop: 16 }}>
+                            <Button >
+                                <Link href={routeToHref((toAllProposalsPage()))} passHref>
+                                    Search Proposals
+                                </Link>
+                            </Button>
+                            <Button 
+                                onClick={() => {
+                                    setShowCreateOrUpdateProposalModal(true);
+                                    setCreateOrEditProposals("ADD")
+                                }}
+                            >
+                                Add Proposal
+                            </Button>
+                        </div>
                     </div>
-                    <div className="rewardsInfo_container" style={{ marginTop: "0%" }}>
-                        {getMyProposalsList()}
+                    <div className="rewardsInfo_container" style={{ marginTop: "4%" }}>
+                        {getProposalsTabs()}
                     </div>
                 </div>
 
@@ -239,8 +236,8 @@ const ManageProposals = ({
                         setShowCreateOrUpdateProposalModal(false);
                     }}
                     isViewMode={true}
-                    isEditMode={true}
-                    proposalDetails={proposalData}
+                    isEditMode={createOrEditProposals === "ADD" ? false : true}
+                    proposalDetails={createOrEditProposals === "ADD" ? emptyProposalData : proposalData}
                 />
             )}
         </>

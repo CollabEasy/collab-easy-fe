@@ -151,7 +151,6 @@ const ProposalInterestedArtistModal = ({
     const getInterestedArtists = () => {
         let updatedData = [];
         interestedArtists.forEach((element) => {
-            console.log(element);
             let obj = {
                 artistId: element.userId,
                 artist: element.askedByFirstName + " " + element.askedByLastName,
