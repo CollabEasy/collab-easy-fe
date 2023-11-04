@@ -51,6 +51,23 @@ const proposalReducer = (state = initialState, action): ProposalState => {
                 isfetchingProposal: false,
             };
 
+        case actionType.FETCH_PROPOSAL_BY_ARTIST_SLUG_REQUEST:
+            return {
+                ...state,
+                proposal: [],
+                isfetchingProposal: true,
+            };
+        case actionType.FETCH_PROPOSAL_BY_ARTIST_SLUG_SUCCESS:
+            return {
+                ...state,
+                proposal: [action.payload.data],
+                isfetchingProposal: false,
+            };
+        case actionType.FETCH_PROPOSAL_BY_ARTIST_SLUG_FAILURE:
+            return {
+                ...state,
+                isfetchingProposal: false,
+            };
         case actionType.ADD_PROPOSAL_REQUEST:
             return {
                 ...state,
@@ -91,7 +108,6 @@ const proposalReducer = (state = initialState, action): ProposalState => {
                 proposal: updatedProposal,
                 isAddingProposal: false,
             };
-
         case actionType.UPDATE_PROPOSAL_FAILURE:
             return {
                 ...state,

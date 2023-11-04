@@ -94,24 +94,24 @@ export const fetchProposalByIdLogic = createLogic<
     },
 });
 
-// export const fetchProposalByArtistSlugLogic = createLogic<
-//     AppState,
-//     FSACreatorPayload<typeof actions.fetchProposalByArtistSlug>,
-//     any,
-//     LogicDeps
-// >({
-//     type: [actionTypes.FETCH_PROPOSAL_BY_ARTIST_SLUG],
-//     async process({ action, api }, dispatch, done) {
-//         const { slug } = action.payload;
-//         try {
-//             dispatch(actions.fetchProposalByArtistSlugRequest());
-//             const result = await proposalApi.getArtistsByCategorySlugAPI(slug);
-//             dispatch(actions.fetchProposalByArtistSlugSuccess(result));
-//         } catch (error) {
-//             dispatch(actions.fetchProposalByArtistSlugFalilure(error));
-//         } finally {
-//             done();
-//         }
-//     },
-// });
+export const fetchProposalByArtistSlugLogic = createLogic<
+    AppState,
+    FSACreatorPayload<typeof actions.fetchProposalByArtistSlug>,
+    any,
+    LogicDeps
+>({
+    type: [actionTypes.FETCH_PROPOSAL_BY_ARTIST_SLUG],
+    async process({ action, api }, dispatch, done) {
+        const { slug } = action.payload;
+        try {
+            dispatch(actions.fetchProposalByArtistSlugRequest());
+            const result = await proposalApi.getProposalByArtistSlugAPI(slug);
+            dispatch(actions.fetchProposalByArtistSlugSuccess(result));
+        } catch (error) {
+            dispatch(actions.fetchProposalByArtistSlugFalilure(error));
+        } finally {
+            done();
+        }
+    },
+});
 
