@@ -136,9 +136,9 @@ const Home = ({
       <div className="header-text">
         <div className="text-content">
           <div className="main-content-container">
-            <div className="common-h1-style heading">
+            <h1 className="common-h1-style heading">
               Connect and Collaborate with{" "}
-            </div>
+            </h1>
             {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
             <div className="animation-content">
               <ul className="flip5">
@@ -150,10 +150,9 @@ const Home = ({
               </ul>
             </div>
           </div>
-          <h6 className="common-p-style">
-            Unlock new avenues for creativity, collaboration, and success in the
-            world of creators 🤝 💡 🎉
-          </h6>
+          <p className="f-16 common-p-style">
+            Unlock New Avenues for Creativity, Collaboration, and Success in the World of Art 🤝 💡 🎉
+          </p>
         </div>
       </div>
     );
@@ -171,16 +170,15 @@ const Home = ({
               src={artistConnectImage}
               height={300}
               width={300}
-              alt="landing page"
-              loading="lazy"
+              alt="Join artist community to collab, create collab proposals, find new themes examples and arty ideas."
+              loading="eager"
             />
             <div>
-              <h3 className="common-h3-style">Discover New Opportunities</h3>
+              <h3 className="common-h3-style">Discover Collaboration Opportunities</h3>
               <p className="common-p-style">
-                Join vibrant community of artists, network and interact with
-                peers. Explore the profiles of fellow creators, discover new
-                talent, exchange ideas, and initiate collaborations directly
-                within the platform.
+                Join a vibrant community of artists, explore fellow creators&pos; profiles,
+                and discover new collaboration opportunities, including proposals and
+                ideas for your art projects. Collaborate directly within the platform.
               </p>
             </div>
           </div>
@@ -190,9 +188,9 @@ const Home = ({
             <div className="small-card-text">
               <h3 className="common-h3-style">Connect to Collaborate</h3>
               <p className="common-p-style">
-                Create a centralized profile, link all social platforms,
-                demonstrate collaboration readiness and unlock art world
-                opportunities with fellow artists.
+                Create a centralized creator profile, link all your social media
+                platforms, showcase your collaboration readiness, and take the
+                first step towards achieving your creative goals.
               </p>
             </div>
             <div style={{ paddingRight: "5px" }}>
@@ -200,18 +198,17 @@ const Home = ({
                 src={connectImage}
                 height={250}
                 width={250}
-                alt="landing page"
-                loading="lazy"
+                alt="Creator profile with linked social media platforms and collaboration readiness"
+                loading="eager"
               />
             </div>
           </div>
           <div className="small-card" style={{ background: "#FBF0C4" }}>
             <div className="small-card-text">
-              <h3 className="common-h3-style">Streamlined Workflows</h3>
+              <h3 className="common-h3-style">Manage collaborations Effortlessly</h3>
               <p className="common-p-style">
-                Easy-to-use workflow to send requests to collab and an organized
-                calendar to keep track of upcoming collaboration and project
-                deadlines.{" "}
+                easy-to-use collaboration management tools help artists send collaboration
+                requests and track upcoming collaborations and project deadlines with ease.{" "}
               </p>
             </div>
             <div style={{ paddingRight: "5px" }}>
@@ -219,8 +216,8 @@ const Home = ({
                 src={calendarImage}
                 height={250}
                 width={250}
-                alt="landing page"
-                loading="lazy"
+                alt="Collaboration management tools to help artists work together more efficiently"
+                loading="eager"
               />
             </div>
           </div>
@@ -468,10 +465,10 @@ const Home = ({
 
   return (
     <Layout
-      title={"Wondor | Discover artists to collaborate!"}
+      title={"Wondor - Connect with Artists, Manage Collabs, Create Proposals, and More. Join Now!"}
       name={"description"}
       content={
-        "Discover artists to collaborate. Join vibrant community of artists, network and interact. Exchange ideas and collaborate on Wondor. Try for free now!"
+        "Wondor is your one-stop solution for all artsy needs. Find artists to collaborate with, manage your collabs, create proposals, find art ideas, and join monthly art competitions—all on Wondor, the all-in-one platform for singers, painters, graphic designers, and more. Sign up for free today and start exploring!"
       }
     >
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
