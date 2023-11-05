@@ -140,7 +140,7 @@ const Home = ({
               Connect and Collaborate with{" "}
             </h1>
             {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
-            <div className="animation-content">
+            <h1 className="animation-content">
               <ul className="flip5">
                 <li className="heading common-h1-style">Painters!</li>
                 <li className="heading common-h1-style">Photographers!</li>
@@ -148,7 +148,7 @@ const Home = ({
                 <li className="heading common-h1-style">Dancers!</li>
                 <li className="heading common-h1-style">Poets !</li>
               </ul>
-            </div>
+            </h1>
           </div>
           <p className="f-16 common-p-style">
             Unlock New Avenues for Creativity, Collaboration, and Success in the World of Art 🤝 💡 🎉
