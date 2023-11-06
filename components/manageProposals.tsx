@@ -110,7 +110,7 @@ const ManageProposals = ({
                     }
                     <Button >
                         <Link
-                            href={toProposalPage(proposal.title.replace(/\s+/g, '-').toLowerCase(), proposal.proposalId).as}
+                            href={toProposalPage(proposal.proposalId, proposal.title.replace(/\s+/g, '-').toLowerCase()).as}
                             passHref
                         >
                             Details
@@ -145,7 +145,7 @@ const ManageProposals = ({
                         }
                         <Button >
                             <Link
-                                href={toProposalPage(proposal.title.replace(/\s+/g, '-').toLowerCase(), proposal.proposalId).as}
+                                href={toProposalPage(proposal.proposalId, proposal.title.replace(/\s+/g, '-').toLowerCase()).as}
                                 passHref
                             >
                                 Details

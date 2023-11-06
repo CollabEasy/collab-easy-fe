@@ -7,7 +7,7 @@ import { EditOutlined } from "@ant-design/icons";
 import { Dispatch } from "redux";
 import { CollabRequestData, ProposalData } from "types/model";
 import { useEffect, useState } from "react";
-import * as action from "../../state/action";
+import * as action from "../../../state/action";
 import NotAuthorised from "@/components/error/notAuthorised";
 import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';

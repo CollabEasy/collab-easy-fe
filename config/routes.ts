@@ -33,9 +33,9 @@ export const routes: AppRouteCreators = {
     href: '/collab/details/[id]',
     as: `/collab/details/${id}`,
   }),
-  toProposalPage: (title, proposalId) => ({
-    href: '/proposal/[title]?proposalId=[proposalId]',
-    as: `/proposal/${title}?proposalId=${proposalId}`,
+  toProposalPage: (proposalId, title) => ({
+    href: '/proposal/[proposalId]/[title]',
+    as: `/proposal/${proposalId}/${title}`,
   }),
   toSendCollabRequestPage: (slug) => ({
     href: '/collab/[slug]',

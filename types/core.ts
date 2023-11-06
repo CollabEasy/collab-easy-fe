@@ -23,5 +23,5 @@ export interface AppRouteCreators {
   toContactUs: () => WebRoute;
   toGetInspired: () => WebRoute;
   toAnalyticsPage: () => WebRoute;
-  toProposalPage: (title: string, proposalId: string) => WebRoute;
+  toProposalPage: (proposalId: string, title: string) => WebRoute;
 }
