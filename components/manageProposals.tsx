@@ -85,7 +85,7 @@ const ManageProposals = ({
             dataIndex: "tags",
             key: "tags",
             // eslint-disable-next-line react/display-name
-            render: (_text: any, record: any) => (
+            render: (_text: any, proposal: any) => (
                 <>
                     {GetProposalTags(proposal)}
                 </>
@@ -101,8 +101,8 @@ const ManageProposals = ({
                     {user.artist_id === proposal.createdBy &&
                         <Button type="primary"
                             onClick={() => {
-                                setProposalData(proposal);
-                                setShowCreateOrUpdateProposalModal(true);
+                                setProposalData(proposal)
+                                setShowCreateOrUpdateProposalModal(true)
                             }}
                         >
                             Update
@@ -136,8 +136,8 @@ const ManageProposals = ({
                         {user.artist_id === proposal.createdBy &&
                             <Button type="primary"
                                 onClick={() => {
-                                    setProposalData(proposal);
-                                    setShowCreateOrUpdateProposalModal(true);
+                                    setProposalData(proposal)
+                                    setShowCreateOrUpdateProposalModal(true)
                                 }}
                             >
                                 Update
@@ -159,11 +159,11 @@ const ManageProposals = ({
 
 
     const getProposalsList = (proposals: any[]) => {
-        let updatedData = [];
+        let updatedData = []
         proposals.forEach((proposal) => {
-            updatedData.push(proposal.proposal);
-        });
-        updatedData.sort((a, b) => b.createdAt - a.createdAt);
+            updatedData.push(proposal.proposal)
+        })
+        updatedData.sort((a, b) => b.createdAt - a.createdAt)
         return (
             <Table
                 showHeader={false}
@@ -182,14 +182,14 @@ const ManageProposals = ({
             <>
                 <Tabs defaultActiveKey="1" type="card" size={"small"} >
                     <TabPane tab="Created" key="1">
-                        {getProposalsList(data["created"])};
+                        {getProposalsList(data["created"])}
                     </TabPane>
                     <TabPane tab="Interested" key="2">
                         {getProposalsList(data["interested"])}
                     </TabPane>
                 </Tabs>
             </>
-        );
+        )
     }
 
     return (
@@ -207,16 +207,16 @@ const ManageProposals = ({
             ) : (
                 <div className="proposalInfo_container">
                     <div className="banner-container" style={{ backgroundColor: "#FFFBE6", border: "1px solid #f2a114" }}>
-                        <h4 className="common-h4-style">Hello {user.first_name}</h4> 
+                        <h4 className="common-h4-style">Hello {user.first_name}</h4>
                         <div style={{ marginBottom: 16, marginTop: 16 }}>
                             <Button >
                                 <Link href={routeToHref((toAllProposalsPage()))} passHref>
                                     Search Proposals
                                 </Link>
                             </Button>
-                            <Button 
+                            <Button
                                 onClick={() => {
-                                    setShowCreateOrUpdateProposalModal(true);
+                                    setShowCreateOrUpdateProposalModal(true)
                                     setCreateOrEditProposals("ADD")
                                 }}
                             >
@@ -241,7 +241,7 @@ const ManageProposals = ({
                 />
             )}
         </>
-    );
+    )
 };
 
 export default connector(ManageProposals);

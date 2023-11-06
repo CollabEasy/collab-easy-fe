@@ -24,32 +24,32 @@ export function GetProposalTags(proposal: any) {
     let index = 0;
     for (const key in proposal.categories) {
         tags.push(
-            <Tag style={{marginTop: "8px"}} color={CATEGORY_COLORS[index]}>{proposal.categories[key]}</Tag>
+            <Tag style={{ marginTop: "8px" }} color={CATEGORY_COLORS[index]}>{proposal.categories[key]}</Tag>
         )
         index++;
     }
     let status = proposal.proposalStatus;
     if (status === "ACTIVE") {
         tags.push(
-            <Tag style={{marginTop: "8px"}} color="green">Active</Tag>
+            <Tag style={{ marginTop: "8px" }} color="green">Active</Tag>
         );
     } else {
         tags.push(
-            <Tag style={{marginTop: "8px"}} color="grey">Closed</Tag>
+            <Tag style={{ marginTop: "8px" }} color="grey">Closed</Tag>
         );
     }
     let type = proposal.collabType
     if (type === "VIRTUAL") {
         tags.push(
-            <Tag style={{marginTop: "8px"}} color="orange">Virtual</Tag>
+            <Tag style={{ marginTop: "8px" }} color="orange">Virtual</Tag>
         );
     } else if (type === "INPERSON") {
         tags.push(
-            <Tag style={{marginTop: "8px"}} color="orange">In-Person</Tag>
+            <Tag style={{ marginTop: "8px" }} color="orange">In-Person</Tag>
         )
     } else {
         tags.push(
-            <Tag style={{marginTop: "8px"}} color="orange">Can be virtual or in-person</Tag>
+            <Tag style={{ marginTop: "8px" }} color="orange">Can be virtual or in-person</Tag>
         );
     }
     return tags;

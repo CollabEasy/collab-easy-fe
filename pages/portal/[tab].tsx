@@ -171,7 +171,7 @@ const ArtistPortal = ({
     } else if (tab === "rewards") {
       activeTabKey.current = "7";
     } else if (tab === "proposals") {
-      activeTabKey.current = "10"; 
+      activeTabKey.current = "10";
     }
   }, [tab]);
 
