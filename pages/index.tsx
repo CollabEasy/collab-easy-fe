@@ -76,51 +76,59 @@ const Home = ({
   const popularArtist = [
     {
       id: 1,
-      title: "Creative Writing",
-      link: `${toArtist().href}creative-writing`,
+      title: "Writing",
+      link: `${toArtist().href}writing`,
       imgUrl: writingImage,
+      imgAltTag: "Creative writers collaborating on a creative writing project. Send collab request.",
     },
     {
       id: 2,
       title: "Photography",
       link: `${toArtist().href}photography`,
       imgUrl: cameramanImage,
+      imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
     },
     {
       id: 3,
       title: "Dancing",
       link: `${toArtist().href}dancing`,
       imgUrl: dancingImage,
+      imgAltTag: "Dancers collaborating on a creative dance project. Send collab request.",
     },
     {
       id: 4,
-      title: "Digital Art",
-      link: `${toArtist().href}digital-art`,
+      title: "Illustration",
+      link: `${toArtist().href}illustration`,
       imgUrl: illustratorImage,
+      imgAltTag: "Digital illustrators collaborating on a creative digital art project. Send collab request.",
     },
     {
       id: 5,
       title: "Music",
       link: `${toArtist().href}musician`,
       imgUrl: musicImage,
+      imgAltTag: "Musicians collaborating on a creative music project. Send collab request.",
     },
     {
       id: 6,
       title: "Journaling",
       link: `${toArtist().href}journaling`,
       imgUrl: handLetteringImage,
+      imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
     },
     {
       id: 7,
       title: "Singing",
       link: `${toArtist().href}singing`,
       imgUrl: singingImage,
+      imgAltTag: "Singers collaborating on a creative singing project. Send collab request.",
     },
     {
       id: 8,
       title: "Painting",
       link: `${toArtist().href}painting`,
       imgUrl: paintingImage,
+      imgAltTag: "Painters collaborating on a creative painting project. Send collab request.",
     },
   ];
 
@@ -252,7 +260,7 @@ const Home = ({
                       src={item.imgUrl}
                       height={130}
                       width={130}
-                      alt="landing page"
+                      alt={item.imgAltTag}
                       loading="lazy"
                     />{" "}
                   </div>

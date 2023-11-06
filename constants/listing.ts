@@ -153,7 +153,7 @@ export const SIMILAR_CATEGORIES = [
         ]
     },
     {
-        "slugs": ["painting", "caricature-drawing", "sketching", "doodling"],
+        "slugs": ["painting", "caricature-drawing", "sketching", "doodling", "caricaturing"],
         "similar-categories": [
             {
                 "name": "Painting",
@@ -170,6 +170,10 @@ export const SIMILAR_CATEGORIES = [
             {
                 "name": "Doodling",
                 "slug": "doodling"
+            },
+            {
+                "name": "Caricaturing",
+                "slug": "caricaturing",
             }
         ]
     },
