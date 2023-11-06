@@ -62,7 +62,8 @@ const Home = ({
   loginModalDetails,
   user,
   artistListData,
-}: Props) => {
+  popularArtist,
+}) => {
   // const [showProfileModal, setShowProfileModal] = useState(false);
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
   const {
@@ -72,65 +73,6 @@ const Home = ({
     toAllContestPage,
     toRewardsInfoPage,
   } = useRoutesContext();
-
-  const popularArtist = [
-    {
-      id: 1,
-      title: "Writing",
-      link: `${toArtist().href}writing`,
-      imgUrl: writingImage,
-      imgAltTag: "Creative writers collaborating on a creative writing project. Send collab request.",
-    },
-    {
-      id: 2,
-      title: "Photography",
-      link: `${toArtist().href}photography`,
-      imgUrl: cameramanImage,
-      imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
-    },
-    {
-      id: 3,
-      title: "Dancing",
-      link: `${toArtist().href}dancing`,
-      imgUrl: dancingImage,
-      imgAltTag: "Dancers collaborating on a creative dance project. Send collab request.",
-    },
-    {
-      id: 4,
-      title: "Illustration",
-      link: `${toArtist().href}illustration`,
-      imgUrl: illustratorImage,
-      imgAltTag: "Digital illustrators collaborating on a creative digital art project. Send collab request.",
-    },
-    {
-      id: 5,
-      title: "Music",
-      link: `${toArtist().href}musician`,
-      imgUrl: musicImage,
-      imgAltTag: "Musicians collaborating on a creative music project. Send collab request.",
-    },
-    {
-      id: 6,
-      title: "Journaling",
-      link: `${toArtist().href}journaling`,
-      imgUrl: handLetteringImage,
-      imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
-    },
-    {
-      id: 7,
-      title: "Singing",
-      link: `${toArtist().href}singing`,
-      imgUrl: singingImage,
-      imgAltTag: "Singers collaborating on a creative singing project. Send collab request.",
-    },
-    {
-      id: 8,
-      title: "Painting",
-      link: `${toArtist().href}painting`,
-      imgUrl: paintingImage,
-      imgAltTag: "Painters collaborating on a creative painting project. Send collab request.",
-    },
-  ];
 
   // useEffect(() => {
   //   if (artistListData.status === "success") {
@@ -242,7 +184,7 @@ const Home = ({
             className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer"
             key={item.id}
           >
-            <Link href={item.link} passHref>
+            <Link href={toArtist().href + item.slug} passHref>
               <div className="home-card">
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
@@ -528,5 +470,70 @@ const Home = ({
     </Layout>
   );
 };
+
+const popularArtist = [
+  {
+    id: 1,
+    title: "Writing",
+    slug: "writing",
+    imgUrl: writingImage,
+    imgAltTag: "Creative writers collaborating on a creative writing project. Send collab request.",
+  },
+  {
+    id: 2,
+    title: "Photography",
+    slug: "photography",
+    imgUrl: cameramanImage,
+    imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
+  },
+  {
+    id: 3,
+    title: "Dancing",
+    slug: "dancing",
+    imgUrl: dancingImage,
+    imgAltTag: "Dancers collaborating on a creative dance project. Send collab request.",
+  },
+  {
+    id: 4,
+    title: "Illustration",
+    slug: "illustration",
+    imgUrl: illustratorImage,
+    imgAltTag: "Digital illustrators collaborating on a creative digital art project. Send collab request.",
+  },
+  {
+    id: 5,
+    title: "Music",
+    slug: "musician",
+    imgUrl: musicImage,
+    imgAltTag: "Musicians collaborating on a creative music project. Send collab request.",
+  },
+  {
+    id: 6,
+    title: "Journaling",
+    slug: "journaling",
+    imgUrl: handLetteringImage,
+    imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
+  },
+  {
+    id: 7,
+    title: "Singing",
+    slug: "singing",
+    imgUrl: singingImage,
+    imgAltTag: "Singers collaborating on a creative singing project. Send collab request.",
+  },
+  {
+    id: 8,
+    title: "Painting",
+    slug: "painting",
+    imgUrl: paintingImage,
+    imgAltTag: "Painters collaborating on a creative painting project. Send collab request.",
+  },
+];
+
+export async function getStaticProps({ params }) {
+
+  // Pass post data to the page via props
+  return { props: { popularArtist } }
+}
 
 export default connector(Home);
