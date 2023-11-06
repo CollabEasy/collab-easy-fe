@@ -117,7 +117,7 @@ const NavBar = ({
           <Link href={routeToHref(toWondorHome())} passHref>
             <Image
               src={titleMobileBlueImg}
-              alt="Landing page"
+              alt="Wondor - Join now to collab with painters, singers, musicians and more."
               onClick={() => setShowLoginOptions(false)}
             />
           </Link>
@@ -144,7 +144,7 @@ const NavBar = ({
           <Link href={routeToHref(toWondorHome())} passHref>
             <Image
               src={titleDesktopImg}
-              alt="Landing page"
+              alt="Wondor - Join now to collab with painters, singers, musicians and more."
               onClick={() => setShowLoginOptions(false)}
             />
           </Link>
@@ -153,7 +153,7 @@ const NavBar = ({
           <Link href={routeToHref(toWondorHome())} passHref>
             <Image
               src={titleMobileBlueImg}
-              alt="Landing page"
+              alt="Wondor - Join now to collab with painters, singers, musicians and more."
               onClick={() => setShowLoginOptions(false)}
             />
           </Link>
