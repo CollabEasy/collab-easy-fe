@@ -33,9 +33,10 @@ const CategoryPage = ({
     artistListData,
     categoryMetadata,
     categoryWikidata,
-    slug
+    slug,
+    metaTitle,
 }) => {
-    const { toDiscover, toAllCategoryPage, toArtist, toCategoryPage } = useRoutesContext();
+    const { toDiscover, toAllCategoryPage, toArtist, toCategoryWikiPage } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [windowWidth, setWindowWidth] = useState(-1);
 
@@ -57,7 +58,7 @@ const CategoryPage = ({
                     if (category["slug"] != slug) {
                         similarCategoriesHtml.push(
                             <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
-                                <a key="wiki" href={routeToHref(toCategoryPage(category["slug"] as string))} >Learn about  {category["name"]}</a>
+                                <a key="wiki" href={routeToHref(toCategoryWikiPage(category["slug"] as string, category["meta-slug"] as string))} >Learn about  {category["name"]}</a>
                             </li>
                         )
                     }
@@ -177,7 +178,7 @@ const CategoryPage = ({
 export async function getStaticPaths() {
     // Get the paths we want to pre-render
     const paths = CATEGORY_WIKI.map((category) => ({
-      params: { id: category.slug },
+      params: { slug: category.slug, title: category["meta-slug"] },
     }))
     // We'll pre-render only these paths at build time.
     // { fallback: false } means other routes should 404.
@@ -185,11 +186,11 @@ export async function getStaticPaths() {
   }
 
   export async function getStaticProps({ params }) {
-    const categoryMetadata = GetListingHeaderData(params.id);
-    const categoryWikidata = GetCategoryWikiData(params.id);
+    const categoryMetadata = GetListingHeaderData(params.slug);
+    const categoryWikidata = GetCategoryWikiData(params.slug);
 
     // Pass post data to the page via props
-    return { props: { categoryMetadata, categoryWikidata, slug: params.id } }
+    return { props: { categoryMetadata, categoryWikidata, slug: params.slug, metaTitle: params.title } }
   }
 
 export default connector(CategoryPage);

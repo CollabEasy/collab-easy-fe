@@ -14,7 +14,7 @@ export interface AppRouteCreators {
   toContestPage: (slug: string, tab: string) => WebRoute;
   toAllCategoryPage: () => WebRoute;
   toAllProposalsPage: () => WebRoute;
-  toCategoryPage: (slug: string) => WebRoute;
+  toCategoryWikiPage: (slug: string, title: string) => WebRoute;
   toAboutUs: () => WebRoute;
   toTutorial: () => WebRoute;
   toFAQ: () => WebRoute;

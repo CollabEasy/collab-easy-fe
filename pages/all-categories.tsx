@@ -16,6 +16,7 @@ import { CategoryEntry } from "types/states/category";
 import CategoryModal from "@/components/modal/categoryModal";
 import Layout from "@/components/layout";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
+import { GetCategoryWikiData } from "helpers/categoryHelper";
 
 
 
@@ -61,7 +62,7 @@ const AllCategoryPage = ({
         approved: false
     };
 
-    const { toArtist, toCategoryPage } = useRoutesContext();
+    const { toArtist, toCategoryWikiPage } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [allCategories, setAllCategory] = useState([]);
 
@@ -138,7 +139,7 @@ const AllCategoryPage = ({
             ) : (
                 <>
                     <div className="allCategoryPage_listingPagecontainer">
-                        <GenericBreadcrumb 
+                        <GenericBreadcrumb
                             page={"Categories"}
                         />
                         <div className="allCategoryPage__listingPageCoverContainer">
@@ -175,7 +176,7 @@ const AllCategoryPage = ({
                                 dataSource={GetApprovedCategories(categories)}
                                 renderItem={(item) => (
                                     <List.Item
-                                        actions={[<a key="wiki" href={routeToHref(toCategoryPage(item.slug as string))} >Wiki</a>, <a key="find-artist" href={toArtist().href + item.slug}>Find artists</a>]}
+                                        actions={[<a key="wiki" href={routeToHref(toCategoryWikiPage(item.slug as string, GetCategoryWikiData(item.slug)["meta-slug"]))} >Wiki</a>, <a key="find-artist" href={toArtist().href + item.slug}>Find artists</a>]}
                                     >
                                         <List.Item.Meta
                                             title={item.artName}

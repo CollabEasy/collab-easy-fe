@@ -45,9 +45,9 @@ export const routes: AppRouteCreators = {
     href: '/contest/[slug]?tab=[tab]',
     as: `/contest/${slug}?tab=${tab}`,
   }),
-  toCategoryPage: (slug) => ({
-    href: '/category/wiki/[slug]',
-    as: `/category/wiki/${slug}`,
+  toCategoryWikiPage: (slug, title) => ({
+    href: '/category/[slug]/[title]',
+    as: `/category/${slug}/${title}`,
   }),
   toAnalyticsPage: () => ({
     href: '/admin/analytics',
