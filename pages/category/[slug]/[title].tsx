@@ -13,8 +13,8 @@ import { useRoutesContext } from "components/routeContext";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
 import { GetCategoryWikiData } from "helpers/categoryHelper";
 import Layout from "@/components/layout";
-import { SIMILAR_CATEGORIES } from "constants/listing";
-import { CATEGORY_WIKI } from "constants/categoryWiki";
+import { SIMILAR_CATEGORIES } from "constants/category";
+import { CATEGORY_WIKI } from "constants/category";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;

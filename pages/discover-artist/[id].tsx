@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { LISTING_METADATA, SIMILAR_CATEGORIES } from "../../constants/listing";
+import { CATEGORY_LISTING_METADATA, SIMILAR_CATEGORIES } from "../../constants/category";
 import { Card, Button, Breadcrumb } from "antd";
 import { CloseOutlined, CheckOutlined, HomeOutlined } from "@ant-design/icons";
 import Link from "next/link";
@@ -245,7 +245,7 @@ const DiscoverArtist = ({
       "meta-title": "Artists available for collaboration",
       "meta-content": "Connect with like-minded artist and unleash your skills as an artist."
     };
-    LISTING_METADATA.forEach((element) => {
+    CATEGORY_LISTING_METADATA.forEach((element) => {
       if (element["slug"] === artSlug) {
         genericMetadata = element;
       }
