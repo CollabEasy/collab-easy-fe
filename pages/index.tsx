@@ -5,9 +5,9 @@ import Link from "next/link";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from "next/image";
-import artistConnectImage from "../public/images/artistConnect.svg";
+import exploreImage from "../public/images/artistConnect.svg";
 import connectImage from "../public/images/connect.svg";
-import calendarImage from "../public/images/calendar.svg";
+import manageImage from "../public/images/calendar.svg";
 
 import writingImage from "../public/images/popularCategories/writing.svg";
 import cameramanImage from "../public/images/popularCategories/camera.svg";
@@ -63,6 +63,8 @@ const Home = ({
   user,
   artistListData,
   popularArtist,
+  mainContent,
+  collabCard,
 }) => {
   // const [showProfileModal, setShowProfileModal] = useState(false);
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
@@ -87,7 +89,7 @@ const Home = ({
         <div className="text-content">
           <div className="main-content-container">
             <h1 className="common-h1-style heading">
-              Connect and Collaborate with{" "}
+              {mainContent["heading"]}{" "}
             </h1>
             {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
             <h1 className="animation-content">
@@ -101,7 +103,7 @@ const Home = ({
             </h1>
           </div>
           <p className="f-16 common-p-style">
-            Unlock New Avenues for Creativity, Collaboration, and Success in the World of Art 🤝 💡 🎉
+            {mainContent["paragraph"]}
           </p>
         </div>
       </div>
@@ -117,18 +119,16 @@ const Home = ({
             style={{ background: "#E2F0CB" }}
           >
             <Image
-              src={artistConnectImage}
+              src={exploreImage}
               height={300}
               width={300}
-              alt="Join artist community to collab, create collab proposals, find new themes examples and arty ideas."
+              alt={collabCard["explore-card"]["imgAltTag"]}
               loading="eager"
             />
             <div>
-              <h3 className="common-h3-style">Discover Collaboration Opportunities</h3>
+              <h3 className="common-h3-style">{collabCard["explore-card"]["heading"]}</h3>
               <p className="common-p-style">
-                Join a vibrant community of artists, explore fellow creators&pos; profiles,
-                and discover new collaboration opportunities, including proposals and
-                ideas for your art projects. Collaborate directly within the platform.
+                {collabCard["explore-card"]["paragraph"]}
               </p>
             </div>
           </div>
@@ -136,11 +136,9 @@ const Home = ({
         <div className="column" style={{ padding: "10px" }}>
           <div className="small-card" style={{ background: "#DBECFD" }}>
             <div className="small-card-text">
-              <h3 className="common-h3-style">Connect to Collaborate</h3>
+              <h3 className="common-h3-style">{collabCard["connect-card"]["heading"]}</h3>
               <p className="common-p-style">
-                Create a centralized creator profile, link all your social media
-                platforms, showcase your collaboration readiness, and take the
-                first step towards achieving your creative goals.
+                {collabCard["connect-card"]["paragraph"]}
               </p>
             </div>
             <div style={{ paddingRight: "5px" }}>
@@ -148,25 +146,24 @@ const Home = ({
                 src={connectImage}
                 height={250}
                 width={250}
-                alt="Creator profile with linked social media platforms and collaboration readiness"
+                alt={collabCard["connect-card"]["imgAltTag"]}
                 loading="eager"
               />
             </div>
           </div>
           <div className="small-card" style={{ background: "#FBF0C4" }}>
             <div className="small-card-text">
-              <h3 className="common-h3-style">Manage collaborations Effortlessly</h3>
+              <h3 className="common-h3-style">{collabCard["manage-card"]["heading"]}</h3>
               <p className="common-p-style">
-                easy-to-use collaboration management tools help artists send collaboration
-                requests and track upcoming collaborations and project deadlines with ease.{" "}
+                {collabCard["manage-card"]["paragraph"]}
               </p>
             </div>
             <div style={{ paddingRight: "5px" }}>
               <Image
-                src={calendarImage}
+                src={manageImage}
                 height={250}
                 width={250}
-                alt="Collaboration management tools to help artists work together more efficiently"
+                alt={collabCard["manage-card"]["imgAltTag"]}
                 loading="eager"
               />
             </div>
@@ -530,10 +527,33 @@ const popularArtist = [
   },
 ];
 
+const mainContent = {
+    heading: "Connect and Collaborate with",
+    paragraph: "Unlock New Avenues for Creativity, Collaboration, and Success in the World of Art 🤝 💡 🎉",
+}
+
+const collabCard = {
+  "explore-card": {
+    imgAltTag: "Join artist community to collab, create collab proposals, find new themes examples and arty ideas.",
+    heading: "Discover Collaboration Opportunities",
+    paragraph: "Join a vibrant community of artists, explore fellow creators' profiles, and discover new collaboration opportunities, including proposals and ideas for your art projects. Collaborate directly within the platform",
+  },
+  "connect-card" : {
+    imgAltTag: "Creator profile with linked social media platforms and collaboration readiness.",
+    heading: "Connect to Collaborate",
+    paragraph: "Create a centralized creator profile, link all your social media platforms, showcase your collaboration readiness, and take the first step towards achieving your creative goals",
+  },
+  "manage-card": {
+    imgAltTag: "Collaboration management tools to help artists work together more efficiently for increased productivity.",
+    heading: "Manage collaborations Effortlessly",
+    paragraph: "easy-to-use collaboration management tools help artists send collaboration requests and track upcoming collaborations and project deadlines with ease",
+  }
+}
+
 export async function getStaticProps({ params }) {
 
   // Pass post data to the page via props
-  return { props: { popularArtist } }
+  return { props: { popularArtist, mainContent, collabCard } }
 }
 
 export default connector(Home);
