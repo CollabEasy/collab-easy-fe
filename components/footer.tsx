@@ -12,6 +12,7 @@ import {
   TrophyOutlined,
   DollarOutlined,
   BulbOutlined,
+  CopyrightOutlined,
 } from "@ant-design/icons";
 import { AppState } from 'state';
 import { ConnectedProps, connect } from 'react-redux';
@@ -109,8 +110,11 @@ const Footer = ({
               <div className="d-flex">
                 <h1 style={{ color: "#404040", fontFamily: "pacifico", fontSize: "30px" }}>Wondor</h1>
               </div>
-              <p className="common-p-style">Unlock new avenues for creativity, collaboration, and success in the world of creators 🤝 💡 🎉</p>
-              <p><i className="fa fa-copyright"></i> 2023. All rights reserved.</p>
+              <p className="common-p-style">Unlock New Avenues for Creativity, Collaboration, and Success in the World of Art 🤝 💡 🎉</p>
+              <p style={{ display: "flex", alignItems: "center" }}>
+                <CopyrightOutlined style={{ paddingRight: "2px" }} />
+                <span>2023. All rights reserved.</span>
+              </p>
               {/* <div className="social mt-2 mb-3"> <i className="fa fa-facebook-official fa-lg"></i> <i className="fa fa-instagram fa-lg"></i> <i className="fa fa-twitter fa-lg"></i> <i className="fa fa-linkedin-square fa-lg"></i> <i className="fa fa-facebook"></i> </div> */}
             </div>
           </div>
@@ -129,7 +133,7 @@ const Footer = ({
               <div className="col-md-4 col-4">
                 <h6 className="common-h6-style">For artists</h6>
                 <ul className="common-text-style">
-                  <li><a href={toArtistPortal("basic-information").href} >Portal</a></li>
+                  <li><a href={"/portal/basic-information"} >Portal</a></li>
                   <li><a href={toGetInspired().href} >Inspiration</a></li>
                   <li><a href={toAllContestPage().href} >Contests</a></li>
                   <li><a href={toAllCategoryPage().href} >Categories</a></li>

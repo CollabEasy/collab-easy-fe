@@ -100,9 +100,16 @@ const Layout = ({
       />
 
       <div className="layout__layoutContainer">
-        {!IsArtistPortal(pathname) && (
-          // Don't show navbar on the portal
+        {!IsArtistPortal(pathname) ? (
+          // Non portal pages, show navbar.
           <Navbar />
+        ) : (
+          // portal page, show only if not logged in.
+          <>
+            {!isLoggedIn && (
+              <Navbar />
+            )}
+          </>
         )}
 
         {isFetchingUser ? (
@@ -110,7 +117,7 @@ const Layout = ({
         ) : (
           <main className="page-content">{children}</main>
         )}
-        
+
         <Footer footerLinkColumns={footerLinkColumns} user={user} isLoggedIn={isLoggedIn} />
       </div>
     </div>
