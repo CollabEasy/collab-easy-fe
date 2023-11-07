@@ -65,6 +65,7 @@ const Home = ({
   popularArtist,
   mainContent,
   collabCard,
+  inspirationAndContestCard,
 }) => {
   // const [showProfileModal, setShowProfileModal] = useState(false);
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
@@ -212,7 +213,7 @@ const Home = ({
     );
   };
 
-  const getInspirationCard = () => {
+  const getProposalCard = () => {
     return (
       <div className="row">
         <div className="container">
@@ -263,7 +264,7 @@ const Home = ({
     );
   };
 
-  const getContentScratchPad = () => {
+  const getInspirationAndContestCard = () => {
     return (
       <div className="row" style={{ backgroundColor: "#F8F9FA" }}>
         <div className="container">
@@ -279,33 +280,22 @@ const Home = ({
                       src={ideaImage}
                       height={300}
                       width={300}
-                      alt="landing page"
+                      alt={inspirationAndContestCard["inspiration-card"]["imgAltTag"]}
                       loading="lazy"
                     />
                   </div>
                   <div className="p-4 text-center">
-                    <div className="mt-4 mb-3">
-                      <h3 className="common-h3-style">
-                        Got an idea? Add it to your scratchpad before you forget
-                        😎
-                      </h3>
-                      <p className="common-p-style">
-                        We provide invaluable support to artists in times of
-                        need by publishing curated lists of themes and topics,
-                        serving as inspiration for their next creative
-                        masterpiece.
-                      </p>
-                    </div>
-                    <div className="mt-4 inspire-btn">
+                    <h3 className="common-h3-style">
+                      {inspirationAndContestCard["inspiration-card"]["heading"]}
+                    </h3>
+                    <p className="common-p-style">
+                      {inspirationAndContestCard["inspiration-card"]["paragraph"]}
+                    </p>
+                    <div className="inspire-btn">
                       <div>
                         <Button type="primary">
-                          <Link
-                            href={routeToHref(
-                              toArtistPortal("scratchpad")
-                            )}
-                            passHref
-                          >
-                            Take Notes
+                          <Link href={routeToHref(toGetInspired())} passHref>
+                            Find Ideas
                           </Link>
                         </Button>
                       </div>
@@ -321,24 +311,18 @@ const Home = ({
                       src={allContestImage}
                       height={300}
                       width={300}
-                      alt="landing page"
+                      alt={inspirationAndContestCard["contest-card"]["imgAltTag"]}
                       loading="lazy"
                     />
                   </div>
                   <div className="p-4 text-center">
-                    <div className="mt-4 mb-3">
-                      <h3 className="common-h3-style">
-                        Want to earn real money? Enter Wondor monthly contests
-                        🤑
-                      </h3>
-                      <p className="common-p-style">
-                        Join our monthly contest and let your creativity be the
-                        judge. For your participation, you will get reward
-                        points which can be redeemed for real money. Winner of
-                        the contests get more!
-                      </p>
-                    </div>
-                    <div className="mt-4 inspire-btn">
+                    <h3 className="common-h3-style">
+                      {inspirationAndContestCard["contest-card"]["heading"]}
+                    </h3>
+                    <p className="common-p-style">
+                      {inspirationAndContestCard["contest-card"]["paragraph"]}
+                    </p>
+                    <div className="inspire-btn">
                       <div>
                         <Button type="primary">
                           <Link href={routeToHref(toAllContestPage())} passHref>
@@ -436,13 +420,13 @@ const Home = ({
           <h5 className="common-h5-style popular-text">
             Want to collaborate? Checkout what&apos;s
           </h5>
-          <h1
+          <h3
             style={{ color: "black", marginBottom: "1px" }}
-            className="common-h1-style"
+            className="common-h3-style"
           >
             {" "}
-            <b>Popular Among Artists</b>
-          </h1>
+            Popular Among Artists
+          </h3>
           {/* <Link href={routeToHref(toAllCategoryPage())} passHref>
             <em
               style={{ textDecoration: "underline" }}
@@ -457,10 +441,10 @@ const Home = ({
       </div>
 
       {/* Inspiration */}
-      {getInspirationCard()}
+      {/* {getProposalCard()} */}
 
       {/* Contest and Scratchpad */}
-      {getContentScratchPad()}
+      {getInspirationAndContestCard()}
 
       {/* rewards D4C7E8 */}
       {getRewardsCard()}
@@ -528,8 +512,8 @@ const popularArtist = [
 ];
 
 const mainContent = {
-    heading: "Connect and Collaborate with",
-    paragraph: "Unlock New Avenues for Creativity, Collaboration, and Success in the World of Art 🤝 💡 🎉",
+  heading: "Connect and Collaborate with",
+  paragraph: "Unlock New Avenues for Creativity, Collaboration, and Success in the World of Art 🤝 💡 🎉",
 }
 
 const collabCard = {
@@ -538,7 +522,7 @@ const collabCard = {
     heading: "Discover Collaboration Opportunities",
     paragraph: "Join a vibrant community of artists, explore fellow creators' profiles, and discover new collaboration opportunities, including proposals and ideas for your art projects. Collaborate directly within the platform",
   },
-  "connect-card" : {
+  "connect-card": {
     imgAltTag: "Creator profile with linked social media platforms and collaboration readiness.",
     heading: "Connect to Collaborate",
     paragraph: "Create a centralized creator profile, link all your social media platforms, showcase your collaboration readiness, and take the first step towards achieving your creative goals",
@@ -550,10 +534,23 @@ const collabCard = {
   }
 }
 
+const inspirationAndContestCard = {
+  "inspiration-card": {
+    imgAltTag: "Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!",
+    heading: "Stuck in Creativity Block? Get New and Trending Content Ideas, Instantly!",
+    paragraph: "Discover new and trending travel content ideas for your next blog post, video, or artwork every week. Start now and find the perfect theme to engage your audience and grow your reach",
+  },
+  "contest-card": {
+    imgAltTag: "Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!",
+    heading: "Calling All Content Creators to Enter Our Monthly Contest for a Chance to Win!",
+    paragraph: "Show us your creativity and win big! Enter our monthly content creator contest for a chance to win cash prizes and more. We're looking for the best work in all categories",
+  },
+}
+
 export async function getStaticProps({ params }) {
 
   // Pass post data to the page via props
-  return { props: { popularArtist, mainContent, collabCard } }
+  return { props: { popularArtist, mainContent, collabCard, inspirationAndContestCard } }
 }
 
 export default connector(Home);
