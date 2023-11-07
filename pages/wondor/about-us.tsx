@@ -6,14 +6,14 @@ import { useRoutesContext } from "components/routeContext";
 import headerImg from "../public/images/aboutUsHeader.png";
 import { routeToHref } from "config/routes";
 
-import LoginModal from '../components/modal/loginModal';
+import LoginModal from '../../components/modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
 import { updateLoginData } from 'state/action';
 import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
-import NewUserModal from '../components/modal/newUserModal';
+import NewUserModal from '../../components/modal/newUserModal';
 import Layout from '@/components/layout';
 import GenericBreadcrumb from '@/components/genericBreadcrumb';
 
