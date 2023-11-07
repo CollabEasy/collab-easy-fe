@@ -5,7 +5,6 @@ import { Config } from './config';
 export const routes: AppRouteCreators = {
   toWondorHome: () => ({ href: "/" }),
   toDiscover: () => ({ href: "/" }),
-  toArtist: () => ({ href: "/discover-artist/" }),
   toAboutUs: () => ({ href: "/wondor/about-us"}),
   toFAQ: () => ({ href: "/faq"}),
   toTutorial: () => ({ href: "/wondor/tutorial"}),
@@ -48,6 +47,10 @@ export const routes: AppRouteCreators = {
   toCategoryWikiPage: (slug, title) => ({
     href: '/category/[slug]/[title]',
     as: `/category/${slug}/${title}`,
+  }),
+  toCategoryArtistList: (slug, artistTitle) => ({ 
+    href: '/category/[slug]/[artistTitle]-seeking-collab',
+    as: `/category/${slug}/${artistTitle}-seeking-collab`, 
   }),
   toAnalyticsPage: () => ({
     href: '/admin/analytics',

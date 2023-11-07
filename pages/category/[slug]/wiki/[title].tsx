@@ -13,8 +13,8 @@ import { useRoutesContext } from "components/routeContext";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
 import { GetCategoryWikiData } from "helpers/categoryHelper";
 import Layout from "@/components/layout";
-import { SIMILAR_CATEGORIES } from "constants/listing";
-import { CATEGORY_WIKI } from "constants/categoryWiki";
+import { SIMILAR_CATEGORIES } from "constants/category";
+import { CATEGORY_WIKI } from "constants/category";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -77,7 +77,7 @@ const CategoryPage = ({
                     if (category["slug"] != slug) {
                         similarCategoriesHtml.push(
                             <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
-                                <a href={toArtist().href + category["slug"]} >Find artists  {category["name"]}</a>
+                                <a href={toCategoryArtistList().href + category["slug"]} >Find artists  {category["name"]}</a>
                             </li>
                         )
                     }
@@ -148,7 +148,7 @@ const CategoryPage = ({
                                 <Button
                                     type="primary"
                                 >
-                                    <Link href={toArtist().href + categoryWikidata["slug"]} passHref>Find artists</Link>
+                                    <Link href={toCategoryArtistList().href + categoryWikidata["slug"]} passHref>Find artists</Link>
                                 </Button>
                             </div>
                         </div>

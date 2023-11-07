@@ -16,6 +16,7 @@ import { useRoutesContext } from "components/routeContext";
 import { AppState } from "state";
 import * as action from "../state/action/categoryAction";
 import { connect, ConnectedProps } from "react-redux";
+import { GetCategoryArtistTitle } from "helpers/categoryHelper";
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   setSelectedArtId: (id: number) => dispatch(action.setSelectedCategoryId(id)),
@@ -68,7 +69,7 @@ const Search = ({ setSelectedArtId, setSelectedArtSlug }: Props) => {
   );
 
   const router = useRouter();
-  const { toArtist, toArtistProfile } = useRoutesContext();
+  const { toCategoryArtistList, toArtistProfile } = useRoutesContext();
   const callSearchAPI = async (val: string) => {
     try {
       /* Type 'any' is of type Array<object> but getting some error */
@@ -156,7 +157,7 @@ const Search = ({ setSelectedArtId, setSelectedArtSlug }: Props) => {
               const { entityType, id, name } = data;
               const href =
                 entityType === "ART"
-                  ? toArtist().href + data.slug
+                  ? toCategoryArtistList(data.slug, GetCategoryArtistTitle(data.slug)).href
                   : toArtistProfile(data.slug)
                       .as; /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
 

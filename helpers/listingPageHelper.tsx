@@ -1,4 +1,4 @@
-import { LISTING_BANNERS, SIMILAR_CATEGORIES } from "constants/listing";
+import { CATEGORY_LISTING_BANNERS, SIMILAR_CATEGORIES } from "constants/category";
 
 export function GetCategoryFromSlug(selectedCategorySlug) {
     var selectedCategory = "Artists";
@@ -16,14 +16,14 @@ export function GetCategoryFromSlug(selectedCategorySlug) {
 
 export function GetListingHeaderData(selectedCategorySlug) {
     let general = {};
-    for (var i = 0; i < LISTING_BANNERS.length; i++) {
-        if (LISTING_BANNERS[i]["slugs"].indexOf(selectedCategorySlug) > -1) {
-            LISTING_BANNERS[i]["category"] = GetCategoryFromSlug(selectedCategorySlug);
-            return LISTING_BANNERS[i];
+    for (var i = 0; i < CATEGORY_LISTING_BANNERS.length; i++) {
+        if (CATEGORY_LISTING_BANNERS[i]["slugs"].indexOf(selectedCategorySlug) > -1) {
+            CATEGORY_LISTING_BANNERS[i]["category"] = GetCategoryFromSlug(selectedCategorySlug);
+            return CATEGORY_LISTING_BANNERS[i];
         }
-        else if (LISTING_BANNERS[i]["slugs"].indexOf("artist") > -1) {
+        else if (CATEGORY_LISTING_BANNERS[i]["slugs"].indexOf("artist") > -1) {
             // This is a case where we do not have any data for header. Just return the generic one.
-            general = LISTING_BANNERS[i];
+            general = CATEGORY_LISTING_BANNERS[i];
         }
     }
     return general;

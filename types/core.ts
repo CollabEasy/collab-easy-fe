@@ -3,7 +3,7 @@ import { WebRoute } from "./model";
 export interface AppRouteCreators {
   toWondorHome: () => WebRoute;
   toDiscover: () => WebRoute;
-  toArtist: () => WebRoute;
+  toCategoryArtistList: (slug: string, artistTitle: string) => WebRoute;
   toProfile: () => WebRoute;
   toArtistProfile: (slug: string) => WebRoute;
   toArtistPortal: (tab: string) => WebRoute;
