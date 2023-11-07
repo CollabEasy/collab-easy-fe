@@ -386,3 +386,106 @@ export const LISTING_METADATA = [
         "meta-content": "Find Writers available for collaboration. Connect with fellow writers, poets, script writers, story tellers, song writters, explore creative ideas, and craft compelling stories | Wondor",
     }
 ]
+
+export const CATEGORY = [
+    {
+        "slug": "art-journaling",
+        "artist": "Art Journalers",
+    },
+    {
+        "slug": "bullet-journaling",
+        "artist": "Bullet Journalers",
+    },
+    {
+        "slug": "calligraphy",
+        "artist": "Calligraphers",
+    },
+    {
+        "slug": "caricature-drawing",
+        "artist": "Caricaturists",
+    },
+    {
+        "slug": "choreography",
+        "artist": "Choreographers",
+    },
+    {
+        "slug": "collage-making",
+        "artist": "Collage Makers",
+    },
+    {
+        "slug": "creative-journaling",
+        "artist": "Creative Journalers",
+    },
+    {
+        "slug": "creative-writing",
+        "artist": "Creative Writers",
+    },
+    {
+        "slug": "dancing",
+        "artist": "Dancers",
+    },
+    {
+        "slug": "digital-art",
+        "artist": "Digital Artists",
+    },
+    {
+        "slug": "doodling",
+        "artist": "Doodlers",
+    },
+    {
+        "slug": "guitar-playing",
+        "artist": "Guitar Players",
+    },
+    {
+        "slug": "hand-lettering",
+        "artist": "Hand Letterers",
+    },
+    {
+        "slug": "illustration",
+        "artist": "Illustrators",
+    },
+    {
+        "slug": "journaling",
+        "artist": "Journalers",
+    },
+    {
+        "slug": "musician",
+        "artist": "Musicians",
+    },
+    {
+        "slug": "painting",
+        "artist": "Painters",
+    },
+    {
+        "slug": "photography",
+        "artist": "Photographers",
+    },
+    {
+        "slug": "poetry",
+        "artist": "Poets",
+    },
+    {
+        "slug": "scrapbooking",
+        "artist": "Scrapbookers",
+    },
+    {
+        "slug": "singing",
+        "artist": "Singers",
+    },
+    {
+        "slug": "sketching",
+        "artist": "Sketchers",
+    },
+    {
+        "slug": "spoken-words",
+        "artist": "Poets",
+    },
+    {
+        "slug": "standup-comedy",
+        "artist": "Standup Comedians",
+    },
+    {
+        "slug": "writing",
+        "artist": "Writers",
+    },
+]
