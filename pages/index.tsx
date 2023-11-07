@@ -66,6 +66,7 @@ const Home = ({
   mainContent,
   collabCard,
   inspirationAndContestCard,
+  rewardsCard,
 }) => {
   // const [showProfileModal, setShowProfileModal] = useState(false);
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
@@ -278,8 +279,8 @@ const Home = ({
                   <div className="text-center">
                     <Image
                       src={ideaImage}
-                      height={300}
-                      width={300}
+                      height={350}
+                      width={350}
                       alt={inspirationAndContestCard["inspiration-card"]["imgAltTag"]}
                       loading="lazy"
                     />
@@ -309,8 +310,8 @@ const Home = ({
                   <div className="text-center">
                     <Image
                       src={allContestImage}
-                      height={300}
-                      width={300}
+                      height={350}
+                      width={350}
                       alt={inspirationAndContestCard["contest-card"]["imgAltTag"]}
                       loading="lazy"
                     />
@@ -344,7 +345,7 @@ const Home = ({
   const getRewardsCard = () => {
     return (
       <div className="row">
-        <div className="container">
+        <div style={{ width: "100%" }}>
           <div className="row d-flex justify-content-center rewards-box">
             <div className="col-md-12">
               <div className="row">
@@ -352,9 +353,9 @@ const Home = ({
                   <div className="text-center">
                     <Image
                       src={rewardsInfoImage}
-                      height={400}
-                      width={400}
-                      alt="landing page"
+                      height={350}
+                      width={350}
+                      alt={rewardsCard["imgAltTag"]}
                       loading="lazy"
                     />
                   </div>
@@ -363,13 +364,10 @@ const Home = ({
                   <div className="inspire-cnt">
                     <div className="inspire-text text-center">
                       <h3 className="common-h3-style">
-                        Get rewarded for almost everything you do on Wondor! 🥳
+                        {rewardsCard["heading"]}
                       </h3>
                       <p className="common-p-style">
-                        Big or small, every action you take gets you points that
-                        can be redeemed for real money, and the best part is,
-                        there&apos;s no limit on how many points you can earn.
-                        So what are you waiting for? Hurry up and start earning!
+                        {rewardsCard["paragraph"]}
                       </p>
                     </div>
                     <div className="mt-4 mb-4 inspire-btn">
@@ -537,20 +535,26 @@ const collabCard = {
 const inspirationAndContestCard = {
   "inspiration-card": {
     imgAltTag: "Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!",
-    heading: "Stuck in Creativity Block? Get New and Trending Content Ideas, Instantly!",
-    paragraph: "Discover new and trending travel content ideas for your next blog post, video, or artwork every week. Start now and find the perfect theme to engage your audience and grow your reach",
+    heading: "Are you Stuck in Creativity Block?",
+    paragraph: "Discover new and trending travel content ideas instantly for your next blog post, video, or artwork every week. Start now and find the perfect theme to engage your audience and grow your reach",
   },
   "contest-card": {
     imgAltTag: "Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!",
-    heading: "Calling All Content Creators to Enter Our Monthly Contest for a Chance to Win!",
-    paragraph: "Show us your creativity and win big! Enter our monthly content creator contest for a chance to win cash prizes and more. We're looking for the best work in all categories",
+    heading: "Ready to Unleash Your Inner Artist?",
+    paragraph: "Calling all content creators to show us your creativity to win big! Enter our monthly content creator contest for a chance to win cash prizes and more. We're looking for the best work in all categories",
   },
+}
+
+const rewardsCard = {
+  imgAltTag: "Get Rewarded for Your Loyalty and Participation",
+  heading: "Get rewarded for almost everything you do on Wondor!",
+  paragraph: "Big or small, every action you take gets you reward points that can be redeemed for real money. So what are you waiting for? Join now, start exploring and earn points on the way",
 }
 
 export async function getStaticProps({ params }) {
 
   // Pass post data to the page via props
-  return { props: { popularArtist, mainContent, collabCard, inspirationAndContestCard } }
+  return { props: { popularArtist, mainContent, collabCard, inspirationAndContestCard, rewardsCard } }
 }
 
 export default connector(Home);
