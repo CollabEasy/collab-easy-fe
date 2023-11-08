@@ -184,7 +184,7 @@ const Home = ({
             className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer"
             key={item.id}
           >
-            <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).href} passHref>
+            <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
               <div className="home-card">
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">

@@ -157,7 +157,7 @@ const Search = ({ setSelectedArtId, setSelectedArtSlug }: Props) => {
               const { entityType, id, name } = data;
               const href =
                 entityType === "ART"
-                  ? toCategoryArtistList(data.slug, GetCategoryArtistTitle(data.slug)).href
+                  ? toCategoryArtistList(data.slug, GetCategoryArtistTitle(data.slug)).as
                   : toArtistProfile(data.slug)
                       .as; /* 'dancer' to be replaced with artist category. Currently not coming in API resposne */
 

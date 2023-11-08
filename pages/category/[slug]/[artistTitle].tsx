@@ -130,7 +130,7 @@ const DiscoverArtist = ({
                 <div style={{ paddingLeft: "15px", paddingTop: "15px" }}>
                   <Button >
                     <Link
-                      href={toCategoryArtistList(category["slug"], GetCategoryArtistTitle(category["slug"])).href}
+                      href={toCategoryArtistList(category["slug"], GetCategoryArtistTitle(category["slug"])).as}
                       passHref
                     >
                       {category["name"]}</Link></Button>

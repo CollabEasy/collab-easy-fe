@@ -176,7 +176,7 @@ const AllCategoryPage = ({
                                 dataSource={GetApprovedCategories(categories)}
                                 renderItem={(item) => (
                                     <List.Item
-                                        actions={[<a key="wiki" href={routeToHref(toCategoryWikiPage(item.slug as string, GetCategoryWikiData(item.slug)["meta-slug"]))} >Wiki</a>, <a key="find-artist" href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).href}>Find artists</a>]}
+                                        actions={[<a key="wiki" href={toCategoryWikiPage(item.slug as string, GetCategoryWikiData(item.slug)["meta-slug"]).as} >Wiki</a>, <a key="find-artist" href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as}>Find artists</a>]}
                                     >
                                         <List.Item.Meta
                                             title={item.artName}

@@ -45,8 +45,8 @@ export const routes: AppRouteCreators = {
     as: `/contest/${slug}?tab=${tab}`,
   }),
   toCategoryWikiPage: (slug, title) => ({
-    href: '/category/[slug]/[title]',
-    as: `/category/${slug}/${title}`,
+    href: '/category/[slug]/wiki/[title]',
+    as: `/category/${slug}/wiki/${title}`,
   }),
   toCategoryArtistList: (slug, artistTitle) => ({ 
     href: '/category/[slug]/[artistTitle]-seeking-collab',
