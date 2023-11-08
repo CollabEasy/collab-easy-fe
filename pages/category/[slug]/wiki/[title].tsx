@@ -13,7 +13,6 @@ import { useRoutesContext } from "components/routeContext";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
 import { GetCategoryArtistTitle } from "helpers/categoryHelper";
 import Layout from "@/components/layout";
-import { SIMILAR_CATEGORIES } from "constants/category";
 import { CATEGORY_METADATA } from "constants/category";
 
 const mapStateToProps = (state: AppState) => {
@@ -51,37 +50,24 @@ const CategoryPage = ({
 
     const getSimilarCategoriesWiki = () => {
         const similarCategoriesHtml: JSX.Element[] = [];
-        SIMILAR_CATEGORIES.forEach((element) => {
-            if (element["slugs"].indexOf(slug.toString()) > -1) {
-                element["similar-categories"].forEach((category) => {
-                    if (category["slug"] != slug) {
-                        similarCategoriesHtml.push(
-                            <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
-                                <a key="wiki" href={routeToHref(toCategoryWikiPage(category["slug"] as string, category["meta-slug"] as string))} >Learn about  {category["name"]}</a>
-                            </li>
-                        )
-                    }
-                })
-            }
+        categoryMetadata["similar-categories"].forEach((category) => {
+            similarCategoriesHtml.push(
+                <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
+                    <a key="wiki" href={routeToHref(toCategoryWikiPage(category["slug"] as string, GetListingHeaderData(category["slug"])["wiki-data"]["url"] as string))} >Learn about  {category["name"]}</a>
+                </li>
+            )
         })
-
         return similarCategoriesHtml;
     }
 
     const getSimilarCategoriesArtist = () => {
         const similarCategoriesHtml: JSX.Element[] = [];
-        SIMILAR_CATEGORIES.forEach((element) => {
-            if (element["slugs"].indexOf(slug.toString()) > -1) {
-                element["similar-categories"].forEach((category) => {
-                    if (category["slug"] != slug) {
-                        similarCategoriesHtml.push(
-                            <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
-                                <a href={toCategoryArtistList(category["slug"], GetCategoryArtistTitle(category["slug"])).as} >Find artists  {category["name"]}</a>
-                            </li>
-                        )
-                    }
-                })
-            }
+        categoryMetadata["similar-categories"].forEach((category) => {
+            similarCategoriesHtml.push(
+                <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
+                    <a href={toCategoryArtistList(category["slug"], GetCategoryArtistTitle(category["slug"])).as} >Find artists for {category["name"]}</a>
+                </li>
+            )               
         })
 
         return similarCategoriesHtml;

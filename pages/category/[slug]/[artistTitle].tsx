@@ -93,7 +93,6 @@ const DiscoverArtist = ({
   const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
 
   useEffect(() => {
-    console.log("rabbal");
     // we are not using selectedcategorySlug here because if a user is coming directly from a URL, 
     // the value of selectedCatgeorySlug is empty.
     fetchArtistsByCategorySlug(artSlug.toString());
