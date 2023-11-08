@@ -86,7 +86,7 @@ export function getPublicRoutes() {
     "/terms-and-policy",
     "/privacy",
     "/contact-us",
-    "/discover-artist/[id]",
+    "/category/[slug]/[artistTitle]-seeking-collab",
     "/all-contest",
     "/all-category",
     "/contest/[id]",

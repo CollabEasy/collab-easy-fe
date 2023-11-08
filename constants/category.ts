@@ -219,15 +219,15 @@ export const CATEGORY_METADATA = [
             },
         ],
         "wiki-data": {
-            "url": "learn-about-coreography-and-collaboration-opportunities",
+            "url": "learn-about-choreography-and-collaboration-opportunities",
             "meta-title": "Learn about Choreography and collaboration opportunities with choreographers | Wondor",
             "meta-content": "Discover the essence of Choreography: The art of dance creation and expression. Unveil the magic of movement and rhythm. Explore now!",
             "paragraph": "It’s the art of creating and arranging dances. a choreographer creates a routine for a dancer (or a group of dancers) to perform. Choreographers incorporate a range of elements into their work, including music, floor patterns, a narrative or storyline, the expression of emotions, and the audience’s perception.",
             "source": "",
         },
         "listing-data": {
-            "meta-title": "Top Coreographers available for collaboration | Wondor",
-            "meta-content": "Find Coreographers available for collaboration. Connect with fellow coreographers, craft mesmerizing routines, and inspire audiences | Wondor",
+            "meta-title": "Top choreographers available for collaboration | Wondor",
+            "meta-content": "Find choreographers available for collaboration. Connect with fellow coreographers, craft mesmerizing routines, and inspire audiences | Wondor",
         },
     },
     {
@@ -331,7 +331,7 @@ export const CATEGORY_METADATA = [
             }
         ],
         "wiki-data": {
-            "url": "learn-about-collage-making-and-collaboration-opportunities",
+            "url": "learn-about-creative-writing-and-collaboration-opportunities",
             "meta-title": "Lean about Creative Writing and collaboration opportunities with writers | Wondor",
             "meta-content": "Explore the world of creative writing - its definition, techniques, and endless possibilities. Unleash your imagination and craft captivating stories. Connct with writers and Collaborate | Wondor",
             "paragraph": "Creative writing is the process of crafting original and imaginative works of literature, poetry, prose, or scripts. It transcends conventional writing, encouraging individuals to explore language, structure, and narrative. Whether it's a heartfelt poem, a captivating short story, or a thought-provoking novel, creative writing allows us to communicate our unique perspectives and experiences with the world. Creative writing is a remarkable voyage that invites us to unleash our imagination, share our stories, and inspire others. It offers countless personal and professional benefits, nurturing self-expression, empathy, and creativity. So, grab a pen, open your mind, and embark on this enchanting journey of creative writing.",

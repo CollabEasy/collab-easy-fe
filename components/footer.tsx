@@ -133,7 +133,6 @@ const Footer = ({
               <div className="col-md-4 col-4">
                 <h6 className="common-h6-style">For artists</h6>
                 <ul className="common-text-style">
-                  <li><a href={"/portal/basic-information"} >Portal</a></li>
                   <li><a href={toGetInspired().href} >Inspiration</a></li>
                   <li><a href={toAllContestPage().href} >Contests</a></li>
                   <li><a href={toAllCategoryPage().href} >Categories</a></li>
