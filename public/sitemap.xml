@@ -68,296 +68,308 @@
     </url>
     <!-- popular categories -->
     <url>
-        <loc>https://www.wondor.art/discover-artist/creative-writing</loc>
+        <loc>https://www.wondor.art/category/creative-writing/creative-writers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/writing</loc>
+        <loc>https://www.wondor.art/category/writing/writers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/poetry</loc>
+        <loc>https://www.wondor.art/category/poetry/poets-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/spoken-words</loc>
+        <loc>https://www.wondor.art/category/spoken-words/poets-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/calligraphy</loc>
+        <loc>https://www.wondor.art/category/calligraphy/calligraphers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/hand-lettering</loc>
+        <loc>https://www.wondor.art/category/hand-lettering/hand-letterers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/photography</loc>
+        <loc>https://www.wondor.art/category/photography/photographers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/illustration</loc>
+        <loc>https://www.wondor.art/category/illustration/illustrators-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/photography</loc>
+        <loc>https://www.wondor.art/category/photography/photographers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/digital-art</loc>
+        <loc>https://www.wondor.art/category/digital-art/digital-artists-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/dancing</loc>
+        <loc>https://www.wondor.art/category/dancing/dancers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/choreography</loc>
+        <loc>https://www.wondor.art/category/choreography/choreographers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/musician</loc>
+        <loc>https://www.wondor.art/category/musician/musicians-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/journaling</loc>
+        <loc>https://www.wondor.art/category/journaling/journalers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/art-journaling</loc>
+        <loc>https://www.wondor.art/category/art-journaling/art-journalers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/creative-journaling</loc>
+        <loc>https://www.wondor.art/category/creative-journaling/creative-journalers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/bullet-journaling</loc>
+        <loc>https://www.wondor.art/category/bullet-journaling/bullet-journalers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/scrapbooking</loc>
+        <loc>https://www.wondor.art/category/scrapbooking/scrapbookers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/collage-making</loc>
+        <loc>https://www.wondor.art/category/collage-making/collage-makers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/singing</loc>
+        <loc>https://www.wondor.art/category/singing/singers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/standup-comedy</loc>
+        <loc>https://www.wondor.art/category/standup-comedy/standup-comedians-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/painting</loc>
+        <loc>https://www.wondor.art/category/painting/painters-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/caricature-drawing</loc>
+        <loc>https://www.wondor.art/category/caricature-drawing/caricaturists-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/sketching</loc>
+        <loc>https://www.wondor.art/category/caricaturing/caricaturists-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/discover-artist/doodling</loc>
+        <loc>https://www.wondor.art/category/sketching/sketchers-seeking-collab</loc>
+        <lastmod>2023-10-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/doodling/doodlers-seeking-collab</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
      <!-- categories wiki -->
     <url>
-        <loc>https://www.wondor.art/category/creative-writing/learn-about-creative-writing-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/creative-writing/wiki/learn-about-creative-writing-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/writing/learn-about-writing-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/musician/wiki/learn-about-musicians-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/poetry/learn-about-poetry-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/writing/wiki/learn-about-writing-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/spoken-words/learn-about-spoken-words-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/poetry/wiki/learn-about-poetry-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/calligraphy/learn-about-calligraphy-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/spoken-words/wiki/learn-about-spoken-words-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/hand-lettering/learn-about-hand-lettering-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/calligraphy/wiki/learn-about-calligraphy-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/photography/learn-about-photography-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/hand-lettering/wiki/learn-about-hand-lettering-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/illustration/learn-about-illustration-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/photography/wiki/learn-about-photography-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/photography/learn-about-photography-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/illustration/wiki/learn-about-illustration-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/digital-art/learn-about-digital-art-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/photography/wiki/learn-about-photography-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/dancing/learn-about-dancing-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/digital-art/wiki/learn-about-digital-art-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/choreography/learn-about-choreography-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/dancing/wiki/learn-about-dancing-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/journaling/learn-about-journaling-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/choreography/wiki/learn-about-choreography-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/art-journaling/learn-about-art-journaling-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/journaling/wiki/learn-about-journaling-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/creative-journaling/learn-about-creative-journaling-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/art-journaling/wiki/learn-about-art-journaling-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/bullet-journaling/learn-about-bullet-journaling-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/creative-journaling/wiki/learn-about-creative-journaling-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/scrapbooking/learn-about-scrapbooking-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/bullet-journaling/wiki/learn-about-bullet-journaling-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/collage-making/learn-about-collage-making-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/scrapbooking/wiki/learn-about-scrapbooking-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/singing/learn-about-singing-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/collage-making/wiki/learn-about-collage-making-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/standup-comedy/learn-about-standup-comedy-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/singing/wiki/learn-about-singing-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/painting/learn-about-painting-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/standup-comedy/wiki/learn-about-standup-comedy-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/caricature-drawing/learn-about-caricature-drawing-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/painting/wiki/learn-about-painting-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/sketching/learn-about-sketching-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/caricature-drawing/wiki/learn-about-caricature-drawing-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.wondor.art/category/doodling/learn-about-doodling-and-collaboration-opportunities</loc>
+        <loc>https://www.wondor.art/category/sketching/wiki/learn-about-sketching-and-collaboration-opportunities</loc>
+        <lastmod>2023-10-17</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.wondor.art/category/doodling/wiki/learn-about-doodling-and-collaboration-opportunities</loc>
         <lastmod>2023-10-17</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>

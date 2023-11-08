@@ -13,7 +13,7 @@ import musicImage from '../public/images/popularCategories/musicbg.svg';
 
 export const CATEGORY_LISTING_BANNERS = [
     {
-        "slugs": ["artist"],
+        "slugs": ["artistTitle"],
         "category": "you",
         "image": artistImage,
         "background_color": "#ECCFD6",
@@ -80,7 +80,7 @@ export const CATEGORY_LISTING_BANNERS = [
         "background_color": "#EDC5CD",
     },
     {
-        "slugs": ["doodling", "caricature-drawing"],
+        "slugs": ["doodling", "caricature-drawing", "caricaturing"],
         "category": "Doodling",
         "image": doodleImage,
         "background_color": "#B5EAD7",
@@ -260,6 +260,12 @@ export const CATEGORY_LISTING_METADATA = [
         "meta-content": "Find Caricature makers available for collaboration. Connect with fellow caricature artists, showcase your unique style, and unleash your humor and creativity as a caricature artist | Wondor",
     },
     {
+        "slug": "caricaturing",
+        "name": "Caricaturing",
+        "meta-title": "Top Caricature makers available for collaboration | Wondor",
+        "meta-content": "Find Caricature makers available for collaboration. Connect with fellow caricature artists, showcase your unique style, and unleash your humor and creativity as a caricature artist | Wondor",
+    },
+    {
         "slug": "choreography",
         "name": "Choreography",
         "meta-title": "Top Coreographers available for collaboration | Wondor",
@@ -421,7 +427,16 @@ export const CATEGORY_WIKI = [
         "name": "Caricature Drawing",
         "slug": "caricature-drawing",
         "meta-slug": "learn-about-caricature-drawing-and-collaboration-opportunities",
-        "meta-title": "Learn about Caricature Drawing and collaboration opportunities with sketchers | Wondor",
+        "meta-title": "Learn about Caricature Drawing and collaboration opportunities with caricatures | Wondor",
+        "meta-content": "Explore the world of Caricature Drawing: Learn its humor and artistry, create fun portraits with exaggerated features. Start sketching now!",
+        "paragraph": "Caricature is a drawing style that often shows up as extreme portraits of political figures or wacky boardwalk souvenirs. But there’s more to caricatures than just big noses and other exaggerated facial features. Creating whimsical depictions of people — from the media or real life — by drawing caricatures can help you get better at illustrating real, three-dimensional characters. “A caricature gets to the essence of who someone is and not just what they look like, but what their personality is,” says caricaturist Greg Bigoni.",
+        "source": "https://www.adobe.com/creativecloud/illustration/discover/how-to-draw-caricature.html",
+    },
+    {
+        "name": "Caricaturing",
+        "slug": "caricaturing",
+        "meta-slug": "learn-about-caricaturing-and-collaboration-opportunities",
+        "meta-title": "Learn about Caricaturing and collaboration opportunities with caricatures | Wondor",
         "meta-content": "Explore the world of Caricature Drawing: Learn its humor and artistry, create fun portraits with exaggerated features. Start sketching now!",
         "paragraph": "Caricature is a drawing style that often shows up as extreme portraits of political figures or wacky boardwalk souvenirs. But there’s more to caricatures than just big noses and other exaggerated facial features. Creating whimsical depictions of people — from the media or real life — by drawing caricatures can help you get better at illustrating real, three-dimensional characters. “A caricature gets to the essence of who someone is and not just what they look like, but what their personality is,” says caricaturist Greg Bigoni.",
         "source": "https://www.adobe.com/creativecloud/illustration/discover/how-to-draw-caricature.html",
@@ -528,7 +543,7 @@ export const CATEGORY_WIKI = [
     {
         "name": "musician",
         "slug": "musician",
-        "meta-slug": "learn-about-musician-and-collaboration-opportunities",
+        "meta-slug": "learn-about-musicians-and-collaboration-opportunities",
         "meta-title": "Who are Musicians and collaboration opportunities with musicians | Wondor",
         "meta-content": "Discover Music Making: Unleash your musical talent and creativity. Learn to compose, produce, and share your melodies with the world!",
         "paragraph": "A musician is a person who composes and/or performs music, usually as an occupation but often as a hobby. He or she may play a musical instrument or several musical instruments, or he or she may be a vocalist instead.",
@@ -614,5 +629,112 @@ export const CATEGORY_WIKI = [
         "meta-content": "Discover the essence of writing: its definition, importance, and influence on communication. Explore the art of expression through words. Connect with writers and Collaborate now!",
         "paragraph": "Writing is the act of expressing thoughts, ideas, and emotions through the use of written language. It is a fundamental form of communication that allows individuals to convey information, tell stories, express opinions, and explore the depths of human imagination. A skilled writer possesses the capacity to adapt their writing style to various audiences and purposes, whether it's persuasive, informative, or creative. They can organize thoughts coherently, develop engaging narratives, and employ persuasive techniques to captivate readers. Writing as a skill requires practice, attention to detail, and a willingness to continuously improve and refine one's written expression. ",
         "source": ""
+    },
+]
+
+export const CATEGORY = [
+    {
+        "slug": "art-journaling",
+        "artistTitle": "Art Journalers",
+    },
+    {
+        "slug": "bullet-journaling",
+        "artistTitle": "Bullet Journalers",
+    },
+    {
+        "slug": "calligraphy",
+        "artistTitle": "Calligraphers",
+    },
+    {
+        "slug": "caricaturing",
+        "artistTitle": "Caricaturists",
+    },
+    {
+        "slug": "caricature-drawing",
+        "artistTitle": "Caricaturists",
+    },
+    {
+        "slug": "choreography",
+        "artistTitle": "Choreographers",
+    },
+    {
+        "slug": "collage-making",
+        "artistTitle": "Collage Makers",
+    },
+    {
+        "slug": "creative-journaling",
+        "artistTitle": "Creative Journalers",
+    },
+    {
+        "slug": "creative-writing",
+        "artistTitle": "Creative Writers",
+    },
+    {
+        "slug": "dancing",
+        "artistTitle": "Dancers",
+    },
+    {
+        "slug": "digital-art",
+        "artistTitle": "Digital Artists",
+    },
+    {
+        "slug": "doodling",
+        "artistTitle": "Doodlers",
+    },
+    {
+        "slug": "guitar-playing",
+        "artistTitle": "Guitar Players",
+    },
+    {
+        "slug": "hand-lettering",
+        "artistTitle": "Hand Letterers",
+    },
+    {
+        "slug": "illustration",
+        "artistTitle": "Illustrators",
+    },
+    {
+        "slug": "journaling",
+        "artistTitle": "Journalers",
+    },
+    {
+        "slug": "musician",
+        "artistTitle": "Musicians",
+    },
+    {
+        "slug": "painting",
+        "artistTitle": "Painters",
+    },
+    {
+        "slug": "photography",
+        "artistTitle": "Photographers",
+    },
+    {
+        "slug": "poetry",
+        "artistTitle": "Poets",
+    },
+    {
+        "slug": "scrapbooking",
+        "artistTitle": "Scrapbookers",
+    },
+    {
+        "slug": "singing",
+        "artistTitle": "Singers",
+    },
+    {
+        "slug": "sketching",
+        "artistTitle": "Sketchers",
+    },
+    {
+        "slug": "spoken-words",
+        "artistTitle": "Poets",
+    },
+    {
+        "slug": "standup-comedy",
+        "artistTitle": "Standup Comedians",
+    },
+    {
+        "slug": "writing",
+        "artistTitle": "Writers",
     },
 ]

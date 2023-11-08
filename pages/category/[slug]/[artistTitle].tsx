@@ -1,25 +1,26 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { CATEGORY_LISTING_METADATA, SIMILAR_CATEGORIES } from "../../constants/category";
+import { CATEGORY_LISTING_METADATA, SIMILAR_CATEGORIES } from "../../../constants/category";
 import { Card, Button, Breadcrumb } from "antd";
 import { CloseOutlined, CheckOutlined, HomeOutlined } from "@ant-design/icons";
 import Link from "next/link";
-import { useRoutesContext } from "../../components/routeContext";
+import { useRoutesContext } from "../../../components/routeContext";
 import { routeToHref } from "config/routes";
 import { AppState } from "state";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import React, { useEffect, useState } from 'react';
-import * as action from '../../state/action';
-import LoginModal from '../../components/modal/loginModal';
+import * as action from '../../../state/action';
+import LoginModal from '../../../components/modal/loginModal';
 import { updateLoginData } from 'state/action';
 import { LoginModalDetails, CollabRequestData } from 'types/model';
-import NewUserModal from '../../components/modal/newUserModal';
+import NewUserModal from '../../../components/modal/newUserModal';
 import Loader from "@/components/loader";
-import SendCollabRequestModal from "../../components/modal/sendCollabRequestModal";
+import SendCollabRequestModal from "../../../components/modal/sendCollabRequestModal";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
 import Layout from "@/components/layout";
 import { GetUserSkills } from "helpers/artistHelper";
+import { GetCategoryArtistTitle } from "helpers/categoryHelper";
 
 const { Meta } = Card;
 
@@ -71,9 +72,9 @@ const DiscoverArtist = ({
   const [showLoader, setShowLoader] = useState(true);
   const [listingPageMetadata, setListingPageMetadata] = useState({});
   const [windowWidth, setWindowWidth] = useState(-1);
-  const { toDiscover, toAllCategoryPage, toArtistProfile, toArtist } = useRoutesContext();
+  const { toDiscover, toAllCategoryPage, toArtistProfile, toCategoryArtistList } = useRoutesContext();
   const router = useRouter();
-  const { id: artSlug } = router.query;
+  const { slug: artSlug, artistTitle: artistTitle } = router.query;
 
   const emptyCollabDetails: CollabRequestData = {
     id: "",
@@ -129,7 +130,7 @@ const DiscoverArtist = ({
                 <div style={{ paddingLeft: "15px", paddingTop: "15px" }}>
                   <Button >
                     <Link
-                      href={toArtist().href + category["slug"]}
+                      href={toCategoryArtistList(category["slug"], GetCategoryArtistTitle(category["slug"])).as}
                       passHref
                     >
                       {category["name"]}</Link></Button>

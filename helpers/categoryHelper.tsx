@@ -1,4 +1,4 @@
-import { CATEGORY_WIKI } from "constants/category";
+import { CATEGORY_WIKI, CATEGORY } from "constants/category";
 
 export function GetCategoryWikiData(selectedCategorySlug) {
     let general = {
@@ -14,4 +14,13 @@ export function GetCategoryWikiData(selectedCategorySlug) {
         }
     }
     return general;
+}
+
+export function GetCategoryArtistTitle(selectedCategorySlug) {
+    for (var i = 0; i < CATEGORY.length; i++) {
+        if (CATEGORY[i]["slug"] === selectedCategorySlug) {
+            return CATEGORY[i]["artistTitle"].replace(/\s+/g, '-').toLowerCase();
+        }
+    }
+    return "artists";
 }

@@ -33,6 +33,7 @@ import { LoginModalDetails, User } from "types/model";
 import { AppState } from "types/states";
 import RefferalCodeModal from "@/components/modal/RefferalCodeModal";
 import api from "api/client";
+import { GetCategoryArtistTitle } from "helpers/categoryHelper";
 
 const { Meta } = Card;
 
@@ -71,7 +72,7 @@ const Home = ({
   // const [showProfileModal, setShowProfileModal] = useState(false);
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
   const {
-    toArtist,
+    toCategoryArtistList,
     toArtistPortal,
     toGetInspired,
     toAllContestPage,
@@ -183,7 +184,7 @@ const Home = ({
             className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer"
             key={item.id}
           >
-            <Link href={toArtist().href + item.slug} passHref>
+            <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
               <div className="home-card">
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
