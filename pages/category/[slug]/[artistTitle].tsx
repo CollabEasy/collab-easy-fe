@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { CATEGORY_LISTING_METADATA, SIMILAR_CATEGORIES } from "../../../constants/category";
 import { Card, Button, Breadcrumb } from "antd";
 import { CloseOutlined, CheckOutlined, HomeOutlined } from "@ant-design/icons";
 import Link from "next/link";
@@ -65,15 +64,17 @@ const DiscoverArtist = ({
   fetchArtistsByCategorySlug,
   setShowCollabModalState,
   updateLoggedInData,
-}: Props) => {
+}) => {
 
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [userIdForCollab, saveUserIdForCollab] = useState("");
   const [showLoader, setShowLoader] = useState(true);
-  const [listingPageMetadata, setListingPageMetadata] = useState({});
   const [windowWidth, setWindowWidth] = useState(-1);
+
   const { toDiscover, toAllCategoryPage, toArtistProfile, toCategoryArtistList } = useRoutesContext();
   const router = useRouter();
+
+
   const { slug: artSlug, artistTitle: artistTitle } = router.query;
 
   const emptyCollabDetails: CollabRequestData = {
@@ -95,7 +96,6 @@ const DiscoverArtist = ({
     // we are not using selectedcategorySlug here because if a user is coming directly from a URL, 
     // the value of selectedCatgeorySlug is empty.
     fetchArtistsByCategorySlug(artSlug.toString());
-    setListingPageMetadata(getListingPageMetadata(artSlug));
     if (user) {
       if (user.new_user) {
         setShowProfileModal(true);
@@ -121,25 +121,19 @@ const DiscoverArtist = ({
 
   const getSimilarCategories = (artSlug) => {
     const similarCategoriesHtml: JSX.Element[] = [];
-    SIMILAR_CATEGORIES.forEach((element) => {
-      if (element["slugs"].indexOf(artSlug) > -1) {
-        element["similar-categories"].forEach((category) => {
-          if (category["slug"] != artSlug) {
-            similarCategoriesHtml.push(
-              <>
-                <div style={{ paddingLeft: "15px", paddingTop: "15px" }}>
-                  <Button >
-                    <Link
-                      href={toCategoryArtistList(category["slug"], GetCategoryArtistTitle(category["slug"])).as}
-                      passHref
-                    >
-                      {category["name"]}</Link></Button>
-                </div>
-              </>
-            )
-          }
-        })
-      }
+    GetListingHeaderData(artSlug)["similar-categories"].forEach((category) => {
+      similarCategoriesHtml.push(
+        <>
+          <div style={{ paddingLeft: "15px", paddingTop: "15px" }}>
+            <Button >
+              <Link
+                href={toCategoryArtistList(category["slug"], GetCategoryArtistTitle(category["slug"])).as}
+                passHref
+              >
+                {category["name"]}</Link></Button>
+          </div>
+        </>
+      )
     })
     return similarCategoriesHtml;
   }
@@ -239,21 +233,6 @@ const DiscoverArtist = ({
     return resultArtists;
   };
 
-  const getListingPageMetadata = (artSlug) => {
-    let genericMetadata = {
-      "slug": "artist",
-      "name": "Artist",
-      "meta-title": "Artists available for collaboration",
-      "meta-content": "Connect with like-minded artist and unleash your skills as an artist."
-    };
-    CATEGORY_LISTING_METADATA.forEach((element) => {
-      if (element["slug"] === artSlug) {
-        genericMetadata = element;
-      }
-    })
-    return genericMetadata;
-  }
-
   const getBreadcrum = (category: string) => {
     return (
       <Breadcrumb>
@@ -272,9 +251,9 @@ const DiscoverArtist = ({
 
   return (
     <Layout
-      title={getListingPageMetadata(artSlug)["meta-title"]}
+      title={GetListingHeaderData(artSlug)["listing-data"]["meta-title"]}
       name={"description"}
-      content={getListingPageMetadata(artSlug)["meta-content"]}
+      content={GetListingHeaderData(artSlug)["listing-data"]["meta-content"]}
     >
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />
@@ -291,42 +270,30 @@ const DiscoverArtist = ({
           <div className="fluid discoverArtists__listingPageContainer">
             {windowWidth > 500 &&
               <>
-                {getBreadcrum(listingPageMetadata["name"])}
+                {getBreadcrum(GetListingHeaderData["name"])}
               </>
             }
             <div className="discoverArtists__listingPageCoverContainer">
               <div className="row ">
-                <div className="col-sm-8" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
+                <div className="col-sm-8" style={{ backgroundColor: GetListingHeaderData(artSlug)["background-color"] }}>
                   <div className="discoverArtists_desktopCoverTextContainer">
-                    {Object.keys(GetListingHeaderData(artSlug)).length !== 0 ? (
-                      <div>
-                        <h1 className="common-h1-style">
-                          {artists.length} {artists.length === 1 ? (<>artist</>) : (<>artists</>)} for {GetListingHeaderData(artSlug)["category"].toLowerCase()} to work with on your next big hit {artists.length >= 1 ? (<>🎉</>) : (<>😔</>)}<br></br>
-                        </h1>
-                        {artists.length > 0 ? (
-                          <h3 className="common-h3-style">
-                            send them a collab request to see if they are available.
-                          </h3>
-                        ) : (
-                          <h3 className="common-h3-style">
-                            artists in similar categories might be interested to collab.
-                          </h3>
-                        )}
-
-                      </div>
-                    ) : (
-                      <div>
-                        <h1 className="common-h1-style">
-                          {artists.length} artists to work with on your next big hit!<br></br>
-                        </h1>
+                    <div>
+                      <h1 className="common-h1-style">
+                        {artists.length} artists to work with on your next big hit!<br></br>
+                      </h1>
+                      {artists.length > 0 ? (
                         <h3 className="common-h3-style">
                           send them a collab request to see if they are available.
                         </h3>
-                      </div>
-                    )}
+                      ) : (
+                        <h3 className="common-h3-style">
+                          artists in similar categories might be interested to collab.
+                        </h3>
+                      )}
+                    </div>
                   </div>
                 </div>
-                <div className="col-sm-4" style={{ backgroundColor: GetListingHeaderData(artSlug)["background_color"] }}>
+                <div className="col-sm-4" style={{ backgroundColor: GetListingHeaderData(artSlug)["background-color"] }}>
                   <Image
                     alt="Image Alt"
                     src={GetListingHeaderData(artSlug)["image"]}
@@ -346,7 +313,7 @@ const DiscoverArtist = ({
               </div>
             )}
             <div className="col-md-12 listingContainer">
-              {getArtists(GetListingHeaderData(artSlug)["background_color"], GetListingHeaderData(artSlug)["category"])}
+              {getArtists(GetListingHeaderData(artSlug)["background-color"], GetListingHeaderData(artSlug)["name"])}
             </div>
           </div>
         </>

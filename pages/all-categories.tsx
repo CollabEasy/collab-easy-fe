@@ -16,7 +16,8 @@ import { CategoryEntry } from "types/states/category";
 import CategoryModal from "@/components/modal/categoryModal";
 import Layout from "@/components/layout";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
-import { GetCategoryArtistTitle, GetCategoryWikiData } from "helpers/categoryHelper";
+import { GetCategoryArtistTitle, } from "helpers/categoryHelper";
+import { GetListingHeaderData } from "helpers/listingPageHelper";
 
 
 
@@ -117,7 +118,6 @@ const AllCategoryPage = ({
         setShowCategoryModal(false);
     };
 
-
     return (
         <Layout
             title={"Categories for Collaboration | Wondor"}
@@ -176,7 +176,7 @@ const AllCategoryPage = ({
                                 dataSource={GetApprovedCategories(categories)}
                                 renderItem={(item) => (
                                     <List.Item
-                                        actions={[<a key="wiki" href={toCategoryWikiPage(item.slug as string, GetCategoryWikiData(item.slug)["meta-slug"]).as} >Wiki</a>, <a key="find-artist" href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as}>Find artists</a>]}
+                                        actions={[<a key="wiki" href={toCategoryWikiPage(item.slug as string, GetListingHeaderData(item.slug)["wiki-data"]["url"]).as} >Wiki</a>, <a key="find-artist" href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as}>Find artists</a>]}
                                     >
                                         <List.Item.Meta
                                             title={item.artName}

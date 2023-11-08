@@ -11,10 +11,9 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { GetListingHeaderData } from "helpers/listingPageHelper";
-import { GetCategoryArtistTitle, GetCategoryWikiData } from "helpers/categoryHelper";
+import { GetCategoryArtistTitle } from "helpers/categoryHelper";
 import Layout from "@/components/layout";
-import { SIMILAR_CATEGORIES } from "constants/category";
-import { CATEGORY_WIKI } from "constants/category";
+import { CATEGORY_METADATA } from "constants/category";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -32,7 +31,6 @@ const CategoryPage = ({
     loginModalDetails,
     artistListData,
     categoryMetadata,
-    categoryWikidata,
     slug,
     metaTitle,
 }) => {
@@ -52,37 +50,24 @@ const CategoryPage = ({
 
     const getSimilarCategoriesWiki = () => {
         const similarCategoriesHtml: JSX.Element[] = [];
-        SIMILAR_CATEGORIES.forEach((element) => {
-            if (element["slugs"].indexOf(slug.toString()) > -1) {
-                element["similar-categories"].forEach((category) => {
-                    if (category["slug"] != slug) {
-                        similarCategoriesHtml.push(
-                            <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
-                                <a key="wiki" href={routeToHref(toCategoryWikiPage(category["slug"] as string, category["meta-slug"] as string))} >Learn about  {category["name"]}</a>
-                            </li>
-                        )
-                    }
-                })
-            }
+        categoryMetadata["similar-categories"].forEach((category) => {
+            similarCategoriesHtml.push(
+                <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
+                    <a key="wiki" href={routeToHref(toCategoryWikiPage(category["slug"] as string, GetListingHeaderData(category["slug"])["wiki-data"]["url"] as string))} >Learn about  {category["name"]}</a>
+                </li>
+            )
         })
-
         return similarCategoriesHtml;
     }
 
     const getSimilarCategoriesArtist = () => {
         const similarCategoriesHtml: JSX.Element[] = [];
-        SIMILAR_CATEGORIES.forEach((element) => {
-            if (element["slugs"].indexOf(slug.toString()) > -1) {
-                element["similar-categories"].forEach((category) => {
-                    if (category["slug"] != slug) {
-                        similarCategoriesHtml.push(
-                            <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
-                                <a href={toCategoryArtistList(category["slug"], GetCategoryArtistTitle(category["slug"])).as} >Find artists  {category["name"]}</a>
-                            </li>
-                        )
-                    }
-                })
-            }
+        categoryMetadata["similar-categories"].forEach((category) => {
+            similarCategoriesHtml.push(
+                <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
+                    <a href={toCategoryArtistList(category["slug"], GetCategoryArtistTitle(category["slug"])).as} >Find artists for {category["name"]}</a>
+                </li>
+            )               
         })
 
         return similarCategoriesHtml;
@@ -106,7 +91,7 @@ const CategoryPage = ({
 
     return (
         <Layout
-            title={categoryWikidata["meta-title"]} name={"description"} content={categoryWikidata["meta-content"]}
+            title={categoryMetadata["wiki-data"]["meta-title"]} name={"description"} content={categoryMetadata["wiki-data"]["meta-content"]}
         >
 
             {loginModalDetails.openModal && !user.new_user && (
@@ -118,57 +103,51 @@ const CategoryPage = ({
             )
             }
             <>
-                {"name" in categoryWikidata ? (
-                    <div className="categoryDetailPage_container">
-                        {windowWidth > 500 &&
-                            <>
-                                {getBreadcrum(categoryWikidata["name"] as string)}
-                            </>
-                        }
-                        <div className="responsive-two-column-grid">
-                            <div style={{ margin: "4px", borderRadius: "5px", background: categoryMetadata["background_color"] }}>
-                                <Image
-                                    alt="Image Alt"
-                                    src={categoryMetadata["image"]}
-                                    layout="responsive"
-                                    objectFit="contain" // Scale your image down to fit into the container
-                                />
-                            </div>
-                            <div className="categoryDetailPage_tabContainer">
-                                <b className="common-text-style">
-                                    <h1>{categoryWikidata["name"]}</h1>
-                                </b>
-                                <div className="divider mb-4"> </div>
-                                <p className="common-p-style">
-                                    {categoryWikidata["paragraph"]}
-                                    {categoryWikidata["source"].length !== 0 && (
-                                        <Link href={categoryWikidata["source"]} passHref> source</Link>
-                                    )}
-                                </p>
-                                <Button
-                                    type="primary"
-                                >
-                                    <Link href={toCategoryArtistList(categoryWikidata["slug"], GetCategoryArtistTitle(categoryWikidata["slug"])).as} passHref>Find artists</Link>
-                                </Button>
-                            </div>
+                <div className="categoryDetailPage_container">
+                    {windowWidth > 500 &&
+                        <>
+                            {getBreadcrum(categoryMetadata["name"] as string)}
+                        </>
+                    }
+                    <div className="responsive-two-column-grid">
+                        <div style={{ margin: "4px", borderRadius: "5px", background: categoryMetadata["background-color"] }}>
+                            <Image
+                                alt="Image Alt"
+                                src={categoryMetadata["image"]}
+                                layout="responsive"
+                                objectFit="contain" // Scale your image down to fit into the container
+                            />
                         </div>
-                        <div className="categoryDetailPage_similarCategories">
-                            <h6 className="common-h6-style">
-                                Similar categories like {categoryWikidata["name"]}
-                            </h6>
-                            <ul>
-                                {getSimilarCategoriesArtist()}
-                            </ul>
-                            <ul>
-                                {getSimilarCategoriesWiki()}
-                            </ul>
+                        <div className="categoryDetailPage_tabContainer">
+                            <b className="common-text-style">
+                                <h1>{categoryMetadata["name"]}</h1>
+                            </b>
+                            <div className="divider mb-4"> </div>
+                            <p className="common-p-style">
+                                {categoryMetadata["wiki-data"]["paragraph"]}
+                                {categoryMetadata["wiki-data"]["source"].length !== 0 && (
+                                    <Link href={categoryMetadata["wiki-data"]["source"]} passHref> source</Link>
+                                )}
+                            </p>
+                            <Button
+                                type="primary"
+                            >
+                                <Link href={toCategoryArtistList(categoryMetadata["slug"], GetCategoryArtistTitle(categoryMetadata["slug"])).as} passHref>Find artists</Link>
+                            </Button>
                         </div>
                     </div>
-                ) : (
-                    <div className="categoryDetailPage_container">
-                        <h5 style={{ textAlign: "center" }} className="common-h5-text">We are working on adding wiki for the selected category. In meantime, explore others!</h5>
+                    <div className="categoryDetailPage_similarCategories">
+                        <h6 className="common-h6-style">
+                            Similar categories like {categoryMetadata["name"]}
+                        </h6>
+                        <ul>
+                            {getSimilarCategoriesArtist()}
+                        </ul>
+                        <ul>
+                            {getSimilarCategoriesWiki()}
+                        </ul>
                     </div>
-                )}
+                </div>
             </>
         </Layout>
     );
@@ -177,8 +156,8 @@ const CategoryPage = ({
 
 export async function getStaticPaths() {
     // Get the paths we want to pre-render
-    const paths = CATEGORY_WIKI.map((category) => ({
-        params: { slug: category.slug, title: category["meta-slug"] },
+    const paths = CATEGORY_METADATA.map((category) => ({
+        params: { slug: category.slug, title: category["wiki-data"]["url"] },
     }))
     // We'll pre-render only these paths at build time.
     // { fallback: false } means other routes should 404.
@@ -187,10 +166,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const categoryMetadata = GetListingHeaderData(params.slug);
-    const categoryWikidata = GetCategoryWikiData(params.slug);
 
     // Pass post data to the page via props
-    return { props: { categoryMetadata, categoryWikidata, slug: params.slug, metaTitle: params.title } }
+    return { props: { categoryMetadata, slug: params.slug, metaTitle: params.title } }
 }
 
 export default connector(CategoryPage);

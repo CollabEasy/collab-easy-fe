@@ -1,25 +1,10 @@
-import { CATEGORY_WIKI, CATEGORY } from "constants/category";
+import { CATEGORY_METADATA } from "constants/category";
 
-export function GetCategoryWikiData(selectedCategorySlug) {
-    let general = {
-        "name": selectedCategorySlug,
-        "slug": selectedCategorySlug.replace(/\s+/g, '-').toLowerCase(),
-        "meta-slug": "learn-about-%s-and-collaboration-opportunities".replace("%s", selectedCategorySlug),
-        "meta-title": "Learn about %s and collaboration opportunities with journalers | Wondor".replace("%s", selectedCategorySlug),
-        "meta-content": "Learn about the enchanting world of %s - its definition, techniques, and how it fuses creativity and self-expression.".replace("%s", selectedCategorySlug),
-    };
-    for (var i = 0; i < CATEGORY_WIKI.length; i++) {
-        if (CATEGORY_WIKI[i]["slug"] === selectedCategorySlug) {
-            return CATEGORY_WIKI[i];
-        }
-    }
-    return general;
-}
 
 export function GetCategoryArtistTitle(selectedCategorySlug) {
-    for (var i = 0; i < CATEGORY.length; i++) {
-        if (CATEGORY[i]["slug"] === selectedCategorySlug) {
-            return CATEGORY[i]["artistTitle"].replace(/\s+/g, '-').toLowerCase();
+    for (var i = 0; i < CATEGORY_METADATA.length; i++) {
+        if (CATEGORY_METADATA[i]["slug"] === selectedCategorySlug) {
+            return CATEGORY_METADATA[i]["artist-title"].replace(/\s+/g, '-').toLowerCase();
         }
     }
     return "artists";
