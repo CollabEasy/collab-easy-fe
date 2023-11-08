@@ -126,7 +126,7 @@ const CategoryPage = ({
                             </>
                         }
                         <div className="responsive-two-column-grid">
-                            <div style={{ margin: "4px", borderRadius: "5px", background: categoryMetadata["background_color"] }}>
+                            <div style={{ margin: "4px", borderRadius: "5px", background: categoryMetadata["background-color"] }}>
                                 <Image
                                     alt="Image Alt"
                                     src={categoryMetadata["image"]}
