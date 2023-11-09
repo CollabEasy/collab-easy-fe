@@ -13,23 +13,23 @@ import musicImage from '../public/images/popularCategories/musicbg.svg';
 
 
 export const CATEGORY_METADATA = [
-    {
-        "slug": "artists",
-        "name": "Artists",
-        "image": artistImage,
-        "background-color": "#EDC5CD",
-        "artist-title": "Artists",
-        "similar-categories": [],
-        "wiki-data": {
-            "url": "learn-about-collaboration-opportunities",
-            "meta-title": "Learn about collaboration opportunities with artists | Wondor",
-            "meta-content": "Learn about the enchanting world of this unique art style - its definition, techniques, and how it fuses creativity and self-expression in a visual diary.",
-        },
-        "listing-data": {
-            "meta-title": "Artists available for collaboration | Wondor",
-            "meta-content": "Find Artists available for collaboration. Connect with like-minded artists and share your stories, and find endless inspiration | Wondor ",
-        }
-    },
+    // {
+    //     "slug": "artists",
+    //     "name": "Artists",
+    //     "image": artistImage,
+    //     "background-color": "#EDC5CD",
+    //     "artist-title": "Artists",
+    //     "similar-categories": [],
+    //     "wiki-data": {
+    //         "url": "learn-about-collaboration-opportunities",
+    //         "meta-title": "Learn about collaboration opportunities with artists | Wondor",
+    //         "meta-content": "Learn about the enchanting world of this unique art style - its definition, techniques, and how it fuses creativity and self-expression in a visual diary.",
+    //     },
+    //     "listing-data": {
+    //         "meta-title": "Artists available for collaboration | Wondor",
+    //         "meta-content": "Find Artists available for collaboration. Connect with like-minded artists and share your stories, and find endless inspiration | Wondor ",
+    //     }
+    // },
     {
         "slug": "art-journaling",
         "name": "Art Journaling",
