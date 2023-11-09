@@ -270,7 +270,7 @@ const DiscoverArtist = ({
           <div className="fluid discoverArtists__listingPageContainer">
             {windowWidth > 500 &&
               <>
-                {getBreadcrum(GetListingHeaderData["name"])}
+                {getBreadcrum(GetListingHeaderData(artSlug)["name"])}
               </>
             }
             <div className="discoverArtists__listingPageCoverContainer">
@@ -279,11 +279,11 @@ const DiscoverArtist = ({
                   <div className="discoverArtists_desktopCoverTextContainer">
                     <div>
                       <h1 className="common-h1-style">
-                        {artists.length} artists to work with on your next big hit!<br></br>
+                        {artists.length > 1 ? artists.length : ""} {GetListingHeaderData(artSlug)["artist-title"]} to collab with on your next big hit!<br></br>
                       </h1>
                       {artists.length > 0 ? (
                         <h3 className="common-h3-style">
-                          send them a collab request to see if they are available.
+                          send them a collab request to achieve your creativity goals now.
                         </h3>
                       ) : (
                         <h3 className="common-h3-style">
