@@ -67,9 +67,11 @@ const GetInspired = ({
 
   const getThemes = () => {
     const themes: JSX.Element[] = [];
-    CURRENT_THEMES.forEach((element) => {
+    /* eslint-disable react/jsx-key */
+    CURRENT_THEMES.forEach((element, index) => {
       themes.push(
-        element["value"].map((assesment, index) => (
+        /* eslint-disable react/jsx-key */
+        element["value"].map((assesment) => (
           <div className="col my-3">
             <div className="card border-hover-primary">
               <div className="card-body">
