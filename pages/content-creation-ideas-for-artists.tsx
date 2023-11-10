@@ -42,7 +42,8 @@ const GetInspired = ({
   loginModalDetails,
   user,
   artistListData,
-  CURRENT_THEMES
+  CURRENT_THEMES,
+  coverSection,
 }) => {
 
   const { Panel } = Collapse;
@@ -113,11 +114,11 @@ const GetInspired = ({
                   <div className="col-md-4">
                     <div className="text-center">
                       <Image
-                        src={ideaImage}
+                        src={coverSection["imgUrl"]}
                         height={250}
                         width={250}
-                        alt="abc"
-                        loading="lazy"
+                        alt={coverSection["imgAltTag"]}
+                        priority
                       />
                     </div>
                   </div>
@@ -125,10 +126,10 @@ const GetInspired = ({
                     <div className="getInspired-cnt">
                       <div className="getInspired-text text-center">
                         <h3 className="common-h3-style">
-                          Looking for new content inspiration? Look no further than Wondor&pos;s Inspiration Hub!
+                          {coverSection["heading"]}
                         </h3>
                         <p className="common-p-style">
-                          Whether you&pos;re a blogger, YouTuber, social media influencer, or any other type of content creator, Wondor&pos;s Inspiration Hub can help you take your content to the next level.
+                          {coverSection["paragraph"]}
                         </p>
                       </div>
                     </div>
@@ -140,7 +141,7 @@ const GetInspired = ({
         </div>
         <div className="getInspired-sectionContainer">
           <div className="getInspired-textContainer">
-            Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You won&pos;t want to miss out!
+            Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You will not want to miss out!
           </div>
           <div className="getInspired-textContainer">
             {getThemes()}
@@ -168,10 +169,17 @@ const GetInspired = ({
   )
 }
 
+const coverSection = {
+  imgUrl: ideaImage,
+  heading: "Looking for new content inspiration? Look no further than Wondor's Inspiration Hub!",
+  paragraph: "Whether you are a blogger, YouTuber, social media influencer, or any other type of content creator, Wondor's Inspiration Hub can help you take your content to the next level.",
+  imgAltTag: "Easy content ideas for Photographers, Writers, Singers, Musicians for your next post on youtube and instagram.",
+}
+
 export async function getStaticProps({ }) {
 
   // Pass post data to the page via props
-  return { props: { CURRENT_THEMES } }
+  return { props: { CURRENT_THEMES, coverSection } }
 }
 
 export default connector(GetInspired);
