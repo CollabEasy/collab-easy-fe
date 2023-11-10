@@ -105,7 +105,9 @@ const Home = ({
               </ul>
             </h1>
           </div>
-          <p className="f-16 common-p-style">
+          <p className="f-16 common-p-style" 
+              style={{paddingLeft: "20px", paddingRight: "20px"}}
+          >
             {mainContent["paragraph"]}
           </p>
         </div>
