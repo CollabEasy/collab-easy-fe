@@ -125,10 +125,10 @@ const GetInspired = ({
                     <div className="getInspired-cnt">
                       <div className="getInspired-text text-center">
                         <h3 className="common-h3-style">
-                          Looking for new content inspiration? Look no further than Wondor's Inspiration Hub!
+                          Looking for new content inspiration? Look no further than Wondor&pos;s Inspiration Hub!
                         </h3>
                         <p className="common-p-style">
-                          Whether you're a blogger, YouTuber, social media influencer, or any other type of content creator, Wondor's Inspiration Hub can help you take your content to the next level.
+                          Whether you&pos;re a blogger, YouTuber, social media influencer, or any other type of content creator, Wondor&pos;s Inspiration Hub can help you take your content to the next level.
                         </p>
                       </div>
                     </div>
@@ -140,7 +140,7 @@ const GetInspired = ({
         </div>
         <div className="getInspired-sectionContainer">
           <div className="getInspired-textContainer">
-            Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You won't want to miss out!
+            Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You won&pos;t want to miss out!
           </div>
           <div className="getInspired-textContainer">
             {getThemes()}
