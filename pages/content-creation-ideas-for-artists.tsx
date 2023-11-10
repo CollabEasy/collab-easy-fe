@@ -36,13 +36,13 @@ type Props = {
   artistListData: any
 } & ConnectedProps<typeof connector>;
 
-const GetInspired = ({ 
-  isLoggedIn, 
-  updateLoggedInData, 
-  loginModalDetails, 
-  user, 
+const GetInspired = ({
+  isLoggedIn,
+  updateLoggedInData,
+  loginModalDetails,
+  user,
   artistListData,
-  CURRENT_THEMES 
+  CURRENT_THEMES
 }) => {
 
   const { Panel } = Collapse;
@@ -128,17 +128,8 @@ const GetInspired = ({
                           Looking for new content inspiration? Look no further than Wondor's Inspiration Hub!
                         </h3>
                         <p className="common-p-style">
-                          Whether you're a blogger, YouTuber, social media influencer, or any other type of content creator, Wondor's Inspiration Hub can help you take your content to the next level.  
+                          Whether you're a blogger, YouTuber, social media influencer, or any other type of content creator, Wondor's Inspiration Hub can help you take your content to the next level.
                         </p>
-                        <div className="inspire-btn">
-                          <div>
-                            <Button type="primary">
-                              <Link href={routeToHref(toDiscover())} passHref>
-                                Collab now
-                              </Link>
-                            </Button>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -153,6 +144,23 @@ const GetInspired = ({
           </div>
           <div className="getInspired-textContainer">
             {getThemes()}
+          </div>
+
+          <div className="getInspired-sectionContainer">
+            <div className="getInspired-textContainer">
+              <p className="common-p-style">
+                Think you got enough to get your creative juices going? Send a collab request to a fellow artist on one of these topics
+                because we do believe <b><i>together you create better!</i></b>
+              </p>
+            </div>
+            <div style={{ paddingTop: "30px", paddingBottom: "30px" }} className="getInspired-buttonContainer">
+              <Button type="primary" className="common-btn-dimension">
+                <Link
+                  href={routeToHref(toDiscover())}
+                  passHref
+                >Collaborate Now</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
