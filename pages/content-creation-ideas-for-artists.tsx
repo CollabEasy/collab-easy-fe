@@ -69,18 +69,16 @@ const GetInspired = ({
     const themes: JSX.Element[] = [];
     CURRENT_THEMES.forEach((element) => {
       themes.push(
-        <div className="theme">
-          <h4 className="common-h4-style">
-            {element["category"]}
-            <Collapse defaultActiveKey={["0"]} accordion>
-              {element["value"].map((assesment, index) => (
-                <Panel header={assesment.title} key={index}>
-                  <p className="common-p-style">{assesment.description}</p>
-                </Panel>
-              ))}
-            </Collapse>
-          </h4>
-        </div>
+        element["value"].map((assesment, index) => (
+          <div className="col my-3">
+            <div className="card border-hover-primary">
+              <div className="card-body">
+                <h6 className="font-weight-bold mb-3">{assesment.title}</h6>
+                <p className="text-muted mb-0">{assesment.description}</p>
+              </div>
+            </div>
+          </div>
+        ))
       )
     });
     return themes;
@@ -144,7 +142,11 @@ const GetInspired = ({
             Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You will not want to miss out!
           </div>
           <div className="getInspired-textContainer">
-            {getThemes()}
+            <section className="bg-light-primary">
+              <div className="row row-cols-lg-2 row-cols-md-1 row-cols-1 justify-content-left px-xl-6">
+                {getThemes()}
+              </div>
+            </section>
           </div>
 
           <div className="getInspired-sectionContainer">
