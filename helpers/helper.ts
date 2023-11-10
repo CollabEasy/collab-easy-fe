@@ -15,7 +15,7 @@ export function IsProfilePage(pathname) {
 }
 
 export function IsInspirationPage(pathname) {
-  if (pathname.includes("/get-inspired")) {
+  if (pathname.includes("/content-creation-ideas-for-artists")) {
     return true;
   } 
   return false;

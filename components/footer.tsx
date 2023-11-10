@@ -95,7 +95,7 @@ const Footer = ({
     } else if (page === "account") {
       router.push("/portal/basic-information");
     } else if (page === "inspiration") {
-      router.push("/get-inspired");
+      router.push("/content-creation-ideas-for-artists");
     } else if (page === "contest") {
       router.push("/all-contest");
     }

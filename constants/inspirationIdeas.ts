@@ -1,4 +1,4 @@
-export const THEMES = [
+export const CURRENT_THEMES = [
     {
         "category": "Painting",
         "slug": "painting",

@@ -1,3 +1,23 @@
+
+.getInspired-cover {
+    background-color: #EAEED8;
+    border-radius: 10px
+}
+
+
+.getInspired-cnt {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.getInspired-text {
+    width: 80%;
+}
+
+
 .getInspired-parentContainer {
     position: relative;
     margin: auto;
@@ -7,8 +27,8 @@
 }
 
 .getInspired-sectionContainer {
-    padding-top: 10px;
-    width: 70%;
+    padding-top: 30px;
+    width: 100%;
     float: left;
 }
 
@@ -63,13 +83,13 @@
     
     .getInspired-textContainer {
         h3 {
-            text-align: center;
+            text-align: left;
         }
     }
 
     .getInspired-sectionContainer {
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
 
     .getInspired-buttonContainer { 
@@ -86,13 +106,13 @@
     
     .getInspired-textContainer {
         h3 {
-            text-align: center;
+            text-align: left;
         }
     }
 
     .getInspired-sectionContainer {
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
 
     .getInspired-buttonContainer { 
@@ -109,13 +129,13 @@
 
     .getInspired-textContainer {
         h3 {
-            text-align: center;
+            text-align: left;
         }
     }
 
     .getInspired-sectionContainer {
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
 
     .getInspired-buttonContainer { 
@@ -132,13 +152,13 @@
     
     .getInspired-textContainer {
         h3 {
-            text-align: center;
+            text-align: left;
         }
     }
     
     .getInspired-sectionContainer {
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
 
     .getInspired-buttonContainer { 

@@ -84,7 +84,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
         </div>
         <div className="footer_contactUsSectionContainer">
           <div className="footer_contactUsTextContainer">
-            <h3 className="common-h3-style">Contact us</h3>
+            <h3 className="common-h3-style">Need help? Contact us</h3>
             <p className="common-p-style">
               We can be reached at:
               <strong> admin@wondor.com</strong>

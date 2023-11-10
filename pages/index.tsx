@@ -297,7 +297,7 @@ const Home = ({
                       <div>
                         <Button type="primary">
                           <Link href={routeToHref(toGetInspired())} passHref>
-                            Find Ideas
+                            Inspiration Hub
                           </Link>
                         </Button>
                       </div>
@@ -537,7 +537,7 @@ const inspirationAndContestCard = {
   "inspiration-card": {
     imgAltTag: "Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!",
     heading: "Are you Stuck in Creativity Block?",
-    paragraph: "Discover new and trending travel content ideas instantly for your next blog post, video, or artwork every week. Start now and find the perfect theme to engage your audience and grow your reach",
+    paragraph: "Discover new and trending content ideas instantly for your next blog post, video, or artwork every week. Start now and find the perfect theme to engage your audience and grow your reach",
   },
   "contest-card": {
     imgAltTag: "Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!",

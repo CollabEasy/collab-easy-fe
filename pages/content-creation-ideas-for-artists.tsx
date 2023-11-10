@@ -1,4 +1,6 @@
 import { Button } from "antd";
+import Image from "next/image";
+import ideaImage from "../public/images/idea.svg";
 import Link from "next/link";
 import { routeToHref } from "config/routes";
 import { useRoutesContext } from "../components/routeContext";
@@ -12,8 +14,7 @@ import React, { useEffect, useState } from 'react';
 import NewUserModal from '../components/modal/newUserModal';
 import Layout from '@/components/layout';
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
-import { THEMES } from "constants/inspirationIdeas";
-import type { CollapseProps } from 'antd';
+import { CURRENT_THEMES } from "constants/inspirationIdeas";
 import { Collapse } from 'antd';
 
 const mapStateToProps = (state: AppState) => ({
@@ -35,7 +36,14 @@ type Props = {
   artistListData: any
 } & ConnectedProps<typeof connector>;
 
-const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
+const GetInspired = ({ 
+  isLoggedIn, 
+  updateLoggedInData, 
+  loginModalDetails, 
+  user, 
+  artistListData,
+  CURRENT_THEMES 
+}) => {
 
   const { Panel } = Collapse;
   const [showProfileModal, setShowProfileModal] = useState(false);
@@ -58,7 +66,7 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
 
   const getThemes = () => {
     const themes: JSX.Element[] = [];
-    THEMES.forEach((element) => {
+    CURRENT_THEMES.forEach((element) => {
       themes.push(
         <div className="theme">
           <h4 className="common-h4-style">
@@ -79,9 +87,9 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
 
   return (
     <Layout
-      title={"New Topics, Themes, Quotes for Upcoming Work | Wondor"}
+      title={"New Topics, Themes, and Quotes for Creators: Inspire Your Next Content"}
       name={"description"}
-      content={"Find inspiration for your upcoming work. New topics, themes, quotes posted every week on Wondor"}
+      content={"Discover new and trending content ideas instantly for your next blog post, video, or artwork every week. Start now and find the perfect theme to engage your audience and grow your reach."}
 
     >
       {loginModalDetails.openModal && !user.new_user && (
@@ -95,44 +103,67 @@ const GetInspired = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, 
 
       <div className="getInspired-parentContainer">
         <GenericBreadcrumb
-          page={"Inspiration"}
+          page={"Inspiration Hub"}
         />
-        <div className="getInspired-sectionContainer">
-          <div className="getInspired-textContainer">
-            <h3 className="common-h3-style">Looking for insipiration?</h3>
-            <p className="common-p-style">
-              This page is the perfect destination for you. Here, we update our list of themes
-              and quotes on a <strong>weekly basis</strong>, so be sure to check back often.
-              You won&apos;t want to miss out!
-              <br></br>
-            </p >
+        <div className="row">
+          <div style={{ width: "100%" }}>
+            <div className="row d-flex justify-content-center getInspired-cover">
+              <div className="col-md-12">
+                <div className="row">
+                  <div className="col-md-4">
+                    <div className="text-center">
+                      <Image
+                        src={ideaImage}
+                        height={250}
+                        width={250}
+                        alt="abc"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-8">
+                    <div className="getInspired-cnt">
+                      <div className="getInspired-text text-center">
+                        <h3 className="common-h3-style">
+                          Looking for new content inspiration? Look no further than Wondor's Inspiration Hub!
+                        </h3>
+                        <p className="common-p-style">
+                          Whether you're a blogger, YouTuber, social media influencer, or any other type of content creator, Wondor's Inspiration Hub can help you take your content to the next level.  
+                        </p>
+                        <div className="inspire-btn">
+                          <div>
+                            <Button type="primary">
+                              <Link href={routeToHref(toDiscover())} passHref>
+                                Collab now
+                              </Link>
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="getInspired-sectionContainer">
           <div className="getInspired-textContainer">
-              {getThemes()}
+            Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You won't want to miss out!
           </div>
-        </div>
-        <div className="getInspired-sectionContainer">
           <div className="getInspired-textContainer">
-            <h3 className="common-h3-style">Think you got enough to get your creative juices going?</h3>
-            <p className="common-p-style">
-              Send a collab request to a fellow artist on one of these topics
-              because we do believe <b><i>together you create better!</i></b>
-            </p>
-          </div>
-          <div style={{ paddingTop: "30px", paddingBottom: "30px" }} className="getInspired-buttonContainer">
-            <Button type="primary" className="common-btn-dimension">
-              <Link
-                href={routeToHref(toDiscover())}
-                passHref
-              >Let&apos;s collaborate</Link>
-            </Button>
+            {getThemes()}
           </div>
         </div>
       </div>
     </Layout>
   )
+}
+
+export async function getStaticProps({ }) {
+
+  // Pass post data to the page via props
+  return { props: { CURRENT_THEMES } }
 }
 
 export default connector(GetInspired);
