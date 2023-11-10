@@ -10,7 +10,7 @@ import NewUserModal from '@/components/modal/newUserModal';
 import Image from 'next/image';
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
-import { GetListingHeaderData } from "helpers/listingPageHelper";
+import { GetCategoryMetadata } from "helpers/categoryHelper";
 import { GetCategoryArtistTitle } from "helpers/categoryHelper";
 import Layout from "@/components/layout";
 import { CATEGORY_METADATA } from "constants/category";
@@ -53,7 +53,7 @@ const CategoryPage = ({
         categoryMetadata["similar-categories"].forEach((category) => {
             similarCategoriesHtml.push(
                 <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
-                    <a key="wiki" href={routeToHref(toCategoryWikiPage(category["slug"] as string, GetListingHeaderData(category["slug"])["wiki-data"]["url"] as string))} >Learn about  {category["name"]}</a>
+                    <a key="wiki" href={routeToHref(toCategoryWikiPage(category["slug"] as string, GetCategoryMetadata(category["slug"])["wiki-data"]["url"] as string))} >Learn about  {category["name"]}</a>
                 </li>
             )
         })
@@ -165,7 +165,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const categoryMetadata = GetListingHeaderData(params.slug);
+    const categoryMetadata = GetCategoryMetadata(params.slug);
 
     // Pass post data to the page via props
     return { props: { categoryMetadata, slug: params.slug, metaTitle: params.title } }

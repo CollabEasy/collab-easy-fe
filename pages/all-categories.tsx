@@ -17,7 +17,7 @@ import CategoryModal from "@/components/modal/categoryModal";
 import Layout from "@/components/layout";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import { GetCategoryArtistTitle, } from "helpers/categoryHelper";
-import { GetListingHeaderData } from "helpers/listingPageHelper";
+import { GetCategoryMetadata } from "helpers/categoryHelper";
 
 
 
@@ -176,7 +176,7 @@ const AllCategoryPage = ({
                                 dataSource={GetApprovedCategories(categories)}
                                 renderItem={(item) => (
                                     <List.Item
-                                        actions={[<a key="wiki" href={toCategoryWikiPage(item.slug as string, GetListingHeaderData(item.slug)["wiki-data"]["url"]).as} >Wiki</a>, <a key="find-artist" href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as}>Find artists</a>]}
+                                        actions={[<a key="wiki" href={toCategoryWikiPage(item.slug as string, GetCategoryMetadata(item.slug)["wiki-data"]["url"]).as} >Wiki</a>, <a key="find-artist" href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as}>Find artists</a>]}
                                     >
                                         <List.Item.Meta
                                             title={item.artName}

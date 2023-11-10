@@ -16,7 +16,7 @@ import { LoginModalDetails, CollabRequestData } from 'types/model';
 import NewUserModal from '../../../components/modal/newUserModal';
 import Loader from "@/components/loader";
 import SendCollabRequestModal from "../../../components/modal/sendCollabRequestModal";
-import { GetListingHeaderData } from "helpers/listingPageHelper";
+import { GetCategoryMetadata } from "helpers/categoryHelper";
 import Layout from "@/components/layout";
 import { GetUserSkills } from "helpers/artistHelper";
 import { GetCategoryArtistTitle } from "helpers/categoryHelper";
@@ -121,7 +121,7 @@ const DiscoverArtist = ({
 
   const getSimilarCategories = (artSlug) => {
     const similarCategoriesHtml: JSX.Element[] = [];
-    GetListingHeaderData(artSlug)["similar-categories"].forEach((category) => {
+    GetCategoryMetadata(artSlug)["similar-categories"].forEach((category) => {
       similarCategoriesHtml.push(
         <>
           <div style={{ paddingLeft: "15px", paddingTop: "15px" }}>
@@ -251,9 +251,9 @@ const DiscoverArtist = ({
 
   return (
     <Layout
-      title={GetListingHeaderData(artSlug)["listing-data"]["meta-title"]}
+      title={GetCategoryMetadata(artSlug)["listing-data"]["meta-title"]}
       name={"description"}
-      content={GetListingHeaderData(artSlug)["listing-data"]["meta-content"]}
+      content={GetCategoryMetadata(artSlug)["listing-data"]["meta-content"]}
     >
       {loginModalDetails.openModal && !user.new_user && (
         <LoginModal />
@@ -270,16 +270,16 @@ const DiscoverArtist = ({
           <div className="fluid discoverArtists__listingPageContainer">
             {windowWidth > 500 &&
               <>
-                {getBreadcrum(GetListingHeaderData(artSlug)["name"])}
+                {getBreadcrum(GetCategoryMetadata(artSlug)["name"])}
               </>
             }
             <div className="discoverArtists__listingPageCoverContainer">
               <div className="row ">
-                <div className="col-sm-8" style={{ backgroundColor: GetListingHeaderData(artSlug)["background-color"] }}>
+                <div className="col-sm-8" style={{ backgroundColor: GetCategoryMetadata(artSlug)["background-color"] }}>
                   <div className="discoverArtists_desktopCoverTextContainer">
                     <div>
                       <h1 className="common-h1-style">
-                        {artists.length > 1 ? artists.length : ""} {GetListingHeaderData(artSlug)["artist-title"]} to collab with on your next big hit!<br></br>
+                        {artists.length > 1 ? artists.length : ""} {GetCategoryMetadata(artSlug)["artist-title"]} to collab with on your next big hit!<br></br>
                       </h1>
                       {artists.length > 0 ? (
                         <h3 className="common-h3-style">
@@ -293,10 +293,10 @@ const DiscoverArtist = ({
                     </div>
                   </div>
                 </div>
-                <div className="col-sm-4" style={{ backgroundColor: GetListingHeaderData(artSlug)["background-color"] }}>
+                <div className="col-sm-4" style={{ backgroundColor: GetCategoryMetadata(artSlug)["background-color"] }}>
                   <Image
                     alt="Image Alt"
-                    src={GetListingHeaderData(artSlug)["image"]}
+                    src={GetCategoryMetadata(artSlug)["image"]}
                     layout="responsive"
                     objectFit="contain" // Scale your image down to fit into the container
                   />
@@ -313,7 +313,7 @@ const DiscoverArtist = ({
               </div>
             )}
             <div className="col-md-12 listingContainer">
-              {getArtists(GetListingHeaderData(artSlug)["background-color"], GetListingHeaderData(artSlug)["name"])}
+              {getArtists(GetCategoryMetadata(artSlug)["background-color"], GetCategoryMetadata(artSlug)["name"])}
             </div>
           </div>
         </>
