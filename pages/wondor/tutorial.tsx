@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import { Card } from 'antd';
+import Image from 'next/image';
 import LoginModal from '../../components/modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
@@ -13,6 +14,7 @@ import React, { useEffect, useState } from 'react';
 import NewUserModal from '../../components/modal/newUserModal';
 import Layout from '@/components/layout';
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
+import pageBannerImage from 'public/images/mobile-landing.svg';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -36,7 +38,7 @@ type Props = {
 
 const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { toDiscover } = useRoutesContext();
+  const { toContactUs, toDiscover } = useRoutesContext();
 
   useEffect(() => {
     if (user) {
@@ -70,13 +72,54 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
       }
 
       <div className="footer_tutorialContainer">
-        <GenericBreadcrumb 
+        <GenericBreadcrumb
           page={"Tutorial"}
         />
-        <div className="footer_tutorialHeadingContainer">
-          <h3 className="common-h3-style">You are just 4 steps away from your next collaboration 🤗</h3>
-          <p className="common-p-style">Are you ready to take your skills to the next level and collaborate with others on exciting projects?
-            Then it&apos;s time to create your profile and join a community of like-minded individuals!</p>
+        <div className="row">
+          <div style={{ width: "100%" }}>
+            <div className="row d-flex justify-content-center pageBanner-cover">
+              <div className="col-md-12">
+                <div className="row">
+                  <div className="col-md-4">
+                    <div className="text-center">
+                      <Image
+                        src={pageBannerImage}
+                        layout="responsive"
+                        alt="you are"
+                        priority
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-8">
+                    <div className="pageBanner-cnt">
+                      <div className="pageBanner-text text-center">
+                        <h3 className="common-h3-style">
+                          You are just 4 steps away from your next collaboration 🤗
+                        </h3>
+                        <p className="common-p-style">
+                          Are you ready to take your skills to the next level and collaborate with others on exciting projects? Then it&apos;s time to create your profile and join a community of like-minded individuals!
+                        </p>
+                      </div>
+                      <div className="pageBanner-button">
+                        <Button type="primary" className="common-btn-dimension">
+                          <Link
+                            href={routeToHref(toDiscover())}
+                            passHref
+                          >Let&apos;s collaborate</Link>
+                        </Button>
+                        <Button className="common-btn-dimension">
+                          <Link
+                            href={routeToHref(toContactUs())}
+                            passHref
+                          >Ask Question</Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -130,14 +173,6 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
         </div>
       </div>
 
-      <div className="footer_tutorialButtonContainer">
-        <Button type="primary" className="common-btn-dimension">
-          <Link
-            href={routeToHref(toDiscover())}
-            passHref
-          >Let&apos;s collaborate</Link>
-        </Button>
-      </div>
 
       {/* <div className='footer_tutorialStepsContainer'>
           <div className="footer_tutorialStepText">     

@@ -44,12 +44,12 @@
     transition: 0.3s;
     border-radius: 5px;
     margin-top: 10%;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 }
 
 .footer_tutorialHeadingContainer {
     text-align: center;
-    margin-top: 48px;
+    //margin-top: 48px;
     padding-left: 40px;
     padding-right: 40px;
 }
@@ -69,28 +69,7 @@
 }
 
 .footer_tutorialButtonContainer {
-    padding-top: 10px;
-    align-items: center;
-}
-
-// .footer_tutorialStepsContainer {
-//     display: flex;
-//     justify-content: center;
-//     flex-flow: row nowrap;
-// }
-
-// .footer_tutorialStepText, .footer_tutorialStepImage {
-//     flex: 0 0 50%;
-//     padding: 5%;
-// }
-
-// @media screen and (max-width:768px) {
-//     .footer_tutorialStepsContainer {
-//         flex-flow: column nowrap;
-//     }
-// }
-
-.footer_tutorialButtonContainer {
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -199,8 +178,6 @@
 
     .footer_tutorialContainer {
         width: 90%;
-        margin-top: 10rem;
-        margin-bottom: 5%;
     }
 }
 
@@ -241,8 +218,6 @@
 
     .footer_tutorialContainer {
         width: 90%;
-        margin-top: 9rem;
-        margin-bottom: 5%;
     }
 }
 
@@ -293,8 +268,6 @@
 
     .footer_tutorialContainer {
         width: 90%;
-        margin-top: 8rem;
-        margin-bottom: 5%;
     }
 }
 
@@ -349,8 +322,6 @@
 
     .footer_tutorialContainer {
         width: 90%;
-        margin-top: 7rem;
-        margin-bottom: 5%;
     }
 }
 
@@ -401,8 +372,6 @@
 
     .footer_tutorialContainer {
         width: 90%;
-        margin-top: 6rem;
-        margin-bottom: 5%;
     }
 
     .footer_tutorialTextRow {
@@ -457,7 +426,6 @@
 
     .footer_tutorialContainer {
         width: 90%;
-        margin-top: 5rem;
     }
 
     .footer_tutorialTextRow {

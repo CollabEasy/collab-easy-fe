@@ -108,7 +108,7 @@ const GetInspired = ({
         />
         <div className="row">
           <div style={{ width: "100%" }}>
-            <div className="row d-flex justify-content-center getInspired-cover">
+            <div className="row d-flex justify-content-center pageBanner-cover">
               <div className="col-md-12">
                 <div className="row">
                   <div className="col-md-4">
@@ -123,8 +123,8 @@ const GetInspired = ({
                     </div>
                   </div>
                   <div className="col-md-8">
-                    <div className="getInspired-cnt">
-                      <div className="getInspired-text text-center">
+                    <div className="pageBanner-cnt">
+                      <div className="pageBanner-text text-center">
                         <h3 className="common-h3-style">
                           {coverSection["heading"]}
                         </h3>
