@@ -265,10 +265,10 @@ const ProposalPage = ({
 
     return (
         <Layout
-            title={"Proposal | Wondor "}
+            title={(title as string).replace(/-/g, " ")}
             name={"description"}
             content={
-                "Manage your collab request on Wondor!"
+                "Check out this interesting proposals for collaboration. Show interest and unlock the opportunity for working on a masterpiece with a fellow artist!"
             }
         >
             <>
