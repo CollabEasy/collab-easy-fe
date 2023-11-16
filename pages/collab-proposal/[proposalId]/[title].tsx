@@ -223,7 +223,7 @@ const ProposalPage = ({
                                 <>
                                     {!isLoggedIn && (
                                         <div className="login-message">
-                                            <p>Please, login to send a show interest</p>
+                                            <p>Please, login to show interest</p>
                                         </div>
                                     )}
                                     {interestStatus["shown_interest"] ? (
