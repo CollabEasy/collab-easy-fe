@@ -97,7 +97,7 @@ const Footer = ({
     } else if (page === "inspiration") {
       router.push("/content-creation-ideas-for-artists");
     } else if (page === "contest") {
-      router.push("/all-contest");
+      router.push("/art-contests-for-artists");
     }
   }
 

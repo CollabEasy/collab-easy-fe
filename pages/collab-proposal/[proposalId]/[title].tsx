@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Button, Comment, Card, Tag, Modal } from "antd";
+import { Input, Button, Comment, Card, Tag, Modal, Breadcrumb } from "antd";
 import { AppState } from "state";
 import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
@@ -77,7 +77,7 @@ const ProposalPage = ({
     // addProposalComment,
 }: Props) => {
 
-    const { toArtistProfile } = useRoutesContext();
+    const { toDiscover, toAllProposalsPage, toArtistProfile } = useRoutesContext();
 
     const { confirm } = Modal;
     const [showConfirmationModal, setShowConfirmationModal] = useState(false);
@@ -263,6 +263,19 @@ const ProposalPage = ({
         );
     }
 
+    const getBreadcrum = () => {
+        return (
+            <Breadcrumb>
+                <Breadcrumb.Item>
+                    <a href={toDiscover().href}>Home</a>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                    <a href={toAllProposalsPage().href}>Collab Proposals</a>
+                </Breadcrumb.Item>
+            </Breadcrumb>
+        );
+    }
+
     return (
         <Layout
             title={(title as string).replace(/-/g, " ")}
@@ -284,6 +297,7 @@ const ProposalPage = ({
                         <Loader />
                     ) : (
                         <>
+                            {getBreadcrum()}
                             {getProposalCard()}
                         </>
                     )}

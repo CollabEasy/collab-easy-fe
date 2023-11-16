@@ -22,7 +22,7 @@ export function IsInspirationPage(pathname) {
 }
 
 export function IsContestPage(pathname) {
-  if (pathname.includes("/all-contest")) {
+  if (pathname.includes("/art-contests-for-artists")) {
     return true;
   } 
   return false;
@@ -87,7 +87,7 @@ export function getPublicRoutes() {
     "/privacy",
     "/contact-us",
     "/category/[slug]/[artistTitle]-seeking-collab",
-    "/all-contest",
+    "/art-contests-for-artists",
     "/all-category",
     "/contest/[id]",
   ];

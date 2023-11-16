@@ -134,7 +134,7 @@ const AllContestPage = ({
                 <>
                     <div className="allContestPage_listingPagecontainer">
                         <GenericBreadcrumb 
-                            page={"All Contests"}
+                            page={"Art Contests"}
                         />
                         <div className="allContestPage__listingPageCoverContainer">
                             <div className="row ">

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Tabs, Input, Button, Comment, Tag, message } from "antd";
+import { Tabs, Input, Button, Comment, Tag, message, Breadcrumb } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -103,7 +103,7 @@ const ContestPage = ({
     emptyContestSubmissionDetails
   );
 
-  const { toRewardsInfoPage } = useRoutesContext();
+  const { toDiscover, toAllContestPage, toRewardsInfoPage } = useRoutesContext();
 
   useEffect(() => {
     fetchContestAction(slug as string);
@@ -321,6 +321,22 @@ const ContestPage = ({
     return resultArtists;
   };
 
+  const getBreadcrum = (title: string) => {
+    return (
+        <Breadcrumb>
+            <Breadcrumb.Item>
+                <a href={toDiscover().href}>Home</a>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+                <a href={toAllContestPage().href}>Art Contests</a>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>
+                  {title}
+            </Breadcrumb.Item>
+        </Breadcrumb>
+    );
+}
+
   const now = new Date();
   let status = GetContestStatus(
     now.getTime(),
@@ -329,11 +345,12 @@ const ContestPage = ({
   );
   return (
     <Layout
-      title={"Join monthly art contests and win exciting prizes | Wondor"}
+      title={contest.contest[0]?.data.title + "| Wondor"}
       name={"description"}
       content={
-        "Join our monthy contest. The theme is " +
-        contest.contest[0]?.data.title
+        "Calling all artists to join our monthy contest. The theme is " 
+        + contest.contest[0]?.data.title
+        + " Enter now, showcase your creativity and win exciting prizes."
       }
     >
       <>
@@ -347,6 +364,8 @@ const ContestPage = ({
         ) : (
           <>
             <div className="contestDetailPage_container">
+              {getBreadcrum(contest.contest[0]?.data.title)}
+
               <Tabs
                 type="card"
                 centered

@@ -155,7 +155,7 @@ const ProposalsPage = ({
                 <>
                     <div className="allProposalsPage_listingPagecontainer">
                         <GenericBreadcrumb
-                            page={"All Proposals"}
+                            page={"Collab Proposals"}
                         />
                         <div className="allProposalsPage__listingPageCoverContainer">
                             <div className="row ">
