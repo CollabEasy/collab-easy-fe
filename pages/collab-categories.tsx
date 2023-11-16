@@ -1,4 +1,4 @@
-import { List } from "antd";
+import { Button, List } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -10,6 +10,7 @@ import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import Image from 'next/image';
 import headerImage from '../public/images/popularCategories/artist.svg';
+import notFoundImage from '../public/images/not-found.svg';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
 import { CategoryEntry } from "types/states/category";
@@ -164,10 +165,6 @@ const AllCategoryPage = ({
                                 </div>
                             </div>
                         </div>
-                        <div style={{ height: 'auto', marginTop: '20px', textAlign: "center" }}>
-                            Unable to see the art category in the list? Click <a href="#" onClick={ShowNewCategoryModal}>here</a> to add a category.
-                            After a thorough review, we will include it.
-                        </div>
                         <div className="col-md-12 listingContainer">
                             <List
                                 style={{ width: "100%" }}
@@ -185,6 +182,44 @@ const AllCategoryPage = ({
                                     </List.Item>
                                 )}
                             />
+                        </div>
+                        <div className="row">
+                            <div style={{ width: "100%" }}>
+                                <div className="row d-flex justify-content-center actionBanner-cover">
+                                    <div className="col-md-12">
+                                        <div className="row">
+                                            <div className="col-md-4">
+                                                <div className="text-center">
+                                                    <Image
+                                                        src={notFoundImage}
+                                                        height={200}
+                                                        width={200}
+                                                        alt="you are"
+                                                        priority
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="col-md-8">
+                                                <div className="actionBanner-cnt">
+                                                    <div className="actionBanner-text text-center">
+                                                        <h3 className="common-h3-style">
+                                                            Not seeing your art category in the list? Add it Now!
+                                                        </h3>
+                                                        <p className="common-p-style">
+                                                            After a thorough review, we will include it.
+                                                        </p>
+                                                    </div>
+                                                    <Button
+                                                        onClick={ShowNewCategoryModal}
+                                                    >
+                                                        Add Category
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </>
