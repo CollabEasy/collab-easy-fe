@@ -135,9 +135,9 @@ const ProposalsPage = ({
 
     return (
         <Layout
-            title={"Popular collaboration proposals | Wondor"}
+            title={"Popular collaboration proposals for artists | Wondor"}
             name={"description"}
-            content={"Check out all of the interesting proposals for collaboration by artists around the world. Show interest and unlock the opportunity for working on a masterpeiece with a fellow artist. Join now!"}
+            content={"Check out all of the interesting proposals for collaboration by artists around the world. Show interest and unlock the opportunity for working on a masterpiece with a fellow artist. Join now!"}
 
         >
             {loginModalDetails.openModal && !user.new_user && (
@@ -171,7 +171,7 @@ const ProposalsPage = ({
                                 </div>
                                 <div className="col-sm-4 " style={{ backgroundColor: "#FFF3C9" }}>
                                     <Image
-                                        alt="Image Alt"
+                                        alt="Embark on a creative journey with like-minded artists. Explore our extensive list of collaboration proposals."
                                         src={detailsImage}
                                         layout="responsive"
                                         objectFit="contain" // Scale your image down to fit into the container

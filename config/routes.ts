@@ -15,7 +15,7 @@ export const routes: AppRouteCreators = {
   toAllContestPage: () => ({ href: "/all-contest" }),
   toRewardsInfoPage: () => ({ href: "/rewards-info" }),
   toAllCategoryPage: () => ({ href: "/all-categories" }),
-  toAllProposalsPage: () => ({ href: "/proposals" }),
+  toAllProposalsPage: () => ({ href: "/collab-proposals-for-artists" }),
   toProfile: () => ({
     href: '/profile',
     as: `/profile/`,
@@ -33,8 +33,8 @@ export const routes: AppRouteCreators = {
     as: `/collab/details/${id}`,
   }),
   toProposalPage: (proposalId, title) => ({
-    href: '/proposal/[proposalId]/[title]',
-    as: `/proposal/${proposalId}/${title}`,
+    href: '/collab-proposal/[proposalId]/[title]',
+    as: `/collab-proposal/${proposalId}/${title}`,
   }),
   toSendCollabRequestPage: (slug) => ({
     href: '/collab/[slug]',
