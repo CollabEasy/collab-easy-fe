@@ -14,7 +14,7 @@ export const routes: AppRouteCreators = {
   toGetInspired: () => ({ href: "/content-creation-ideas-for-artists" }),
   toAllContestPage: () => ({ href: "/art-contests-for-artists" }),
   toRewardsInfoPage: () => ({ href: "/rewards-info" }),
-  toAllCategoryPage: () => ({ href: "/all-categories" }),
+  toAllCategoryPage: () => ({ href: "/collab-categories" }),
   toAllProposalsPage: () => ({ href: "/collab-proposals-for-artists" }),
   toProfile: () => ({
     href: '/profile',

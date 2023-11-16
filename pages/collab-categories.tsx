@@ -140,7 +140,7 @@ const AllCategoryPage = ({
                 <>
                     <div className="allCategoryPage_listingPagecontainer">
                         <GenericBreadcrumb
-                            page={"Categories"}
+                            page={"Collab Categories"}
                         />
                         <div className="allCategoryPage__listingPageCoverContainer">
                             <div className="row ">
