@@ -477,8 +477,12 @@ export const CATEGORY_METADATA = [
         "artist-title": "Illustrators",
         "similar-categories": [
             {
-                "name": "Illustration",
-                "slug": "illustration"
+                "name": "Photography",
+                "slug": "photography"
+            },
+            {
+                "name": "Digital Art",
+                "slug": "digital-art"
             },
         ],
         "wiki-data": {
