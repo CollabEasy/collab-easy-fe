@@ -85,7 +85,8 @@ const ProposalPage = ({
     const [interestedArtists, setInterestedArtists] = useState();
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [proposalStatus, setProposalStatus] = useState("false");
-
+    const [windowWidth, setWindowWidth] = useState(-1);
+    
     const router = useRouter();
     const { title, proposalId } = router.query;
 
@@ -93,6 +94,10 @@ const ProposalPage = ({
         getProposalByIdAction(proposalId as string);
         getProposalsInterests(proposalId as string);
     }, [user]);
+
+    useEffect(() => {
+        setWindowWidth(window.innerWidth);
+    }, []);
 
     const confirmCloseProposal = (proposalData) => {
         confirm({
@@ -297,7 +302,11 @@ const ProposalPage = ({
                         <Loader />
                     ) : (
                         <>
-                            {getBreadcrum()}
+                            {windowWidth > 500 &&
+                                <>
+                                    {getBreadcrum()}
+                                </>
+                            }
                             {getProposalCard()}
                         </>
                     )}

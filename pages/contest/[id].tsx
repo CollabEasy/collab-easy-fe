@@ -102,6 +102,7 @@ const ContestPage = ({
   const [contestSubmissionDetails, setContestSubmissionDetails] = useState(
     emptyContestSubmissionDetails
   );
+  const [windowWidth, setWindowWidth] = useState(-1);
 
   const { toDiscover, toAllContestPage, toRewardsInfoPage } = useRoutesContext();
 
@@ -120,6 +121,7 @@ const ContestPage = ({
     if (artistListData.status === "success") {
       setShowProfileModal(false);
     }
+    setWindowWidth(window.innerWidth);
   }, [user, artistListData]);
 
   const showContestModal = (imageUrl, description) => {
@@ -364,7 +366,11 @@ const ContestPage = ({
         ) : (
           <>
             <div className="contestDetailPage_container">
-              {getBreadcrum(contest.contest[0]?.data.title)}
+              {windowWidth > 500 &&
+                <>
+                  {getBreadcrum(contest.contest[0]?.data.title)}
+                </>
+              }
 
               <Tabs
                 type="card"

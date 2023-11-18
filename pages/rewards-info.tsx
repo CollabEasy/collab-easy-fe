@@ -47,6 +47,7 @@ const RewardsInfoPage = ({
 }: Props) => {
     const { toArtistPortal } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(-1);
 
     const router = useRouter();
 
@@ -62,6 +63,7 @@ const RewardsInfoPage = ({
         if (artistListData.status === "success") {
             setShowProfileModal(false);
         }
+        setWindowWidth(window.innerWidth);
     }, [user, artistListData]);
 
     return (
@@ -82,9 +84,11 @@ const RewardsInfoPage = ({
 
             <>
                 <div className="rewardsInfoPage_listingPagecontainer">
-                    <GenericBreadcrumb
-                        page={"Rewards Info"}
-                    />
+                    {windowWidth > 500 &&
+                        <GenericBreadcrumb
+                            page={"Rewards Info"}
+                        />
+                    }
                     <div className="rewardsInfoPage__listingPageCoverContainer">
                         <div className="row ">
                             <div className="col-sm-8" style={{ backgroundColor: "#D1C4E9" }}>

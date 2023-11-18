@@ -48,6 +48,7 @@ const GetInspired = ({
 
   const { Panel } = Collapse;
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(-1);
   const { toDiscover } = useRoutesContext()
 
   useEffect(() => {
@@ -62,6 +63,7 @@ const GetInspired = ({
     if (artistListData.status === "success") {
       setShowProfileModal(false);
     }
+    setWindowWidth(window.innerWidth);
   }, [artistListData]);
 
 
@@ -103,9 +105,11 @@ const GetInspired = ({
       }
 
       <div className="getInspired-parentContainer">
-        <GenericBreadcrumb
-          page={"Inspiration Hub"}
-        />
+        {windowWidth > 500 &&
+          <GenericBreadcrumb
+            page={"Inspiration Hub"}
+          />
+        }
         <div className="row">
           <div style={{ width: "100%" }}>
             <div className="row d-flex justify-content-center pageBanner-cover">

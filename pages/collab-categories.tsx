@@ -67,6 +67,7 @@ const AllCategoryPage = ({
     const { toCategoryArtistList, toCategoryWikiPage } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [allCategories, setAllCategory] = useState([]);
+    const [windowWidth, setWindowWidth] = useState(0);
 
     const router = useRouter();
 
@@ -83,6 +84,7 @@ const AllCategoryPage = ({
         if (artistListData.status === "success") {
             setShowProfileModal(false);
         }
+        setWindowWidth(window.innerWidth);
         setAllCategory(categories);
     }, [user, artistListData, categories]);
 
@@ -140,9 +142,11 @@ const AllCategoryPage = ({
             ) : (
                 <>
                     <div className="allCategoryPage_listingPagecontainer">
-                        <GenericBreadcrumb
-                            page={"Collab Categories"}
-                        />
+                        {windowWidth > 500 &&
+                            <GenericBreadcrumb
+                                page={"Collab Categories"}
+                            />
+                        }
                         <div className="allCategoryPage__listingPageCoverContainer">
                             <div className="row ">
                                 <div className="col-sm-8" style={{ backgroundColor: "#ECCFD6" }}>

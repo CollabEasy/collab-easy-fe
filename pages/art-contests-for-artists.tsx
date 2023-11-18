@@ -52,6 +52,7 @@ const AllContestPage = ({
     const { toContestPage } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [allContests, setAllContests] = useState([]);
+    const [windowWidth, setWindowWidth] = useState(-1);
 
     const router = useRouter();
 
@@ -69,6 +70,7 @@ const AllContestPage = ({
             setShowProfileModal(false);
         }
         setAllContests(contests.contest);
+        setWindowWidth(window.innerWidth);
     }, [user, artistListData, contests]);
 
     const getAllContests = (allContests) => {
@@ -133,9 +135,11 @@ const AllContestPage = ({
             ) : (
                 <>
                     <div className="allContestPage_listingPagecontainer">
-                        <GenericBreadcrumb 
-                            page={"Art Contests"}
-                        />
+                        {windowWidth > 500 &&
+                            <GenericBreadcrumb
+                                page={"Art Contests"}
+                            />
+                        }
                         <div className="allContestPage__listingPageCoverContainer">
                             <div className="row ">
                                 <div className="col-sm-8" style={{ backgroundColor: "#F8F5E7" }}>

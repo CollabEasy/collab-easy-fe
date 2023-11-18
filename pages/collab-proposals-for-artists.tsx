@@ -73,6 +73,7 @@ const ProposalsPage = ({
     const { toArtistProfile, toProposalPage } = useRoutesContext();
     const [allProposals, setAllProposals] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(-1);
 
     const router = useRouter();
 
@@ -90,6 +91,7 @@ const ProposalsPage = ({
             setShowProfileModal(false);
         }
         setAllProposals(proposal.proposals);
+        setWindowWidth(window.innerWidth);
     }, [user, artistListData, proposal.proposals]);
 
     // https://bootsnipp.com/snippets/5MqgR
@@ -154,9 +156,11 @@ const ProposalsPage = ({
             ) : (
                 <>
                     <div className="allProposalsPage_listingPagecontainer">
-                        <GenericBreadcrumb
-                            page={"Collab Proposals"}
-                        />
+                        {windowWidth > 500 &&
+                            <GenericBreadcrumb
+                                page={"Collab Proposals"}
+                            />
+                        }
                         <div className="allProposalsPage__listingPageCoverContainer">
                             <div className="row ">
                                 <div className="col-sm-8" style={{ backgroundColor: "#FFF3C9" }}>
