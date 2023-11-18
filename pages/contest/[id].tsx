@@ -473,15 +473,12 @@ const ContestPage = ({
                       <h2>Prize</h2>
                       <p className="common-p-style">
                         We believe anyone who participates is a winner. However,
-                        we will give an amazon gift card to 2 artists whose work
+                        we will give an amazon gift card to the artist whose work
                         is most upvoted. Gift card will be sent to their
                         registered email id.
                       </p>
                       <p className="common-p-style">
-                        <b>1st winner:</b> USD 15
-                      </p>
-                      <p className="common-p-style">
-                        <b>2nd winner:</b> USD 10
+                        <b>Winner:</b> USD 50
                       </p>
                       <p className="common-p-style">
                         <b>Other participants: </b>
