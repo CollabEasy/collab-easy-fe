@@ -347,7 +347,7 @@ const ContestPage = ({
   );
   return (
     <Layout
-      title={contest.contest[0]?.data.title + "| Wondor"}
+      title={"Enter now and win exclusize prizes on Wondor"}
       name={"description"}
       content={
         "Calling all artists to join our monthy contest. The theme is " 

@@ -4,10 +4,12 @@ import { connect, ConnectedProps } from "react-redux";
 import { Button, Result } from "antd";
 import Layout from "../layout";
 import { AppState } from "state";
+import Image from "next/image";
 import LoginModal from "../modal/loginModal";
 import NewUserModal from "../modal/newUserModal";
 import { LoginModalDetails } from "types/model";
 import { openLoginModalAction } from "state/action";
+import loginImage from "../../public/images/login.svg"
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
@@ -46,11 +48,11 @@ const NotAuthorised = ({
     <>
       {loginModalDetails.openModal && !user.new_user && <LoginModal />}
       {showProfileModal && <NewUserModal />}
-
-      <div className="fluid discoverArtists__listingPageContainer" style={{ marginTop: "20%", marginBottom: "15%" }}>
-        <div className="discoverArtists__listingPageCoverContainer common-text-style">
+      <div className="d-flex justify-content-between align-items-center" style={{ marginTop: "10%", marginBottom: "15%" }}>
+        <div className="common-text-style">
           <Result
             title={message}
+            status="403"
             extra={
               <Button
                 className="common-text-style"
