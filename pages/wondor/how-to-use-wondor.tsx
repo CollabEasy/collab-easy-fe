@@ -57,7 +57,7 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
   return (
     < Layout
 
-      title={"How Wondor works?"}
+      title={"How to use Wondor?"}
       name={"description"}
       content={"Find singers, photograhers etc to collaborate. Create account, send collab request, manage collaboration requests. Find ideas and themes for your work. Win money from winning art contests. Earn rewards by reffering your friends."}
 
