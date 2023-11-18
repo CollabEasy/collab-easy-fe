@@ -146,6 +146,8 @@ const NavBar = ({
               src={titleDesktopImg}
               alt="Wondor - Join now to collab with painters, singers, musicians and more."
               onClick={() => setShowLoginOptions(false)}
+              loading="eager"
+              priority
             />
           </Link>
         </div>
@@ -155,6 +157,8 @@ const NavBar = ({
               src={titleMobileBlueImg}
               alt="Wondor - Join now to collab with painters, singers, musicians and more."
               onClick={() => setShowLoginOptions(false)}
+              loading="eager"
+              priority
             />
           </Link>
         </div>

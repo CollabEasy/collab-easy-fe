@@ -90,6 +90,14 @@
   border-radius: 10px
 }
 
+.faq-box {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  border-radius: 10px;
+  //box-shadow: 0 0 8px 0 rgb(0 0 0 / 20%);
+}
+
 .inspire-cnt {
   height: 100%;
   display: flex;
@@ -99,7 +107,7 @@
 }
 
 .inspire-btn {
-  width: 30%;
+  width: 35%;
   margin: 0 auto;
 
   button {
@@ -360,6 +368,10 @@
   }
 
   .rewards-box {
+    margin: 5% 7%;
+  }
+
+  .faq-box {
     margin: 5% 7%;
   }
 
