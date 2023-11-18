@@ -127,7 +127,7 @@ const Footer = ({
                   <li><a href={toAboutUs().href} >About Us</a></li>
                   <li><a href={toTerms().href} >Terms & Conditions</a></li>
                   <li><a href={toPrivacy().href} >Privacy Policy</a></li>
-                  <li><a href={toTutorial().href} >Tutorial</a></li>
+                  <li><a href={toTutorial().href} >How Wondor Works</a></li>
                 </ul>
               </div>
               <div className="col-md-4 col-4">

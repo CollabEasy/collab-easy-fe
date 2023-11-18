@@ -70,7 +70,7 @@ const NavBar = ({
 
   const { toWondorHome, toArtistProfile, toArtistPortal, toAnalyticsPage } =
     useRoutesContext();
-  const { toRewardsInfoPage, toGetInspired, toAllContestPage, toTutorial } = useRoutesContext();
+  const { toGetInspired, toAllContestPage, toAllCategoryPage } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = !checkDevice() ? document.querySelector("#desktop-p-h") : document.querySelector("#p-h");
@@ -167,22 +167,17 @@ const NavBar = ({
                 <ul style={{ textAlign: "center" }}>
                   <li>
                     <p className="common-p-style nav-text">
-                      <a href={routeToHref(toGetInspired())}>Inspiration</a>
+                      <a href={routeToHref(toGetInspired())}>Inspiration Hub</a>
                     </p>
                   </li>
                   <li>
                     <p className="common-p-style nav-text">
-                      <a href={routeToHref(toAllContestPage())}>Contests</a>
+                      <a href={routeToHref(toAllContestPage())}>Art Contests</a>
                     </p>
                   </li>
                   <li>
                     <p className="common-p-style nav-text">
-                      <a href={routeToHref(toRewardsInfoPage())}>Rewards</a>
-                    </p>
-                  </li>
-                  <li>
-                    <p className="common-p-style nav-text">
-                      <a href={routeToHref(toTutorial())}>Tutorial</a>
+                      <a href={routeToHref(toAllCategoryPage())}>Collab Categories</a>
                     </p>
                   </li>
                 </ul>

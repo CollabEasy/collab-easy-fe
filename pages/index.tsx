@@ -73,7 +73,7 @@ const Home = ({
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
   const {
     toCategoryArtistList,
-    toArtistPortal,
+    toAllProposalsPage,
     toGetInspired,
     toAllContestPage,
     toRewardsInfoPage,
@@ -239,21 +239,20 @@ const Home = ({
                   <div className="inspire-cnt">
                     <div className="inspire-text text-center">
                       <h3 className="common-h3-style">
-                        Searching for an idea for your next hit? We got you
-                        covered 🥳
+                        Searching for a collaboration opportunity 
+                        with like-minded artists?
                       </h3>
                       <p className="common-p-style">
-                        We provide invaluable support to artists in times of
-                        need by publishing curated lists of themes and topics,
-                        serving as inspiration for their next creative
-                        masterpiece.
+                        Unleash your artistic potential together. 
+                        Collaborate and create something extraordinary with fellow artists.
+                        Checkout these amazing collab proposals.
                       </p>
                     </div>
                     <div className="mt-4 mb-4 inspire-btn">
                       <div className="cursor-pointer">
                         <Button>
-                          <Link href={routeToHref(toGetInspired())} passHref>
-                            Get Inspiration
+                          <Link href={routeToHref(toAllProposalsPage())} passHref>
+                            Show Interest
                           </Link>
                         </Button>
                       </div>
@@ -442,7 +441,7 @@ const Home = ({
       </div>
 
       {/* Inspiration */}
-      {/* {getProposalCard()} */}
+      {getProposalCard()}
 
       {/* Contest and Scratchpad */}
       {getInspirationAndContestCard()}
