@@ -5,13 +5,17 @@ Allow: /
 Disallow: /artist/profile/*
 Disallow: /discover-artist/*
 Disallow: /artist/settings/*
+Disallow: /category/wiki/*
 Disallow: /contact-us
 Disallow: /about-us
 Disallow: /terms-and-policy
 Disallow: /tutorial
-Disallow: /about-us
 Disallow: /artist
-Disallow: /category/wiki/*
+Disallow: /privacy
+Disallow: /get-inspired
+Disallow: /all-contest
+Disallow: /all-categories
+
 
 
 Sitemap: https://www.wondor.art/sitemap.xml
