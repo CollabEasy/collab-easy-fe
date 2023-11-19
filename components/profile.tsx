@@ -415,27 +415,27 @@ const Profile = ({
 
   const getIcon = (socialPlatfornName) => {
     if (socialPlatfornName === "Instagram") {
-      return <FontAwesomeIcon icon={faInstagram} size="2x" />
+      return <FontAwesomeIcon title="Instagram" icon={faInstagram} size="2x" color="grey" />
     }
     else if (socialPlatfornName === "Youtube") {
-      return <FontAwesomeIcon icon={faYoutube} size="2x" />
+      return <FontAwesomeIcon title="Youtube" icon={faYoutube} size="2x" color="grey" />
     }
     else if (socialPlatfornName === "Dribble") {
-      return <FontAwesomeIcon icon={faDribbble} size="2x" />
+      return <FontAwesomeIcon title="Dribble" icon={faDribbble} size="2x" color="grey" />
     }
     else if (socialPlatfornName === "Flickr") {
-      return <FontAwesomeIcon icon={faFlickr} size="2x" />
+      return <FontAwesomeIcon title="Flickr" icon={faFlickr} size="2x" color="grey" />
     }
     else if (socialPlatfornName === "Spotify") {
-      return <FontAwesomeIcon icon={faSpotify} size="2x" />
+      return <FontAwesomeIcon title="Spotify" icon={faSpotify} size="2x" color="grey" />
     }
     else if (socialPlatfornName === "Facebook") {
-      return <FontAwesomeIcon icon={faFacebook} size="2x" />
+      return <FontAwesomeIcon title="Facebook" icon={faFacebook} size="2x" color="grey" />
     }
     else if (socialPlatfornName === "Soundcloud") {
-      return <FontAwesomeIcon icon={faSoundcloud} size="2x" />
+      return <FontAwesomeIcon title="Soundcloud" icon={faSoundcloud} size="2x" color="grey" />
     }
-    return <FontAwesomeIcon icon={faLink} />
+    return <FontAwesomeIcon title={socialPlatfornName} icon={faLink} size="2x" color="grey" />
   }
 
   const getSocialProspectusComponent = () => {
