@@ -50,7 +50,7 @@ import CategorySelector from "./categorySelector";
 import { fetchArtistSkills } from "../state/action";
 import { GetSocialMediaUrl, GetSocialPlatformImage, GetSocialPlatformName } from "helpers/socialProspectusHelper";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faDribbble, faFlickr, faSoundcloud, faYoutube, faSpotify, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram, faDribbble, faFlickr, faSoundcloud, faYoutube, faSpotify, faFacebook, faTiktok } from '@fortawesome/free-brands-svg-icons';
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { GetProposalTags } from "helpers/proposalHelper";
 
@@ -415,25 +415,28 @@ const Profile = ({
 
   const getIcon = (socialPlatfornName) => {
     if (socialPlatfornName === "Instagram") {
-      return <FontAwesomeIcon title="Instagram" icon={faInstagram} size="2x" color="grey" />
+      return <FontAwesomeIcon title="Instagram" icon={faInstagram} size="2x" color="#7948C3" />
     }
     else if (socialPlatfornName === "Youtube") {
-      return <FontAwesomeIcon title="Youtube" icon={faYoutube} size="2x" color="grey" />
+      return <FontAwesomeIcon title="Youtube" icon={faYoutube} size="2x" color="#ED3A35" />
     }
     else if (socialPlatfornName === "Dribble") {
-      return <FontAwesomeIcon title="Dribble" icon={faDribbble} size="2x" color="grey" />
+      return <FontAwesomeIcon title="Dribble" icon={faDribbble} size="2x" color="#B32E5A" />
     }
     else if (socialPlatfornName === "Flickr") {
-      return <FontAwesomeIcon title="Flickr" icon={faFlickr} size="2x" color="grey" />
+      return <FontAwesomeIcon title="Flickr" icon={faFlickr} size="2x" color="#EC438B" />
     }
     else if (socialPlatfornName === "Spotify") {
-      return <FontAwesomeIcon title="Spotify" icon={faSpotify} size="2x" color="grey" />
+      return <FontAwesomeIcon title="Spotify" icon={faSpotify} size="2x" color="#61D165" />
     }
     else if (socialPlatfornName === "Facebook") {
-      return <FontAwesomeIcon title="Facebook" icon={faFacebook} size="2x" color="grey" />
+      return <FontAwesomeIcon title="Facebook" icon={faFacebook} size="2x" color="#185395" />
     }
     else if (socialPlatfornName === "Soundcloud") {
-      return <FontAwesomeIcon title="Soundcloud" icon={faSoundcloud} size="2x" color="grey" />
+      return <FontAwesomeIcon title="Soundcloud" icon={faSoundcloud} size="2x" color="#F1853C" />
+    }
+    else if (socialPlatfornName === "Tik Tok") {
+      return <FontAwesomeIcon title="Tik Tok" icon={faTiktok} size="2x" color="black" />
     }
     return <FontAwesomeIcon title={socialPlatfornName} icon={faLink} size="2x" color="grey" />
   }
