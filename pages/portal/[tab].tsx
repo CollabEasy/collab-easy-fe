@@ -160,9 +160,12 @@ const ArtistPortal = ({
       activeTabKey.current = "1";
     } else if (tab === "preferences") {
       activeTabKey.current = "2";
-    } else if (tab === "samples") {
-      activeTabKey.current = "3";
-    } else if (tab === "social-prospectus") {
+    } 
+    // else if (tab === "samples") {
+    //   activeTabKey.current = "3";
+    // } 
+    
+    else if (tab === "social-prospectus") {
       activeTabKey.current = "4";
     } else if (tab === "scratchpad") {
       activeTabKey.current = "5";
@@ -199,9 +202,13 @@ const ArtistPortal = ({
       tab = "basic-information";
     } else if (tabIndex === "2") {
       tab = "preferences";
-    } else if (tabIndex === "3") {
-      tab = "samples";
-    } else if (tabIndex === "4") {
+    } 
+    
+    // else if (tabIndex === "3") {
+    //   tab = "samples";
+    // } 
+    
+    else if (tabIndex === "4") {
       tab = "social-prospectus";
     } else if (tabIndex === "5") {
       tab = "scratchpad";
@@ -258,10 +265,10 @@ const ArtistPortal = ({
           <CheckCircleOutlined />
           <span className="f-12" style={{ display: "block" }}>Preferences</span>
         </div>
-        <div tabIndex={3} className="tab" onClick={() => { handleMobileNavClick("3") }}>
+        {/* <div tabIndex={3} className="tab" onClick={() => { handleMobileNavClick("3") }}>
           <PictureOutlined />
           <span className="f-12" style={{ display: "block" }}>Samples</span>
-        </div>
+        </div> */}
         <div tabIndex={4} className="tab" onClick={() => { handleMobileNavClick("4") }}>
           <InstagramOutlined />
           <span className="f-12" style={{ display: "block" }}>Social Prospectus</span>
@@ -314,10 +321,10 @@ const ArtistPortal = ({
           <CheckCircleOutlined />
           <span className="f-12 ">Preferences</span>
         </Menu.Item>
-        <Menu.Item key="3">
+        {/* <Menu.Item key="3">
           <PictureOutlined />
           <span className="f-12 ">Samples</span>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="4">
           <InstagramOutlined />
           <span className="f-12">Social Prospectus</span>
@@ -425,7 +432,7 @@ const ArtistPortal = ({
                   </Content>
                 )}
 
-                {getActiveTab() === "3" && (
+                {/* {getActiveTab() === "3" && (
                   <Content
                     style={{
                       padding: 24,
@@ -452,7 +459,7 @@ const ArtistPortal = ({
                       />
                     </div>
                   </Content>
-                )}
+                )} */}
 
                 {getActiveTab() === "4" && (
                   <Content

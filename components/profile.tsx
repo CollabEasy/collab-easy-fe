@@ -155,7 +155,7 @@ const Profile = ({
   const { toArtistPortal, toDiscover } = useRoutesContext();
 
   useEffect(() => {
-    fetchArtistSamples(user.slug);
+    // fetchArtistSamples(user.slug);
 
     if (!isLoggedIn) {
       return;
@@ -483,7 +483,7 @@ const Profile = ({
               </div>
             </TabPane>
 
-            <TabPane tab="Samples" key="2">
+            {/* <TabPane tab="Samples" key="2">
               <div className="artistProfile__tabContainer">
                 {userSamples.length == 0 ? (
                   <div className="samplePage__container">
@@ -525,7 +525,7 @@ const Profile = ({
                   </>
                 )}
               </div>
-            </TabPane>
+            </TabPane> */}
 
             <TabPane tab="Social prospectus" key="4">
               <div className="artistProfile__tabContainer">
