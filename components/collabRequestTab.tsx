@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Pagination, Button, Card, Avatar, Select } from "antd";
+import { Pagination, Button, Card, Avatar, Select, Table } from "antd";
 import Meta from "antd/lib/card/Meta";
 import {
   CollabRequestData,
@@ -23,6 +23,8 @@ import router from "next/router";
 import CollabCalender from "./collabCalender";
 import Layout from "@/components/layout";
 import $ from "jquery";
+import Link from "next/link";
+import { GetCollabHeading } from "helpers/collabCardHelper";
 
 const { Option } = Select;
 
@@ -59,9 +61,10 @@ export const CollabRequestTab = ({
   const dateTodayStr =
     dateToday.getFullYear() +
     "/" +
-    dateToday.getMonth() +
+    (dateToday.getMonth() + 1) +
     "/" +
     dateToday.getDate();
+
   const [selectedDate, setSelectedDate] = useState(dateTodayStr);
 
   const dateToCollabRequestMap = {};
@@ -93,6 +96,60 @@ export const CollabRequestTab = ({
     dateToCollabRequestMap[collabDate].push(collabRequest);
   });
 
+
+  const columns = [
+    { title: "Title", dataIndex: "title", key: "title" },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+    },
+    {
+      title: "Action",
+      key: "key",
+      dataIndex: "key",
+      // eslint-disable-next-line react/display-name
+      render: (_text: any, collab: any) => (
+        <>
+          <Button >
+            <Link
+              href={toCollabPage(collab.id).as}
+              passHref
+            >
+              Details
+            </Link>
+          </Button>
+        </>
+      ),
+    },
+  ];
+
+  const deviceColumns = [
+    {
+      // eslint-disable-next-line react/display-name
+      render: (collab, key, index) => {
+        return (
+          <div>
+            <span>
+              <p>{collab.title}</p>
+            </span>
+            <span>
+              <p>{collab.status}</p>
+            </span>
+            <Button >
+              <Link
+                href={toCollabPage(collab.id).as}
+                passHref
+              >
+                Details
+              </Link>
+            </Button>
+          </div>
+        )
+      }
+    }
+  ];
+
   const scrollSmoothlyToID = (id) => {
     var element = document.getElementById(id);
     element.scrollIntoView();
@@ -112,20 +169,21 @@ export const CollabRequestTab = ({
     // }
     requestsToShow = dateToCollabRequestMap[selectedDate] ?? [];
     if (requestsToShow.length > 0) {
-      const htmlElement: JSX.Element[] = [];
-
-      requestsToShow.forEach((request: CollabRequestData, index: number) => {
-        htmlElement.push(
-          <div>
-            <CollabDetailCard
-              showUser={user.artist_id === otherUser}
-              collabDetails={request}
-            />
-          </div>
-        );
-      });
-
-      return htmlElement;
+      let updatedData = [];
+      requestsToShow.forEach((request) => {
+        let formattedCollabDetails = {
+          title: GetCollabHeading(user.artist_id, request),
+          status: request.status,
+          id: request.id,
+        }
+        updatedData.push(formattedCollabDetails);
+      })
+      return (
+        <Table
+          columns={window.innerWidth < 500 ? deviceColumns : columns}
+          dataSource={updatedData}
+        />
+      );
     }
 
     const dateKeys = Object.keys(dateToCollabRequestMap);

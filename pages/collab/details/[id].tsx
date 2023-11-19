@@ -1,5 +1,5 @@
 import React from "react";
-import { Tabs, Input, Button, Comment } from "antd";
+import { Tabs, Input, Button, Comment, Breadcrumb } from "antd";
 import { AppState } from "state";
 import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
@@ -15,6 +15,7 @@ import NewUserModal from '@/components/modal/newUserModal';
 import { ConvertTimestampToDate } from 'helpers/collabCardHelper';
 import { GetCollabRequest, GetCollaboratorInfoFromCollab, DoHideNewCommentBox } from 'helpers/collabPageHelper';
 import Layout from "@/components/layout";
+import { useRoutesContext } from "../../../components/routeContext";
 
 // https://ant.design/components/card/
 const { TextArea } = Input;
@@ -68,9 +69,12 @@ const CollabPage = ({
   };
 
   const [comment, setComment] = useState("");
+  const [windowWidth, setWindowWidth] = useState(-1);
   const [collabConversationComments, setCollabConversation] = useState([]);
   const [collabDetails, setCollabRequestDetails] = useState<CollabRequestData>(emptyCollabDetails);
   const [showProfileModal, setShowProfileModal] = useState(false);
+
+  const { toDiscover, toArtistPortal } = useRoutesContext();
 
   const router = useRouter();
   const { id: collabId } = router.query;
@@ -84,6 +88,7 @@ const CollabPage = ({
   }, [getCollabRequestsAction, fetchCollabConversationById, collabId]);
 
   useEffect(() => {
+    setWindowWidth(window.innerWidth);
     setCollabConversation(collabConversation.collabConversation);
 
     if (collab.collabDetails.sent.pending.length > 0 || collab.collabDetails.sent.active.length > 0) {
@@ -130,6 +135,22 @@ const CollabPage = ({
     return collabComments;
   }
 
+  const getBreadcrum = (page: string) => {
+    return (
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          <a href={toDiscover().href}>Home</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <a href={toArtistPortal("collab-request").as}>Portal</a>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          {page}
+        </Breadcrumb.Item>
+      </Breadcrumb>
+    );
+  }
+
   return (
     <Layout
       title={"Collab request | Wondor "}
@@ -158,7 +179,15 @@ const CollabPage = ({
             {isFetchingCollabs ? (
               <Loader />
             ) : (
-              <CollabDetailCard showUser={true} collabDetails={GetCollabRequest(collab)} />
+              <>
+                {windowWidth > 500 &&
+                  <>
+                    {getBreadcrum("Collab Requests")}
+                  </>
+                }
+
+                <CollabDetailCard showUser={true} collabDetails={GetCollabRequest(collab)} />
+              </>
             )}
 
             {isAddingCollabConversationComment ? (
