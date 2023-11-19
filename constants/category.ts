@@ -5,8 +5,7 @@ import illustratorImage from '../public/images/popularCategories/illustrator.svg
 import dancingImage from '../public/images/popularCategories/dancing.svg';
 import paintingImage from '../public/images/popularCategories/paintingbg.svg'
 import singingImage from '../public/images/popularCategories/singingbg.svg'
-import photographerImage from '../public/images/popularCategories/photographer.svg'
-import artistImage from '../public/images/popularCategories/artist.svg';
+import gamingImage from '../public/images/popularCategories/gaming.svg'
 import sketchingImage from '../public/images/popularCategories/sketching.svg';
 import handLetteringbgImage from '../public/images/popularCategories/handLetteringbg.svg';
 import musicImage from '../public/images/popularCategories/musicbg.svg';
@@ -847,5 +846,25 @@ export const CATEGORY_METADATA = [
             "meta-title": "Top Writers available for collaboration | Wondor",
             "meta-content": "Find Writers available for collaboration. Connect with fellow writers, poets, script writers, story tellers, song writters, explore creative ideas, and craft compelling stories | Wondor",
         },
-    }
+    },
+    {
+        "slug": "gaming",
+        "name": "Gaming",
+        "image": gamingImage,
+        "background-color": "#B2DFDB",
+        "artist-title": "Gamers",
+        "similar-categories": [
+        ],
+        "wiki-data": {
+            "url": "learn-about-online-video-gaming-and-collaboration-opportunities",
+            "meta-title": "Lean about Video Gaming and collaboration opportunities with Video Gamers | Wondor",
+            "meta-content": "Discover the essence of gaming: its definition, importance, and evolution over time. Meet with Gamers and work on streaming games together!",
+            "paragraph": "Gaming is a multifaceted realm of interactive entertainment, encompassing various platforms and experiences. From immersive video and computer games to mobile and tabletop gaming, it offers diverse adventures for enthusiasts. This dynamic landscape constantly evolves with technological advancements, introducing virtual and augmented reality experiences. The cultural impact of gaming extends to esports, where competitive play thrives.",
+            "source": "https://www.techtarget.com/whatis/definition/gaming"
+        },
+        "listing-data": {
+            "meta-title": "Top Gamers available for collaboration | Wondor",
+            "meta-content": "Find Gamers available for collaboration. Connect with fellow gamers - casual, hardcore, social gamers, stratgey and simlulation gamers, story loving gamers for your next big hit | Wondor",
+        },
+    },
 ]
