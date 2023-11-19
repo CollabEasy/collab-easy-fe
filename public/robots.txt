@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
 
-Disallow: /artist
-
 Sitemap: https://www.wondor.art/sitemap.xml

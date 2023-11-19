@@ -95,6 +95,11 @@ module.exports = {
         permanent: true
       },
       {
+        source: '/artist/profile/:slug*',
+        destination: '/',
+        permanent: true
+      },
+      {
         source: '/404',
         destination: '/',
         permanent: true
