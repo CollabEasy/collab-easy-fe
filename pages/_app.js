@@ -15,8 +15,6 @@ import Script from 'next/script'
 import { GA_TRACKING_ID } from '../lib/gtag'
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { hotjar } from 'react-hotjar'
-import { useEffect } from 'react'
 
 config.autoAddCss = false;
 
@@ -40,10 +38,6 @@ class WondorApp extends NextApp {
     };
     const store = makeStore({});
 
-    useEffect(() => {
-      hotjar.initialize(3742243, 6)
-    }, [])
-
     return (
       <>
         <Script
@@ -60,6 +54,21 @@ class WondorApp extends NextApp {
               gtag('config', '${GA_TRACKING_ID}', {
                 page_path: window.location.pathname,
               });
+            `,
+            }}
+          />
+          <Script
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+              (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:3742243,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+              })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
             `,
             }}
           />
