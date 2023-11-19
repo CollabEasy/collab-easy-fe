@@ -76,7 +76,7 @@ module.exports = {
       },
       {
         source: '/category/wiki/:slug*',
-        destination: '/category/[:slug]/wiki/learn-about-[:slug]-and-collaboration-opportunities',
+        destination: '/',
         permanent: true
       },
       {
