@@ -212,8 +212,7 @@ const Home = ({
                       height={130}
                       width={130}
                       alt={item.imgAltTag}
-                      loading="eager"
-                      priority
+                      loading="lazy"
                     />{" "}
                   </div>
                 </div>
@@ -293,7 +292,7 @@ const Home = ({
                       height={350}
                       width={350}
                       alt={inspirationAndContestCard["inspiration-card"]["imgAltTag"]}
-                      loading="eager"
+                      loading="lazy"
                       priority
                     />
                   </div>
@@ -325,7 +324,7 @@ const Home = ({
                       height={350}
                       width={350}
                       alt={inspirationAndContestCard["contest-card"]["imgAltTag"]}
-                      loading="eager"
+                      loading="lazy"
                       priority
                     />
                   </div>
