@@ -133,7 +133,6 @@ const Home = ({
               width={300}
               alt={collabCard["explore-card"]["imgAltTag"]}
               loading="eager"
-              priority
             />
             <div>
               <h3 className="common-h3-style">{collabCard["explore-card"]["heading"]}</h3>
@@ -158,7 +157,6 @@ const Home = ({
                 width={250}
                 alt={collabCard["connect-card"]["imgAltTag"]}
                 loading="eager"
-                priority
               />
             </div>
           </div>
@@ -176,7 +174,6 @@ const Home = ({
                 width={250}
                 alt={collabCard["manage-card"]["imgAltTag"]}
                 loading="eager"
-                priority
               />
             </div>
           </div>
@@ -239,7 +236,6 @@ const Home = ({
                       width={400}
                       alt="Collab proposals for singers, dancers, musicians. Checkout now"
                       loading="eager"
-                      priority
                     />
                   </div>
                 </div>
@@ -293,7 +289,6 @@ const Home = ({
                       width={350}
                       alt={inspirationAndContestCard["inspiration-card"]["imgAltTag"]}
                       loading="lazy"
-                      priority
                     />
                   </div>
                   <div className="p-4 text-center">
@@ -325,7 +320,6 @@ const Home = ({
                       width={350}
                       alt={inspirationAndContestCard["contest-card"]["imgAltTag"]}
                       loading="lazy"
-                      priority
                     />
                   </div>
                   <div className="p-4 text-center">
