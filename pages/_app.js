@@ -15,6 +15,8 @@ import Script from 'next/script'
 import { GA_TRACKING_ID } from '../lib/gtag'
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { hotjar } from 'react-hotjar'
+import { useEffect } from 'react'
 
 config.autoAddCss = false;
 
@@ -37,6 +39,11 @@ class WondorApp extends NextApp {
       routes,
     };
     const store = makeStore({});
+
+    useEffect(() => {
+      hotjar.initialize(3742243, 6)
+    }, [])
+
     return (
       <>
         <Script
@@ -56,7 +63,6 @@ class WondorApp extends NextApp {
             `,
             }}
           />
-      
       <Provider store={store}>
         <App {...config}>
             <Component {...pageProps} />
