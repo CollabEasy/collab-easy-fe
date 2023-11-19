@@ -24,14 +24,6 @@ module.exports = {
 }
 
 module.exports = {
-  reactStrictMode: true,
-  env: {
-    AMPLIFY_GOOGLE_CLIENT_ID: process.env.AMPLIFY_GOOGLE_CLIENT_ID,
-    AMPLIFY_GA_TRACKING_ID: process.env.AMPLIFY_GA_TRACKING_ID,
-  }
-}
-
-module.exports = {
   async redirects() {
     return [
       {
@@ -107,3 +99,11 @@ module.exports = {
     ]
   },
 };
+
+module.exports = {
+  reactStrictMode: true,
+  env: {
+    AMPLIFY_GOOGLE_CLIENT_ID: process.env.AMPLIFY_GOOGLE_CLIENT_ID,
+    AMPLIFY_GA_TRACKING_ID: process.env.AMPLIFY_GA_TRACKING_ID,
+  }
+}
