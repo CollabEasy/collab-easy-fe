@@ -135,7 +135,7 @@ const Search = ({ setSelectedArtId, setSelectedArtSlug }: Props) => {
         <input
           type="text"
           className="search-bar__input common-text-style"
-          placeholder="Search artist, art category etc."
+          placeholder="Search artist, collab category etc."
           aria-label="search"
           value={inputVal}
           onChange={(event) => {

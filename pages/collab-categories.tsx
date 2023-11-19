@@ -207,7 +207,7 @@ const AllCategoryPage = ({
                                                 <div className="actionBanner-cnt">
                                                     <div className="actionBanner-text text-center">
                                                         <h3 className="common-h3-style">
-                                                            Not seeing your art category in the list? Add it Now!
+                                                            Not seeing your collab category in the list? Add it now!
                                                         </h3>
                                                         <p className="common-p-style">
                                                             After a thorough review, we will include it.

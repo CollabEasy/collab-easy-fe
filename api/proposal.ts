@@ -83,7 +83,7 @@ export const getProposalByIdApi = async (proposalId: string) => {
 };
 
 export const getProposalByArtistSlugAPI = async (slug: string) => {
-  const config = getConfigWithToken();
+  const config = getConfig();
   try {
     const result = await api.call(
       `api/v1/proposal/${slug}/get`,

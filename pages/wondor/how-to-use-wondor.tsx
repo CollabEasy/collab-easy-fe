@@ -144,7 +144,7 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
         <div className="footer_tutorialTextColum">
           <Card title="2. Find an artist" style={{ width: '100%', height: '100%' }}>
             <p className="common-h6-style">
-              Simply browse the art category of your choice to see a variety of artists and their creations.
+              Simply browse the collab category of your choice to see a variety of artists and their creations.
               To narrow down your search even further, you can also search directly by an artist&apos;s name 😉
             </p>
           </Card>

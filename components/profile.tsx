@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import {
   Card,
   Button,
+  Table,
   Avatar,
   Pagination,
   Space,
@@ -47,6 +48,11 @@ import { ConvertTimestampToDate } from "../helpers/collabCardHelper";
 import ProfilePicture from "./profilePicture";
 import CategorySelector from "./categorySelector";
 import { fetchArtistSkills } from "../state/action";
+import { GetSocialMediaUrl, GetSocialPlatformImage, GetSocialPlatformName } from "helpers/socialProspectusHelper";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faDribbble, faFlickr, faSoundcloud, faYoutube, faSpotify, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { GetProposalTags } from "helpers/proposalHelper";
 
 const { Meta } = Card;
 
@@ -59,11 +65,19 @@ const mapStateToProps = (state: AppState) => {
 
   const userSamples = state.sample.samples;
 
+  const socialProspectus = state.socialProspectus;
+
+  const proposal = state.proposal;
+
+  const isFetchingSocialProspectus = state.socialProspectus?.isFetchingProspectus;
+
   const isFetchingSamples = state.sample.isFetchingSamples;
 
   const showCollabModal = state.collab.showCollabModal;
 
   const isUpdatingProfile = state.user.isUpdatingProfile;
+
+  const isfetchingUserProposals = state.proposal.isfetchingUserProposals;
 
   return {
     isUpdatingProfile,
@@ -74,9 +88,17 @@ const mapStateToProps = (state: AppState) => {
 
     collab,
 
+    socialProspectus,
+
+    proposal,
+
     isFetchingCollabs,
 
+    isFetchingSocialProspectus,
+
     isFetchingSamples,
+
+    isfetchingUserProposals,
   };
 };
 
@@ -89,6 +111,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(action.setShowCollabModalState(show, id)),
   updateArtistProfile: (user: any) =>
     dispatch(action.updateArtistProfile(user)),
+  fetchProposalByArtistSlug: (slug: string) => dispatch(action.fetchProposalByArtistSlug(slug)),
+  fetchArtistSocialProspectus: (slug: string) => dispatch(action.fetchArtistSocialProspectus(slug)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -114,14 +138,20 @@ const Profile = ({
   loggedInUserId,
   userSamples,
   collab,
+  proposal,
+  socialProspectus,
   isLoggedIn,
   showCollabModal,
   isFetchingCollabs,
+  isFetchingSocialProspectus,
   isFetchingSamples,
+  isfetchingUserProposals,
   isUpdatingProfile,
   isProfileComplete,
   setShowCollabModalState,
   fetchArtistSamples,
+  fetchProposalByArtistSlug,
+  fetchArtistSocialProspectus,
   getCollabRequestsAction,
   updateArtistProfile,
 }: Props) => {
@@ -141,7 +171,7 @@ const Profile = ({
     updatedAt: undefined,
   };
 
-  // const [userSocialProspectus, setUserSocialProspectus] = useState([]);
+  const [userSocialProspectus, setUserSocialProspectus] = useState([]);
   const [collabRequestDetails, setCollabRequestDetails] =
     useState(emptyCollabDetails);
   const [hasPendingCollab, setHasPendingCollab] = useState(false);
@@ -152,10 +182,12 @@ const Profile = ({
     useState(false);
   const [updating, setUpdating] = useState("");
 
-  const { toArtistPortal, toDiscover } = useRoutesContext();
+  const { toArtistPortal, toDiscover, toProposalPage } = useRoutesContext();
 
   useEffect(() => {
     // fetchArtistSamples(user.slug);
+    fetchArtistSocialProspectus(user.slug);
+    fetchProposalByArtistSlug(user.slug as string);
 
     if (!isLoggedIn) {
       return;
@@ -186,6 +218,7 @@ const Profile = ({
         setHasPendingCollab(true);
       }
     }
+    setUserSocialProspectus(socialProspectus.socialProspectus);
   }, [collab, user.artist_id]);
 
   // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
@@ -196,7 +229,7 @@ const Profile = ({
 
   // show loader till the collab requests of other user is fetched (for collaborate button status)
 
-  if (isLoggedIn && !isSelf && collab.isFetchingCollabDetails) {
+  if (isLoggedIn && !isSelf && collab.isFetchingCollabDetails && isFetchingSocialProspectus && isfetchingUserProposals) {
     return <Loader />;
   }
 
@@ -380,6 +413,136 @@ const Profile = ({
     );
   };
 
+  const getIcon = (socialPlatfornName) => {
+    if (socialPlatfornName === "Instagram") {
+      return <FontAwesomeIcon icon={faInstagram} size="2x" />
+    }
+    else if (socialPlatfornName === "Youtube") {
+      return <FontAwesomeIcon icon={faYoutube} size="2x" />
+    }
+    else if (socialPlatfornName === "Dribble") {
+      return <FontAwesomeIcon icon={faDribbble} size="2x" />
+    }
+    else if (socialPlatfornName === "Flickr") {
+      return <FontAwesomeIcon icon={faFlickr} size="2x" />
+    }
+    else if (socialPlatfornName === "Spotify") {
+      return <FontAwesomeIcon icon={faSpotify} size="2x" />
+    }
+    else if (socialPlatfornName === "Facebook") {
+      return <FontAwesomeIcon icon={faFacebook} size="2x" />
+    }
+    else if (socialPlatfornName === "Soundcloud") {
+      return <FontAwesomeIcon icon={faSoundcloud} size="2x" />
+    }
+    return <FontAwesomeIcon icon={faLink} />
+  }
+
+  const getSocialProspectusComponent = () => {
+    const prospectusCard: JSX.Element[] = [];
+    let data = userSocialProspectus.length != 0 ? userSocialProspectus[0].data : [];
+    data.forEach(element => {
+      let name = GetSocialPlatformName(element.socialPlatformId);
+      let url = GetSocialMediaUrl(element.socialPlatformId, element.handle);
+      prospectusCard.push(
+        <span style={{ cursor: "pointer", paddingLeft: "5px" }}>
+          <Link
+            href={url}
+            passHref
+          >
+            {getIcon(name)}
+          </Link>
+        </span>
+      )
+    });
+    return prospectusCard;
+  }
+
+  const columns = [
+    { title: "Title", dataIndex: "title", key: "title" },
+    // {
+    //   title: "Tags",
+    //   dataIndex: "tags",
+    //   key: "tags",
+    //   // eslint-disable-next-line react/display-name
+    //   render: (_text: any, proposal: any) => (
+    //     <>
+    //       {GetProposalTags(proposal)}
+    //     </>
+    //   ),
+    // },
+    {
+      title: "Action",
+      key: "key",
+      dataIndex: "key",
+      // eslint-disable-next-line react/display-name
+      render: (_text: any, proposal: any) => (
+        <>
+          <Button >
+            <Link
+              href={toProposalPage(proposal.proposalId, proposal.title.replace(/\s+/g, '-').toLowerCase()).as}
+              passHref
+            >
+              Details
+            </Link>
+          </Button>
+        </>
+      ),
+    },
+  ];
+
+  const deviceColumns = [
+    {
+      // eslint-disable-next-line react/display-name
+      render: (proposal, key, index) => {
+        return (
+          <div>
+            <span>
+              <p>{proposal.title}</p>
+            </span>
+            {/* <span>
+              <p>{GetProposalTags(proposal)}</p>
+            </span> */}
+            <Button >
+              <Link
+                href={toProposalPage(proposal.proposalId, proposal.title.replace(/\s+/g, '-').toLowerCase()).as}
+                passHref
+              >
+                Details
+              </Link>
+            </Button>
+          </div>
+        )
+      }
+    }
+  ];
+
+  const getProposalsTabs = () => {
+    if (proposal.userProposals.length === 0) {
+      return <div className="artistProfile__tabContainer">No collab proposals submitted  by {user.first_name}!</div>;
+    }
+
+    let data = proposal.userProposals.length != 0 ? proposal.userProposals[0].data : [];
+
+    if (data["created"].length === 0) {
+      return <div className="artistProfile__tabContainer">No collab proposals submitted  by {user.first_name}!</div>;
+    }
+
+    let updatedData = [];
+    data["created"].forEach((proposal) => {
+      updatedData.push(proposal.proposal)
+    })
+    updatedData.sort((a, b) => b.createdAt - a.createdAt)
+    return (
+      <Table
+        showHeader={false}
+        columns={window.innerWidth < 500 ? deviceColumns : columns}
+        dataSource={updatedData}
+      />
+    );
+
+  }
+
   return (
     <>
       <div className="artistProfile__profileContainer">
@@ -446,9 +609,17 @@ const Profile = ({
           <h2 className="f-20 common-h2-style">
             {user.first_name + " " + user.last_name}
           </h2>
-
-          <h3 className="f-15 common-h3-style">{GetUserSkills(user, false)}</h3>
-
+          {user.country && (
+            <div className="d-flex flex-row artist-location">
+              <span>{user.country}</span>
+              {user.state && (
+                <span>, {user.state}</span>
+              )}
+              {user.city && (
+                <span>, {user.city}</span>
+              )}
+            </div>
+          )}
           {getButton()}
         </div>
 
@@ -467,7 +638,7 @@ const Profile = ({
                     {isSelf && getIconForEditCategories()}
                   </div>
                   {!isEditCategoriesClicked ? (
-                    <p className="mt4 common-p-style">
+                    <p className="mt4 artistProfile__skillsAndSocialContainer common-p-style">
                       {GetUserSkillsTags(user, true)}{" "}
                     </p>
                   ) : (
@@ -479,6 +650,12 @@ const Profile = ({
                       }}
                     />
                   )}
+                </div>
+                <div className="artistProfile__bioButtonsContainer">
+                  <b className="f-16 common-text-style">Social</b>
+                </div>
+                <div className="mt4 artistProfile__skillsAndSocialContainer ">
+                  {getSocialProspectusComponent()}
                 </div>
               </div>
             </TabPane>
@@ -527,9 +704,9 @@ const Profile = ({
               </div>
             </TabPane> */}
 
-            <TabPane tab="Social prospectus" key="4">
+            <TabPane tab="Collab Proposals" key="4">
               <div className="artistProfile__tabContainer">
-                <SocialProspectusPage isSelf={isSelf} user={user} />
+                {getProposalsTabs()}
               </div>
             </TabPane>
           </Tabs>
