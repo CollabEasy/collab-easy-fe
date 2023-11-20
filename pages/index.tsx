@@ -544,7 +544,7 @@ const popularArtist = [
 
 const mainContent = {
   heading: "Connect and Collaborate with",
-  paragraph: "Achieve Your Creativity Goals by Collaborating with Like-Minded Artists - Together, you create better 💡 🤝 🎉",
+  paragraph: "Achieve Your Creativity Goals by Collaborating with Like-Minded Artists - 💡 🤝 🎉",
 }
 
 const collabCard = {
