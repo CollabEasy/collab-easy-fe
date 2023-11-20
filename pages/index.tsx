@@ -438,34 +438,19 @@ const Home = ({
         {getMainContent()}
       </div>
 
-      <div className="row" style={{ padding: "50px 20px", display: "flex" }}>
+      {/* <div className="row" style={{ padding: "50px 20px", display: "flex" }}>
         {getCollabCards()}
-      </div>
+      </div> */}
 
       {/* popular categories */}
-      <div className="row popular-section">
-        <div className="text-center">
-          <h5 className="common-h5-style popular-text">
-            Want to collaborate? Checkout what&apos;s
-          </h5>
-          <h3
-            style={{ color: "black", marginBottom: "1px" }}
-            className="common-h3-style"
-          >
-            {" "}
-            Popular Among Artists
-          </h3>
-          {/* <Link href={routeToHref(toAllCategoryPage())} passHref>
-            <em
-              style={{ textDecoration: "underline" }}
-              className="cursor-pointer"
-            >
-              {" "}
-              show more categories
-            </em>
-          </Link> */}
+      <div className="row">
+        <div className="row mt-2 g-4 popular-section">
+          <h6 className="common-h6-style popular-text">
+              <span>Popular Collab Categories</span>
+              <a href="">View All</a>
+          </h6>
+          {getPopularArtist()}
         </div>
-        <div className="row mt-2 g-4">{getPopularArtist()}</div>
       </div>
 
       {/* Inspiration */}
