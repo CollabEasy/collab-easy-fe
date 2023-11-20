@@ -115,7 +115,7 @@ const Home = ({
             {mainContent["paragraph"]}
           </p>
           <Button>
-            
+
           </Button>
         </div>
       </div>
@@ -422,6 +422,44 @@ const Home = ({
     );
   }
 
+  const getLearnAboutCard = () => {
+    return (
+      <div className="row">
+        <div style={{ width: "100%" }}>
+          <div className="row d-flex justify-content-center faq-box">
+            <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer" >
+              <Card
+                hoverable
+                style={{ width: 240 }}
+                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+              >
+                <Meta title="Europe Street beat" description="www.instagram.com" />
+              </Card>
+            </div>
+            <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer" >
+              <Card
+                hoverable
+                style={{ width: 240 }}
+                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+              >
+                <Meta title="Europe Street beat" description="www.instagram.com" />
+              </Card>
+            </div>
+            <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer" >
+              <Card
+                hoverable
+                style={{ width: 240 }}
+                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+              >
+                <Meta title="Europe Street beat" description="www.instagram.com" />
+              </Card>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <Layout
       title={"Wondor - Connect with Artists, Manage Collabs, Create Proposals, and More. Join Now!"}
@@ -476,6 +514,27 @@ const Home = ({
 
       {/* rewards D4C7E8 */}
       {getRewardsCard()}
+      
+      {/* Learn About */}
+      <div className="row popular-section" style={{ backgroundColor: "#F8F9FA" }}>
+        <div className="text-center">
+            <h3 className="common-h3-style heading">
+              Collaboration attracts a wider audience
+            </h3>
+            <p className="common-p-style">
+              Learn how to collaborate for increased visibility and recognition
+            </p>
+            <Button>
+              Check Collab Categories
+            </Button>
+          <div className="row mt-2 g-4">
+            {getLearnAboutCard()}
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+
       {/* FAQ*/}
       {getFAQCard()}
 
