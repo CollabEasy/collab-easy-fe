@@ -26,6 +26,7 @@ export default class MyDocument extends Document {
 
           <meta name="twitter:card" content="Wondor" />
           <meta name="twitter:title" content="Wondor" />
+          <meta name="twitter:site" content="Wondor4creators" />
           <meta name="twitter:description" content="Meet with artists, schedule & manage your collaboration requests, join monthly contests, find themes and ideas for your next work on Wondor!" />
           <meta name="twitter:image" content="https://www.wondor.art/images/mobile-landing.svg" />
           <link rel="icon" href="favicon.ico" />
@@ -39,7 +40,7 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Nova+Round|Varela+Round&display=swap"
             rel="stylesheet"
           />
-          <link rel="stylesheet" href="/css/video-react.css" />
+          {/* <link rel="stylesheet" href="/css/video-react.css" /> */}
         </Head>
         <body>
           <Main />
