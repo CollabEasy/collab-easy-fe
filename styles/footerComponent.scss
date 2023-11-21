@@ -140,6 +140,22 @@
     padding-bottom: 1rem;
 }
 
+
+// Page 6: FAQS
+
+.footer_faqsContainer {
+    position: relative;
+    margin: auto;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 10%;
+}
+
+.footer_faqsSectionContainer {
+    text-align: left;
+    padding-bottom: 1rem;
+}
+
 /* mobile css starts from here  */
 @media only screen and (max-width: 1600px) and (min-width: 1201px) {
     .footer_aboutUsContainer {
@@ -179,6 +195,11 @@
     .footer_tutorialContainer {
         width: 90%;
     }
+
+    .footer_faqsContainer {
+        width: 90%;
+        margin-top: 10rem;
+    }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 993px) {
@@ -200,6 +221,11 @@
         margin-top: 9rem;
     }
 
+    .footer_contactUsContainer {
+        width: 90%;
+        margin-top: 9rem;
+    }
+
     .footer_contactUsTextContainer {
         h3 {
             text-align: left;
@@ -212,6 +238,11 @@
     }
 
     .footer_privacyContainer {
+        width: 90%;
+        margin-top: 9rem;
+    }
+
+    .footer_faqsContainer {
         width: 90%;
         margin-top: 9rem;
     }
@@ -266,6 +297,11 @@
         margin-top: 8rem;
     }
 
+    .footer_faqsContainer {
+        width: 80%;
+        margin-top: 8rem;
+    }
+
     .footer_tutorialContainer {
         width: 90%;
     }
@@ -312,6 +348,11 @@
     }
 
     .footer_privacyContainer {
+        width: 80%;
+        margin-top: 7rem;
+    }
+
+    .footer_faqsContainer {
         width: 80%;
         margin-top: 7rem;
     }
@@ -370,6 +411,11 @@
         margin-top: 6rem;
     }
 
+    .footer_faqsContainer {
+        width: 90%;
+        margin-top: 6rem;
+    }
+
     .footer_tutorialContainer {
         width: 90%;
     }
@@ -415,6 +461,11 @@
     }
 
     .footer_termsContainer {
+        width: 80%;
+        margin-top: 5rem;
+    }
+
+    .footer_faqsContainer {
         width: 80%;
         margin-top: 5rem;
     }
