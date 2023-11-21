@@ -5,6 +5,13 @@ import Link from "next/link";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from "next/image";
+
+import collabOfferImage from "../public/images/collab-offer.svg";
+import proposalOfferImage from "../public/images/proposal-offer.svg";
+import themeOfferImage from "../public/images/theme-offer.svg";
+import rewardsOfferImage from "../public/images/rewards-offer.svg";
+import contestOfferImage from "../public/images/content-offer.svg";
+
 import exploreImage from "../public/images/artistConnect.svg";
 import connectImage from "../public/images/connect.svg";
 import manageImage from "../public/images/calendar.svg";
@@ -115,6 +122,8 @@ const Home = ({
                 <li className="heading common-h1-style">Singers!</li>
                 <li className="heading common-h1-style">Dancers!</li>
                 <li className="heading common-h1-style">Poets !</li>
+                <li className="heading common-h1-style">Journalers !</li>
+                <li className="heading common-h1-style">Sketchers !</li>
               </ul>
             </h1>
           </div>
@@ -122,21 +131,166 @@ const Home = ({
             {mainContent["paragraph"]}
           </p>
           <div>
-              <a onClick={openLoginModal}>
-                <button className="signup-container-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
-                  Join Today
-                </button>
-              </a>
-              <Link href={routeToHref(toTutorial())} passHref >
-                <button className="signup-container-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
-                  How it works?
-                </button>
-              </Link>
+            <a onClick={openLoginModal}>
+              <button className="hero-text-container-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
+                Join Today
+              </button>
+            </a>
+            <Link href={routeToHref(toTutorial())} passHref >
+              <button className="hero-text-container-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
+                How it works?
+              </button>
+            </Link>
           </div>
         </div>
       </div>
     );
   };
+
+  const getWondorOfferings = () => {
+    return (
+      <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+        <div className="wondor-offerings-container">
+          <Link href={routeToHref(toAllCategoryPage())} passHref>
+            <div className="wondor-offerings-container-card">
+              <div className="card-img" style={{}}>
+                <Image
+                  src={collabOfferImage}
+                  height={140}
+                  width={250}
+                  alt="abc"
+                  loading="lazy"
+                />
+              </div>
+              <div className="card-text">
+                <h5 className="common-h5-style">Diverse Collaboration Categories</h5>
+                <p className="common-p-style">Connect with artists from 40+ categories</p>
+              </div>
+            </div>
+          </Link>
+          <Link href={routeToHref(toAllProposalsPage())} passHref>
+            <div className="wondor-offerings-container-card">
+              <div className="card-img" style={{}}>
+                <Image
+                  src={proposalOfferImage}
+                  height={140}
+                  width={250}
+                  alt="abc"
+                  loading="lazy"
+                />
+              </div>
+              <div className="card-text">
+                <h5 className="common-h5-style">Exciting Collaboration Proposals</h5>
+                <p className="common-p-style">Collaborate on proposals from other artists</p>
+              </div>
+            </div>
+          </Link>
+          <Link href={routeToHref(toGetInspired())} passHref>
+            <div className="wondor-offerings-container-card">
+              <div className="card-img" style={{}}>
+                <Image
+                  src={themeOfferImage}
+                  height={140}
+                  width={250}
+                  alt="abc"
+                  loading="lazy"
+                />
+              </div>
+              <div className="card-text">
+                <h5 className="common-h5-style">Inspiration Hub</h5>
+                <p className="common-p-style">Latest art ideas and themes every week</p>
+              </div>
+            </div>
+          </Link>
+          <Link href={routeToHref(toAllContestPage())} passHref>
+            <div className="wondor-offerings-container-card">
+              <div className="card-img" style={{}}>
+                <Image
+                  src={contestOfferImage}
+                  height={140}
+                  width={250}
+                  alt="abc"
+                  loading="lazy"
+                />
+              </div>
+              <div className="card-text">
+                <h5 className="common-h5-style">Art Challenges</h5>
+                <p className="common-p-style">Participate every month and win $$</p>
+              </div>
+            </div>
+          </Link>
+          <Link href={routeToHref(toRewardsInfoPage())} passHref>
+            <div className="wondor-offerings-container-card">
+              <div className="card-img" style={{}}>
+                <Image
+                  src={rewardsOfferImage}
+                  height={140}
+                  width={250}
+                  alt="abc"
+                  loading="lazy"
+                />
+              </div>
+              <div className="card-text">
+                <h5 className="common-h5-style">Endless Rewards</h5>
+                <p className="common-p-style">Collect rewards points for every action you take</p>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    );
+  };
+
+  // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
+  const getPopularCollabCategories = () => {
+    return (
+      <div>
+        <div className="container fluid">
+          <div className="row text-left">
+            <div className="col-12">
+              <h2 className="common-h2-style popular-catgeory-h1">Popular Collab Categories</h2>
+            </div>
+          </div>
+        </div>
+        <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
+          <div className="col-lg-12 col-md-10 ">
+            <div className="popular-catgeory-list">
+              <>
+                {popularArtist.map((item) => (
+                  <div
+                    className="popular-catgeory-list-item cursor-pointer"
+                    key={item.id}
+                  >
+                    <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
+                      <div >
+                        <div className="d-flex justify-content-center align-items-center p-2">
+                          <Image
+                            src={item.imgUrl}
+                            height={130}
+                            width={130}
+                            alt={item.imgAltTag}
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="d-flex justify-content-center align-items-center p-2">
+                          <p
+                            className="common-p-style font-bold"
+                          >
+                            {item.title}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
 
   const getCollabCards = () => {
     return (
@@ -242,7 +396,7 @@ const Home = ({
 
   const getProposalCard = () => {
     return (
-      <div className="row">
+      <div className="row" style={{ backgroundColor: "#F8F9FA" }}>
         <div className="container">
           <div className="row d-flex justify-content-center inspire-box">
             <div className="col-md-12">
@@ -445,19 +599,21 @@ const Home = ({
           <div className="row d-flex justify-content-left " style={{ margin: "5%" }}>
             <div className="col-md-12">
               <div className="row">
-                <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                  <h3 className="common-h3-style">
-                    Collaboration attracts a wider audience
-                  </h3>
-                  <p className="common-p-style">
-                    Learn how to collaborate for increased visibility and recognition
-                  </p>
-                  <div className="mt-4 mb-4 inspire-btn cursor-pointe">
-                    <Button>
-                      <Link href={routeToHref(toAllProposalsPage())} passHref>
-                        Show Interest
-                      </Link>
-                    </Button>
+                <div className="col-md-4">
+                  <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                    <h3 className="common-h3-style">
+                      Collaboration attracts a wider audience
+                    </h3>
+                    <p className="common-p-style">
+                      Learn how to collaborate for increased visibility and recognition
+                    </p>
+                    <div className="mt-4 mb-4 inspire-btn cursor-pointe">
+                      <Button>
+                        <Link href={routeToHref(toAllProposalsPage())} passHref>
+                          Show Interest
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
                 <div className="col-md-8">
@@ -540,11 +696,24 @@ const Home = ({
         {getMainContent()}
       </div>
 
-      <div className="row" style={{ padding: "50px 20px", display: "flex" }}>
-        {getCollabCards()}
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        {getWondorOfferings()}
       </div>
 
-      {/* popular categories */}
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        {getPopularCollabCategories()}
+      </div>
+
+
+
+      {/* <div className="row" style={{ padding: "50px 20px", display: "flex" }}>
+        {getCollabCards()}
+      </div> */}
+
+      {/* Inspiration */}
+      {getProposalCard()}
+
+
       <div className="row popular-section">
         <div className="text-center">
           <h5 className="common-h5-style popular-text">
@@ -569,9 +738,6 @@ const Home = ({
         </div>
         <div className="row mt-2 g-4">{getPopularArtist()}</div>
       </div>
-
-      {/* Inspiration */}
-      {getProposalCard()}
 
       {/* Contest and Scratchpad */}
       {getInspirationAndContestCard()}

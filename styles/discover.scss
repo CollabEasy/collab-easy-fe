@@ -1,5 +1,5 @@
 
-// ...................
+// Final Sign up container
 .signup-container {
   padding-top: 15%;
   padding-bottom: 5%;
@@ -28,6 +28,7 @@
   }
 }
 
+// Hero text container
 .hero-text-container {
   height: 500px;
   width: 100%;
@@ -57,7 +58,7 @@
     padding-right: 35%;
   }
 
-  .signup-container-button {
+  .hero-text-container-button {
     height: 56px;
     border: none;
     padding: 20px;
@@ -67,6 +68,99 @@
     font-size: 14px;
     margin: 0px 2px 20px 2px;
     border-radius: 35px;
+  }
+}
+
+// popular categories container
+.popular-catgeory-h1 {
+  padding-left: 12px;
+}
+
+.popular-catgeory-list {
+  height: 100%;
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.popular-catgeory-list-item {
+  position: relative;
+  display: inline-block;
+  margin: 8px 8px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
+  border-top-right-radius: 4px;
+  width: 50% auto;
+  height: 50%;
+  vertical-align: bottom;
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &:hover {
+    box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
+  }
+}
+
+
+// Wondor Offerings cards
+.wondor-offerings-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.wondor-offerings-container-card {
+  width: calc(20% - 20px);
+  margin: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align items horizontally */
+
+  &:hover {
+    box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
+  }
+
+  .card-img {
+    width: 100%;
+    height: auto;
+    padding: 40px 5px 0px 5px;
+  }
+
+  .card-text {
+    text-align: left; /* Align text to the left */
+    padding: 10px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .wondor-offerings-container-card {
+      width: calc(33.333% - 20px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .wondor-offerings-container-card {
+      width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .wondor-offerings-container-card {
+      width: calc(33.333% - 20px);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .wondor-offerings-container-card {
+      width: calc(50% - 20px);
   }
 }
 

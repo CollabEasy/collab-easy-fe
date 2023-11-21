@@ -192,20 +192,20 @@ const NavBar = ({
         {!hideSignUp ? (
           <div className="login-signup-cnt">
             <Button
-              className="common-text-style login-btn"
-              id="sign-up-desktop"
-              type="primary"
-              onClick={openLoginModal}
-            >
-              Log in
-            </Button>
-            <Button
               className="common-text-style"
               id="sign-up-desktop"
               type="primary"
               onClick={openLoginModal}
             >
               Sign Up
+            </Button>
+            <Button
+              className="common-text-style login-btn"
+              id="sign-up-desktop"
+              type="primary"
+              onClick={openLoginModal}
+            >
+              Log in
             </Button>
             <Button id="sign-up-mobile" shape="circle" onClick={openLoginModal}>
               <UserOutlined />
