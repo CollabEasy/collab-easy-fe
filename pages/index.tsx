@@ -78,6 +78,7 @@ const Home = ({
   const {
     toCategoryArtistList,
     toAllProposalsPage,
+    toAllCategoryPage,
     toGetInspired,
     toAllContestPage,
     toRewardsInfoPage,
@@ -424,36 +425,86 @@ const Home = ({
 
   const getLearnAboutCard = () => {
     return (
+      <div className="row" style={{ backgroundColor: "#F8F9FA" }}>
+        <div className="container">
+          <div className="row d-flex justify-content-left " style={{ margin: "5%" }}>
+            <div className="col-md-12">
+              <div className="row">
+                <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                  <h3 className="common-h3-style">
+                    Collaboration attracts a wider audience
+                  </h3>
+                  <p className="common-p-style">
+                    Learn how to collaborate for increased visibility and recognition
+                  </p>
+                  <div className="mt-4 mb-4 inspire-btn cursor-pointe">
+                    <Button>
+                      <Link href={routeToHref(toAllProposalsPage())} passHref>
+                        Show Interest
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+                <div className="col-md-8">
+                  <div className="row d-flex justify-content-center">
+                    <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 cursor-pointer" >
+                      <Card
+                        hoverable
+                        style={{ width: 240 }}
+                        cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                      >
+                        <Meta title="Europe Street beat" description="www.instagram.com" />
+                      </Card>
+                    </div>
+                    <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 cursor-pointer" >
+                      <Card
+                        hoverable
+                        style={{ width: 240 }}
+                        cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                      >
+                        <Meta title="Europe Street beat" description="www.instagram.com" />
+                      </Card>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const getSignUpCard = () => {
+    return (
       <div className="row">
-        <div style={{ width: "100%" }}>
-          <div className="row d-flex justify-content-center faq-box">
-            <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer" >
-              <Card
-                hoverable
-                style={{ width: 240 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <Meta title="Europe Street beat" description="www.instagram.com" />
-              </Card>
+        <div className="signup-container">
+          <div className="row d-flex justify-content-center text-align-center">
+            <h1 className="signup-container-h1">
+              Ready for your next collaboration opportunity?
+            </h1>
+            <p className="signup-container-p">
+              Embark on a creative adventure by connecting and
+              collaborating with fellow artists today!
+            </p>
+            <div>
+              <Link href={routeToHref(toAllCategoryPage())} passHref>
+                <button className="signup-container-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
+
+                  Collab Categories
+
+                </button>
+              </Link>
+              <Link href={routeToHref(toAllProposalsPage())} passHref >
+                <button className="signup-container-button" style={{ backgroundColor: "#F8F9FA", color: "black" }}>
+
+                  Collab Proposals
+
+                </button>
+              </Link>
             </div>
-            <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer" >
-              <Card
-                hoverable
-                style={{ width: 240 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <Meta title="Europe Street beat" description="www.instagram.com" />
-              </Card>
-            </div>
-            <div className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer" >
-              <Card
-                hoverable
-                style={{ width: 240 }}
-                cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <Meta title="Europe Street beat" description="www.instagram.com" />
-              </Card>
-            </div>
+            <p className="signup-container-p">Are you an artist? <a>Join Wondor</a></p>
           </div>
         </div>
       </div>
@@ -514,30 +565,12 @@ const Home = ({
 
       {/* rewards D4C7E8 */}
       {getRewardsCard()}
+
+      {getLearnAboutCard()}
+
+
+      {getSignUpCard()}
       
-      {/* Learn About */}
-      <div className="row popular-section" style={{ backgroundColor: "#F8F9FA" }}>
-        <div className="text-center">
-            <h3 className="common-h3-style heading">
-              Collaboration attracts a wider audience
-            </h3>
-            <p className="common-p-style">
-              Learn how to collaborate for increased visibility and recognition
-            </p>
-            <Button>
-              Check Collab Categories
-            </Button>
-          <div className="row mt-2 g-4">
-            {getLearnAboutCard()}
-          </div>
-          <div>
-          </div>
-        </div>
-      </div>
-
-      {/* FAQ*/}
-      {getFAQCard()}
-
     </Layout>
   );
 };
