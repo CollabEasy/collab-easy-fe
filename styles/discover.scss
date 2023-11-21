@@ -1,6 +1,35 @@
 
-.header-text {
-  height: 400px;
+// ...................
+.signup-container {
+  padding-top: 15%;
+  padding-bottom: 5%;
+  text-align: center;
+
+  .signup-container-h1 {
+    width: 680px;
+    font-size: 64px;
+    line-height: 72px;
+  }
+  .signup-container-p {
+    width: 680px;
+    font-size: 20px;
+    line-height: 36px;
+  }
+  .signup-container-button {
+    height: 56px;
+    border: none;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0px 2px 20px 2px;
+    border-radius: 35px;
+  }
+}
+
+.hero-text-container {
+  height: 500px;
   width: 100%;
 }
 
@@ -13,6 +42,7 @@
 
   .heading {
     font-size: 48px;
+    line-height: 72px;
   }
 
   h1 {
@@ -22,13 +52,21 @@
     padding-right: 30%;
   }
 
-  h6 {
+  p {
     padding-left: 35%;
     padding-right: 35%;
   }
 
-  #text-content-tagline {
-    display: none;
+  .signup-container-button {
+    height: 56px;
+    border: none;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0px 2px 20px 2px;
+    border-radius: 35px;
   }
 }
 
@@ -91,33 +129,6 @@
 }
 
 
-.signup-container {
-  padding-top: 15%;
-  padding-bottom: 5%;
-  text-align: center;
-
-  .signup-container-h1 {
-    width: 680px;
-    font-size: 64px;
-    line-height: 72px;
-  }
-  .signup-container-p {
-    width: 680px;
-    font-size: 20px;
-    line-height: 36px;
-  }
-  .signup-container-button {
-    height: 56px;
-    border: none;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 0px 2px 20px 2px;
-    border-radius: 35px;
-  }
-}
 
 
 .faq-box {
@@ -266,8 +277,8 @@
 }
 
 @media only screen and (max-width: 1600px) and (min-width: 1201px) {
-  .header-text {
-    height: 350px;
+  .hero-text-container {
+    height: 400px;
   }
 
   .text-content {
@@ -283,7 +294,7 @@
       padding-right: 20%;
     }
 
-    h6 {
+    p {
       padding-left: 25%;
       padding-right: 25%;
     }
@@ -292,7 +303,7 @@
 
 // Please write media query for all screen sizes below this line.
 @media only screen and (max-width: 1200px) and (min-width: 993px) {
-  .header-text {
+  .hero-text-container {
     height: 350px;
   }
 
@@ -309,7 +320,7 @@
       padding-right: 20%;
     }
 
-    h6 {
+    p {
       padding-left: 25%;
       padding-right: 25%;
     }
@@ -318,7 +329,7 @@
 
 @media only screen and (max-width: 992px) and (min-width: 768px) {
 
-  .header-text {
+  .hero-text-container {
     height: 300px;
   }
 
@@ -335,7 +346,7 @@
       padding-right: 10%;
     }
 
-    h6 {
+    p {
       padding-left: 10%;
       padding-right: 10%;
     }
@@ -348,7 +359,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .header-text {
+  .hero-text-container {
     height: 300px;
   }
 
@@ -365,7 +376,7 @@
       padding-right: 10%;
     }
 
-    h6 {
+    p {
       padding-left: 10%;
       padding-right: 10%;
     }
@@ -411,7 +422,7 @@
 }
 
 @media only screen and (max-width: 550px) {
-  .header-text {
+  .hero-text-container {
     height: 300px;
   }
 
@@ -428,7 +439,7 @@
       padding-right: 10%;
     }
 
-    h6 {
+    p {
       padding-left: 10%;
       padding-right: 10%;
     }
@@ -446,7 +457,7 @@
 }
 
 @media only screen and (max-width: 399px) {
-  .header-text {
+  .hero-text-container {
     height: 300px;
   }
 
@@ -463,7 +474,7 @@
       padding-right: 10%;
     }
 
-    h6 {
+    p {
       padding-left: 10%;
       padding-right: 10%;
     }

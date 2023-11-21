@@ -33,6 +33,7 @@ import { LoginModalDetails, User } from "types/model";
 import { AppState } from "types/states";
 import type { CollapseProps } from 'antd';
 import { Collapse } from 'antd';
+import { openLoginModalAction, resetUserLoggedIn } from "state/action";
 import RefferalCodeModal from "@/components/modal/RefferalCodeModal";
 import api from "api/client";
 import { GetCategoryArtistTitle } from "helpers/categoryHelper";
@@ -50,6 +51,7 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateLoggedInData: (loginDetails: any) =>
     dispatch(updateLoginData(loginDetails)),
+  openLoginModalAction: () => dispatch(openLoginModalAction()),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -66,6 +68,7 @@ const Home = ({
   loginModalDetails,
   user,
   artistListData,
+  openLoginModalAction,
   popularArtist,
   mainContent,
   collabCard,
@@ -80,6 +83,7 @@ const Home = ({
     toAllProposalsPage,
     toAllCategoryPage,
     toGetInspired,
+    toTutorial,
     toAllContestPage,
     toRewardsInfoPage,
   } = useRoutesContext();
@@ -91,9 +95,13 @@ const Home = ({
   //   }
   // }, [artistListData]);
 
+  const openLoginModal = () => {
+    openLoginModalAction();
+  };
+
   const getMainContent = () => {
     return (
-      <div className="header-text">
+      <div className="hero-text-container">
         <div className="text-content">
           <div className="main-content-container">
             <h1 className="common-h1-style heading">
@@ -110,14 +118,21 @@ const Home = ({
               </ul>
             </h1>
           </div>
-          <p className="f-16 common-p-style"
-            style={{ paddingLeft: "20px", paddingRight: "20px" }}
-          >
+          <p className="f-16 common-p-style">
             {mainContent["paragraph"]}
           </p>
-          <Button>
-
-          </Button>
+          <div>
+              <a onClick={openLoginModal}>
+                <button className="signup-container-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
+                  Join Today
+                </button>
+              </a>
+              <Link href={routeToHref(toTutorial())} passHref >
+                <button className="signup-container-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
+                  How it works?
+                </button>
+              </Link>
+          </div>
         </div>
       </div>
     );
@@ -497,14 +512,12 @@ const Home = ({
                 </button>
               </Link>
               <Link href={routeToHref(toAllProposalsPage())} passHref >
-                <button className="signup-container-button" style={{ backgroundColor: "#F8F9FA", color: "black" }}>
-
+                <button className="signup-container-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
                   Collab Proposals
-
                 </button>
               </Link>
             </div>
-            <p className="signup-container-p">Are you an artist? <a>Join Wondor</a></p>
+            <p className="signup-container-p">Are you an artist? <a onClick={openLoginModal} style={{ textDecoration: "underline" }}>Join Wondor</a></p>
           </div>
         </div>
       </div>
@@ -570,7 +583,7 @@ const Home = ({
 
 
       {getSignUpCard()}
-      
+
     </Layout>
   );
 };
@@ -636,7 +649,8 @@ const popularArtist = [
 
 const mainContent = {
   heading: "Connect and Collaborate with",
-  paragraph: "Achieve Your Creativity Goals by Collaborating with Like-Minded Artists - 💡 🤝 🎉",
+  paragraph: "Achieve Your Creativity Goals by Collaborating with Like-Minded Artists.",
+  actionText: "Join our Thriving Community Today!"
 }
 
 const collabCard = {
