@@ -41,7 +41,7 @@ const Footer = ({
   user,
 }: Props) => {
   const [pathname, setPathname] = useState("");
-  const { toArtistPortal, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toFAQ, toContactUs } = useRoutesContext();
+  const { toAllBlogs, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toFAQ, toContactUs } = useRoutesContext();
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(true);
   const lastScrollY = useRef(0);
@@ -128,6 +128,7 @@ const Footer = ({
                   <li><a href={toTerms().href} >Terms & Conditions</a></li>
                   <li><a href={toPrivacy().href} >Privacy Policy</a></li>
                   <li><a href={toTutorial().href} >How Wondor Works</a></li>
+                  <li><a href={toAllBlogs().href} >Blog</a></li>
                 </ul>
               </div>
               <div className="col-md-4 col-4">
