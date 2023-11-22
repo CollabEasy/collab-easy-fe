@@ -21,7 +21,9 @@ export interface AppRouteCreators {
   toTerms: () => WebRoute;
   toPrivacy: () => WebRoute;
   toContactUs: () => WebRoute;
+  toAllBlogs: () => WebRoute;
   toGetInspired: () => WebRoute;
   toAnalyticsPage: () => WebRoute;
   toProposalPage: (proposalId: string, title: string) => WebRoute;
+  toBlogPage: (url: string) => WebRoute;
 }
