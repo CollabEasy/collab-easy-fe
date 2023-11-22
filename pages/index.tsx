@@ -12,18 +12,19 @@ import themeOfferImage from "../public/images/theme-offer.svg";
 import rewardsOfferImage from "../public/images/rewards-offer.svg";
 import contestOfferImage from "../public/images/content-offer.svg";
 
+import writingDesktopImage from "../public/images/popularCategories/writing-desktop.svg";
+import photographyDesktopImage from "../public/images/popularCategories/photo-desktop.svg";
+import dancingDesktopImage from "../public/images/popularCategories/dance-desktop.svg";
+import singingDesktopImage from "../public/images/popularCategories/singing-desktop.svg";
+import illustratorDesktopImage from "../public/images/popularCategories/illustrator.svg";
+import journalingDesktopImage from "../public/images/popularCategories/journaling-desktop.svg";
+import paintingDesktopImage from "../public/images/popularCategories/painting-desktop.svg";
+import musicDesktopImage from "../public/images/popularCategories/musician-dekstop.svg";
+
 import exploreImage from "../public/images/artistConnect.svg";
 import connectImage from "../public/images/connect.svg";
 import manageImage from "../public/images/calendar.svg";
 
-import writingImage from "../public/images/popularCategories/writing.svg";
-import cameramanImage from "../public/images/popularCategories/camera.svg";
-import illustratorImage from "../public/images/popularCategories/illustrator.svg";
-import dancingImage from "../public/images/popularCategories/dancing.svg";
-import handLetteringImage from "../public/images/popularCategories/handLettering.svg";
-import paintingImage from "../public/images/popularCategories/painting.svg";
-import singingImage from "../public/images/popularCategories/singing.svg";
-import musicImage from "../public/images/popularCategories/music.svg";
 
 import inspireImage from "../public/images/inspire.svg";
 import ideaImage from "../public/images/idea.svg";
@@ -81,7 +82,6 @@ const Home = ({
   collabCard,
   inspirationAndContestCard,
   rewardsCard,
-  faqContent,
 }) => {
   // const [showProfileModal, setShowProfileModal] = useState(false);
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
@@ -152,7 +152,7 @@ const Home = ({
       <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
         <div className="wondor-offerings-container">
           <Link href={routeToHref(toAllCategoryPage())} passHref>
-            <div className="wondor-offerings-container-card">
+            <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{}}>
                 <Image
                   src={collabOfferImage}
@@ -169,7 +169,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toAllProposalsPage())} passHref>
-            <div className="wondor-offerings-container-card">
+            <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{}}>
                 <Image
                   src={proposalOfferImage}
@@ -186,7 +186,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toGetInspired())} passHref>
-            <div className="wondor-offerings-container-card">
+            <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{}}>
                 <Image
                   src={themeOfferImage}
@@ -203,7 +203,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toAllContestPage())} passHref>
-            <div className="wondor-offerings-container-card">
+            <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{}}>
                 <Image
                   src={contestOfferImage}
@@ -220,7 +220,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toRewardsInfoPage())} passHref>
-            <div className="wondor-offerings-container-card">
+            <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{}}>
                 <Image
                   src={rewardsOfferImage}
@@ -258,7 +258,7 @@ const Home = ({
               <>
                 {popularArtist.map((item) => (
                   <div
-                    className="popular-catgeory-list-item cursor-pointer"
+                    className="col-2 popular-catgeory-list-item cursor-pointer"
                     key={item.id}
                   >
                     <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
@@ -269,14 +269,21 @@ const Home = ({
                             height={130}
                             width={130}
                             alt={item.imgAltTag}
-                            loading="lazy"
+                            priority
                           />
                         </div>
-                        <div className="d-flex justify-content-center align-items-center p-2">
-                          <p
-                            className="common-p-style font-bold"
+                        <div className="d-flex justify-content-center text-align-center p-2">
+                          <h6
+                            className="common-h6-style"
                           >
                             {item.title}
+                          </h6>
+                        </div>
+                        <div className="d-flex justify-content-center p-2" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                          <p
+                            className="common-p-style"
+                          >
+                            {item.para}
                           </p>
                         </div>
                       </div>
@@ -291,6 +298,44 @@ const Home = ({
     );
   }
 
+  const getPopularArtist = () => {
+    return (
+      <>
+        {popularArtist.map((item) => (
+          <div
+            className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer"
+            key={item.id}
+          >
+            <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
+              <div className="home-card">
+                <div className="d-flex justify-content-between align-items-center p-2">
+                  <div className="flex-column lh-1">
+                    {" "}
+                    <p
+                      className="common-p-style font-bold"
+                      style={{ paddingLeft: "10px" }}
+                    >
+                      {item.title}
+                    </p>{" "}
+                  </div>
+                  <div>
+                    {" "}
+                    <Image
+                      src={item.imgUrl}
+                      height={130}
+                      width={130}
+                      alt={item.imgAltTag}
+                      loading="lazy"
+                    />{" "}
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </>
+    );
+  };
 
   const getCollabCards = () => {
     return (
@@ -355,298 +400,6 @@ const Home = ({
     );
   };
 
-  const getPopularArtist = () => {
-    return (
-      <>
-        {popularArtist.map((item) => (
-          <div
-            className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer"
-            key={item.id}
-          >
-            <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-              <div className="home-card">
-                <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1">
-                    {" "}
-                    <p
-                      className="common-p-style font-bold"
-                      style={{ paddingLeft: "10px" }}
-                    >
-                      {item.title}
-                    </p>{" "}
-                  </div>
-                  <div>
-                    {" "}
-                    <Image
-                      src={item.imgUrl}
-                      height={130}
-                      width={130}
-                      alt={item.imgAltTag}
-                      loading="lazy"
-                    />{" "}
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        ))}
-      </>
-    );
-  };
-
-  const getProposalCard = () => {
-    return (
-      <div className="row" style={{ backgroundColor: "#F8F9FA" }}>
-        <div className="container">
-          <div className="row d-flex justify-content-center inspire-box">
-            <div className="col-md-12">
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="text-center">
-                    <Image
-                      src={inspireImage}
-                      height={400}
-                      width={400}
-                      alt="Collab proposals for singers, dancers, musicians. Checkout now"
-                      loading="eager"
-                    />
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="inspire-cnt">
-                    <div className="inspire-text text-center">
-                      <h3 className="common-h3-style">
-                        Searching for a collaboration opportunity
-                        with like-minded artists?
-                      </h3>
-                      <p className="common-p-style">
-                        Unleash your artistic potential together.
-                        Collaborate and create something extraordinary with fellow artists.
-                        Checkout these amazing collab proposals.
-                      </p>
-                    </div>
-                    <div className="mt-4 mb-4 inspire-btn">
-                      <div className="cursor-pointer">
-                        <Button>
-                          <Link href={routeToHref(toAllProposalsPage())} passHref>
-                            Show Interest
-                          </Link>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const getInspirationAndContestCard = () => {
-    return (
-      <div className="row" style={{ backgroundColor: "#F8F9FA" }}>
-        <div className="container">
-          <div className="row d-flex justify-content-center">
-            <div className="col-md-12 contest-scratchpad">
-              <div className="row">
-                <div
-                  className="col-md-6 contest-scratchpad-box"
-                  style={{ backgroundColor: "#EAEED8" }}
-                >
-                  <div className="text-center">
-                    <Image
-                      src={ideaImage}
-                      height={350}
-                      width={350}
-                      alt={inspirationAndContestCard["inspiration-card"]["imgAltTag"]}
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="p-4 text-center">
-                    <h3 className="common-h3-style">
-                      {inspirationAndContestCard["inspiration-card"]["heading"]}
-                    </h3>
-                    <p className="common-p-style">
-                      {inspirationAndContestCard["inspiration-card"]["paragraph"]}
-                    </p>
-                    <div className="inspire-btn">
-                      <div>
-                        <Button type="primary">
-                          <Link href={routeToHref(toGetInspired())} passHref>
-                            Inspiration Hub
-                          </Link>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 contest-scratchpad-box"
-                  style={{ backgroundColor: "#D8EBF7" }}
-                >
-                  <div className="text-center">
-                    <Image
-                      src={allContestImage}
-                      height={350}
-                      width={350}
-                      alt={inspirationAndContestCard["contest-card"]["imgAltTag"]}
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="p-4 text-center">
-                    <h3 className="common-h3-style">
-                      {inspirationAndContestCard["contest-card"]["heading"]}
-                    </h3>
-                    <p className="common-p-style">
-                      {inspirationAndContestCard["contest-card"]["paragraph"]}
-                    </p>
-                    <div className="inspire-btn">
-                      <div>
-                        <Button type="primary">
-                          <Link href={routeToHref(toAllContestPage())} passHref>
-                            Enter Now
-                          </Link>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const getRewardsCard = () => {
-    return (
-      <div className="row">
-        <div style={{ width: "100%" }}>
-          <div className="row d-flex justify-content-center rewards-box">
-            <div className="col-md-12">
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="text-center">
-                    <Image
-                      src={rewardsInfoImage}
-                      height={350}
-                      width={350}
-                      alt={rewardsCard["imgAltTag"]}
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="inspire-cnt">
-                    <div className="inspire-text text-center">
-                      <h3 className="common-h3-style">
-                        {rewardsCard["heading"]}
-                      </h3>
-                      <p className="common-p-style">
-                        {rewardsCard["paragraph"]}
-                      </p>
-                    </div>
-                    <div className="mt-4 mb-4 inspire-btn">
-                      <div className="cursor-pointer">
-                        <Button>
-                          <Link
-                            href={routeToHref(toRewardsInfoPage())}
-                            passHref
-                          >
-                            Earn Rewards
-                          </Link>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const getFAQCard = () => {
-    return (
-      <div className="row">
-        <div style={{ width: "100%" }}>
-          <div className="row d-flex justify-content-center faq-box">
-            <div className="col-md-12" >
-              <h5 className="common-h5-style">Frequently asked questions </h5>
-              <Collapse ghost accordion>
-                {faqContent.map((question, index) => (
-                  <Panel header={question.question} key={index}>
-                    <p className="common-p-style">{question.answer}</p>
-                  </Panel>
-                ))}
-              </Collapse>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const getLearnAboutCard = () => {
-    return (
-      <div className="row" style={{ backgroundColor: "#F8F9FA" }}>
-        <div className="container">
-          <div className="row d-flex justify-content-left " style={{ margin: "5%" }}>
-            <div className="col-md-12">
-              <div className="row">
-                <div className="col-md-4">
-                  <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                    <h3 className="common-h3-style">
-                      Collaboration attracts a wider audience
-                    </h3>
-                    <p className="common-p-style">
-                      Learn how to collaborate for increased visibility and recognition
-                    </p>
-                    <div className="mt-4 mb-4 inspire-btn cursor-pointe">
-                      <Button>
-                        <Link href={routeToHref(toAllProposalsPage())} passHref>
-                          Show Interest
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-8">
-                  <div className="row d-flex justify-content-center">
-                    <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 cursor-pointer" >
-                      <Card
-                        hoverable
-                        style={{ width: 240 }}
-                        cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                      >
-                        <Meta title="Europe Street beat" description="www.instagram.com" />
-                      </Card>
-                    </div>
-                    <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 cursor-pointer" >
-                      <Card
-                        hoverable
-                        style={{ width: 240 }}
-                        cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                      >
-                        <Meta title="Europe Street beat" description="www.instagram.com" />
-                      </Card>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   const getSignUpCard = () => {
     return (
       <div className="row">
@@ -704,49 +457,29 @@ const Home = ({
         {getPopularCollabCategories()}
       </div>
 
+      <div style={{ backgroundColor: "#F8F7F4" }}>
+        <div className="row popular-section">
+          <div className="row align-items-end mb-4 pb-2">
+            <div className="col-md-8">
+              <div className="section-title text-center text-md-start">
+                <h4 className="title mb-4">Find the perfect jobs</h4>
+                <p className="text-muted mb-0 para-desc">Start work with Leaping. Build responsive, mobile-first projects on the web with the world's most popular front-end component library.</p>
+              </div>
+            </div>
 
+            <div className="col-md-4 mt-4 ">
+              <div className="text-center text-md-end">
+                <a href="#" className="text-primary">View more Jobs <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+              </div>
+            </div>
+          </div>
+          <div className="row mt-2 g-4">{getPopularArtist()}</div>
+        </div>
+      </div>
 
       {/* <div className="row" style={{ padding: "50px 20px", display: "flex" }}>
         {getCollabCards()}
       </div> */}
-
-      {/* Inspiration */}
-      {getProposalCard()}
-
-
-      <div className="row popular-section">
-        <div className="text-center">
-          <h5 className="common-h5-style popular-text">
-            Want to collaborate? Checkout what&apos;s
-          </h5>
-          <h3
-            style={{ color: "black", marginBottom: "1px" }}
-            className="common-h3-style"
-          >
-            {" "}
-            Popular Among Artists
-          </h3>
-          {/* <Link href={routeToHref(toAllCategoryPage())} passHref>
-            <em
-              style={{ textDecoration: "underline" }}
-              className="cursor-pointer"
-            >
-              {" "}
-              show more categories
-            </em>
-          </Link> */}
-        </div>
-        <div className="row mt-2 g-4">{getPopularArtist()}</div>
-      </div>
-
-      {/* Contest and Scratchpad */}
-      {getInspirationAndContestCard()}
-
-      {/* rewards D4C7E8 */}
-      {getRewardsCard()}
-
-      {getLearnAboutCard()}
-
 
       {getSignUpCard()}
 
@@ -759,57 +492,66 @@ const popularArtist = [
     id: 1,
     title: "Writing",
     slug: "writing",
-    imgUrl: writingImage,
+    imgUrl: writingDesktopImage,
     imgAltTag: "Creative writers collaborating on a creative writing project. Send collab request.",
+    para: "Find writers available to collab now",
   },
   {
     id: 2,
     title: "Photography",
     slug: "photography",
-    imgUrl: cameramanImage,
+    imgUrl: photographyDesktopImage,
     imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
+    para: "Find photographer available to collab now",
   },
   {
     id: 3,
     title: "Dancing",
     slug: "dancing",
-    imgUrl: dancingImage,
+    imgUrl: dancingDesktopImage,
     imgAltTag: "Dancers collaborating on a creative dance project. Send collab request.",
+    para: "Find Dancers available to collab now",
   },
   {
     id: 4,
     title: "Illustration",
     slug: "illustration",
-    imgUrl: illustratorImage,
+    imgUrl: illustratorDesktopImage,
     imgAltTag: "Digital illustrators collaborating on a creative digital art project. Send collab request.",
+    para: "Find Illustrators available to collab now",
   },
   {
     id: 5,
     title: "Music",
     slug: "musician",
-    imgUrl: musicImage,
+    imgUrl: musicDesktopImage,
     imgAltTag: "Musicians collaborating on a creative music project. Send collab request.",
+    para: "Find Musicians available to collab now",
   },
   {
     id: 6,
     title: "Journaling",
     slug: "journaling",
-    imgUrl: handLetteringImage,
+    imgUrl: journalingDesktopImage,
     imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
+    para: "Find Journalers available to collab now",
   },
   {
     id: 7,
     title: "Singing",
     slug: "singing",
-    imgUrl: singingImage,
+    imgUrl: singingDesktopImage,
     imgAltTag: "Singers collaborating on a creative singing project. Send collab request.",
+    para: "Find Singers available to collab now",
+
   },
   {
     id: 8,
     title: "Painting",
     slug: "painting",
-    imgUrl: paintingImage,
+    imgUrl: paintingDesktopImage,
     imgAltTag: "Painters collaborating on a creative painting project. Send collab request.",
+    para: "Find Painters available to collab now",
   },
 ];
 
@@ -856,60 +598,10 @@ const rewardsCard = {
   paragraph: "Big or small, every action you take gets you reward points that can be redeemed for real money. So what are you waiting for? Join now, start exploring and earn points on the way",
 }
 
-const faqContent = [
-  {
-    question: "What is Wondor.art?",
-    answer: "Wondor.art is a platform that connects artists with other artists who are available for collaboration, provides a space for artists to create collaboration proposals, participate in monthly contests, and find inspiration for their work. Wether you are painter, singer, musician, writer etc, Wondor serves for all of your artsy needs."
-  },
-  {
-    question: "Why should I use Wondor.art?",
-    answer: "Wondor is a one-stop destination for all of your artsy needs. There are many benefits to using Wondor, including seemless process for discovering artists up for collaboration to managing collaboration requests. If you are stuck in creativity block, you can use Inspiration Hub where latest trending themes, ideas are shared on weekly basis. You can pariticpate in our monthly art challenges to showcase your skill and win exclusive prizes. There are offering and you can learn about them as you start exploring Wondor's wonderful world."
-  },
-  {
-    question: "How can I find artists to collaborate with?",
-    answer: "You can simply use our search feature to find artists by their name or listed for a specific collab catgeory that you are interested in. Browse through the list and send collab requests using the easy-to-use collab tool."
-  },
-  {
-    question: "What types of projects are suitable for collaboration?",
-    answer: "Any artist with a set of skills can collaborate with other. Visual arts, music, literature, multimedia, design, cross-disciplinary, community art, performance, educational, and social impact projects are suitable for collaboration, fostering creativity across diverse creative fields."
-  },
-  {
-    question: "How can I create a collaboration proposal?",
-    answer: "To create a collaboration proposal, artists can simply fill out a form on the Wondor.art website. The form will ask artists to provide information about their project, such as the title, a brief description, the skills required etc. Interested artists can then show interest. Once you have enough interest, you can start collaboration with interested artists within seconds."
-  },
-  {
-    question: "How can I participate in monthly contests?",
-    answer: "To participate in monthly contests, artists can simply submit their work to the Wondor.art website. The deadline for submitting entries will be posted on the website."
-  },
-  {
-    question: "What is the Inspiration Hub?",
-    answer: "The Inspiration Hub is a collection of resources that is designed to help artists find inspiration for their work. Here, we post latest content creation ideas to help artists move past their creativity block and start their next creative project."
-  },
-  {
-    question: "What is Wondor's loyalty program?",
-    answer: "The loyalty program is a program that rewards artists for helping to build the Wondor.art community. Artists can earn points by participating in contests, creating collaboration proposals, and referring other artists to the platform. Points can be redeemed for prizes, such as gift cards and discounts on Wondor.art services."
-  },
-  {
-    question: "How much does Wondor.art cost?",
-    answer: "Wondor.art is a free platform to use. There are no fees to create a profile, submit proposals, or participate in contests."
-  },
-  {
-    question: "Who can use Wondor.art?",
-    answer: "Wondor.art is open to all artists, content creators, regardless of their experience level."
-  },
-  {
-    question: "How can I get started using Wondor.art?",
-    answer: "To get started using Wondor.art, simply create a profile on the website. Once you have a profile, you can start connecting with other artists, creating collaboration proposals, and participating in contests."
-  },
-  {
-    question: "Does Wondor.art have a mobile app?",
-    answer: "No, Wondor.art does not have a mobile app. However, our website is mobile-responsive, which means you can easily access all collaboration tools on your smartphone or tablet."
-  }
-]
 export async function getStaticProps({ params }) {
 
   // Pass post data to the page via props
-  return { props: { popularArtist, mainContent, collabCard, inspirationAndContestCard, rewardsCard, faqContent } }
+  return { props: { popularArtist, mainContent, collabCard, inspirationAndContestCard, rewardsCard } }
 }
 
 export default connector(Home);
