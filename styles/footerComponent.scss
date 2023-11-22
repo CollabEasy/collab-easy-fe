@@ -33,9 +33,9 @@
     align-items: center;
 }
 
-// Page 2: Tutorial
+// Page: Blogs
 
-.footer_tutorialContainer {
+.footer_blogsContainer {
     position: relative;
     margin: auto;
     flex-direction: column;
@@ -47,11 +47,18 @@
     margin-bottom: 2%;
 }
 
-.footer_tutorialHeadingContainer {
-    text-align: center;
-    //margin-top: 48px;
-    padding-left: 40px;
-    padding-right: 40px;
+
+// Page 2: Tutorial
+.footer_tutorialContainer {
+    position: relative;
+    margin: auto;
+    flex-direction: column;
+    width: 70%;
+    //border: 1px solid rgb(0 0 0 / 10%);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-top: 10%;
+    margin-bottom: 2%;
 }
 
 /* Container for flexboxes */
@@ -196,6 +203,10 @@
         width: 90%;
     }
 
+    .footer_blogsContainer {
+        width: 90%;
+    }
+
     .footer_faqsContainer {
         width: 90%;
         margin-top: 10rem;
@@ -248,6 +259,10 @@
     }
 
     .footer_tutorialContainer {
+        width: 90%;
+    }
+
+    .footer_blogsContainer {
         width: 90%;
     }
 }
@@ -303,6 +318,10 @@
     }
 
     .footer_tutorialContainer {
+        width: 90%;
+    }
+
+    .footer_blogsContainer {
         width: 90%;
     }
 }
@@ -364,6 +383,10 @@
     .footer_tutorialContainer {
         width: 90%;
     }
+
+    .footer_blogsContainer {
+        width: 90%;
+    }
 }
 
 @media only screen and (max-width: 600px) and (min-width: 400px) {
@@ -417,6 +440,10 @@
     }
 
     .footer_tutorialContainer {
+        width: 90%;
+    }
+
+    .footer_blogsContainer {
         width: 90%;
     }
 
@@ -476,6 +503,10 @@
     }
 
     .footer_tutorialContainer {
+        width: 90%;
+    }
+
+    .footer_blogsContainer {
         width: 90%;
     }
 

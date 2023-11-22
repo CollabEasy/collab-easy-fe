@@ -1,8 +1,8 @@
-import successImage from '../public/images/blogs/success.png';
+import successImage from '../public/images/mobile-landing.svg';
 
 export const BLOGS = [
     {
-        "title": "Unleashing the Power of Collaboration: 5 Reasons Why Artists Should Join Forces",
+        "title": "Unleashing the Power of Collaboration: 5 Reasons Why Artists Should Join Forces!",
         "image": successImage,
         "url": "top-5-reasons-for-why-artists-should-collaborate",
         "meta-description": "Collaboration has emerged as a powerful tool for artists to expand their horizons, reach new audiences, and achieve greater success.",

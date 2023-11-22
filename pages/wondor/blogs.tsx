@@ -39,7 +39,7 @@ type Props = {
 
 const AllBlogs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
     const [showProfileModal, setShowProfileModal] = useState(false);
-    const { toContactUs, toDiscover } = useRoutesContext();
+    const { toContactUs, toDiscover, toBlogPage } = useRoutesContext();
 
     useEffect(() => {
         if (user) {
@@ -61,27 +61,31 @@ const AllBlogs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
         BLOGS.forEach((blog, index) => {
             blogs.push(
                 /* eslint-disable react/jsx-key */
-                blog["value"].map((assesment) => (
-                    <div className="col my-3">
-                        <div className="card border-hover-primary">
-                            <div className="card-body">
-                                <h6 className="font-weight-bold mb-3">{assesment.title}</h6>
-                                <p className="text-muted mb-0">{assesment["meta-description"]}</p>
-                            </div>
-                        </div>
+                <div className="panel blog-container">
+                    <div className="panel-body">
+                        <h4>{blog.title}</h4>
+                        <p className="m-top-sm m-bottom-sm">
+                            {blog["paragraph"]}
+                        </p>
+                        <a
+                            href={toBlogPage(blog["url"]).as}
+                        >
+                            Continue reading
+                        </a>
                     </div>
-                ))
+                </div>
             )
         });
         return blogs;
     }
 
+    // https://bootdey.com/snippets/view/blog-page#html
     return (
         < Layout
 
-            title={"How to use Wondor?"}
+            title={"The Wondor Blog | Delve into Wondor's Inspiring Blog Posts"}
             name={"description"}
-            content={"Find singers, photograhers etc to collaborate. Create account, send collab request, manage collaboration requests. Find ideas and themes for your work. Win money from winning art contests. Earn rewards by reffering your friends."}
+            content={"Explore the transformative power of collaboration in art, discover practical tips for managing collaborations, and delve into inspiring stories of successful collaborative projects on Wondor's blog."}
 
         >
             {loginModalDetails.openModal && !user.new_user && (
@@ -93,9 +97,9 @@ const AllBlogs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
             )
             }
 
-            <div className="footer_tutorialContainer">
+            <div className="footer_blogsContainer">
                 <GenericBreadcrumb
-                    page={"Tutorial"}
+                    page={"All Blogs"}
                 />
                 <div className="row">
                     <div style={{ width: "100%" }}>
@@ -116,10 +120,10 @@ const AllBlogs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
                                         <div className="pageBanner-cnt">
                                             <div className="pageBanner-text text-center">
                                                 <h3 className="common-h3-style">
-                                                    You are just 4 steps away from your next collaboration 🤗
+                                                    Unleash your creative potential and discover the magic of collaboration through Wondor&pos;s insightful blog 🤗
                                                 </h3>
                                                 <p className="common-p-style">
-                                                    Are you ready to take your skills to the next level and collaborate with others on exciting projects? Then it&apos;s time to create your profile and join a community of like-minded individuals!
+                                                    Read Wondor&pos;s blog and embark on your creative collaboration journey!
                                                 </p>
                                             </div>
                                             <div className="pageBanner-button">
@@ -145,96 +149,10 @@ const AllBlogs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
                 </div>
             </div>
 
-            <div className="container bootstrap snippets bootdey">
-                <div className="row">
-                    <h2 className="text-muted">Welcome to our blog</h2>
-                </div>
+            <div className="container all-blogs-container">
                 <div className="row">
                     <div className="col-md-8">
-                        <div className="panel blog-container">
-                            <div className="panel-body">
-                                <div className="image-wrapper">
-                                    <a className="image-wrapper image-zoom cboxElement" href="#">
-                                        <div className="image-overlay"></div>
-                                    </a>
-                                </div>
-
-                                <h4>Bootstrap 3.0</h4>
-                                <small className="text-muted">By <a href="#"><strong> John Doe</strong></a> |  Post on Jan 8, 2013  | 58 comments</small>
-
-                                <p className="m-top-sm m-bottom-sm">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eros nibh, viverra a dui a, gravida varius velit. Nunc vel tempor nisi. Aenean id pellentesque mi, non placerat mi. Integer luctus accumsan tellus. Vivamus quis elit sit amet nibh lacinia suscipit eu quis purus. Vivamus tristique est non ipsum dapibus lacinia sed nec metus.
-                                </p>
-                                <a href="single_post.html"><i className="fa fa-angle-double-right"></i> Continue reading</a>
-                                <span className="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
-                                    <i className="fa fa-heart"></i> <span className="like-count">25</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div className="panel blog-container">
-                            <div className="panel-body">
-                                <div className="image-wrapper">
-                                    <a className="image-wrapper image-zoom cboxElement" href="#">
-
-                                        <div className="image-overlay"></div>
-                                    </a>
-                                </div>
-
-                                <h4>Bootstrap 3.0</h4>
-                                <small className="text-muted">By <a href="#"><strong> John Doe</strong></a> |  Post on Jan 8, 2013  | 58 comments</small>
-
-                                <p className="m-top-sm m-bottom-sm">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eros nibh, viverra a dui a, gravida varius velit. Nunc vel tempor nisi. Aenean id pellentesque mi, non placerat mi. Integer luctus accumsan tellus. Vivamus quis elit sit amet nibh lacinia suscipit eu quis purus. Vivamus tristique est non ipsum dapibus lacinia sed nec metus.
-                                </p>
-                                <a href="single_post.html"><i className="fa fa-angle-double-right"></i> Continue reading</a>
-                                <span className="post-like text-muted tooltip-test" data-toggle="tooltip" data-original-title="I like this post!">
-                                    <i className="fa fa-heart"></i> <span className="like-count">25</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-md-4">
-                        <h4 className="headline text-muted">
-                            POPULAR POST
-                            <span className="line"></span>
-                        </h4>
-                        <div className="media popular-post">
-                            <a className="pull-left" href="#">
-                            </a>
-                            <div className="media-body">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </div>
-                        </div>
-                        <div className="media popular-post">
-                            <a className="pull-left" href="#">
-                            </a>
-                            <div className="media-body">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </div>
-                        </div>
-                        <div className="media popular-post">
-                            <a className="pull-left" href="#">
-                            </a>
-                            <div className="media-body">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </div>
-                        </div>
-                        <div className="media popular-post">
-                            <a className="pull-left" href="#">
-
-                            </a>
-                            <div className="media-body">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </div>
-                        </div>
-                        <div className="media popular-post">
-                            <a className="pull-left" href="#">
-                            </a>
-                            <div className="media-body">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </div>
-                        </div>
+                        {getBlogs()}
                     </div>
                 </div>
             </div>

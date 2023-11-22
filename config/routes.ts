@@ -5,6 +5,7 @@ import { Config } from './config';
 export const routes: AppRouteCreators = {
   toWondorHome: () => ({ href: "/" }),
   toDiscover: () => ({ href: "/" }),
+  toAllBlogs: ()=> ({ href: "/wondor/blogs"}),
   toAboutUs: () => ({ href: "/wondor/about-us"}),
   toFAQ: () => ({ href: "/wondor/faqs"}),
   toTutorial: () => ({ href: "/wondor/how-to-use-wondor"}),
@@ -39,6 +40,10 @@ export const routes: AppRouteCreators = {
   toSendCollabRequestPage: (slug) => ({
     href: '/collab/[slug]',
     as: `/collab/${slug}`,
+  }),
+  toBlogPage: (url) => ({
+    href: '/blog/[url]',
+    as: `/blog/${url}`,
   }),
   toContestPage: (slug, tab) => ({
     href: '/contest/[slug]?tab=[tab]',
