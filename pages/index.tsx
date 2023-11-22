@@ -462,14 +462,18 @@ const Home = ({
           <div className="row align-items-end mb-4 pb-2">
             <div className="col-md-8">
               <div className="section-title text-center text-md-start">
-                <h4 className="title mb-4">Find the perfect jobs</h4>
-                <p className="text-muted mb-0 para-desc">Start work with Leaping. Build responsive, mobile-first projects on the web with the world's most popular front-end component library.</p>
+                <h4 className="title mb-4">Collaboration Attracts a Wider Audience</h4>
+                <p className="text-muted mb-0 para-desc">
+                  Millions of artists are collaborating on Instagram, YouTube, TikTok, 
+                  and other platforms, propelling themselves to new heights of success. 
+                  Learn how to collaborate and achieve greater visibility and recognition.
+                </p>
               </div>
             </div>
 
             <div className="col-md-4 mt-4 ">
               <div className="text-center text-md-end">
-                <a href="#" className="text-primary">View more Jobs <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                <a href="#" className="text-primary">Read more blogs <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
               </div>
             </div>
           </div>
