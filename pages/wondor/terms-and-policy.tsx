@@ -2,6 +2,7 @@
 // eslint-disable-next-line react/no-unescaped-entities
 import { Button } from "antd";
 import Link from "next/link";
+import Image from "next/image";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import LoginModal from '../../components/modal/loginModal';
@@ -14,6 +15,7 @@ import React, { useEffect, useState } from 'react';
 import NewUserModal from '../../components/modal/newUserModal';
 import Layout from '@/components/layout';
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
+import notFoundImage from '../../public/images/not-found.svg';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -36,7 +38,7 @@ type Props = {
 
 const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { toDiscover } = useRoutesContext();
+  const { toDiscover, toFAQ } = useRoutesContext();
 
   useEffect(() => {
     if (user) {
@@ -68,7 +70,7 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
       }
 
       <div className='footer_termsContainer'>
-        <GenericBreadcrumb 
+        <GenericBreadcrumb
           page={"Terms & Conditions"}
         />
         <div className="footer_termsSectionContainer">
@@ -182,13 +184,57 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
             terms and conditions, you should not use our service.
           </p>
         </div>
-        <div className="footer_termsSectionContainer">
-          <Button type="primary" className="common-btn-dimension">
-            <Link
-              href={routeToHref(toDiscover())}
-              passHref
-            >Explore Wondor</Link>
-          </Button>
+        <div className="row">
+          <div style={{ width: "100%" }}>
+            <div className="row d-flex justify-content-center actionBanner-cover">
+              <div className="col-md-12">
+                <div className="row">
+                  <div className="col-md-4">
+                    <div className="text-center">
+                      <Image
+                        src={notFoundImage}
+                        height={200}
+                        width={200}
+                        alt="you are"
+                        priority
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-8">
+                    <div className="actionBanner-cnt">
+                      <div className="actionBanner-text text-center">
+                        <h3 className="common-h3-style">
+                          Got a question? Do not worry!
+                        </h3>
+                        <p className="common-p-style">
+                          Checkout our FAQs section or reach out to us and let us know how we can help you.
+                        </p>
+                      </div>
+                      <div>
+                        <Button
+                          type="primary"
+                        >
+                          <Link
+                            href={routeToHref(toFAQ())}
+                            passHref
+                          >FAQs
+                          </Link>
+                        </Button>
+                        <Button
+                        >
+                          <Link
+                            href={routeToHref(toDiscover())}
+                            passHref
+                          >Collab Now
+                          </Link>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>

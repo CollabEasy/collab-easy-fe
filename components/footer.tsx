@@ -41,7 +41,7 @@ const Footer = ({
   user,
 }: Props) => {
   const [pathname, setPathname] = useState("");
-  const { toArtistPortal, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toContactUs } = useRoutesContext();
+  const { toArtistPortal, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toFAQ, toContactUs } = useRoutesContext();
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(true);
   const lastScrollY = useRef(0);
@@ -143,6 +143,7 @@ const Footer = ({
                 <h6 className="common-h6-style">Contact</h6>
                 <ul className="common-text-style">
                   <li><a href={toContactUs().href}>Contact Us</a></li>
+                  <li><a href={toFAQ().href}>FAQs</a></li>
                 </ul>
               </div>
             </div>
