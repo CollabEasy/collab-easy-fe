@@ -1,11 +1,5 @@
-import facebookImage from '../public/images/facebook.png'
-import instagramImage from '../public/images/instagram.png'
 import tiktokImage from '../public/images/tiktok.png'
-import personalWebsiteImage from '../public/images/personalWebsite.png'
-import soundcloudImage from '../public/images/soundcloud.jpeg'
-import spotifyImage from  '../public/images/spotify.png'
-import dribbleImage from  '../public/images/dribble.png'
-import flickrImage from  '../public/images/flickr.png'
+
 
 export const COUNTRIES = [
   {
@@ -3949,7 +3943,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
     "base_url": "https://www.facebook.com",
-    "image": facebookImage,
+    "image": tiktokImage,
   },
   {
     "id": 2,
@@ -3957,7 +3951,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
     "base_url": "https://www.instagram.com",
-    "image": instagramImage,
+    "image": tiktokImage,
   },
   {
     "id": 3,
@@ -3965,7 +3959,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
     "base_url": "https://www.youtube.com",
-    "image": facebookImage,
+    "image": tiktokImage,
   },
   {
     "id": 4,
@@ -3981,7 +3975,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing pictures and video.",
     "approved": 1,
     "base_url": "",
-    "image": personalWebsiteImage,
+    "image": tiktokImage,
   },
   {
     "id": 6,
@@ -3989,7 +3983,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing music.",
     "approved": 1,
     "base_url": "https://www.soundcloud.com",
-    "image": soundcloudImage,
+    "image": tiktokImage,
   },
   {
     "id": 7,
@@ -3997,7 +3991,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing music.",
     "approved": 1,
     "base_url": "https://www.spotify.com",
-    "image": spotifyImage,
+    "image": tiktokImage,
   },
   {
     "id": 8,
@@ -4005,7 +3999,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing pictures.",
     "approved": 1,
     "base_url": "https://www.flickr.com",
-    "image": flickrImage,
+    "image": tiktokImage,
   },
   {
     "id": 9,
@@ -4013,7 +4007,7 @@ export const SOCIAL_PLATFORMS = [
     "description": "Social media platform for sharing illustrations.",
     "approved": 1,
     "base_url": "https://www.dribble.com",
-    "image": dribbleImage,
+    "image": tiktokImage,
   },
 ]
 
