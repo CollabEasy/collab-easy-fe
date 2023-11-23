@@ -79,9 +79,7 @@ const Home = ({
   openLoginModalAction,
   popularArtist,
   mainContent,
-  collabCard,
-  inspirationAndContestCard,
-  rewardsCard,
+  blogCard,
 }) => {
   // const [showProfileModal, setShowProfileModal] = useState(false);
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
@@ -91,6 +89,7 @@ const Home = ({
     toAllCategoryPage,
     toGetInspired,
     toTutorial,
+    toAllBlogs,
     toAllContestPage,
     toRewardsInfoPage,
   } = useRoutesContext();
@@ -105,6 +104,12 @@ const Home = ({
   const openLoginModal = () => {
     openLoginModalAction();
   };
+
+  const GetBlogUrl = (url) => {
+    return (typeof window !== "undefined" && window.location.origin
+      ? window.location.origin + url
+      : "");
+  }
 
   const getMainContent = () => {
     return (
@@ -298,35 +303,29 @@ const Home = ({
     );
   }
 
-  const getPopularArtist = () => {
+  const getBlogCard = () => {
     return (
       <>
-        {popularArtist.map((item) => (
+        {blogCard.map((item) => (
           <div
-            className="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 cursor-pointer"
+            className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 cursor-pointer"
             key={item.id}
           >
-            <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
+            <Link href={GetBlogUrl(item.url)} passHref>
               <div className="home-card">
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
-                    {" "}
-                    <p
-                      className="common-p-style font-bold"
+                    <h6
+                      className="common-h6-style font-bold"
                       style={{ paddingLeft: "10px" }}
                     >
-                      {item.title}
-                    </p>{" "}
-                  </div>
-                  <div>
-                    {" "}
-                    <Image
-                      src={item.imgUrl}
-                      height={130}
-                      width={130}
-                      alt={item.imgAltTag}
-                      loading="lazy"
-                    />{" "}
+                      {item.heading}
+                    </h6>
+                    <p className="common-p-style truncate-line-clamp"
+                      style={{ paddingLeft: "10px" }}
+                    >
+                      {item.paragraph}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -337,68 +336,61 @@ const Home = ({
     );
   };
 
-  const getCollabCards = () => {
+
+  const getTestimony = () => {
+    const testimonies: JSX.Element[] = [];
+    testimonialContent.forEach((testimony) => {
+      testimonies.push(
+        <div className="slider__contents">
+          <i className="slider__image fa fa-codepen"></i>
+          <h2 className="slider__caption">{testimony["user_name"]}</h2>
+          <p className="slider__txt">{testimony["testimonial"]}</p>
+        </div>
+      );
+    })
+    return testimonies;
+  }
+
+  const getTestimonialContent = () => {
+    // return (
+    //     <div className="slider">
+    //       <input type="radio" name="slider" title="slide1" className="slider__nav" />
+    //       <input type="radio" name="slider" title="slide2" className="slider__nav" />
+    //       <input type="radio" name="slider" title="slide3" className="slider__nav" />
+    //       <div className="slider__inner">
+    //         {getTestimony()}
+    //       </div>
+    //     </div>
+    // );
+
     return (
-      <div className="container">
-        <div className="column" style={{ padding: "10px" }}>
-          <div
-            className="large-card text-center"
-            style={{ background: "#E2F0CB" }}
-          >
-            <Image
-              src={exploreImage}
-              height={300}
-              width={300}
-              alt={collabCard["explore-card"]["imgAltTag"]}
-              loading="eager"
-            />
-            <div>
-              <h3 className="common-h3-style">{collabCard["explore-card"]["heading"]}</h3>
-              <p className="common-p-style">
-                {collabCard["explore-card"]["paragraph"]}
-              </p>
-            </div>
+      <div id="myCarousel" className="carousel slide" data-ride="carousel" style={{paddingTop: "10%",}}>
+          <ol className="carousel-indicators">
+              <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
+              <li data-target="#myCarousel" data-slide-to="1"></li>
+              <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol> 
+          <div className="carousel-inner">
+              <div className="item carousel-item active">
+                  
+                  <p className="testimonial">Phasellus vitae suscipit justo. Mauris pharetra feugiat ante id lacinia. Etiam faucibus mauris id tempor egestas. Duis luctus turpis at accumsan tincidunt. Phasellus risus risus, volutpat vel tellus ac, tincidunt fringilla massa. Etiam hendrerit dolor eget rutrum.</p>
+                  <p className="overview"><b>Paula Wilsons</b>Seo Analyst </p>
+              </div>
+              <div className="item carousel-item">
+                  
+                  <p className="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Vestibulum idac nisl bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
+                  <p className="overview"><b>Paula Wilson</b>Media Analyst </p>
+              </div>
+              <div className="item carousel-item">
+                  
+                  <p className="testimonial">Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Utmtc tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor velit.</p>
+                  <p className="overview"><b>Antonio Moreno</b>Web Developer</p>
+                  <div className="star-rating"> </div>
+              </div>
           </div>
-        </div>
-        <div className="column" style={{ padding: "10px" }}>
-          <div className="small-card" style={{ background: "#DBECFD" }}>
-            <div className="small-card-text">
-              <h3 className="common-h3-style">{collabCard["connect-card"]["heading"]}</h3>
-              <p className="common-p-style">
-                {collabCard["connect-card"]["paragraph"]}
-              </p>
-            </div>
-            <div style={{ paddingRight: "5px" }}>
-              <Image
-                src={connectImage}
-                height={250}
-                width={250}
-                alt={collabCard["connect-card"]["imgAltTag"]}
-                loading="eager"
-              />
-            </div>
-          </div>
-          <div className="small-card" style={{ background: "#FBF0C4" }}>
-            <div className="small-card-text">
-              <h3 className="common-h3-style">{collabCard["manage-card"]["heading"]}</h3>
-              <p className="common-p-style">
-                {collabCard["manage-card"]["paragraph"]}
-              </p>
-            </div>
-            <div style={{ paddingRight: "5px" }}>
-              <Image
-                src={manageImage}
-                height={250}
-                width={250}
-                alt={collabCard["manage-card"]["imgAltTag"]}
-                loading="eager"
-              />
-            </div>
-          </div>
-        </div>
       </div>
     );
-  };
+  }
 
   const getSignUpCard = () => {
     return (
@@ -457,33 +449,32 @@ const Home = ({
         {getPopularCollabCategories()}
       </div>
 
-      <div style={{ backgroundColor: "#F8F7F4" }}>
-        <div className="row popular-section">
-          <div className="row align-items-end mb-4 pb-2">
-            <div className="col-md-8">
-              <div className="section-title text-center text-md-start">
-                <h4 className="title mb-4">Collaboration Attracts a Wider Audience</h4>
-                <p className="text-muted mb-0 para-desc">
-                  Millions of artists are collaborating on Instagram, YouTube, TikTok, 
-                  and other platforms, propelling themselves to new heights of success. 
-                  Learn how to collaborate and achieve greater visibility and recognition.
-                </p>
-              </div>
-            </div>
-
-            <div className="col-md-4 mt-4 ">
-              <div className="text-center text-md-end">
-                <a href="#" className="text-primary">Read more blogs <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right fea icon-sm"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-              </div>
+      <div className="row popular-section">
+        <div className="row align-items-end">
+          <div className="col-md-8">
+            <div className="section-title text-center text-md-start">
+              <h2 className="common-h2-style">
+                Collaboration Attracts a Wider Audience!
+              </h2>
+              <p className="common-p-style" style={{ width: "80%" }}>
+                Millions of artists are collaborating on Instagram, YouTube, TikTok,
+                and other platforms, propelling themselves to new heights of success.
+              </p>
             </div>
           </div>
-          <div className="row mt-2 g-4">{getPopularArtist()}</div>
+
+          <div className="col-md-4 mt-4 ">
+            <div className="text-center text-md-end">
+              <a href={routeToHref(toAllBlogs())} className="text-primary">View All</a>
+            </div>
+          </div>
         </div>
+        <div className="row mt-2 g-4">{getBlogCard()}</div>
       </div>
 
-      {/* <div className="row" style={{ padding: "50px 20px", display: "flex" }}>
-        {getCollabCards()}
-      </div> */}
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        {getTestimonialContent()}
+      </div>
 
       {getSignUpCard()}
 
@@ -565,47 +556,61 @@ const mainContent = {
   actionText: "Join our Thriving Community Today!"
 }
 
-const collabCard = {
-  "explore-card": {
-    imgAltTag: "Join artist community to collab, create collab proposals, find new themes examples and arty ideas.",
-    heading: "Discover Collaboration Opportunities",
-    paragraph: "Join a vibrant community of artists, explore fellow creators' profiles, and discover new collaboration opportunities, including proposals and ideas for your art projects. Collaborate directly within the platform",
+const testimonialContent = [
+  {
+    "user_name": "Valeria Vecchi",
+    "user_slug": "valeria-vecchi-1",
+    "testimonial": "Wondor is exactly the tool I needed as an artist: it allows me to find like-minded Journalers to collab with, and it's a source of inspiration for my projects too! I like monthly contests as they spark my creativity. Such an intuitive website too.",
   },
-  "connect-card": {
-    imgAltTag: "Creator profile with linked social media platforms and collaboration readiness.",
-    heading: "Connect to Collaborate",
-    paragraph: "Create a centralized creator profile, link all your social media platforms, showcase your collaboration readiness, and take the first step towards achieving your creative goals",
+  {
+    "user_name": "Rahul Gupta",
+    "user_slug": "rahul-gupta-1",
+    "testimonial": "Wondor's weekly writing themes have helped me so much. I'm constantly discovering new writing prompts and inspiration instead of being stuck.",
   },
-  "manage-card": {
-    imgAltTag: "Collaboration management tools to help artists work together more efficiently for increased productivity.",
-    heading: "Manage collaborations Effortlessly",
-    paragraph: "easy-to-use collaboration management tools help artists send collaboration requests and track upcoming collaborations and project deadlines with ease",
-  }
-}
+  {
+    "user_name": "Serhan Oztekin",
+    "user_slug": "serhan-oztekin-1",
+    "testimonial": "Wondor has been a game-changer for my creative collaborations. It's easy to connect with other musicians, share ideas, and inspire each other's work.",
+  },
+]
 
-const inspirationAndContestCard = {
-  "inspiration-card": {
-    imgAltTag: "Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!",
-    heading: "Are you Stuck in Creativity Block?",
-    paragraph: "Discover new and trending content ideas instantly for your next blog post, video, or artwork every week. Start now and find the perfect theme to engage your audience and grow your reach",
+const blogCard = [
+  {
+    "heading": "Unleashing the Power of Collaboration: 5 Reasons Why Artists Should Join Forces!",
+    "paragraph": "Unlock creativity, amplify reach, share resources, foster community, and elevate art through the power of collaborative synergy.",
+    "url": "/top-5-reasons-for-why-artists-should-collaborate",
   },
-  "contest-card": {
-    imgAltTag: "Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!",
-    heading: "Ready to Unleash Your Inner Artist?",
-    paragraph: "Calling all content creators to show us your creativity to win big! Enter our monthly content creator contest for a chance to win cash prizes and more. We're looking for the best work in all categories",
+  {
+    "heading": "The Art of Connection: How Collaboration Is Elevating Painters to New Heights!",
+    "paragraph": "Collaboration broadens perspectives, sparks innovation, and propels painters to unparalleled heights of artistic achievement and recognition",
+    "url": "/category/painting/wiki/learn-about-painting-and-collaboration-opportunities",
   },
-}
-
-const rewardsCard = {
-  imgAltTag: "Get Rewarded for Your Loyalty and Participation",
-  heading: "Get rewarded for almost everything you do on Wondor!",
-  paragraph: "Big or small, every action you take gets you reward points that can be redeemed for real money. So what are you waiting for? Join now, start exploring and earn points on the way",
-}
+  {
+    "heading": "How Photographers Are Collaborating to Dominate the Art Scene?",
+    "paragraph": "Photographers unite for diverse perspectives, collective impact, and art dominance through strategic collaboration in the creative realm.",
+    "url": "/category/photography/wiki/learn-about-photography-and-collaboration-opportunities",
+  },
+  {
+    "heading": "Expanding Literary Horizons: The Art and Benefits of Writer Collaboration!",
+    "paragraph": "Writers collaborate for enriched creativity, mutual growth, diverse perspectives, and the joy of shared storytelling",
+    "url": "/category/writing/wiki/learn-about-writing-and-collaboration-opportunities",
+  },
+  {
+    "heading": "Why Journalers should Collaborate for Enhanced Creativity and Success?",
+    "paragraph": "Collaborative journaling sparks inspiration, cultivates diverse perspectives, and propels journalers to greater creative heights and personal success.",
+    "url": "/category/journaling/wiki/learn-about-journaling-and-collaboration-opportunities",
+  },
+  {
+    "heading": "5 Ways in which Wondor.art Help Artists Achieve their Cretaivity Goals!",
+    "paragraph": "Wondor.art: Nurturing artists, unlocking potential, and propelling creativity to new heights with tailored support and resources.",
+    "url": "/top-5-reasons-for-why-artists-should-use-wondor",
+  },
+]
 
 export async function getStaticProps({ params }) {
 
   // Pass post data to the page via props
-  return { props: { popularArtist, mainContent, collabCard, inspirationAndContestCard, rewardsCard } }
+  return { props: { popularArtist, mainContent, blogCard, testimonialContent } }
 }
 
 export default connector(Home);
