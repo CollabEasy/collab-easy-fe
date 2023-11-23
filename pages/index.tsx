@@ -105,7 +105,7 @@ const Home = ({
     return (
       <div className="hero-text-container">
         <div className="text-content">
-          <div className="main-content-container">
+          <div>
             <text className="common-p-style">
               {mainContent["actionText"]}
             </text>
@@ -151,7 +151,7 @@ const Home = ({
         <div className="wondor-offerings-container">
           <Link href={routeToHref(toAllCategoryPage())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{backgroundColor: "#FADFDF"}}>
+              <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
                 <Image
                   src={collabOfferImage}
                   height={140}
@@ -168,7 +168,7 @@ const Home = ({
           </Link>
           <Link href={routeToHref(toAllProposalsPage())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{backgroundColor: "#FCF7DE"}}>
+              <div className="card-img" style={{ backgroundColor: "#FEF7EF" }}>
                 <Image
                   src={proposalOfferImage}
                   height={140}
@@ -185,7 +185,7 @@ const Home = ({
           </Link>
           <Link href={routeToHref(toGetInspired())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{backgroundColor: "#DDFCE0"}}>
+              <div className="card-img" style={{ backgroundColor: "#FFFEF1" }}>
                 <Image
                   src={themeOfferImage}
                   height={140}
@@ -202,7 +202,7 @@ const Home = ({
           </Link>
           <Link href={routeToHref(toAllContestPage())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{backgroundColor: "#DEF3FD"}}>
+              <div className="card-img" style={{ backgroundColor: "#F7FEF3" }}>
                 <Image
                   src={contestOfferImage}
                   height={140}
@@ -219,7 +219,7 @@ const Home = ({
           </Link>
           <Link href={routeToHref(toRewardsInfoPage())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{backgroundColor: "#F0DEFD"}}>
+              <div className="card-img" style={{ backgroundColor: "#F5F9FE" }}>
                 <Image
                   src={rewardsOfferImage}
                   height={140}
@@ -296,7 +296,7 @@ const Home = ({
     );
   }
 
-  const getBlogCard = () => {
+  const getPopularBlogCard = () => {
     return (
       <>
         {blogCard.map((item) => (
@@ -310,15 +310,15 @@ const Home = ({
                   <div className="flex-column lh-1">
                     <h6
                       className="common-h6-style font-bold"
-                      style={{ paddingLeft: "10px" }}
+                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
                     >
                       {item.heading}
                     </h6>
-                    <p className="common-p-style truncate-line-clamp"
-                      style={{ paddingLeft: "10px" }}
+                    <text className="common-p-style truncate-line-clamp"
+                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
                     >
                       {item.paragraph}
-                    </p>
+                    </text>
                   </div>
                 </div>
               </div>
@@ -432,10 +432,10 @@ const Home = ({
         {getPopularCollabCategories()}
       </div>
 
-      <div className="row popular-section">
+      <div className="row popular-blog-section">
         <div className="row align-items-end">
           <div className="col-md-8">
-            <div className="section-title text-center text-md-start">
+            <div className="section-title text-md-start">
               <h2 className="common-h2-style">
                 Collaboration Attracts a Wider Audience!
               </h2>
@@ -445,14 +445,8 @@ const Home = ({
               </p>
             </div>
           </div>
-
-          <div className="col-md-4 mt-4 ">
-            <div className="text-center text-md-end">
-              <a href={routeToHref(toAllBlogs())} className="text-primary">View All</a>
-            </div>
-          </div>
         </div>
-        <div className="row mt-2 g-4">{getBlogCard()}</div>
+        <div className="row mt-2 g-4">{getPopularBlogCard()}</div>
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
