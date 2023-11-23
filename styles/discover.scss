@@ -1,4 +1,3 @@
-
 // Hero text container
 .hero-text-container {
   height: 500px;
@@ -30,13 +29,13 @@
       overflow: hidden;
       position: relative;
       height: 65px;
-    
+
       li {
         height: 45px;
         margin-bottom: 45px;
         padding: 0 10px;
       }
-    
+
       .flip5 {
         animation: flip5 12s cubic-bezier(0.23, 1, 0.32, 1.2) infinite;
       }
@@ -73,7 +72,8 @@
   transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center align items horizontally */
+  align-items: center;
+  /* Center align items horizontally */
 
   &:hover {
     box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
@@ -86,13 +86,48 @@
   }
 
   .card-text {
-    text-align: left; /* Align text to the left */
+    text-align: left;
+    /* Align text to the left */
     padding: 10px;
     width: 100%;
   }
 }
 
+// popular categories container
+.popular-category-container {
 
+  h2 {
+    padding-left: 12px;
+    font-size: 1.25rem;
+  }
+
+  .popular-catgeory-list {
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  .popular-catgeory-list-item {
+    position: relative;
+    display: inline-block;
+    margin: 8px 8px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
+    border-top-right-radius: 4px;
+    width: 50% auto;
+    height: 260px;
+    vertical-align: bottom;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &:hover {
+      box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
+    }
+  }
+}
 
 // Response CSS starts here
 @media only screen and (min-width: 1200px) {
@@ -106,22 +141,22 @@
   .hero-text-container {
     height: 550px;
     width: 100%;
-  
+
     .text-content {
-  
+
       h1 {
         font-size: 54px;
         font-weight: 550;
         padding-left: 22%;
         padding-right: 22%;
       }
-  
+
       p {
         font-size: 20px;
         padding-left: 33%;
         padding-right: 33%;
       }
-  
+
       .hero-text-container-button {
         height: 50px;
         padding: 15px;
@@ -134,7 +169,27 @@
     width: calc(33.333% - 20px);
 
     .card-text {
-      
+
+      h5 {
+        font-size: 25px;
+      }
+
+      p {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .popular-category-container {
+  
+    h2 {
+      font-size: 25px;
+    }
+
+    .popular-catgeory-list-item {
+      height: 250px;
+      width: 25%;
+
       h5 {
         font-size: 25px;
       }
@@ -153,22 +208,22 @@
   .hero-text-container {
     height: 500px;
     width: 100%;
-  
+
     .text-content {
-  
+
       h1 {
         font-size: 44px;
         font-weight: 450;
         padding-left: 12%;
         padding-right: 12%;
       }
-  
+
       p {
         font-size: 18px;
         padding-left: 20%;
         padding-right: 20%;
       }
-  
+
       .hero-text-container-button {
         height: 45px;
         padding: 12px;
@@ -188,17 +243,38 @@
       font-size: 15px;
     }
   }
+
+  .popular-category-container {
+    
+    h2 {
+      font-size: 20px;
+    }
+
+    .popular-catgeory-list-item {
+      height: 250px;
+      width: 25%;
+
+      h5 {
+        font-size: 20px;
+      }
+  
+      p {
+        font-size: 15px;
+      }
+    }
+  }
 }
 
-@media only screen  and (min-width: 500px) and (max-width: 767px) {
+@media only screen and (min-width: 500px) and (max-width: 767px) {
+
   /* Styles for small screens (phones) */
   .hero-text-container {
     height: 450px;
     width: 100%;
-  
+
     .text-content {
       top: 3%;
-      
+
       h1 {
         font-size: 40px;
         font-weight: 400;
@@ -206,13 +282,13 @@
         padding-left: 10%;
         padding-right: 10%;
       }
-  
+
       p {
         font-size: 18px;
         padding-left: 15%;
         padding-right: 15%;
       }
-  
+
       .hero-text-container-button {
         height: 35px;
         padding: 7px;
@@ -233,14 +309,35 @@
     }
   }
 
+  .popular-category-container {
+    
+    h2 {
+      font-size: 15px;
+    }
+
+    .popular-catgeory-list-item {
+      height: 250px;
+      width: 40%;
+
+      h5 {
+        font-size: 15px;
+      }
+  
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+
 }
 
 @media only screen and (max-width: 499px) {
+
   /* Styles for small screens (phones) */
   .hero-text-container {
     height: 450px;
     width: 100%;
-  
+
     .text-content {
 
       top: 3%;
@@ -252,13 +349,13 @@
         padding-left: 10%;
         padding-right: 10%;
       }
-  
+
       p {
         font-size: 18px;
         padding-left: 15%;
         padding-right: 15%;
       }
-  
+
       .hero-text-container-button {
         height: 35px;
         padding: 7px;
@@ -271,7 +368,7 @@
     width: calc(50% - 20px);
 
     .card-text {
-      
+
       h5 {
         font-size: 15px;
       }
@@ -281,6 +378,27 @@
       }
     }
   }
+
+  .popular-category-container {
+    
+    h2 {
+      font-size: 15px;
+    }
+
+    .popular-catgeory-list-item {
+      height: 275px;
+      width: 50%;
+
+      h5 {
+        font-size: 15px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+  
 }
 
 // Final Sign up container
@@ -294,11 +412,13 @@
     font-size: 64px;
     line-height: 72px;
   }
+
   .signup-container-p {
     width: 680px;
     font-size: 20px;
     line-height: 36px;
   }
+
   .signup-container-button {
     height: 56px;
     border: none;
@@ -312,39 +432,6 @@
   }
 }
 
-
-
-// popular categories container
-.popular-catgeory-h1 {
-  padding-left: 12px;
-}
-
-.popular-catgeory-list {
-  height: 100%;
-  width: 100%;
-  white-space: nowrap;
-  overflow-x: scroll;
-  overflow-y: hidden;
-}
-
-.popular-catgeory-list-item {
-  position: relative;
-  display: inline-block;
-  margin: 8px 8px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
-  border-top-right-radius: 4px;
-  width: 50% auto;
-  height: 50%;
-  vertical-align: bottom;
-  background-position: top left;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  &:hover {
-    box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
-  }
-}
 
 
 
@@ -361,7 +448,7 @@
 .truncate-line-clamp {
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; 
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
@@ -415,18 +502,14 @@
   }
 }
 
-@media only screen and (max-width: 1600px) and (min-width: 1201px) {
-
-}
+@media only screen and (max-width: 1600px) and (min-width: 1201px) {}
 
 // Please write media query for all screen sizes below this line.
-@media only screen and (max-width: 1200px) and (min-width: 993px) {
-
-}
+@media only screen and (max-width: 1200px) and (min-width: 993px) {}
 
 @media only screen and (max-width: 992px) and (min-width: 768px) {
 
-  
+
 
   .inspire-btn {
     width: initial;
@@ -435,7 +518,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-  
+
 
   .inspire-btn {
     width: initial;
@@ -477,7 +560,7 @@
 }
 
 @media only screen and (max-width: 550px) {
-  
+
 
   .small-card {
     flex-direction: column;
@@ -491,7 +574,7 @@
 }
 
 @media only screen and (max-width: 399px) {
-  
+
 
   .small-card {
     flex-direction: column;

@@ -242,21 +242,21 @@ const Home = ({
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
     return (
-      <div>
+      <div className="popular-category-container">
         <div className="container fluid">
           <div className="row text-left">
             <div className="col-12">
-              <h2 className="common-h2-style popular-catgeory-h1">Popular Collab Categories</h2>
+              <h2 className="common-h2-style">Popular Collaboration Categories</h2>
             </div>
           </div>
         </div>
         <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
-          <div className="col-lg-12 col-md-10 ">
+          <div className="col-12">
             <div className="popular-catgeory-list">
               <>
                 {popularArtist.map((item) => (
                   <div
-                    className="col-2 popular-catgeory-list-item cursor-pointer"
+                    className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-catgeory-list-item cursor-pointer"
                     key={item.id}
                   >
                     <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
@@ -271,11 +271,11 @@ const Home = ({
                           />
                         </div>
                         <div className="d-flex justify-content-center text-align-center p-2">
-                          <h6
-                            className="common-h6-style"
+                          <h5
+                            className="common-h5-style"
                           >
                             {item.title}
-                          </h6>
+                          </h5>
                         </div>
                         <div className="d-flex justify-content-center p-2" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
                           <p
@@ -470,7 +470,7 @@ const popularArtist = [
     id: 1,
     title: "Writing",
     slug: "writing",
-    imgUrl: writingDesktopImage,
+    imgUrl: illustratorDesktopImage,
     imgAltTag: "Creative writers collaborating on a creative writing project. Send collab request.",
     para: "Find writers available to collab now",
   },
@@ -478,7 +478,7 @@ const popularArtist = [
     id: 2,
     title: "Photography",
     slug: "photography",
-    imgUrl: photographyDesktopImage,
+    imgUrl: illustratorDesktopImage,
     imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
     para: "Find photographer available to collab now",
   },
@@ -486,7 +486,7 @@ const popularArtist = [
     id: 3,
     title: "Dancing",
     slug: "dancing",
-    imgUrl: dancingDesktopImage,
+    imgUrl: illustratorDesktopImage,
     imgAltTag: "Dancers collaborating on a creative dance project. Send collab request.",
     para: "Find Dancers available to collab now",
   },
@@ -502,7 +502,7 @@ const popularArtist = [
     id: 5,
     title: "Music",
     slug: "musician",
-    imgUrl: musicDesktopImage,
+    imgUrl: illustratorDesktopImage,
     imgAltTag: "Musicians collaborating on a creative music project. Send collab request.",
     para: "Find Musicians available to collab now",
   },
@@ -510,7 +510,7 @@ const popularArtist = [
     id: 6,
     title: "Journaling",
     slug: "journaling",
-    imgUrl: journalingDesktopImage,
+    imgUrl: illustratorDesktopImage,
     imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
     para: "Find Journalers available to collab now",
   },
@@ -518,7 +518,7 @@ const popularArtist = [
     id: 7,
     title: "Singing",
     slug: "singing",
-    imgUrl: singingDesktopImage,
+    imgUrl: illustratorDesktopImage,
     imgAltTag: "Singers collaborating on a creative singing project. Send collab request.",
     para: "Find Singers available to collab now",
 
@@ -527,7 +527,7 @@ const popularArtist = [
     id: 8,
     title: "Painting",
     slug: "painting",
-    imgUrl: paintingDesktopImage,
+    imgUrl: illustratorDesktopImage,
     imgAltTag: "Painters collaborating on a creative painting project. Send collab request.",
     para: "Find Painters available to collab now",
   },
