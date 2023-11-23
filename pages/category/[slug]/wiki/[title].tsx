@@ -67,10 +67,49 @@ const CategoryPage = ({
                 <li className="cursor-pointer" style={{ textDecoration: "underline", display: "inline-block", marginRight: "15px" }}>
                     <a href={toCategoryArtistList(category["slug"], GetCategoryArtistTitle(category["slug"])).as} >Find artists for {category["name"]}</a>
                 </li>
-            )               
+            )
         })
 
         return similarCategoriesHtml;
+    }
+
+    const howAndWhyWikiHelper = (data) => {
+        const howAndWhyWiki: JSX.Element[] = [];
+        data.forEach(element => {
+            howAndWhyWiki.push(
+                <>
+                    <h6 className="common-h5-style">{element["heading"]}</h6>
+                    <p className="common-p-style">{element["paragraph"]}</p>
+                </>
+            )
+        });
+        return howAndWhyWiki
+    }
+    const getHowAndWhyWikiSection = () => {
+        return (
+            <>
+                {("article" in categoryMetadata["wiki-data"]) ? (
+                    <div className="col-12">
+                        <div className="categoryDetailPage_tabContainer">
+                            <b className="common-text-style">
+                                <h5>How {categoryMetadata["artist-title"]} collaborate?</h5>
+                            </b>
+                            <div className="divider mb-4"> </div>
+                            {howAndWhyWikiHelper(categoryMetadata["wiki-data"]["article"]["how"])}
+                        </div>
+                        <div className="categoryDetailPage_tabContainer">
+                            <b className="common-text-style">
+                                <h5>Why {categoryMetadata["artist-title"]} should collaborate?</h5>
+                            </b>
+                            <div className="divider mb-4"> </div>
+                            {howAndWhyWikiHelper(categoryMetadata["wiki-data"]["article"]["why"])}
+                        </div>
+                    </div>
+                ) : (
+                    <></>
+                )}
+            </>
+        );
     }
 
     const getBreadcrum = (category: string) => {
@@ -135,6 +174,9 @@ const CategoryPage = ({
                                 <Link href={toCategoryArtistList(categoryMetadata["slug"], GetCategoryArtistTitle(categoryMetadata["slug"])).as} passHref>Find artists</Link>
                             </Button>
                         </div>
+                    </div>
+                    <div>
+                        {getHowAndWhyWikiSection()}
                     </div>
                     <div className="categoryDetailPage_similarCategories">
                         <h6 className="common-h6-style">
