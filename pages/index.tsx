@@ -151,81 +151,81 @@ const Home = ({
         <div className="wondor-offerings-container">
           <Link href={routeToHref(toAllCategoryPage())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{}}>
+              <div className="card-img" style={{backgroundColor: "#FADFDF"}}>
                 <Image
                   src={collabOfferImage}
                   height={140}
                   width={250}
-                  alt="abc"
-                  loading="lazy"
+                  alt="More than 35+ categories - photography, singing, journaling, music etc for collaboration."
+                  loading="eager"
                 />
               </div>
               <div className="card-text">
                 <h5 className="common-h5-style">Diverse Collaboration Categories</h5>
-                <p className="common-p-style">Connect with artists from 40+ categories</p>
+                <p className="common-p-style">Connect with available artists from 40+ categories</p>
               </div>
             </div>
           </Link>
           <Link href={routeToHref(toAllProposalsPage())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{}}>
+              <div className="card-img" style={{backgroundColor: "#FCF7DE"}}>
                 <Image
                   src={proposalOfferImage}
                   height={140}
                   width={250}
-                  alt="abc"
-                  loading="lazy"
+                  alt="Collab proposals for singers, dancers, musicians. Checkout now"
+                  loading="eager"
                 />
               </div>
               <div className="card-text">
-                <h5 className="common-h5-style">Exciting Collaboration Proposals</h5>
+                <h5 className="common-h5-style">Exciting Proposals for Collaboration</h5>
                 <p className="common-p-style">Collaborate on proposals from other artists</p>
               </div>
             </div>
           </Link>
           <Link href={routeToHref(toGetInspired())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{}}>
+              <div className="card-img" style={{backgroundColor: "#DDFCE0"}}>
                 <Image
                   src={themeOfferImage}
                   height={140}
                   width={250}
-                  alt="abc"
-                  loading="lazy"
+                  alt="Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!"
+                  loading="eager"
                 />
               </div>
               <div className="card-text">
                 <h5 className="common-h5-style">Inspiration Hub</h5>
-                <p className="common-p-style">Latest art ideas and themes every week</p>
+                <p className="common-p-style">Latest art ideas and themes posted every week</p>
               </div>
             </div>
           </Link>
           <Link href={routeToHref(toAllContestPage())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{}}>
+              <div className="card-img" style={{backgroundColor: "#DEF3FD"}}>
                 <Image
                   src={contestOfferImage}
                   height={140}
                   width={250}
-                  alt="abc"
-                  loading="lazy"
+                  alt="Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!"
+                  loading="eager"
                 />
               </div>
               <div className="card-text">
-                <h5 className="common-h5-style">Art Challenges</h5>
+                <h5 className="common-h5-style">Creative Art Challenges</h5>
                 <p className="common-p-style">Participate every month and win $$</p>
               </div>
             </div>
           </Link>
           <Link href={routeToHref(toRewardsInfoPage())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{}}>
+              <div className="card-img" style={{backgroundColor: "#F0DEFD"}}>
                 <Image
                   src={rewardsOfferImage}
                   height={140}
                   width={250}
-                  alt="abc"
-                  loading="lazy"
+                  alt="Get bonus points for Your Loyalty and Participation in Wondor community"
+                  loading="eager"
                 />
               </div>
               <div className="card-text">

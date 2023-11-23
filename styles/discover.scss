@@ -56,6 +56,43 @@
   }
 }
 
+// Wondor Offerings cards
+.wondor-offerings-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.wondor-offerings-container-card {
+  width: calc(20% - 20px);
+  margin: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align items horizontally */
+
+  &:hover {
+    box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
+  }
+
+  .card-img {
+    width: 100%;
+    height: auto;
+    padding: 40px 5px 0px 5px;
+  }
+
+  .card-text {
+    text-align: left; /* Align text to the left */
+    padding: 10px;
+    width: 100%;
+  }
+}
+
+
 
 // Response CSS starts here
 @media only screen and (min-width: 1200px) {
@@ -93,13 +130,28 @@
     }
   }
 
+  .wondor-offerings-container-card {
+    width: calc(33.333% - 20px);
+
+    .card-text {
+      
+      h5 {
+        font-size: 25px;
+      }
+
+      p {
+        font-size: 20px;
+      }
+    }
+  }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   /* Styles for medium screens (tablets) */
 
   .hero-text-container {
-    height: 450px;
+    height: 500px;
     width: 100%;
   
     .text-content {
@@ -122,6 +174,18 @@
         padding: 12px;
         font-size: 13px;
       }
+    }
+  }
+
+  .wondor-offerings-container-card {
+    width: calc(33.333% - 20px);
+
+    h5 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 15px;
     }
   }
 }
@@ -157,6 +221,18 @@
     }
   }
 
+  .wondor-offerings-container-card {
+    width: calc(50% - 20px);
+
+    h5 {
+      font-size: 15px;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
+
 }
 
 @media only screen and (max-width: 499px) {
@@ -187,6 +263,21 @@
         height: 35px;
         padding: 7px;
         font-size: 13px;
+      }
+    }
+  }
+
+  .wondor-offerings-container-card {
+    width: calc(50% - 20px);
+
+    .card-text {
+      
+      h5 {
+        font-size: 15px;
+      }
+
+      p {
+        font-size: 12px;
       }
     }
   }
@@ -256,74 +347,6 @@
 }
 
 
-// Wondor Offerings cards
-.wondor-offerings-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 20px;
-}
-
-.wondor-offerings-container-card {
-  width: calc(20% - 20px);
-  margin: 10px;
-  background-color: #fff;
-  box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
-  border-radius: 10px;
-  transition: transform 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center align items horizontally */
-
-  &:hover {
-    box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
-  }
-
-  .card-img {
-    width: 100%;
-    height: auto;
-    padding: 40px 5px 0px 5px;
-  }
-
-  .card-text {
-    text-align: left; /* Align text to the left */
-    padding: 10px;
-    width: 100%;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-@media screen and (max-width: 1200px) {
-  .wondor-offerings-container-card {
-      width: calc(33.333% - 20px);
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .wondor-offerings-container-card {
-      width: calc(50% - 20px);
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .wondor-offerings-container-card {
-      width: calc(33.333% - 20px);
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .wondor-offerings-container-card {
-      width: calc(50% - 20px);
-  }
-}
 
 .popular-section {
   background-color: #DBECFD;
