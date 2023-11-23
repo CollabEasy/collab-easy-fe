@@ -21,16 +21,6 @@ import journalingDesktopImage from "../public/images/popularCategories/journalin
 import paintingDesktopImage from "../public/images/popularCategories/painting-desktop.svg";
 import musicDesktopImage from "../public/images/popularCategories/musician-dekstop.svg";
 
-import exploreImage from "../public/images/artistConnect.svg";
-import connectImage from "../public/images/connect.svg";
-import manageImage from "../public/images/calendar.svg";
-
-
-import inspireImage from "../public/images/inspire.svg";
-import ideaImage from "../public/images/idea.svg";
-import allContestImage from "../public/images/competition.svg";
-import rewardsInfoImage from "../public/images/rewards.svg";
-
 import { routeToHref } from "config/routes";
 
 import { Button, Card } from "antd";
@@ -116,29 +106,32 @@ const Home = ({
       <div className="hero-text-container">
         <div className="text-content">
           <div className="main-content-container">
-            <h1 className="common-h1-style heading">
-              {mainContent["heading"]}{" "}
+            <text className="common-p-style">
+              {mainContent["actionText"]}
+            </text>
+            <h1 className="common-h1-style">
+              {mainContent["heading"]}
             </h1>
             {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
             <h1 className="animation-content">
               <ul className="flip5">
-                <li className="heading common-h1-style">Painters!</li>
-                <li className="heading common-h1-style">Photographers!</li>
-                <li className="heading common-h1-style">Singers!</li>
-                <li className="heading common-h1-style">Dancers!</li>
-                <li className="heading common-h1-style">Poets !</li>
-                <li className="heading common-h1-style">Journalers !</li>
-                <li className="heading common-h1-style">Sketchers !</li>
+                <li className="common-h1-style">Painters!</li>
+                <li className="common-h1-style">Photographers!</li>
+                <li className="common-h1-style">Singers!</li>
+                <li className="common-h1-style">Dancers!</li>
+                <li className="common-h1-style">Poets!</li>
+                <li className="common-h1-style">Journalers!</li>
+                <li className="common-h1-style">Sketchers!</li>
               </ul>
             </h1>
           </div>
-          <p className="f-16 common-p-style">
+          <p className="signup-container-p">
             {mainContent["paragraph"]}
           </p>
           <div>
             <a onClick={openLoginModal}>
               <button className="hero-text-container-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
-                Join Today
+                Join for Free!
               </button>
             </a>
             <Link href={routeToHref(toTutorial())} passHref >
@@ -542,8 +535,8 @@ const popularArtist = [
 
 const mainContent = {
   heading: "Connect and Collaborate with",
-  paragraph: "Achieve Your Creativity Goals by Collaborating with Like-Minded Artists.",
-  actionText: "Join our Thriving Community Today!"
+  paragraph: "Unlock Your Creativity Potential by Collaborating with Like-Minded Artists 💡 🤝 🎉",
+  actionText: "Join the Growing Community of 100+ Artists Today!"
 }
 
 const testimonialContent = [
