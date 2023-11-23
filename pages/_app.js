@@ -13,12 +13,8 @@ import createStore from "../state/index";
 import Script from 'next/script'
 
 import { GA_TRACKING_ID } from '../lib/gtag'
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { config } from "@fortawesome/fontawesome-svg-core";
 
 export const HOTZAR_CLIENT_ID = process.env.HOTZAR_CLIENT_ID
-
-config.autoAddCss = false;
 
 const makeStore = (preloadedState = {}) => {
   return createStore(routes, preloadedState);

@@ -8,7 +8,6 @@ import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "types/states";
 import * as actions from "../../state/action";
 import { User } from "types/model";
-import { Country, State, City } from 'country-state-city';
 import { COUNTRIES } from "constants/constants";
 import { GetCountryByName, GetCountryCodeFromName } from "helpers/artistSettingPageHelper";
 // import SubmitImg from 'public/images/submit.png';
@@ -112,14 +111,14 @@ const NewUser = ({
     if (user?.country) {
       let country = GetCountryByName(user.country);
       setUserCountryCode(country["Iso2"]);
-      if (user?.state) {
-        let states = State.getStatesOfCountry(userCountryCode);
-        states.forEach((state) => {
-          if (state["name"] === user.state) {
-            setUserStateCode(state["isoCode"]);
-          }
-        });
-      }
+      // if (user?.state) {
+      //   let states = State.getStatesOfCountry(userCountryCode);
+      //   states.forEach((state) => {
+      //     if (state["name"] === user.state) {
+      //       setUserStateCode(state["isoCode"]);
+      //     }
+      //   });
+      // }
     }
   }, [user]);
 
@@ -197,6 +196,28 @@ const NewUser = ({
               </Select>
             </Form.Item>
             <Form.Item label="State">
+                <Input
+                    value={userDataCached ? userDataCached.state : ""}
+                    onChange={(e) => {
+                        setUserDataCached((prevState) => ({
+                            ...prevState,
+                            state: e.target.value,
+                        }));
+                    }}
+                />
+            </Form.Item>
+            <Form.Item label="City">
+                <Input
+                    value={userDataCached ? userDataCached.city : ""}
+                    onChange={(e) => {
+                        setUserDataCached((prevState) => ({
+                            ...prevState,
+                            city: e.target.value,
+                        }));
+                    }}
+                />
+            </Form.Item>
+            {/* <Form.Item label="State">
               <Select
                 showSearch
                 value={userDataCached ? userDataCached.state : ""}
@@ -236,7 +257,7 @@ const NewUser = ({
                 ))}
               </Select>
             </Form.Item>
-            }
+            } */}
             <Form.Item
               name="art"
               label="Art Styles"
