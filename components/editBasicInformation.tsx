@@ -9,7 +9,6 @@ import { SizeType } from "antd/lib/config-provider/SizeContext";
 import {
     updateArtistProfile,
 } from "state/action";
-import { Country, State, City } from 'country-state-city';
 import { COUNTRIES, GENDERS } from "constants/constants";
 import { User } from "types/model";
 import { GetCountryByName, GetCountryCodeFromName } from "helpers/artistSettingPageHelper";
@@ -52,25 +51,25 @@ const EditBasicInformation = ({
 
     const submitForm = () => {
         if (userDataCached.country.length === 0) {
-            message.error("Please submit the country you are based in.");
+            message.error("Please submit the country, state and city (optional) you are based in.");
             return;
         }
 
-        if (userCountryCode &&
-            userDataCached.country &&
-            userDataCached.state.length === 0 &&
-            State.getStatesOfCountry(userCountryCode).length !== 0) {
-            message.error("Please submit the state along with the country you are based in.");
-            return;
-        }
+        // if (userCountryCode &&
+        //     userDataCached.country &&
+        //     userDataCached.state.length === 0 &&
+        //     State.getStatesOfCountry(userCountryCode).length !== 0) {
+        //     message.error("Please submit the state along with the country you are based in.");
+        //     return;
+        // }
 
-        if (userCountryCode &&
-            userStateCode &&
-            userDataCached.city.length === 0 &&
-            City.getCitiesOfState(userCountryCode, userStateCode).length !== 0) {
-            message.error("Please submit the city along with the state and country you are based in.");
-            return;
-        }
+        // if (userCountryCode &&
+        //     userStateCode &&
+        //     userDataCached.city.length === 0 &&
+        //     City.getCitiesOfState(userCountryCode, userStateCode).length !== 0) {
+        //     message.error("Please submit the city along with the state and country you are based in.");
+        //     return;
+        // }
 
         updateArtistProfile(userDataCached);
 
@@ -84,17 +83,17 @@ const EditBasicInformation = ({
         if (user?.country) {
             let country = GetCountryByName(user.country);
             setUserCountryCode(country["Iso2"]);
-            if (user?.state) {
-                let states = State.getStatesOfCountry(userCountryCode);
-                states.forEach((state) => {
-                    if (state["name"] === user.state) {
-                        setUserStateCode(state["isoCode"]);
-                    }
-                });
-            }
-            if (user?.city) {
-                setShowCity(true);
-            }
+            // if (user?.state) {
+            //     let states = State.getStatesOfCountry(userCountryCode);
+            //     states.forEach((state) => {
+            //         if (state["name"] === user.state) {
+            //             setUserStateCode(state["isoCode"]);
+            //         }
+            //     });
+            // }
+            // if (user?.city) {
+            //     setShowCity(true);
+            // }
         }
     }, [user]);
 
@@ -205,8 +204,8 @@ const EditBasicInformation = ({
                                 state: "",
                                 city: "",
                             }));
-                            setUserCountryCode(GetCountryCodeFromName(e));
-                            setShowCity(false);
+                            // setUserCountryCode(GetCountryCodeFromName(e));
+                            // setShowCity(false);
                         }}
                     >
                         {COUNTRIES.map((country) => (
@@ -217,6 +216,29 @@ const EditBasicInformation = ({
                     </Select>
                 </Form.Item>
                 <Form.Item label="State">
+                    <Input
+                        value={userDataCached ? userDataCached.state : ""}
+                        onChange={(e) => {
+                            setUserDataCached((prevState) => ({
+                                ...prevState,
+                                state: e.target.value,
+                            }));
+                        }}
+                    />
+                </Form.Item>
+                <Form.Item label="City">
+                    <Input
+                        value={userDataCached ? userDataCached.city : ""}
+                        onChange={(e) => {
+                            setUserDataCached((prevState) => ({
+                                ...prevState,
+                                city: e.target.value,
+                            }));
+                        }}
+                    />
+                </Form.Item>
+
+                {/* <Form.Item label="State">
                     <Select
                         showSearch
                         value={userDataCached ? userDataCached.state : ""}
@@ -257,7 +279,7 @@ const EditBasicInformation = ({
                         ))}
                     </Select>
                 </Form.Item>
-                }
+                } */}
                 <Form.Item label="Bio">
                     <Input.TextArea
                         value={userDataCached ? userDataCached.bio : ""}
