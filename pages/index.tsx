@@ -352,42 +352,32 @@ const Home = ({
   }
 
   const getTestimonialContent = () => {
-    // return (
-    //     <div className="slider">
-    //       <input type="radio" name="slider" title="slide1" className="slider__nav" />
-    //       <input type="radio" name="slider" title="slide2" className="slider__nav" />
-    //       <input type="radio" name="slider" title="slide3" className="slider__nav" />
-    //       <div className="slider__inner">
-    //         {getTestimony()}
-    //       </div>
-    //     </div>
-    // );
-
     return (
-      <div id="myCarousel" className="carousel slide" data-ride="carousel" style={{paddingTop: "10%",}}>
-          <ol className="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
-          </ol> 
-          <div className="carousel-inner">
-              <div className="item carousel-item active">
-                  
-                  <p className="testimonial">Phasellus vitae suscipit justo. Mauris pharetra feugiat ante id lacinia. Etiam faucibus mauris id tempor egestas. Duis luctus turpis at accumsan tincidunt. Phasellus risus risus, volutpat vel tellus ac, tincidunt fringilla massa. Etiam hendrerit dolor eget rutrum.</p>
-                  <p className="overview"><b>Paula Wilsons</b>Seo Analyst </p>
-              </div>
-              <div className="item carousel-item">
-                  
-                  <p className="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Vestibulum idac nisl bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
-                  <p className="overview"><b>Paula Wilson</b>Media Analyst </p>
-              </div>
-              <div className="item carousel-item">
-                  
-                  <p className="testimonial">Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Utmtc tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor velit.</p>
-                  <p className="overview"><b>Antonio Moreno</b>Web Developer</p>
-                  <div className="star-rating"> </div>
-              </div>
+      <div id="myCarousel" className="carousel slide" data-ride="carousel">
+        <ol className="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div className="carousel-inner">
+          <div className="item carousel-item active">
+
+            <p className="testimonial">Phasellus vitae suscipit justo. Mauris pharetra feugiat ante id lacinia. Etiam faucibus mauris id tempor egestas. Duis luctus turpis at accumsan tincidunt. Phasellus risus risus, volutpat vel tellus ac, tincidunt fringilla massa. Etiam hendrerit dolor eget rutrum.</p>
+            <p className="overview"><b>Paula Wilsons</b>Seo Analyst </p>
+            <div className="star-rating"> </div>
           </div>
+          <div className="item carousel-item">
+
+            <p className="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Vestibulum idac nisl bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
+            <p className="overview"><b>Paula Wilson</b>Media Analyst </p>
+            <div className="star-rating"> </div>
+          </div>
+          <div className="item carousel-item">
+            <p className="testimonial">Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Utmtc tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor velit.</p>
+            <p className="overview"><b>Antonio Moreno</b>Web Developer</p>
+            <div className="star-rating"> </div>
+          </div>
+        </div>
       </div>
     );
   }
