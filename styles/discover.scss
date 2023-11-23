@@ -12,7 +12,7 @@
 
     .main-content-container {
       margin-bottom: 20px;
-    
+
       h1 {
         font-size: 54px;
         font-weight: 700;
@@ -170,6 +170,7 @@
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.4rem;
+
     &:hover {
       box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16),
         0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
@@ -182,6 +183,41 @@
     text {
       line-height: 20px;
     }
+  }
+}
+
+// Final Sign up container
+.signup-container {
+  padding-top: 10%;
+  padding-bottom: 5%;
+  text-align: center;
+
+  h1 {
+    width: 680px;
+    font-size: 64px;
+    line-height: 72px;
+  }
+
+  p {
+    width: 680px;
+    font-size: 20px;
+    line-height: 36px;
+  }
+
+  a {
+    font-size: 20px;
+  }
+
+  .signup-container-button {
+    height: 56px;
+    border: none;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0px 2px 20px 2px;
+    border-radius: 35px;
   }
 }
 
@@ -256,7 +292,7 @@
     }
   }
 
-  .popular-blog-section {  
+  .popular-blog-section {
     h2 {
       font-size: 54px;
     }
@@ -266,6 +302,31 @@
     }
   }
 
+  .signup-container {
+
+    h1 {
+      font-size: 54px;
+      font-weight: 550;
+      padding-left: 22%;
+      padding-right: 22%;
+    }
+
+    p {
+      font-size: 20px;
+      padding-left: 33%;
+      padding-right: 33%;
+    }
+
+    a {
+      font-size: 20px;
+    }
+
+    .signup-container-button {
+      height: 50px;
+      padding: 15px;
+      font-size: 14px;
+    }
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -330,13 +391,39 @@
     }
   }
 
-  .popular-blog-section {  
+  .popular-blog-section {
     h2 {
       font-size: 44px;
     }
 
     p {
       font-size: 18px;
+    }
+  }
+
+  .signup-container {
+
+    h1 {
+      font-size: 44px;
+      font-weight: 450;
+      padding-left: 12%;
+      padding-right: 12%;
+    }
+
+    p {
+      font-size: 18px;
+      padding-left: 20%;
+      padding-right: 20%;
+    }
+
+    a {
+      font-size: 18px;
+    }
+
+    .signup-container-button {
+      height: 45px;
+      padding: 12px;
+      font-size: 13px;
     }
   }
 }
@@ -405,7 +492,7 @@
     }
   }
 
-  .popular-blog-section {  
+  .popular-blog-section {
     h2 {
       font-size: 40px;
       line-height: 50px;
@@ -413,6 +500,33 @@
 
     p {
       font-size: 18px;
+    }
+  }
+
+  .signup-container {
+
+    h1 {
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 50px;
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+
+    p {
+      font-size: 18px;
+      padding-left: 15%;
+      padding-right: 15%;
+    }
+
+    a {
+      font-size: 18px;
+    }
+
+    .signup-container-button {
+      height: 35px;
+      padding: 7px;
+      font-size: 13px;
     }
   }
 
@@ -486,7 +600,7 @@
     }
   }
 
-  .popular-blog-section {  
+  .popular-blog-section {
     h2 {
       font-size: 40px;
       line-height: 50px;
@@ -496,36 +610,32 @@
       font-size: 18px;
     }
   }
-}
 
-// Final Sign up container
-.signup-container {
-  padding-top: 15%;
-  padding-bottom: 5%;
-  text-align: center;
+  .signup-container {
 
-  .signup-container-h1 {
-    width: 680px;
-    font-size: 64px;
-    line-height: 72px;
-  }
+    h1 {
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 50px;
+      padding-left: 10%;
+      padding-right: 10%;
+    }
 
-  .signup-container-p {
-    width: 680px;
-    font-size: 20px;
-    line-height: 36px;
-  }
+    p {
+      font-size: 18px;
+      padding-left: 15%;
+      padding-right: 15%;
+    }
 
-  .signup-container-button {
-    height: 56px;
-    border: none;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 0px 2px 20px 2px;
-    border-radius: 35px;
+    a {
+      font-size: 18px;
+    }
+
+    .signup-container-button {
+      height: 35px;
+      padding: 7px;
+      font-size: 13px;
+    }
   }
 }
 
@@ -576,90 +686,5 @@
 
   100% {
     margin-top: -450px;
-  }
-}
-
-@media only screen and (max-width: 1600px) and (min-width: 1201px) {}
-
-// Please write media query for all screen sizes below this line.
-@media only screen and (max-width: 1200px) and (min-width: 993px) {}
-
-@media only screen and (max-width: 992px) and (min-width: 768px) {
-
-
-
-  .inspire-btn {
-    width: initial;
-    margin-bottom: 25px;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-
-
-  .inspire-btn {
-    width: initial;
-    margin-bottom: 25px;
-  }
-
-  .contest-scratchpad-box {
-    margin-bottom: 15px;
-
-    &:first-child {
-      margin-left: 30px;
-      margin-right: 30px;
-    }
-
-    &:last-child {
-      margin: 0 30px;
-    }
-  }
-
-  .popular-blog-section {
-    padding: 30px 5px 30px 30px;
-  }
-
-  .inspire-box {
-    margin: 5% 7%;
-  }
-
-  .rewards-box {
-    margin: 5% 7%;
-  }
-
-  .faq-box {
-    margin: 5% 7%;
-  }
-
-  .main-content-container {
-    margin-bottom: 0px;
-  }
-}
-
-@media only screen and (max-width: 550px) {
-
-
-  .small-card {
-    flex-direction: column;
-  }
-
-  .small-card-text {
-    width: 100%;
-    text-align: center;
-    order: 2;
-  }
-}
-
-@media only screen and (max-width: 399px) {
-
-
-  .small-card {
-    flex-direction: column;
-  }
-
-  .small-card-text {
-    width: 100%;
-    text-align: center;
-    order: 2;
   }
 }

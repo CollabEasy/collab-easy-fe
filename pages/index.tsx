@@ -380,10 +380,10 @@ const Home = ({
       <div className="row">
         <div className="signup-container">
           <div className="row d-flex justify-content-center text-align-center">
-            <h1 className="signup-container-h1">
+            <h1 className="common-h1-style">
               Ready for your next collaboration opportunity?
             </h1>
-            <p className="signup-container-p">
+            <p className="common-p-style">
               Embark on a creative adventure by connecting and
               collaborating with fellow artists today!
             </p>
@@ -401,7 +401,7 @@ const Home = ({
                 </button>
               </Link>
             </div>
-            <p className="signup-container-p">Are you an artist? <a onClick={openLoginModal} style={{ textDecoration: "underline" }}>Join Wondor</a></p>
+            <p className="common-p-style">Are you an artist? <a onClick={openLoginModal} style={{ textDecoration: "underline" }}>Join Wondor</a></p>
           </div>
         </div>
       </div>
@@ -449,9 +449,9 @@ const Home = ({
         <div className="row mt-2 g-4">{getPopularBlogCard()}</div>
       </div>
 
-      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+      {/* <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         {getTestimonialContent()}
-      </div>
+      </div> */}
 
       {getSignUpCard()}
 
