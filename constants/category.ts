@@ -12,23 +12,6 @@ import musicImage from '../public/images/popularCategories/musicbg.svg';
 
 
 export const CATEGORY_METADATA = [
-    // {
-    //     "slug": "artists",
-    //     "name": "Artists",
-    //     "image": artistImage,
-    //     "background-color": "#EDC5CD",
-    //     "artist-title": "Artists",
-    //     "similar-categories": [],
-    //     "wiki-data": {
-    //         "url": "learn-about-collaboration-opportunities",
-    //         "meta-title": "Learn about collaboration opportunities with artists | Wondor",
-    //         "meta-content": "Learn about the enchanting world of this unique art style - its definition, techniques, and how it fuses creativity and self-expression in a visual diary.",
-    //     },
-    //     "listing-data": {
-    //         "meta-title": "Artists available for collaboration | Wondor",
-    //         "meta-content": "Find Artists available for collaboration. Connect with like-minded artists and share your stories, and find endless inspiration | Wondor ",
-    //     }
-    // },
     {
         "slug": "art-journaling",
         "name": "Art Journaling",
@@ -530,6 +513,45 @@ export const CATEGORY_METADATA = [
             "meta-content": "Explore Journaling: A journey of self-reflection, creativity, and personal growth. Start capturing your thoughts and memories in a journal today!",
             "paragraph": "Journaling is the act of expressing your deepest thoughts and feelings by putting words to your inner life and then putting these words on paper. Journaling is a mental, emotional and spiritual exercise that helps you build strong “emotional muscles” to deal with life’s difficulties and uncertainties.",
             "source": "https://www.thecoach.zone/journaling-what-is-it-and-how-to-do-it/",
+            "article": {
+                "how": [
+                    {
+                        "heading": "Theme-Based Collaborative Journaling Projects",
+                        "paragraph": "Engage in theme-based collaborative journaling projects where participants create journal spreads or entries that follow a common theme or concept. This shared exploration of a theme can spark new ideas, inspire different approaches, and foster a sense of connection among creative journalers.",
+                    },
+                    {
+                        "heading": "Collaborative Calligraphy Projects",
+                        "paragraph": "Collaborate on calligraphy projects where multiple calligraphers contribute their unique styles and skills to create a cohesive piece of artwork. This collaboration can showcase the diversity of calligraphy styles, push creative boundaries, and produce visually stunning results.",
+                    },
+                    {
+                        "heading": "Online Workshops and Tutorials",
+                        "paragraph": "Organize or participate in online workshops and tutorials where creative journalers share their expertise in bullet journaling, calligraphy, collage making, or other creative journaling techniques. These workshops can provide valuable learning opportunities, foster a sense of community, and promote the growth of creative journaling practices.",
+                    },
+                    {
+                        "heading": "Art Journal Swaps",
+                        "paragraph": "Creative journalers may participate in art journal swaps where they create a journal entry or page and exchange it with another artist. This not only provides a tangible piece of collaborative art but also introduces artists to different styles and techniques.",
+                    },
+                    {
+                        "heading": "Shared Sketchbooks",
+                        "paragraph": "Artists may pass around a shared sketchbook, with each participant contributing a page or spread. This collaborative approach allows for a visual conversation, as each artist responds to and builds upon the work of others.",
+                    },
+                ],
+                "why": [
+                    {
+                        "heading": "Increased Motivation and Accountability",
+                        "paragraph": "articipating in journaling challenges, joining online communities, and attending journaling events can provide a sense of structure, motivation, and accountability, helping journalers maintain consistency and achieve their journaling goals."
+                    },
+                    {
+                        "heading": "Exposure to Diverse Artistic Perspectives",
+                        "paragraph": "Collaborating with journalers from different backgrounds and styles can expose individuals to a variety of artistic perspectives, enriching their creative understanding and inspiring new approaches to their journaling practices."
+                    },
+                    {
+                        "heading": "A Sense of Community and Belonging",
+                        "paragraph": "Collaboration fosters a sense of belonging, encouragement, and shared passion among creative journalers, providing a supportive network for learning, growth, and creative exploration."
+                    }
+                ],
+                "conclusion": "By actively seeking out and engaging in collaborative opportunities, journalers can enrich their journaling practices, expand their writing communities, and discover new depths of self-expression and personal growth."
+            }
         },
         "listing-data": {
             "meta-title": "Top Journalers available for collaboration | Wondor",
@@ -585,6 +607,45 @@ export const CATEGORY_METADATA = [
             "meta-content": "Explore Painting: The art of expression through colors and brushstrokes. Unleash your creativity and create captivating masterpieces today!",
             "paragraph": "Painting is the act or process of using paint. The paint can create an artwork known as a painting, or it can be used more practically as a protective coating or form of decoration. Paintings are a form of visual art that captures the expression of ideas and emotions on a two-dimensional surface.",
             "source": "https://www.eden-gallery.com/news/what-is-painting",
+            "article": {
+                "how": [
+                    {
+                        "heading": "Joint Art Projects",
+                        "paragraph": "Two or more painters may come together to work on a single piece of art. They might contribute different elements, styles, or techniques to create a cohesive and harmonious composition.",
+                    },
+                    {
+                        "heading": "Murals and Public Art",
+                        "paragraph": "Collaboration in mural painting is quite common. Artists may collaborate to paint large-scale murals in public spaces, contributing their individual skills to the overall design. Public art projects often involve collaboration with communities, local authorities, or other artists.",
+                    },
+                    {
+                        "heading": "Artistic Exchanges",
+                        "paragraph": "Painters may engage in artistic exchanges, where they create works that respond to each other's pieces. This could involve a back-and-forth process where each artist contributes to the evolving artwork.",
+                    },
+                    {
+                        "heading": "Collaborative Exhibitions",
+                        "paragraph": "Painters may join forces for a joint exhibition where they showcase their individual works within a shared theme or concept. Collaborative exhibitions can create a dialogue between different artistic perspectives.",
+                    },
+                    {
+                        "heading": "Community Engagement Projects",
+                        "paragraph": "In the age of technology, painters may collaborate digitally, creating artwork together using graphic tablets, digital painting software, or other online platforms. This allows for collaboration regardless of physical location.",
+                    },
+                ],
+                "why": [
+                    {
+                        "heading": "Enhanced Artistic Skills",
+                        "paragraph": "Working with experienced painters can provide opportunities to learn new techniques, refine your painting style, and gain insights into the art world and its practices."
+                    },
+                    {
+                        "heading": "Access to New Ideas and Perspectives",
+                        "paragraph": " Collaborating with painters from diverse backgrounds and genres can provide valuable feedback and insights, helping you identify areas for improvement, refine your artistic approach, and expand your creative horizons."
+                    },
+                    {
+                        "heading": "Stronger Painting Community",
+                        "paragraph": "Collaboration fosters a sense of community among painters, providing support, encouragement, and a network of peers who share your passion for creating art."
+                    }
+                ],
+                "conclusion": "By actively seeking out and engaging in collaborative opportunities, painters can enrich their creative experiences, expand their professional networks, and achieve greater success in the ever-evolving world of art."
+            }
         },
         "listing-data": {
             "meta-title": "Top Painters available for collaboration | Wondor",
@@ -608,7 +669,46 @@ export const CATEGORY_METADATA = [
             "meta-title": "Lean about Photography and collaboration opportunities with phorographers | Wondor",
             "meta-content": "Discover Photography: The art of capturing moments and expressing stories through the lens. Unleash your creativity and master the art of visuals!",
             "paragraph": "Photography is the art of capturing light with a camera, usually via a digital sensor or film, to create an image. With the right camera equipment, you can even photograph wavelengths of light invisible to the human eye, including UV, infrared, and radio. There are many different types of photography, such as landscape, macro, wildlife, portrait, documentary, fashion, travel and event photography.",
-            "source": "https://photographylife.com/what-is-photography"
+            "source": "https://photographylife.com/what-is-photography",
+            "article": {
+                "how": [
+                    {
+                        "heading": "Cross-disciplinary Collaboration",
+                        "paragraph": "Photographers may collaborate with professionals from other creative disciplines, such as designers, writers, or musicians, to create multimedia projects that integrate photography with other forms of art.",
+                    },
+                    {
+                        "heading": "Participate in Collaborative Photography Projects",
+                        "paragraph": "Participate in online or in-person collaborative photography projects that involve multiple photographers working together on a common theme or concept. These projects can lead to creative growth, exposure, and a sense of camaraderie among photographers.",
+                    },
+                    {
+                        "heading": "Offer Exchange of Services",
+                        "paragraph": "Exchange photography services with fellow photographers. This can involve shooting for each other's portfolio projects, offering editing or retouching services, or providing assistance with lighting or equipment setup.",
+                    },
+                    {
+                        "heading": "Organize Workshops and Events",
+                        "paragraph": "Collaborate with fellow photographers to organize workshops, seminars, or networking events for aspiring and experienced photographers. These events can provide valuable learning opportunities, foster a sense of community, and generate new collaboration opportunities.",
+                    },
+                    {
+                        "heading": "Assisting Each Other",
+                        "paragraph": "Photographers often collaborate by assisting each other on individual projects. This could involve helping with lighting, setting up equipment, or managing logistics during a shoot.",
+                    },
+                ],
+                "why": [
+                    {
+                        "heading": "Expanded Creative Horizons",
+                        "paragraph": "Collaborating with photographers from different backgrounds and styles can push your creative boundaries and inspire you to explore new approaches to photography."
+                    },
+                    {
+                        "heading": "Enhanced Skill Development",
+                        "paragraph": "Working with experienced photographers can provide opportunities to learn new techniques, improve your editing skills, and gain insights into the business of photography."
+                    },
+                    {
+                        "heading": "Stronger Photography Community",
+                        "paragraph": "Collaboration fosters a sense of community among photographers, providing support, encouragement, and a network of peers."
+                    }
+                ],
+                "conclusion": "By actively seeking out and engaging in collaborative opportunities, photographers can enrich their creative experiences, expand their professional networks, and achieve greater success in the ever-evolving world of photography."
+            }
         },
         "listing-data": {
             "meta-title": "Top Photographers available for collaboration | Wondor",
@@ -840,7 +940,46 @@ export const CATEGORY_METADATA = [
             "meta-title": "Lean about Writing and collaboration opportunities with writers | Wondor",
             "meta-content": "Discover the essence of writing: its definition, importance, and influence on communication. Explore the art of expression through words. Connect with writers and Collaborate now!",
             "paragraph": "Writing is the act of expressing thoughts, ideas, and emotions through the use of written language. It is a fundamental form of communication that allows individuals to convey information, tell stories, express opinions, and explore the depths of human imagination. A skilled writer possesses the capacity to adapt their writing style to various audiences and purposes, whether it's persuasive, informative, or creative. They can organize thoughts coherently, develop engaging narratives, and employ persuasive techniques to captivate readers. Writing as a skill requires practice, attention to detail, and a willingness to continuously improve and refine one's written expression. ",
-            "source": ""
+            "source": "",
+            "article": {
+                "how": [
+                    {
+                        "heading": "Co-authoring Projects",
+                        "paragraph": "Engage in co-authoring projects with fellow writers to create works with multiple perspectives and styles. This can lead to richer and more diverse works, while also providing an opportunity to learn from each other's writing techniques and storytelling approaches.",
+                    },
+                    {
+                        "heading": "Editing and Feedback",
+                        "paragraph": "Writers often collaborate by providing feedback and editing each other's work. This can involve reviewing drafts, suggesting improvements, and helping with overall structure and coherence. Constructive feedback is crucial for refining and strengthening the writing.",
+                    },
+                    {
+                        "heading": "Brainstorming and Ideation",
+                        "paragraph": "Collaboration in the early stages of a project often involves brainstorming sessions. Writers come together to generate ideas, discuss themes, and outline the overall direction of the work. This collaborative process can spark creativity and help shape the narrative.",
+                    },
+                    {
+                        "heading": "Ghostwriting",
+                        "paragraph": "In ghostwriting collaborations, one writer (the ghostwriter) creates content on behalf of another person (the credited author). Ghostwriters work closely with the credited author to capture their voice, style, and ideas. This is common in various forms of writing, including books, articles, and speeches.",
+                    },
+                    {
+                        "heading": "Cross-Disciplinary Collaboration",
+                        "paragraph": "Writers may collaborate with professionals from other disciplines, such as graphic designers, illustrators, or photographers, to create multimedia content. This type of collaboration can enhance the overall impact of a project.",
+                    },
+                ],
+                "why": [
+                    {
+                        "heading": "Creative Inspiration and Growth",
+                        "paragraph": "Collaborating with other writers can spark new ideas, inspire fresh approaches to writing, and push your creative boundaries beyond your comfort zone."
+                    },
+                    {
+                        "heading": "Access to New Perspectives and Feedback",
+                        "paragraph": "Collaborating with writers from different backgrounds and genres can provide valuable feedback and insights, helping you identify areas for improvement and refine your writing style."
+                    },
+                    {
+                        "heading": "Stronger Writing Community",
+                        "paragraph": "Collaboration fosters a sense of community among writers, providing support, encouragement, and a network of peers who share your passion for storytelling."
+                    }
+                ],
+                "conclusion": "By actively seeking out and engaging in collaborative opportunities, writers can enrich their creative experiences, expand their professional networks, and achieve greater success in the world of literature."
+            }
         },
         "listing-data": {
             "meta-title": "Top Writers available for collaboration | Wondor",
