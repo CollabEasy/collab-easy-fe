@@ -4,7 +4,7 @@
   width: 100%;
 
   .text-content {
-    top: 4%;
+    top: 5%;
     width: 100%;
     word-wrap: break-word;
     text-align: center;
@@ -193,15 +193,17 @@
   text-align: center;
 
   h1 {
-    width: 680px;
     font-size: 64px;
     line-height: 72px;
+    padding-left: 30%;
+    padding-right: 30%;
   }
 
   p {
-    width: 680px;
     font-size: 20px;
     line-height: 36px;
+    padding-left: 35%;
+    padding-right: 35%;
   }
 
   a {
@@ -231,16 +233,17 @@
   /* Styles for large screens (small desktops) */
 
   .hero-text-container {
-    height: 550px;
+    height: 650px;
     width: 100%;
 
     .text-content {
+      top: 4%;
 
       h1 {
         font-size: 54px;
         font-weight: 550;
-        padding-left: 22%;
-        padding-right: 22%;
+        padding-left: 20%;
+        padding-right: 20%;
       }
 
       p {
@@ -279,8 +282,8 @@
     }
 
     .popular-catgeory-list-item {
-      height: 260px;
-      width: 25%;
+      height: 250px;
+      width: 20%;
 
       h5 {
         font-size: 20px;
@@ -337,6 +340,7 @@
     width: 100%;
 
     .text-content {
+      top: 4%;
 
       h1 {
         font-size: 44px;
@@ -378,7 +382,7 @@
     }
 
     .popular-catgeory-list-item {
-      height: 250px;
+      height: 235px;
       width: 25%;
 
       h5 {
@@ -432,11 +436,11 @@
 
   /* Styles for small screens (phones) */
   .hero-text-container {
-    height: 450px;
+    height: 520px;
     width: 100%;
 
     .text-content {
-      top: 3%;
+      top: 3.5%;
 
       h1 {
         font-size: 40px;
@@ -448,8 +452,8 @@
 
       p {
         font-size: 18px;
-        padding-left: 15%;
-        padding-right: 15%;
+        padding-left: 10%;
+        padding-right: 10%;
       }
 
       .hero-text-container-button {
@@ -479,8 +483,8 @@
     }
 
     .popular-catgeory-list-item {
-      height: 250px;
-      width: 40%;
+      height: 220px;
+      width: 30%;
 
       h5 {
         font-size: 15px;
@@ -536,7 +540,7 @@
 
   /* Styles for small screens (phones) */
   .hero-text-container {
-    height: 475px;
+    height: 520px;
     width: 100%;
 
     .text-content {
@@ -553,8 +557,8 @@
 
       p {
         font-size: 18px;
-        padding-left: 15%;
-        padding-right: 15%;
+        padding-left: 10%;
+        padding-right: 10%;
       }
 
       .hero-text-container-button {
@@ -587,7 +591,7 @@
     }
 
     .popular-catgeory-list-item {
-      height: 275px;
+      height: 220px;
       width: 50%;
 
       h5 {

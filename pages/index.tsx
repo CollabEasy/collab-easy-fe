@@ -99,9 +99,9 @@ const Home = ({
       <div className="hero-text-container">
         <div className="text-content">
           <div>
-            <text className="common-p-style">
+            <p className="common-p-style">
               {mainContent["actionText"]}
-            </text>
+            </p>
             <h1 className="common-h1-style">
               {mainContent["heading"]}
             </h1>
