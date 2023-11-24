@@ -152,6 +152,18 @@
   }
 
 
+  .popular-blog-container-button {
+    height: 56px;
+    border: none;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0px 2px 2px 2px;
+    border-radius: 35px;
+  }
+
   .truncate-line-clamp {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -303,6 +315,12 @@
     p {
       font-size: 20px;
     }
+
+    .popular-blog-container-button {
+      height: 50px;
+      padding: 15px;
+      font-size: 14px;
+    }
   }
 
   .signup-container {
@@ -402,6 +420,12 @@
 
     p {
       font-size: 18px;
+    }
+
+    .popular-blog-container-button {
+      height: 45px;
+      padding: 12px;
+      font-size: 13px;
     }
   }
 
@@ -504,6 +528,12 @@
 
     p {
       font-size: 18px;
+    }
+
+    .popular-blog-container-button {
+      height: 35px;
+      padding: 7px;
+      font-size: 13px;
     }
   }
 
@@ -612,6 +642,12 @@
 
     p {
       font-size: 18px;
+    }
+
+    .popular-blog-container-button {
+      height: 35px;
+      padding: 7px;
+      font-size: 13px;
     }
   }
 

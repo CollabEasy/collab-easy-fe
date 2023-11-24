@@ -31,18 +31,23 @@ import { AppState } from "types/states";
 import { openLoginModalAction, resetUserLoggedIn } from "state/action";
 import api from "api/client";
 import { GetCategoryArtistTitle } from "helpers/categoryHelper";
+import * as actions from "state/action";
+import CreateProposalModal from "@/components/modal/createProposalModal";
+import { ProposalData } from "types/model/proposal";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
   user: state.user.user,
   artistListData: state.home.artistListDetails,
   isLoggedIn: state.user.isLoggedIn,
+  showCreateOrEditProposalModal: state.proposal.showCreateOrUpdateProposalModal
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateLoggedInData: (loginDetails: any) =>
     dispatch(updateLoginData(loginDetails)),
   openLoginModalAction: () => dispatch(openLoginModalAction()),
+  setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(actions.setShowCreateOrUpdateProposalModal(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -59,7 +64,9 @@ const Home = ({
   loginModalDetails,
   user,
   artistListData,
+  showCreateOrEditProposalModal,
   openLoginModalAction,
+  setShowCreateOrUpdateProposalModal,
   popularArtist,
   mainContent,
   blogCard,
@@ -83,6 +90,18 @@ const Home = ({
   //     setShowRefferalCodeModal(false);
   //   }
   // }, [artistListData]);
+
+  const emptyProposalData: ProposalData = {
+    title: "",
+    description: "",
+    artistId: "",
+    status: "",
+    proposalId: "",
+    collabType: "",
+    categories: [],
+  };
+
+  const [proposalData, setProposalData] = useState(emptyProposalData);
 
   const openLoginModal = () => {
     openLoginModalAction();
@@ -235,7 +254,7 @@ const Home = ({
   const getPopularCategoryImage = (category) => {
     if (category === "dancing") {
       return dancingDesktopImage;
-    } 
+    }
     else if (category === "singing") {
       return singingDesktopImage;
     }
@@ -279,10 +298,10 @@ const Home = ({
                   >
                     <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
                       <div >
-                        <div 
+                        <div
                           className="d-flex justify-content-center align-items-center p-2 category-icon"
                           style={{
-                            borderRadius: "50%", 
+                            borderRadius: "50%",
                             backgroundColor: "white",
                             margin: "20px 70px",
                           }}
@@ -469,6 +488,13 @@ const Home = ({
                 Millions of artists are collaborating on Instagram, YouTube, TikTok,
                 and other platforms, propelling themselves to new heights of success.
               </p>
+              <a onClick={() => {
+                setShowCreateOrUpdateProposalModal(true);
+              }}>
+                <button className="popular-blog-container-button" style={{ backgroundColor: "black", color: "white" }}>
+                  Create Collab Proposal
+                </button>
+              </a>
             </div>
           </div>
         </div>
@@ -480,6 +506,17 @@ const Home = ({
       </div> */}
 
       {getSignUpCard()}
+
+      {showCreateOrEditProposalModal && (
+        <CreateProposalModal
+          onCancel={() => {
+            setShowCreateOrUpdateProposalModal(false);
+          }}
+          isViewMode={true}
+          isEditMode={false}
+          proposalDetails={proposalData}
+        />
+      )}
 
     </Layout>
   );
