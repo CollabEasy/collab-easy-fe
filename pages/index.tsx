@@ -150,7 +150,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="More than 35+ categories - photography, singing, journaling, music etc for collaboration."
-                  loading="lazy"
+                  priority
                 />
               </div>
               <div className="card-text">
@@ -167,7 +167,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="Collab proposals for singers, dancers, musicians. Checkout now"
-                  loading="lazy"
+                  priority
                 />
               </div>
               <div className="card-text">
@@ -268,6 +268,7 @@ const Home = ({
                             width={80}
                             alt={item.imgAltTag}
                             loading="eager"
+                            unoptimized
                           />
                         </div>
                         <div className="d-flex justify-content-center text-align-center p-2">
