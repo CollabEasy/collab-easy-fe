@@ -6,20 +6,20 @@ import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from "next/image";
 
-import collabOfferImage from "../public/images/collab-offer.svg";
-import proposalOfferImage from "../public/images/proposal-offer.svg";
-import themeOfferImage from "../public/images/theme-offer.svg";
-import rewardsOfferImage from "../public/images/rewards-offer.svg";
-import contestOfferImage from "../public/images/content-offer.svg";
+// import collabOfferImage from "../public/images/collab-offer.svg";
+// import proposalOfferImage from "../public/images/proposal-offer.svg";
+// import themeOfferImage from "../public/images/theme-offer.svg";
+// import rewardsOfferImage from "../public/images/rewards-offer.svg";
+// import contestOfferImage from "../public/images/content-offer.svg";
 
-import writingDesktopImage from "../public/images/categories/pencil.svg";
-import photographyDesktopImage from "../public/images/categories/camera.svg";
-import dancingDesktopImage from "../public/images/categories/dance.svg";
-import singingDesktopImage from "../public/images/categories/microphone.svg";
-import illustratorDesktopImage from "../public/images/categories/tablet.svg";
-import journalingDesktopImage from "../public/images/categories/journal.svg";
-import paintingDesktopImage from "../public/images/categories/painting.svg";
-import musicDesktopImage from "../public/images/categories/music.svg";
+// import writingDesktopImage from "../public/images/categories/pencil.svg";
+// import photographyDesktopImage from "../public/images/categories/camera.svg";
+// import dancingDesktopImage from "../public/images/categories/dance.svg";
+// import singingDesktopImage from "../public/images/categories/microphone.svg";
+// import illustratorDesktopImage from "../public/images/categories/tablet.svg";
+// import journalingDesktopImage from "../public/images/categories/journal.svg";
+// import paintingDesktopImage from "../public/images/categories/painting.svg";
+// import musicDesktopImage from "../public/images/categories/music.svg";
 
 import { routeToHref } from "config/routes";
 
