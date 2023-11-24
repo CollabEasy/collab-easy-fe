@@ -12,32 +12,25 @@ import themeOfferImage from "../public/images/theme-offer.svg";
 import rewardsOfferImage from "../public/images/rewards-offer.svg";
 import contestOfferImage from "../public/images/content-offer.svg";
 
-import writingDesktopImage from "../public/images/popularCategories/writing-desktop.svg";
-import photographyDesktopImage from "../public/images/popularCategories/photo-desktop.svg";
-import dancingDesktopImage from "../public/images/popularCategories/dance-desktop.svg";
-import singingDesktopImage from "../public/images/popularCategories/singing-desktop.svg";
-import illustratorDesktopImage from "../public/images/popularCategories/illustrator.svg";
-import journalingDesktopImage from "../public/images/popularCategories/journaling-desktop.svg";
-import paintingDesktopImage from "../public/images/popularCategories/painting-desktop.svg";
-import musicDesktopImage from "../public/images/popularCategories/musician-dekstop.svg";
+import writingDesktopImage from "../public/images/categories/pencil.svg";
+import photographyDesktopImage from "../public/images/categories/camera.svg";
+import dancingDesktopImage from "../public/images/categories/dance.svg";
+import singingDesktopImage from "../public/images/categories/microphone.svg";
+import illustratorDesktopImage from "../public/images/categories/tablet.svg";
+import journalingDesktopImage from "../public/images/categories/journal.svg";
+import paintingDesktopImage from "../public/images/categories/painting.svg";
+import musicDesktopImage from "../public/images/categories/music.svg";
 
 import { routeToHref } from "config/routes";
 
-import { Button, Card } from "antd";
 import { useRoutesContext } from "components/routeContext";
 import { updateLoginData } from "state/action";
 import React, { useEffect, useState } from "react";
 import { LoginModalDetails, User } from "types/model";
 import { AppState } from "types/states";
-import type { CollapseProps } from 'antd';
-import { Collapse } from 'antd';
 import { openLoginModalAction, resetUserLoggedIn } from "state/action";
-import RefferalCodeModal from "@/components/modal/RefferalCodeModal";
 import api from "api/client";
 import { GetCategoryArtistTitle } from "helpers/categoryHelper";
-
-const { Meta } = Card;
-const { Panel } = Collapse;
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -261,13 +254,20 @@ const Home = ({
                   >
                     <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
                       <div >
-                        <div className="d-flex justify-content-center align-items-center p-2">
+                        <div 
+                          className="d-flex justify-content-center align-items-center p-2 category-icon"
+                          style={{
+                            borderRadius: "50%", 
+                            backgroundColor: "white",
+                            margin: "10px 50px",
+                          }}
+                        >
                           <Image
-                            src={item.imgUrl}
-                            height={130}
-                            width={130}
+                            //src={item.imgUrl}
+                            src={photographyDesktopImage}
+                            height={100}
+                            width={100}
                             alt={item.imgAltTag}
-                            priority
                           />
                         </div>
                         <div className="d-flex justify-content-center text-align-center p-2">
@@ -464,7 +464,7 @@ const popularArtist = [
     id: 1,
     title: "Writing",
     slug: "writing",
-    imgUrl: illustratorDesktopImage,
+    imgUrl: writingDesktopImage,
     imgAltTag: "Creative writers collaborating on a creative writing project. Send collab request.",
     para: "Find writers available to collab now",
   },
@@ -472,7 +472,7 @@ const popularArtist = [
     id: 2,
     title: "Photography",
     slug: "photography",
-    imgUrl: illustratorDesktopImage,
+    imgUrl: photographyDesktopImage,
     imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
     para: "Find photographer available to collab now",
   },
@@ -480,7 +480,7 @@ const popularArtist = [
     id: 3,
     title: "Dancing",
     slug: "dancing",
-    imgUrl: illustratorDesktopImage,
+    imgUrl: dancingDesktopImage,
     imgAltTag: "Dancers collaborating on a creative dance project. Send collab request.",
     para: "Find Dancers available to collab now",
   },
@@ -496,7 +496,7 @@ const popularArtist = [
     id: 5,
     title: "Music",
     slug: "musician",
-    imgUrl: illustratorDesktopImage,
+    imgUrl: musicDesktopImage,
     imgAltTag: "Musicians collaborating on a creative music project. Send collab request.",
     para: "Find Musicians available to collab now",
   },
@@ -504,7 +504,7 @@ const popularArtist = [
     id: 6,
     title: "Journaling",
     slug: "journaling",
-    imgUrl: illustratorDesktopImage,
+    imgUrl: journalingDesktopImage,
     imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
     para: "Find Journalers available to collab now",
   },
@@ -512,7 +512,7 @@ const popularArtist = [
     id: 7,
     title: "Singing",
     slug: "singing",
-    imgUrl: illustratorDesktopImage,
+    imgUrl: singingDesktopImage,
     imgAltTag: "Singers collaborating on a creative singing project. Send collab request.",
     para: "Find Singers available to collab now",
 
@@ -521,7 +521,7 @@ const popularArtist = [
     id: 8,
     title: "Painting",
     slug: "painting",
-    imgUrl: illustratorDesktopImage,
+    imgUrl: paintingDesktopImage,
     imgAltTag: "Painters collaborating on a creative painting project. Send collab request.",
     para: "Find Painters available to collab now",
   },
