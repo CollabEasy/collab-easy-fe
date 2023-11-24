@@ -1,7 +1,6 @@
 @import "./common/globalStyles.scss";
 @import "discover.scss";
 @import "dynamic.artist.scss";
-@import "home.scss";
 @import "navbar.scss";
 @import "profileModal.scss";
 @import "searchBar.scss";
@@ -38,6 +37,7 @@
 @import "./pageBanner.scss";
 @import "./allBlogs.scss";
 @import "./blogPost.scss";
+@import "./genericSlider.scss";
 
 html, body {
   max-width: 100%;
