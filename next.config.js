@@ -1,18 +1,3 @@
-const path = require('path');
-const withSass = require('@zeit/next-sass');
-module.exports = withSass({
-  /* bydefault config  option Read For More Optioshere
-   https://github.com/vercel/next-plugins/tree/master/packages/next-sass
-   */
-  cssModules: true
-})
-module.exports = {
-  reactStrictMode: false,
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  }
-}
-
 module.exports = {
   reactStrictMode: true,
   images: {
@@ -21,90 +6,83 @@ module.exports = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     minimumCacheTTL: 3600,
   },
-}
-
-module.exports = {
+  env: {
+    AMPLIFY_GOOGLE_CLIENT_ID: process.env.AMPLIFY_GOOGLE_CLIENT_ID,
+    AMPLIFY_GA_TRACKING_ID: process.env.AMPLIFY_GA_TRACKING_ID,
+    HOTZAR_CLIENT_ID: process.env.HOTZAR_CLIENT_ID,
+  },
   async redirects() {
     return [
       {
         source: '/all-categories',
         destination: '/collab-categories',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/all-contest',
         destination: '/art-contests-for-artists',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/get-inspired',
         destination: '/content-creation-ideas-for-artists',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/privacy',
         destination: '/wondor/privacy',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/tutorial',
         destination: '/wondor/how-to-use-wondor',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/terms-and-policy',
         destination: '/wondor/terms-and-policy',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/about-us',
         destination: '/wondor/about-us',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/contact-us',
         destination: '/wondor/contact-us',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/category/wiki/:slug*',
         destination: '/',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/artist/profile/:slug*',
         destination: '/',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/discover-artist/:slug*',
         destination: '/',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/artist/settings/:slug*',
         destination: '/',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/artist/profile/:slug*',
         destination: '/',
-        permanent: true
+        permanent: true,
       },
       {
         source: '/404',
         destination: '/',
-        permanent: true
-      }
-    ]
+        permanent: true,
+      },
+    ];
   },
 };
-
-module.exports = {
-  reactStrictMode: true,
-  env: {
-    AMPLIFY_GOOGLE_CLIENT_ID: process.env.AMPLIFY_GOOGLE_CLIENT_ID,
-    AMPLIFY_GA_TRACKING_ID: process.env.AMPLIFY_GA_TRACKING_ID,
-    HOTZAR_CLIENT_ID: process.env.HOTZAR_CLIENT_ID,
-  }
-}

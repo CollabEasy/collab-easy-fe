@@ -165,7 +165,8 @@ const Home = ({
             <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
                 <Image
-                  src={collabOfferImage}
+                  unoptimized
+                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/m66U_jdH9k2kLtryfPldyw/Workshop.svg"}
                   height={140}
                   width={250}
                   alt="More than 35+ categories - photography, singing, journaling, music etc for collaboration."
@@ -182,7 +183,8 @@ const Home = ({
             <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FEF7EF" }}>
                 <Image
-                  src={proposalOfferImage}
+                  unoptimized
+                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/jpJE1BdwHkC31xMmhCxSmA/List_is_empty.svg"}
                   height={140}
                   width={250}
                   alt="Collab proposals for singers, dancers, musicians. Checkout now"
@@ -199,11 +201,12 @@ const Home = ({
             <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FFFEF1" }}>
                 <Image
-                  src={themeOfferImage}
+                  unoptimized
+                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/zIGF_3oJAk6uj11ByHJshA/Education.svg"}
                   height={140}
                   width={250}
                   alt="Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!"
-                  loading="lazy"
+                  priority
                 />
               </div>
               <div className="card-text">
@@ -216,11 +219,12 @@ const Home = ({
             <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#F7FEF3" }}>
                 <Image
-                  src={contestOfferImage}
+                  unoptimized
+                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/FFvCaeFyPEKpyzYgQf8Nzg/Running_competition.svg"}
                   height={140}
                   width={250}
                   alt="Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!"
-                  loading="lazy"
+                  priority
                 />
               </div>
               <div className="card-text">
@@ -231,9 +235,10 @@ const Home = ({
           </Link>
           <Link href={routeToHref(toRewardsInfoPage())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{ backgroundColor: "#F5F9FE" }}>
+              <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
                 <Image
-                  src={rewardsOfferImage}
+                  unoptimized
+                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/UcwVlZdYwkm7qoLnfsA1VA/Woman_with_coin_near_piggy_bank.svg"}
                   height={140}
                   width={250}
                   alt="Get bonus points for Your Loyalty and Participation in Wondor community"
@@ -253,27 +258,27 @@ const Home = ({
 
   const getPopularCategoryImage = (category) => {
     if (category === "dancing") {
-      return dancingDesktopImage;
+      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/eoRpjgHYYEqr0co87nwCDQ/disco_ball.svg";
     }
     else if (category === "singing") {
-      return singingDesktopImage;
+      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/M5PSbrMWSU63OF34y-Dfyg/microphone.svg";
     }
     else if (category === "photography") {
-      return photographyDesktopImage;
+      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/C58hR0F-tkm9ZpPfkFkPUw/camera.svg";
     }
     else if (category === "writing") {
-      return writingDesktopImage;
+      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/OEju2Qj12EC6OPDH0FfgAw/pencil.svg";
     }
     else if (category === "illustration") {
-      return illustratorDesktopImage;
+      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/LtNSPsj3SkKpUYCG7NfRQg/tablet_front_view.svg";
     }
     else if (category === "musician") {
-      return musicDesktopImage;
+      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/-sc9WCeBikKhhXnjAe5ePA/piano_side_view.svg";
     }
     else if (category === "journaling") {
-      return journalingDesktopImage;
+      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/tMlgnq4rsk-7qQLI6GtH4w/open_book.svg";
     }
-    return paintingDesktopImage;
+    return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/HdM_z7rZXE-ZNeWoyJgHIA/palette.svg";
   }
 
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
@@ -446,7 +451,7 @@ const Home = ({
                 </button>
               </Link>
             </div>
-            <p className="common-p-style">Are you an artist? <a onClick={openLoginModal} style={{ textDecoration: "underline" }}>Join Wondor</a></p>
+            <p className="common-p-style">Are you an artist? <a onClick={openLoginModal} style={{ textDecoration: "underline" }}>Join Wondor!</a></p>
           </div>
         </div>
       </div>
