@@ -137,17 +137,17 @@ const Home = ({
               </ul>
             </h1>
           </div>
-          <p className="signup-container-p">
+          <p className="common-p-style signup-container-p">
             {mainContent["paragraph"]}
           </p>
           <div>
             <a onClick={openLoginModal}>
-              <button className="hero-text-container-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
+              <button className="common-text-style hero-text-container-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
                 Join for Free!
               </button>
             </a>
             <Link href={routeToHref(toTutorial())} passHref >
-              <button className="hero-text-container-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
+              <button className="common-text-style hero-text-container-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
                 How it works?
               </button>
             </Link>

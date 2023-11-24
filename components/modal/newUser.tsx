@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "antd/dist/antd.css";
 import { RightCircleFilled } from "@ant-design/icons";
 import { Form, Switch, Modal, Button, Select, message, Input } from "antd";
 import Image from "next/image";
