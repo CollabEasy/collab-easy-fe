@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "antd/dist/antd.css";
 import { Form, Modal, Button, Select, Input } from "antd";
 import Image from "next/image";
 import landingPageImg from "public/images/profile.png";
