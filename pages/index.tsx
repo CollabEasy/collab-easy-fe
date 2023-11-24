@@ -263,10 +263,9 @@ const Home = ({
                           }}
                         >
                           <Image
-                            //src={item.imgUrl}
-                            src={photographyDesktopImage}
-                            height={100}
-                            width={100}
+                            src={item.imgUrl}
+                            height={80}
+                            width={80}
                             alt={item.imgAltTag}
                           />
                         </div>
@@ -555,7 +554,7 @@ const blogCard = [
   {
     "heading": "Unleashing the Power of Collaboration: 5 Reasons Why Artists Should Join Forces!",
     "paragraph": "Unlock creativity, amplify reach, share resources, foster community, and elevate art through the power of collaborative synergy.",
-    "url": "/top-5-reasons-for-why-artists-should-collaborate",
+    "url": "/blog/top-5-reasons-for-why-artists-should-collaborate",
   },
   {
     "heading": "The Art of Connection: How Collaboration Is Elevating Painters to New Heights!",
@@ -568,6 +567,11 @@ const blogCard = [
     "url": "/category/photography/wiki/learn-about-photography-and-collaboration-opportunities",
   },
   {
+    "heading": "5 Ways in which Wondor.art Help Artists Achieve their Cretaivity Goals!",
+    "paragraph": "Wondor.art: Nurturing artists, unlocking potential, and propelling creativity to new heights with tailored support and resources.",
+    "url": "/blog/top-5-reasons-for-why-artists-should-use-wondor",
+  },
+  {
     "heading": "Expanding Literary Horizons: The Art and Benefits of Writer Collaboration!",
     "paragraph": "Writers collaborate for enriched creativity, mutual growth, diverse perspectives, and the joy of shared storytelling",
     "url": "/category/writing/wiki/learn-about-writing-and-collaboration-opportunities",
@@ -576,11 +580,6 @@ const blogCard = [
     "heading": "Why Journalers should Collaborate for Enhanced Creativity and Success?",
     "paragraph": "Collaborative journaling sparks inspiration, cultivates diverse perspectives, and propels journalers to greater creative heights and personal success.",
     "url": "/category/journaling/wiki/learn-about-journaling-and-collaboration-opportunities",
-  },
-  {
-    "heading": "5 Ways in which Wondor.art Help Artists Achieve their Cretaivity Goals!",
-    "paragraph": "Wondor.art: Nurturing artists, unlocking potential, and propelling creativity to new heights with tailored support and resources.",
-    "url": "/top-5-reasons-for-why-artists-should-use-wondor",
   },
 ]
 
