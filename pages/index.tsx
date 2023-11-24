@@ -492,7 +492,7 @@ const Home = ({
                 setShowCreateOrUpdateProposalModal(true);
               }}>
                 <button className="popular-blog-container-button" style={{ backgroundColor: "black", color: "white" }}>
-                  Create Collab Proposal
+                  Add Collab Proposal
                 </button>
               </a>
             </div>
