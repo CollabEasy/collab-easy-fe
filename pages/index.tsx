@@ -150,7 +150,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="More than 35+ categories - photography, singing, journaling, music etc for collaboration."
-                  loading="eager"
+                  loading="lazy"
                 />
               </div>
               <div className="card-text">
@@ -167,7 +167,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="Collab proposals for singers, dancers, musicians. Checkout now"
-                  loading="eager"
+                  loading="lazy"
                 />
               </div>
               <div className="card-text">
@@ -184,7 +184,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!"
-                  loading="eager"
+                  loading="lazy"
                 />
               </div>
               <div className="card-text">
@@ -201,7 +201,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!"
-                  loading="eager"
+                  loading="lazy"
                 />
               </div>
               <div className="card-text">
@@ -218,7 +218,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="Get bonus points for Your Loyalty and Participation in Wondor community"
-                  loading="eager"
+                  loading="lazy"
                 />
               </div>
               <div className="card-text">
@@ -267,6 +267,7 @@ const Home = ({
                             height={80}
                             width={80}
                             alt={item.imgAltTag}
+                            loading="lazy"
                           />
                         </div>
                         <div className="d-flex justify-content-center text-align-center p-2">
