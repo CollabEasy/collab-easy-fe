@@ -232,6 +232,31 @@ const Home = ({
     );
   };
 
+  const getPopularCategoryImage = (category) => {
+    if (category === "dancing") {
+      return dancingDesktopImage;
+    } 
+    else if (category === "singing") {
+      return singingDesktopImage;
+    }
+    else if (category === "photography") {
+      return photographyDesktopImage;
+    }
+    else if (category === "writing") {
+      return writingDesktopImage;
+    }
+    else if (category === "illustration") {
+      return illustratorDesktopImage;
+    }
+    else if (category === "musician") {
+      return musicDesktopImage;
+    }
+    else if (category === "journaling") {
+      return journalingDesktopImage;
+    }
+    return paintingDesktopImage;
+  }
+
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
     return (
@@ -259,13 +284,13 @@ const Home = ({
                           style={{
                             borderRadius: "50%", 
                             backgroundColor: "white",
-                            margin: "10px 50px",
+                            margin: "20px 70px",
                           }}
                         >
                           <Image
-                            src={item.imgUrl}
-                            height={80}
-                            width={80}
+                            src={getPopularCategoryImage(item.slug)}
+                            height={50}
+                            width={50}
                             alt={item.imgAltTag}
                             loading="eager"
                             unoptimized
@@ -465,7 +490,6 @@ const popularArtist = [
     id: 1,
     title: "Writing",
     slug: "writing",
-    imgUrl: writingDesktopImage,
     imgAltTag: "Creative writers collaborating on a creative writing project. Send collab request.",
     para: "Find writers available to collab now",
   },
@@ -473,7 +497,6 @@ const popularArtist = [
     id: 2,
     title: "Photography",
     slug: "photography",
-    imgUrl: photographyDesktopImage,
     imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
     para: "Find photographer available to collab now",
   },
@@ -481,7 +504,6 @@ const popularArtist = [
     id: 3,
     title: "Dancing",
     slug: "dancing",
-    imgUrl: dancingDesktopImage,
     imgAltTag: "Dancers collaborating on a creative dance project. Send collab request.",
     para: "Find Dancers available to collab now",
   },
@@ -489,7 +511,6 @@ const popularArtist = [
     id: 4,
     title: "Illustration",
     slug: "illustration",
-    imgUrl: illustratorDesktopImage,
     imgAltTag: "Digital illustrators collaborating on a creative digital art project. Send collab request.",
     para: "Find Illustrators available to collab now",
   },
@@ -497,7 +518,6 @@ const popularArtist = [
     id: 5,
     title: "Music",
     slug: "musician",
-    imgUrl: musicDesktopImage,
     imgAltTag: "Musicians collaborating on a creative music project. Send collab request.",
     para: "Find Musicians available to collab now",
   },
@@ -505,7 +525,6 @@ const popularArtist = [
     id: 6,
     title: "Journaling",
     slug: "journaling",
-    imgUrl: journalingDesktopImage,
     imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
     para: "Find Journalers available to collab now",
   },
@@ -513,7 +532,6 @@ const popularArtist = [
     id: 7,
     title: "Singing",
     slug: "singing",
-    imgUrl: singingDesktopImage,
     imgAltTag: "Singers collaborating on a creative singing project. Send collab request.",
     para: "Find Singers available to collab now",
 
@@ -522,7 +540,6 @@ const popularArtist = [
     id: 8,
     title: "Painting",
     slug: "painting",
-    imgUrl: paintingDesktopImage,
     imgAltTag: "Painters collaborating on a creative painting project. Send collab request.",
     para: "Find Painters available to collab now",
   },
