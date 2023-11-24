@@ -105,9 +105,9 @@ const ContestArtworkSubmission = ({
       }`}
     >
       {showUploadingLoader ? (
-        <LoadingOutlined style={{ marginTop: "26px" }} />
+        <LoadingOutlined style={{ marginTop: "26px" }} rev={undefined} />
       ) : (
-        <CameraOutlined style={{ marginTop: "26px" }} />
+        <CameraOutlined style={{ marginTop: "26px" }} rev={undefined} />
       )}
       <div style={{ marginTop: "8px" }}>
         {showUploadingLoader ? "Updating" : "Update"}

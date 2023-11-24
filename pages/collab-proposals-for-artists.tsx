@@ -1,4 +1,6 @@
 import { Tabs, Input, Button } from "antd";
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { FloatButton } from 'antd';
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -18,7 +20,6 @@ import detailsImage from "../public/images/proposal.svg";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
-import moment from "moment";
 import { GetProposalTags } from "helpers/proposalHelper";
 
 const { TextArea } = Input;
@@ -198,6 +199,7 @@ const ProposalsPage = ({
                             {getAllProposals(allProposals)}
                         </div>
                     </div>
+                    <FloatButton onClick={() => console.log('click')} />;
                 </>
             )}
             {showCreateOrEditProposalModal && (
