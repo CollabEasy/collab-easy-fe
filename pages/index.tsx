@@ -267,7 +267,7 @@ const Home = ({
                             height={80}
                             width={80}
                             alt={item.imgAltTag}
-                            loading="lazy"
+                            loading="eager"
                           />
                         </div>
                         <div className="d-flex justify-content-center text-align-center p-2">
