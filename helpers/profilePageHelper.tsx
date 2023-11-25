@@ -10,14 +10,9 @@ export function GetUserSkillsTags(user: User, all: boolean) {
         return skills;
     }
     user.skills.forEach((skill: string, index: number) => {
-        if (!all && index > 2) {
-            return skills;
-        }
-        if (index > 0) {
-            skills.push(
-                <Tag color={CATEGORY_COLORS[index]}>{skill}</Tag>
-            )
-        }
+        skills.push(
+            <Tag color={CATEGORY_COLORS[index]}>{skill}</Tag>
+        )
     });
     return skills;
 };
