@@ -189,9 +189,6 @@ const Profile = ({
     fetchArtistSocialProspectus(user.slug);
     fetchProposalByArtistSlug(user.slug as string);
 
-    if (!isLoggedIn) {
-      return;
-    }
     if (isSelf) {
       getCollabRequestsAction({});
     } else {
