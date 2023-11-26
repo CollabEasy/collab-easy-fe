@@ -170,7 +170,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="More than 35+ categories - photography, singing, journaling, music etc for collaboration."
-                  priority
+                  priority={true}
                 />
               </div>
               <div className="card-text">
@@ -188,7 +188,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="Collab proposals for singers, dancers, musicians. Checkout now"
-                  priority
+                  priority={true}
                 />
               </div>
               <div className="card-text">
@@ -206,7 +206,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!"
-                  priority
+                  priority={true}
                 />
               </div>
               <div className="card-text">
@@ -224,7 +224,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!"
-                  priority
+                  priority={true}
                 />
               </div>
               <div className="card-text">
@@ -242,7 +242,7 @@ const Home = ({
                   height={140}
                   width={250}
                   alt="Get bonus points for Your Loyalty and Participation in Wondor community"
-                  loading="lazy"
+                  priority={true}
                 />
               </div>
               <div className="card-text">
