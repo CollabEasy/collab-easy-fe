@@ -228,7 +228,7 @@ const CollabDetailCard = ({
                 : collabStatusComponentForReceiver()}
             </div>
             <>
-              {!isCompletingRequest && ShowChatButton(window.location.href, collabDetails.id, collabDetails.status) &&
+              {/* {!isCompletingRequest && ShowChatButton(window.location.href, collabDetails.id, collabDetails.status) &&
                 <Button
                   block
                   type="primary"
@@ -240,7 +240,7 @@ const CollabDetailCard = ({
                 >
                   {ChatButtonText(collabDetails.status)}
                 </Button>
-              }
+              } */}
               {collabDetails.status === "ACTIVE" &&
                 <Button
                   block
