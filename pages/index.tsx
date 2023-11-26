@@ -312,8 +312,8 @@ const Home = ({
                             height={50}
                             width={50}
                             alt={item.imgAltTag}
-                            loading="eager"
                             unoptimized
+                            priority
                             className="category-icon"
                           />
                         </div>
