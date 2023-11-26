@@ -455,7 +455,7 @@
   }
 }
 
-@media only screen and (min-width: 500px) and (max-width: 767px) {
+@media only screen and (min-width: 601px) and (max-width: 767px) {
 
   /* Styles for small screens (phones) */
   .hero-text-container {
@@ -565,11 +565,124 @@
 
 }
 
-@media only screen and (max-width: 499px) {
+@media only screen and (min-width: 400px) and (max-width: 600px) {
 
   /* Styles for small screens (phones) */
   .hero-text-container {
     height: 520px;
+    width: 100%;
+
+    .text-content {
+
+      top: 3%;
+
+      h1 {
+        font-size: 40px;
+        font-weight: 400;
+        line-height: 50px;
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+
+      p {
+        font-size: 18px;
+        padding-left: 10%;
+        padding-right: 10%;
+      }
+
+      .hero-text-container-button {
+        height: 35px;
+        padding: 7px;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .wondor-offerings-container-card {
+    width: calc(50% - 20px);
+
+    .card-text {
+
+      h5 {
+        font-size: 15px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .popular-category-container {
+
+    h2 {
+      font-size: 15px;
+    }
+
+    .popular-catgeory-list-item {
+      height: 220px;
+      width: 50%;
+
+      h5 {
+        font-size: 15px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .popular-blog-section {
+    h2 {
+      font-size: 40px;
+      line-height: 50px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    .popular-blog-container-button {
+      height: 35px;
+      padding: 7px;
+      font-size: 13px;
+    }
+  }
+
+  .signup-container {
+
+    h1 {
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 50px;
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+
+    p {
+      font-size: 18px;
+      padding-left: 15%;
+      padding-right: 15%;
+    }
+
+    a {
+      font-size: 18px;
+    }
+
+    .signup-container-button {
+      height: 35px;
+      padding: 7px;
+      font-size: 13px;
+    }
+  }
+}
+
+@media only screen and (max-width: 399px) {
+
+  /* Styles for small screens (phones) */
+  .hero-text-container {
+    height: 590px;
     width: 100%;
 
     .text-content {
