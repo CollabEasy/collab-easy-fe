@@ -67,9 +67,13 @@ const Home = ({
   showCreateOrEditProposalModal,
   openLoginModalAction,
   setShowCreateOrUpdateProposalModal,
-  popularArtist,
+
+  // Below is Content
   mainContent,
+  popularCollabCategories,
+  popularCollabProposals,
   blogCard,
+
 }) => {
   // const [showProfileModal, setShowProfileModal] = useState(false);
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
@@ -108,6 +112,12 @@ const Home = ({
   };
 
   const GetBlogUrl = (url) => {
+    return (typeof window !== "undefined" && window.location.origin
+      ? window.location.origin + url
+      : "");
+  }
+
+  const GetProposalUrl = (url) => {
     return (typeof window !== "undefined" && window.location.origin
       ? window.location.origin + url
       : "");
@@ -296,7 +306,7 @@ const Home = ({
           <div className="col-12">
             <div className="popular-catgeory-list">
               <>
-                {popularArtist.map((item) => (
+                {popularCollabCategories.map((item) => (
                   <div
                     className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-catgeory-list-item cursor-pointer"
                     key={item.id}
@@ -305,7 +315,7 @@ const Home = ({
                       <div >
                         <div
                           className="d-flex justify-content-center align-items-center p-2 category-icon"
-                          
+
                         >
                           <Image
                             src={getPopularCategoryImage(item.slug)}
@@ -330,6 +340,55 @@ const Home = ({
                           >
                             {item.para}
                           </p>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const getPopularCollabProposals = () => {
+    console.log(popularCollabProposals)
+    return (
+      <div className="popular-proposal-container">
+        <div className="container fluid">
+          <div className="row text-left">
+            <div className="col-12">
+              <h2 className="common-h2-style">Popular Collaboration Proposals</h2>
+            </div>
+          </div>
+        </div>
+        <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
+          <div className="col-12">
+            <div className="popular-proposal-list">
+              <>
+                {popularCollabProposals.map((item) => (
+                  <div
+                    className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
+                    key={item.id}
+                  >
+                    <Link href={GetProposalUrl(item.url)} passHref>
+                      <div className="home-card">
+                        <div className="d-flex justify-content-between align-items-center p-2">
+                          <div className="flex-column lh-1">
+                            <h6
+                              className="common-h6-style font-bold"
+                              style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                            >
+                              {item.title}
+                            </h6>
+                            <text className="common-p-style truncate-line-clamp"
+                              style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                            >
+                              {item.name}
+                            </text>
+                          </div>
                         </div>
                       </div>
                     </Link>
@@ -479,6 +538,10 @@ const Home = ({
         {getPopularCollabCategories()}
       </div>
 
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        {getPopularCollabProposals()}
+      </div>
+
       <div className="row popular-blog-section">
         <div className="row align-items-end">
           <div className="col-md-8">
@@ -524,7 +587,7 @@ const Home = ({
   );
 };
 
-const popularArtist = [
+const popularCollabCategories = [
   {
     id: 1,
     title: "Writing",
@@ -641,10 +704,31 @@ const blogCard = [
   },
 ]
 
+const popularCollabProposals = [
+  {
+    "title": "A Journal of Gratitude for the Little Gestures That Make a Big Difference.",
+    "artist": "Rahul Gupta",
+    "slug": "rahul-gupta-1",
+    "url": "collab-proposal/a607d1/a-journal-of-gratitude-for-the-little-gestures-that-make-a-big-difference",
+  },
+  {
+    "title": "Inner child exploration.",
+    "artist": "Valeria Vecchi",
+    "slug": "valeria-vecchi-1",
+    "url": "collab-proposal/35b72a/inner-child-exploration-",
+  },
+  {
+    "title": "Cozy fall aesthetic.",
+    "artist": "Valeria Vecchi",
+    "slug": "valeria-vecchi-1",
+    "url": "collab-proposal/2c802a/cozy-fall-aesthetic",
+  },
+]
+
 export async function getStaticProps({ params }) {
 
   // Pass post data to the page via props
-  return { props: { popularArtist, mainContent, blogCard, testimonialContent } }
+  return { props: { popularCollabCategories, mainContent, popularCollabProposals, blogCard, testimonialContent } }
 }
 
 export default connector(Home);

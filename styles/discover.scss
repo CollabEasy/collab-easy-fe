@@ -139,6 +139,49 @@
   }
 }
 
+// popular categories container
+.popular-proposal-container {
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .popular-proposal-list {
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  .popular-proposal-list-item {
+    position: relative;
+    display: inline-block;
+    margin: 8px 8px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
+    border-top-right-radius: 4px;
+    width: 50% auto;
+    height: 100px;
+    vertical-align: bottom;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #EBF5F9;
+    word-wrap: break-word;
+
+    &:hover {
+      box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
+    }
+
+    .artist-icon {
+      border-radius: 50%;
+      background-color: white;
+      margin: 20px 70px;
+    }
+  }
+}
+
 // popular blogs container
 .popular-blog-section {
   margin-top: 30px;
