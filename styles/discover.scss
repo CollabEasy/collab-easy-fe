@@ -134,7 +134,7 @@
     .category-icon {
       border-radius: 50%;
       background-color: white;
-      margin: 20px 50px;
+      margin: 20px 70px;
     }
   }
 }
@@ -302,6 +302,12 @@
       height: 250px;
       width: 20%;
 
+      .category-icon {
+        border-radius: 50%;
+        background-color: white;
+        margin: 20px 70px;
+      }
+
       h5 {
         font-size: 20px;
       }
@@ -405,8 +411,14 @@
     }
 
     .popular-catgeory-list-item {
-      height: 235px;
-      width: 25%;
+      height: 250px;
+      width: 20%;
+
+      .category-icon {
+        border-radius: 50%;
+        background-color: white;
+        margin: 20px 50px;
+      }
 
       h5 {
         font-size: 20px;
@@ -513,7 +525,13 @@
 
     .popular-catgeory-list-item {
       height: 220px;
-      width: 30%;
+      width: 25%;
+
+      .category-icon {
+        border-radius: 50%;
+        background-color: white;
+        margin: 20px 50px;
+      }
 
       h5 {
         font-size: 15px;
@@ -627,7 +645,13 @@
 
     .popular-catgeory-list-item {
       height: 220px;
-      width: 50%;
+      width: 30%;
+
+      .category-icon {
+        border-radius: 50%;
+        background-color: white;
+        margin: 20px 50px;
+      }
 
       h5 {
         font-size: 15px;
