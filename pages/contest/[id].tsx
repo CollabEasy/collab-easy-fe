@@ -402,16 +402,6 @@ const ContestPage = ({
                         )}
                         {status === "Past" && <Tag color="grey">{status}</Tag>}
                       </div>
-                      <b className="common-text-style">
-                        Unleash your inner artist on Wonder - the platform for
-                        collaborative culture among artists. Connect and express
-                        yourself with fellow art enthusiasts, and participate in
-                        our monthly contests for inspiration to create something
-                        new and exciting. Join us and discover the power of art
-                        to bring people together.
-                      </b>
-                      <br></br>
-                      <br></br>
                       <h2>Contest Details</h2>
                       <p>
                         <b>Theme:</b> {contest.contest[0]?.data.title}
