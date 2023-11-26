@@ -305,11 +305,7 @@ const Home = ({
                       <div >
                         <div
                           className="d-flex justify-content-center align-items-center p-2 category-icon"
-                          style={{
-                            borderRadius: "50%",
-                            backgroundColor: "white",
-                            margin: "20px 70px",
-                          }}
+                          
                         >
                           <Image
                             src={getPopularCategoryImage(item.slug)}
@@ -318,6 +314,7 @@ const Home = ({
                             alt={item.imgAltTag}
                             loading="eager"
                             unoptimized
+                            className="category-icon"
                           />
                         </div>
                         <div className="d-flex justify-content-center text-align-center p-2">

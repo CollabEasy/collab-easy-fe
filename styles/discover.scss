@@ -130,6 +130,12 @@
     &:hover {
       box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
     }
+
+    .category-icon {
+      border-radius: 50%;
+      background-color: white;
+      margin: 20px 50px;
+    }
   }
 }
 
@@ -733,8 +739,14 @@
     }
 
     .popular-catgeory-list-item {
-      height: 220px;
+      height: 210px;
       width: 50%;
+
+      .category-icon {
+        border-radius: 50%;
+        background-color: white;
+        margin: 20px 50px;
+      }
 
       h5 {
         font-size: 15px;
