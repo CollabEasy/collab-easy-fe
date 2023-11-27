@@ -353,14 +353,22 @@ const Home = ({
     );
   }
 
+  const getPopularProposalCategory = (category) => {
+    var skills = "";
+    category.forEach((skill: string) => {
+      skills += skill + ", ";
+    });
+    console.log(skills);
+    return skills;
+};
+
   const getPopularCollabProposals = () => {
-    console.log(popularCollabProposals)
     return (
-      <div className="popular-proposal-container">
+      <div className="popular-proposal-container" style={{ paddingTop: "2%", paddingBottom: "2%" }}>
         <div className="container fluid">
           <div className="row text-left">
             <div className="col-12">
-              <h2 className="common-h2-style">Popular Collaboration Proposals</h2>
+              <h2 className="common-h2-style">Popular Collaboration Categories</h2>
             </div>
           </div>
         </div>
@@ -368,27 +376,45 @@ const Home = ({
           <div className="col-12">
             <div className="popular-proposal-list">
               <>
-                {popularCollabProposals.map((item) => (
+                {popularCollabProposals.map((proposal) => (
                   <div
-                    className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
-                    key={item.id}
+                    className="col-sm-12 col-md-12 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
+                    key={proposal.id}
                   >
-                    <Link href={GetProposalUrl(item.url)} passHref>
-                      <div className="home-card">
-                        <div className="d-flex justify-content-between align-items-center p-2">
-                          <div className="flex-column lh-1">
-                            <h6
-                              className="common-h6-style font-bold"
-                              style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                            >
-                              {item.title}
-                            </h6>
-                            <text className="common-p-style truncate-line-clamp"
-                              style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                            >
-                              {item.name}
-                            </text>
-                          </div>
+                    <Link href={GetProposalUrl(proposal.url)} passHref>
+                      <div >
+                        {/* <div
+                          className="d-flex justify-content-center align-items-center p-2 proposal-icon"
+
+                        >
+                          <Image
+                            src={getPopularCategoryImage("dancing")}
+                            height={50}
+                            width={50}
+                            unoptimized
+                            priority
+                            className="proposal-icon"
+                          />
+                        </div> */}
+                        <div className="d-flex justify-content-left text-align-left p-2" style={{ textAlign: "left", whiteSpace: "pre-line" }}>
+                          <h6
+                            className="common-h6-style"
+                          >
+                            {proposal.title}
+                            
+                          </h6>
+                        </div>
+                        <div className="d-flex justify-content-left p-2">
+                          <p
+                            className="common-p-style"
+                          >
+                            {getPopularProposalCategory(proposal.category)} 
+                          </p>
+                        </div>
+                        <div className="d-flex justify-content-left p-2">
+                          <p>
+                            {proposal.artist}
+                          </p>
                         </div>
                       </div>
                     </Link>
@@ -706,21 +732,31 @@ const blogCard = [
 
 const popularCollabProposals = [
   {
+    "title": "Cover & promo art for a hard SF trilogy set on Mars.",
+    "artist": "Nicolas Nelson",
+    "slug": "nicolas-nelson-1",
+    "category": ["Illustration", "Digital Art", "Sketching"],
+    "url": "collab-proposal/5aa94f/cover-&-promo-art-for-a-\"hard\"-sf-trilogy-set-on-mars",
+  },
+  {
     "title": "A Journal of Gratitude for the Little Gestures That Make a Big Difference.",
     "artist": "Rahul Gupta",
     "slug": "rahul-gupta-1",
+    "category": ["Spoken Words", "Art Journaling", "Sketching"],
     "url": "collab-proposal/a607d1/a-journal-of-gratitude-for-the-little-gestures-that-make-a-big-difference",
   },
   {
     "title": "Inner child exploration.",
     "artist": "Valeria Vecchi",
     "slug": "valeria-vecchi-1",
+    "category": ["Creative Journaling", "Scrapbooking", "Art Journaling"],
     "url": "collab-proposal/35b72a/inner-child-exploration-",
   },
   {
     "title": "Cozy fall aesthetic.",
     "artist": "Valeria Vecchi",
     "slug": "valeria-vecchi-1",
+    "category": ["Creative Journaling", "Art Journaling", "Collage Making"],
     "url": "collab-proposal/2c802a/cozy-fall-aesthetic",
   },
 ]

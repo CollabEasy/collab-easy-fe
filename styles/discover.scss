@@ -125,7 +125,7 @@
     background-position: top left;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #EBF5F9;
+    background-color: #F3F8FE;
 
     &:hover {
       box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
@@ -158,41 +158,21 @@
     position: relative;
     display: inline-block;
     margin: 8px 8px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
+    border-top-right-radius: 4px;
+    height: 130px;
     vertical-align: bottom;
-    // background-position: top left;
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    background-color: black;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #FCFDE6;
 
-    .home-card {
-      height: 100%;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      background-color: #fff;
-      background-clip: border-box;
-      border: 1px solid rgba(0, 0, 0, 0.125);
-      border-radius: 0.4rem;
-
-      overflow-wrap: break-word;
-  
-      &:hover {
-        box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
-      }
-  
-      h6 {
-        line-height: 25px;
-        word-wrap: break-word;
-      }
-  
-      text {
-        line-height: 20px;
-        word-wrap: break-word;
-      }
+    &:hover {
+      box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
     }
 
-    .artist-icon {
+    .proposal-icon {
       border-radius: 50%;
       background-color: white;
       margin: 20px 70px;
