@@ -369,7 +369,7 @@ const Home = ({
         <div className="container fluid">
           <div className="row text-left">
             <div className="col-12">
-              <h2 className="common-h2-style">Popular Collaboration Categories</h2>
+              <h2 className="common-h2-style">Popular Collaboration Proposals</h2>
             </div>
           </div>
         </div>
