@@ -400,7 +400,7 @@ const Home = ({
                 <div
                   className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
                 >
-                  <Link href={toAllProposalsPage()} passHref>
+                  <Link href={routeToHref(toAllProposalsPage())} passHref >
                     <div style={{ textAlign: "center", whiteSpace: "pre-line" }}>
                       <p className="common-p-style mb-2">See more interesting collaboration proposals from other artists on Wondor</p>
                       <div className="align-text-center">
