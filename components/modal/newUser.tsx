@@ -84,7 +84,7 @@ const NewUser = ({
       // setVisibility(false);
       handleNext();
     }
-  }, [user]);
+  }, [user.new_user]);
 
   const onFinish = (values: any) => {
     alert(JSON.stringify(values));
@@ -138,7 +138,6 @@ const NewUser = ({
 
     postArtistArt(dataToSend);
     updateArtistPreference("upForCollaboration", collaborationCheck);
-    setNewUser(false);
     updateArtistProfile(userDataCached);
     handleNext();
   };

@@ -93,6 +93,10 @@ const userReducer = (state = initialState, action): UserState => {
           ...state.preferences,
           [prefKey]: prefVal,
         },
+        user: {
+          ...state.user,
+          new_user: false,
+        }
       };
     case actionType.FETCH_ARTIST_PREFERENCES_SUCCESS:
       return {
@@ -114,7 +118,8 @@ const userReducer = (state = initialState, action): UserState => {
         isUpdatingProfile: false,
         user: {
           ...state.user,
-          skills: action.payload.data
+          skills: action.payload.data,
+          new_user: false,
         }
       };
     case actionType.SET_NEW_USER_VALUE:
@@ -122,7 +127,7 @@ const userReducer = (state = initialState, action): UserState => {
         ...state,
         user: {
           ...state.user,
-          new_user: action.payload.data,
+          new_user: action.payload.newUser,
         },
       };
     case actionType.SHOW_PROFILE_PICTURE_UPDATE_MODAL:
