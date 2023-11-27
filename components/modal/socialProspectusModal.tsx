@@ -58,9 +58,9 @@ const ArtistSocialProspectusModal = ({
     const saveSocialProspectusEntry = () => {
         let obj = {
             "handle": prospectusData.handle,
-            "description": prospectusData.description,
+            "description": "this is my social",
             "social_platform_id": getSocialPlatformId(prospectusData.socialPlaformName),
-            "up_for_collab": prospectusData.upForCollab == "true" ? "true" : "false",
+            "up_for_collab": "true",
         }
         updateArtistSocialProspectus(obj);
     };
@@ -125,7 +125,7 @@ const ArtistSocialProspectusModal = ({
                             }}
                         />
                     </Form.Item>
-                    <Form.Item label="Description">
+                    {/* <Form.Item label="Description">
                         <Input.TextArea
                             value={prospectusData.description}
                             maxLength={500}
@@ -137,8 +137,8 @@ const ArtistSocialProspectusModal = ({
                                 }));
                             }}
                         />
-                    </Form.Item>
-                    <Form.Item
+                    </Form.Item> */}
+                    {/* <Form.Item
                         label="Collaborate with others"
                         valuePropName="checked"
                     >
@@ -153,7 +153,7 @@ const ArtistSocialProspectusModal = ({
                             checkedChildren="active"
                             unCheckedChildren="inactive"
                         />
-                    </Form.Item>
+                    </Form.Item> */}
 
                     <Form.Item>
                         <div className="settings__basicProfileSubmitContainer">

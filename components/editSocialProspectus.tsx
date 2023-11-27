@@ -96,8 +96,8 @@ const EditSocialProspectus = ({
     const columns = [
         { title: "Platform", dataIndex: "name", key: "name" },
         { title: "Handle", dataIndex: "handle", key: "handle" },
-        { title: "Description", dataIndex: "description", key: "description" },
-        { title: "Up for collab", dataIndex: "upForCollab", key: "upForCollab" },
+        // { title: "Description", dataIndex: "description", key: "description" },
+        // { title: "Up for collab", dataIndex: "upForCollab", key: "upForCollab" },
         {
             title: "Action",
             key: "key",
@@ -130,12 +130,12 @@ const EditSocialProspectus = ({
                         <span>
                             <p><b>Handle:</b> {handle}</p>
                         </span>
-                        <span>
+                        {/* <span>
                             <p><b>Description:</b> {description}</p>
                         </span>
                         <span>
                             <p><b>Up for collab:</b> {upForCollab ? "Yes" : "No"}</p>
-                        </span>
+                        </span> */}
                         <Button type="primary" onClick={() => updateUserProspectus(record)}>
                             Update
                         </Button>
@@ -154,8 +154,8 @@ const EditSocialProspectus = ({
             let obj = {
                 name: GetSocialPlatformName(element.socialPlatformId),
                 handle: element.handle,
-                description: element.description,
-                upForCollab: element.upForCollab,
+                description: "this is my social",
+                upForCollab: "true",
             };
             updatedData.push(obj);
         });
