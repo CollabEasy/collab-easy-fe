@@ -67,9 +67,13 @@ const Home = ({
   showCreateOrEditProposalModal,
   openLoginModalAction,
   setShowCreateOrUpdateProposalModal,
-  popularArtist,
+
+  // Below is Content
   mainContent,
+  popularCollabCategories,
+  popularCollabProposals,
   blogCard,
+
 }) => {
   // const [showProfileModal, setShowProfileModal] = useState(false);
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
@@ -108,6 +112,12 @@ const Home = ({
   };
 
   const GetBlogUrl = (url) => {
+    return (typeof window !== "undefined" && window.location.origin
+      ? window.location.origin + url
+      : "");
+  }
+
+  const GetProposalUrl = (url) => {
     return (typeof window !== "undefined" && window.location.origin
       ? window.location.origin + url
       : "");
@@ -296,7 +306,7 @@ const Home = ({
           <div className="col-12">
             <div className="popular-catgeory-list">
               <>
-                {popularArtist.map((item) => (
+                {popularCollabCategories.map((item) => (
                   <div
                     className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-catgeory-list-item cursor-pointer"
                     key={item.id}
@@ -305,7 +315,7 @@ const Home = ({
                       <div >
                         <div
                           className="d-flex justify-content-center align-items-center p-2 category-icon"
-                          
+
                         >
                           <Image
                             src={getPopularCategoryImage(item.slug)}
@@ -335,6 +345,70 @@ const Home = ({
                     </Link>
                   </div>
                 ))}
+              </>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const getPopularProposalCategory = (category) => {
+    const skills: JSX.Element[] = [];
+    category.forEach((skill: string) => {
+      skills.push(
+        <span className="badge bg-soft-secondary mt-1">{skill}</span>
+      );
+    });
+    return skills;
+  };
+
+  const getPopularCollabProposals = () => {
+    return (
+      <div className="popular-proposal-container" style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+        <div className="container fluid">
+          <div className="row text-left">
+            <div className="col-12">
+              <h2 className="common-h2-style">Popular Collaboration Proposals</h2>
+            </div>
+          </div>
+        </div>
+        <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
+          <div className="col-12">
+            <div className="popular-proposal-list">
+              <>
+                {popularCollabProposals.map((proposal) => (
+                  <div
+                    className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
+                    key={proposal.id}
+                  >
+                    <Link href={GetProposalUrl(proposal.url)} passHref>
+                      <div style={{ textAlign: "left", whiteSpace: "pre-line" }}>
+                        <h5 className="common-h5-style">
+                          {proposal.title}
+                        </h5>
+                        <p className="common-p-style text-muted mb-2">{proposal.artist}</p>
+                        <ul className="list-inline text-muted">
+                          <div className="d-flex flex-wrap align-items-start gap-1">
+                            {getPopularProposalCategory(proposal.category)}
+                          </div>
+                        </ul>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+                <div
+                  className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
+                >
+                  <Link href={toAllProposalsPage()} passHref>
+                    <div style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                      <p className="common-p-style mb-2">See more interesting collaboration proposals from other artists on Wondor</p>
+                      <div className="align-text-center">
+                        <p className="common-p-style" style={{ color: "blue" }}> See more</p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
               </>
             </div>
           </div>
@@ -479,6 +553,10 @@ const Home = ({
         {getPopularCollabCategories()}
       </div>
 
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        {getPopularCollabProposals()}
+      </div>
+
       <div className="row popular-blog-section">
         <div className="row align-items-end">
           <div className="col-md-8">
@@ -524,7 +602,7 @@ const Home = ({
   );
 };
 
-const popularArtist = [
+const popularCollabCategories = [
   {
     id: 1,
     title: "Writing",
@@ -641,10 +719,34 @@ const blogCard = [
   },
 ]
 
+const popularCollabProposals = [
+  {
+    "title": "Cover & promo art for a hard SF trilogy set on Mars.",
+    "artist": "Nicolas Nelson",
+    "slug": "nicolas-nelson-1",
+    "category": ["Illustration", "Digital Art", "Sketching"],
+    "url": "collab-proposal/5aa94f/cover-promo-art-for-a-hard-sf-trilogy-set-on-mars",
+  },
+  {
+    "title": "A Journal of Gratitude for the Little Gestures That Make a Big Difference.",
+    "artist": "Rahul Gupta",
+    "slug": "rahul-gupta-1",
+    "category": ["Spoken Words", "Art Journaling", "Sketching"],
+    "url": "collab-proposal/a607d1/a-journal-of-gratitude-for-the-little-gestures-that-make-a-big-difference",
+  },
+  {
+    "title": "Inner child exploration.",
+    "artist": "Valeria Vecchi",
+    "slug": "valeria-vecchi-1",
+    "category": ["Creative Journaling", "Scrapbooking"],
+    "url": "collab-proposal/35b72a/inner-child-exploration",
+  },
+]
+
 export async function getStaticProps({ params }) {
 
   // Pass post data to the page via props
-  return { props: { popularArtist, mainContent, blogCard, testimonialContent } }
+  return { props: { popularCollabCategories, mainContent, popularCollabProposals, blogCard, testimonialContent } }
 }
 
 export default connector(Home);

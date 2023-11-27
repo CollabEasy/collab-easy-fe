@@ -125,7 +125,7 @@
     background-position: top left;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #EBF5F9;
+    background-color: #F3F8FE;
 
     &:hover {
       box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
@@ -135,6 +135,46 @@
       border-radius: 50%;
       background-color: white;
       margin: 20px 70px;
+    }
+  }
+}
+
+// popular categories container
+.popular-proposal-container {
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .popular-proposal-list {
+    height: 100%;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  .popular-proposal-list-item {
+    position: relative;
+    display: inline-block;
+    margin: 8px 8px;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
+    border-top-right-radius: 4px;
+    height: 140px;
+    vertical-align: bottom;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &:hover {
+      box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
+    }
+
+    .bg-soft-secondary {
+      background-color: rgba(116, 120, 141, .15) !important;
+      color: black;
     }
   }
 }
@@ -189,8 +229,7 @@
     border-radius: 0.4rem;
 
     &:hover {
-      box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16),
-        0 3px 6px 0 rgba(0, 0, 0, 0.12), 0 5px 12px 4px rgba(0, 0, 0, 0.09);
+      box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
     }
 
     h6 {
@@ -318,6 +357,26 @@
     }
   }
 
+  // popular categories container
+  .popular-proposal-container {
+
+    h2 {
+      font-size: 25px;
+    }
+
+    .popular-proposal-list-item {
+      height: 140px;
+
+      h5 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+    }
+  }
+
   .popular-blog-section {
     h2 {
       font-size: 54px;
@@ -419,6 +478,26 @@
         background-color: white;
         margin: 20px 50px;
       }
+
+      h5 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+    }
+  }
+
+  // popular categories container
+  .popular-proposal-container {
+
+    h2 {
+      font-size: 20px;
+    }
+
+    .popular-proposal-list-item {
+      height: 140px;
 
       h5 {
         font-size: 20px;
@@ -532,6 +611,26 @@
         background-color: white;
         margin: 20px 50px;
       }
+
+      h5 {
+        font-size: 15px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+
+  // popular categories container
+  .popular-proposal-container {
+
+    h2 {
+      font-size: 15px;
+    }
+
+    .popular-proposal-list-item {
+      height: 140px;
 
       h5 {
         font-size: 15px;
@@ -663,6 +762,26 @@
     }
   }
 
+  // popular categories container
+  .popular-proposal-container {
+
+    h2 {
+      font-size: 15px;
+    }
+
+    .popular-proposal-list-item {
+      height: 140px;
+
+      h5 {
+        font-size: 15px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+
   .popular-blog-section {
     h2 {
       font-size: 40px;
@@ -771,6 +890,26 @@
         background-color: white;
         margin: 20px 50px;
       }
+
+      h5 {
+        font-size: 15px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+
+  // popular categories container
+  .popular-proposal-container {
+
+    h2 {
+      font-size: 15px;
+    }
+
+    .popular-proposal-list-item {
+      height: 140px;
 
       h5 {
         font-size: 15px;
