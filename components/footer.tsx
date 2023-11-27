@@ -2,7 +2,7 @@ import React, { Dispatch, useEffect, useRef, useState } from 'react'
 import { FooterColumn } from 'types/model/footer';
 import Link from 'next/link';
 import { useRoutesContext } from "../components/routeContext";
-import { IsArtistPortal, IsContestPage, IsInspirationPage, IsLandingPage, IsProfilePage, IsRewardsPage } from 'helpers/helper';
+import { IsArtistPortal, IsContestPage, IsInspirationPage, IsLandingPage, IsProfilePage, IsProposalPage, IsRewardsPage } from 'helpers/helper';
 import { useRouter } from "next/router";
 import { routeToHref } from "config/routes";
 import {
@@ -12,6 +12,7 @@ import {
   TrophyOutlined,
   DollarOutlined,
   BulbOutlined,
+  FileTextOutlined,
   CopyrightOutlined,
 } from "@ant-design/icons";
 import { AppState } from 'state';
@@ -98,6 +99,8 @@ const Footer = ({
       router.push("/content-creation-ideas-for-artists");
     } else if (page === "contest") {
       router.push("/art-contests-for-artists");
+    } else if (page === "proposal") {
+      router.push("/collab-proposals-for-artists");
     }
   }
 
@@ -190,6 +193,23 @@ const Footer = ({
                     <>
                       <BulbOutlined style={{ color: "grey" }} />
                       <span className="f-10 common-text-style" style={{ color: "grey" }}>Inspiration</span>
+                    </>
+                  )}
+
+                </div>
+              </div>
+                    
+              <div className="bottom-nav-item">
+                <div className="bottom-nav-link" onClick={(e) => reloadPage("proposal")}>
+                  {IsProposalPage(pathname) ? (
+                    <>
+                      <FileTextOutlined style={{ color: "black" }} />
+                      <span className="f-10 common-text-style" style={{ color: "black" }}>Proposals</span>
+                    </>
+                  ) : (
+                    <>
+                      <FileTextOutlined style={{ color: "grey" }} />
+                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Proposals</span>
                     </>
                   )}
 

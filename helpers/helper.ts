@@ -21,6 +21,13 @@ export function IsInspirationPage(pathname) {
   return false;
 }
 
+export function IsProposalPage(pathname) {
+  if (pathname.includes("/collab-proposals-for-artists")) {
+    return true;
+  } 
+  return false;
+}
+
 export function IsContestPage(pathname) {
   if (pathname.includes("/art-contests-for-artists")) {
     return true;
