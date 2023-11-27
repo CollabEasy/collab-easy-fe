@@ -104,7 +104,7 @@ const ProposalsPage = ({
                 <div className="ui-block">
                     <article className="hentry post">
                         <div className="m-link">
-                            <a href={toProposalPage(proposal.proposal.proposalId, proposal.proposal.title.replace(/\s+/g, '-').toLowerCase()).as} target="_blank" rel="noreferrer">
+                            <a href={toProposalPage(proposal.proposal.proposalId, proposal.proposal.title.trim().replace(/[^a-zA-Z ]/g, "").replace(/\s+/g, '-').toLowerCase()).as} target="_blank" rel="noreferrer">
                                 <h5 className="common-h4-style">{proposal.proposal.title}</h5>
                             </a>
                         </div>

@@ -354,13 +354,14 @@ const Home = ({
   }
 
   const getPopularProposalCategory = (category) => {
-    var skills = "";
+    const skills: JSX.Element[] = [];
     category.forEach((skill: string) => {
-      skills += skill + ", ";
+      skills.push(
+        <span className="badge bg-soft-secondary mt-1">{skill}</span>
+      );
     });
-    console.log(skills);
     return skills;
-};
+  };
 
   const getPopularCollabProposals = () => {
     return (
@@ -378,48 +379,36 @@ const Home = ({
               <>
                 {popularCollabProposals.map((proposal) => (
                   <div
-                    className="col-sm-12 col-md-12 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
+                    className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
                     key={proposal.id}
                   >
                     <Link href={GetProposalUrl(proposal.url)} passHref>
-                      <div >
-                        {/* <div
-                          className="d-flex justify-content-center align-items-center p-2 proposal-icon"
-
-                        >
-                          <Image
-                            src={getPopularCategoryImage("dancing")}
-                            height={50}
-                            width={50}
-                            unoptimized
-                            priority
-                            className="proposal-icon"
-                          />
-                        </div> */}
-                        <div className="d-flex justify-content-left text-align-left p-2" style={{ textAlign: "left", whiteSpace: "pre-line" }}>
-                          <h6
-                            className="common-h6-style"
-                          >
-                            {proposal.title}
-                            
-                          </h6>
-                        </div>
-                        <div className="d-flex justify-content-left p-2">
-                          <p
-                            className="common-p-style"
-                          >
-                            {getPopularProposalCategory(proposal.category)} 
-                          </p>
-                        </div>
-                        <div className="d-flex justify-content-left p-2">
-                          <p>
-                            {proposal.artist}
-                          </p>
-                        </div>
+                      <div style={{ textAlign: "left", whiteSpace: "pre-line" }}>
+                        <h5 className="common-h5-style">
+                          {proposal.title}
+                        </h5>
+                        <p className="common-p-style text-muted mb-2">{proposal.artist}</p>
+                        <ul className="list-inline text-muted">
+                          <div className="d-flex flex-wrap align-items-start gap-1">
+                            {getPopularProposalCategory(proposal.category)}
+                          </div>
+                        </ul>
                       </div>
                     </Link>
                   </div>
                 ))}
+                <div
+                  className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
+                >
+                  <Link href={toAllProposalsPage()} passHref>
+                    <div style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                      <p className="common-p-style mb-2">See more interesting collaboration proposals from other artists on Wondor</p>
+                      <div className="align-text-center">
+                        <p className="common-p-style" style={{ color: "blue" }}> See more</p>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
               </>
             </div>
           </div>
@@ -736,7 +725,7 @@ const popularCollabProposals = [
     "artist": "Nicolas Nelson",
     "slug": "nicolas-nelson-1",
     "category": ["Illustration", "Digital Art", "Sketching"],
-    "url": "collab-proposal/5aa94f/cover-&-promo-art-for-a-\"hard\"-sf-trilogy-set-on-mars",
+    "url": "collab-proposal/5aa94f/cover-promo-art-for-a-hard-sf-trilogy-set-on-mars",
   },
   {
     "title": "A Journal of Gratitude for the Little Gestures That Make a Big Difference.",
@@ -749,15 +738,8 @@ const popularCollabProposals = [
     "title": "Inner child exploration.",
     "artist": "Valeria Vecchi",
     "slug": "valeria-vecchi-1",
-    "category": ["Creative Journaling", "Scrapbooking", "Art Journaling"],
-    "url": "collab-proposal/35b72a/inner-child-exploration-",
-  },
-  {
-    "title": "Cozy fall aesthetic.",
-    "artist": "Valeria Vecchi",
-    "slug": "valeria-vecchi-1",
-    "category": ["Creative Journaling", "Art Journaling", "Collage Making"],
-    "url": "collab-proposal/2c802a/cozy-fall-aesthetic",
+    "category": ["Creative Journaling", "Scrapbooking"],
+    "url": "collab-proposal/35b72a/inner-child-exploration",
   },
 ]
 
