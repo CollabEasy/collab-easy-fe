@@ -7,7 +7,7 @@ import Image from 'next/image';
 import LoginModal from '../../components/modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
-import { updateLoginData } from 'state/action';
+import { openLoginModalAction, updateLoginData } from 'state/action';
 import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
@@ -15,6 +15,8 @@ import NewUserModal from '../../components/modal/newUserModal';
 import Layout from '@/components/layout';
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import pageBannerImage from 'public/images/mobile-landing.svg';
+import notFoundImage from '../../public/images/not-found.svg';
+import ActionBanner from "@/components/actionBanner";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -24,6 +26,7 @@ const mapStateToProps = (state: AppState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+  openLoginModalAction: () => dispatch(openLoginModalAction()),
   updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
 });
 
@@ -36,9 +39,20 @@ type Props = {
 } & ConnectedProps<typeof connector>;
 
 
-const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
+const Tutorial = ({
+  isLoggedIn,
+  updateLoggedInData,
+  openLoginModalAction,
+  loginModalDetails,
+  user,
+  artistListData
+}: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { toContactUs, toDiscover } = useRoutesContext();
+  const { toContactUs, toDiscover, toFAQ } = useRoutesContext();
+
+  const openLoginModal = () => {
+    openLoginModalAction();
+  };
 
   useEffect(() => {
     if (user) {
@@ -101,11 +115,12 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
                         </p>
                       </div>
                       <div className="pageBanner-button-group">
-                        <Button type="primary" className="common-btn-dimension pageBanner-button">
-                          <Link
-                            href={routeToHref(toDiscover())}
-                            passHref
-                          >Let&apos;s collaborate</Link>
+                        <Button
+                          type="primary"
+                          className="common-btn-dimension pageBanner-button"
+                          onClick={openLoginModal}
+                        >
+                          Join Now
                         </Button>
                         <Button className="common-btn-dimension pageBanner-button">
                           <Link
@@ -168,6 +183,9 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
               </p>
             </Card>
           </div>
+        </div>
+        <div className="row">
+          <ActionBanner />
         </div>
       </div>
     </Layout>

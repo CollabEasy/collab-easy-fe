@@ -7,7 +7,7 @@ import Image from 'next/image';
 import LoginModal from '../../components/modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
-import { updateLoginData } from 'state/action';
+import { openLoginModalAction, updateLoginData } from 'state/action';
 import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
@@ -16,6 +16,8 @@ import Layout from '@/components/layout';
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import pageBannerImage from 'public/images/mobile-landing.svg';
 import { BLOGS } from "constants/blogs";
+import notFoundImage from '../../public/images/not-found.svg';
+import ActionBanner from "@/components/actionBanner";
 
 const mapStateToProps = (state: AppState) => ({
     loginModalDetails: state.home.loginModalDetails,
@@ -25,6 +27,7 @@ const mapStateToProps = (state: AppState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+    openLoginModalAction: () => dispatch(openLoginModalAction()),
     updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
 });
 
@@ -37,9 +40,20 @@ type Props = {
 } & ConnectedProps<typeof connector>;
 
 
-const AllBlogs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
+const AllBlogs = ({
+    isLoggedIn,
+    updateLoggedInData,
+    openLoginModalAction,
+    loginModalDetails,
+    user,
+    artistListData
+}: Props) => {
     const [showProfileModal, setShowProfileModal] = useState(false);
-    const { toContactUs, toDiscover, toBlogPage } = useRoutesContext();
+    const { toContactUs, toFAQ, toBlogPage } = useRoutesContext();
+
+    const openLoginModal = () => {
+        openLoginModalAction();
+    };
 
     useEffect(() => {
         if (user) {
@@ -97,7 +111,7 @@ const AllBlogs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
             )
             }
 
-            <div className="footer_blogsContainer">
+            <div className="genericPageLayout_container">
                 <GenericBreadcrumb
                     page={"All Blogs"}
                 />
@@ -106,17 +120,17 @@ const AllBlogs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
                         <div className="row d-flex justify-content-center pageBanner-cover">
                             <div className="col-md-12">
                                 <div className="row">
-                                    <div className="col-md-4">
+                                    <div className="col-md-4 col-sm-4">
                                         <div className="text-center">
                                             <Image
                                                 src={pageBannerImage}
                                                 layout="responsive"
-                                                alt="you are"
+                                                alt="Read Wondor's blog and embark on your creative collaboration journey!"
                                                 priority
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-md-8">
+                                    <div className="col-md-8 col-sm-8">
                                         <div className="pageBanner-cnt">
                                             <div className="pageBanner-text text-center">
                                                 <h3 className="common-h3-style">
@@ -127,11 +141,12 @@ const AllBlogs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
                                                 </p>
                                             </div>
                                             <div className="pageBanner-button-group">
-                                                <Button type="primary" className="common-btn-dimension pageBanner-button">
-                                                    <Link
-                                                        href={routeToHref(toDiscover())}
-                                                        passHref
-                                                    >Let&apos;s collaborate</Link>
+                                                <Button
+                                                    type="primary"
+                                                    className="common-btn-dimension pageBanner-button"
+                                                    onClick={openLoginModal}
+                                                >
+                                                    Join Now
                                                 </Button>
                                                 <Button className="common-btn-dimension pageBanner-button">
                                                     <Link
@@ -147,13 +162,15 @@ const AllBlogs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className="container all-blogs-container">
-                <div className="row">
-                    <div className="col-md-8">
-                        {getBlogs()}
+                <div className="container all-blogs-container">
+                    <div className="row">
+                        <div className="col-md-8">
+                            {getBlogs()}
+                        </div>
                     </div>
+                </div>
+                <div className="row">
+                    <ActionBanner />
                 </div>
             </div>
         </Layout>

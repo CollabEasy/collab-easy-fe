@@ -184,12 +184,12 @@ const AboutUs = ({
               <div className="col-md-12">
                 <div className="row">
                   <div className="col-md-4">
-                    <div className="text-center">
+                    <div className="text-center" style={{padding: "10px"}}>
                       <Image
                         src={notFoundImage}
                         height={200}
                         width={200}
-                        alt="you are"
+                        alt="Checkout Wondor.art FAQs section or reach out to let the team help you."
                         priority
                       />
                     </div>
