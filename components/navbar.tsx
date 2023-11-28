@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import Search from "./search";
 import { Dispatch } from "redux";
 import { useRouter } from "next/router";
-import { /* Menu, Dropdown, */ Button } from "antd";
+import { Alert, Space, Button } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { AppState } from "types/states";
 import Image from "next/image";
@@ -57,6 +57,7 @@ const NavBar = ({
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [profilePic, setProfilePic] = useState("");
   const [windowWidth, setWindowWidth] = useState(-1);
+  const [showBanner, setShowBanner] = useState(true);
 
   const router = useRouter();
 
@@ -70,7 +71,7 @@ const NavBar = ({
 
   const { toWondorHome, toArtistProfile, toArtistPortal, toAnalyticsPage } =
     useRoutesContext();
-  const { toGetInspired, toAllContestPage, toAllCategoryPage } = useRoutesContext();
+  const { toContestPage, toGetInspired, toAllContestPage, toAllCategoryPage } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = !checkDevice() ? document.querySelector("#desktop-p-h") : document.querySelector("#p-h");
@@ -87,6 +88,28 @@ const NavBar = ({
     }
     setWindowWidth(window.innerWidth);
   }, [inView, entry]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Adjust the scroll threshold as needed
+      const scrollThreshold = 100; // Adjust this value based on your needs
+
+      // Check the scroll position
+      if (window.scrollY > scrollThreshold) {
+        setShowBanner(false);
+      } else {
+        setShowBanner(true);
+      }
+    };
+
+    // Add event listener for scroll events
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -107,219 +130,219 @@ const NavBar = ({
   };
 
   const getMobileNavbar = () => {
-    return(
+    return (
       <div className="row">
-      <div
-        id="p-h"
-        className="nv-f-t animate__animated"
-      >
-        <div id="app-logo-mobile">
-          <Link href={routeToHref(toWondorHome())} passHref>
-            <Image
-              src={titleMobileBlueImg}
-              alt="Wondor - Join now to collab with painters, singers, musicians and more."
-              onClick={() => setShowLoginOptions(false)}
-            />
-          </Link>
-        </div>
+        <div
+          id="p-h"
+          className="nv-f-t animate__animated"
+        >
+          <div id="app-logo-mobile">
+            <Link href={routeToHref(toWondorHome())} passHref>
+              <Image
+                src={titleMobileBlueImg}
+                alt="Wondor - Join now to collab with painters, singers, musicians and more."
+                onClick={() => setShowLoginOptions(false)}
+              />
+            </Link>
+          </div>
 
-        <div className="navbar-search">
-          <>
-            <Search />
-          </>
+          <div className="navbar-search">
+            <>
+              <Search />
+            </>
+          </div>
         </div>
+        <div ref={ref} className="dummy-div"></div>
       </div>
-      <div ref={ref} className="dummy-div"></div>
-    </div>
     );
   }
   const getWebNavbar = () => {
-    return(
+    return (
       <div className="row">
-      <div
-        id="desktop-p-h"
-        className="nv-f-t animate__animated"
-      >
-        <div id="app-logo-desktop">
-          <Link href={routeToHref(toWondorHome())} passHref>
-            <Image
-              src={titleDesktopImg}
-              alt="Wondor - Join now to collab with painters, singers, musicians and more."
-              onClick={() => setShowLoginOptions(false)}
-              priority
-            />
-          </Link>
-        </div>
-        <div id="app-logo-mobile">
-          <Link href={routeToHref(toWondorHome())} passHref>
-            <Image
-              src={titleMobileBlueImg}
-              alt="Wondor - Join now to collab with painters, singers, musicians and more."
-              onClick={() => setShowLoginOptions(false)}
-              priority
-            />
-          </Link>
-        </div>
-        <div className="navbar-search">
-          <>
-            {!IsLandingPage(router.pathname) || showSearchBar ? (
-              <Search />
-            ) : (
-              <div className="navbar-links">
-                <ul style={{ textAlign: "center" }}>
-                  <li>
-                    <p className="common-p-style nav-text">
-                      <a href={routeToHref(toGetInspired())}>Inspiration Hub</a>
-                    </p>
-                  </li>
-                  <li>
-                    <p className="common-p-style nav-text">
-                      <a href={routeToHref(toAllContestPage())}>Art Contests</a>
-                    </p>
-                  </li>
-                  <li>
-                    <p className="common-p-style nav-text">
-                      <a href={routeToHref(toAllCategoryPage())}>Collab Categories</a>
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            )}
-          </>
-        </div>
-        {!hideSignUp ? (
-          <div className="login-signup-cnt">
-            <Button
-              className="common-text-style"
-              id="sign-up-desktop"
-              type="primary"
-              onClick={openLoginModal}
-            >
-              Sign Up
-            </Button>
-            <Button
-              className="common-text-style login-btn"
-              id="sign-up-desktop"
-              type="primary"
-              onClick={openLoginModal}
-            >
-              Log in
-            </Button>
-            <Button id="sign-up-mobile" shape="circle" onClick={openLoginModal}>
-              <UserOutlined />
-            </Button>
+        <div
+          id="desktop-p-h"
+          className="nv-f-t animate__animated"
+        >
+          <div id="app-logo-desktop">
+            <Link href={routeToHref(toWondorHome())} passHref>
+              <Image
+                src={titleDesktopImg}
+                alt="Wondor - Join now to collab with painters, singers, musicians and more."
+                onClick={() => setShowLoginOptions(false)}
+                priority
+              />
+            </Link>
           </div>
-        ) : (
-          <div className="login-menu-container">
-            <div
-              className={`menu-icon ${showLoginOptions ? "hide-icon" : ""}`}
-              onClick={() => setShowLoginOptions(!showLoginOptions)}
-            >
-              {user?.profile_pic_url ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={profilePic} alt="profile-pic" />
+          <div id="app-logo-mobile">
+            <Link href={routeToHref(toWondorHome())} passHref>
+              <Image
+                src={titleMobileBlueImg}
+                alt="Wondor - Join now to collab with painters, singers, musicians and more."
+                onClick={() => setShowLoginOptions(false)}
+                priority
+              />
+            </Link>
+          </div>
+          <div className="navbar-search">
+            <>
+              {!IsLandingPage(router.pathname) || showSearchBar ? (
+                <Search />
               ) : (
-                <div className="default-profile">
-                  <UserOutlined className="user-icon" />
+                <div className="navbar-links">
+                  <ul style={{ textAlign: "center" }}>
+                    <li>
+                      <p className="common-p-style nav-text">
+                        <a href={routeToHref(toGetInspired())}>Inspiration Hub</a>
+                      </p>
+                    </li>
+                    <li>
+                      <p className="common-p-style nav-text">
+                        <a href={routeToHref(toAllContestPage())}>Art Contests</a>
+                      </p>
+                    </li>
+                    <li>
+                      <p className="common-p-style nav-text">
+                        <a href={routeToHref(toAllCategoryPage())}>Collab Categories</a>
+                      </p>
+                    </li>
+                  </ul>
                 </div>
               )}
+            </>
+          </div>
+          {!hideSignUp ? (
+            <div className="login-signup-cnt">
+              <Button
+                className="common-text-style"
+                id="sign-up-desktop"
+                type="primary"
+                onClick={openLoginModal}
+              >
+                Sign Up
+              </Button>
+              <Button
+                className="common-text-style login-btn"
+                id="sign-up-desktop"
+                type="primary"
+                onClick={openLoginModal}
+              >
+                Log in
+              </Button>
+              <Button id="sign-up-mobile" shape="circle" onClick={openLoginModal}>
+                <UserOutlined />
+              </Button>
             </div>
-            {showLoginOptions &&
-              (
-                <div
-                  className={`login-options-container ${checkDevice() ? "animate__animated animate__slideInRight" : ""
-                    }`}
-                >
-                  <div className={"login-mobile-userdetails"}>
-                    {user?.profile_pic_url ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={profilePic} alt="profile-pic" />
-                    ) : (
-                      <div className="default-profile">
-                        <UserOutlined className="user-icon" />
-                      </div>
-                    )}
+          ) : (
+            <div className="login-menu-container">
+              <div
+                className={`menu-icon ${showLoginOptions ? "hide-icon" : ""}`}
+                onClick={() => setShowLoginOptions(!showLoginOptions)}
+              >
+                {user?.profile_pic_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={profilePic} alt="profile-pic" />
+                ) : (
+                  <div className="default-profile">
+                    <UserOutlined className="user-icon" />
                   </div>
-                  <div className="common-login-option">
-                    <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
-                      <div
-                        className="selected-option-shadow profile-option"
-                        onClick={() => setShowLoginOptions(false)}
-                      >
-                        <span className="f-14 common-text-style">Profile</span>
-                      </div>
-                    </Link>
-                    <Link
-                      href={routeToHref(
-                        toArtistPortal("basic-information")
+                )}
+              </div>
+              {showLoginOptions &&
+                (
+                  <div
+                    className={`login-options-container ${checkDevice() ? "animate__animated animate__slideInRight" : ""
+                      }`}
+                  >
+                    <div className={"login-mobile-userdetails"}>
+                      {user?.profile_pic_url ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={profilePic} alt="profile-pic" />
+                      ) : (
+                        <div className="default-profile">
+                          <UserOutlined className="user-icon" />
+                        </div>
                       )}
-                      passHref
-                    >
-                      <div
-                        className="selected-option-shadow settings-option"
-                        onClick={() => setShowLoginOptions(false)}
+                    </div>
+                    <div className="common-login-option">
+                      <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
+                        <div
+                          className="selected-option-shadow profile-option"
+                          onClick={() => setShowLoginOptions(false)}
+                        >
+                          <span className="f-14 common-text-style">Profile</span>
+                        </div>
+                      </Link>
+                      <Link
+                        href={routeToHref(
+                          toArtistPortal("basic-information")
+                        )}
+                        passHref
                       >
-                        <span className="f-14 common-text-style">
-                          Portal
-                        </span>
-                      </div>
-                    </Link>
-                    <Link
-                      href={routeToHref(
-                        toArtistPortal("rewards")
-                      )}
-                      passHref
-                    >
-                      <div
-                        className="selected-option-shadow settings-option"
-                        onClick={() => setShowLoginOptions(false)}
-                      >
-                        <span className="f-14 common-text-style">
-                          Reward Points
-                        </span>
-                      </div>
-                    </Link>
-                    <Link
-                      href={routeToHref(
-                        toArtistPortal("collab-request")
-                      )}
-                      passHref
-                    >
-                      <div
-                        className="selected-option-shadow settings-option"
-                        onClick={() => setShowLoginOptions(false)}
-                      >
-                        <span className="f-14 common-text-style">
-                          Collab Requests
-                        </span>
-                      </div>
-                    </Link>
-                    {IsAdmin(user.email) && (
-                      <Link href={routeToHref(toAnalyticsPage())} passHref>
                         <div
                           className="selected-option-shadow settings-option"
                           onClick={() => setShowLoginOptions(false)}
                         >
                           <span className="f-14 common-text-style">
-                            Admin
+                            Portal
                           </span>
                         </div>
                       </Link>
-                    )}
-                    <div
-                      className="selected-option-shadow logout-option"
-                      onClick={logoutUser}
-                    >
-                      <span className="f-14 common-text-style">Logout</span>
+                      <Link
+                        href={routeToHref(
+                          toArtistPortal("rewards")
+                        )}
+                        passHref
+                      >
+                        <div
+                          className="selected-option-shadow settings-option"
+                          onClick={() => setShowLoginOptions(false)}
+                        >
+                          <span className="f-14 common-text-style">
+                            Reward Points
+                          </span>
+                        </div>
+                      </Link>
+                      <Link
+                        href={routeToHref(
+                          toArtistPortal("collab-request")
+                        )}
+                        passHref
+                      >
+                        <div
+                          className="selected-option-shadow settings-option"
+                          onClick={() => setShowLoginOptions(false)}
+                        >
+                          <span className="f-14 common-text-style">
+                            Collab Requests
+                          </span>
+                        </div>
+                      </Link>
+                      {IsAdmin(user.email) && (
+                        <Link href={routeToHref(toAnalyticsPage())} passHref>
+                          <div
+                            className="selected-option-shadow settings-option"
+                            onClick={() => setShowLoginOptions(false)}
+                          >
+                            <span className="f-14 common-text-style">
+                              Admin
+                            </span>
+                          </div>
+                        </Link>
+                      )}
+                      <div
+                        className="selected-option-shadow logout-option"
+                        onClick={logoutUser}
+                      >
+                        <span className="f-14 common-text-style">Logout</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-          </div>
-        )}
+                )}
+            </div>
+          )}
+        </div>
+        <div ref={ref} className="dummy-div"></div>
       </div>
-      <div ref={ref} className="dummy-div"></div>
-    </div>
     );
   }
 
@@ -329,6 +352,19 @@ const NavBar = ({
         {getMobileNavbar()}
       </div>
       <div id="desktop-nav">
+        {showBanner && <Space direction="vertical" style={{ width: '100%', textAlign: 'center' }}>
+          <Alert
+            showIcon={false}
+            banner
+            closable
+            message={
+              <span>
+                Calling artists to win a $50 prize and an opportunity to gain exposure and recognition within the photography community.{' '}
+                <a href={routeToHref(toContestPage("NOV2023", "details"))}>Enter Now!</a>
+              </span>
+            }
+          />
+        </Space>}
         {getWebNavbar()}
       </div>
     </>
