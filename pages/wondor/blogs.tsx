@@ -126,14 +126,14 @@ const AllBlogs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
                                                     Read Wondor&pos;s blog and embark on your creative collaboration journey!
                                                 </p>
                                             </div>
-                                            <div className="pageBanner-button">
-                                                <Button type="primary" className="common-btn-dimension">
+                                            <div className="pageBanner-button-group">
+                                                <Button type="primary" className="common-btn-dimension pageBanner-button">
                                                     <Link
                                                         href={routeToHref(toDiscover())}
                                                         passHref
                                                     >Let&apos;s collaborate</Link>
                                                 </Button>
-                                                <Button className="common-btn-dimension">
+                                                <Button className="common-btn-dimension pageBanner-button">
                                                     <Link
                                                         href={routeToHref(toContactUs())}
                                                         passHref

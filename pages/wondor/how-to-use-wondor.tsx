@@ -71,26 +71,26 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
       )
       }
 
-      <div className="footer_tutorialContainer">
+      <div className="genericPageLayout_container">
         <GenericBreadcrumb
           page={"Tutorial"}
         />
         <div className="row">
           <div style={{ width: "100%" }}>
             <div className="row d-flex justify-content-center pageBanner-cover">
-              <div className="col-md-12">
+              <div className="col-12">
                 <div className="row">
-                  <div className="col-md-4">
+                  <div className="col-md-4 col-sm-4">
                     <div className="text-center">
                       <Image
                         src={pageBannerImage}
                         layout="responsive"
-                        alt="you are"
+                        alt="4 steps to start using wondor for your next collaboration"
                         priority
                       />
                     </div>
                   </div>
-                  <div className="col-md-8">
+                  <div className="col-md-8 col-sm-8">
                     <div className="pageBanner-cnt">
                       <div className="pageBanner-text text-center">
                         <h3 className="common-h3-style">
@@ -100,14 +100,14 @@ const Tutorial = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, art
                           Are you ready to take your skills to the next level and collaborate with others on exciting projects? Then it&apos;s time to create your profile and join a community of like-minded individuals!
                         </p>
                       </div>
-                      <div className="pageBanner-button">
-                        <Button type="primary" className="common-btn-dimension">
+                      <div className="pageBanner-button-group">
+                        <Button type="primary" className="common-btn-dimension pageBanner-button">
                           <Link
                             href={routeToHref(toDiscover())}
                             passHref
                           >Let&apos;s collaborate</Link>
                         </Button>
-                        <Button className="common-btn-dimension">
+                        <Button className="common-btn-dimension pageBanner-button">
                           <Link
                             href={routeToHref(toContactUs())}
                             passHref

@@ -119,8 +119,7 @@ const GetInspired = ({
                     <div className="text-center">
                       <Image
                         src={coverSection["imgUrl"]}
-                        height={250}
-                        width={250}
+                        layout="responsive"
                         alt={coverSection["imgAltTag"]}
                         priority
                       />
