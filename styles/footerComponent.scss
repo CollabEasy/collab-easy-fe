@@ -47,41 +47,6 @@
     margin-bottom: 2%;
 }
 
-
-// Page 2: Tutorial
-.footer_tutorialContainer {
-    position: relative;
-    margin: auto;
-    flex-direction: column;
-    width: 70%;
-    //border: 1px solid rgb(0 0 0 / 10%);
-    transition: 0.3s;
-    border-radius: 5px;
-    margin-top: 10%;
-    margin-bottom: 2%;
-}
-
-/* Container for flexboxes */
-.footer_tutorialTextRow {
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: 40px;
-    padding-right: 40px;
-}
-
-/* Create four equal columns */
-.footer_tutorialTextColum {
-    flex: 25%;
-    padding: 20px;
-}
-
-.footer_tutorialButtonContainer {
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 // Page 3: Contact us
 
 .footer_contactUsContainer {
@@ -199,10 +164,6 @@
         margin-top: 10rem;
     }
 
-    .footer_tutorialContainer {
-        width: 90%;
-    }
-
     .footer_blogsContainer {
         width: 90%;
     }
@@ -258,10 +219,6 @@
         margin-top: 9rem;
     }
 
-    .footer_tutorialContainer {
-        width: 90%;
-    }
-
     .footer_blogsContainer {
         width: 90%;
     }
@@ -315,10 +272,6 @@
     .footer_faqsContainer {
         width: 80%;
         margin-top: 8rem;
-    }
-
-    .footer_tutorialContainer {
-        width: 90%;
     }
 
     .footer_blogsContainer {
@@ -380,10 +333,6 @@
         font-size: 16px;
     }
 
-    .footer_tutorialContainer {
-        width: 90%;
-    }
-
     .footer_blogsContainer {
         width: 90%;
     }
@@ -439,16 +388,8 @@
         margin-top: 6rem;
     }
 
-    .footer_tutorialContainer {
-        width: 90%;
-    }
-
     .footer_blogsContainer {
         width: 90%;
-    }
-
-    .footer_tutorialTextRow {
-        flex-direction: column;
     }
 }
 
@@ -502,15 +443,7 @@
         margin-top: 5rem;
     }
 
-    .footer_tutorialContainer {
-        width: 90%;
-    }
-
     .footer_blogsContainer {
         width: 90%;
-    }
-
-    .footer_tutorialTextRow {
-        flex-direction: column;
     }
 }
