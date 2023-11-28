@@ -29,6 +29,41 @@ class WondorApp extends NextApp {
     return { pageProps };
   }
 
+  componentDidMount() {
+    // Load GTM script asynchronously
+    const gtmScript = document.createElement('script');
+    gtmScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
+    gtmScript.async = true;
+    document.head.appendChild(gtmScript);
+
+    // Load GTM configuration script
+    const gtmConfigScript = document.createElement('script');
+    gtmConfigScript.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${GA_TRACKING_ID}', {
+        page_path: window.location.pathname,
+      });
+    `;
+    document.head.appendChild(gtmConfigScript);
+
+    // Load Hotjar script asynchronously
+    const hotjarScript = document.createElement('script');
+    hotjarScript.innerHTML = `
+      (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:${HOTZAR_CLIENT_ID},hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    `;
+    document.head.appendChild(hotjarScript);
+  }
+
+
   render() {
     const { Component, pageProps } = this.props;
     const config = {
@@ -38,7 +73,7 @@ class WondorApp extends NextApp {
 
     return (
       <>
-          <Script
+          {/* <Script
             strategy="afterInteractive"
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
             async
@@ -72,7 +107,7 @@ class WondorApp extends NextApp {
             `,
             }}
             async
-          />
+          /> */}
       <Provider store={store}>
         <App {...config}>
             <Component {...pageProps} />
