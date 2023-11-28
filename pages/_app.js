@@ -38,9 +38,10 @@ class WondorApp extends NextApp {
 
     return (
       <>
-        <Script
+          <Script
             strategy="afterInteractive"
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+            async
           />
           <Script
             strategy="afterInteractive"
@@ -54,6 +55,7 @@ class WondorApp extends NextApp {
               });
             `,
             }}
+            async
           />
           <Script
             strategy="afterInteractive"
@@ -69,6 +71,7 @@ class WondorApp extends NextApp {
               })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
             `,
             }}
+            async
           />
       <Provider store={store}>
         <App {...config}>
