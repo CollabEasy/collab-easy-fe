@@ -323,7 +323,7 @@ const Home = ({
                             width={50}
                             alt={item.imgAltTag}
                             unoptimized
-                            priority
+                            loading="lazy"
                             className="category-icon"
                           />
                         </div>
