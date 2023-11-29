@@ -197,7 +197,7 @@ const ContestPage = ({
   };
 
   const GetMetaText = (status, submissionId, votesCount) => {
-    if (status === "Past") {
+    if (status === "Past" || IsAdmin(user.email)) {
       if (submissionId in votesCount) {
         return <span> {votesCount[submissionId]} votes recieved</span>;
       }
