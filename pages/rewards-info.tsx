@@ -16,6 +16,7 @@ import Layout from "@/components/layout";
 import Link from "next/link";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import GenericActionBanner from "@/components/genericActionBanner";
+import CustomPageBanner from "@/components/customPageBanner";
 
 const { Meta } = Card;
 
@@ -90,28 +91,14 @@ const RewardsInfoPage = ({
                             page={"Rewards Info"}
                         />
                     }
-                    <div className="rewardsInfoPage__listingPageCoverContainer">
-                        <div className="row ">
-                            <div className="col-sm-8" style={{ backgroundColor: "#D1C4E9" }}>
-                                <div className="rewardsInfoPage_desktopCoverTextContainer">
-                                    <h1 className="common-h1-style">
-                                        Earn rewards points for everything you do on Wondor, big or small 😎
-                                    </h1>
-                                    <h3 className="common-h3-style">
-                                        Yes, we reward our amazing artists for being awesome members of Wondor.
-                                        These points can be redeemed for exclusive prizes.
-                                    </h3>
-                                </div>
-                            </div>
-                            <div className="col-sm-4" style={{ backgroundColor: "#D1C4E9" }}>
-                                <Image
-                                    alt="Image Alt"
-                                    src={headerImage}
-                                    layout="responsive"
-                                    objectFit="contain" // Scale your image down to fit into the container
-                                />
-                            </div>
-                        </div>
+                    <div className="row">
+                        <CustomPageBanner
+                            heading="Earn rewards points for everything you do on Wondor, big or small 😎"
+                            paragraph="Yes, we reward our amazing artists for being awesome members of Wondor. These points can be redeemed for exclusive prizes."
+                            bannerImg={headerImage}
+                            imageAlt="Earn rewards points for everything you do on Wondor, big or small"
+                            backgroundColor="#D1C4E9"
+                        />
                     </div>
                     <div className="rewardsInfo_container">
                         <section className="bg-light-primary">
