@@ -16,7 +16,8 @@ import React, { useEffect, useState } from 'react';
 import NewUserModal from '../../components/modal/newUserModal';
 import Layout from '@/components/layout';
 import GenericBreadcrumb from '@/components/genericBreadcrumb';
-import notFoundImage from '../../public/images/not-found.svg';
+import GenericActionBanner from '@/components/genericActionBanner';
+import GenericPageBanner from '@/components/genericPageBanner';
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -38,9 +39,14 @@ type Props = {
 } & ConnectedProps<typeof connector>;
 
 
-const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
+const AboutUs = ({
+  isLoggedIn,
+  updateLoggedInData,
+  loginModalDetails,
+  user,
+  artistListData,
+}: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { toDiscover, toFAQ } = useRoutesContext();
 
   useEffect(() => {
     if (user) {
@@ -71,12 +77,17 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         <NewUserModal />
       )
       }
-      <div className="footer_aboutUsContainer">
+      <div className="genericPageLayout_container">
         <GenericBreadcrumb
           page={"About Us"}
         />
-        <div className="footer_aboutUsBodyTextContainer">
-          <h3 className="common-h5-style">Through Wondor, we are brining artists together everyday 🤗</h3>
+        <div className="row">
+          <GenericPageBanner
+            heading="Wondor is brining artists together everyday 🤗"
+            paragraph="Are you ready to take your skills to the next level and collaborate with others on exciting projects? Then it's time to join the growing community of like-minded artists. We are just getting started!"
+          />
+        </div>
+        <div className="about-us-text-container">
           <div>
             <h5 className="common-h5-style">What is Wondor?</h5>
             <p className="common-p-style">
@@ -96,7 +107,7 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
               <b>Join wondor today to take your artistic journey to new heights.</b>
             </p>
           </div>
-          <div>
+          <div style={{ paddingTop: "10px" }}>
             <h5 className="common-h5-style">Why Wondor?</h5>
             <p className="common-p-style">When you are a artist creating content every day, the quality of your content is one of the most important things but
               so is collaborting with other artists. By collaborating, you learn from each other and at the same time
@@ -108,61 +119,20 @@ const AboutUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
               you can explore each artist&apos;s sample work, social media presence, and availability for
               collaboration with ease. By having all this information in one user-friendly interface,
               you can make a wise decision about who inspires you the most to collaborate with and bring
-              your creative vision to fruition. So what are you waiting for? Work with like minded people from around
-              the globe to convert your idea into a masterpiece because we believe <b><i>together you create better!</i></b></p>
+              your creative vision to fruition.
+            </p>
+          </div>
+
+          <div style={{ paddingTop: "10px" }}>
+            <h5 className="common-h5-style">Join Wondor Today!</h5>
+            <p className="common-p-style">
+              What are you waiting for? Work with like minded people from around
+              the globe to convert your idea into a masterpiece because we believe <b><i>together you create better!</i></b>
+            </p>
           </div>
         </div>
         <div className="row">
-          <div style={{ width: "100%" }}>
-            <div className="row d-flex justify-content-center actionBanner-cover">
-              <div className="col-md-12">
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="text-center">
-                      <Image
-                        src={notFoundImage}
-                        height={200}
-                        width={200}
-                        alt="you are"
-                        priority
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-8">
-                    <div className="actionBanner-cnt">
-                      <div className="actionBanner-text text-center">
-                        <h3 className="common-h3-style">
-                          Got a question? Do not worry!
-                        </h3>
-                        <p className="common-p-style">
-                          Checkout our FAQs section or reach out to us and let us know how we can help you.
-                        </p>
-                      </div>
-                      <div>
-                        <Button
-                          type="primary"
-                        >
-                          <Link
-                            href={routeToHref(toFAQ())}
-                            passHref
-                          >FAQs
-                          </Link>
-                        </Button>
-                        <Button
-                        >
-                          <Link
-                            href={routeToHref(toDiscover())}
-                            passHref
-                          >Collab Now
-                          </Link>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <GenericActionBanner />
         </div>
       </div>
     </Layout>

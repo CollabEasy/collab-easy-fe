@@ -15,7 +15,7 @@ import React, { useEffect, useState } from 'react';
 import NewUserModal from '../../components/modal/newUserModal';
 import Layout from '@/components/layout';
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
-import notFoundImage from '../../public/images/not-found.svg';
+import GenericActionBanner from "@/components/genericActionBanner";
 
 const { Panel } = Collapse;
 
@@ -92,65 +92,16 @@ const FAQs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             )
             }
 
-            <div className="footer_faqsContainer">
+            <div className="genericPageLayout_container">
                 <GenericBreadcrumb
                     page={"Frquently Asked Questions"}
                 />
-                <div className="footer_faqsSectionContainer">
+                <div className="faq-section-container">
                     <h1 className="common-h1-style">Frequently Asked Questions</h1>
                     {getFAQCard()}
                 </div>
                 <div className="row">
-                    <div style={{ width: "100%" }}>
-                        <div className="row d-flex justify-content-center actionBanner-cover">
-                            <div className="col-md-12">
-                                <div className="row">
-                                    <div className="col-md-4">
-                                        <div className="text-center">
-                                            <Image
-                                                src={notFoundImage}
-                                                height={200}
-                                                width={200}
-                                                alt="you are"
-                                                priority
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-8">
-                                        <div className="actionBanner-cnt">
-                                            <div className="actionBanner-text text-center">
-                                                <h3 className="common-h3-style">
-                                                    Still not sure if you have the right answer?
-                                                </h3>
-                                                <p className="common-p-style">
-                                                    Reach out to us and let us know how we can help you.
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <Button
-                                                    type="primary"
-                                                >
-                                                    <Link
-                                                        href={routeToHref(toContactUs())}
-                                                        passHref
-                                                    >Ask Question
-                                                    </Link>
-                                                </Button>
-                                                <Button
-                                                >
-                                                    <Link
-                                                        href={routeToHref(toDiscover())}
-                                                        passHref
-                                                    >Collab Now
-                                                    </Link>
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <GenericActionBanner />
                 </div>
             </div>
         </Layout>

@@ -24,7 +24,6 @@
 @import "./getInspired.scss";
 @import "./contest.scss";
 @import "./components/collabCalender.scss";
-@import "footerComponent.scss";
 @import "./categories.scss";
 @import "./rewards.scss";
 @import "./requestPage.scss";
@@ -35,9 +34,17 @@
 @import "./manageProposal.scss";
 @import "./actionBanner.scss";
 @import "./pageBanner.scss";
-@import "./allBlogs.scss";
 @import "./blogPost.scss";
 @import "./genericSlider.scss";
+@import "./genericPageLayout.scss";
+
+
+@import "./pages/wondor/tutorial.scss";
+@import "./pages/wondor/aboutUs.scss";
+@import "./pages/wondor/termsPrivacyPolicy.scss";
+@import "./pages/wondor/faq.scss";
+@import "./pages/wondor/contactUs.scss";
+@import "./pages/wondor/allBlogs.scss";
 
 html, body {
   max-width: 100%;

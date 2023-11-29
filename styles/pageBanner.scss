@@ -15,35 +15,72 @@
     width: 80%;
 }
 
-.pageBanner-button {
+.pageBanner-button-group {
     padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* mobile css starts from here  */
-@media only screen and (max-width: 1600px) and (min-width: 1201px) {
 
+@media only screen and (min-width: 1200px) {
+    /* Styles for extra-large screens (desktops) */
 }
 
-@media only screen and (max-width: 1200px) and (min-width: 993px) {
 
+@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .pageBanner-text {
+        width: 100%;
+    }
+
+    .pageBanner-text {
+
+        padding-top: 10px;
+
+        h3 {
+            font-size: calc(1rem + .6vw);
+        }
+
+        p {
+            font-size: calc(.5rem + .6vw);
+        }
+    }
 }
 
-@media only screen and (max-width: 992px) and (min-width: 768px) {
+@media only screen and (min-width: 601px) and (max-width: 767px) {
 
+    .pageBanner-text {
+        width: 100%;
+    }
+
+    .pageBanner-text {
+
+        padding-top: 10px;
+
+        h3 {
+            font-size: calc(.75rem + .6vw);
+        }
+
+        p {
+            font-size: calc(.5rem + .6vw);
+        }
+    }
+
+    .pageBanner-button-group {
+
+        .pageBanner-button {
+            font-size: 12px; // Adjust the font size as needed
+            height: 25px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+    }
 }
 
-@media only screen and (max-width: 767px) and (min-width: 601px) {
+@media only screen and (min-width: 400px) and (max-width: 600px) {}
 
-}
-
-@media only screen and (max-width: 600px) and (min-width: 400px) {
-
-}
-
-@media only screen and (max-width: 399px) {
-
-
-}
+@media only screen and (max-width: 399px) {}
