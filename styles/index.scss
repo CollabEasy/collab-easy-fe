@@ -34,15 +34,17 @@
 @import "./manageProposal.scss";
 @import "./actionBanner.scss";
 @import "./pageBanner.scss";
-@import "./allBlogs.scss";
 @import "./blogPost.scss";
 @import "./genericSlider.scss";
 @import "./genericPageLayout.scss";
-@import "./tutorial.scss";
-@import "./aboutUs.scss";
-@import "./termsPrivacyPolicy.scss";
-@import "./faq.scss";
-@import "./contactUs.scss";
+
+
+@import "./pages/wondor/tutorial.scss";
+@import "./pages/wondor/aboutUs.scss";
+@import "./pages/wondor/termsPrivacyPolicy.scss";
+@import "./pages/wondor/faq.scss";
+@import "./pages/wondor/contactUs.scss";
+@import "./pages/wondor/allBlogs.scss";
 
 html, body {
   max-width: 100%;
