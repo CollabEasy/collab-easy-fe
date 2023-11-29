@@ -19,6 +19,7 @@ import Layout from "@/components/layout";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import { GetCategoryArtistTitle, } from "helpers/categoryHelper";
 import { GetCategoryMetadata } from "helpers/categoryHelper";
+import GenericActionBanner from "@/components/genericActionBanner";
 
 
 
@@ -188,42 +189,7 @@ const AllCategoryPage = ({
                             />
                         </div>
                         <div className="row">
-                            <div style={{ width: "100%" }}>
-                                <div className="row d-flex justify-content-center actionBanner-cover">
-                                    <div className="col-md-12">
-                                        <div className="row">
-                                            <div className="col-md-4">
-                                                <div className="text-center">
-                                                    <Image
-                                                        src={notFoundImage}
-                                                        height={200}
-                                                        width={200}
-                                                        alt="you are"
-                                                        priority
-                                                    />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-8">
-                                                <div className="actionBanner-cnt">
-                                                    <div className="actionBanner-text text-center">
-                                                        <h3 className="common-h3-style">
-                                                            Not seeing your collab category in the list? Add it now!
-                                                        </h3>
-                                                        <p className="common-p-style">
-                                                            After a thorough review, we will include it.
-                                                        </p>
-                                                    </div>
-                                                    <Button
-                                                        onClick={ShowNewCategoryModal}
-                                                    >
-                                                        Add Category
-                                                    </Button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <GenericActionBanner />
                         </div>
                     </div>
                 </>

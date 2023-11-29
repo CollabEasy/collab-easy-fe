@@ -20,6 +20,7 @@ import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
 import moment from "moment";
 import { GetProposalTags } from "helpers/proposalHelper";
+import GenericActionBanner from "@/components/genericActionBanner";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -196,6 +197,9 @@ const ProposalsPage = ({
                                 </Button>
                             </div>
                             {getAllProposals(allProposals)}
+                        </div>
+                        <div className="row">
+                            <GenericActionBanner />
                         </div>
                     </div>
                 </>

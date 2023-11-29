@@ -42,7 +42,7 @@ const Footer = ({
   user,
 }: Props) => {
   const [pathname, setPathname] = useState("");
-  const { toAllBlogs, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toFAQ, toContactUs } = useRoutesContext();
+  const { toAllBlogs, toAllProposalsPage, toRewardsInfoPage, toGetInspired, toAllContestPage, toAllCategoryPage, toAboutUs, toTutorial, toTerms, toPrivacy, toFAQ, toContactUs } = useRoutesContext();
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(true);
   const lastScrollY = useRef(0);
@@ -140,6 +140,7 @@ const Footer = ({
                   <li><a href={toGetInspired().href} >Content Ideas</a></li>
                   <li><a href={toAllContestPage().href} >Art Contests</a></li>
                   <li><a href={toAllCategoryPage().href} >Collab Categories</a></li>
+                  <li><a href={toAllProposalsPage().href} >Collab Proposals</a></li>
                   <li><a href={toRewardsInfoPage().href} >Earn Rewards</a></li>
                 </ul>
               </div>

@@ -16,6 +16,7 @@ import Loader from "@/components/loader";
 import { GetContestStatus } from "helpers/contest";
 import Layout from "@/components/layout";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
+import GenericActionBanner from "@/components/genericActionBanner";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -164,6 +165,9 @@ const AllContestPage = ({
                         </div>
                         <div className="col-md-12 listingContainer">
                             {getAllContests(allContests)}
+                        </div>
+                        <div className="row">
+                            <GenericActionBanner />
                         </div>
                     </div>
                 </>

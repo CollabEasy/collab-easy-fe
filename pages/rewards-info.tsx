@@ -15,6 +15,7 @@ import * as actions from "state/action";
 import Layout from "@/components/layout";
 import Link from "next/link";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
+import GenericActionBanner from "@/components/genericActionBanner";
 
 const { Meta } = Card;
 
@@ -163,50 +164,6 @@ const RewardsInfoPage = ({
                                         </div>
                                     </div>
                                 </div>
-                                {/* <div className="col my-3">
-                                    <div className="card border-hover-primary hover-scale">
-                                        <div className="card-body">
-                                            <div className="text-primary mb-5">
-
-                                            </div>
-                                            <h6 className="font-weight-bold mb-3">Graphics and Logo Design</h6>
-                                            <p className="text-muted mb-0">Embed holistics charts directly to your application</p>
-                                        </div>
-                                    </div>
-                                </div> */}
-                                {/* <div className="col my-3">
-                                    <div className="card border-hover-primary hover-scale">
-                                        <div className="card-body">
-                                            <div className="text-primary mb-5">
-
-                                            </div>
-                                            <h6 className="font-weight-bold mb-3">Project Management</h6>
-                                            <p className="text-muted mb-0">Embed holistics charts directly to your application</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col my-3">
-                                    <div className="card border-hover-primary hover-scale">
-                                        <div className="card-body">
-                                            <div className="text-primary mb-5">
-
-                                            </div>
-                                            <h6 className="font-weight-bold mb-3">Task management</h6>
-                                            <p className="text-muted mb-0">Embed holistics charts directly to your application</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col mb-0 mt-3 mb-lg-3">
-                                    <div className="card border-hover-primary hover-scale">
-                                        <div className="card-body">
-                                            <div className="text-primary mb-5">
-
-                                            </div>
-                                            <h6 className="font-weight-bold mb-3">Client Dashboards</h6>
-                                            <p className="text-muted mb-0">Embed holistics charts directly to your application</p>
-                                        </div>
-                                    </div>
-                                </div> */}
                             </div>
                         </section>
                     </div>
@@ -218,6 +175,9 @@ const RewardsInfoPage = ({
                                 1000 points = $10
                             </p>
                         </section>
+                    </div>
+                    <div className="row">
+                        <GenericActionBanner />
                     </div>
                 </div>
             </>

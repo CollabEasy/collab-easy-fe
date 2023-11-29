@@ -16,6 +16,8 @@ import Layout from '@/components/layout';
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
 import { Collapse } from 'antd';
+import GenericActionBanner from "@/components/genericActionBanner";
+import GenericPageBanner from "@/components/genericPageBanner";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -104,43 +106,17 @@ const GetInspired = ({
       )
       }
 
-      <div className="getInspired-parentContainer">
+      <div className="genericPageLayout_container">
         {windowWidth > 500 &&
           <GenericBreadcrumb
             page={"Inspiration Hub"}
           />
         }
         <div className="row">
-          <div style={{ width: "100%" }}>
-            <div className="row d-flex justify-content-center pageBanner-cover">
-              <div className="col-md-12">
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="text-center">
-                      <Image
-                        src={coverSection["imgUrl"]}
-                        layout="responsive"
-                        alt={coverSection["imgAltTag"]}
-                        priority
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-8">
-                    <div className="pageBanner-cnt">
-                      <div className="pageBanner-text text-center">
-                        <h3 className="common-h3-style">
-                          {coverSection["heading"]}
-                        </h3>
-                        <p className="common-p-style">
-                          {coverSection["paragraph"]}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <GenericPageBanner
+            heading={coverSection["heading"]}
+            paragraph={coverSection["paragraph"]}
+          />
         </div>
         <div className="getInspired-sectionContainer">
           <div className="getInspired-textContainer">
@@ -161,15 +137,10 @@ const GetInspired = ({
                 because we do believe <b><i>together you create better!</i></b>
               </p>
             </div>
-            <div style={{ paddingTop: "30px", paddingBottom: "30px" }} className="getInspired-buttonContainer">
-              <Button type="primary" className="common-btn-dimension">
-                <Link
-                  href={routeToHref(toDiscover())}
-                  passHref
-                >Collaborate Now</Link>
-              </Button>
-            </div>
           </div>
+        </div>
+        <div className="row">
+          <GenericActionBanner />
         </div>
       </div>
     </Layout>
