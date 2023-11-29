@@ -73,45 +73,34 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
         <GenericBreadcrumb
           page={"Contact Us"}
         />
-        <div className="footer_contactUsSectionContainer">
-          <div className="footer_contactUsImage">
-            <Image
-              src={contactUsImage}
-              alt="Reach out to Wondor.art team for any questions you have"
-              priority
-            />
+        <div className="contact-us-section-container">
+          <h3 className="common-h3-style">Need help? Contact us</h3>
+          <p className="common-p-style">
+            We can be reached at:
+            <strong> admin@wondor.com</strong>
+            <br></br>
+            Please classify your email in one of the categories, and we will gladly get back to you.
+            <br></br>
+          </p >
+          <div className="question">
+            <h5 className="card-text common-h5-style">- Bug Report</h5>
+            <p className="card-text common-p-style">If you want to report any bug on the website.</p>
           </div>
-        </div>
-        <div className="footer_contactUsSectionContainer">
-          <div className="footer_contactUsTextContainer">
-            <h3 className="common-h3-style">Need help? Contact us</h3>
-            <p className="common-p-style">
-              We can be reached at:
-              <strong> admin@wondor.com</strong>
-              <br></br>
-              Please classify your email in one of the categories, and we will gladly get back to you.
-              <br></br>
-            </p >
-            <div className="question">
-              <h5 className="card-text common-h5-style">- Bug Report</h5>
-              <p className="card-text common-p-style">If you want to report any bug on the website.</p>
-            </div>
-            <div className="question">
-              <h5 className="card-text common-h5-style">- Wrong Information</h5>
-              <p className="card-text common-p-style">If you see any outdated information.</p>
-            </div>
-            <div className="question">
-              <h5 className="card-text common-h5-style">- General</h5>
-              <p className="card-text common-p-style">If you want to say Hi or anything else.</p>
-            </div>
-            <div className="footer_contactUsButtonContainer">
-              <Button type="primary" className="common-btn-dimension">
-                <Link
-                  href={routeToHref(toDiscover())}
-                  passHref
-                >Explore Wondor</Link>
-              </Button>
-            </div>
+          <div className="question">
+            <h5 className="card-text common-h5-style">- Wrong Information</h5>
+            <p className="card-text common-p-style">If you see any outdated information.</p>
+          </div>
+          <div className="question">
+            <h5 className="card-text common-h5-style">- General</h5>
+            <p className="card-text common-p-style">If you want to say Hi or anything else.</p>
+          </div>
+          <div className="contact-us-section-button">
+            <Button type="primary" className="common-btn-dimension">
+              <Link
+                href={routeToHref(toDiscover())}
+                passHref
+              >Explore Wondor</Link>
+            </Button>
           </div>
         </div>
       </div>
