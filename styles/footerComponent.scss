@@ -30,6 +30,7 @@
 .footer_contactUsSectionContainer {
     width: 50%;
     float: left;
+
     .footer_contactUsImage {
         display: block;
     }
@@ -54,33 +55,9 @@
 
 // Page 4: Terms and Conditions
 
-.footer_termsContainer {
-    position: relative;
-    margin: auto;
-    flex-direction: column;
-    width: 70%;
-    margin-top: 10%;
-}
-
-.footer_termsSectionContainer {
-    text-align: left;
-    padding-bottom: 1rem;
-}
 
 // Page 5: Privacy
 
-.footer_privacyContainer {
-    position: relative;
-    margin: auto;
-    flex-direction: column;
-    width: 70%;
-    margin-top: 10%;
-}
-
-.footer_privacySectionContainer {
-    text-align: left;
-    padding-bottom: 1rem;
-}
 
 
 // Page 6: FAQS
@@ -117,16 +94,6 @@
         }
     }
 
-    .footer_termsContainer {
-        width: 90%;
-        margin-top: 10rem;
-    }
-
-    .footer_privacyContainer {
-        width: 90%;
-        margin-top: 10rem;
-    }
-
     .footer_blogsContainer {
         width: 90%;
     }
@@ -159,16 +126,6 @@
         h3 {
             text-align: left;
         }
-    }
-
-    .footer_termsContainer {
-        width: 90%;
-        margin-top: 9rem;
-    }
-
-    .footer_privacyContainer {
-        width: 90%;
-        margin-top: 9rem;
     }
 
     .footer_faqsContainer {
@@ -210,15 +167,7 @@
         align-items: center;
     }
 
-    .footer_termsContainer {
-        width: 80%;
-        margin-top: 8rem;
-    }
 
-    .footer_privacyContainer {
-        width: 80%;
-        margin-top: 8rem;
-    }
 
     .footer_faqsContainer {
         width: 80%;
@@ -258,15 +207,6 @@
         align-items: center;
     }
 
-    .footer_termsContainer {
-        width: 80%;
-        margin-top: 7rem;
-    }
-
-    .footer_privacyContainer {
-        width: 80%;
-        margin-top: 7rem;
-    }
 
     .footer_faqsContainer {
         width: 80%;
@@ -311,15 +251,6 @@
         align-items: center;
     }
 
-    .footer_termsContainer {
-        width: 80%;
-        margin-top: 6rem;
-    }
-
-    .footer_privacyContainer {
-        width: 80%;
-        margin-top: 6rem;
-    }
 
     .footer_faqsContainer {
         width: 90%;
@@ -359,20 +290,11 @@
         align-items: center;
     }
 
-    .footer_termsContainer {
-        width: 80%;
-        margin-top: 5rem;
-    }
-
     .footer_faqsContainer {
         width: 80%;
         margin-top: 5rem;
     }
 
-    .footer_privacyContainer {
-        width: 80%;
-        margin-top: 5rem;
-    }
 
     .footer_blogsContainer {
         width: 90%;

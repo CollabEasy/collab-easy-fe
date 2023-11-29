@@ -7,18 +7,16 @@ import Image from 'next/image';
 import LoginModal from '../../components/modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
-import { openLoginModalAction, updateLoginData } from 'state/action';
+import { updateLoginData } from 'state/action';
 import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../../components/modal/newUserModal';
 import Layout from '@/components/layout';
-import GenericBreadcrumb from "@/components/genericBreadcrumb";
-import pageBannerImage from 'public/images/mobile-landing.svg';
 import { BLOGS } from "constants/blogs";
-import notFoundImage from '../../public/images/not-found.svg';
-import ActionBanner from "@/components/genericActionBanner";
+import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import GenericActionBanner from "@/components/genericActionBanner";
+import GenericPageBanner from "@/components/genericPageBanner";
 
 const mapStateToProps = (state: AppState) => ({
     loginModalDetails: state.home.loginModalDetails,
@@ -28,7 +26,6 @@ const mapStateToProps = (state: AppState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    openLoginModalAction: () => dispatch(openLoginModalAction()),
     updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
 });
 
@@ -44,17 +41,12 @@ type Props = {
 const AllBlogs = ({
     isLoggedIn,
     updateLoggedInData,
-    openLoginModalAction,
     loginModalDetails,
     user,
     artistListData
 }: Props) => {
     const [showProfileModal, setShowProfileModal] = useState(false);
-    const { toContactUs, toFAQ, toBlogPage } = useRoutesContext();
-
-    const openLoginModal = () => {
-        openLoginModalAction();
-    };
+    const {toBlogPage } = useRoutesContext();
 
     useEffect(() => {
         if (user) {
@@ -117,51 +109,10 @@ const AllBlogs = ({
                     page={"All Blogs"}
                 />
                 <div className="row">
-                    <div style={{ width: "100%" }}>
-                        <div className="row d-flex justify-content-center pageBanner-cover">
-                            <div className="col-md-12">
-                                <div className="row">
-                                    <div className="col-md-4 col-sm-4">
-                                        <div className="text-center">
-                                            <Image
-                                                src={pageBannerImage}
-                                                layout="responsive"
-                                                alt="Read Wondor's blog and embark on your creative collaboration journey!"
-                                                priority
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-8 col-sm-8">
-                                        <div className="pageBanner-cnt">
-                                            <div className="pageBanner-text text-center">
-                                                <h3 className="common-h3-style">
-                                                    Unleash your creative potential and discover the magic of collaboration through Wondor&pos;s insightful blog 🤗
-                                                </h3>
-                                                <p className="common-p-style">
-                                                    Read Wondor&pos;s blog and embark on your creative collaboration journey!
-                                                </p>
-                                            </div>
-                                            <div className="pageBanner-button-group">
-                                                <Button
-                                                    type="primary"
-                                                    className="common-btn-dimension pageBanner-button"
-                                                    onClick={openLoginModal}
-                                                >
-                                                    Join Now
-                                                </Button>
-                                                <Button className="common-btn-dimension pageBanner-button">
-                                                    <Link
-                                                        href={routeToHref(toContactUs())}
-                                                        passHref
-                                                    >Ask Question</Link>
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <GenericPageBanner
+                        heading="Unleash your creative potential and discover the magic of collaboration through Wondor&pos;s insightful blog 🤗"
+                        paragraph="Read Wondor&pos;s blog and embark on your creative collaboration journey!"
+                    />
                 </div>
                 <div className="container all-blogs-container">
                     <div className="row">
