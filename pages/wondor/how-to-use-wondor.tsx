@@ -7,16 +7,15 @@ import Image from 'next/image';
 import LoginModal from '../../components/modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
-import { openLoginModalAction, updateLoginData } from 'state/action';
+import { updateLoginData } from 'state/action';
 import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../../components/modal/newUserModal';
 import Layout from '@/components/layout';
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
-import pageBannerImage from 'public/images/mobile-landing.svg';
-import notFoundImage from '../../public/images/not-found.svg';
-import ActionBanner from "@/components/actionBanner";
+import GenericActionBanner from "@/components/genericActionBanner";
+import GenericPageBanner from "@/components/genericPageBanner";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -26,7 +25,6 @@ const mapStateToProps = (state: AppState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openLoginModalAction: () => dispatch(openLoginModalAction()),
   updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
 });
 
@@ -42,17 +40,11 @@ type Props = {
 const Tutorial = ({
   isLoggedIn,
   updateLoggedInData,
-  openLoginModalAction,
   loginModalDetails,
   user,
   artistListData
 }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const { toContactUs, toDiscover, toFAQ } = useRoutesContext();
-
-  const openLoginModal = () => {
-    openLoginModalAction();
-  };
 
   useEffect(() => {
     if (user) {
@@ -90,51 +82,10 @@ const Tutorial = ({
           page={"Tutorial"}
         />
         <div className="row">
-          <div style={{ width: "100%" }}>
-            <div className="row d-flex justify-content-center pageBanner-cover">
-              <div className="col-12">
-                <div className="row">
-                  <div className="col-md-4 col-sm-4">
-                    <div className="text-center">
-                      <Image
-                        src={pageBannerImage}
-                        layout="responsive"
-                        alt="4 steps to start using wondor for your next collaboration"
-                        priority
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-8 col-sm-8">
-                    <div className="pageBanner-cnt">
-                      <div className="pageBanner-text text-center">
-                        <h3 className="common-h3-style">
-                          You are just 4 steps away from your next collaboration 🤗
-                        </h3>
-                        <p className="common-p-style">
-                          Are you ready to take your skills to the next level and collaborate with others on exciting projects? Then it&apos;s time to create your profile and join a community of like-minded individuals!
-                        </p>
-                      </div>
-                      <div className="pageBanner-button-group">
-                        <Button
-                          type="primary"
-                          className="common-btn-dimension pageBanner-button"
-                          onClick={openLoginModal}
-                        >
-                          Join Now
-                        </Button>
-                        <Button className="common-btn-dimension pageBanner-button">
-                          <Link
-                            href={routeToHref(toContactUs())}
-                            passHref
-                          >Ask Question</Link>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <GenericPageBanner
+            heading="You are just 4 steps away from your next collaboration 🤗"
+            paragraph="Are you ready to take your skills to the next level and collaborate with others on exciting projects? Then it's time to create your profile and join a community of like-minded individuals!"
+          />
         </div>
         <div className="tutorial-text-row">
           <div className="tutorial-text-column">
@@ -185,7 +136,7 @@ const Tutorial = ({
           </div>
         </div>
         <div className="row">
-          <ActionBanner />
+          <GenericActionBanner />
         </div>
       </div>
     </Layout>

@@ -69,7 +69,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
       )
       }
 
-      <div className="footer_contactUsContainer">
+      <div className="genericPageLayout_container">
         <GenericBreadcrumb
           page={"Contact Us"}
         />
@@ -77,7 +77,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
           <div className="footer_contactUsImage">
             <Image
               src={contactUsImage}
-              alt="Landing page"
+              alt="Reach out to Wondor.art team for any questions you have"
               priority
             />
           </div>

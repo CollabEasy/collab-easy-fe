@@ -17,7 +17,8 @@ import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import pageBannerImage from 'public/images/mobile-landing.svg';
 import { BLOGS } from "constants/blogs";
 import notFoundImage from '../../public/images/not-found.svg';
-import ActionBanner from "@/components/actionBanner";
+import ActionBanner from "@/components/genericActionBanner";
+import GenericActionBanner from "@/components/genericActionBanner";
 
 const mapStateToProps = (state: AppState) => ({
     loginModalDetails: state.home.loginModalDetails,
@@ -170,7 +171,7 @@ const AllBlogs = ({
                     </div>
                 </div>
                 <div className="row">
-                    <ActionBanner />
+                    <GenericActionBanner />
                 </div>
             </div>
         </Layout>
