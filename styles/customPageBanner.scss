@@ -14,13 +14,13 @@
 	overflow-x: hidden;
 	overflow-y: scroll;
 
-	.rewardsInfoPage__listingPageCoverContainer {
+	.custom-page-banner-container {
 		width: 100%;
 		height: 100%;
 		border: 1px solid rgb(0 0 0 / 10%);
 		// margin-top: 50px;
 
-		.rewardsInfoPage_desktopCoverTextContainer {
+		.custom-page-banner-text {
 			padding-top: 2rem;
 			padding-left: 5rem;
 			padding-right: 5rem;
@@ -130,10 +130,10 @@
 	.rewardsInfoPage_listingPagecontainer {
 		width: 90%;
 
-		.rewardsInfoPage__listingPageCoverContainer {
+		.custom-page-banner-container {
 			text-align: left;
 
-			.rewardsInfoPage_desktopCoverTextContainer {
+			.custom-page-banner-text {
 				padding: 4rem;
 
 				h1 {
@@ -158,10 +158,10 @@
 	.rewardsInfoPage_listingPagecontainer {
 		width: 90%;
 
-		.rewardsInfoPage__listingPageCoverContainer {
+		.custom-page-banner-container {
 			text-align: left;
 
-			.rewardsInfoPage_desktopCoverTextContainer {
+			.custom-page-banner-text {
 				padding-top: 2rem;
 				padding-left: 5rem;
 				padding-right: 5rem;
@@ -188,10 +188,10 @@
 	.rewardsInfoPage_listingPagecontainer {
 		width: 90%;
 
-		.rewardsInfoPage__listingPageCoverContainer {
+		.custom-page-banner-container {
 			text-align: left;
 
-			.rewardsInfoPage_desktopCoverTextContainer {
+			.custom-page-banner-text {
 				padding-top: 2rem;
 				padding-left: 5rem;
 				padding-right: 5rem;
@@ -219,10 +219,10 @@
 		width: 90%;
 		margin-top: 20%;
 
-		.rewardsInfoPage__listingPageCoverContainer {
+		.custom-page-banner-container {
 			text-align: left;
 
-			.rewardsInfoPage_desktopCoverTextContainer {
+			.custom-page-banner-text {
 				padding-top: 2rem;
 				padding-left: 5rem;
 				padding-right: 5rem;
@@ -250,10 +250,10 @@
 		width: 90%;
 		margin-top: 20%;
 
-		.rewardsInfoPage__listingPageCoverContainer {
+		.custom-page-banner-container {
 			text-align: center;
 
-			.rewardsInfoPage_desktopCoverTextContainer {
+			.custom-page-banner-text {
 				padding-top: 2rem;
 				padding-left: 3rem;
 				padding-right: 3rem;
@@ -285,9 +285,9 @@
 		width: 90%;
 		margin-top: 20%;
 
-		.rewardsInfoPage__listingPageCoverContainer {
+		.custom-page-banner-container {
 
-			.rewardsInfoPage_desktopCoverTextContainer {
+			.custom-page-banner-text {
 				padding: 1rem;
 
 				h1 {

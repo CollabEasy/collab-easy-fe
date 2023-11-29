@@ -40,10 +40,10 @@ const CustomPageBanner = ({
     // https://bootdey.com/snippets/view/blog-page#html
     return (
         <>
-        <div className="rewardsInfoPage__listingPageCoverContainer">
+        <div className="custom-page-banner-container">
             <div className="row ">
                 <div className="col-sm-8" style={{ backgroundColor: backgroundColor }}>
-                    <div className="rewardsInfoPage_desktopCoverTextContainer">
+                    <div className="custom-page-banner-text">
                         <h1 className="common-h1-style">
                             {heading}
                         </h1>
