@@ -103,3 +103,10 @@ input[type=number]:focus,
     gap: 8px;
 	overflow-x: hidden;
 }
+
+.twoButtonsSpacing {
+	display: flex;
+	flex-direction: row;
+	gap: 16px;
+	justify-content: center;
+}

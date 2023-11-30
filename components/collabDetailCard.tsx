@@ -17,6 +17,7 @@ import * as actions from "./../state/action";
 import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 import { useRouter } from "next/router";
 import SendCollabRequestModal from "./modal/sendCollabRequestModal";
+import { getCollabCardTag } from "../helpers/collabPageHelper";
 import { ShowEditCollabDetailIcon, ShowChatButton, ChatButtonText, ConvertTimestampToDate, GetCollabHeading, GetCollabAdditionalDetails, GetScheduledDate } from "helpers/collabCardHelper";
 
 
@@ -144,29 +145,13 @@ const CollabDetailCard = ({
     )
   }
 
-  const getCollabCardTag = (status) => {
-    if (status === "ACTIVE") {
-      return <Tag style={{ width: "55px", marginBottom: '10px' }} color="blue">Active</Tag>;
-    } else if (status === "PENDING") {
-      return <Tag style={{ width: "65px", marginBottom: '10px' }} color="yellow">Pending</Tag>;
-    } else if (status === "REJECTED") {
-      return <Tag style={{ width: "80px", marginBottom: '10px' }} color="red">Rejected</Tag>;
-    } else if (status === "EXPIRED") {
-      return <Tag style={{ width: "65px", marginBottom: '10px' }} color="grey">Expired</Tag>;
-    } else {
-      return <Tag style={{ width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
-    }
-  }
-
   const ppurl = (collabDetails.senderId === user.artist_id
     ? collabDetails.receiverProfilePicUrl
     : collabDetails.senderProfilePicUrl);
   return (
     <>
       {(showCollabModal.show && collabDetails.id === showCollabModal.id) && (
-        <SendCollabRequestModal onCancel={() => {
-          setShowCollabModalState(false, '');
-        }} otherUser={collabDetails.receiverId} collabDetails={collabDetails} />
+        <div className="padding20"><SendCollabRequestModal edit otherUser={collabDetails.receiverId} collabDetails={collabDetails} /></div>
       )}
       <div className="collabDetailCard__container">
         <div className="row p-2 bg-white border rounded collab-card">

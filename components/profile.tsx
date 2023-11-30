@@ -48,9 +48,22 @@ import { ConvertTimestampToDate } from "../helpers/collabCardHelper";
 import ProfilePicture from "./profilePicture";
 import CategorySelector from "./categorySelector";
 import { fetchArtistSkills } from "../state/action";
-import { GetSocialMediaUrl, GetSocialPlatformImage, GetSocialPlatformName } from "helpers/socialProspectusHelper";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faDribbble, faFlickr, faSoundcloud, faYoutube, faSpotify, faFacebook, faTiktok } from '@fortawesome/free-brands-svg-icons';
+import {
+  GetSocialMediaUrl,
+  GetSocialPlatformImage,
+  GetSocialPlatformName,
+} from "helpers/socialProspectusHelper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faDribbble,
+  faFlickr,
+  faSoundcloud,
+  faYoutube,
+  faSpotify,
+  faFacebook,
+  faTiktok,
+} from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { GetProposalTags } from "helpers/proposalHelper";
 
@@ -69,7 +82,8 @@ const mapStateToProps = (state: AppState) => {
 
   const proposal = state.proposal;
 
-  const isFetchingSocialProspectus = state.socialProspectus?.isFetchingProspectus;
+  const isFetchingSocialProspectus =
+    state.socialProspectus?.isFetchingProspectus;
 
   const isFetchingSamples = state.sample.isFetchingSamples;
 
@@ -111,8 +125,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(action.setShowCollabModalState(show, id)),
   updateArtistProfile: (user: any) =>
     dispatch(action.updateArtistProfile(user)),
-  fetchProposalByArtistSlug: (slug: string) => dispatch(action.fetchProposalByArtistSlug(slug)),
-  fetchArtistSocialProspectus: (slug: string) => dispatch(action.fetchArtistSocialProspectus(slug)),
+  fetchProposalByArtistSlug: (slug: string) =>
+    dispatch(action.fetchProposalByArtistSlug(slug)),
+  fetchArtistSocialProspectus: (slug: string) =>
+    dispatch(action.fetchArtistSocialProspectus(slug)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -182,7 +198,8 @@ const Profile = ({
     useState(false);
   const [updating, setUpdating] = useState("");
 
-  const { toArtistPortal, toDiscover, toProposalPage } = useRoutesContext();
+  const { toArtistPortal, toDiscover, toProposalPage, toUserCollabPage } =
+    useRoutesContext();
 
   useEffect(() => {
     // fetchArtistSamples(user.slug);
@@ -226,7 +243,13 @@ const Profile = ({
 
   // show loader till the collab requests of other user is fetched (for collaborate button status)
 
-  if (isLoggedIn && !isSelf && collab.isFetchingCollabDetails && isFetchingSocialProspectus && isfetchingUserProposals) {
+  if (
+    isLoggedIn &&
+    !isSelf &&
+    collab.isFetchingCollabDetails &&
+    isFetchingSocialProspectus &&
+    isfetchingUserProposals
+  ) {
     return <Loader />;
   }
 
@@ -299,7 +322,7 @@ const Profile = ({
           <CheckOutlined style={{ color: "green", marginTop: "20px" }} />
           {user.first_name} is available to collab!{" "}
         </span>
-      )
+      );
     }
     return isSelf ? (
       <Tooltip title={isLoggedIn ? "" : "Login to edit your profile"}>
@@ -319,66 +342,29 @@ const Profile = ({
       </Tooltip>
     ) : (
       <>
-        {hasPendingCollab ? (
-          <>
-            <Tooltip title={isLoggedIn ? "" : "Login to view collab status"}>
-              <Button
-                type="primary"
-                className="common-medium-btn"
-                disabled={!isLoggedIn}
-                style={{ height: "auto", marginTop: "10px" }}
-                onClick={() => {
-                  setShowCollabModalState(true, collabRequestDetails.id);
-                  setCollabRequestDetails(collabRequestDetails);
-                }}
-              >
-                {collabRequestDetails.status === "PENDING"
-                  ? "Show pending request"
-                  : "Show active request"}
-              </Button>
-            </Tooltip>
+        <Tooltip title={isLoggedIn ? "" : "Login to send collab request"}>
+          <Button
+            type="primary"
+            className="common-medium-btn"
+            style={{ height: "auto", marginTop: "10px" }}
+            disabled={!isLoggedIn || !upForCollab}
+          >
+            <a href={routeToHref(toUserCollabPage(user.slug))}>
+              Let&apos;s collaborate
+            </a>
+          </Button>
+        </Tooltip>
 
-            {collabRequestDetails.status === "PENDING" ? (
-              <span className="common-text-style">
-                <StarFilled style={{ color: "orange", margin: "5px" }} />
-                You have a pending collab request with {user.first_name}.
-              </span>
-            ) : (
-              <span className="common-text-style">
-                <StarFilled style={{ color: "orange", margin: "5px" }} />
-                You have an active collab request with {user.first_name}.
-              </span>
-            )}
-          </>
+        {!upForCollab ? (
+          <span className="common-text-style">
+            <CloseOutlined style={{ color: "red", marginTop: "20px" }} />
+            {user.first_name} is not available to collab!{" "}
+          </span>
         ) : (
-          <>
-            <Tooltip title={isLoggedIn ? "" : "Login to send collab request"}>
-              <Button
-                type="primary"
-                className="common-medium-btn"
-                style={{ height: "auto", marginTop: "10px" }}
-                disabled={!isLoggedIn || !upForCollab}
-                onClick={() => {
-                  setShowCollabModalState(true, collabRequestDetails.id);
-                }}
-              >
-                {" "}
-                Let&apos;s collaborate
-              </Button>
-            </Tooltip>
-
-            {!upForCollab ? (
-              <span className="common-text-style">
-                <CloseOutlined style={{ color: "red", marginTop: "20px" }} />
-                {user.first_name} is not available to collab!{" "}
-              </span>
-            ) : (
-              <span className="common-text-style">
-                <CheckOutlined style={{ color: "green", marginTop: "20px" }} />
-                {user.first_name} is available to collab!{" "}
-              </span>
-            )}
-          </>
+          <span className="common-text-style">
+            <CheckOutlined style={{ color: "green", marginTop: "20px" }} />
+            {user.first_name} is available to collab!{" "}
+          </span>
         )}
       </>
     );
@@ -412,51 +398,105 @@ const Profile = ({
 
   const getIcon = (socialPlatfornName) => {
     if (socialPlatfornName === "Instagram") {
-      return <FontAwesomeIcon title="Instagram" icon={faInstagram} size="2x" color="#7948C3" />
+      return (
+        <FontAwesomeIcon
+          title="Instagram"
+          icon={faInstagram}
+          size="2x"
+          color="#7948C3"
+        />
+      );
+    } else if (socialPlatfornName === "Youtube") {
+      return (
+        <FontAwesomeIcon
+          title="Youtube"
+          icon={faYoutube}
+          size="2x"
+          color="#ED3A35"
+        />
+      );
+    } else if (socialPlatfornName === "Dribble") {
+      return (
+        <FontAwesomeIcon
+          title="Dribble"
+          icon={faDribbble}
+          size="2x"
+          color="#B32E5A"
+        />
+      );
+    } else if (socialPlatfornName === "Flickr") {
+      return (
+        <FontAwesomeIcon
+          title="Flickr"
+          icon={faFlickr}
+          size="2x"
+          color="#EC438B"
+        />
+      );
+    } else if (socialPlatfornName === "Spotify") {
+      return (
+        <FontAwesomeIcon
+          title="Spotify"
+          icon={faSpotify}
+          size="2x"
+          color="#61D165"
+        />
+      );
+    } else if (socialPlatfornName === "Facebook") {
+      return (
+        <FontAwesomeIcon
+          title="Facebook"
+          icon={faFacebook}
+          size="2x"
+          color="#185395"
+        />
+      );
+    } else if (socialPlatfornName === "Soundcloud") {
+      return (
+        <FontAwesomeIcon
+          title="Soundcloud"
+          icon={faSoundcloud}
+          size="2x"
+          color="#F1853C"
+        />
+      );
+    } else if (socialPlatfornName === "Tik Tok") {
+      return (
+        <FontAwesomeIcon
+          title="Tik Tok"
+          icon={faTiktok}
+          size="2x"
+          color="black"
+        />
+      );
     }
-    else if (socialPlatfornName === "Youtube") {
-      return <FontAwesomeIcon title="Youtube" icon={faYoutube} size="2x" color="#ED3A35" />
-    }
-    else if (socialPlatfornName === "Dribble") {
-      return <FontAwesomeIcon title="Dribble" icon={faDribbble} size="2x" color="#B32E5A" />
-    }
-    else if (socialPlatfornName === "Flickr") {
-      return <FontAwesomeIcon title="Flickr" icon={faFlickr} size="2x" color="#EC438B" />
-    }
-    else if (socialPlatfornName === "Spotify") {
-      return <FontAwesomeIcon title="Spotify" icon={faSpotify} size="2x" color="#61D165" />
-    }
-    else if (socialPlatfornName === "Facebook") {
-      return <FontAwesomeIcon title="Facebook" icon={faFacebook} size="2x" color="#185395" />
-    }
-    else if (socialPlatfornName === "Soundcloud") {
-      return <FontAwesomeIcon title="Soundcloud" icon={faSoundcloud} size="2x" color="#F1853C" />
-    }
-    else if (socialPlatfornName === "Tik Tok") {
-      return <FontAwesomeIcon title="Tik Tok" icon={faTiktok} size="2x" color="black" />
-    }
-    return <FontAwesomeIcon title={socialPlatfornName} icon={faLink} size="2x" color="grey" />
-  }
+    return (
+      <FontAwesomeIcon
+        title={socialPlatfornName}
+        icon={faLink}
+        size="2x"
+        color="grey"
+      />
+    );
+  };
 
   const getSocialProspectusComponent = () => {
     const prospectusCard: JSX.Element[] = [];
-    let data = userSocialProspectus.length != 0 ? userSocialProspectus[0].data : [];
-    data.forEach(element => {
+    let data =
+      userSocialProspectus.length != 0 ? userSocialProspectus[0].data : [];
+    data.forEach((element) => {
       let name = GetSocialPlatformName(element.socialPlatformId);
       let url = GetSocialMediaUrl(element.socialPlatformId, element.handle);
       prospectusCard.push(
         <span style={{ cursor: "pointer", paddingLeft: "5px" }}>
-          <Link
-            href={url}
-            passHref
-          >
+          <Link href={url} passHref>
             {getIcon(name)}
           </Link>
         </span>
-      )
+      );
     });
     return prospectusCard;
-  }
+  };
 
   const columns = [
     { title: "Title", dataIndex: "title", key: "title" },
@@ -478,9 +518,14 @@ const Profile = ({
       // eslint-disable-next-line react/display-name
       render: (_text: any, proposal: any) => (
         <>
-          <Button >
+          <Button>
             <Link
-              href={toProposalPage(proposal.proposalId, proposal.title.replace(/\s+/g, '-').toLowerCase()).as}
+              href={
+                toProposalPage(
+                  proposal.proposalId,
+                  proposal.title.replace(/\s+/g, "-").toLowerCase()
+                ).as
+              }
               passHref
             >
               Details
@@ -503,36 +548,50 @@ const Profile = ({
             {/* <span>
               <p>{GetProposalTags(proposal)}</p>
             </span> */}
-            <Button >
+            <Button>
               <Link
-                href={toProposalPage(proposal.proposalId, proposal.title.replace(/\s+/g, '-').toLowerCase()).as}
+                href={
+                  toProposalPage(
+                    proposal.proposalId,
+                    proposal.title.replace(/\s+/g, "-").toLowerCase()
+                  ).as
+                }
                 passHref
               >
                 Details
               </Link>
             </Button>
           </div>
-        )
-      }
-    }
+        );
+      },
+    },
   ];
 
   const getProposalsTabs = () => {
     if (proposal.userProposals.length === 0) {
-      return <div className="artistProfile__tabContainer">No collab proposals submitted  by {user.first_name}!</div>;
+      return (
+        <div className="artistProfile__tabContainer">
+          No collab proposals submitted by {user.first_name}!
+        </div>
+      );
     }
 
-    let data = proposal.userProposals.length != 0 ? proposal.userProposals[0].data : [];
+    let data =
+      proposal.userProposals.length != 0 ? proposal.userProposals[0].data : [];
 
     if (data["created"].length === 0) {
-      return <div className="artistProfile__tabContainer">No collab proposals submitted  by {user.first_name}!</div>;
+      return (
+        <div className="artistProfile__tabContainer">
+          No collab proposals submitted by {user.first_name}!
+        </div>
+      );
     }
 
     let updatedData = [];
     data["created"].forEach((proposal) => {
-      updatedData.push(proposal.proposal)
-    })
-    updatedData.sort((a, b) => b.createdAt - a.createdAt)
+      updatedData.push(proposal.proposal);
+    });
+    updatedData.sort((a, b) => b.createdAt - a.createdAt);
     return (
       <Table
         showHeader={false}
@@ -540,8 +599,7 @@ const Profile = ({
         dataSource={updatedData}
       />
     );
-
-  }
+  };
 
   return (
     <>
@@ -612,12 +670,8 @@ const Profile = ({
           {user.country && (
             <div className="d-flex flex-row artist-location">
               <span>{user.country}</span>
-              {user.state && (
-                <span>, {user.state}</span>
-              )}
-              {user.city && (
-                <span>, {user.city}</span>
-              )}
+              {user.state && <span>, {user.state}</span>}
+              {user.city && <span>, {user.city}</span>}
             </div>
           )}
           {getButton()}
@@ -639,7 +693,7 @@ const Profile = ({
                   </div>
                   {!isEditCategoriesClicked ? (
                     <p className="mt4 artistProfile__skillsAndSocialContainer common-p-style">
-                      {GetUserSkillsTags(user, true)}{" "}
+                      {GetUserSkillsTags(user.skills, true)}{" "}
                     </p>
                   ) : (
                     <CategorySelector
@@ -712,16 +766,6 @@ const Profile = ({
           </Tabs>
         </div>
       </div>
-
-      {showCollabModal.show && (
-        <SendCollabRequestModal
-          otherUser={user.artist_id}
-          onCancel={() => {
-            setShowCollabModalState(false, "");
-          }}
-          collabDetails={collabRequestDetails}
-        />
-      )}
     </>
   );
 };

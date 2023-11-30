@@ -257,13 +257,13 @@ const SendCollabRequestPage = ({
                 </>
             )}
             {showCollabModal.show && (
+                <div className="padding20">
                 <SendCollabRequestModal
+                    edit
                     otherUser={userIdForCollab}
-                    onCancel={() => {
-                        setShowCollabModalState(false, collabDetails.id);
-                    }}
                     collabDetails={collabDetails}
                 />
+                </div>
             )}
         </Layout>
     );

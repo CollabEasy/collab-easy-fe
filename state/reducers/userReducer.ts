@@ -13,6 +13,8 @@ const initialState: UserState = {
   isFetchingUser: true,
   isUpdatingProfilePic: false,
   showProfilePictureUpdateModal: false,
+  basicUser: {},
+  isFetchingBasicUser: false,
 };
 
 const userReducer = (state = initialState, action): UserState => {
@@ -96,7 +98,7 @@ const userReducer = (state = initialState, action): UserState => {
         user: {
           ...state.user,
           new_user: false,
-        }
+        },
       };
     case actionType.FETCH_ARTIST_PREFERENCES_SUCCESS:
       return {
@@ -120,7 +122,7 @@ const userReducer = (state = initialState, action): UserState => {
           ...state.user,
           skills: action.payload.data,
           new_user: false,
-        }
+        },
       };
     case actionType.SET_NEW_USER_VALUE:
       return {
@@ -170,6 +172,31 @@ const userReducer = (state = initialState, action): UserState => {
           ...state.user,
           profile_complete: true,
         },
+      };
+    case actionType.FETCH_BASIC_USER_SUCCESS:
+      const data = action.payload.data.data;
+      return {
+        ...state,
+        isFetchingBasicUser: false,
+        basicUser: {
+          userId: data.artistId,
+          slug: data.slug,
+          profilePicUrl: data.profilePicUrl,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          skills: data.skills,
+        },
+      };
+    case actionType.FETCH_BASIC_USER_REQUEST:
+      return {
+        ...state,
+        basicUser: {},
+        isFetchingBasicUser: true,
+      };
+    case actionType.FETCH_BASIC_USER_FAILURE:
+      return {
+        ...state,
+        isFetchingBasicUser: false,
       };
     default:
       return state;

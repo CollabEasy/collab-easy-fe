@@ -30,3 +30,15 @@ export const getArtistDetails = async (token: string) => {
     throw error;
   }
 }
+
+export const getBasicUser = async (slug: string) => {
+  const config = {
+    method: 'get',
+  }
+  try {
+    const result = await api.call(`api/v1/artist/basic/${slug}`, config);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}

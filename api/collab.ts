@@ -69,3 +69,13 @@ export const getCollabRequest = async (searchCollabData: SearchCollab) => {
     throw error;
   }
 };
+
+
+export const fetchCollabsWithUser = async (data: any) => {
+  try {
+    const config = postConfig(data);
+    return await api.call(`api/v1/collab/create/eligible`, config);
+  } catch (error) {
+    throw error;
+  }
+};

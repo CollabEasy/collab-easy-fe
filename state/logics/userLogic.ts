@@ -36,6 +36,28 @@ export const fetchLoginDataLogic = createLogic<
   },
 });
 
+export const fetchBasicUser = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.fetchBasicUser>,
+  any,
+  LogicDeps
+>({
+  type: [actionType.FETCH_BASIC_USER],
+  async process({ action, api }, dispatch, done) {
+    const { slug } = action.payload;
+    try {
+      dispatch(actions.fetchBasicUserRequest());
+      const data = await api.loginApi.getBasicUser(slug);
+      dispatch(actions.fetchBasicUserSuccess(data));
+    } catch (error) {
+      const error_response = error.response;
+      dispatch(actions.fetchBasicUserFailure())
+    } finally {
+      done();
+    }
+  },
+});
+
 export const updateLoginDataLogic = createLogic<
   AppState,
   FSACreatorPayload<typeof homeActions.updateLoginData>,
