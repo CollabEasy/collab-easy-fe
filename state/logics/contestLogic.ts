@@ -105,7 +105,8 @@ export const addContestArtworkLogic = createLogic<
       dispatch(actions.addContestArtworkRequest());
       const { data, contest } = action.payload;
       const result = await api.contestApi.addContestArtworkApi(contest, data);
-      dispatch(notifActions.showNotification(true, 'Your artwork for the contest submitted successfully. 🥳'));
+      dispatch(notifActions.showNotification(true, 'Your artwork for the contest submitted successfully 🥳'));
+      dispatch(notifActions.showNotification(true, 'Your have earned 50 wondor points for participating in this art contest 🥳'));
       dispatch(actions.addContestArtworkSuccess());
       dispatch(actions.fetchArtistSubmission(contest));
     } catch (error) {
