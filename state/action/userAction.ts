@@ -214,3 +214,27 @@ export const updateProfileCompleteStatusSuccess = (data: any) => ({
     data
   },
 })
+
+export const fetchBasicUser = (slug: string) => ({
+  type: actionType.FETCH_BASIC_USER,
+  payload: {
+    slug
+  },
+})
+
+export const fetchBasicUserRequest = () => ({
+  type: actionType.FETCH_BASIC_USER_REQUEST,
+
+})
+
+export const fetchBasicUserSuccess = (data: any) => ({
+  type: actionType.FETCH_BASIC_USER_SUCCESS,
+  payload: {
+    data
+  },
+})
+
+export const fetchBasicUserFailure = () => ({
+  type: actionType.FETCH_BASIC_USER_FAILURE,
+
+})

@@ -4,12 +4,12 @@ import { Tag } from 'antd';
 
 export const CATEGORY_COLORS = ["magenta", "red", "blue", "purple", "green", "lime", "gold"];
 
-export function GetUserSkillsTags(user: User, all: boolean) {
+export function GetUserSkillsTags(skillsList: string[], all: boolean) {
     const skills: JSX.Element[] = [];
-    if (!user.skills) {
+    if (!skillsList) {
         return skills;
     }
-    user.skills.forEach((skill: string, index: number) => {
+    skillsList.forEach((skill: string, index: number) => {
         skills.push(
             <Tag color={CATEGORY_COLORS[index]}>{skill}</Tag>
         )

@@ -8,12 +8,12 @@ import { routeToHref } from "config/routes";
 import { AppState } from "state";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
-import React, { useEffect, useState } from 'react';
-import * as action from '../../../state/action';
-import LoginModal from '../../../components/modal/loginModal';
-import { updateLoginData } from 'state/action';
-import { LoginModalDetails, CollabRequestData } from 'types/model';
-import NewUserModal from '../../../components/modal/newUserModal';
+import React, { useEffect, useState } from "react";
+import * as action from "../../../state/action";
+import LoginModal from "../../../components/modal/loginModal";
+import { updateLoginData } from "state/action";
+import { LoginModalDetails, CollabRequestData } from "types/model";
+import NewUserModal from "../../../components/modal/newUserModal";
 import Loader from "@/components/loader";
 import SendCollabRequestModal from "../../../components/modal/sendCollabRequestModal";
 import { GetCategoryMetadata } from "helpers/categoryHelper";
@@ -33,22 +33,34 @@ const mapStateToProps = (state: AppState) => {
   const artistListData = state.home.artistListDetails;
   const isLoggedIn = state.user.isLoggedIn;
   const showCollabModal = state.collab.showCollabModal;
-  return { showCollabModal, errorInFetchingArtists, artists, isFetchingArtists, loggedInUserSlug, loginModalDetails, user, artistListData, isLoggedIn };
+  return {
+    showCollabModal,
+    errorInFetchingArtists,
+    artists,
+    isFetchingArtists,
+    loggedInUserSlug,
+    loginModalDetails,
+    user,
+    artistListData,
+    isLoggedIn,
+  };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistsByCategorySlug: (slug: string) =>
     dispatch(action.fetchArtistsByCategorySlug(slug)),
-  updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
-  setShowCollabModalState: (show: boolean, id: string) => dispatch(action.setShowCollabModalState(show, id)),
+  updateLoggedInData: (loginDetails: any) =>
+    dispatch(updateLoginData(loginDetails)),
+  setShowCollabModalState: (show: boolean, id: string) =>
+    dispatch(action.setShowCollabModalState(show, id)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
-  loginModalDetails: LoginModalDetails,
-  user: any,
-  artistListData: any
+  loginModalDetails: LoginModalDetails;
+  user: any;
+  artistListData: any;
 } & ConnectedProps<typeof connector>;
 
 const DiscoverArtist = ({
@@ -65,15 +77,19 @@ const DiscoverArtist = ({
   setShowCollabModalState,
   updateLoggedInData,
 }) => {
-
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [userIdForCollab, saveUserIdForCollab] = useState("");
   const [showLoader, setShowLoader] = useState(true);
   const [windowWidth, setWindowWidth] = useState(-1);
 
-  const { toDiscover, toAllCategoryPage, toArtistProfile, toCategoryArtistList } = useRoutesContext();
+  const {
+    toDiscover,
+    toAllCategoryPage,
+    toArtistProfile,
+    toCategoryArtistList,
+    toUserCollabPage,
+  } = useRoutesContext();
   const router = useRouter();
-
 
   const { slug: artSlug, artistTitle: artistTitle } = router.query;
 
@@ -84,16 +100,17 @@ const DiscoverArtist = ({
     collabDate: undefined,
     requestData: {
       message: "",
-      collabTheme: ""
+      collabTheme: "",
     },
     status: "",
     createdAt: undefined,
-    updatedAt: undefined
+    updatedAt: undefined,
   };
-  const [collabRequestDetails, setCollabRequestDetails] = useState(emptyCollabDetails);
+  const [collabRequestDetails, setCollabRequestDetails] =
+    useState(emptyCollabDetails);
 
   useEffect(() => {
-    // we are not using selectedcategorySlug here because if a user is coming directly from a URL, 
+    // we are not using selectedcategorySlug here because if a user is coming directly from a URL,
     // the value of selectedCatgeorySlug is empty.
     fetchArtistsByCategorySlug(artSlug.toString());
     if (user) {
@@ -101,7 +118,7 @@ const DiscoverArtist = ({
         setShowProfileModal(true);
       }
     }
-  }, [fetchArtistsByCategorySlug, artSlug, user]);
+  }, []);
 
   useEffect(() => {
     if (artistListData.status === "success") {
@@ -112,12 +129,12 @@ const DiscoverArtist = ({
 
   const setUserIdForCollab = (userId) => {
     saveUserIdForCollab(userId);
-  }
+  };
 
   // data from prismic.io returns the image src as an absolute url, so no need to set up the full url on loader....
   const prismicLoader = ({ src, width, quality }) => {
-    return `${src}?w=${width}&q=${quality || 75}`
-  }
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
 
   const getSimilarCategories = (artSlug) => {
     const similarCategoriesHtml: JSX.Element[] = [];
@@ -125,27 +142,38 @@ const DiscoverArtist = ({
       similarCategoriesHtml.push(
         <>
           <div style={{ paddingLeft: "15px", paddingTop: "15px" }}>
-            <Button >
+            <Button>
               <Link
-                href={toCategoryArtistList(category["slug"], GetCategoryArtistTitle(category["slug"])).as}
+                href={
+                  toCategoryArtistList(
+                    category["slug"],
+                    GetCategoryArtistTitle(category["slug"])
+                  ).as
+                }
                 passHref
               >
-                {category["name"]}</Link></Button>
+                {category["name"]}
+              </Link>
+            </Button>
           </div>
         </>
-      )
-    })
+      );
+    });
     return similarCategoriesHtml;
-  }
+  };
 
   const getArtists = (color, category) => {
     const resultArtists: JSX.Element[] = [];
     if (artists.length == 0) {
-      return <>
-        <div style={{ textAlign: "center", paddingTop: "20px" }}>
-          <h2 className="common-h2-style">Sorry, no artists found for <b>{category}!</b></h2>
-        </div>
-      </>
+      return (
+        <>
+          <div style={{ textAlign: "center", paddingTop: "20px" }}>
+            <h2 className="common-h2-style">
+              Sorry, no artists found for <b>{category}!</b>
+            </h2>
+          </div>
+        </>
+      );
     }
     artists.forEach((artist, index) => {
       if (artist !== null) {
@@ -164,29 +192,37 @@ const DiscoverArtist = ({
             </div>
 
             <div className="col-md-6 mt-1 common-text-style">
-              <h5 className="common-h5-style">{artist.first_name} {artist?.last_name}</h5>
+              <h5 className="common-h5-style">
+                {artist.first_name} {artist?.last_name}
+              </h5>
               {artist.country && (
                 <div className="d-flex flex-row artist-location">
                   <span>{artist.country}</span>
-                  {artist.state && (
-                    <span>, {artist.state}</span>
-                  )}
-                  {artist.city && (
-                    <span>, {artist.city}</span>
-                  )}
+                  {artist.state && <span>, {artist.state}</span>}
+                  {artist.city && <span>, {artist.city}</span>}
                 </div>
               )}
               <div className="mt-1 mb-1 spec-1">
                 {GetUserSkills(artist.skills)}
               </div>
-              <p className="text-justify break-word common-p-style">{artist.bio}<br></br><br></br></p>
+              <p className="text-justify break-word common-p-style">
+                {artist.bio}
+                <br></br>
+                <br></br>
+              </p>
             </div>
             <div className="align-items-center align-content-center col-md-3 border-left mt-1">
               <div className="mt-1 mb-1 spec-1">
                 {artist.up_for_collab == "false" ? (
-                  <span className="common-text-style"><CloseOutlined style={{ color: 'red', margin: '5px' }} />Not available to collab! </span>
+                  <span className="common-text-style">
+                    <CloseOutlined style={{ color: "red", margin: "5px" }} />
+                    Not available to collab!{" "}
+                  </span>
                 ) : (
-                  <span className="common-text-style"><CheckOutlined style={{ color: 'green', margin: '5px' }} />Available to collab! </span>
+                  <span className="common-text-style">
+                    <CheckOutlined style={{ color: "green", margin: "5px" }} />
+                    Available to collab!{" "}
+                  </span>
                 )}
                 {/* <span><PictureOutlined /> Sample work uploaded</span> */}
               </div>
@@ -201,27 +237,43 @@ const DiscoverArtist = ({
                   className="common-medium-btn"
                   type="primary"
                   ghost
-                  style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}>
+                  style={{
+                    whiteSpace: "normal",
+                    height: "auto",
+                    marginBottom: "10px",
+                  }}
+                >
                   <Link
                     key={index}
                     href={routeToHref(toArtistProfile(artist.slug))}
                     passHref
-                  > Profile </Link>
-
+                  >
+                    Profile
+                  </Link>
                 </Button>
 
                 <Button
                   block
                   className="common-medium-btn"
                   type="primary"
-                  disabled={loggedInUserSlug == artist.slug || artist.up_for_collab == "false" || !isLoggedIn}
-                  style={{ whiteSpace: "normal", height: 'auto', marginBottom: '10px' }}
-                  onClick={() => {
-                    setShowCollabModalState(true, '');
-                    setUserIdForCollab(artist.artist_id);
+                  disabled={
+                    loggedInUserSlug == artist.slug ||
+                    artist.up_for_collab == "false" ||
+                    !isLoggedIn
+                  }
+                  style={{
+                    whiteSpace: "normal",
+                    height: "auto",
+                    marginBottom: "10px",
                   }}
                 >
-                  Send collab request
+                  <Link
+                    key={index}
+                    href={routeToHref(toUserCollabPage(artist.slug))}
+                    passHref
+                  >
+                    Send collab request
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -242,12 +294,10 @@ const DiscoverArtist = ({
         <Breadcrumb.Item>
           <a href={toAllCategoryPage().href}>Categories</a>
         </Breadcrumb.Item>
-        <Breadcrumb.Item>
-          {category}
-        </Breadcrumb.Item>
+        <Breadcrumb.Item>{category}</Breadcrumb.Item>
       </Breadcrumb>
     );
-  }
+  };
 
   return (
     <Layout
@@ -255,45 +305,53 @@ const DiscoverArtist = ({
       name={"description"}
       content={GetCategoryMetadata(artSlug)["listing-data"]["meta-content"]}
     >
-      {loginModalDetails.openModal && !user.new_user && (
-        <LoginModal />
-      )
-      }
-      {showProfileModal && (
-        <NewUserModal />
-      )
-      }
+      {loginModalDetails.openModal && !user.new_user && <LoginModal />}
+      {showProfileModal && <NewUserModal />}
       {isFetchingArtists ? (
         <Loader />
       ) : (
         <>
           <div className="fluid discoverArtists__listingPageContainer">
-            {windowWidth > 500 &&
-              <>
-                {getBreadcrum(GetCategoryMetadata(artSlug)["name"])}
-              </>
-            }
+            {windowWidth > 500 && (
+              <>{getBreadcrum(GetCategoryMetadata(artSlug)["name"])}</>
+            )}
             <div className="discoverArtists__listingPageCoverContainer">
               <div className="row ">
-                <div className="col-sm-8" style={{ backgroundColor: GetCategoryMetadata(artSlug)["background-color"] }}>
+                <div
+                  className="col-sm-8"
+                  style={{
+                    backgroundColor:
+                      GetCategoryMetadata(artSlug)["background-color"],
+                  }}
+                >
                   <div className="discoverArtists_desktopCoverTextContainer">
                     <div>
                       <h1 className="common-h1-style">
-                        {artists.length > 1 ? artists.length : ""} {GetCategoryMetadata(artSlug)["artist-title"]} to collab with on your next big hit!<br></br>
+                        {artists.length > 1 ? artists.length : ""}{" "}
+                        {GetCategoryMetadata(artSlug)["artist-title"]} to collab
+                        with on your next big hit!<br></br>
                       </h1>
                       {artists.length > 0 ? (
                         <h3 className="common-h3-style">
-                          send them a collab request to achieve your creativity goals now.
+                          send them a collab request to achieve your creativity
+                          goals now.
                         </h3>
                       ) : (
                         <h3 className="common-h3-style">
-                          artists in similar categories might be interested to collab.
+                          artists in similar categories might be interested to
+                          collab.
                         </h3>
                       )}
                     </div>
                   </div>
                 </div>
-                <div className="col-sm-4" style={{ backgroundColor: GetCategoryMetadata(artSlug)["background-color"] }}>
+                <div
+                  className="col-sm-4"
+                  style={{
+                    backgroundColor:
+                      GetCategoryMetadata(artSlug)["background-color"],
+                  }}
+                >
                   <Image
                     alt="Image Alt"
                     src={GetCategoryMetadata(artSlug)["image"]}
@@ -313,21 +371,15 @@ const DiscoverArtist = ({
               </div>
             )}
             <div className="col-md-12 listingContainer">
-              {getArtists(GetCategoryMetadata(artSlug)["background-color"], GetCategoryMetadata(artSlug)["name"])}
+              {getArtists(
+                GetCategoryMetadata(artSlug)["background-color"],
+                GetCategoryMetadata(artSlug)["name"]
+              )}
             </div>
           </div>
         </>
       )}
-      {showCollabModal.show && (
-        <SendCollabRequestModal
-          otherUser={userIdForCollab}
-          onCancel={() => {
-            setShowCollabModalState(false, collabRequestDetails.id);
-          }}
-          collabDetails={collabRequestDetails}
-        />
-      )}
-    </Layout >
+    </Layout>
   );
 };
 

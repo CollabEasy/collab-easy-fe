@@ -1,3 +1,5 @@
+import { Tag } from "antd";
+
 export function GetCollabRequest(collabData) {
     if (collabData["collabDetails"]["sent"]["all"].length > 0) {
         return collabData["collabDetails"]["sent"]["all"][0];
@@ -22,3 +24,18 @@ export function DoHideNewCommentBox(status) {
     }
     return true;
 }
+
+
+export const getCollabCardTag = (status) => {
+    if (status === "ACTIVE") {
+      return <Tag style={{ width: "55px", marginBottom: '10px' }} color="blue">Active</Tag>;
+    } else if (status === "PENDING") {
+      return <Tag style={{ width: "65px", marginBottom: '10px' }} color="yellow">Pending</Tag>;
+    } else if (status === "REJECTED") {
+      return <Tag style={{ width: "80px", marginBottom: '10px' }} color="red">Rejected</Tag>;
+    } else if (status === "EXPIRED") {
+      return <Tag style={{ width: "65px", marginBottom: '10px' }} color="grey">Expired</Tag>;
+    } else {
+      return <Tag style={{ width: "80px", marginBottom: '10px' }} color="green">Completed</Tag>;
+    }
+  }

@@ -7,6 +7,7 @@ import { Dispatch } from "redux";
 import { AppState } from "state";
 import * as action from "../../state/action";
 import { CollabRequestData, SendCollabRequest } from "types/model";
+import Loader from "../loader";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
@@ -31,23 +32,25 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
-  onCancel: () => void;
+  edit?: boolean;
   otherUser: string;
   collabDetails: CollabRequestData;
+  onCancel?: () => void;
 } & ConnectedProps<typeof connector>;
 
 const SendCollabRequestModal = ({
+  edit = false,
   user,
   otherUser,
   collabDetails,
   isSendingRequest,
   isAcceptingRequest,
   isRejectingRequest,
-  onCancel,
   updateCollabRequest,
   sendCollabRequestAction,
   acceptCollabRequest,
   rejectCollabRequest,
+  onCancel,
   setShowCollabModalState,
 }: Props) => {
   const currentDate = moment(new Date());
@@ -57,12 +60,11 @@ const SendCollabRequestModal = ({
     useState<CollabRequestData>(collabDetails);
   const [editable, setEditable] = useState(
     isNewCollab ||
-    (user.artist_id === collabDetails.senderId &&
-      (collabDetails.status === "PENDING"))
+      (user.artist_id === collabDetails.senderId &&
+        collabDetails.status === "PENDING")
   );
 
   const [hasDateChanged, setDateChanged] = useState(false);
-
 
   const sendCollabRequest = () => {
     if (isNewCollab) {
@@ -75,23 +77,35 @@ const SendCollabRequestModal = ({
         collabDate: collabDataCached.collabDate ?? tomorrow.toDate(),
       };
       sendCollabRequestAction(data);
-      setShowCollabModalState(false, '');
+      setTimeout(() => {
+        if (!isSendingRequest) {
+          setShowCollabModalState(false, "");
+        }
+      }, 500);
+      
     } else {
       updateCollabRequest(collabDataCached);
-      setShowCollabModalState(false, collabDataCached.id);
+      setTimeout(() => {
+        if (!isSendingRequest) {
+          setShowCollabModalState(false, "");
+          setShowCollabModalState(false, collabDataCached.id);
+        }
+      }, 500);
+      
+    }
+    if (onCancel !== undefined) {
+      onCancel();
     }
   };
 
+  if (isSendingRequest) {
+    return <Loader />
+  }
+
   return (
-    <Modal
-      closable
-      onCancel={onCancel}
-      className="sendCollabRequestModal__modal"
-      visible={true}
-      footer={null}
-    >
+    <div className="sendCollabRequestModal__modal">
       <div className="sendCollabRequestModal__container">
-        <h2 className="f-20 text-center">Collab Request</h2>
+        <h2 className="f-20 text-center">{edit ? "Edit collab request" : "New collab request"}</h2>
         <div className="sendCollabRequestModal__textAreaContainer">
           <p className="mb0">Add your theme.</p>
           <Input.TextArea
@@ -152,8 +166,9 @@ const SendCollabRequestModal = ({
             }}
           />
         </div>
-        {(editable || hasDateChanged) ? (
-          <div className="text-center ">
+        {editable || hasDateChanged ? (
+          <div className="text-center">
+          <div className="text-center twoButtonsSpacing">
             <Button
               disabled={
                 collabDataCached.requestData.collabTheme.trim().length === 0
@@ -166,9 +181,20 @@ const SendCollabRequestModal = ({
             >
               Send
             </Button>
+            <Button
+              size="large"
+              className="sendCollabRequestModal__button"
+              onClick={() => {
+                setShowCollabModalState(false, "");
+              }}
+            >
+              Cancel
+            </Button>
+            </div>
             <p className="mt4">
-              NOTE: If you marked yourself not ready for collabs, sending this request
-              would change your preferences and mark you ready for collabs.
+              NOTE: If you marked yourself not ready for collabs, sending this
+              request would change your preferences and mark you ready for
+              collabs.
             </p>
           </div>
         ) : collabDetails.status === "PENDING" ? (
@@ -203,7 +229,7 @@ const SendCollabRequestModal = ({
           <></>
         )}
       </div>
-    </Modal>
+    </div>
   );
 };
 

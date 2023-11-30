@@ -79,7 +79,7 @@ const ProposalsPage = ({
 
     useEffect(() => {
         fetchAllProposals();
-    }, [user]);
+    }, []);
 
     useEffect(() => {
         if (user) {
