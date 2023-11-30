@@ -8,12 +8,9 @@ import { Dispatch } from "redux";
 import { routeToHref } from "config/routes";
 import LoginModal from "@/components/modal/loginModal";
 import NewUserModal from "@/components/modal/newUserModal";
-import SamplePage from "@/components/samplePage";
 import { Card, notification } from "antd";
-import Image from "next/image";
 import { Modal } from "antd";
-import sampleImage from "../../public/images/mobile-landing.svg";
-import detailsImage from "../../public/images/contestDetails.svg";
+import { Collapse } from "antd";
 import { FireOutlined, FireFilled, ReadOutlined } from "@ant-design/icons";
 import * as action from "../../state/action";
 import Loader from "@/components/loader";
@@ -26,10 +23,12 @@ import { ContestSubmission } from "types/model/contest";
 import { Config } from "config/config";
 import Layout from "@/components/layout";
 import SampleTile from "@/components/sampleTile";
+import GenericActionBanner from "@/components/genericActionBanner";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
 const { Meta } = Card;
+const { Panel } = Collapse;
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
@@ -368,6 +367,13 @@ const ContestPage = ({
 
             <div className="project-info-box">
               <h5 className="common-h5-style">Reward Prize</h5>
+              <p className="common-p-style">
+                We believe anyone who participates is a winner. However,
+                we will give an amazon gift card to the artist whose work
+                is most upvoted. Gift card will be sent to their
+                registered email id.
+
+              </p>
               <p className="common-p-style"><b>Winner:</b> $50 </p>
               <p className="common-p-style"><b>Other Participants:</b>
                 <Link href={routeToHref(toRewardsInfoPage())} passHref>
@@ -380,18 +386,57 @@ const ContestPage = ({
           <div className="col-md-7">
             <div className="project-info-box">
               <h5 className="common-h5-style">Eligibility Criteria</h5>
-              <p className="common-p-style"><b>Skills:</b> Illustrator</p>
+              <p className="common-p-style">All are invited to participate! </p>
             </div>
             <div className="project-info-box">
               <h5 className="common-h5-style">What's in it for you?</h5>
-              <p className="common-p-style"><b>Categories:</b> Design, Illustration</p>
-              <p className="common-p-style"><b>Skills:</b> Illustrator</p>
+              <p className="common-p-style">
+                Artists benefit significantly from contest participation as it amplifies exposure,
+                hones skills, and fosters networking. Winning or entering contests enhances credibility,
+                attracting industry attention and increasing chances of securing paid projects,
+                contributing to artistic growth and recognition.
+              </p>
             </div>
-            
+
             <div className="project-info-box">
               <h5 className="common-h5-style">Rules and Regulations</h5>
-              <p><b>Categories:</b> Design, Illustration</p>
-              <p><b>Skills:</b> Illustrator</p>
+              <ul className="common-text-style">
+                <li>
+                  - Any artist with an on Wondor with complete  profile is
+                  eligible to participate.
+                </li>
+                <li>
+                  - Post about the contest on social media and tag Wondor.
+                  Instagram: <a style={{color: "blue"}} href="https://www.instagram.com/wondor.art/">@wondor.art</a>,
+                  Twitter: <a style={{color: "blue"}} href="https://twitter.com/Wondor4creators">@Wondor4creators</a>,
+                  Reddit: <a style={{color: "blue"}} href="https://www.reddit.com/r/wondor4creators/">@wondor4creators</a>
+                </li>
+                <li>
+                  - Your work should be inspired from the theme of the
+                  contest.
+                </li>
+                <li>
+                  - Submit an image or a video of your artwork. You can
+                  submit only one piece for the contest.
+                </li>
+                <li>
+                  - You work will be judged by the number of votes you
+                  have recieved. Share with your friends and get votes.
+                </li>
+                <li>
+                  - Final decision will include things like creativity,
+                  technique, adherence to the theme, and overall impact.
+                </li>
+                <li>
+                  - You will be disqualified from the contest for
+                  plagiarism, offensive content, or failure to adhere to
+                  the rules and guidelines
+                </li>
+                <li>
+                  - You can also send in your queries in an email to 
+                  <b> admin@wondor.com</b>, during the contest.
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -441,103 +486,7 @@ const ContestPage = ({
               >
                 <TabPane tab="Contest details" key="1">
                   {getContestDetails(contest)}
-                  {/* <div className="contestDetailPage_tabContainer">
-                    <div
-                      style={{ paddingTop: "10px", paddingBottom: "10px" }}
-                    >
-                      {status === "Ongoing" && (
-                        <Tag color="green">{status}</Tag>
-                      )}
-                      {status === "Upcoming" && (
-                        <Tag color="yellow">{status}</Tag>
-                      )}
-                      {status === "Past" && <Tag color="grey">{status}</Tag>}
-                    </div>
-                    <h2>Contest Details</h2>
-                    <p>
-                      <b>Theme:</b> {contest.contest[0]?.data.title}
-                    </p>
-                    <p>
-                      <b>Description:</b>{" "}
-                      {contest.contest[0]?.data.description}
-                    </p>
-                    <p>
-                      <b>Start date:</b>{" "}
-                      {GetDateString(contest.contest[0]?.data.startDate)}
-                    </p>
-                    <p>
-                      <b>End date:</b>{" "}
-                      {GetDateString(contest.contest[0]?.data.endDate)}
-                    </p>
-                    <p>
-                      <b>Duration:</b>{" "}
-                      {Math.floor(
-                        (contest.contest[0]?.data.endDate -
-                          contest.contest[0]?.data.startDate) /
-                        (1000 * 86400) +
-                        1
-                      )}{" "}
-                      days
-                    </p>
-
-                    <h2>Rules and Regulations:</h2>
-                    <ul className="common-text-style">
-                      <li>
-                        - Any artist with a valid account on Wondor is
-                        eligible to participate.
-                      </li>
-                      <li>
-                        - Post about the contest on social media such as
-                        instagram.
-                      </li>
-                      <li>
-                        - Your work should be inspired from the theme of the
-                        contest.
-                      </li>
-                      <li>
-                        - Submit an image or a video of your artwork. You can
-                        submit only one piece for the contest.
-                      </li>
-                      <li>
-                        - You work will be judged by the number of votes you
-                        have recieved. Share with your friends and get votes.
-                      </li>
-                      <li>
-                        - Final decision will include things like creativity,
-                        technique, adherence to the theme, and overall impact.
-                      </li>
-                      <li>
-                        - You will be disqualified from the contest for
-                        plagiarism, offensive content, or failure to adhere to
-                        the rules and guidelines
-                      </li>
-                      <li>
-                        - You can also send in your queries in an email to
-                        admin@wondor.com, during the contest.
-                      </li>
-                    </ul>
-
-                    <h2>Prize</h2>
-                    <p className="common-p-style">
-                      We believe anyone who participates is a winner. However,
-                      we will give an amazon gift card to the artist whose work
-                      is most upvoted. Gift card will be sent to their
-                      registered email id.
-                    </p>
-                    <p className="common-p-style">
-                      <b>Winner:</b> USD 50
-                    </p>
-                    <p className="common-p-style">
-                      <b>Other participants: </b>
-                      <Link href={routeToHref(toRewardsInfoPage())} passHref>
-                        {"50 reward points "}
-                      </Link>
-                    </p>
-                    <b className="common-text-style">
-                      Are you ready? Let your imagination soar and join the
-                      ultimate art showdown!
-                    </b>
-                  </div> */}
+                  <GenericActionBanner/>
                 </TabPane>
 
                 {GetContestStatus(
