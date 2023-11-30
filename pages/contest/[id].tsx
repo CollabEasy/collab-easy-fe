@@ -389,7 +389,7 @@ const ContestPage = ({
               <p className="common-p-style">All are invited to participate! </p>
             </div>
             <div className="project-info-box">
-              <h5 className="common-h5-style">What's in it for you?</h5>
+              <h5 className="common-h5-style">What&apos;s in it for you?</h5>
               <p className="common-p-style">
                 Artists benefit significantly from contest participation as it amplifies exposure,
                 hones skills, and fosters networking. Winning or entering contests enhances credibility,
