@@ -262,6 +262,9 @@ const SendCollabRequestPage = ({
                     edit
                     otherUser={userIdForCollab}
                     collabDetails={collabDetails}
+                    onCollabRequestSend={() => {
+                        
+                    }}
                 />
                 </div>
             )}

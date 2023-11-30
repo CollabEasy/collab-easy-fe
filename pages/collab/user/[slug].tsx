@@ -10,6 +10,8 @@ import * as action from "../../../state/action";
 import { fetchBasicUser } from "../../../state/action";
 import CollabPage from "@/components/collabPage";
 import Loader from "@/components/loader";
+import { routeToHref } from "config/routes";
+import { useRoutesContext } from "@/components/routeContext";
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
@@ -61,6 +63,7 @@ const SendCollabRequestPage = ({
     updatedAt: undefined,
   };
   
+  const { toCollabPage } = useRoutesContext();
   const [isSelf, setIsSelf] = useState(false);
 
   const router = useRouter();
@@ -104,6 +107,9 @@ const SendCollabRequestPage = ({
         pastCollabs={collabWithUser.collabs}
         isFetchingPastCollabs={collabWithUser.isFetchingCollabsWithUser}
         isFetchingOtherUser={isFetchingBasicUser}
+        onCollabRequestSend={(id: string) => {
+            router.push("/collab/details/" + id);
+        }}
       />
     </Layout>
   );

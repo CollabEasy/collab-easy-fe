@@ -8,6 +8,8 @@ import { AppState } from "state";
 import * as action from "../../state/action";
 import { CollabRequestData, SendCollabRequest } from "types/model";
 import Loader from "../loader";
+import api from "api/client";
+import * as collabApi from "../../api/collab";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
@@ -17,8 +19,6 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  sendCollabRequestAction: (data: SendCollabRequest) =>
-    dispatch(action.sendCollabRequestAction(data)),
   updateCollabRequest: (data: CollabRequestData) =>
     dispatch(action.updateCollabRequest(data)),
   acceptCollabRequest: (requestId: string) =>
@@ -36,6 +36,7 @@ type Props = {
   otherUser: string;
   collabDetails: CollabRequestData;
   onCancel?: () => void;
+  onCollabRequestSend: (id: string) => void
 } & ConnectedProps<typeof connector>;
 
 const SendCollabRequestModal = ({
@@ -47,10 +48,10 @@ const SendCollabRequestModal = ({
   isAcceptingRequest,
   isRejectingRequest,
   updateCollabRequest,
-  sendCollabRequestAction,
   acceptCollabRequest,
   rejectCollabRequest,
   onCancel,
+  onCollabRequestSend,
   setShowCollabModalState,
 }: Props) => {
   const currentDate = moment(new Date());
@@ -65,9 +66,26 @@ const SendCollabRequestModal = ({
   );
 
   const [hasDateChanged, setDateChanged] = useState(false);
+  const [isSendingAPIRequest, setIsSendingAPIRequest] = useState(false);
 
-  const sendCollabRequest = () => {
+  const sendCollabRequestAPI = async (data: any) => {
+    try {
+      /* Type 'any' is of type Array<object> but getting some error */
+      const res: any = await collabApi.sendCollabRequest(data);
+      return res;
+    } catch (err) {
+      return {
+        data: [],
+        loading: false,
+        errorMessage: err.message,
+      };
+    }
+  };
+
+
+  const sendCollabRequest = async () => {
     if (isNewCollab) {
+      setIsSendingAPIRequest(true)
       const data: SendCollabRequest = {
         receiverId: otherUser,
         requestData: {
@@ -76,29 +94,25 @@ const SendCollabRequestModal = ({
         },
         collabDate: collabDataCached.collabDate ?? tomorrow.toDate(),
       };
-      sendCollabRequestAction(data);
-      setTimeout(() => {
-        if (!isSendingRequest) {
-          setShowCollabModalState(false, "");
-        }
-      }, 500);
-      
+      const res = await sendCollabRequestAPI(data);
+      setShowCollabModalState(false, "");
+      onCollabRequestSend(res.data.id);
+      setIsSendingAPIRequest(false);
     } else {
       updateCollabRequest(collabDataCached);
       setTimeout(() => {
         if (!isSendingRequest) {
           setShowCollabModalState(false, "");
           setShowCollabModalState(false, collabDataCached.id);
+          onCollabRequestSend(collabDataCached.id);
         }
-      }, 500);
+      }, 1000);
       
     }
-    if (onCancel !== undefined) {
-      onCancel();
-    }
+    
   };
 
-  if (isSendingRequest) {
+  if (isSendingRequest || isSendingAPIRequest) {
     return <Loader />
   }
 

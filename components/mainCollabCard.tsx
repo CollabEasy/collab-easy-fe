@@ -40,7 +40,7 @@ const ProposalQA = ({
 
   return (
     <div className="gridItemContainer">
-      <img
+      {/* <img
         onClick={onClick}
         // className="sampleTile__imageTile"
         src={sample.thumbnailUrl}
@@ -54,7 +54,7 @@ const ProposalQA = ({
             onClick={onClickDelete}
           />
         </div>
-      )}
+      )} */}
     </div>
   );
 };

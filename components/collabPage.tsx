@@ -31,6 +31,7 @@ type Props = {
   pastCollabs: any[];
   isFetchingOtherUser: boolean;
   isFetchingPastCollabs: boolean;
+  onCollabRequestSend: (id: string) => void;
 } & ConnectedProps<typeof connector>;
 
 const CollabPage = ({
@@ -39,6 +40,7 @@ const CollabPage = ({
   pastCollabs,
   isFetchingPastCollabs,
   isFetchingOtherUser,
+  onCollabRequestSend
 }: Props) => {
   const emptyCollabDetails: CollabRequestData = {
     id: "",
@@ -120,7 +122,7 @@ const CollabPage = ({
               {isFetchingPastCollabs ? (
                 <Loader />
               ) : (
-                <div className="mt16">{getCollabCards()}</div>
+                <div className="mt16 collabPage_pastCollabCardsContainer">{getCollabCards()}</div>
               )}
             </div>
           </div>
@@ -129,6 +131,9 @@ const CollabPage = ({
             <SendCollabRequestModal
               otherUser={otherUser.userId}
               collabDetails={collabRequestDetails}
+              onCollabRequestSend={(id: string) => {
+                  onCollabRequestSend(id);
+              }}
             />
           </div>
         </div>
