@@ -12,6 +12,7 @@ import CollabPage from "@/components/collabPage";
 import Loader from "@/components/loader";
 import { routeToHref } from "config/routes";
 import { useRoutesContext } from "@/components/routeContext";
+import NotAuthorised from "@/components/error/notAuthorised";
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
@@ -68,6 +69,12 @@ const SendCollabRequestPage = ({
 
   const router = useRouter();
   const { slug: slug } = router.query;
+
+  if (!isLoggedIn) {
+      return <NotAuthorised
+      error={"Please login to collaborate with artists."}
+  />
+  }
 
   useEffect(() => {
     fetchBasicUser(slug.toString());
