@@ -146,10 +146,10 @@ const AllContestPage = ({
                                 <div className="col-sm-8" style={{ backgroundColor: "#F8F5E7" }}>
                                     <div className="allContestPage_desktopCoverTextContainer">
                                         <h1 className="common-h1-style">
-                                            Artists, unite! Enter our contest and let the world see your talent 😎
+                                            Artists, this is the place to show off your talent 😎
                                         </h1>
                                         <h3 className="common-h3-style">
-                                            Join our contest and let your creativity be the judge!
+                                            Join our art contests and let your creativity be the judge!
                                         </h3>
                                     </div>
                                 </div>

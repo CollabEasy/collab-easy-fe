@@ -1,8 +1,7 @@
 import { CollabRequestData } from "types/model/collab";
 import { User } from "types/model/user";
 import { Tag } from 'antd';
-
-export const CATEGORY_COLORS = ["magenta", "red", "blue", "purple", "green", "lime", "gold"];
+import { TAGS_COLORS } from "./helper";
 
 export function GetUserSkillsTags(skillsList: string[], all: boolean) {
     const skills: JSX.Element[] = [];
@@ -11,7 +10,7 @@ export function GetUserSkillsTags(skillsList: string[], all: boolean) {
     }
     skillsList.forEach((skill: string, index: number) => {
         skills.push(
-            <Tag color={CATEGORY_COLORS[index]}>{skill}</Tag>
+            <Tag color={TAGS_COLORS[index]}>{skill}</Tag>
         )
     });
     return skills;

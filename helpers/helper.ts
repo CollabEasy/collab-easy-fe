@@ -155,4 +155,7 @@ export const encryptContent = (content: string) => {
       {iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.ZeroPadding
     });
     return "" + encrypted;
-  }
+}
+
+
+  export const TAGS_COLORS = ["magenta", "red", "blue", "purple", "green", "lime", "gold"];
