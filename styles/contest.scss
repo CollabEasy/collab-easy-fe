@@ -41,22 +41,6 @@
   }
 }
 
-.responsive-two-column-grid {
-  display: block;
-}
-
-/* columns */
-.responsive-two-column-grid>* {
-  padding: 1rem;
-}
-
-// Taken from https://stackoverflow.com/questions/54044769/css-grid-responsive-multiple-3-columns-rows-to-2-columns-rows
-.contestDetailPage_submissionTabContainer {
-  display: grid;
-  grid-template-columns: auto;
-  padding: 10px;
-  grid-gap: 10px 10px;
-}
 
 .contestDetailPage_sampleTile {
   padding: 10px;
@@ -84,15 +68,6 @@
   min-height: 0;
   /* NEW */
   min-width: 0;
-}
-
-
-/* tablet breakpoint */
-@media (min-width:768px) {
-  .responsive-two-column-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 1101px) {
@@ -143,6 +118,7 @@
 
   .contestDetailPage_container {
     margin-top: 25%;
+    width: 90%;
   }
 
   .leaderboard__grid {
@@ -155,24 +131,11 @@
 
   .contestDetailPage_container {
     margin-top: 25%;
+    width: 100%;
   }
 
   .leaderboard__grid {
     grid-template: repeat(1, 1fr) / repeat(1, 1fr);
     grid-gap: 20px;
-  }
-}
-
-
-
-@media (min-width: 720px) {
-  .contestDetailPage_submissionTabContainer {
-    grid-template-columns: auto auto auto;
-  }
-}
-
-@media (min-width: 1020px) {
-  .contestDetailPage_submissionTabContainer {
-    grid-template-columns: auto auto auto auto;
   }
 }

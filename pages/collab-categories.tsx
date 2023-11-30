@@ -174,7 +174,7 @@ const AllCategoryPage = ({
                             <List
                                 style={{ width: "100%" }}
                                 bordered
-                                itemLayout="horizontal"
+                                itemLayout={windowWidth > 500 ? "horizontal" : "vertical"}
                                 dataSource={GetApprovedCategories(categories)}
                                 renderItem={(item) => (
                                     <List.Item
