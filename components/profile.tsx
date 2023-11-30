@@ -30,7 +30,6 @@ import { routeToHref } from "config/routes";
 1;
 import Layout from "components/layout";
 import {
-  StarFilled,
   CloseOutlined,
   CheckOutlined,
   EditOutlined,
@@ -63,8 +62,8 @@ import {
   faSpotify,
   faFacebook,
   faTiktok,
+  faGoogle,
 } from "@fortawesome/free-brands-svg-icons";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { GetProposalTags } from "helpers/proposalHelper";
 
 const { Meta } = Card;
@@ -473,7 +472,7 @@ const Profile = ({
     return (
       <FontAwesomeIcon
         title={socialPlatfornName}
-        icon={faLink}
+        icon={faGoogle}
         size="2x"
         color="grey"
       />
