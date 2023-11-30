@@ -1,5 +1,5 @@
 import { Tag } from "antd";
-import { CATEGORY_COLORS } from "./profilePageHelper";
+import { TAGS_COLORS } from "./helper";
 
 export function GetDateString(time: number) {
     let myDate = new Date(time);
@@ -24,7 +24,7 @@ export function GetProposalTags(proposal: any) {
     let index = 0;
     for (const key in proposal.categories) {
         tags.push(
-            <Tag style={{ marginTop: "8px" }} color={CATEGORY_COLORS[index]}>{proposal.categories[key]}</Tag>
+            <Tag style={{ marginTop: "8px" }} color={TAGS_COLORS[index]}>{proposal.categories[key]}</Tag>
         )
         index++;
     }

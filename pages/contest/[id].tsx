@@ -14,7 +14,7 @@ import { Collapse } from "antd";
 import { FireOutlined, FireFilled, ReadOutlined } from "@ant-design/icons";
 import * as action from "../../state/action";
 import Loader from "@/components/loader";
-import { GetContestStatus, GetDateString } from "helpers/contest";
+import { GetContestEligibleCategoriesTags, GetContestMetadata, GetContestStatus, GetDateString } from "helpers/contest";
 import { IsAdmin } from "helpers/helper";
 import UploadContestArtworkPage from "@/components/contestArtworkPage";
 import Link from "next/link";
@@ -339,6 +339,7 @@ const ContestPage = ({
   }
 
   const getContestDetails = (contest: any) => {
+    let contestMetadata = GetContestMetadata(slug.toString());
     return (
       <div className="container">
         <div className="row">
@@ -374,7 +375,7 @@ const ContestPage = ({
                 registered email id.
 
               </p>
-              <p className="common-p-style"><b>Winner:</b> $50 </p>
+              <p className="common-p-style"><b>Winner:</b> ${contestMetadata["prize"]} </p>
               <p className="common-p-style"><b>Other Participants:</b>
                 <Link href={routeToHref(toRewardsInfoPage())} passHref>
                   {" 50 reward points "}
@@ -386,7 +387,10 @@ const ContestPage = ({
           <div className="col-md-7">
             <div className="project-info-box">
               <h5 className="common-h5-style">Eligibility Criteria</h5>
-              <p className="common-p-style">All are invited to participate! </p>
+              <p className="common-p-style">{
+                contestMetadata["category"].length === 0 ? "All art forms are invited!" : 
+                GetContestEligibleCategoriesTags(contestMetadata["category"])}
+              </p>
             </div>
             <div className="project-info-box">
               <h5 className="common-h5-style">What&apos;s in it for you?</h5>
