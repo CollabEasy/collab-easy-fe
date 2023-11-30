@@ -33,7 +33,8 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchBasicUser: (slug: string) => dispatch(action.fetchBasicUser(slug)),
-  fetchCollabsWithUser: (slug: string) => dispatch(action.fetchCollabsWithUser(slug)),
+  fetchCollabsWithUser: (slug: string) =>
+    dispatch(action.fetchCollabsWithUser(slug)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -63,34 +64,34 @@ const SendCollabRequestPage = ({
     createdAt: undefined,
     updatedAt: undefined,
   };
-  
+
   const { toCollabPage } = useRoutesContext();
   const [isSelf, setIsSelf] = useState(false);
 
   const router = useRouter();
   const { slug: slug } = router.query;
 
-  if (!isLoggedIn) {
-      return <NotAuthorised
-      error={"Please login to collaborate with artists."}
-  />
-  }
-
   useEffect(() => {
     fetchBasicUser(slug.toString());
     fetchCollabsWithUser(slug.toString());
   }, []);
 
+  if (!isLoggedIn) {
+    return (
+      <NotAuthorised error={"Please login to collaborate with artists."} />
+    );
+  }
+
   if (isFetchingBasicUser) {
-      return <Loader />
+    return <Loader />;
   }
 
   if (otherUser === {}) {
-      return <div />
+    return <div />;
   }
 
   if (otherUser.userId === null) {
-      return <p>No such user</p>
+    return <p>No such user</p>;
   }
 
   return (
@@ -115,7 +116,7 @@ const SendCollabRequestPage = ({
         isFetchingPastCollabs={collabWithUser.isFetchingCollabsWithUser}
         isFetchingOtherUser={isFetchingBasicUser}
         onCollabRequestSend={(id: string) => {
-            router.push("/collab/details/" + id);
+          router.push("/collab/details/" + id);
         }}
       />
     </Layout>
