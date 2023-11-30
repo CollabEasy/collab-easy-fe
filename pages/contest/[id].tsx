@@ -374,9 +374,11 @@ const ContestPage = ({
           <List.Item
             actions={
               [
+                /* eslint-disable react/jsx-key */
                 <h6 className="common-h6-style">
                   {item["meta_text"]}
                 </h6>,
+                /* eslint-disable react/jsx-key */
                 <Button
                   type="primary"
                   onClick={(e) => {
@@ -570,6 +572,7 @@ const ContestPage = ({
 
               <Tabs
                 type="card"
+                centered={windowWidth > 500 ? false : true}
                 onChange={(key: string) => {
                   redirect(key);
                 }}
@@ -645,7 +648,9 @@ const ContestPage = ({
                             )}
                           </div>
                         ) : (
-                          { getPastSubmissions() }
+                          <div>
+                            {getPastSubmissions()}
+                          </div>
                         )}
                       </div>
                     </TabPane>
