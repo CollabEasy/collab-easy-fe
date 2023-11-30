@@ -21,13 +21,13 @@ export function GetDateString(time: number) {
 }
 
 export function GetContestStatus(now: number, start: number, end: number) {
-    var nowDateStr = GetDateString(now);
-    var startDateStr = GetDateString(start);
-    var endDateStr = GetDateString(end);
+    // var nowDateStr = GetDateString(now);
+    // var startDateStr = GetDateString(start);
+    // var endDateStr = GetDateString(end);
 
-    if (nowDateStr < startDateStr) {
+    if (now < start) {
         return "Upcoming";
-    } else if (nowDateStr >= startDateStr && nowDateStr <= endDateStr) {
+    } else if (now >= start && now <= end) {
         return "Ongoing";
     } else {
         return "Past";
