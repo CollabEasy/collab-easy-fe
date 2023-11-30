@@ -27,7 +27,7 @@
 @import "./categories.scss";
 @import "./rewards.scss";
 @import "./requestPage.scss";
-@import "./allContest.scss";
+
 @import "./allCategories.scss";
 @import "./portal.scss";
 @import "./proposal.scss";
@@ -38,6 +38,8 @@
 @import "./genericSlider.scss";
 @import "./genericPageLayout.scss";
 
+@import "./pages/contest/allContest.scss";
+@import "./pages/contest/contestDetails.scss";
 
 @import "./pages/wondor/tutorial.scss";
 @import "./pages/wondor/aboutUs.scss";
