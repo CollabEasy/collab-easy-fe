@@ -137,7 +137,7 @@ const NewUser = ({
     };
 
     postArtistArt(dataToSend);
-    updateArtistPreference("upForCollaboration", collaborationCheck);
+    updateArtistPreference("upForCollaboration", true);
     updateArtistProfile(userDataCached);
     handleNext();
   };
@@ -299,9 +299,6 @@ const NewUser = ({
                     </Option>
                   ))}
               </Select>
-            </Form.Item>
-            <Form.Item name="collab" label="You up for collabaration">
-              <Switch onChange={onChange} checked={collaborationCheck} />
             </Form.Item>
             <Form.Item noStyle={true}>
               <div className="submit-container">

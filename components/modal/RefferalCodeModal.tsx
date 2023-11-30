@@ -113,11 +113,12 @@ const RefferalCodeModal = ({
         </div>
         <div className="profile-form">
           <div className="profile-title">
-            <h1 className="common-h1-style">Have a Referal code?</h1>
+            <h1 className="common-h1-style">Have a Referral code?</h1>
           </div>
           <p className="common-p-style">
-            <b>{userName}</b>, if you were refered by another artist, please enter their referal
-            code and earn bonus points.
+            <b>{userName}</b>, if you were referred by another artist, please enter their referral
+            code and earn bonus points. Use <b>WONDOR-ART</b> if you do not have one to still earn 
+            bonus points.
           </p>
           <Form
             {...layout}
@@ -127,7 +128,7 @@ const RefferalCodeModal = ({
           >
             <Form.Item>
               <Input
-                placeholder="Enter referal code"
+                placeholder="Enter referral code"
                 onChange={(e) => {
                   setRefferalCode((prevState) => ({
                     ...prevState,
