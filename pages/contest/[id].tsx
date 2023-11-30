@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Tabs, Input, Button, Comment, Tag, message, Breadcrumb } from "antd";
+import { Tabs, Input, Button, Comment, Tag, message, Breadcrumb, List } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -208,7 +208,7 @@ const ContestPage = ({
     return <></>;
   };
 
-  const getSubmissions = (status) => {
+  const getCurrentSubmissions = (status) => {
     const resultArtists: JSX.Element[] = [];
     let data = allSubmissions.length != 0 ? allSubmissions[0].data : [];
     let artistsVotesData =
@@ -324,6 +324,77 @@ const ContestPage = ({
       );
     });
     return resultArtists;
+  };
+
+  const getPastSubmissions = () => {
+    const resultArtists: JSX.Element[] = [];
+    let data = allSubmissions.length != 0 ? allSubmissions[0].data : [];
+    let artistsVotesData =
+      allSubmissionsVotes.length != 0 ? allSubmissionsVotes[0].data : [];
+
+    let artistVotes = [];
+    artistsVotesData.forEach((votes) => {
+      if (votes.artistId === user.artist_id && votes.vote === true) {
+        artistVotes.push(votes.submissionId);
+      }
+    });
+
+    let votesCount = {};
+    artistsVotesData.forEach((vote) => {
+      if (vote.vote === true) {
+        if (vote.submissionId in votesCount) {
+          votesCount[vote.submissionId] += 1;
+        } else {
+          votesCount[vote.submissionId] = 1;
+        }
+      }
+    });
+
+    let updatedSubmissionList = [];
+    data.forEach((submissionData) => {
+      let updatedSubmissionData = {
+        "artist_name": submissionData.firstName + " " + submissionData.lastName,
+        "artist_slug": submissionData.slug,
+        "profile_link": `${Config.baseUrl}/artist/${submissionData.slug}`,
+        "submission_url": submissionData.submission.artworkUrl,
+        "description": submissionData.submission.description,
+        "meta_text": GetMetaText(status, submissionData.submission.id, votesCount),
+      }
+      updatedSubmissionList.push(updatedSubmissionData);
+    });
+
+
+    return (
+      <List
+        style={{ width: "100%" }}
+        bordered
+        itemLayout={windowWidth > 500 ? "horizontal" : "vertical"}
+        dataSource={updatedSubmissionList}
+        renderItem={(item) => (
+          <List.Item
+            actions={
+              [
+                <h6 className="common-h6-style">
+                  {item["meta_text"]}
+                </h6>,
+                <Button
+                  type="primary"
+                  onClick={(e) => {
+                    showContestModal(item["submission_url"], item["description"]);
+                  }}
+                >
+                  Artwork
+                </Button>
+              ]
+            }
+          >
+            <List.Item.Meta
+              title={<a href={item["profile_link"]}>{item["artist_name"]}</a>}
+              description={item["description"]}
+            />
+          </List.Item>
+        )}
+      />)
   };
 
   const getBreadcrum = (title: string) => {
@@ -562,15 +633,20 @@ const ContestPage = ({
                             )}
                           </h2>
                         )}
-                        <div className="grid">
-                          {getSubmissions(
-                            GetContestStatus(
-                              now.getTime(),
-                              contest.contest[0]?.data.startDate,
-                              contest.contest[0]?.data.endDate
-                            )
-                          )}
-                        </div>
+
+                        {status === "Ongoing" ? (
+                          <div className="grid">
+                            {getCurrentSubmissions(
+                              GetContestStatus(
+                                now.getTime(),
+                                contest.contest[0]?.data.startDate,
+                                contest.contest[0]?.data.endDate
+                              )
+                            )}
+                          </div>
+                        ) : (
+                          { getPastSubmissions() }
+                        )}
                       </div>
                     </TabPane>
                   )}
