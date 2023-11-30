@@ -100,7 +100,7 @@ export function GetCollabAdditionalDetails(loggedInUserId: string, collabDetails
         // Logged in user looking at "recieved" request
         additionalDetails += "The additional details provided by " + collabDetails.senderName;
 
-        if (collabDetails.requestData.message.length === 0) {
+        if (collabDetails.requestData?.message.length === 0) {
             return "No additional details provided by" + collabDetails.senderName + ".";
         }
 

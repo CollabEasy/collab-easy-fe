@@ -12,4 +12,6 @@ export interface UserState {
   preferences: any;
   artCategories: string[];
   isFetchingUser: boolean;
+  basicUser: any;
+  isFetchingBasicUser: boolean;
 }

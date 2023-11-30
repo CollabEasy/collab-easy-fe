@@ -93,7 +93,7 @@ const ProposalPage = ({
     useEffect(() => {
         getProposalByIdAction(proposalId as string);
         getProposalsInterests(proposalId as string);
-    }, [user]);
+    }, []);
 
     useEffect(() => {
         setWindowWidth(window.innerWidth);

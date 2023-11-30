@@ -228,3 +228,25 @@ export const setCompletedCollabRequestsAction = (data: CollabRequestData) => ({
     data,
   },
 });
+
+export const fetchCollabsWithUser = (slug: string) => ({
+  type: actionTypes.FETCH_COLLAB_WITH_USER,
+  payload: {
+    slug,
+  },
+});
+
+export const fetchCollabsWithUserRequest = () => ({
+  type: actionTypes.FETCH_COLLAB_WITH_USER_REQUEST,
+});
+
+export const fetchCollabsWithUserSuccess = (data: any) => ({
+  type: actionTypes.FETCH_COLLAB_WITH_USER_SUCCESS,
+  payload: {
+    data,
+  },
+});
+
+export const fetchCollabsWithUserFailure = () => ({
+  type: actionTypes.FETCH_COLLAB_WITH_USER_FAILURE,
+});

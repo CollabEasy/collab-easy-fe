@@ -21,12 +21,17 @@ const initialState: CollabRequestState = {
     },
   },
   isFetchingCollabDetails: true,
-  showCollabModal: {show: false, id: ''},
+  showCollabModal: { show: false, id: "" },
   isSendingRequest: false,
   isAcceptingRequest: false,
   isRejectingRequest: false,
   isCancellingRequest: false,
   isCompletingRequest: false,
+  userCollabs: {
+    collabs: [],
+    user_id: undefined,
+    isFetchingCollabsWithUser: false,
+  },
 };
 
 const getUpdatedList = (
@@ -50,7 +55,6 @@ let newActive = [];
 let newRejected = [];
 let newCompleted = [];
 let newAll = [];
-
 
 const collabReducer = (state = initialState, action): CollabRequestState => {
   switch (action.type) {
@@ -85,8 +89,8 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
         ...state,
         showCollabModal: {
           show: action.payload.show,
-          id: action.payload.show ? action.payload.collab_id : '',
-        }
+          id: action.payload.show ? action.payload.collab_id : "",
+        },
       };
     case actionTypes.SEARCH_COLLAB_REQUEST_REQUEST:
       return {
@@ -118,10 +122,7 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
           ...state.collabDetails,
           sent: {
             ...state.collabDetails.sent,
-            all: getUpdatedList(
-              state.collabDetails.sent.all,
-              updatedRequest
-            ),
+            all: getUpdatedList(state.collabDetails.sent.all, updatedRequest),
             active: getUpdatedList(
               state.collabDetails.sent.active,
               updatedRequest
@@ -173,12 +174,12 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
       return {
         ...state,
         isAcceptingRequest: true,
-      }
+      };
     case actionTypes.REJECT_COLLAB_REQUEST_REQUEST:
       return {
         ...state,
         isRejectingRequest: true,
-      }
+      };
     case actionTypes.CANCEL_COLLAB_REQUEST_REQUEST:
       return {
         ...state,
@@ -193,12 +194,12 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
       return {
         ...state,
         isAcceptingRequest: false,
-      }
+      };
     case actionTypes.REJECT_COLLAB_REQUEST_FAILURE:
       return {
         ...state,
         isRejectingRequest: false,
-      }
+      };
     case actionTypes.CANCEL_COLLAB_REQUEST_FAILURE:
       return {
         ...state,
@@ -228,7 +229,7 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
         if (request.id !== id) {
           newAll.push(request);
         }
-      })
+      });
 
       return {
         ...state,
@@ -262,7 +263,7 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
         if (request.id !== id) {
           newAll.push(request);
         }
-      })
+      });
 
       return {
         ...state,
@@ -316,7 +317,7 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
           request.status = "COMPLETED";
           newAll.push(request);
           newCompleted.push(request);
-        } 
+        }
       });
 
       if (done) {
@@ -324,7 +325,7 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
           if (request.id !== id) {
             newAll.push(request);
           }
-        })
+        });
       }
 
       if (!done) {
@@ -333,14 +334,14 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
             request.status = "COMPLETED";
             newAll.push(request);
             newCompleted.push(request);
-          } 
+          }
         });
 
         state.collabDetails.sent.all.forEach((request, _) => {
           if (request.id !== id) {
             newAll.push(request);
           }
-        })
+        });
       }
 
       return {
@@ -351,8 +352,40 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
           received: {
             ...state.collabDetails.received,
             all: newAll,
-            completed: newCompleted.concat(state.collabDetails.received.completed),
+            completed: newCompleted.concat(
+              state.collabDetails.received.completed
+            ),
           },
+        },
+      };
+    case actionTypes.FETCH_COLLAB_WITH_USER_REQUEST:
+      return {
+        ...state,
+        userCollabs: {
+          collabs: [],
+          user_id: undefined,
+          isFetchingCollabsWithUser: true,
+        },
+      };
+
+    case actionTypes.FETCH_COLLAB_WITH_USER_FAILURE:
+      return {
+        ...state,
+        userCollabs: {
+          collabs: [],
+          user_id: undefined,
+          isFetchingCollabsWithUser: false,
+        },
+      };
+
+    case actionTypes.FETCH_COLLAB_WITH_USER_SUCCESS:
+      const data = action.payload.data.data;
+      return {
+        ...state,
+        userCollabs: {
+          collabs: data.activeCollabRequests,
+          user_id: data.otherUserId,
+          isFetchingCollabsWithUser: false,
         },
       };
     default:

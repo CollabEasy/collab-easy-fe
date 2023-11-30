@@ -7,6 +7,9 @@ import { Dispatch } from "redux";
 import { AppState } from "state";
 import * as action from "../../state/action";
 import { CollabRequestData, SendCollabRequest } from "types/model";
+import Loader from "../loader";
+import api from "api/client";
+import * as collabApi from "../../api/collab";
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
@@ -16,8 +19,6 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  sendCollabRequestAction: (data: SendCollabRequest) =>
-    dispatch(action.sendCollabRequestAction(data)),
   updateCollabRequest: (data: CollabRequestData) =>
     dispatch(action.updateCollabRequest(data)),
   acceptCollabRequest: (requestId: string) =>
@@ -31,23 +32,26 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
-  onCancel: () => void;
+  edit?: boolean;
   otherUser: string;
   collabDetails: CollabRequestData;
+  onCancel?: () => void;
+  onCollabRequestSend: (id: string) => void
 } & ConnectedProps<typeof connector>;
 
 const SendCollabRequestModal = ({
+  edit = false,
   user,
   otherUser,
   collabDetails,
   isSendingRequest,
   isAcceptingRequest,
   isRejectingRequest,
-  onCancel,
   updateCollabRequest,
-  sendCollabRequestAction,
   acceptCollabRequest,
   rejectCollabRequest,
+  onCancel,
+  onCollabRequestSend,
   setShowCollabModalState,
 }: Props) => {
   const currentDate = moment(new Date());
@@ -57,15 +61,31 @@ const SendCollabRequestModal = ({
     useState<CollabRequestData>(collabDetails);
   const [editable, setEditable] = useState(
     isNewCollab ||
-    (user.artist_id === collabDetails.senderId &&
-      (collabDetails.status === "PENDING"))
+      (user.artist_id === collabDetails.senderId &&
+        collabDetails.status === "PENDING")
   );
 
   const [hasDateChanged, setDateChanged] = useState(false);
+  const [isSendingAPIRequest, setIsSendingAPIRequest] = useState(false);
+
+  const sendCollabRequestAPI = async (data: any) => {
+    try {
+      /* Type 'any' is of type Array<object> but getting some error */
+      const res: any = await collabApi.sendCollabRequest(data);
+      return res;
+    } catch (err) {
+      return {
+        data: [],
+        loading: false,
+        errorMessage: err.message,
+      };
+    }
+  };
 
 
-  const sendCollabRequest = () => {
+  const sendCollabRequest = async () => {
     if (isNewCollab) {
+      setIsSendingAPIRequest(true)
       const data: SendCollabRequest = {
         receiverId: otherUser,
         requestData: {
@@ -74,24 +94,32 @@ const SendCollabRequestModal = ({
         },
         collabDate: collabDataCached.collabDate ?? tomorrow.toDate(),
       };
-      sendCollabRequestAction(data);
-      setShowCollabModalState(false, '');
+      const res = await sendCollabRequestAPI(data);
+      setShowCollabModalState(false, "");
+      onCollabRequestSend(res.data.id);
+      setIsSendingAPIRequest(false);
     } else {
       updateCollabRequest(collabDataCached);
-      setShowCollabModalState(false, collabDataCached.id);
+      setTimeout(() => {
+        if (!isSendingRequest) {
+          setShowCollabModalState(false, "");
+          setShowCollabModalState(false, collabDataCached.id);
+          onCollabRequestSend(collabDataCached.id);
+        }
+      }, 1000);
+      
     }
+    
   };
 
+  if (isSendingRequest || isSendingAPIRequest) {
+    return <Loader />
+  }
+
   return (
-    <Modal
-      closable
-      onCancel={onCancel}
-      className="sendCollabRequestModal__modal"
-      visible={true}
-      footer={null}
-    >
+    <div className="sendCollabRequestModal__modal">
       <div className="sendCollabRequestModal__container">
-        <h2 className="f-20 text-center">Collab Request</h2>
+        <h2 className="f-20 text-center">{edit ? "Edit collab request" : "New collab request"}</h2>
         <div className="sendCollabRequestModal__textAreaContainer">
           <p className="mb0">Add your theme.</p>
           <Input.TextArea
@@ -152,8 +180,9 @@ const SendCollabRequestModal = ({
             }}
           />
         </div>
-        {(editable || hasDateChanged) ? (
-          <div className="text-center ">
+        {editable || hasDateChanged ? (
+          <div className="text-center">
+          <div className="text-center twoButtonsSpacing">
             <Button
               disabled={
                 collabDataCached.requestData.collabTheme.trim().length === 0
@@ -166,9 +195,20 @@ const SendCollabRequestModal = ({
             >
               Send
             </Button>
+            <Button
+              size="large"
+              className="sendCollabRequestModal__button"
+              onClick={() => {
+                setShowCollabModalState(false, "");
+              }}
+            >
+              Cancel
+            </Button>
+            </div>
             <p className="mt4">
-              NOTE: If you marked yourself not ready for collabs, sending this request
-              would change your preferences and mark you ready for collabs.
+              NOTE: If you marked yourself not ready for collabs, sending this
+              request would change your preferences and mark you ready for
+              collabs.
             </p>
           </div>
         ) : collabDetails.status === "PENDING" ? (
@@ -203,7 +243,7 @@ const SendCollabRequestModal = ({
           <></>
         )}
       </div>
-    </Modal>
+    </div>
   );
 };
 
