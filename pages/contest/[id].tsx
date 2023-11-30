@@ -408,7 +408,7 @@ const ContestPage = ({
 
           <div className="col-md-7">
             <div className="project-info-box">
-              <h5 className="common-h5-style">Eligibility Criteria</h5>
+              <h5 className="common-h5-style">Preffered Skills</h5>
               <p className="common-p-style">{
                 contestMetadata["category"].length === 0 ? "All art forms are invited!" :
                   GetContestEligibleCategoriesTags(contestMetadata["category"])}
@@ -428,7 +428,7 @@ const ContestPage = ({
               <h5 className="common-h5-style">Rules and Regulations</h5>
               <ul className="common-text-style">
                 <li>
-                  - Any artist with an on Wondor with complete  profile is
+                  - Any artist with on Wondor with complete profile is
                   eligible to participate.
                 </li>
                 <li>

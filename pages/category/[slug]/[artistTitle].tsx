@@ -118,7 +118,7 @@ const DiscoverArtist = ({
         setShowProfileModal(true);
       }
     }
-  }, []);
+  }, [artSlug]);
 
   useEffect(() => {
     if (artistListData.status === "success") {
