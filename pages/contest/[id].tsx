@@ -375,9 +375,9 @@ const ContestPage = ({
             actions={
               [
                 /* eslint-disable react/jsx-key */
-                <h6 className="common-h6-style">
+                <p className="common-h6-style">
                   {item["meta_text"]}
-                </h6>,
+                </p>,
                 /* eslint-disable react/jsx-key */
                 <Button
                   type="primary"

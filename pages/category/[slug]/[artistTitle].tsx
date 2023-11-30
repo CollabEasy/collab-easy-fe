@@ -292,7 +292,7 @@ const DiscoverArtist = ({
           <a href={toDiscover().href}>Home</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href={toAllCategoryPage().href}>Categories</a>
+          <a href={toAllCategoryPage().href}>Collab Categories</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>{category}</Breadcrumb.Item>
       </Breadcrumb>
