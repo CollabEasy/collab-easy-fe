@@ -60,3 +60,13 @@ export function GetContestMetadata(contestSlug: string) {
 
     return genericMetadata;
 }
+
+export function getContestCountdownHeading(status: string) {
+    if (status === "Upcoming") {
+        return "Contest Starts In:";
+    } else if (status === "Ongoing") {
+        return "Contest Ends In:"
+    } else {
+        return "Contest Ended:"
+    }
+}

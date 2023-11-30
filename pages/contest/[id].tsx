@@ -14,7 +14,8 @@ import { Collapse } from "antd";
 import { FireOutlined, FireFilled, ReadOutlined } from "@ant-design/icons";
 import * as action from "../../state/action";
 import Loader from "@/components/loader";
-import { GetContestEligibleCategoriesTags, GetContestMetadata, GetContestStatus, GetDateString } from "helpers/contest";
+import { Alert, Space } from 'antd';
+import { GetContestEligibleCategoriesTags, GetContestMetadata, GetContestStatus, GetDateString, getContestCountdownHeading } from "helpers/contest";
 import { IsAdmin } from "helpers/helper";
 import UploadContestArtworkPage from "@/components/contestArtworkPage";
 import Link from "next/link";
@@ -24,6 +25,7 @@ import { Config } from "config/config";
 import Layout from "@/components/layout";
 import SampleTile from "@/components/sampleTile";
 import GenericActionBanner from "@/components/genericActionBanner";
+import CountdownTimer from "@/components/asset/countdownTimer";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -102,7 +104,6 @@ const ContestPage = ({
     emptyContestSubmissionDetails
   );
   const [windowWidth, setWindowWidth] = useState(-1);
-
   const { toDiscover, toAllContestPage, toRewardsInfoPage } = useRoutesContext();
 
   useEffect(() => {
@@ -162,9 +163,12 @@ const ContestPage = ({
     router.push("/contest/" + slug + "?tab=" + tab);
   };
 
-  const prismicLoader = ({ src, width, quality }) => {
-    return `${src}?w=${width}&q=${quality || 75}`;
-  };
+  const now = new Date();
+  let status = GetContestStatus(
+    now.getTime(),
+    contest.contest[0]?.data.startDate,
+    contest.contest[0]?.data.endDate
+  );
 
   const showNotification = (title, message) => {
     notification.open({
@@ -338,6 +342,24 @@ const ContestPage = ({
     );
   }
 
+  const getContestHeader = (contest: any) => {
+    return (
+      <Space direction="vertical" style={{ width: '100%' }}>
+        <Alert
+          message={
+            <span>
+              {getContestCountdownHeading(status)}
+              <CountdownTimer
+                targetDate={contest.contest[0]?.data.endDate}
+              />
+            </span>
+          }
+          type="info"
+        />
+      </Space>
+    );
+  }
+
   const getContestDetails = (contest: any) => {
     let contestMetadata = GetContestMetadata(slug.toString());
     return (
@@ -388,8 +410,8 @@ const ContestPage = ({
             <div className="project-info-box">
               <h5 className="common-h5-style">Eligibility Criteria</h5>
               <p className="common-p-style">{
-                contestMetadata["category"].length === 0 ? "All art forms are invited!" : 
-                GetContestEligibleCategoriesTags(contestMetadata["category"])}
+                contestMetadata["category"].length === 0 ? "All art forms are invited!" :
+                  GetContestEligibleCategoriesTags(contestMetadata["category"])}
               </p>
             </div>
             <div className="project-info-box">
@@ -411,9 +433,9 @@ const ContestPage = ({
                 </li>
                 <li>
                   - Post about the contest on social media and tag Wondor.
-                  Instagram: <a style={{color: "blue"}} href="https://www.instagram.com/wondor.art/">@wondor.art</a>,
-                  Twitter: <a style={{color: "blue"}} href="https://twitter.com/Wondor4creators">@Wondor4creators</a>,
-                  Reddit: <a style={{color: "blue"}} href="https://www.reddit.com/r/wondor4creators/">@wondor4creators</a>
+                  Instagram: <a style={{ color: "blue" }} href="https://www.instagram.com/wondor.art/">@wondor.art</a>,
+                  Twitter: <a style={{ color: "blue" }} href="https://twitter.com/Wondor4creators">@Wondor4creators</a>,
+                  Reddit: <a style={{ color: "blue" }} href="https://www.reddit.com/r/wondor4creators/">@wondor4creators</a>
                 </li>
                 <li>
                   - Your work should be inspired from the theme of the
@@ -437,7 +459,7 @@ const ContestPage = ({
                   the rules and guidelines
                 </li>
                 <li>
-                  - You can also send in your queries in an email to 
+                  - You can also send in your queries in an email to
                   <b> admin@wondor.com</b>, during the contest.
                 </li>
               </ul>
@@ -448,12 +470,6 @@ const ContestPage = ({
     );
   }
 
-  const now = new Date();
-  let status = GetContestStatus(
-    now.getTime(),
-    contest.contest[0]?.data.startDate,
-    contest.contest[0]?.data.endDate
-  );
   return (
     <Layout
       title={"Enter now and win exclusize prizes on Wondor"}
@@ -489,8 +505,9 @@ const ContestPage = ({
                 activeKey={getActiveTab()}
               >
                 <TabPane tab="Contest details" key="1">
+                  {getContestHeader(contest)}
                   {getContestDetails(contest)}
-                  <GenericActionBanner/>
+                  <GenericActionBanner />
                 </TabPane>
 
                 {GetContestStatus(
