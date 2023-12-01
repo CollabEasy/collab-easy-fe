@@ -47,17 +47,22 @@
     }
 
     .hero-text-container-button {
-      height: 56px;
+      height: 50px;
       border: none;
-      padding: 20px;
+      padding: 15px 20px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
       font-size: 14px;
-      margin: 0px 2px 20px 2px;
       border-radius: 35px;
     }
   }
+}
+
+.button-wrapper{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 // Wondor Offerings cards
@@ -200,9 +205,9 @@
 
 
   .popular-blog-container-button {
-    height: 56px;
+    height: 50px;
     border: none;
-    padding: 20px;
+    padding: 15px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -246,7 +251,7 @@
 
 // Final Sign up container
 .signup-container {
-  padding-top: 10%;
+  padding-top: 7%;
   padding-bottom: 5%;
   text-align: center;
 
@@ -269,9 +274,9 @@
   }
 
   .signup-container-button {
-    height: 56px;
+    height: 50px;
     border: none;
-    padding: 20px;
+    padding: 15px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

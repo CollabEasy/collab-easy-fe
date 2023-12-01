@@ -59,6 +59,14 @@ const Footer = ({
     setPathname(pathname);
   }, []);
 
+  const Debounce = (func, delay) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func(...args), delay);
+    };
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -72,10 +80,14 @@ const Footer = ({
       } else if (currentScrollY + window.innerHeight >= document.documentElement.scrollHeight) {
         // When at the bottom of the page, make the footer visible
         setIsFooterVisible(true);
-      } else {
-        setIsFooterVisible(scrollingUp);
+      } else if (scrollingUp){
+        setIsFooterVisible(true);
+      }else{
+        setIsFooterVisible(false);
       }
     };
+
+    // const debouncedHandleScroll = Debounce(handleScroll, 200);
 
     window.addEventListener('scroll', handleScroll);
 
