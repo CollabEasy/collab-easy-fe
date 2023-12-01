@@ -110,8 +110,8 @@ const AllBlogs = ({
                 />
                 <div className="row">
                     <GenericPageBanner
-                        heading="Unleash your creative potential and discover the magic of collaboration through Wondor&pos;s insightful blog 🤗"
-                        paragraph="Read Wondor&pos;s blog and embark on your creative collaboration journey!"
+                        heading="Unleash your creative potential and discover the magic of collaboration through Wondor's insightful blog 🤗"
+                        paragraph="Read Wondor's blog and embark on your creative collaboration journey!"
                     />
                 </div>
                 <div className="container all-blogs-container">
