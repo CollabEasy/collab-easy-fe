@@ -13,9 +13,13 @@ import Loader from "@/components/loader";
 import { routeToHref } from "config/routes";
 import { useRoutesContext } from "@/components/routeContext";
 import NotAuthorised from "@/components/error/notAuthorised";
+import NewUserModal from "@/components/modal/newUserModal";
+import LoginModal from "@/components/modal/loginModal";
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
+  const loginModalDetails = state.home.loginModalDetails;
+
   const otherUser = state.user.basicUser;
   const isFetchingBasicUser = state.user.isFetchingBasicUser;
   const isLoggedIn = state.user.isLoggedIn;
@@ -24,6 +28,7 @@ const mapStateToProps = (state: AppState) => {
   return {
     user,
     collab,
+    loginModalDetails,
     isLoggedIn,
     collabWithUser,
     isFetchingBasicUser,
@@ -45,6 +50,7 @@ const SendCollabRequestPage = ({
   user,
   collab,
   isLoggedIn,
+  loginModalDetails,
   otherUser,
   collabWithUser,
   isFetchingBasicUser,
@@ -67,6 +73,7 @@ const SendCollabRequestPage = ({
 
   const { toCollabPage } = useRoutesContext();
   const [isSelf, setIsSelf] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
 
   const router = useRouter();
   const { slug: slug } = router.query;
@@ -76,16 +83,6 @@ const SendCollabRequestPage = ({
     fetchCollabsWithUser(slug.toString());
   }, []);
 
-  if (!isLoggedIn) {
-    return (
-      <NotAuthorised error={"Please login to collaborate with artists."} />
-    );
-  }
-
-  if (isFetchingBasicUser) {
-    return <Loader />;
-  }
-
   if (otherUser === {}) {
     return <div />;
   }
@@ -94,31 +91,58 @@ const SendCollabRequestPage = ({
     return <p>No such user</p>;
   }
 
+
+  const getUserName = (user: User) => {
+    return user.first_name + " " + user.last_name;
+  }
+
   return (
     <Layout
       title={
         "Send collab request to " +
-        (isSelf ? user.last_name : otherUser.last_name) +
+        (isSelf ? getUserName(user) : getUserName(otherUser)) +
         " | Wondor"
       }
       name={"description"}
       content={
-        "Work with " +
-        (isSelf ? user.first_name : otherUser.first_name) +
-        " " +
-        (isSelf ? user.last_name : otherUser.last_name) +
+        "Work with " + (isSelf ? getUserName(user) : getUserName(otherUser)) +
         ". Send them a collaboration request | Wondor"
       }
     >
-      <CollabPage
-        otherUser={otherUser}
-        pastCollabs={collabWithUser.collabs}
-        isFetchingPastCollabs={collabWithUser.isFetchingCollabsWithUser}
-        isFetchingOtherUser={isFetchingBasicUser}
-        onCollabRequestSend={(id: string) => {
-          router.push("/collab/details/" + id);
-        }}
-      />
+
+      <>
+        {loginModalDetails.openModal && !user.new_user && (
+          <LoginModal />
+        )
+        }
+        {showProfileModal && (
+          <NewUserModal />
+        )
+        }
+        {!isLoggedIn ? (
+          <>
+            <NotAuthorised
+              error={"Please login to see send collaboration request to " + (isSelf ? getUserName(user) : getUserName(otherUser))}
+            />
+          </>
+        ) : (
+          <>
+            {isFetchingBasicUser ? (
+              <Loader />
+            ) : (
+              <CollabPage
+                otherUser={otherUser}
+                pastCollabs={collabWithUser.collabs}
+                isFetchingPastCollabs={collabWithUser.isFetchingCollabsWithUser}
+                isFetchingOtherUser={isFetchingBasicUser}
+                onCollabRequestSend={(id: string) => {
+                  router.push("/collab/details/" + id);
+                }}
+              />
+            )}
+          </>
+        )}
+      </>
     </Layout>
   );
 };
