@@ -703,6 +703,11 @@ const blogCard = [
     "url": "/category/photography/wiki/learn-about-photography-and-collaboration-opportunities",
   },
   {
+    "heading": "6 Powerful Ways to Embrace Cross-Disciplinary Collaboration",
+    "paragraph": "Combining different art forms, artists can create unique and innovative works that challenge traditional boundaries and push the limits of what is possible.",
+    "url": "/blog/6-powerful-ways-to-embrace-cross-discipline-collaboration",
+  },
+  {
     "heading": "5 Ways in which Wondor.art Help Artists Achieve their Cretaivity Goals!",
     "paragraph": "Wondor.art: Nurturing artists, unlocking potential, and propelling creativity to new heights with tailored support and resources.",
     "url": "/blog/top-5-reasons-for-why-artists-should-use-wondor",
@@ -711,11 +716,6 @@ const blogCard = [
     "heading": "Expanding Literary Horizons: The Art and Benefits of Writer Collaboration!",
     "paragraph": "Writers collaborate for enriched creativity, mutual growth, diverse perspectives, and the joy of shared storytelling",
     "url": "/category/writing/wiki/learn-about-writing-and-collaboration-opportunities",
-  },
-  {
-    "heading": "Why Journalers should Collaborate for Enhanced Creativity and Success?",
-    "paragraph": "Collaborative journaling sparks inspiration, cultivates diverse perspectives, and propels journalers to greater creative heights and personal success.",
-    "url": "/category/journaling/wiki/learn-about-journaling-and-collaboration-opportunities",
   },
 ]
 
