@@ -23,6 +23,7 @@ const mapStateToProps = (state: AppState) => {
   const otherUser = state.user.basicUser;
   const isFetchingBasicUser = state.user.isFetchingBasicUser;
   const isLoggedIn = state.user.isLoggedIn;
+  const isFetchingUser = state.user.isFetchingUser;
   const collab = state.collab;
   const collabWithUser = state.collab.userCollabs;
   return {
@@ -30,6 +31,7 @@ const mapStateToProps = (state: AppState) => {
     collab,
     loginModalDetails,
     isLoggedIn,
+    isFetchingUser,
     collabWithUser,
     isFetchingBasicUser,
     otherUser,
@@ -51,6 +53,7 @@ const SendCollabRequestPage = ({
   collab,
   isLoggedIn,
   loginModalDetails,
+  isFetchingUser,
   otherUser,
   collabWithUser,
   isFetchingBasicUser,
@@ -83,6 +86,7 @@ const SendCollabRequestPage = ({
     fetchCollabsWithUser(slug.toString());
   }, []);
 
+  
   if (otherUser === {}) {
     return <div />;
   }
@@ -109,40 +113,19 @@ const SendCollabRequestPage = ({
         ". Send them a collaboration request | Wondor"
       }
     >
-
-      <>
-        {loginModalDetails.openModal && !user.new_user && (
-          <LoginModal />
-        )
-        }
-        {showProfileModal && (
-          <NewUserModal />
-        )
-        }
-        {!isLoggedIn ? (
-          <>
-            <NotAuthorised
-              error={"Please login to see send collaboration request to " + (isSelf ? getUserName(user) : getUserName(otherUser))}
-            />
-          </>
-        ) : (
-          <>
-            {isFetchingBasicUser ? (
-              <Loader />
-            ) : (
-              <CollabPage
-                otherUser={otherUser}
-                pastCollabs={collabWithUser.collabs}
-                isFetchingPastCollabs={collabWithUser.isFetchingCollabsWithUser}
-                isFetchingOtherUser={isFetchingBasicUser}
-                onCollabRequestSend={(id: string) => {
-                  router.push("/collab/details/" + id);
-                }}
-              />
-            )}
-          </>
-        )}
-      </>
+      {isLoggedIn ? (
+        <CollabPage
+          otherUser={otherUser}
+          pastCollabs={collabWithUser.collabs}
+          isFetchingPastCollabs={collabWithUser.isFetchingCollabsWithUser}
+          isFetchingOtherUser={isFetchingBasicUser}
+          onCollabRequestSend={(id: string) => {
+            router.push("/collab/details/" + id);
+          }}
+        />
+      ) : (
+        <NotAuthorised error={"Please login to see collaboration details."} />
+      )}
     </Layout>
   );
 };
