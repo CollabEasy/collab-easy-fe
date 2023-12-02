@@ -359,8 +359,8 @@ const NavBar = ({
             closable
             message={
               <span>
-                Calling artists to win a $50 prize and an opportunity to gain exposure and recognition within the photography community.{' '}
-                <a href={routeToHref(toContestPage("NOV2023", "details"))}>Enter Now!</a>
+                Stuck in creativity block? Sign up for weekly emails packed with creative prompts, 
+                inspirational quotes. Checkout <a href={routeToHref(toGetInspired())}>ideas for this week!</a>
               </span>
             }
           />
