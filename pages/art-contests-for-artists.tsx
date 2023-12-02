@@ -17,6 +17,7 @@ import { GetContestStatus } from "helpers/contest";
 import Layout from "@/components/layout";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import GenericActionBanner from "@/components/genericActionBanner";
+import { GetDateString } from "helpers/proposalHelper";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -74,6 +75,15 @@ const AllContestPage = ({
         setWindowWidth(window.innerWidth);
     }, [user, artistListData, contests]);
 
+    const getContestStatus = (status: string, date) => {
+        if (status === "Ongoing") {
+            return "Ends on " + GetDateString(date);
+        } else if (status === "Upcoming") {
+            return "Starts on " + GetDateString(date);
+        }
+        return "Ended on " + GetDateString(date);
+    }
+
     const getAllContests = (allContests) => {
         const resultArtists: JSX.Element[] = [];
         const now = new Date();
@@ -84,18 +94,19 @@ const AllContestPage = ({
             resultArtists.push(
                 <div className="row p-2 bg-white rounded contest-card">
                     <Card
+                        bodyStyle={{ paddingTop: 5 }}
                         title={contest.title}
                         style={{ height: '100%' }}
                         extra={
                             <>
                                 {status === "Ongoing" && (
-                                    <Tag color="green">{status}</Tag>
+                                    <Tag color="green">{getContestStatus(status, contest.endDate)}</Tag>
                                 )}
                                 {status === "Upcoming" && (
-                                    <Tag color="yellow">{status}</Tag>
+                                    <Tag color="yellow">{getContestStatus(status, contest.startDate)}</Tag>
                                 )}
                                 {status === "Past" && (
-                                    <Tag color="grey">{status}</Tag>
+                                    <Tag color="grey">{getContestStatus(status, contest.endDate)}</Tag>
                                 )}
                                 {status === "Ongoing" ? (
                                     <a href={routeToHref(toContestPage(contest.contestSlug, "details"))}>Enter</a>
