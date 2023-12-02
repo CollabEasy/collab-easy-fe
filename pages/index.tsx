@@ -269,37 +269,65 @@ const Home = ({
 
   const getPopularCollaborators = () => {
     return (
-      <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-        <div className="wondor-static-card-container">
-          {artistsForCollab.map((artist) => (
-            <Link href={routeToHref(toAllCategoryPage())} passHref>
-              <div className="wondor-static-card-container-card cursor-pointer">
-                <div className="popular-collaborator-card-img">
-                  <Image
-                    unoptimized
-                    src={artist.url}
-                    height={250}
-                    width={250}
-                    alt={"Send collab request to " + artist.artist}
-                    priority={true}
-                  />
-                </div>
-                <div className="popular-collaborator-card-text">
-                  <h5 className="common-h5-style">{artist.artist}</h5>
-                  <div className="mt-2 mt-lg-0 d-flex justify-content-center align-items-center p-2 gap-1">
-                    {artist["category"].map((category) => (
-                      <span
-                        style={{ background: "#EAEBED", color: "black" }}
-                        className="badge bg-soft-secondary fs-14 mt-1"
+      <div className="popular-collaborator-container">
+        <div className="container fluid">
+          <div className="row text-left">
+            <div className="col-12">
+              <h2 className="common-h2-style">Collaboration Categories</h2>
+            </div>
+          </div>
+        </div>
+        <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
+          <div className="col-12">
+            <div className="popular-collaborator-list d-flex justify-content-center align-items-center">
+              <>
+                {artistsForCollab.map((item) => (
+                  <div
+                    className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-collaborator-list-item cursor-pointer"
+                    key={item.id}
+                  >
+                    <div >
+                      <div
+                        className="d-flex justify-content-center align-items-center p-2 category-icon"
+
                       >
-                        {category}
-                      </span>
-                    ))}
+                        <Image
+                          src={getPopularCategoryImage(item.slug)}
+                          height={50}
+                          width={50}
+                          alt="abx"
+                          unoptimized
+                          loading="lazy"
+                          className="category-icon"
+                        />
+                      </div>
+                      <div className="d-flex justify-content-center text-align-center p-2">
+                        <h5
+                          className="common-h5-style"
+                        >
+                          {item.artist}
+                        </h5>
+                      </div>
+                      <div className="d-flex justify-content-center p-2" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                        <p
+                          className="common-p-style"
+                        >
+                          {item["category"].map((category) => (
+                            <span
+                              style={{ background: "#EAEBED", color: "black" }}
+                              className="badge bg-soft-secondary fs-14 mt-1"
+                            >
+                              {category}
+                            </span>
+                          ))}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </Link>
-          ))}
+                ))}
+              </>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -343,7 +371,7 @@ const Home = ({
         </div>
         <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
           <div className="col-12">
-            <div className="popular-catgeory-list">
+            <div className="popular-catgeory-list d-flex justify-content-center align-items-center">
               <>
                 {popularCollabCategories.map((item) => (
                   <div
