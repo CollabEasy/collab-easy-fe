@@ -335,9 +335,9 @@ const Home = ({
       <div className="popular-collaborator-container">
         <div className="container fluid">
           <div className="row text-left">
-            <div className="col-12">
+            {/* <div className="col-12">
               <h2 className="common-h2-style">Collaboration Categories</h2>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
@@ -363,28 +363,32 @@ const Home = ({
                           priority={true}
                         />
                       </div>
-                      <div className="collaborator-details">
-                        <div className="d-flex justify-content-center text-align-center p-2">
-                          <h5
-                            className="common-h5-style"
-                          >
-                            {item.artist}
-                          </h5>
-                        </div>
-                        <div className="d-flex justify-content-center p-2" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-                          <p
-                            className="common-p-style"
-                          >
-                            {item["category"].map((category) => (
-                              <span
-                                style={{ background: "#EAEBED", color: "black" }}
-                                className="badge bg-soft-secondary fs-14 mt-1"
-                              >
-                                {category}
-                              </span>
-                            ))}
-                          </p>
-                        </div>
+                      <div className="d-flex justify-content-center text-align-center p-2">
+                        <h5
+                          className="common-h5-style"
+                        >
+                          {item.artist}
+                        </h5>
+                      </div>
+                      <div className="d-flex justify-content-center" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                        <p
+                          className="common-p-style"
+                        >
+                          {item["category"].map((category) => (
+                            <span
+                              style={{ background: "#EAEBED", color: "black" }}
+                              className="badge bg-soft-secondary fs-14 mt-1"
+                            >
+                              {category}
+                            </span>
+                          ))}
+                        </p>
+
+                      </div>
+                      <div className="d-flex justify-content-center">
+                        <a href={routeToHref(toUserCollabPage(item.slug))}>
+                          send collab request
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -730,19 +734,19 @@ const artistsForCollab = [
   {
     "artist": "Rahul Gupta",
     "slug": "rahul-gupta-1",
-    "category": ["Bullet Journaling", "Panting"],
+    "category": ["Panting"],
     "url": "https://wondor-profile-pictures.s3.amazonaws.com/8ffcaaca61c03f6.jpg?updatedAt=1680903708371",
   },
   {
     "artist": "Valeria Vecchi",
     "slug": "valeria-vecchi-1",
-    "category": ["Creative Journaling", "Scrapbooking"],
+    "category": ["Creative Journaling"],
     "url": "https://lh3.googleusercontent.com/a/AGNmyxb84SVN25Vo-fDtmzPrlVpCaE7mGf0x23YG4gs=s96-c",
   },
   {
     "artist": "Rico Garcia",
     "slug": "rico-garcia-1",
-    "category": ["Creative Writing", "Doodling"],
+    "category": ["Doodling"],
     "url": "https://wondor-profile-pictures.s3.amazonaws.com/thumbnails/ccc7177292d35b4.png?updatedAt=1701301361164",
   },
   // {

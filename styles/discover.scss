@@ -171,6 +171,7 @@
     background-position: top left;
     background-repeat: no-repeat;
     background-size: cover;
+    background: #F7FEF3;
 
     &:hover {
       box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
@@ -180,11 +181,6 @@
       border-radius: 50%;
       background-color: white;
       margin: 20px;
-    }
-    .collaborator-details {
-      background: #F7FEF3;
-      border-top-right-radius: 30px;
-      border-top-left-radius: 30px;
     }
   }
 }
