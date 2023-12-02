@@ -72,6 +72,7 @@ const Home = ({
   mainContent,
   popularCollabCategories,
   popularCollabProposals,
+  artistsForCollab,
   blogCard,
 
 }) => {
@@ -86,6 +87,7 @@ const Home = ({
     toAllBlogs,
     toAllContestPage,
     toRewardsInfoPage,
+    toUserCollabPage,
   } = useRoutesContext();
 
   // useEffect(() => {
@@ -139,7 +141,6 @@ const Home = ({
               <ul className="flip5">
                 <li className="common-h1-style">Painters!</li>
                 <li className="common-h1-style">Photographers!</li>
-                <li className="common-h1-style">Singers!</li>
                 <li className="common-h1-style">Dancers!</li>
                 <li className="common-h1-style">Poets!</li>
                 <li className="common-h1-style">Journalers!</li>
@@ -170,9 +171,9 @@ const Home = ({
   const getWondorOfferings = () => {
     return (
       <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-        <div className="wondor-offerings-container">
+        <div className="wondor-static-card-container">
           <Link href={routeToHref(toAllCategoryPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
+            <div className="wondor-static-card-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
                 <Image
                   unoptimized
@@ -190,7 +191,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toAllProposalsPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
+            <div className="wondor-static-card-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FEF7EF" }}>
                 <Image
                   unoptimized
@@ -208,7 +209,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toGetInspired())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
+            <div className="wondor-static-card-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FFFEF1" }}>
                 <Image
                   unoptimized
@@ -226,7 +227,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toAllContestPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
+            <div className="wondor-static-card-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#F7FEF3" }}>
                 <Image
                   unoptimized
@@ -244,7 +245,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toRewardsInfoPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
+            <div className="wondor-static-card-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
                 <Image
                   unoptimized
@@ -265,6 +266,44 @@ const Home = ({
       </div>
     );
   };
+
+  const getPopularCollaborators = () => {
+    return (
+      <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+        <div className="wondor-static-card-container">
+          {artistsForCollab.map((artist) => (
+            <Link href={routeToHref(toAllCategoryPage())} passHref>
+              <div className="wondor-static-card-container-card cursor-pointer">
+                <div className="popular-collaborator-card-img">
+                  <Image
+                    unoptimized
+                    src={artist.url}
+                    height={250}
+                    width={250}
+                    alt={"Send collab request to " + artist.artist}
+                    priority={true}
+                  />
+                </div>
+                <div className="popular-collaborator-card-text">
+                  <h5 className="common-h5-style">{artist.artist}</h5>
+                  <div className="mt-2 mt-lg-0 d-flex justify-content-center align-items-center p-2 gap-1">
+                    {artist["category"].map((category) => (
+                      <span
+                        style={{ background: "#EAEBED", color: "black" }}
+                        className="badge bg-soft-secondary fs-14 mt-1"
+                      >
+                        {category}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   const getPopularCategoryImage = (category) => {
     if (category === "dancing") {
@@ -298,7 +337,7 @@ const Home = ({
         <div className="container fluid">
           <div className="row text-left">
             <div className="col-12">
-              <h2 className="common-h2-style">Popular Collaboration Categories</h2>
+              <h2 className="common-h2-style">Collaboration Categories</h2>
             </div>
           </div>
         </div>
@@ -369,7 +408,7 @@ const Home = ({
         <div className="container fluid">
           <div className="row text-left">
             <div className="col-12">
-              <h2 className="common-h2-style">Popular Collaboration Proposals</h2>
+              <h2 className="common-h2-style">Collaboration Proposals</h2>
             </div>
           </div>
         </div>
@@ -554,6 +593,10 @@ const Home = ({
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        {getPopularCollaborators()}
+      </div>
+
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         {getPopularCollabProposals()}
       </div>
 
@@ -632,26 +675,11 @@ const popularCollabCategories = [
     para: "Find Illustrators available to collab now",
   },
   {
-    id: 5,
-    title: "Music",
-    slug: "musician",
-    imgAltTag: "Musicians collaborating on a creative music project. Send collab request.",
-    para: "Find Musicians available to collab now",
-  },
-  {
     id: 6,
     title: "Journaling",
     slug: "journaling",
     imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
     para: "Find Journalers available to collab now",
-  },
-  {
-    id: 7,
-    title: "Singing",
-    slug: "singing",
-    imgAltTag: "Singers collaborating on a creative singing project. Send collab request.",
-    para: "Find Singers available to collab now",
-
   },
   {
     id: 8,
@@ -743,10 +771,44 @@ const popularCollabProposals = [
   },
 ]
 
+const artistsForCollab = [
+  {
+    "artist": "Nicolas Nelson",
+    "slug": "nicolas-nelson-1",
+    "category": ["Creative Writing"],
+    "url": "https://lh3.googleusercontent.com/a/ACg8ocIomh_mX68BECxwLykxdzUrS4oLVbgOGFB6LbxiTIsbsJaR=s96-c",
+  },
+  {
+    "artist": "Rahul Gupta",
+    "slug": "rahul-gupta-1",
+    "category": ["Bullet Journaling", "Panting"],
+    "url": "https://wondor-profile-pictures.s3.amazonaws.com/8ffcaaca61c03f6.jpg?updatedAt=1680903708371",
+  },
+  {
+    "artist": "Valeria Vecchi",
+    "slug": "valeria-vecchi-1",
+    "category": ["Creative Journaling", "Scrapbooking"],
+    "url": "https://lh3.googleusercontent.com/a/AGNmyxb84SVN25Vo-fDtmzPrlVpCaE7mGf0x23YG4gs=s96-c",
+  },
+  {
+    "artist": "Rico Garcia",
+    "slug": "rico-garcia-1",
+    "category": ["Creative Writing", "Doodling"],
+    "url": "https://wondor-profile-pictures.s3.amazonaws.com/thumbnails/ccc7177292d35b4.png?updatedAt=1701301361164",
+  },
+  // {
+  //   "artist": "Benjamin Tompkins",
+  //   "slug": "benjamin-t-1",
+  //   "category": ["Creative Journaling", "Scrapbooking"],
+  // },
+]
+
+
+
 export async function getStaticProps({ params }) {
 
   // Pass post data to the page via props
-  return { props: { popularCollabCategories, mainContent, popularCollabProposals, blogCard, testimonialContent } }
+  return { props: { popularCollabCategories, mainContent, artistsForCollab, popularCollabProposals, blogCard, testimonialContent } }
 }
 
 export default connector(Home);

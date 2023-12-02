@@ -122,7 +122,7 @@ const SendCollabRequestPage = ({
         {!isLoggedIn ? (
           <>
             <NotAuthorised
-              error={"Please login to see send collaboration request to " + (isSelf ? getUserName(user) : getUserName(otherUser))}
+              error={"Please login to see send collaboration request" + (isLoggedIn ? "to " + (isSelf ? getUserName(user) : getUserName(otherUser)) : ".")}
             />
           </>
         ) : (
