@@ -359,8 +359,8 @@ const NavBar = ({
             closable
             message={
               <span>
-                Stuck in creativity block? Checkout the latest ideas for this week{' '}
-                <a href={routeToHref(toGetInspired())}>now!</a>
+                Stuck in creativity block? Sign up for weekly emails packed with creative prompts, 
+                inspirational quotes. Checkout <a href={routeToHref(toGetInspired())}>ideas for this week!</a>
               </span>
             }
           />
