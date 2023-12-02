@@ -143,7 +143,7 @@
 }
 
 
-// popular categories container
+// popular collaborator container
 .popular-collaborator-container {
 
   h2 {
@@ -166,21 +166,25 @@
     box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
     border-top-right-radius: 4px;
     width: 50% auto;
-    height: 225px;
+    height: 350px;
     vertical-align: bottom;
     background-position: top left;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #F3F8FE;
 
     &:hover {
       box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
     }
 
-    .category-icon {
+    .collaborator-icon {
       border-radius: 50%;
       background-color: white;
-      margin: 20px 70px;
+      margin: 20px;
+    }
+    .collaborator-details {
+      background: #F7FEF3;
+      border-top-right-radius: 30px;
+      border-top-left-radius: 30px;
     }
   }
 }
@@ -1064,7 +1068,6 @@
       .category-icon {
         border-radius: 50%;
         background-color: white;
-        margin: 20px 50px;
       }
 
       h5 {

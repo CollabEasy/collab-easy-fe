@@ -34,6 +34,7 @@ import { GetCategoryArtistTitle } from "helpers/categoryHelper";
 import * as actions from "state/action";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
+import { getPopularCategoryImage, getPopularProposalCategory } from "helpers/homePageHelper";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -267,97 +268,6 @@ const Home = ({
     );
   };
 
-  const getPopularCollaborators = () => {
-    return (
-      <div className="popular-collaborator-container">
-        <div className="container fluid">
-          <div className="row text-left">
-            <div className="col-12">
-              <h2 className="common-h2-style">Collaboration Categories</h2>
-            </div>
-          </div>
-        </div>
-        <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
-          <div className="col-12">
-            <div className="popular-collaborator-list d-flex justify-content-center align-items-center">
-              <>
-                {artistsForCollab.map((item) => (
-                  <div
-                    className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-collaborator-list-item cursor-pointer"
-                    key={item.id}
-                  >
-                    <div >
-                      <div
-                        className="d-flex justify-content-center align-items-center p-2 category-icon"
-
-                      >
-                        <Image
-                          src={getPopularCategoryImage(item.slug)}
-                          height={50}
-                          width={50}
-                          alt="abx"
-                          unoptimized
-                          loading="lazy"
-                          className="category-icon"
-                        />
-                      </div>
-                      <div className="d-flex justify-content-center text-align-center p-2">
-                        <h5
-                          className="common-h5-style"
-                        >
-                          {item.artist}
-                        </h5>
-                      </div>
-                      <div className="d-flex justify-content-center p-2" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-                        <p
-                          className="common-p-style"
-                        >
-                          {item["category"].map((category) => (
-                            <span
-                              style={{ background: "#EAEBED", color: "black" }}
-                              className="badge bg-soft-secondary fs-14 mt-1"
-                            >
-                              {category}
-                            </span>
-                          ))}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const getPopularCategoryImage = (category) => {
-    if (category === "dancing") {
-      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/eoRpjgHYYEqr0co87nwCDQ/disco_ball.svg";
-    }
-    else if (category === "singing") {
-      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/M5PSbrMWSU63OF34y-Dfyg/microphone.svg";
-    }
-    else if (category === "photography") {
-      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/C58hR0F-tkm9ZpPfkFkPUw/camera.svg";
-    }
-    else if (category === "writing") {
-      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/OEju2Qj12EC6OPDH0FfgAw/pencil.svg";
-    }
-    else if (category === "illustration") {
-      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/LtNSPsj3SkKpUYCG7NfRQg/tablet_front_view.svg";
-    }
-    else if (category === "musician") {
-      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/-sc9WCeBikKhhXnjAe5ePA/piano_side_view.svg";
-    }
-    else if (category === "journaling") {
-      return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/tMlgnq4rsk-7qQLI6GtH4w/open_book.svg";
-    }
-    return "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/HdM_z7rZXE-ZNeWoyJgHIA/palette.svg";
-  }
-
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
     return (
@@ -371,7 +281,7 @@ const Home = ({
         </div>
         <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
           <div className="col-12">
-            <div className="popular-catgeory-list d-flex justify-content-center align-items-center">
+            <div className="popular-catgeory-list">
               <>
                 {popularCollabCategories.map((item) => (
                   <div
@@ -420,15 +330,72 @@ const Home = ({
     );
   }
 
-  const getPopularProposalCategory = (category) => {
-    const skills: JSX.Element[] = [];
-    category.forEach((skill: string) => {
-      skills.push(
-        <span className="badge bg-soft-secondary mt-1">{skill}</span>
-      );
-    });
-    return skills;
-  };
+  const getPopularCollaborators = () => {
+    return (
+      <div className="popular-collaborator-container">
+        <div className="container fluid">
+          <div className="row text-left">
+            <div className="col-12">
+              <h2 className="common-h2-style">Collaboration Categories</h2>
+            </div>
+          </div>
+        </div>
+        <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
+          <div className="col-12">
+            <div className="popular-collaborator-list d-flex justify-content-center align-items-center">
+              <>
+                {artistsForCollab.map((item) => (
+                  <div
+                    className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-collaborator-list-item"
+                    key={item.id}
+                  >
+                    <div >
+                      <div
+                        className="d-flex justify-content-center align-items-center p-2 collaborator-icon"
+                      >
+                        <Image
+                          unoptimized
+                          src={item.url}
+                          height={200}
+                          width={200}
+                          className="collaborator-icon"
+                          alt={"Send collaboration request to " + item.artist}
+                          priority={true}
+                        />
+                      </div>
+                      <div className="collaborator-details">
+                        <div className="d-flex justify-content-center text-align-center p-2">
+                          <h5
+                            className="common-h5-style"
+                          >
+                            {item.artist}
+                          </h5>
+                        </div>
+                        <div className="d-flex justify-content-center p-2" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                          <p
+                            className="common-p-style"
+                          >
+                            {item["category"].map((category) => (
+                              <span
+                                style={{ background: "#EAEBED", color: "black" }}
+                                className="badge bg-soft-secondary fs-14 mt-1"
+                              >
+                                {category}
+                              </span>
+                            ))}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const getPopularCollabProposals = () => {
     return (
@@ -436,7 +403,7 @@ const Home = ({
         <div className="container fluid">
           <div className="row text-left">
             <div className="col-12">
-              <h2 className="common-h2-style">Collaboration Proposals</h2>
+              <h2 className="common-h2-style">Latest Collaboration Proposals</h2>
             </div>
           </div>
         </div>
@@ -516,52 +483,6 @@ const Home = ({
       </>
     );
   };
-
-
-  const getTestimony = () => {
-    const testimonies: JSX.Element[] = [];
-    testimonialContent.forEach((testimony) => {
-      testimonies.push(
-        <div className="slider__contents">
-          <i className="slider__image fa fa-codepen"></i>
-          <h2 className="slider__caption">{testimony["user_name"]}</h2>
-          <p className="slider__txt">{testimony["testimonial"]}</p>
-        </div>
-      );
-    })
-    return testimonies;
-  }
-
-  const getTestimonialContent = () => {
-    return (
-      <div id="myCarousel" className="carousel slide" data-ride="carousel">
-        <ol className="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div className="carousel-inner">
-          <div className="item carousel-item active">
-
-            <p className="testimonial">Phasellus vitae suscipit justo. Mauris pharetra feugiat ante id lacinia. Etiam faucibus mauris id tempor egestas. Duis luctus turpis at accumsan tincidunt. Phasellus risus risus, volutpat vel tellus ac, tincidunt fringilla massa. Etiam hendrerit dolor eget rutrum.</p>
-            <p className="overview"><b>Paula Wilsons</b>Seo Analyst </p>
-            <div className="star-rating"> </div>
-          </div>
-          <div className="item carousel-item">
-
-            <p className="testimonial">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Vestibulum idac nisl bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet.</p>
-            <p className="overview"><b>Paula Wilson</b>Media Analyst </p>
-            <div className="star-rating"> </div>
-          </div>
-          <div className="item carousel-item">
-            <p className="testimonial">Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Utmtc tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor velit.</p>
-            <p className="overview"><b>Antonio Moreno</b>Web Developer</p>
-            <div className="star-rating"> </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   const getSignUpCard = () => {
     return (
