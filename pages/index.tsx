@@ -171,9 +171,9 @@ const Home = ({
   const getWondorOfferings = () => {
     return (
       <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-        <div className="wondor-static-card-container">
+        <div className="wondor-offerings-container">
           <Link href={routeToHref(toAllCategoryPage())} passHref>
-            <div className="wondor-static-card-container-card cursor-pointer">
+            <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
                 <Image
                   unoptimized
@@ -191,7 +191,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toAllProposalsPage())} passHref>
-            <div className="wondor-static-card-container-card cursor-pointer">
+            <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FEF7EF" }}>
                 <Image
                   unoptimized
@@ -209,7 +209,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toGetInspired())} passHref>
-            <div className="wondor-static-card-container-card cursor-pointer">
+            <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FFFEF1" }}>
                 <Image
                   unoptimized
@@ -227,7 +227,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toAllContestPage())} passHref>
-            <div className="wondor-static-card-container-card cursor-pointer">
+            <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#F7FEF3" }}>
                 <Image
                   unoptimized
@@ -245,7 +245,7 @@ const Home = ({
             </div>
           </Link>
           <Link href={routeToHref(toRewardsInfoPage())} passHref>
-            <div className="wondor-static-card-container-card cursor-pointer">
+            <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
                 <Image
                   unoptimized

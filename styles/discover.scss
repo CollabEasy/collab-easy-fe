@@ -61,7 +61,7 @@
 }
 
 // Wondor Offerings cards
-.wondor-static-card-container {
+.wondor-offerings-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -69,7 +69,7 @@
   margin-top: 20px;
 }
 
-.wondor-static-card-container-card {
+.wondor-offerings-container-card {
   width: calc(20% - 20px);
   margin: 10px;
   background-color: #fff;
@@ -362,7 +362,7 @@
     }
   }
 
-  .wondor-static-card-container-card {
+  .wondor-offerings-container-card {
     width: calc(33.333% - 20px);
 
     .card-text {
@@ -523,7 +523,7 @@
     }
   }
 
-  .wondor-static-card-container-card {
+  .wondor-offerings-container-card {
     width: calc(33.333% - 20px);
 
     h5 {
@@ -682,7 +682,7 @@
     }
   }
 
-  .wondor-static-card-container-card {
+  .wondor-offerings-container-card {
     width: calc(50% - 20px);
 
     h5 {
@@ -845,7 +845,7 @@
     }
   }
 
-  .wondor-static-card-container-card {
+  .wondor-offerings-container-card {
     width: calc(50% - 20px);
 
     .card-text {
@@ -1010,7 +1010,7 @@
     }
   }
 
-  .wondor-static-card-container-card {
+  .wondor-offerings-container-card {
     width: calc(50% - 20px);
 
     .card-text {
