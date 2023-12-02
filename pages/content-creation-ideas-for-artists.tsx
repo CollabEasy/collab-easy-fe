@@ -18,6 +18,7 @@ import { CURRENT_THEMES } from "constants/inspirationIdeas";
 import { Collapse } from 'antd';
 import GenericActionBanner from "@/components/genericActionBanner";
 import GenericPageBanner from "@/components/genericPageBanner";
+import { GetUserSkillsTags } from "helpers/profilePageHelper";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -75,16 +76,15 @@ const GetInspired = ({
     CURRENT_THEMES.forEach((element, index) => {
       themes.push(
         /* eslint-disable react/jsx-key */
-        element["value"].map((assesment) => (
-          <div className="col my-3">
-            <div className="card border-hover-primary">
-              <div className="card-body">
-                <h6 className="font-weight-bold mb-3">{assesment.title}</h6>
-                <p className="text-muted mb-0">{assesment.description}</p>
-              </div>
+        <div className="col my-3">
+          <div className="card border-hover-primary">
+            <div className="card-body">
+              <h6 className="font-weight-bold mb-3">{element.title}</h6>
+              <p className="text-muted mb-0">{element.description}</p>
+              <p style={{ paddingTop: "10px" }}> {GetUserSkillsTags(element["categories"], true)}</p>
             </div>
           </div>
-        ))
+        </div>
       )
     });
     return themes;

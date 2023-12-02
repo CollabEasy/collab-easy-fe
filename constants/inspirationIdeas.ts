@@ -31,6 +31,7 @@ export const CURRENT_THEMES = [
     },
     {
         "title": "Use creative photography techniques, such as long exposure or light painting, to create festive and magical photos",
-        "description": "You could use close-up shots to capture the dancers' facial expressions, or you could use slow-motion footage to create a sense of wonder and excitement"
+        "description": "You could use close-up shots to capture the dancers' facial expressions, or you could use slow-motion footage to create a sense of wonder and excitement",
+        "categories": ["Photography"],
     },
 ]
