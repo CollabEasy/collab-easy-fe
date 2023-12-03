@@ -436,6 +436,19 @@ const ContestPage = ({
     );
   }
 
+  const getContestHosts = (hosts) => {
+    const contestHosts: JSX.Element[] = [];
+    hosts.forEach((host: string) => {
+      contestHosts.push(
+        <p className="common-p-style">
+          <a href={host["url"]}>{host["name"]}</a>
+        </p>
+      );
+    });
+    return contestHosts;
+  };
+
+
   const getContestDetails = (contest: any) => {
     let contestMetadata = GetContestMetadata(slug.toString());
     return (
@@ -465,6 +478,11 @@ const ContestPage = ({
             </div>
 
             <div className="project-info-box">
+              <h5 className="common-h5-style">Hosts</h5>
+              {getContestHosts(contestMetadata["hosts"])}
+            </div>
+
+            <div className="project-info-box">
               <h5 className="common-h5-style">Reward Prize</h5>
               <p className="common-p-style">
                 We believe anyone who participates is a winner. However,
@@ -475,9 +493,7 @@ const ContestPage = ({
               </p>
               <p className="common-p-style"><b>Winner:</b> ${contestMetadata["prize"]} </p>
               <p className="common-p-style"><b>Other Participants:</b>
-                <Link href={routeToHref(toRewardsInfoPage())} passHref>
-                  {" 50 reward points "}
-                </Link>
+                All finalists will receive recognition on the contest website and social media.
               </p>
             </div>
           </div>
@@ -499,7 +515,39 @@ const ContestPage = ({
                 contributing to artistic growth and recognition.
               </p>
             </div>
-
+            <div className="project-info-box">
+              <h5 className="common-h5-style">Submission Guideline:</h5>
+              <ul className="common-text-style">
+                <li>
+                  - Submit a high-resolution image file PNG, JPEG.
+                </li>
+                <li>
+                  - Include a brief description of your story.
+                </li>
+              </ul>
+            </div>
+            <div className="project-info-box">
+              <h5 className="common-h5-style">Judging Criteria:</h5>
+              <ul className="common-text-style">
+                <li>
+                  - Creativity and originality of the story.
+                </li>
+                <li>
+                  - Effectiveness in conveying the theme.
+                </li>
+                <li>
+                  - Overall impact and emotional engagement.
+                </li>
+                <li>
+                  - You work will also be judged by the number of votes you
+                  have recieved. Share with your friends and get votes.
+                </li>
+                <li>
+                  - Final decision will include things like creativity,
+                  technique, adherence to the theme, and overall impact.
+                </li>
+              </ul>
+            </div>
             <div className="project-info-box">
               <h5 className="common-h5-style">Rules and Regulations</h5>
               <ul className="common-text-style">
@@ -512,22 +560,6 @@ const ContestPage = ({
                   Instagram: <a style={{ color: "blue" }} href="https://www.instagram.com/wondor.art/">@wondor.art</a>,
                   Twitter: <a style={{ color: "blue" }} href="https://twitter.com/Wondor4creators">@Wondor4creators</a>,
                   Reddit: <a style={{ color: "blue" }} href="https://www.reddit.com/r/wondor4creators/">@wondor4creators</a>
-                </li>
-                <li>
-                  - Your work should be inspired from the theme of the
-                  contest.
-                </li>
-                <li>
-                  - Submit an image or a video of your artwork. You can
-                  submit only one piece for the contest.
-                </li>
-                <li>
-                  - You work will be judged by the number of votes you
-                  have recieved. Share with your friends and get votes.
-                </li>
-                <li>
-                  - Final decision will include things like creativity,
-                  technique, adherence to the theme, and overall impact.
                 </li>
                 <li>
                   - You will be disqualified from the contest for

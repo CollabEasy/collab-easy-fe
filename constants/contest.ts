@@ -3,18 +3,36 @@ export const CONTEST_METADATA = [
         "slug": "JUN2023",
         "prize": 20,
         "category": [
+        ],
+        "hosts": [
+            {
+                "name": "Wondor Admin",
+                "url": "https://www.wondor.art/artist/wondor-wondor-1",
+            },
         ]
     },
     {
         "slug": "JUL2023",
         "prize": 20,
         "category": [
+        ],
+        "hosts": [
+            {
+                "name": "Wondor Admin",
+                "url": "https://www.wondor.art/artist/wondor-wondor-1",
+            },
         ]
     },
     {
         "slug": "OCT2023",
         "prize": 20,
         "category": [
+        ],
+        "hosts": [
+            {
+                "name": "Wondor Admin",
+                "url": "https://www.wondor.art/artist/wondor-wondor-1",
+            },
         ]
     },
     {
@@ -24,6 +42,12 @@ export const CONTEST_METADATA = [
             "Photography",
             "Illustration",
             "Digital Art",
+        ],
+        "hosts": [
+            {
+                "name": "Wondor Admin",
+                "url": "https://www.wondor.art/artist/wondor-wondor-1",
+            },
         ]
     },
     {
