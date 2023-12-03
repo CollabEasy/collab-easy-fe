@@ -384,6 +384,20 @@ const Home = ({
     return (
       <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
         <div className="wondor-offerings-container">
+          <div className="row align-items-center">
+            <div className="col-md-12">
+              <div className="section-title text-md-center">
+                <h2 className="common-h2-style">
+                  Wondor Helps You Take Your Artistic Journey to the Next Level!
+                </h2>
+                <p className="common-p-style" style={{ width: "100%" }}>
+                  Our platform is committed to your growth. Discover fellow artists, improve collaboration,
+                  monthly art challenges, Inspiration Hub – all designed to uplift your skills.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <Link href={routeToHref(toAllCategoryPage())} passHref>
             <div className="wondor-offerings-container-card cursor-pointer">
               <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
@@ -453,24 +467,6 @@ const Home = ({
               <div className="card-text">
                 <h5 className="common-h5-style">Creative Art Challenges</h5>
                 <p className="common-p-style">Participate every month and win $$</p>
-              </div>
-            </div>
-          </Link>
-          <Link href={routeToHref(toRewardsInfoPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
-                <Image
-                  unoptimized
-                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/UcwVlZdYwkm7qoLnfsA1VA/Woman_with_coin_near_piggy_bank.svg"}
-                  height={140}
-                  width={250}
-                  alt="Get bonus points for Your Loyalty and Participation in Wondor community"
-                  priority={true}
-                />
-              </div>
-              <div className="card-text">
-                <h5 className="common-h5-style">Endless Rewards</h5>
-                <p className="common-p-style">Collect rewards points for every action you take</p>
               </div>
             </div>
           </Link>
@@ -561,7 +557,6 @@ const Home = ({
             </div>
           </div>
         </div>
-        <div className="row mt-2 g-4">{getPopularBlogCard()}</div>
       </div>
 
       {/* <div className="row" style={{ backgroundColor: "#FFFFF" }}>
@@ -570,6 +565,19 @@ const Home = ({
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         {getWondorOfferings()}
+      </div>
+
+      <div className="row popular-blog-section">
+        <div className="row align-items-end">
+          <div className="col-md-8">
+            <div className="section-title text-md-start">
+              <h2 className="common-h2-style">
+                Why And How?
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className="row mt-2 g-4">{getPopularBlogCard()}</div>
       </div>
 
       {getSignUpCard()}

@@ -60,7 +60,6 @@
   }
 }
 
-
 // popular categories container
 .popular-category-container {
 
@@ -104,7 +103,6 @@
     }
   }
 }
-
 
 // popular collaborator container
 .popular-collaborator-container {
@@ -269,8 +267,24 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 20px;
-  margin-top: 20px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+
+  .section-title {
+    padding-left: 20%;
+    padding-right: 20%;
+
+    h2 {
+      font-size: 44px;
+      line-height: 65px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 30px;
+    }
+  }
+
 }
 
 .wondor-offerings-container-card {
@@ -350,7 +364,7 @@
   /* Styles for large screens (small desktops) */
 
   .hero-text-container {
-    height: 650px;
+    height: 750px;
     width: 100%;
 
     .text-content {
@@ -377,6 +391,11 @@
     }
   }
 
+  .wondor-offerings-container {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+
   .wondor-offerings-container-card {
     width: calc(33.333% - 20px);
 
@@ -395,12 +414,12 @@
   .popular-category-container {
 
     h2 {
-      font-size: 25px;
+      font-size: 22px;
     }
 
     .popular-catgeory-list-item {
-      height: 250px;
-      width: 20%;
+      height: 225px;
+      width: 22%;
 
       .category-icon {
         border-radius: 50%;
@@ -409,7 +428,7 @@
       }
 
       h5 {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       p {
@@ -420,22 +439,33 @@
 
   .popular-collaborator-container {
 
-    h2 {
-      font-size: 25px;
+    .section-title {
+      padding-left: 20%;
+      padding-right: 20%;
+  
+      h2 {
+        font-size: 44px;
+        line-height: 65px;
+      }
+  
+      p {
+        font-size: 18px;
+        line-height: 30px;
+      }
     }
 
     .popular-collaborator-list-item {
-      height: 250px;
+      height: 350px;
       width: 20%;
 
-      .category-icon {
+      .collaborator-icon {
         border-radius: 50%;
         background-color: white;
-        margin: 20px 70px;
+        margin: 30px;
       }
 
       h5 {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       p {
@@ -444,18 +474,17 @@
     }
   }
 
-  // popular categories container
   .popular-proposal-container {
 
     h2 {
-      font-size: 25px;
+      font-size: 22px;
     }
 
     .popular-proposal-list-item {
-      height: 140px;
+      height: 150px;
 
       h5 {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       p {
@@ -538,6 +567,11 @@
     }
   }
 
+  .wondor-offerings-container {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+
   .wondor-offerings-container-card {
     width: calc(33.333% - 20px);
 
@@ -577,10 +611,6 @@
   }
 
   .popular-collaborator-container {
-
-    h2 {
-      font-size: 20px;
-    }
 
     .popular-collaborator-list-item {
       height: 250px;
