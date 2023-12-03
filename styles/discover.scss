@@ -5,7 +5,7 @@
 
 // Hero text container
 .hero-text-container {
-  min-height: 70vh;
+  height: 500px;
   width: 100%;
   //margin-bottom: 40px;
 
@@ -398,7 +398,7 @@
   /* Styles for large screens (small desktops) */
 
   .hero-text-container {
-    min-height: 65vh;
+    height: 650px;
 
     .text-content {
       top: 4%;
@@ -433,7 +433,7 @@
   /* Styles for medium screens (tablets) */
 
   .hero-text-container {
-    min-height: 60vh;
+    height: 500px;
 
     .text-content {
       top: 4%;
@@ -527,7 +527,7 @@
 
   /* Styles for small screens (phones) */
   .hero-text-container {
-    min-height: 70vh;
+    height: 520px;
 
     .text-content {
       top: 4.5%;
@@ -598,7 +598,7 @@
 
   /* Styles for small screens (phones) */
   .hero-text-container {
-    min-height: 70vh;
+    height: 520px;
 
     .text-content {
       top: 4%;
@@ -686,7 +686,7 @@
 
   /* Styles for small screens (phones) */
   .hero-text-container {
-    min-height: 80vh;
+    height: 550px;
 
     .text-content {
       top: 3%;
