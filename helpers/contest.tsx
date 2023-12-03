@@ -34,6 +34,29 @@ export function GetContestStatus(now: number, start: number, end: number) {
     }
 }
 
+
+export function GetContestStatusTag(now: number, start: number, end: number) {
+
+    if (now < start) {
+        return <Tag color="yellow">{GetContestStatus(now, start, end)}</Tag>
+    } else if (now >= start && now <= end) {
+        return <Tag color="green">{GetContestStatus(now, start, end)}</Tag>
+    } else {
+        return <Tag color="grey">{GetContestStatus(now, start, end)}</Tag>
+    }
+}
+
+export function GetContestMetaDescription(now: number, start: number, end: number) {
+
+    if (now < start) {
+        return "This contest will start starts on " + GetDateString(start);
+    } else if (now >= start && now <= end) {
+        return "This contest has begun and will end on " + GetDateString(end);
+    } else {
+        return "This contest had ended on " + GetDateString(end);
+    }
+}
+
 export function GetContestEligibleCategoriesTags(categories) {
     const tags: JSX.Element[] = [];
     let index = 0;

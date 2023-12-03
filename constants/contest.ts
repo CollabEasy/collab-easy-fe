@@ -9,7 +9,11 @@ export const CONTEST_METADATA = [
                 "name": "Wondor Admin",
                 "url": "https://www.wondor.art/artist/wondor-wondor-1",
             },
-        ]
+        ],
+        "winner": {
+            "name": "Arooj Artist",
+            "slug": "a.a-designers-1",
+        }
     },
     {
         "slug": "JUL2023",
@@ -21,7 +25,11 @@ export const CONTEST_METADATA = [
                 "name": "Wondor Admin",
                 "url": "https://www.wondor.art/artist/wondor-wondor-1",
             },
-        ]
+        ],
+        "winner": {
+            "name": "Sruthi S Kumar",
+            "slug": "sruthi-s-1",
+        }
     },
     {
         "slug": "OCT2023",
@@ -33,7 +41,11 @@ export const CONTEST_METADATA = [
                 "name": "Wondor Admin",
                 "url": "https://www.wondor.art/artist/wondor-wondor-1",
             },
-        ]
+        ],
+        "winner": {
+            "name": "Tanish Gupta",
+            "slug": "tanish-gupta-1",
+        }
     },
     {
         "slug": "NOV2023",
@@ -48,7 +60,11 @@ export const CONTEST_METADATA = [
                 "name": "Wondor Admin",
                 "url": "https://www.wondor.art/artist/wondor-wondor-1",
             },
-        ]
+        ],
+        "winner": {
+            "name": "Benjamin T",
+            "slug": "benjamin-t-1",
+        }
     },
     {
         "slug": "DEC2023",
@@ -67,6 +83,10 @@ export const CONTEST_METADATA = [
                 "name": "Anthony Paderes",
                 "url": "https://www.reddit.com/user/SuckingGodsFinger/",
             }
-        ]
+        ],
+        "winner": {
+            "name": "",
+            "slug": "",
+        }
     },
 ];
