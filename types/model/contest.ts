@@ -2,8 +2,8 @@ export interface ContestEntry {
     slug: string; 
     title: string;
     description: string;
-    startDate: number;
-    endDate: number;
+    startDate: Date;
+    endDate: Date;
 }
 
 export interface ContestSubmission {

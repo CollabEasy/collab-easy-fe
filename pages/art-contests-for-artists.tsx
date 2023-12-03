@@ -89,7 +89,7 @@ const AllContestPage = ({
                 bordered
                 itemLayout={windowWidth > 700 ? "horizontal" : "vertical"}
                 dataSource={data}
-                renderItem={(contest: ContestEntry) => (
+                renderItem={(contest: any) => (
                     <List.Item
                         key={contest.title}
                         actions={
