@@ -1,3 +1,8 @@
+.centered-div {
+  width: 90%;
+  margin: 0 auto;
+}
+
 // Hero text container
 .hero-text-container {
   min-height: 70vh;
@@ -522,20 +527,17 @@
 
   /* Styles for small screens (phones) */
   .hero-text-container {
+    min-height: 70vh;
 
     .text-content {
       top: 4.5%;
 
       h1 {
-        font-size: 40px;
-        font-weight: 400;
-        line-height: 50px;
         padding-left: 10%;
         padding-right: 10%;
       }
 
       p {
-        font-size: 18px;
         padding-left: 10%;
         padding-right: 10%;
       }
@@ -548,125 +550,39 @@
     }
   }
 
-  .wondor-offerings-container-card {
-    width: calc(50% - 20px);
-
-    h5 {
-      font-size: 15px;
-    }
-
-    p {
-      font-size: 12px;
-    }
-  }
-
-  .popular-category-container {
-
-    h2 {
-      font-size: 15px;
-    }
-
-    .popular-catgeory-list-item {
-      height: 220px;
-      width: 25%;
-
-      .category-icon {
-        border-radius: 50%;
-        background-color: white;
-        margin: 20px 50px;
-      }
-
-      h5 {
-        font-size: 15px;
-      }
-
-      p {
-        font-size: 12px;
-      }
-    }
-  }
-
   .popular-collaborator-container {
 
-    h2 {
-      font-size: 15px;
+    .section-title {
+      text-align: center;
     }
 
     .popular-collaborator-list-item {
-      height: 220px;
-      width: 25%;
 
-      .category-icon {
-        border-radius: 50%;
-        background-color: white;
-        margin: 20px 50px;
-      }
-
-      h5 {
-        font-size: 15px;
-      }
-
-      p {
-        font-size: 12px;
-      }
+      width: 18vh;
+      height: 30vh;
     }
   }
 
-  // popular categories container
-  .popular-proposal-container {
-
-    h2 {
-      font-size: 15px;
-    }
-
-    .popular-proposal-list-item {
-      height: 140px;
-
-      h5 {
-        font-size: 15px;
-      }
-
-      p {
-        font-size: 12px;
-      }
-    }
+  .wondor-offerings-container {
+    padding-left: 2%;
+    padding-right: 2%;
+    text-align: center;
   }
 
-  .popular-blog-section {
-    h2 {
-      font-size: 40px;
-      line-height: 50px;
-    }
-
-    p {
-      font-size: 18px;
-    }
-
-    .popular-blog-container-button {
-      height: 35px;
-      padding: 7px;
-      font-size: 13px;
-    }
+  .wondor-offerings-container-card {
+    width: calc(33.333% - 20px);
   }
 
   .signup-container {
 
     h1 {
-      font-size: 40px;
-      font-weight: 400;
-      line-height: 50px;
       padding-left: 10%;
       padding-right: 10%;
     }
 
     p {
-      font-size: 18px;
       padding-left: 15%;
       padding-right: 15%;
-    }
-
-    a {
-      font-size: 18px;
     }
 
     .signup-container-button {
@@ -682,23 +598,17 @@
 
   /* Styles for small screens (phones) */
   .hero-text-container {
-    height: 520px;
-    width: 100%;
+    min-height: 70vh;
 
     .text-content {
-
       top: 4%;
 
       h1 {
-        font-size: 40px;
-        font-weight: 400;
-        line-height: 50px;
         padding-left: 10%;
         padding-right: 10%;
       }
 
       p {
-        font-size: 18px;
         padding-left: 10%;
         padding-right: 10%;
       }
@@ -711,128 +621,52 @@
     }
   }
 
-  .wondor-offerings-container-card {
-    width: calc(50% - 20px);
-
-    .card-text {
-
-      h5 {
-        font-size: 15px;
-      }
-
-      p {
-        font-size: 12px;
-      }
-    }
-  }
-
-  .popular-category-container {
-
-    h2 {
-      font-size: 15px;
-    }
-
-    .popular-catgeory-list-item {
-      height: 220px;
-      width: 30%;
-
-      .category-icon {
-        border-radius: 50%;
-        background-color: white;
-        margin: 20px 50px;
-      }
-
-      h5 {
-        font-size: 15px;
-      }
-
-      p {
-        font-size: 12px;
-      }
-    }
-  }
-
   .popular-collaborator-container {
 
-    h2 {
-      font-size: 15px;
+    .section-title {
+      text-align: center;
+      padding-left: 10%;
+      padding-right: 10%;
     }
 
     .popular-collaborator-list-item {
-      height: 220px;
-      width: 30%;
-
-      .category-icon {
-        border-radius: 50%;
-        background-color: white;
-        margin: 20px 50px;
-      }
-
-      h5 {
-        font-size: 15px;
-      }
-
-      p {
-        font-size: 12px;
-      }
+      width: 18vh;
+      height: 30vh;
     }
   }
 
-  // popular categories container
   .popular-proposal-container {
-
-    h2 {
-      font-size: 15px;
-    }
-
     .popular-proposal-list-item {
-      height: 140px;
-
-      h5 {
-        font-size: 15px;
-      }
-
-      p {
-        font-size: 12px;
-      }
+      height: 16vh;
     }
   }
 
-  .popular-blog-section {
-    h2 {
-      font-size: 40px;
-      line-height: 50px;
+  .wondor-offerings-container {
+    
+    .section-title {
+      padding-left: 10%;
+      padding-right: 10%;
     }
 
-    p {
-      font-size: 18px;
-    }
+    padding-left: 2%;
+    padding-right: 2%;
+    text-align: center;
+  }
 
-    .popular-blog-container-button {
-      height: 35px;
-      padding: 7px;
-      font-size: 13px;
-    }
+  .wondor-offerings-container-card {
+    width: calc(33.333% - 20px);
   }
 
   .signup-container {
 
     h1 {
-      font-size: 40px;
-      font-weight: 400;
-      line-height: 50px;
       padding-left: 10%;
       padding-right: 10%;
     }
 
     p {
-      font-size: 18px;
       padding-left: 15%;
       padding-right: 15%;
-    }
-
-    a {
-      font-size: 18px;
     }
 
     .signup-container-button {
@@ -845,25 +679,24 @@
 
 @media only screen and (max-width: 399px) {
 
+  .centered-div {
+    width: 100%;
+    margin: 0;
+  }
+
   /* Styles for small screens (phones) */
   .hero-text-container {
-    height: 550px;
-    width: 100%;
+    min-height: 80vh;
 
     .text-content {
-
       top: 3%;
 
       h1 {
-        font-size: 40px;
-        font-weight: 400;
-        line-height: 50px;
         padding-left: 10%;
         padding-right: 10%;
       }
 
       p {
-        font-size: 18px;
         padding-left: 10%;
         padding-right: 10%;
       }
@@ -876,100 +709,83 @@
     }
   }
 
-  .wondor-offerings-container-card {
-    width: calc(50% - 20px);
-
-    .card-text {
-
-      h5 {
-        font-size: 15px;
-      }
-
-      p {
-        font-size: 12px;
-      }
-    }
-  }
-
-  .popular-category-container {
-
-    h2 {
-      font-size: 15px;
-    }
-
-    .popular-catgeory-list-item {
-      height: 210px;
-      width: 50%;
-
-      .category-icon {
-        border-radius: 50%;
-        background-color: white;
-        margin: 20px 50px;
-      }
-
-      h5 {
-        font-size: 15px;
-      }
-
-      p {
-        font-size: 12px;
-      }
-    }
-  }
-
   .popular-collaborator-container {
 
-    h2 {
-      font-size: 15px;
+    .section-title {
+      text-align: center;
+      padding-left: 5%;
+      padding-right: 5%;
+
+      h2 {
+        font-size: 4vh;
+        line-height: 50px;
+      }
+  
+      p {
+        font-size: 2vh;
+        line-height: 30px;
+      }
     }
 
     .popular-collaborator-list-item {
-      height: 210px;
-      width: 50%;
-
-      .category-icon {
-        border-radius: 50%;
-        background-color: white;
-      }
+      width: 18vh;
+      height: 25vh;
 
       h5 {
-        font-size: 15px;
+        font-size: 1.75vh;
       }
-
+  
       p {
-        font-size: 12px;
+        font-size: 1.2vh;
       }
+  
+      a {
+        font-size: 1.2vh;
+      }
+  
     }
   }
 
   // popular categories container
   .popular-proposal-container {
-
-    h2 {
-      font-size: 15px;
-    }
-
     .popular-proposal-list-item {
-      height: 140px;
-
-      h5 {
-        font-size: 15px;
-      }
-
-      p {
-        font-size: 12px;
-      }
+      height: 17vh;
     }
   }
 
+  .wondor-offerings-container {
+    .section-title {
+      padding-left: 5%;
+      padding-right: 5%;
+      text-align: center;
+  
+      h2 {
+        font-size: 4vh;
+        line-height: 50px;
+      }
+  
+      p {
+        font-size: 2vh;
+        line-height: 30px;
+      }
+    }
+
+  }
+
+  .wondor-offerings-container-card {
+    width: calc(50% - 20px);
+  }
+
   .popular-blog-section {
+
     h2 {
-      font-size: 40px;
-      line-height: 50px;
+      font-size: 4vh;
+      line-height: 45px;
     }
 
     p {
-      font-size: 18px;
+      font-size: 2vh;
+      line-height: 25px;
     }
 
     .popular-blog-container-button {
@@ -982,21 +798,21 @@
   .signup-container {
 
     h1 {
-      font-size: 40px;
-      font-weight: 400;
+      font-size: 5vh;
       line-height: 50px;
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+
+    p {
+      font-size: 2vh;
+      line-height: 30px;
       padding-left: 10%;
       padding-right: 10%;
     }
 
-    p {
-      font-size: 18px;
-      padding-left: 15%;
-      padding-right: 15%;
-    }
-
     a {
-      font-size: 18px;
+      font-size: 2vh;
     }
 
     .signup-container-button {
@@ -1056,18 +872,5 @@
 
   100% {
     margin-top: -450px;
-  }
-}
-
-
-.centered-div {
-  width: 90%;
-  /* Adjust the width as needed */
-  margin: 0 auto;
-  /* Center the div horizontally in larger screens */
-
-  @media only screen and (max-width: 768px) {
-    margin: 0;
-    /* Reset margin for small and medium screens to start from the left */
   }
 }

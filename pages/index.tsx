@@ -223,6 +223,7 @@ const Home = ({
             </div>
           </div>
         </div>
+        <div className="centered-div">
         <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
           <div className="col-12">
             <div className="popular-collaborator-list d-flex justify-content-center align-items-center">
@@ -279,6 +280,7 @@ const Home = ({
               </>
             </div>
           </div>
+        </div>
         </div>
       </div>
     );
@@ -375,8 +377,8 @@ const Home = ({
                   Wondor Helps You Take Your Artistic Journey to the Next Level!
                 </h2>
                 <p className="common-p-style" style={{ width: "100%" }}>
-                  Our platform is committed to your growth. Discover fellow artists, improve collaboration,
-                  monthly art challenges, Inspiration Hub – all designed to uplift your skills.
+                  Our platform is committed to your growth. Discover fellow artists, improved collaboration experience,
+                  monthly art challenges, inspiration hub – all designed to uplift your skills.
                 </p>
               </div>
             </div>
