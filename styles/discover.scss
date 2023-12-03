@@ -159,6 +159,10 @@
       font-size: 1.5vh;
     }
 
+    a {
+      font-size: 1.5vh;
+    }
+
     .collaborator-icon {
       border-radius: 50%;
       background-color: white;
@@ -390,7 +394,6 @@
 
   .hero-text-container {
     min-height: 65vh;
-    width: 100%;
 
     .text-content {
       top: 4%;
@@ -425,21 +428,17 @@
   /* Styles for medium screens (tablets) */
 
   .hero-text-container {
-    height: 650px;
-    width: 100%;
+    min-height: 60vh;
 
     .text-content {
-      top: 5%;
+      top: 4%;
 
       h1 {
-        font-size: 44px;
-        font-weight: 450;
         padding-left: 12%;
         padding-right: 12%;
       }
 
       p {
-        font-size: 18px;
         padding-left: 20%;
         padding-right: 20%;
       }
@@ -452,82 +451,28 @@
     }
   }
 
-  .popular-category-container {
-
-    h2 {
-      font-size: 18px;
-    }
-
-    .popular-catgeory-list-item {
-      height: 250px;
-      width: 130px;
-
-      .category-icon {
-        border-radius: 50%;
-        background-color: white;
-        margin: 20px 50px;
-      }
-
-      h5 {
-        font-size: 20px;
-      }
-
-      p {
-        font-size: 15px;
-      }
-    }
-  }
-
   .popular-collaborator-container {
 
     .popular-collaborator-list-item {
-      height: 250px;
-      width: 20%;
 
-      .category-icon {
-        border-radius: 50%;
-        background-color: white;
-        margin: 20px 50px;
-      }
+      width: 18vh;
+      height: 30vh;
 
       h5 {
-        font-size: 20px;
+        font-size: 1.5vh;
       }
 
       p {
-        font-size: 15px;
-      }
-    }
-  }
-
-  // popular categories container
-  .popular-proposal-container {
-
-    h2 {
-      font-size: 20px;
-    }
-
-    .popular-proposal-list-item {
-      height: 140px;
-
-      h5 {
-        font-size: 20px;
+        font-size: 1.3vh;
       }
 
-      p {
-        font-size: 15px;
+      a {
+        font-size: 1.3vh;
       }
     }
   }
 
   .popular-blog-section {
-    h2 {
-      font-size: 44px;
-    }
-
-    p {
-      font-size: 18px;
-    }
 
     .popular-blog-container-button {
       height: 45px;
@@ -543,33 +488,26 @@
 
   .wondor-offerings-container-card {
     width: calc(33.333% - 20px);
-
-    h5 {
-      font-size: 20px;
-    }
-
-    p {
-      font-size: 15px;
-    }
   }
 
   .signup-container {
 
     h1 {
-      font-size: 44px;
-      font-weight: 450;
+      font-size: 6vh;
+      line-height: 65px;
       padding-left: 12%;
       padding-right: 12%;
     }
 
     p {
-      font-size: 18px;
+      font-size: 2vh;
+      line-height: 30px;
       padding-left: 20%;
       padding-right: 20%;
     }
 
     a {
-      font-size: 18px;
+      font-size: 2vh;
     }
 
     .signup-container-button {
