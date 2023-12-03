@@ -2,7 +2,7 @@
 .hero-text-container {
   height: 500px;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 
   .text-content {
     top: 5%;
@@ -60,48 +60,11 @@
   }
 }
 
-// Wondor Offerings cards
-.wondor-offerings-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.wondor-offerings-container-card {
-  width: calc(20% - 20px);
-  margin: 10px;
-  background-color: #fff;
-  box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
-  border-radius: 10px;
-  transition: transform 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* Center align items horizontally */
-
-  &:hover {
-    box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
-  }
-
-  .card-img {
-    width: 100%;
-    height: auto;
-    padding: 40px 5px 0px 5px;
-  }
-
-  .card-text {
-    text-align: left;
-    /* Align text to the left */
-    padding: 10px;
-    width: 100%;
-  }
-}
-
 
 // popular categories container
 .popular-category-container {
+
+  margin-top: 20px;
 
   h2 {
     font-size: 1.25rem;
@@ -145,9 +108,22 @@
 
 // popular collaborator container
 .popular-collaborator-container {
+  padding-top: 5%;
+  padding-bottom: 5%;
 
-  h2 {
-    font-size: 1.25rem;
+  .section-title {
+    padding-left: 20%;
+    padding-right: 20%;
+
+    h2 {
+      font-size: 44px;
+      line-height: 65px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 30px;
+    }
   }
 
   .popular-collaborator-list {
@@ -285,6 +261,45 @@
     text {
       line-height: 20px;
     }
+  }
+}
+
+// Wondor Offerings cards
+.wondor-offerings-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.wondor-offerings-container-card {
+  width: calc(20% - 20px);
+  margin: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Center align items horizontally */
+
+  &:hover {
+    box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
+  }
+
+  .card-img {
+    width: 100%;
+    height: auto;
+    padding: 40px 5px 0px 5px;
+  }
+
+  .card-text {
+    text-align: left;
+    /* Align text to the left */
+    padding: 10px;
+    width: 100%;
   }
 }
 

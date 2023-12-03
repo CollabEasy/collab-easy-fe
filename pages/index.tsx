@@ -5,24 +5,7 @@ import Link from "next/link";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from "next/image";
-
-// import collabOfferImage from "../public/images/collab-offer.svg";
-// import proposalOfferImage from "../public/images/proposal-offer.svg";
-// import themeOfferImage from "../public/images/theme-offer.svg";
-// import rewardsOfferImage from "../public/images/rewards-offer.svg";
-// import contestOfferImage from "../public/images/content-offer.svg";
-
-// import writingDesktopImage from "../public/images/categories/pencil.svg";
-// import photographyDesktopImage from "../public/images/categories/camera.svg";
-// import dancingDesktopImage from "../public/images/categories/dance.svg";
-// import singingDesktopImage from "../public/images/categories/microphone.svg";
-// import illustratorDesktopImage from "../public/images/categories/tablet.svg";
-// import journalingDesktopImage from "../public/images/categories/journal.svg";
-// import paintingDesktopImage from "../public/images/categories/painting.svg";
-// import musicDesktopImage from "../public/images/categories/music.svg";
-
 import { routeToHref } from "config/routes";
-
 import { useRoutesContext } from "components/routeContext";
 import { updateLoginData } from "state/action";
 import React, { useEffect, useState } from "react";
@@ -169,160 +152,63 @@ const Home = ({
     );
   };
 
-  const getWondorOfferings = () => {
-    return (
-      <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-        <div className="wondor-offerings-container">
-          <Link href={routeToHref(toAllCategoryPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
-                <Image
-                  unoptimized
-                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/m66U_jdH9k2kLtryfPldyw/Workshop.svg"}
-                  height={140}
-                  width={250}
-                  alt="More than 35+ categories - photography, singing, journaling, music etc for collaboration."
-                  priority={true}
-                />
-              </div>
-              <div className="card-text">
-                <h5 className="common-h5-style">Diverse Collaboration Categories</h5>
-                <p className="common-p-style">Connect with available artists from 40+ categories</p>
-              </div>
-            </div>
-          </Link>
-          <Link href={routeToHref(toAllProposalsPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{ backgroundColor: "#FEF7EF" }}>
-                <Image
-                  unoptimized
-                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/jpJE1BdwHkC31xMmhCxSmA/List_is_empty.svg"}
-                  height={140}
-                  width={250}
-                  alt="Collab proposals for singers, dancers, musicians. Checkout now"
-                  priority={true}
-                />
-              </div>
-              <div className="card-text">
-                <h5 className="common-h5-style">Exciting Proposals for Collaboration</h5>
-                <p className="common-p-style">Collaborate on proposals from other artists</p>
-              </div>
-            </div>
-          </Link>
-          <Link href={routeToHref(toGetInspired())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{ backgroundColor: "#FFFEF1" }}>
-                <Image
-                  unoptimized
-                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/zIGF_3oJAk6uj11ByHJshA/Education.svg"}
-                  height={140}
-                  width={250}
-                  alt="Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!"
-                  priority={true}
-                />
-              </div>
-              <div className="card-text">
-                <h5 className="common-h5-style">Inspiration Hub</h5>
-                <p className="common-p-style">Latest art ideas and themes posted every week</p>
-              </div>
-            </div>
-          </Link>
-          <Link href={routeToHref(toAllContestPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{ backgroundColor: "#F7FEF3" }}>
-                <Image
-                  unoptimized
-                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/FFvCaeFyPEKpyzYgQf8Nzg/Running_competition.svg"}
-                  height={140}
-                  width={250}
-                  alt="Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!"
-                  priority={true}
-                />
-              </div>
-              <div className="card-text">
-                <h5 className="common-h5-style">Creative Art Challenges</h5>
-                <p className="common-p-style">Participate every month and win $$</p>
-              </div>
-            </div>
-          </Link>
-          <Link href={routeToHref(toRewardsInfoPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
-                <Image
-                  unoptimized
-                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/UcwVlZdYwkm7qoLnfsA1VA/Woman_with_coin_near_piggy_bank.svg"}
-                  height={140}
-                  width={250}
-                  alt="Get bonus points for Your Loyalty and Participation in Wondor community"
-                  priority={true}
-                />
-              </div>
-              <div className="card-text">
-                <h5 className="common-h5-style">Endless Rewards</h5>
-                <p className="common-p-style">Collect rewards points for every action you take</p>
-              </div>
-            </div>
-          </Link>
-        </div>
-      </div>
-    );
-  };
-
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
     return (
-      <div className="popular-category-container">
-        <div className="container fluid">
-          <div className="row text-left">
-            <div className="col-12">
-              <h2 className="common-h2-style">Collaboration Categories</h2>
+      <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+        <div className="popular-category-container">
+          <div className="container fluid">
+            <div className="row text-left">
+              <div className="col-12">
+                <h2 className="common-h2-style">Collaboration Categories</h2>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
-          <div className="col-12">
-            <div className="popular-catgeory-list">
-              <>
-                {popularCollabCategories.map((item) => (
-                  <div
-                    className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-catgeory-list-item cursor-pointer"
-                    key={item.id}
-                  >
-                    <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                      <div >
-                        <div
-                          className="d-flex justify-content-center align-items-center p-2 category-icon"
+          <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
+            <div className="col-12">
+              <div className="popular-catgeory-list">
+                <>
+                  {popularCollabCategories.map((item) => (
+                    <div
+                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-catgeory-list-item cursor-pointer"
+                      key={item.id}
+                    >
+                      <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
+                        <div >
+                          <div
+                            className="d-flex justify-content-center align-items-center p-2 category-icon"
 
-                        >
-                          <Image
-                            src={getPopularCategoryImage(item.slug)}
-                            height={50}
-                            width={50}
-                            alt={item.imgAltTag}
-                            unoptimized
-                            loading="lazy"
-                            className="category-icon"
-                          />
-                        </div>
-                        <div className="d-flex justify-content-center text-align-center p-2">
-                          <h5
-                            className="common-h5-style"
                           >
-                            {item.title}
-                          </h5>
+                            <Image
+                              src={getPopularCategoryImage(item.slug)}
+                              height={50}
+                              width={50}
+                              alt={item.imgAltTag}
+                              unoptimized
+                              loading="lazy"
+                              className="category-icon"
+                            />
+                          </div>
+                          <div className="d-flex justify-content-center text-align-center p-2">
+                            <h5
+                              className="common-h5-style"
+                            >
+                              {item.title}
+                            </h5>
+                          </div>
+                          <div className="d-flex justify-content-center p-2" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                            <p
+                              className="common-p-style"
+                            >
+                              {item.para}
+                            </p>
+                          </div>
                         </div>
-                        <div className="d-flex justify-content-center p-2" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-                          <p
-                            className="common-p-style"
-                          >
-                            {item.para}
-                          </p>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                ))}
-              </>
+                      </Link>
+                    </div>
+                  ))}
+                </>
+              </div>
             </div>
           </div>
         </div>
@@ -333,11 +219,17 @@ const Home = ({
   const getPopularCollaborators = () => {
     return (
       <div className="popular-collaborator-container">
-        <div className="container fluid">
-          <div className="row text-left">
-            {/* <div className="col-12">
-              <h2 className="common-h2-style">Collaboration Categories</h2>
-            </div> */}
+        <div className="row align-items-center">
+          <div className="col-md-12">
+            <div className="section-title text-md-center">
+              <h2 className="common-h2-style">
+                Go from solo to team; together, you create better!
+              </h2>
+              <p className="common-p-style" style={{ width: "100%" }}>
+                Collaboration brings together artists with diverse backgrounds, skills, and perspectives,
+                fostering innovation and satisfaction beyond what's achieved individually.
+              </p>
+            </div>
           </div>
         </div>
         <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
@@ -488,6 +380,105 @@ const Home = ({
     );
   };
 
+  const getWondorOfferings = () => {
+    return (
+      <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+        <div className="wondor-offerings-container">
+          <Link href={routeToHref(toAllCategoryPage())} passHref>
+            <div className="wondor-offerings-container-card cursor-pointer">
+              <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
+                <Image
+                  unoptimized
+                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/m66U_jdH9k2kLtryfPldyw/Workshop.svg"}
+                  height={140}
+                  width={250}
+                  alt="More than 35+ categories - photography, singing, journaling, music etc for collaboration."
+                  priority={true}
+                />
+              </div>
+              <div className="card-text">
+                <h5 className="common-h5-style">Diverse Collaboration Categories</h5>
+                <p className="common-p-style">Connect with available artists from 40+ categories</p>
+              </div>
+            </div>
+          </Link>
+          <Link href={routeToHref(toAllProposalsPage())} passHref>
+            <div className="wondor-offerings-container-card cursor-pointer">
+              <div className="card-img" style={{ backgroundColor: "#FEF7EF" }}>
+                <Image
+                  unoptimized
+                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/jpJE1BdwHkC31xMmhCxSmA/List_is_empty.svg"}
+                  height={140}
+                  width={250}
+                  alt="Collab proposals for singers, dancers, musicians. Checkout now"
+                  priority={true}
+                />
+              </div>
+              <div className="card-text">
+                <h5 className="common-h5-style">Exciting Proposals for Collaboration</h5>
+                <p className="common-p-style">Collaborate on proposals from other artists</p>
+              </div>
+            </div>
+          </Link>
+          <Link href={routeToHref(toGetInspired())} passHref>
+            <div className="wondor-offerings-container-card cursor-pointer">
+              <div className="card-img" style={{ backgroundColor: "#FFFEF1" }}>
+                <Image
+                  unoptimized
+                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/zIGF_3oJAk6uj11ByHJshA/Education.svg"}
+                  height={140}
+                  width={250}
+                  alt="Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!"
+                  priority={true}
+                />
+              </div>
+              <div className="card-text">
+                <h5 className="common-h5-style">Inspiration Hub</h5>
+                <p className="common-p-style">Latest art ideas and themes posted every week</p>
+              </div>
+            </div>
+          </Link>
+          <Link href={routeToHref(toAllContestPage())} passHref>
+            <div className="wondor-offerings-container-card cursor-pointer">
+              <div className="card-img" style={{ backgroundColor: "#F7FEF3" }}>
+                <Image
+                  unoptimized
+                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/FFvCaeFyPEKpyzYgQf8Nzg/Running_competition.svg"}
+                  height={140}
+                  width={250}
+                  alt="Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!"
+                  priority={true}
+                />
+              </div>
+              <div className="card-text">
+                <h5 className="common-h5-style">Creative Art Challenges</h5>
+                <p className="common-p-style">Participate every month and win $$</p>
+              </div>
+            </div>
+          </Link>
+          <Link href={routeToHref(toRewardsInfoPage())} passHref>
+            <div className="wondor-offerings-container-card cursor-pointer">
+              <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
+                <Image
+                  unoptimized
+                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/UcwVlZdYwkm7qoLnfsA1VA/Woman_with_coin_near_piggy_bank.svg"}
+                  height={140}
+                  width={250}
+                  alt="Get bonus points for Your Loyalty and Participation in Wondor community"
+                  priority={true}
+                />
+              </div>
+              <div className="card-text">
+                <h5 className="common-h5-style">Endless Rewards</h5>
+                <p className="common-p-style">Collect rewards points for every action you take</p>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    );
+  };
+
   const getSignUpCard = () => {
     return (
       <div className="row">
@@ -538,10 +529,6 @@ const Home = ({
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
-        {getWondorOfferings()}
-      </div>
-
-      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         {getPopularCollabCategories()}
       </div>
 
@@ -580,6 +567,10 @@ const Home = ({
       {/* <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         {getTestimonialContent()}
       </div> */}
+
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        {getWondorOfferings()}
+      </div>
 
       {getSignUpCard()}
 
