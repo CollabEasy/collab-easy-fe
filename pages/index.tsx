@@ -132,7 +132,7 @@ const Home = ({
               </ul>
             </h1>
           </div>
-          <p className="signup-container-p">
+          <p style={{ paddingTop: "2vh" }}>
             {mainContent["paragraph"]}
           </p>
           <div>
@@ -157,13 +157,6 @@ const Home = ({
     return (
       <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
         <div className="popular-category-container">
-          <div className="container fluid">
-            <div className="row text-left">
-              <div className="col-12">
-                <h2 className="common-h2-style">Collaboration Categories</h2>
-              </div>
-            </div>
-          </div>
           <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
             <div className="col-12">
               <div className="popular-catgeory-list">
@@ -177,16 +170,14 @@ const Home = ({
                         <div >
                           <div
                             className="d-flex justify-content-center align-items-center p-2 category-icon"
-
                           >
                             <Image
                               src={getPopularCategoryImage(item.slug)}
-                              height={50}
-                              width={50}
+                              height={70}
+                              width={70}
                               alt={item.imgAltTag}
                               unoptimized
                               loading="lazy"
-                              className="category-icon"
                             />
                           </div>
                           <div className="d-flex justify-content-center text-align-center p-2">
@@ -295,15 +286,8 @@ const Home = ({
 
   const getPopularCollabProposals = () => {
     return (
-      <div className="popular-proposal-container" style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-        <div className="container fluid">
-          <div className="row text-left">
-            <div className="col-12">
-              <h2 className="common-h2-style">Latest Collaboration Proposals</h2>
-            </div>
-          </div>
-        </div>
-        <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
+      <div className="popular-proposal-container" style={{ paddingTop: "2%" }}>
+        <div className="row-fluid" style={{ padding: "0px 20px 0px 0px" }}>
           <div className="col-12">
             <div className="popular-proposal-list">
               <>
@@ -524,16 +508,12 @@ const Home = ({
         {getMainContent()}
       </div>
 
-      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+      <div className="row centered-div" style={{ backgroundColor: "#FFFFF" }}>
         {getPopularCollabCategories()}
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         {getPopularCollaborators()}
-      </div>
-
-      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
-        {getPopularCollabProposals()}
       </div>
 
       <div className="row popular-blog-section">
@@ -557,6 +537,9 @@ const Home = ({
             </div>
           </div>
         </div>
+        <div>
+          {getPopularCollabProposals()}
+        </div>
       </div>
 
       {/* <div className="row" style={{ backgroundColor: "#FFFFF" }}>
@@ -574,6 +557,11 @@ const Home = ({
               <h2 className="common-h2-style">
                 Why And How?
               </h2>
+              <a href={routeToHref(toAllBlogs())}>
+                <button className="popular-blog-container-button" style={{ backgroundColor: "black", color: "white" }}>
+                  Read More
+                </button>
+              </a>
             </div>
           </div>
         </div>
