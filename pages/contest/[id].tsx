@@ -423,7 +423,10 @@ const ContestPage = ({
             <span>
               {getContestCountdownHeading(status)}
               <CountdownTimer
-                targetDate={contest.contest[0]?.data.endDate}
+                targetDate={
+                  (status === "Ongoing" || status === "Past") ?
+                    contest.contest[0]?.data.endDate : contest.contest[0]?.data.startDate
+                }
               />
             </span>
           }
