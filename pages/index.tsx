@@ -223,61 +223,63 @@ const Home = ({
             </div>
           </div>
         </div>
-        <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
-          <div className="col-12">
-            <div className="popular-collaborator-list d-flex justify-content-center align-items-center">
-              <>
-                {artistsForCollab.map((item) => (
-                  <div
-                    className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-collaborator-list-item"
-                    key={item.id}
-                  >
-                    <div >
+        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+          <div className="popular-category-container">
+            <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
+              <div className="col-12">
+                <div className="popular-catgeory-list">
+                  <>
+                    {artistsForCollab.map((item) => (
                       <div
-                        className="d-flex justify-content-center align-items-center p-2 collaborator-icon"
+                        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-catgeory-list-item cursor-pointer"
+                        key={item.id}
                       >
-                        <Image
-                          unoptimized
-                          src={item.url}
-                          height={200}
-                          width={200}
-                          className="collaborator-icon"
-                          alt={"Send collaboration request to " + item.artist}
-                          priority={true}
-                        />
-                      </div>
-                      <div className="d-flex justify-content-center text-align-center p-2">
-                        <h5
-                          className="common-h5-style"
-                        >
-                          {item.artist}
-                        </h5>
-                      </div>
-                      <div className="d-flex justify-content-center" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-                        <p
-                          className="common-p-style"
-                        >
-                          {/* eslint-disable react/jsx-key  */}
-                          {item["category"].map((category) => (
-                            <span
-                              style={{ background: "#EAEBED", color: "black" }}
-                              className="badge bg-soft-secondary fs-14 mt-1"
+                        <div >
+                          <div
+                            className="d-flex justify-content-center align-items-center p-2 category-icon"
+                          >
+                            <Image
+                              unoptimized
+                              src={item.url}
+                              height={200}
+                              width={200}
+                              className="collaborator-icon"
+                              alt={"Send collaboration request to " + item.artist}
+                              priority={true}
+                            />
+                          </div>
+                          <div className="d-flex justify-content-center text-align-center p-2">
+                            <h5
+                              className="common-h5-style"
                             >
-                              {category}
-                            </span>
-                          ))}
-                        </p>
-
+                              {item.artist}
+                            </h5>
+                          </div>
+                          <div className="d-flex justify-content-center p-2" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                            <p
+                              className="common-p-style"
+                            >
+                              {item["category"].map((category) => (
+                                <span
+                                  style={{ background: "#EAEBED", color: "black" }}
+                                  className="badge bg-soft-secondary fs-14 mt-1"
+                                >
+                                  {category}
+                                </span>
+                              ))}
+                            </p>
+                          </div>
+                          <div className="d-flex justify-content-center">
+                            <a href={routeToHref(toUserCollabPage(item.slug))}>
+                              send collab request
+                            </a>
+                          </div>
+                        </div>
                       </div>
-                      <div className="d-flex justify-content-center">
-                        <a href={routeToHref(toUserCollabPage(item.slug))}>
-                          send collab request
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </>
+                    ))}
+                  </>
+                </div>
+              </div>
             </div>
           </div>
         </div>
