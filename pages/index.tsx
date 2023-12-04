@@ -137,12 +137,12 @@ const Home = ({
           </p>
           <div>
             <a onClick={openLoginModal}>
-              <button className="hero-text-container-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
+              <button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
                 Join for Free!
               </button>
             </a>
             <Link href={routeToHref(toTutorial())} passHref >
-              <button className="hero-text-container-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
+              <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
                 How it works?
               </button>
             </Link>
@@ -214,16 +214,15 @@ const Home = ({
           <div className="col-md-12">
             <div className="section-title text-md-center">
               <h2 className="common-h2-style">
-                Go from solo to team; together, you create better!
+                Go from Solo to Team; Together, You Create Better!
               </h2>
               <p className="common-p-style" style={{ width: "100%" }}>
                 Collaboration brings together artists with diverse backgrounds, skills, and perspectives,
-                fostering innovation and satisfaction beyond what's achieved individually.
+                fostering innovation and satisfaction beyond what&pos;s achieved individually.
               </p>
             </div>
           </div>
         </div>
-        <div className="centered-div">
         <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
           <div className="col-12">
             <div className="popular-collaborator-list d-flex justify-content-center align-items-center">
@@ -258,6 +257,7 @@ const Home = ({
                         <p
                           className="common-p-style"
                         >
+                          {/* eslint-disable react/jsx-key  */}
                           {item["category"].map((category) => (
                             <span
                               style={{ background: "#EAEBED", color: "black" }}
@@ -280,7 +280,6 @@ const Home = ({
               </>
             </div>
           </div>
-        </div>
         </div>
       </div>
     );
@@ -475,14 +474,14 @@ const Home = ({
             </p>
             <div>
               <Link href={routeToHref(toAllCategoryPage())} passHref>
-                <button className="signup-container-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
+                <button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
 
                   Collab Categories
 
                 </button>
               </Link>
               <Link href={routeToHref(toAllProposalsPage())} passHref >
-                <button className="signup-container-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
+                <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
                   Collab Proposals
                 </button>
               </Link>
@@ -532,7 +531,7 @@ const Home = ({
               <a onClick={() => {
                 setShowCreateOrUpdateProposalModal(true);
               }}>
-                <button className="popular-blog-container-button" style={{ backgroundColor: "black", color: "white" }}>
+                <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
                   Add Collab Proposal
                 </button>
               </a>
@@ -557,10 +556,10 @@ const Home = ({
           <div className="col-md-8">
             <div className="section-title text-md-start">
               <h2 className="common-h2-style">
-                Why And How?
+                Why artists should explore beyond their comfort zones?
               </h2>
               <a href={routeToHref(toAllBlogs())}>
-                <button className="popular-blog-container-button" style={{ backgroundColor: "black", color: "white" }}>
+                <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
                   Read More
                 </button>
               </a>
