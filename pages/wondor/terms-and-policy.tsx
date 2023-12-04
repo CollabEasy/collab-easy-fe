@@ -40,6 +40,7 @@ type Props = {
 const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const { toDiscover, toFAQ } = useRoutesContext();
+  const [windowWidth, setWindowWidth] = useState(-1);
 
   useEffect(() => {
     if (user) {
@@ -47,6 +48,7 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
         setShowProfileModal(true);
       }
     }
+    setWindowWidth(window.innerWidth);
   }, [user])
 
   useEffect(() => {
@@ -71,9 +73,11 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
       }
 
       <div className='genericPageLayout_container'>
-        <GenericBreadcrumb
+        {windowWidth > 500 &&
+          <GenericBreadcrumb
           page={"Terms & Conditions"}
-        />
+          />
+        } 
         <div className="terms-privacy-policy-section-container">
           <div className="terms-privacy-policy-text-section">
             <h1 className="common-h1-style">Terms & Conditions</h1>

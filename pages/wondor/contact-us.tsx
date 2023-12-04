@@ -39,6 +39,7 @@ type Props = {
 const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
   const { toDiscover } = useRoutesContext();
+  const [windowWidth, setWindowWidth] = useState(-1);
 
   useEffect(() => {
     if (user) {
@@ -46,6 +47,7 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
         setShowProfileModal(true);
       }
     }
+    setWindowWidth(window.innerWidth);
   }, [user])
 
   useEffect(() => {
@@ -70,9 +72,11 @@ const ContactUs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, ar
       }
 
       <div className="genericPageLayout_container">
-        <GenericBreadcrumb
-          page={"Contact Us"}
-        />
+        {windowWidth > 500 &&
+            <GenericBreadcrumb
+              page={"Contact Us"}
+            />
+        }
         <div className="contact-us-section-container">
           <h3 className="common-h3-style">Need help? Contact us</h3>
           <p className="common-p-style">

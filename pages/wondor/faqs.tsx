@@ -42,6 +42,7 @@ type Props = {
 const FAQs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData, faqContent }) => {
     const [showProfileModal, setShowProfileModal] = useState(false);
     const { toContactUs, toDiscover } = useRoutesContext();
+    const [windowWidth, setWindowWidth] = useState(-1);
 
     useEffect(() => {
         if (user) {
@@ -49,6 +50,7 @@ const FAQs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                 setShowProfileModal(true);
             }
         }
+        setWindowWidth(window.innerWidth);
     }, [user])
 
     useEffect(() => {
@@ -93,9 +95,11 @@ const FAQs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
             }
 
             <div className="genericPageLayout_container">
-                <GenericBreadcrumb
-                    page={"Frquently Asked Questions"}
-                />
+                {windowWidth > 500 &&
+                    <GenericBreadcrumb
+                        page={"Frquently Asked Questions"}
+                    />
+                }
                 <div className="faq-section-container">
                     <h1 className="common-h1-style">Frequently Asked Questions</h1>
                     {getFAQCard()}
