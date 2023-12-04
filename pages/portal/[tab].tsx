@@ -270,10 +270,6 @@ const ArtistPortal = ({
   const getMobileMenu = () => {
     return (
       <div className="scrollmenu">
-        <div tabIndex={9} className="tab" onClick={() => { handleMobileNavClick("9") }}>
-          <UserOutlined />
-          <span className="f-12" style={{ display: "block" }}>Profile</span>
-        </div>
         <div tabIndex={1} className="tab" onClick={() => { handleMobileNavClick("1") }}>
           <ProfileOutlined />
           <span className="f-12" style={{ display: "block" }}>Basic Information</span>
@@ -582,9 +578,10 @@ const ArtistPortal = ({
                         style={{ textAlign: "center" }}
                         message={
                           <span>
-                            Enhance your profile visibility by ensuring your information is current and accurate.
-                            This is how your profile appears to artists looking for collaboration; make a positive impression by keeping
-                            details up to date.
+                            This is how your profile appears to artists looking for collaboration; 
+                            Enhance your profile visibility by keeping details up to date. <b>
+                              A complete profiles makes a positive impression.
+                            </b>
                           </span>
                         }
                       />
