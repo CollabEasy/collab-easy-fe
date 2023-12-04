@@ -39,6 +39,7 @@ type Props = {
 
 const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistListData }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(-1);
 
   useEffect(() => {
     if (user) {
@@ -46,6 +47,7 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
         setShowProfileModal(true);
       }
     }
+    setWindowWidth(window.innerWidth);
   }, [user])
 
   useEffect(() => {
@@ -70,9 +72,11 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
       }
 
       <div className='genericPageLayout_container'>
-        <GenericBreadcrumb
-          page={"Privacy Policy"}
-        />
+        {windowWidth > 500 &&
+          <GenericBreadcrumb
+            page={"Privacy Policy"}
+          />
+        }
         <div className="terms-privacy-policy-section-container">
           <div className="terms-privacy-policy-text-section">
             <h1 className="common-h1-style">Privacy</h1>

@@ -244,17 +244,9 @@ const NavBar = ({
                       )}
                     </div>
                     <div className="common-login-option">
-                      <Link href={routeToHref(toArtistProfile(user.slug))} passHref>
-                        <div
-                          className="selected-option-shadow profile-option"
-                          onClick={() => setShowLoginOptions(false)}
-                        >
-                          <span className="f-14 common-text-style">Profile</span>
-                        </div>
-                      </Link>
                       <Link
                         href={routeToHref(
-                          toArtistPortal("basic-information")
+                          toArtistPortal("profile")
                         )}
                         passHref
                       >
@@ -263,7 +255,7 @@ const NavBar = ({
                           onClick={() => setShowLoginOptions(false)}
                         >
                           <span className="f-14 common-text-style">
-                            Portal
+                            Profile
                           </span>
                         </div>
                       </Link>

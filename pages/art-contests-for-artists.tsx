@@ -1,4 +1,4 @@
-import { Tabs, Input } from "antd";
+import { Tabs, Input, List, Button, Space } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -13,11 +13,13 @@ import Image from 'next/image';
 import headerImage from '../public/images/contest.svg';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
-import { GetContestStatus } from "helpers/contest";
+import { GetContestMetaDescription, GetContestStatusTag } from "helpers/contest";
 import Layout from "@/components/layout";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import GenericActionBanner from "@/components/genericActionBanner";
 import { GetDateString } from "helpers/proposalHelper";
+import { ContestEntry } from "types/model";
+import Link from "next/link";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -75,55 +77,39 @@ const AllContestPage = ({
         setWindowWidth(window.innerWidth);
     }, [user, artistListData, contests]);
 
-    const getContestStatus = (status: string, date) => {
-        if (status === "Ongoing") {
-            return "Ends on " + GetDateString(date);
-        } else if (status === "Upcoming") {
-            return "Starts on " + GetDateString(date);
-        }
-        return "Ended on " + GetDateString(date);
-    }
-
     const getAllContests = (allContests) => {
         const resultArtists: JSX.Element[] = [];
         const now = new Date();
         let data = allContests.length != 0 ? allContests[0].data : [];
         data.sort((a, b) => b.startDate - a.startDate);
-        data.forEach(contest => {
-            let status = GetContestStatus(now.getTime(), contest.startDate, contest.endDate);
-            resultArtists.push(
-                <div className="row p-2 bg-white rounded contest-card">
-                    <Card
-                        bodyStyle={{ paddingTop: 5 }}
-                        title={contest.title}
-                        style={{ height: '100%' }}
-                        extra={
-                            <>
-                                {status === "Ongoing" && (
-                                    <Tag color="green">{getContestStatus(status, contest.endDate)}</Tag>
-                                )}
-                                {status === "Upcoming" && (
-                                    <Tag color="yellow">{getContestStatus(status, contest.startDate)}</Tag>
-                                )}
-                                {status === "Past" && (
-                                    <Tag color="grey">{getContestStatus(status, contest.endDate)}</Tag>
-                                )}
-                                {status === "Ongoing" ? (
-                                    <a href={routeToHref(toContestPage(contest.contestSlug, "details"))}>Participate</a>
-                                ) : (
-                                    <a href={routeToHref(toContestPage(contest.contestSlug, "details"))}>details</a>
-                                )}
-                            </>
+        return (
+            <List
+                size="large"
+                style={{ width: "100%" }}
+                bordered
+                itemLayout={windowWidth > 700 ? "horizontal" : "vertical"}
+                dataSource={data}
+                renderItem={(contest: any) => (
+                    <List.Item
+                        key={contest.title}
+                        actions={
+                            [
+                                <>
+                                    {GetContestStatusTag(now.getTime(), contest.startDate, contest.endDate)}
+                                </>,
+                                <>
+                                    <Link href={routeToHref(toContestPage(contest.contestSlug, "details"))}>Details</Link>
+                                </>
+                            ]
                         }
                     >
-                        <div>
-                            {contest.description}
-                        </div>
-                    </Card>
-                </div>
-            )
-        });
-        return resultArtists;
+                        <List.Item.Meta
+                            title={contest.title}
+                            description={GetContestMetaDescription(now.getTime(), contest.startDate, contest.endDate)}
+                        />
+                    </List.Item>
+                )}
+            />);
     };
 
     return (

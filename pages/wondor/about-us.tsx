@@ -47,6 +47,7 @@ const AboutUs = ({
   artistListData,
 }: Props) => {
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(-1);
 
   useEffect(() => {
     if (user) {
@@ -60,6 +61,7 @@ const AboutUs = ({
     if (artistListData.status === "success") {
       setShowProfileModal(false);
     }
+    setWindowWidth(window.innerWidth);
   }, [artistListData]);
 
   return (
@@ -78,9 +80,11 @@ const AboutUs = ({
       )
       }
       <div className="genericPageLayout_container">
-        <GenericBreadcrumb
-          page={"About Us"}
-        />
+        {windowWidth > 500 &&
+          <GenericBreadcrumb
+            page={"About Us"}
+          />
+        }
         <div className="row">
           <GenericPageBanner
             heading="Wondor is brining artists together everyday 🤗"

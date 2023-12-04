@@ -47,6 +47,7 @@ const AllBlogs = ({
 }: Props) => {
     const [showProfileModal, setShowProfileModal] = useState(false);
     const {toBlogPage } = useRoutesContext();
+    const [windowWidth, setWindowWidth] = useState(-1);
 
     useEffect(() => {
         if (user) {
@@ -54,6 +55,7 @@ const AllBlogs = ({
                 setShowProfileModal(true);
             }
         }
+        setWindowWidth(window.innerWidth);
     }, [user])
 
     useEffect(() => {
@@ -105,9 +107,11 @@ const AllBlogs = ({
             }
 
             <div className="genericPageLayout_container">
-                <GenericBreadcrumb
-                    page={"All Blogs"}
-                />
+                {windowWidth > 500 &&
+                    <GenericBreadcrumb
+                        page={"All Blogs"}
+                    />
+                }
                 <div className="row">
                     <GenericPageBanner
                         heading="Unleash your creative potential and discover the magic of collaboration through Wondor's insightful blog 🤗"

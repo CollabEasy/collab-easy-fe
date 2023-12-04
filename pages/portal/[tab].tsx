@@ -2,7 +2,7 @@ import { CollabRequestData, User } from "types/model";
 import Image from "next/image";
 import titleDesktopImg from "../../../public/images/Wondor.svg";
 import titleMobileImg from "../../../public/images/logo.svg";
-import { Tooltip } from "antd";
+import { Alert, Tooltip } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { SearchCollab } from "types/model";
 import CollabRequestTab from "../../components/collabRequestTab";
@@ -49,6 +49,7 @@ import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { Header } from "antd/lib/layout/layout";
 import ManageProposals from "@/components/manageProposals";
+import Profile from "@/components/profile";
 
 const { Sider, Content } = Layout;
 
@@ -57,6 +58,7 @@ const mapStateToProps = (state: AppState) => {
     user: state.user.user,
     loginModalDetails: state.home.loginModalDetails,
     collab: state.collab,
+    preferences: state.user.preferences,
     isLoggedIn: state.user.isLoggedIn,
     isFetchingSamples: state.sample.isFetchingSamples,
     isFetchingCollabs: state.collab.isFetchingCollabDetails,
@@ -89,6 +91,7 @@ const ArtistPortal = ({
   isLoggedIn,
   loginModalDetails,
   collab,
+  preferences,
   isFetchingSamples,
   fetchArtistSamples,
   getCollabRequestsAction,
@@ -153,6 +156,15 @@ const ArtistPortal = ({
 
   const router = useRouter();
   const { tab } = router.query;
+  const [upForCollaboration, setUpForCollaboration] = useState(false);
+
+  useEffect(() => {
+    if (
+      preferences["upForCollaboration"] === "true" ||
+      preferences["upForCollaboration"] === true
+    )
+      setUpForCollaboration(true);
+  }, [preferences, user]);
 
   useEffect(() => {
     activeTabKey.current = "1";
@@ -160,11 +172,11 @@ const ArtistPortal = ({
       activeTabKey.current = "1";
     } else if (tab === "preferences") {
       activeTabKey.current = "2";
-    } 
+    }
     // else if (tab === "samples") {
     //   activeTabKey.current = "3";
     // } 
-    
+
     else if (tab === "social-prospectus") {
       activeTabKey.current = "4";
     } else if (tab === "scratchpad") {
@@ -175,6 +187,8 @@ const ArtistPortal = ({
       activeTabKey.current = "7";
     } else if (tab === "proposals") {
       activeTabKey.current = "10";
+    } else if (tab === "profile") {
+      activeTabKey.current = "9";
     }
   }, [tab]);
 
@@ -202,12 +216,12 @@ const ArtistPortal = ({
       tab = "basic-information";
     } else if (tabIndex === "2") {
       tab = "preferences";
-    } 
-    
+    }
+
     // else if (tabIndex === "3") {
     //   tab = "samples";
     // } 
-    
+
     else if (tabIndex === "4") {
       tab = "social-prospectus";
     } else if (tabIndex === "5") {
@@ -217,8 +231,7 @@ const ArtistPortal = ({
     } else if (tabIndex === "7") {
       tab = "rewards";
     } else if (tabIndex === "9") {
-      router.push("/artist/" + user.slug);
-      return;
+      tab = "profile";
     } else if (tabIndex === "10") {
       tab = "proposals";
     }
@@ -281,7 +294,7 @@ const ArtistPortal = ({
           <CalendarOutlined />
           <span className="f-12" style={{ display: "block" }}>Collab Requests</span>
         </div>
-        <div tabIndex={9} className="tab" onClick={() => { handleMobileNavClick("10") }}>
+        <div tabIndex={10} className="tab" onClick={() => { handleMobileNavClick("10") }}>
           <FileTextOutlined />
           <span className="f-12" style={{ display: "block" }}>Proposals</span>
         </div>
@@ -352,7 +365,6 @@ const ArtistPortal = ({
       </Menu>
     );
   }
-
 
   return (
     <>
@@ -546,6 +558,44 @@ const ArtistPortal = ({
                   </Content>
                 )}
 
+                {getActiveTab() === "9" && (
+                  <Content
+                    style={{
+                      padding: 24,
+                      background: "#fff",
+                      minHeight: 280,
+                    }}
+                  >
+                    {window.innerWidth > 500 &&
+                      <>
+                        {getBreadcrum("Profile")}
+                      </>
+                    }
+                    <div className="settings__basicProfileCard">
+                      <Alert
+                        showIcon={false}
+                        banner
+                        style={{ textAlign: "center" }}
+                        message={
+                          <span>
+                            This is how your profile appears to artists looking for collaboration; 
+                            Enhance your profile visibility by keeping details up to date. <b>
+                              A complete profiles makes a positive impression.
+                            </b>
+                          </span>
+                        }
+                      />
+                      <Profile
+                        isSelf={false}
+                        upForCollab={upForCollaboration}
+                        isLoggedIn={true}
+                        loggedInUserId={user.artist_id}
+                        user={user}
+                        isProfileComplete={user.profile_complete}
+                      />
+                    </div>
+                  </Content>
+                )}
                 {getActiveTab() === "10" && (
                   <Content
                     style={{
