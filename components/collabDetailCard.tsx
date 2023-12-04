@@ -4,27 +4,15 @@ import { Dispatch } from "redux";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import {
-  CheckCircleOutlined,
-  CheckOutlined,
-  ClockCircleOutlined,
-  CloseCircleOutlined,
-  ExclamationCircleOutlined,
   EditOutlined,
 } from "@ant-design/icons";
 import { CollabRequestData } from "types/model";
-import { Button, Tooltip, Tag } from "antd";
+import { Button} from "antd";
 import * as actions from "./../state/action";
-import { acceptCollabRequest, rejectCollabRequest } from "api/collab";
 import { useRouter } from "next/router";
 import SendCollabRequestModal from "./modal/sendCollabRequestModal";
-import { getCollabCardTag } from "../helpers/collabPageHelper";
 import {
-  ShowEditCollabDetailIcon,
-  ShowChatButton,
-  ChatButtonText,
   ConvertTimestampToDate,
-  GetCollabHeading,
-  GetCollabAdditionalDetails,
   GetScheduledDate,
 } from "helpers/collabCardHelper";
 import { GetDateString } from "helpers/proposalHelper";
@@ -101,7 +89,7 @@ const CollabDetailCard = ({
 
   const collabStatusComponentForSender = () => {
     return (
-      <div className="collabDetailCard__statusContainer">
+      <div>
         {collabDetails.status === "PENDING" && (
           <Button
             loading={isCancellingRequest}
