@@ -27,6 +27,8 @@ import {
   GetCollabAdditionalDetails,
   GetScheduledDate,
 } from "helpers/collabCardHelper";
+import { GetDateString } from "helpers/proposalHelper";
+import { useRoutesContext } from "components/routeContext";
 
 const mapStateToProps = (state: AppState) => {
   return {
@@ -95,26 +97,15 @@ const CollabDetailCard = ({
     setCollabRequestDetails(collabDetails);
   }, [collabDetails]);
 
+  const { toArtistProfile } = useRoutesContext();
+
   const collabStatusComponentForSender = () => {
     return (
       <div className="collabDetailCard__statusContainer">
         {collabDetails.status === "PENDING" && (
           <Button
-            block
-            type="primary"
             loading={isCancellingRequest}
-            className="common-medium-btn"
-            style={{
-              color: "white",
-              border: "yellow",
-              backgroundColor: "#F8CF61",
-              whiteSpace: "normal",
-              height: "auto",
-              marginBottom: "10px",
-            }}
             onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
               cancelCollabRequest(collabDetails.id);
             }}
           >
@@ -132,43 +123,22 @@ const CollabDetailCard = ({
     return (
       <>
         <Button
-          block
           type="primary"
           onClick={() => {
             acceptCollabRequest(collabDetails.id);
           }}
-          style={{
-            color: "white",
-            border: "green",
-            backgroundColor: "#91D296",
-            whiteSpace: "normal",
-            height: "auto",
-            marginBottom: "10px",
-          }}
           disabled={isRejectingRequest}
           loading={isAcceptingRequest}
-          className="common-medium-btn"
         >
           Accept
         </Button>
 
         <Button
-          block
-          type="primary"
           onClick={() => {
             rejectCollabRequest(collabDetails.id);
           }}
-          style={{
-            color: "white",
-            border: "red",
-            backgroundColor: "#ED6572",
-            whiteSpace: "normal",
-            height: "auto",
-            marginBottom: "10px",
-          }}
           disabled={isAcceptingRequest}
           loading={isRejectingRequest}
-          className="common-medium-btn"
         >
           Reject
         </Button>
@@ -176,10 +146,71 @@ const CollabDetailCard = ({
     );
   };
 
-  const ppurl =
-    collabDetails.senderId === user.artist_id
-      ? collabDetails.receiverProfilePicUrl
-      : collabDetails.senderProfilePicUrl;
+  const getCollabCard = () => {
+    return (
+      <div className="ui-block">
+        <article className="hentry post">
+          <div className="m-link" style={{ display: "flex", flexDirection: "row" }}>
+            <span><h5 className="common-h4-style">{collabDetails.requestData.collabTheme}</h5></span>
+            {user.artist_id === collabDetails.senderId && (collabDetails.status === "PENDING" || collabDetails.status === "ACTIVE") && (
+              <span style={{ marginLeft: "20px" }}>
+                <EditOutlined style={{ fontSize: "20px" }}
+                  onClick={() => {
+                    setShowCollabModalState(true, collabDetails.id);
+                  }}
+                />
+              </span>
+            )}
+          </div>
+          <div className="post__author author vcard inline-items">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={collabDetails.senderProfilePicUrl} alt="author" />
+            <div className="author-date">
+              <a className="post__author-name fn" href={toArtistProfile(collabDetails.senderSlug).as} target="_blank" rel="noreferrer">
+                {collabDetails.senderName}
+              </a>
+              <p className="common-p-style">
+                Sent on  {GetDateString(collabDetails.createdAt as unknown as number)}
+              </p>
+            </div>
+          </div>
+          <p className="common-p-style">
+            {collabDetails.requestData.message}
+          </p>
+          <p
+            style={{ paddingTop: "3px" }}
+            className="text-justify break-word common-p-style"
+          >
+            {GetScheduledDate(collabDetails.status)}{" "}
+            {ConvertTimestampToDate(
+              collabDetails.collabDate
+            ).toLocaleDateString("en-US")}
+            .
+          </p>
+          <div className="post-additional-info inline-items" style={{ padding: "20px 0 20px 0" }}>
+            {user.artist_id === collabDetails.senderId
+              ? collabStatusComponentForSender()
+              : collabStatusComponentForReceiver()
+            }
+
+            {collabDetails.status === "ACTIVE" && (
+              <Button
+                type="primary"
+                onClick={(e) => {
+                  completeCollabRequest(collabDetails.id);
+                }}
+
+                loading={isCompletingRequest}
+              >
+                Mark completed
+              </Button>
+            )}
+          </div>
+        </article>
+      </div>
+    );
+  }
+
   return (
     <>
       {showCollabModal.show && collabDetails.id === showCollabModal.id && (
@@ -195,133 +226,7 @@ const CollabDetailCard = ({
         </div>
       )}
       <div className="collabDetailCard__container">
-        <div className="row p-2 bg-white border rounded collab-card">
-          <div className="col-md-3 mt-1 social-profile-picture">
-            {
-              <div
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  router.push(
-                    "/artist/" +
-                      (collabDetails.senderId === user.artist_id
-                        ? collabDetails.receiverSlug
-                        : collabDetails.senderSlug)
-                  );
-                }}
-                className="collabDetailCard__imageNameContainer"
-              >
-                <img
-                  className="card-img-top"
-                  src={
-                    collabDetails.senderId === user.artist_id
-                      ? collabDetails.receiverProfilePicUrl
-                      : collabDetails.senderProfilePicUrl
-                  }
-                  alt=""
-                />
-                {getCollabCardTag(collabDetails.status)}
-              </div>
-            }
-          </div>
-
-          <div className="col-md-6 mt-1 collabDetailCard__textContainer">
-            <b className="f-16 mb4 common-text-style">
-              {" "}
-              {GetCollabHeading(user.artist_id, collabDetails)}
-            </b>
-            <br></br>
-            <p
-              style={{ paddingTop: "3px" }}
-              className="text-justify break-word common-p-style"
-            >
-              {GetCollabAdditionalDetails(user.artist_id, collabDetails)}
-            </p>
-            <p
-              style={{ paddingTop: "3px" }}
-              className="text-justify break-word common-p-style"
-            >
-              {GetScheduledDate(collabDetails.status)}{" "}
-              {ConvertTimestampToDate(
-                collabDetails.collabDate
-              ).toLocaleDateString("en-US")}
-              .
-            </p>
-          </div>
-          <div className="align-items-center align-content-center col-md-3 border-left mt-1">
-            <div className="d-flex flex-column mt-4">
-              {ShowEditCollabDetailIcon(
-                collabDetails,
-                user.artist_id,
-                collabDetails.status
-              ) && (
-                <Button
-                  block
-                  type="primary"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    setShowCollabModalState(true, collabDetails.id);
-                  }}
-                  style={{
-                    color: "white",
-                    border: "green",
-                    backgroundColor: "#F8CF61",
-                    whiteSpace: "normal",
-                    height: "auto",
-                    marginBottom: "10px",
-                    marginTop: "10px",
-                  }}
-                  className="common-medium-btn"
-                >
-                  Edit
-                </Button>
-              )}
-              {user.artist_id === collabDetails.senderId
-                ? collabStatusComponentForSender()
-                : collabStatusComponentForReceiver()}
-            </div>
-            <>
-              {/* {!isCompletingRequest && ShowChatButton(window.location.href, collabDetails.id, collabDetails.status) &&
-                <Button
-                  block
-                  type="primary"
-                  onClick={() => {
-                    router.push(`/collab/details/${collabDetails.id}`);
-                  }}
-                  style={{ color: "white", border: "green", backgroundColor: "#9FBFF9", whiteSpace: "normal", height: 'auto', marginBottom: '10px', marginTop: '10px' }}
-                  className="common-medium-btn"
-                >
-                  {ChatButtonText(collabDetails.status)}
-                </Button>
-              } */}
-              {collabDetails.status === "ACTIVE" && (
-                <Button
-                  block
-                  type="primary"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    completeCollabRequest(collabDetails.id);
-                  }}
-                  style={{
-                    color: "white",
-                    border: "green",
-                    backgroundColor: "#91D296",
-                    whiteSpace: "normal",
-                    height: "auto",
-                    marginBottom: "10px",
-                    marginTop: "10px",
-                  }}
-                  loading={isCompletingRequest}
-                  className="common-medium-btn"
-                >
-                  Mark completed
-                </Button>
-              )}
-            </>
-          </div>
-        </div>
+        {getCollabCard()}
       </div>
     </>
   );
