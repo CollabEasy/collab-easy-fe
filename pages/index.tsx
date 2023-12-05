@@ -155,6 +155,46 @@ const Home = ({
     );
   };
 
+  const getLCPImage = () => {
+    return (
+      <div
+        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item cursor-pointer"
+      >
+        <div >
+          <div
+            className="d-flex justify-content-center align-items-center p-2 category-icon"
+          >
+            <Image
+              src={getPopularCategoryImage("writing")}
+              height={150}
+              width={150}
+              unoptimized={true}
+              alt="Creative writers collaborating on a creative writing project. Send collab request."
+              className="category-icon"
+              priority
+            />
+          </div>
+          <div className="d-flex justify-content-center text-align-center p-2">
+            <h5
+              className="common-h5-style"
+            >
+              Writing
+            </h5>
+          </div>
+          <div className="d-flex justify-content-center" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+            <p
+              className="common-p-style"
+            >
+              <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
+                Find writers available to collab now
+              </Link>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    );
+  }
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
     return (
@@ -164,6 +204,7 @@ const Home = ({
             <div className="col-12">
               <div className="scroll-list">
                 <>
+                  {getLCPImage()}
                   {popularCollabCategories.map((item) => (
                     <div
                       className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item cursor-pointer"
@@ -179,7 +220,7 @@ const Home = ({
                             height={150}
                             width={150}
                             alt={item.imgAltTag}
-                            unoptimized
+                            unoptimized={true}
                             className="category-icon"
                             loading="lazy"
                           />
@@ -361,7 +402,7 @@ const Home = ({
 
   const getWondorOfferings = () => {
     return (
-      <div className="wondor-offerings-container" style={{paddingTop: "0px", paddingBottom: "4%"}}>
+      <div className="wondor-offerings-container" style={{ paddingTop: "0px", paddingBottom: "4%" }}>
         <Link href={routeToHref(toAllCategoryPage())} passHref>
           <div className="wondor-offerings-container-card cursor-pointer">
             <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
@@ -597,13 +638,6 @@ const Home = ({
 };
 
 const popularCollabCategories = [
-  {
-    id: 1,
-    title: "Writing",
-    slug: "writing",
-    imgAltTag: "Creative writers collaborating on a creative writing project. Send collab request.",
-    para: "Find writers available to collab now",
-  },
   {
     id: 2,
     title: "Photography",
