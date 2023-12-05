@@ -416,6 +416,13 @@
     width: calc(33.333% - 20px);
   }
 
+  // popular categories container
+  .popular-proposal-container {
+    .popular-proposal-list-item {
+      height: 18vh;
+    }
+  }
+
   .signup-container {
 
     h1 {
@@ -489,9 +496,14 @@
   }
 
   .popular-collaborator-container {
-
     .section-title {
       text-align: center;
+    }
+  }
+
+  .popular-proposal-container {
+    .popular-proposal-list-item {
+      height: 18vh;
     }
   }
 

@@ -357,95 +357,79 @@ const Home = ({
 
   const getWondorOfferings = () => {
     return (
-      <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-        <div className="wondor-offerings-container">
-          <div className="row align-items-center">
-            <div className="col-md-12">
-              <div className="section-title text-md-center">
-                <h2 className="common-h2-style">
-                  Wondor Helps You Take Your Artistic Journey to the Next Level!
-                </h2>
-                <p className="common-p-style" style={{ width: "100%" }}>
-                  Our platform is committed to your growth. Discover fellow artists, improved collaboration experience,
-                  monthly art challenges, inspiration hub – all designed to uplift your skills.
-                </p>
-              </div>
+      <div className="wondor-offerings-container" style={{paddingTop: "0px", paddingBottom: "0px"}}>
+        <Link href={routeToHref(toAllCategoryPage())} passHref>
+          <div className="wondor-offerings-container-card cursor-pointer">
+            <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
+              <Image
+                unoptimized
+                src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/m66U_jdH9k2kLtryfPldyw/Workshop.svg"}
+                height={140}
+                width={250}
+                alt="More than 35+ categories - photography, singing, journaling, music etc for collaboration."
+                priority={true}
+              />
+            </div>
+            <div className="card-text">
+              <h5 className="common-h5-style">Diverse Collaboration Categories</h5>
+              <p className="common-p-style">Connect with available artists from 40+ categories</p>
             </div>
           </div>
-
-          <Link href={routeToHref(toAllCategoryPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
-                <Image
-                  unoptimized
-                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/m66U_jdH9k2kLtryfPldyw/Workshop.svg"}
-                  height={140}
-                  width={250}
-                  alt="More than 35+ categories - photography, singing, journaling, music etc for collaboration."
-                  priority={true}
-                />
-              </div>
-              <div className="card-text">
-                <h5 className="common-h5-style">Diverse Collaboration Categories</h5>
-                <p className="common-p-style">Connect with available artists from 40+ categories</p>
-              </div>
+        </Link>
+        <Link href={routeToHref(toAllProposalsPage())} passHref>
+          <div className="wondor-offerings-container-card cursor-pointer">
+            <div className="card-img" style={{ backgroundColor: "#FEF7EF" }}>
+              <Image
+                unoptimized
+                src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/jpJE1BdwHkC31xMmhCxSmA/List_is_empty.svg"}
+                height={140}
+                width={250}
+                alt="Collab proposals for singers, dancers, musicians. Checkout now"
+                priority={true}
+              />
             </div>
-          </Link>
-          <Link href={routeToHref(toAllProposalsPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{ backgroundColor: "#FEF7EF" }}>
-                <Image
-                  unoptimized
-                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/jpJE1BdwHkC31xMmhCxSmA/List_is_empty.svg"}
-                  height={140}
-                  width={250}
-                  alt="Collab proposals for singers, dancers, musicians. Checkout now"
-                  priority={true}
-                />
-              </div>
-              <div className="card-text">
-                <h5 className="common-h5-style">Exciting Proposals for Collaboration</h5>
-                <p className="common-p-style">Collaborate on proposals from other artists</p>
-              </div>
+            <div className="card-text">
+              <h5 className="common-h5-style">Exciting Proposals for Collaboration</h5>
+              <p className="common-p-style">Collaborate on proposals from other artists</p>
             </div>
-          </Link>
-          <Link href={routeToHref(toGetInspired())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{ backgroundColor: "#FFFEF1" }}>
-                <Image
-                  unoptimized
-                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/zIGF_3oJAk6uj11ByHJshA/Education.svg"}
-                  height={140}
-                  width={250}
-                  alt="Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!"
-                  priority={true}
-                />
-              </div>
-              <div className="card-text">
-                <h5 className="common-h5-style">Inspiration Hub</h5>
-                <p className="common-p-style">Latest art ideas and themes posted every week</p>
-              </div>
+          </div>
+        </Link>
+        <Link href={routeToHref(toGetInspired())} passHref>
+          <div className="wondor-offerings-container-card cursor-pointer">
+            <div className="card-img" style={{ backgroundColor: "#FFFEF1" }}>
+              <Image
+                unoptimized
+                src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/zIGF_3oJAk6uj11ByHJshA/Education.svg"}
+                height={140}
+                width={250}
+                alt="Find the Perfect Theme for Your Next Blog Post, Video, or Artwork - Start Now!"
+                priority={true}
+              />
             </div>
-          </Link>
-          <Link href={routeToHref(toAllContestPage())} passHref>
-            <div className="wondor-offerings-container-card cursor-pointer">
-              <div className="card-img" style={{ backgroundColor: "#F7FEF3" }}>
-                <Image
-                  unoptimized
-                  src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/FFvCaeFyPEKpyzYgQf8Nzg/Running_competition.svg"}
-                  height={140}
-                  width={250}
-                  alt="Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!"
-                  priority={true}
-                />
-              </div>
-              <div className="card-text">
-                <h5 className="common-h5-style">Creative Art Challenges</h5>
-                <p className="common-p-style">Participate every month and win $$</p>
-              </div>
+            <div className="card-text">
+              <h5 className="common-h5-style">Inspiration Hub</h5>
+              <p className="common-p-style">Latest art ideas and themes posted every week</p>
             </div>
-          </Link>
-        </div>
+          </div>
+        </Link>
+        <Link href={routeToHref(toAllContestPage())} passHref>
+          <div className="wondor-offerings-container-card cursor-pointer">
+            <div className="card-img" style={{ backgroundColor: "#F7FEF3" }}>
+              <Image
+                unoptimized
+                src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/FFvCaeFyPEKpyzYgQf8Nzg/Running_competition.svg"}
+                height={140}
+                width={250}
+                alt="Monthly Photography, writing, Design, Music, Video and more Contest with Prizes - Start Now!"
+                priority={true}
+              />
+            </div>
+            <div className="card-text">
+              <h5 className="common-h5-style">Creative Art Challenges</h5>
+              <p className="common-p-style">Participate every month and win $$</p>
+            </div>
+          </div>
+        </Link>
       </div>
     );
   };
@@ -553,6 +537,23 @@ const Home = ({
       </div> */}
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+          <div className="wondor-offerings-container">
+            <div className="row align-items-center">
+              <div className="col-md-12">
+                <div className="section-title text-md-center">
+                  <h2 className="common-h2-style">
+                    Wondor Helps You Take Your Artistic Journey to the Next Level!
+                  </h2>
+                  <p className="common-p-style" style={{ width: "100%" }}>
+                    Our platform is committed to your growth. Discover fellow artists, improved collaboration experience,
+                    monthly art challenges, inspiration hub – all designed to uplift your skills.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         {getWondorOfferings()}
       </div>
 
@@ -719,12 +720,6 @@ const popularCollabProposals = [
 
 const artistsForCollab = [
   {
-    "artist": "Nicolas Nelson",
-    "slug": "nicolas-nelson-1",
-    "category": ["Creative Writing"],
-    "url": "https://lh3.googleusercontent.com/a/ACg8ocIomh_mX68BECxwLykxdzUrS4oLVbgOGFB6LbxiTIsbsJaR=s96-c",
-  },
-  {
     "artist": "Rahul Gupta",
     "slug": "rahul-gupta-1",
     "category": ["Panting"],
@@ -742,11 +737,24 @@ const artistsForCollab = [
     "category": ["Doodling"],
     "url": "https://wondor-profile-pictures.s3.amazonaws.com/thumbnails/ccc7177292d35b4.png?updatedAt=1701301361164",
   },
-  // {
-  //   "artist": "Benjamin Tompkins",
-  //   "slug": "benjamin-t-1",
-  //   "category": ["Creative Journaling", "Scrapbooking"],
-  // },
+  {
+    "artist": "Nicolas Nelson",
+    "slug": "nicolas-nelson-1",
+    "category": ["Creative Writing"],
+    "url": "https://lh3.googleusercontent.com/a/ACg8ocIomh_mX68BECxwLykxdzUrS4oLVbgOGFB6LbxiTIsbsJaR=s96-c",
+  },
+  {
+    "artist": "Benjamin Tompkins",
+    "slug": "benjamin-t-1",
+    "category": ["Poetry"],
+    "url": "https://contest-submission.s3.amazonaws.com/NOV2023/originals/85b5f9284142330_1700403155250.jpeg",
+  },
+  {
+    "artist": "Prashant Joshi",
+    "slug": "prashant-joshi-1",
+    "category": ["Music"],
+    "url": "https://wondor-profile-pictures.s3.amazonaws.com/thumbnails/ab76cd7aef2ddb6.png?updatedAt=1701310099659",
+  },
 ]
 
 
