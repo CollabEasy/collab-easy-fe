@@ -4,9 +4,9 @@
 }
 
 .homepage-button {
-  height: 56px;
+  height: 50px;
   border: none;
-  padding: 20px;
+  padding: 15px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -67,18 +67,6 @@
       display: flex;
       gap: 15px;
       justify-content: center;
-    }
-
-    .hero-text-container-button {
-      height: 50px;
-      border: none;
-      padding: 15px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 14px;
-      // margin: 0px 2px 20px 2px;
-      border-radius: 35px;
     }
   }
 }
