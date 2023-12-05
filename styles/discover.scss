@@ -65,26 +65,23 @@
   }
 }
 
-// popular categories container
-.popular-category-container {
-
-  .popular-catgeory-list {
+.scroll-container {
+  .scroll-list {
     height: 100%;
     width: 100%;
     white-space: nowrap;
     overflow-x: scroll;
-    // overflow-y: hidden;
   }
 
-  .popular-catgeory-list-item {
+  .scroll-list-item {
     position: relative;
     display: inline-block;
     margin: 8px 8px;
     border-radius: 8px;
     box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
     border-top-right-radius: 4px;
-    height: 250px;
     width: 170px;
+    height: 300px;
     vertical-align: bottom;
     background-position: top left;
     background-repeat: no-repeat;
@@ -104,6 +101,12 @@
     }
 
     .category-icon {
+      border-radius: 50%;
+      background-color: white;
+      margin: 20px;
+    }
+
+    .collaborator-icon {
       border-radius: 50%;
       background-color: white;
       margin: 20px;
@@ -128,55 +131,6 @@
     p {
       font-size: 2vh;
       line-height: 30px;
-    }
-  }
-
-  .popular-collaborator-list {
-    height: 100%;
-    width: 100%;
-    white-space: nowrap;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    text-align: center;
-  }
-
-  .popular-collaborator-list-item {
-    position: relative;
-    display: inline-block;
-    margin: 8px 8px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
-    border-top-right-radius: 4px;
-
-    width: 160px;
-    height: 280px;
-
-    vertical-align: bottom;
-    background-position: top left;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background: #F7FEF3;
-
-    &:hover {
-      box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
-    }
-
-    h5 {
-      font-size: 2vh;
-    }
-
-    p {
-      font-size: 1.5vh;
-    }
-
-    a {
-      font-size: 1.5vh;
-    }
-
-    .collaborator-icon {
-      border-radius: 50%;
-      background-color: white;
-      margin: 20px;
     }
   }
 }
@@ -430,23 +384,25 @@
     }
   }
 
-  .popular-collaborator-container {
+  .scroll-container {
+    .scroll-list {
+      .scroll-list-item {
+        width: 145px;
+        height: 240px;
 
-    .popular-collaborator-list-item {
+        h5 {
+          font-size: 1.5vh;
+        }
 
-      width: 145px;
-      height: 240px;
+        p {
+          font-size: 1.3vh;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
 
-      h5 {
-        font-size: 1.5vh;
-      }
-
-      p {
-        font-size: 1.3vh;
-      }
-
-      a {
-        font-size: 1.3vh;
+        a {
+          font-size: 1.3vh;
+        }
       }
     }
   }
@@ -509,16 +465,33 @@
     }
   }
 
+  .scroll-container {
+    .scroll-list {
+      .scroll-list-item {
+        width: 145px;
+        height: 240px;
+
+        h5 {
+          font-size: 1.5vh;
+        }
+
+        p {
+          font-size: 1.3vh;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+        a {
+          font-size: 1.3vh;
+        }
+      }
+    }
+  }
+
   .popular-collaborator-container {
 
     .section-title {
       text-align: center;
-    }
-
-    .popular-collaborator-list-item {
-
-      width: 145px;
-      height: 255px;
     }
   }
 
@@ -574,17 +547,35 @@
     }
   }
 
+  .scroll-container {
+    .scroll-list {
+      .scroll-list-item {
+        width: 145px;
+        height: 240px;
+
+        h5 {
+          font-size: 1.5vh;
+        }
+
+        p {
+          font-size: 1.3vh;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+        a {
+          font-size: 1.3vh;
+        }
+      }
+    }
+  }
+
   .popular-collaborator-container {
 
     .section-title {
       text-align: center;
       padding-left: 10%;
       padding-right: 10%;
-    }
-
-    .popular-collaborator-list-item {
-      width: 145px;
-      height: 240px;
     }
   }
 
@@ -595,7 +586,7 @@
   }
 
   .wondor-offerings-container {
-    
+
     .section-title {
       padding-left: 10%;
       padding-right: 10%;
@@ -656,6 +647,30 @@
     }
   }
 
+  .scroll-container {
+    .scroll-list {
+      .scroll-list-item {
+        width: 145px;
+        height: 240px;
+
+        h5 {
+          font-size: 1.5vh;
+        }
+
+        p {
+          font-size: 1.3vh;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+        a {
+          font-size: 1.3vh;
+        }
+      }
+    }
+  }
+
+
   .popular-collaborator-container {
 
     .section-title {
@@ -667,29 +682,11 @@
         font-size: 4vh;
         line-height: 50px;
       }
-  
+
       p {
         font-size: 2vh;
         line-height: 30px;
       }
-    }
-
-    .popular-collaborator-list-item {
-      width: 18vh;
-      height: 25vh;
-
-      h5 {
-        font-size: 1.75vh;
-      }
-  
-      p {
-        font-size: 1.2vh;
-      }
-  
-      a {
-        font-size: 1.2vh;
-      }
-  
     }
   }
 
@@ -705,12 +702,12 @@
       padding-left: 5%;
       padding-right: 5%;
       text-align: center;
-  
+
       h2 {
         font-size: 4vh;
         line-height: 50px;
       }
-  
+
       p {
         font-size: 2vh;
         line-height: 30px;

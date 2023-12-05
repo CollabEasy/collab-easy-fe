@@ -156,46 +156,49 @@ const Home = ({
   const getPopularCollabCategories = () => {
     return (
       <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-        <div className="popular-category-container">
+        <div className="scroll-container">
           <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
             <div className="col-12">
-              <div className="popular-catgeory-list">
+              <div className="scroll-list">
                 <>
                   {popularCollabCategories.map((item) => (
                     <div
-                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-catgeory-list-item cursor-pointer"
+                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item cursor-pointer"
                       key={item.id}
                     >
-                      <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                        <div >
-                          <div
-                            className="d-flex justify-content-center align-items-center p-2 category-icon"
-                          >
-                            <Image
-                              src={getPopularCategoryImage(item.slug)}
-                              height={70}
-                              width={70}
-                              alt={item.imgAltTag}
-                              unoptimized
-                              loading="lazy"
-                            />
-                          </div>
-                          <div className="d-flex justify-content-center text-align-center p-2">
-                            <h5
-                              className="common-h5-style"
-                            >
-                              {item.title}
-                            </h5>
-                          </div>
-                          <div className="d-flex justify-content-center p-2" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-                            <p
-                              className="common-p-style"
-                            >
-                              {item.para}
-                            </p>
-                          </div>
+
+                      <div >
+                        <div
+                          className="d-flex justify-content-center align-items-center p-2 category-icon"
+                        >
+                          <Image
+                            src={getPopularCategoryImage(item.slug)}
+                            height={150}
+                            width={150}
+                            alt={item.imgAltTag}
+                            unoptimized
+                            className="category-icon"
+                            loading="lazy"
+                          />
                         </div>
-                      </Link>
+                        <div className="d-flex justify-content-center text-align-center p-2">
+                          <h5
+                            className="common-h5-style"
+                          >
+                            {item.title}
+                          </h5>
+                        </div>
+                        <div className="d-flex justify-content-center" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                          <p
+                            className="common-p-style"
+                          >
+                            <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
+                              {item.para}
+                            </Link>
+                          </p>
+                        </div>
+                      </div>
+
                     </div>
                   ))}
                 </>
@@ -209,75 +212,60 @@ const Home = ({
 
   const getPopularCollaborators = () => {
     return (
-      <div className="popular-collaborator-container">
-        <div className="row align-items-center">
-          <div className="col-md-12">
-            <div className="section-title text-md-center">
-              <h2 className="common-h2-style">
-                Go from Solo to Team; Together, You Create Better!
-              </h2>
-              <p className="common-p-style" style={{ width: "100%" }}>
-                Collaboration brings together artists with diverse backgrounds, skills, and perspectives,
-                fostering innovation and satisfaction beyond what&pos;s achieved individually.
-              </p>
-            </div>
-          </div>
-        </div>
+      <div className="row centered-div">
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-          <div className="popular-category-container">
+          <div className="scroll-container">
             <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
               <div className="col-12">
-                <div className="popular-catgeory-list">
-                  <>
-                    {artistsForCollab.map((item) => (
-                      <div
-                        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-catgeory-list-item cursor-pointer"
-                        key={item.id}
-                      >
-                        <div >
-                          <div
-                            className="d-flex justify-content-center align-items-center p-2 category-icon"
+                <div className="scroll-list">
+                  {artistsForCollab.map((item) => (
+                    <div
+                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item cursor-pointer"
+                      key={item.id}
+                    >
+                      <div >
+                        <div
+                          className="d-flex justify-content-center align-items-center p-2 category-icon"
+                        >
+                          <Image
+                            unoptimized
+                            src={item.url}
+                            height={200}
+                            width={200}
+                            className="collaborator-icon"
+                            alt={"Send collaboration request to " + item.artist}
+                            priority={true}
+                          />
+                        </div>
+                        <div className="d-flex justify-content-center text-align-center p-2">
+                          <h5
+                            className="common-h5-style"
                           >
-                            <Image
-                              unoptimized
-                              src={item.url}
-                              height={200}
-                              width={200}
-                              className="collaborator-icon"
-                              alt={"Send collaboration request to " + item.artist}
-                              priority={true}
-                            />
-                          </div>
-                          <div className="d-flex justify-content-center text-align-center p-2">
-                            <h5
-                              className="common-h5-style"
-                            >
-                              {item.artist}
-                            </h5>
-                          </div>
-                          <div className="d-flex justify-content-center p-2" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-                            <p
-                              className="common-p-style"
-                            >
-                              {item["category"].map((category) => (
-                                <span
-                                  style={{ background: "#EAEBED", color: "black" }}
-                                  className="badge bg-soft-secondary fs-14 mt-1"
-                                >
-                                  {category}
-                                </span>
-                              ))}
-                            </p>
-                          </div>
-                          <div className="d-flex justify-content-center">
-                            <a href={routeToHref(toUserCollabPage(item.slug))}>
-                              send collab request
-                            </a>
-                          </div>
+                            {item.artist}
+                          </h5>
+                        </div>
+                        <div className="d-flex justify-content-center" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                          <p
+                            className="common-p-style"
+                          >
+                            {item["category"].map((category) => (
+                              <span
+                                style={{ background: "#EAEBED", color: "black" }}
+                                className="badge bg-soft-secondary fs-14 mt-1"
+                              >
+                                {category}
+                              </span>
+                            ))}
+                          </p>
+                        </div>
+                        <div className="d-flex justify-content-center">
+                          <a href={routeToHref(toUserCollabPage(item.slug))}>
+                            send collab request
+                          </a>
                         </div>
                       </div>
-                    ))}
-                  </>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -516,6 +504,21 @@ const Home = ({
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        <div className="popular-collaborator-container">
+          <div className="row align-items-center">
+            <div className="col-md-12">
+              <div className="section-title text-md-center">
+                <h2 className="common-h2-style">
+                  Go from Solo to Team; Together, You Create Better!
+                </h2>
+                <p className="common-p-style" style={{ width: "100%" }}>
+                  Collaboration brings together artists with diverse backgrounds, skills, and perspectives,
+                  fostering innovation and satisfaction beyond what&apos;s achieved individually.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         {getPopularCollaborators()}
       </div>
 
@@ -731,7 +734,7 @@ const artistsForCollab = [
     "artist": "Valeria Vecchi",
     "slug": "valeria-vecchi-1",
     "category": ["Creative Journaling"],
-    "url": "https://lh3.googleusercontent.com/a/AGNmyxb84SVN25Vo-fDtmzPrlVpCaE7mGf0x23YG4gs=s96-c",
+    "url": "https://wondor-profile-pictures.s3.amazonaws.com/thumbnails/333f8d06249d9bf.png?updatedAt=1701558748516",
   },
   {
     "artist": "Rico Garcia",
