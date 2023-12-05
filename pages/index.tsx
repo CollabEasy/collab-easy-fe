@@ -138,12 +138,10 @@ const Home = ({
           <p style={{ paddingTop: "2vh" }}>
             {mainContent["paragraph"]}
           </p>
-          <div>
-            <a onClick={openLoginModal}>
-              <button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
-                Join for Free!
-              </button>
-            </a>
+          <div className="hero-text-cnt-wrapper">
+            <button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }} onClick={openLoginModal}>
+              Join for Free!
+            </button>
             <Link href={routeToHref(toTutorial())} passHref >
               <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
                 How it works?

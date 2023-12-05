@@ -4,9 +4,9 @@
 }
 
 .homepage-button {
-  height: 56px;
+  height: 50px;
   border: none;
-  padding: 20px;
+  padding: 15px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -61,6 +61,12 @@
       .flip5 {
         animation: flip5 12s cubic-bezier(0.23, 1, 0.32, 1.2) infinite;
       }
+    }
+
+    .hero-text-cnt-wrapper{
+      display: flex;
+      gap: 15px;
+      justify-content: center;
     }
   }
 }
@@ -785,6 +791,16 @@
       }
 
       p {
+        font-size: 2vh;
+        line-height: 30px;
+      }
+    }
+
+    .popular-collaborator-list-item {
+      width: 18vh;
+      height: 210px;
+
+      h5 {
         font-size: 1.75vh;
         line-height: 25px;
       }
