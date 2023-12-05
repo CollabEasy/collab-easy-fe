@@ -118,18 +118,21 @@ const Home = ({
               {mainContent["actionText"]}
             </p>
             <h1 className="common-h1-style">
-              {mainContent["heading"]}
+              Go From Solo to Team, Find
             </h1>
             {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
             <h1 className="animation-content">
               <ul className="flip5">
-                <li className="common-h1-style">Painters!</li>
-                <li className="common-h1-style">Photographers!</li>
-                <li className="common-h1-style">Dancers!</li>
-                <li className="common-h1-style">Poets!</li>
-                <li className="common-h1-style">Journalers!</li>
-                <li className="common-h1-style">Sketchers!</li>
+                <li className="common-h1-style">Painters</li>
+                <li className="common-h1-style">Photographers</li>
+                <li className="common-h1-style">Dancers</li>
+                <li className="common-h1-style">Poets</li>
+                <li className="common-h1-style">Journalers</li>
+                <li className="common-h1-style">Sketchers</li>
               </ul>
+            </h1>
+            <h1 className="common-h1-style">
+              For Your Next Collaboration!
             </h1>
           </div>
           <p style={{ paddingTop: "2vh" }}>
@@ -494,7 +497,7 @@ const Home = ({
             <div className="col-md-12">
               <div className="section-title text-md-center">
                 <h2 className="common-h2-style">
-                  Go from Solo to Team; Together, You Create Better!
+                  Together, You Create Better!
                 </h2>
                 <p className="common-p-style" style={{ width: "100%" }}>
                   Collaboration brings together artists with diverse backgrounds, skills, and perspectives,

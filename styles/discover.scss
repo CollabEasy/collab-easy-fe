@@ -357,6 +357,10 @@
         padding-left: 33%;
         padding-right: 33%;
       }
+
+      .animation-content {
+        height: 45px;
+      }
     }
   }
 
@@ -389,6 +393,10 @@
       p {
         padding-left: 20%;
         padding-right: 20%;
+      }
+
+      .animation-content {
+        height: 45px;
       }
     }
   }
@@ -483,6 +491,10 @@
         padding-left: 10%;
         padding-right: 10%;
       }
+
+      .animation-content {
+        height: 45px;
+      }
     }
   }
 
@@ -561,19 +573,25 @@
 
   /* Styles for small screens (phones) */
   .hero-text-container {
-    height: 650px;
+    height: 600px;
 
     .text-content {
       top: 4%;
 
       h1 {
-        padding-left: 10%;
-        padding-right: 10%;
+        font-size: 4vh;
+        line-height: 5vh;
+        padding-left: 8%;
+        padding-right: 8%;
       }
 
       p {
         padding-left: 10%;
         padding-right: 10%;
+      }
+
+      .animation-content {
+        height: 45px;
       }
     }
   }
@@ -667,13 +685,20 @@
       top: 3%;
 
       h1 {
-        padding-left: 10%;
-        padding-right: 10%;
+        font-size: 4vh;
+        line-height: 5vh;
+        padding-left: 8%;
+        padding-right: 8%;
       }
 
       p {
+        font-size: 1.75vh;
         padding-left: 10%;
         padding-right: 10%;
+      }
+      
+      .animation-content {
+          height: 45px;
       }
     }
   }
