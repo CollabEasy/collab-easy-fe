@@ -34,15 +34,15 @@
 
 
     h1 {
-      font-size: 5vh;
-      line-height: 7vh;
+      font-size: 3vw;
+      line-height: 5vw;
       padding-left: 20%;
       padding-right: 20%;
       margin-bottom: initial;
     }
 
     p {
-      font-size: 2vh;
+      font-size: 1.5vw;
       padding-left: 30%;
       padding-right: 30%;
     }
@@ -50,7 +50,7 @@
     .animation-content {
       overflow: hidden;
       position: relative;
-      height: 65px;
+      height: 55px;
 
       li {
         height: 45px;
@@ -63,7 +63,7 @@
       }
     }
 
-    .hero-text-cnt-wrapper{
+    .hero-text-cnt-wrapper {
       display: flex;
       gap: 15px;
       justify-content: center;
@@ -99,11 +99,11 @@
     }
 
     h5 {
-      font-size: 2vh;
+      font-size: 1.5vw;
     }
 
     p {
-      font-size: 1.5vh;
+      font-size: 1vw;
     }
 
     .category-icon {
@@ -130,13 +130,13 @@
     padding-right: 20%;
 
     h2 {
-      font-size: 5vh;
-      line-height: 65px;
+      font-size: 3vw;
+      line-height: 5vw;
     }
 
     p {
-      font-size: 2vh;
-      line-height: 30px;
+      font-size: 1.5vw;
+      line-height: 2.5vw;
     }
   }
 }
@@ -149,13 +149,13 @@
   display: flex;
 
   h2 {
-    font-size: 5vh;
-    line-height: 65px;
+    font-size: 3vw;
+    line-height: 5vw;
   }
 
   p {
-    font-size: 2.5vh;
-    line-height: 30px;
+    font-size: 1.5vw;
+    line-height: 2.5vw;
   }
 
   .truncate-line-clamp {
@@ -182,12 +182,12 @@
     }
 
     h6 {
-      font-size: 2vh;
+      font-size: 1.5vw;
       line-height: 25px;
     }
 
     text {
-      font-size: 1.5vh;
+      font-size: 1vw;
       line-height: 20px;
     }
   }
@@ -212,7 +212,7 @@
     border-radius: 8px;
     box-shadow: 0px 0px 3px rgb(0 0 0 / 18%);
     border-top-right-radius: 4px;
-    height: 17vh;
+    height: 16vw;
     vertical-align: bottom;
     background-position: top left;
     background-repeat: no-repeat;
@@ -225,11 +225,11 @@
     }
 
     h5 {
-      font-size: 2vh;
+      font-size: 2vw;
     }
 
     p {
-      font-size: 1.5vh;
+      font-size: 1.5vw;
     }
 
     .bg-soft-secondary {
@@ -252,13 +252,13 @@
     padding-right: 20%;
 
     h2 {
-      font-size: 5vh;
-      line-height: 65px;
+      font-size: 3vw;
+      line-height: 5vw;
     }
 
     p {
-      font-size: 2vh;
-      line-height: 30px;
+      font-size: 1.5vw;
+      line-height: 2.5vw;
     }
   }
 
@@ -293,11 +293,11 @@
     width: 100%;
 
     h5 {
-      font-size: 2vh;
+      font-size: 2vw;
     }
 
     p {
-      font-size: 1.5vh;
+      font-size: 1.5vw;
     }
   }
 }
@@ -309,21 +309,21 @@
   text-align: center;
 
   h1 {
-    font-size: 7vh;
+    font-size: 5vw;
     line-height: 72px;
     padding-left: 30%;
     padding-right: 30%;
   }
 
   p {
-    font-size: 2.5vh;
+    font-size: 2vw;
     line-height: 36px;
     padding-left: 35%;
     padding-right: 35%;
   }
 
   a {
-    font-size: 2.5vh;
+    font-size: 2vw;
   }
 }
 
@@ -337,7 +337,7 @@
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .centered-div {
     width: 90%;
-    margin: 0 auto ;
+    margin: 0 auto;
   }
 
   /* Styles for large screens (small desktops) */
@@ -373,7 +373,7 @@
   // popular categories container
   .popular-proposal-container {
     .popular-proposal-list-item {
-      height: 18vh;
+      height: 16vw;
     }
   }
 }
@@ -381,7 +381,7 @@
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .centered-div {
     width: 90%;
-    margin: 0 auto ;
+    margin: 0 auto;
   }
 
   /* Styles for medium screens (tablets) */
@@ -414,17 +414,17 @@
         height: 240px;
 
         h5 {
-          font-size: 1.5vh;
+          font-size: 2vw;
         }
 
         p {
-          font-size: 1.3vh;
+          font-size: 1.3vw;
           padding-left: 10px;
           padding-right: 10px;
         }
 
         a {
-          font-size: 1.3vh;
+          font-size: 1.3vw;
         }
       }
     }
@@ -442,28 +442,28 @@
   // popular categories container
   .popular-proposal-container {
     .popular-proposal-list-item {
-      height: 18vh;
+      height: 16vw;
     }
   }
 
   .signup-container {
 
     h1 {
-      font-size: 6vh;
+      font-size: 5vw;
       line-height: 65px;
       padding-left: 12%;
       padding-right: 12%;
     }
 
     p {
-      font-size: 2vh;
+      font-size: 2vw;
       line-height: 30px;
       padding-left: 20%;
       padding-right: 20%;
     }
 
     a {
-      font-size: 2vh;
+      font-size: 2vw;
     }
   }
 }
@@ -489,17 +489,20 @@
       top: 4.5%;
 
       h1 {
+        font-size: 4vw;
+        line-height: 5vw;
         padding-left: 10%;
         padding-right: 10%;
       }
 
       p {
+        font-size: 2vw;
         padding-left: 10%;
         padding-right: 10%;
       }
 
       .animation-content {
-        height: 45px;
+        height: 30px;
       }
     }
   }
@@ -511,17 +514,17 @@
         height: 240px;
 
         h5 {
-          font-size: 1.5vh;
+          font-size: 2.5vw;
         }
 
         p {
-          font-size: 1.3vh;
+          font-size: 1.75vw;
           padding-left: 10px;
           padding-right: 10px;
         }
 
         a {
-          font-size: 1.3vh;
+          font-size: 1.75vw;
         }
       }
     }
@@ -579,19 +582,20 @@
 
   /* Styles for small screens (phones) */
   .hero-text-container {
-    height: 600px;
+    height: 550px;
 
     .text-content {
       top: 4%;
 
       h1 {
-        font-size: 4vh;
-        line-height: 5vh;
+        font-size: 8vw;
+        line-height: 8vw;
         padding-left: 8%;
         padding-right: 8%;
       }
 
       p {
+        font-size: 3vw;
         padding-left: 10%;
         padding-right: 10%;
       }
@@ -600,6 +604,7 @@
         height: 45px;
       }
     }
+    
   }
 
   .scroll-container {
@@ -609,56 +614,52 @@
         height: 240px;
 
         h5 {
-          font-size: 1.5vh;
+          font-size: 3.5vw;
         }
 
         p {
-          font-size: 1.3vh;
+          font-size: 2.5vw;
           padding-left: 10px;
           padding-right: 10px;
         }
 
         a {
-          font-size: 1.3vh;
+          font-size: 2.5vw;
         }
       }
     }
   }
 
   .popular-collaborator-container {
-
     .section-title {
       text-align: center;
       padding-left: 10%;
-      padding-right: 10%; 
-      padding-right: 10%; 
-
-      h2 {
-        font-size: 4vh;
-        line-height: 5vh;
-      }
-
-      p {
-        font-size: 2vh;
-        line-height: 3vh;
-      }
+      padding-right: 10%;
       padding-right: 10%;
 
       h2 {
-        font-size: 4vh;
-        line-height: 5vh;
+        font-size: 7vw;
+        line-height: 7vw;
       }
 
       p {
-        font-size: 2vh;
-        line-height: 3vh;
+        font-size: 3.75vw;
+        line-height: 6vw;
       }
     }
   }
 
   .popular-proposal-container {
     .popular-proposal-list-item {
-      height: 16vh;
+      height: 35vw;
+
+      h5 {
+        font-size: 4vw;
+      }
+  
+      p {
+        font-size: 3.5vw;
+      }
     }
   }
 
@@ -669,13 +670,13 @@
       padding-right: 10%;
 
       h2 {
-        font-size: 4vh;
-        line-height: 5vh;
+        font-size: 7vw;
+        line-height: 7vw;
       }
 
       p {
-        font-size: 2vh;
-        line-height: 3vh;
+        font-size: 3.75vw;
+        line-height: 6vw;
       }
     }
 
@@ -686,31 +687,61 @@
 
   .wondor-offerings-container-card {
     width: calc(40.333% - 0px);
+
+    .card-text {
+      h5 {
+        font-size: 4vw;
+      }
+  
+      p {
+        font-size: 3.5vw;
+      }
+    }
   }
 
 
   .popular-blog-section {
     h2 {
-      font-size: 4vh;
-      line-height: 5vh;
+      font-size: 7vw;
+      line-height: 7vw;
     }
 
     p {
-      font-size: 2vh;
-      line-height: 3vh;
+      font-size: 3.75vw;
+      line-height: 6vw;
+    }
+
+    .home-card {
+  
+      h6 {
+        font-size: 3.5vw;
+        line-height: 25px;
+      }
+  
+      text {
+        font-size: 3vw;
+        line-height: 20px;
+      }
     }
   }
 
   .signup-container {
 
     h1 {
+      font-size: 8vw;
+      line-height: 50px;
       padding-left: 10%;
       padding-right: 10%;
     }
 
     p {
+      font-size: 4vw;
+      line-height: 30px;
       padding-left: 15%;
       padding-right: 15%;
+    }
+    a {
+      font-size: 4vw;
     }
   }
 }
@@ -730,26 +761,26 @@
 
   /* Styles for small screens (phones) */
   .hero-text-container {
-    height: 550px;
+    height: 450px;
 
     .text-content {
       top: 3%;
 
       h1 {
-        font-size: 4vh;
-        line-height: 5vh;
+        font-size: 8vw;
+        line-height: 8vw;
         padding-left: 8%;
         padding-right: 8%;
       }
 
       p {
-        font-size: 1.75vh;
+        font-size: 2.75vw;
         padding-left: 10%;
         padding-right: 10%;
       }
-      
+
       .animation-content {
-          height: 45px;
+        height: 45px;
       }
     }
   }
@@ -761,17 +792,17 @@
         height: 240px;
 
         h5 {
-          font-size: 1.5vh;
+          font-size: 3.5vw;
         }
 
         p {
-          font-size: 1.3vh;
+          font-size: 3.5vw;
           padding-left: 10px;
           padding-right: 10px;
         }
 
         a {
-          font-size: 1.3vh;
+          font-size: 2.5vw;
         }
       }
     }
@@ -786,23 +817,13 @@
       padding-right: 5%;
 
       h2 {
-        font-size: 4vh;
-        line-height: 5vh;
+        font-size: 6vw;
+        line-height: 7vw;
       }
 
       p {
-        font-size: 2vh;
-        line-height: 30px;
-      }
-    }
-
-    .popular-collaborator-list-item {
-      width: 18vh;
-      height: 210px;
-
-      h5 {
-        font-size: 1.75vh;
-        line-height: 25px;
+        font-size: 3.75vw;
+        line-height: 6vw;
       }
     }
   }
@@ -810,10 +831,19 @@
   // popular categories container
   .popular-proposal-container {
     .popular-proposal-list-item {
-      height: 17vh;
+      height: 33vw;
+
+      h5 {
+        font-size: 4vw;
+      }
+  
+      p {
+        font-size: 3.5vw;
+      }
     }
   }
 
+  
   .wondor-offerings-container {
     .section-title {
       padding-left: 5%;
@@ -821,12 +851,13 @@
       text-align: center;
 
       h2 {
-        font-size: 4vh;
-        line-height: 5vh;
+        font-size: 6vw;
+        line-height: 7vw;
       }
-  
+
       p {
-        font-size: 1.75vh;
+        font-size: 3.75vw;
+        line-height: 6vw;
       }
     }
 
@@ -834,37 +865,61 @@
 
   .wondor-offerings-container-card {
     width: calc(50% - 20px);
+
+    .card-text {
+      h5 {
+        font-size: 4vw;
+      }
+  
+      p {
+        font-size: 3.5vw;
+      }
+    }
   }
 
   .popular-blog-section {
     h2 {
-      font-size: 4vh;
-      line-height: 5vh;
+      font-size: 6vw;
+      line-height: 7vw;
     }
 
     p {
-      font-size: 1.75vh;
+      font-size: 3.75vw;
+      line-height: 6vw;
+    }
+
+    .home-card {
+  
+      h6 {
+        font-size: 3.5vw;
+        line-height: 25px;
+      }
+  
+      text {
+        font-size: 3vw;
+        line-height: 20px;
+      }
     }
   }
 
   .signup-container {
 
     h1 {
-      font-size: 5vh;
+      font-size: 8vw;
       line-height: 50px;
       padding-left: 5%;
       padding-right: 5%;
     }
 
     p {
-      font-size: 2vh;
+      font-size: 4vw;
       line-height: 30px;
       padding-left: 10%;
       padding-right: 10%;
     }
 
     a {
-      font-size: 2vh;
+      font-size: 4vw;
     }
   }
 }

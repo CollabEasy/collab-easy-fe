@@ -780,7 +780,7 @@ const artistsForCollab = [
     "url": "https://lh3.googleusercontent.com/a/ACg8ocIomh_mX68BECxwLykxdzUrS4oLVbgOGFB6LbxiTIsbsJaR=s96-c",
   },
   {
-    "artist": "Benjamin Tompkins",
+    "artist": "Benjamin T",
     "slug": "benjamin-t-1",
     "category": ["Poetry"],
     "url": "https://contest-submission.s3.amazonaws.com/NOV2023/originals/85b5f9284142330_1700403155250.jpeg",
