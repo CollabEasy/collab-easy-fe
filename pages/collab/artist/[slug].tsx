@@ -127,7 +127,7 @@ const SendCollabRequestPage = ({
         <NotAuthorised error={"Please login to see collaboration details."} />
       )}
     </Layout>
-  );
+  )
 };
 
 export default connector(SendCollabRequestPage);

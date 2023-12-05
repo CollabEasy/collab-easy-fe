@@ -79,37 +79,17 @@ const NavBar = ({
       navBarElement.classList.add("scroll-effect");
       navBarElement.classList.add("animate__fadeInDown");
       setShowSearchBar(true);
+      setShowBanner(false);
     }
 
     if (inView && entry !== undefined) {
       navBarElement.classList.remove("scroll-effect");
       navBarElement.classList.remove("animate__fadeInDown");
       setShowSearchBar(false);
+      setShowBanner(true);
     }
     setWindowWidth(window.innerWidth);
   }, [inView, entry]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Adjust the scroll threshold as needed
-      const scrollThreshold = 100; // Adjust this value based on your needs
-
-      // Check the scroll position
-      if (window.scrollY > scrollThreshold) {
-        setShowBanner(false);
-      } else {
-        setShowBanner(true);
-      }
-    };
-
-    // Add event listener for scroll events
-    window.addEventListener('scroll', handleScroll);
-
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -345,17 +325,17 @@ const NavBar = ({
       </div>
       <div id="desktop-nav">
         {showBanner && <Space direction="vertical" style={{ width: '100%', textAlign: 'center' }}>
-          <Alert
-            showIcon={false}
-            banner
-            closable
-            message={
-              <span>
-                Stuck in creativity block? Sign up for weekly emails packed with creative prompts,
-                inspirational quotes. Checkout <a href={routeToHref(toGetInspired())}>ideas for this week!</a>
-              </span>
-            }
-          />
+            <Alert
+              showIcon={false}
+              banner
+              closable
+              message={
+                <span>
+                  Stuck in creativity block? Sign up for weekly emails packed with creative prompts, 
+                  inspirational quotes. Checkout <a href={routeToHref(toGetInspired())}>ideas for this week!</a>
+                </span>
+              }
+            />
         </Space>}
         {getWebNavbar()}
       </div>
