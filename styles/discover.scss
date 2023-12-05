@@ -624,7 +624,29 @@
     .section-title {
       text-align: center;
       padding-left: 10%;
+      padding-right: 10%; 
+      padding-right: 10%; 
+
+      h2 {
+        font-size: 4vh;
+        line-height: 5vh;
+      }
+
+      p {
+        font-size: 2vh;
+        line-height: 3vh;
+      }
       padding-right: 10%;
+
+      h2 {
+        font-size: 4vh;
+        line-height: 5vh;
+      }
+
+      p {
+        font-size: 2vh;
+        line-height: 3vh;
+      }
     }
   }
 
@@ -639,6 +661,16 @@
     .section-title {
       padding-left: 10%;
       padding-right: 10%;
+
+      h2 {
+        font-size: 4vh;
+        line-height: 5vh;
+      }
+
+      p {
+        font-size: 2vh;
+        line-height: 3vh;
+      }
     }
 
     padding-left: 2%;
@@ -647,7 +679,20 @@
   }
 
   .wondor-offerings-container-card {
-    width: calc(33.333% - 20px);
+    width: calc(40.333% - 0px);
+  }
+
+
+  .popular-blog-section {
+    h2 {
+      font-size: 4vh;
+      line-height: 5vh;
+    }
+
+    p {
+      font-size: 2vh;
+      line-height: 3vh;
+    }
   }
 
   .signup-container {
@@ -736,12 +781,12 @@
 
       h2 {
         font-size: 4vh;
-        line-height: 50px;
+        line-height: 5vh;
       }
 
       p {
-        font-size: 2vh;
-        line-height: 30px;
+        font-size: 1.75vh;
+        line-height: 25px;
       }
     }
   }
@@ -761,12 +806,11 @@
 
       h2 {
         font-size: 4vh;
-        line-height: 50px;
+        line-height: 5vh;
       }
-
+  
       p {
-        font-size: 2vh;
-        line-height: 30px;
+        font-size: 1.75vh;
       }
     }
 
@@ -777,15 +821,13 @@
   }
 
   .popular-blog-section {
-
     h2 {
       font-size: 4vh;
-      line-height: 45px;
+      line-height: 5vh;
     }
 
     p {
-      font-size: 2vh;
-      line-height: 25px;
+      font-size: 1.75vh;
     }
   }
 
