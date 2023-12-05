@@ -358,7 +358,7 @@ const Home = ({
 
   const getWondorOfferings = () => {
     return (
-      <div className="wondor-offerings-container" style={{paddingTop: "0px", paddingBottom: "0px"}}>
+      <div className="wondor-offerings-container" style={{paddingTop: "0px", paddingBottom: "4%"}}>
         <Link href={routeToHref(toAllCategoryPage())} passHref>
           <div className="wondor-offerings-container-card cursor-pointer">
             <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
