@@ -607,6 +607,9 @@ const Home = ({
               <h2 className="common-h2-style">
                 Go Beyond Your Comfort Zones, Try Cross-discipline Collaboration!
               </h2>
+              <p className="common-p-style">
+                Gain insights into the practical aspects of other disciplines, contributing to your overall artistic growth
+              </p>
               <a href={routeToHref(toAllBlogs())}>
                 <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
                   Read More
