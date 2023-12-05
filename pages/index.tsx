@@ -248,6 +248,7 @@ const Home = ({
                           <p
                             className="common-p-style"
                           >
+                            {/* eslint-disable react/jsx-key */}
                             {item["category"].map((category) => (
                               <span
                                 style={{ background: "#EAEBED", color: "black" }}
