@@ -1,5 +1,5 @@
 .centered-div {
-  width: 90%;
+  width: 65%;
   margin: 0 auto;
 }
 
@@ -329,6 +329,11 @@
 
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .centered-div {
+    width: 90%;
+    margin: 0 auto ;
+  }
+
   /* Styles for large screens (small desktops) */
 
   .homepage-button {
@@ -364,8 +369,12 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  /* Styles for medium screens (tablets) */
+  .centered-div {
+    width: 90%;
+    margin: 0 auto ;
+  }
 
+  /* Styles for medium screens (tablets) */
   .hero-text-container {
     height: 500px;
 
@@ -446,6 +455,11 @@
 }
 
 @media only screen and (min-width: 601px) and (max-width: 767px) {
+
+  .centered-div {
+    width: 100%;
+    margin: 0;
+  }
 
   .homepage-button {
     height: 35px;
@@ -533,6 +547,11 @@
 }
 
 @media only screen and (min-width: 400px) and (max-width: 600px) {
+
+  .centered-div {
+    width: 100%;
+    margin: 0;
+  }
 
   .homepage-button {
     height: 35px;
