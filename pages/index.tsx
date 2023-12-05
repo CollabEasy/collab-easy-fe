@@ -135,12 +135,10 @@ const Home = ({
           <p style={{ paddingTop: "2vh" }}>
             {mainContent["paragraph"]}
           </p>
-          <div>
-            <a onClick={openLoginModal}>
-              <button className="hero-text-container-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
-                Join for Free!
-              </button>
-            </a>
+          <div className="hero-text-cnt-wrapper">
+            <button className="hero-text-container-button" style={{ backgroundColor: "#41A8F7", color: "white" }} onClick={openLoginModal}>
+              Join for Free!
+            </button>
             <Link href={routeToHref(toTutorial())} passHref >
               <button className="hero-text-container-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
                 How it works?
@@ -226,7 +224,7 @@ const Home = ({
         <div className="centered-div">
         <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
           <div className="col-12">
-            <div className="popular-collaborator-list d-flex justify-content-center align-items-center">
+            <div className="popular-collaborator-list">
               <>
                 {artistsForCollab.map((item) => (
                   <div

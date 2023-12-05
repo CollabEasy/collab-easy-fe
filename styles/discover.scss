@@ -51,15 +51,21 @@
       }
     }
 
+    .hero-text-cnt-wrapper{
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
     .hero-text-container-button {
-      height: 56px;
+      height: 50px;
       border: none;
-      padding: 20px;
+      padding: 15px 20px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
       font-size: 14px;
-      margin: 0px 2px 20px 2px;
+      // margin: 0px 2px 20px 2px;
       border-radius: 35px;
     }
   }
@@ -734,7 +740,7 @@
 
     .popular-collaborator-list-item {
       width: 18vh;
-      height: 25vh;
+      height: 210px;
 
       h5 {
         font-size: 1.75vh;
