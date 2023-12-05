@@ -288,6 +288,7 @@ const Home = ({
                     className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
                     key={proposal.id}
                   >
+<<<<<<< Updated upstream
                     <Link href={GetProposalUrl(proposal.url)} passHref>
                       <div style={{ textAlign: "left", whiteSpace: "pre-line" }}>
                         <h5 className="common-h5-style">
@@ -297,6 +298,23 @@ const Home = ({
                         <ul className="list-inline text-muted">
                           <div className="d-flex flex-wrap align-items-start gap-1">
                             {getPopularProposalCategory(proposal.category)}
+=======
+                    <Link href={GetProposalUrl(item.url)} passHref>
+                      <div className="card-content">
+                        <div className="d-flex justify-content-between align-items-center p-2">
+                          <div className="flex-column lh-1">
+                            <h6
+                              className="common-h6-style font-bold"
+                              style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                            >
+                              {item.title}
+                            </h6>
+                            <text className="common-p-style truncate-line-clamp"
+                              style={{ paddingLeft: "10px", paddingRight: "10px" }}
+                            >
+                              {item.name}
+                            </text>
+>>>>>>> Stashed changes
                           </div>
                         </ul>
                       </div>
