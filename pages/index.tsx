@@ -562,7 +562,7 @@ const Home = ({
           <div className="col-md-8">
             <div className="section-title text-md-start">
               <h2 className="common-h2-style">
-                Why artists should explore beyond their comfort zones?
+                Go Beyond Your Comfort Zones, Try Cross-discipline Collaboration!
               </h2>
               <a href={routeToHref(toAllBlogs())}>
                 <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
