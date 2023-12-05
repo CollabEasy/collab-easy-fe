@@ -71,7 +71,7 @@ const Footer = ({
         setIsFooterVisible(true);
       } else if (currentScrollY + window.innerHeight >= document.documentElement.scrollHeight) {
         // When at the bottom of the page, make the footer visible
-        setIsFooterVisible(true);
+        // setIsFooterVisible(true);
       } else {
         setIsFooterVisible(scrollingUp);
       }
