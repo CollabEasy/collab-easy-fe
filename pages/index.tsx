@@ -118,18 +118,21 @@ const Home = ({
               {mainContent["actionText"]}
             </p>
             <h1 className="common-h1-style">
-              {mainContent["heading"]}
+              Go From Solo to Team, Find
             </h1>
             {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
             <h1 className="animation-content">
               <ul className="flip5">
-                <li className="common-h1-style">Painters!</li>
-                <li className="common-h1-style">Photographers!</li>
-                <li className="common-h1-style">Dancers!</li>
-                <li className="common-h1-style">Poets!</li>
-                <li className="common-h1-style">Journalers!</li>
-                <li className="common-h1-style">Sketchers!</li>
+                <li className="common-h1-style">Painters</li>
+                <li className="common-h1-style">Photographers</li>
+                <li className="common-h1-style">Dancers</li>
+                <li className="common-h1-style">Poets</li>
+                <li className="common-h1-style">Journalers</li>
+                <li className="common-h1-style">Sketchers</li>
               </ul>
+            </h1>
+            <h1 className="common-h1-style">
+              For Your Next Collaboration!
             </h1>
           </div>
           <p style={{ paddingTop: "2vh" }}>
@@ -288,7 +291,6 @@ const Home = ({
                     className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
                     key={proposal.id}
                   >
-<<<<<<< Updated upstream
                     <Link href={GetProposalUrl(proposal.url)} passHref>
                       <div style={{ textAlign: "left", whiteSpace: "pre-line" }}>
                         <h5 className="common-h5-style">
@@ -298,23 +300,6 @@ const Home = ({
                         <ul className="list-inline text-muted">
                           <div className="d-flex flex-wrap align-items-start gap-1">
                             {getPopularProposalCategory(proposal.category)}
-=======
-                    <Link href={GetProposalUrl(item.url)} passHref>
-                      <div className="card-content">
-                        <div className="d-flex justify-content-between align-items-center p-2">
-                          <div className="flex-column lh-1">
-                            <h6
-                              className="common-h6-style font-bold"
-                              style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                            >
-                              {item.title}
-                            </h6>
-                            <text className="common-p-style truncate-line-clamp"
-                              style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                            >
-                              {item.name}
-                            </text>
->>>>>>> Stashed changes
                           </div>
                         </ul>
                       </div>
@@ -512,7 +497,7 @@ const Home = ({
             <div className="col-md-12">
               <div className="section-title text-md-center">
                 <h2 className="common-h2-style">
-                  Go from Solo to Team; Together, You Create Better!
+                  Together, You Create Better!
                 </h2>
                 <p className="common-p-style" style={{ width: "100%" }}>
                   Collaboration brings together artists with diverse backgrounds, skills, and perspectives,
