@@ -18,6 +18,8 @@ import * as actions from "state/action";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
 import { getPopularCategoryImage, getPopularProposalCategory } from "helpers/homePageHelper";
+import {popularCollabCategories, mainContent, artistsForCollab, popularCollabProposals, blogCard, testimonialContent} from "../constants/home";
+import { Button } from "antd";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -164,11 +166,12 @@ const Home = ({
           >
             <Image
               src={getPopularCategoryImage("writing")}
-              height={150}
-              width={150}
+              layout="fixed"
+              height={50}
+              width={100}
               unoptimized={true}
               alt="Creative writers collaborating on a creative writing project. Send collab request."
-              className="category-icon"
+              // className="category-icon"
               priority
             />
           </div>
@@ -179,14 +182,18 @@ const Home = ({
               Writing
             </h5>
           </div>
-          <div className="d-flex justify-content-center" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+          <div className="overlay-cnt"></div>
+          <div className="d-flex justify-content-center card-btn-info-cnt" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
             <p
               className="common-p-style"
             >
-              <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
-                Find writers available to collab now
-              </Link>
+              Find writers available to 
             </p>
+            <Button ghost>
+              <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
+                <span style={{fontWeight: 500}}>Collab Now</span>
+              </Link>
+            </Button>
           </div>
         </div>
 
@@ -215,11 +222,12 @@ const Home = ({
                         >
                           <Image
                             src={getPopularCategoryImage(item.slug)}
-                            height={150}
-                            width={150}
+                            layout="fixed"
+                            height={50}
+                            width={100}
                             alt={item.imgAltTag}
                             unoptimized={true}
-                            className="category-icon"
+                            // className="category-icon"
                             loading="lazy"
                           />
                         </div>
@@ -230,14 +238,18 @@ const Home = ({
                             {item.title}
                           </h5>
                         </div>
-                        <div className="d-flex justify-content-center" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                        <div className="overlay-cnt"></div>
+                        <div className="d-flex justify-content-center card-btn-info-cnt" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
                           <p
                             className="common-p-style"
                           >
-                            <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                              {item.para}
-                            </Link>
+                            {item.para}
                           </p>
+                          <Button ghost>
+                            <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
+                              <span style={{fontWeight: 500}}>{item.buttonText}</span>
+                            </Link>
+                          </Button>
                         </div>
                       </div>
 
@@ -262,7 +274,7 @@ const Home = ({
                 <div className="scroll-list">
                   {artistsForCollab.map((item) => (
                     <div
-                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item cursor-pointer"
+                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item-popular cursor-pointer"
                       key={item.id}
                     >
                       <div >
@@ -637,164 +649,6 @@ const Home = ({
     </Layout>
   );
 };
-
-const popularCollabCategories = [
-  {
-    id: 2,
-    title: "Photography",
-    slug: "photography",
-    imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
-    para: "Find photographer available to collab now",
-  },
-  {
-    id: 3,
-    title: "Dancing",
-    slug: "dancing",
-    imgAltTag: "Dancers collaborating on a creative dance project. Send collab request.",
-    para: "Find Dancers available to collab now",
-  },
-  {
-    id: 4,
-    title: "Illustration",
-    slug: "illustration",
-    imgAltTag: "Digital illustrators collaborating on a creative digital art project. Send collab request.",
-    para: "Find Illustrators available to collab now",
-  },
-  {
-    id: 6,
-    title: "Journaling",
-    slug: "journaling",
-    imgAltTag: "Photographers collaborating on creative photography. Send collab request.",
-    para: "Find Journalers available to collab now",
-  },
-  {
-    id: 8,
-    title: "Painting",
-    slug: "painting",
-    imgAltTag: "Painters collaborating on a creative painting project. Send collab request.",
-    para: "Find Painters available to collab now",
-  },
-];
-
-const mainContent = {
-  heading: "Connect and Collaborate with",
-  paragraph: "Unlock Your Creativity Potential by Collaborating with Like-Minded Artists 💡 🤝 🎉",
-  actionText: "Join the Growing Community of 100+ Artists Today!"
-}
-
-const testimonialContent = [
-  {
-    "user_name": "Valeria Vecchi",
-    "user_slug": "valeria-vecchi-1",
-    "testimonial": "Wondor is exactly the tool I needed as an artist: it allows me to find like-minded Journalers to collab with, and it's a source of inspiration for my projects too! I like monthly contests as they spark my creativity. Such an intuitive website too.",
-  },
-  {
-    "user_name": "Rahul Gupta",
-    "user_slug": "rahul-gupta-1",
-    "testimonial": "Wondor's weekly writing themes have helped me so much. I'm constantly discovering new writing prompts and inspiration instead of being stuck.",
-  },
-  {
-    "user_name": "Serhan Oztekin",
-    "user_slug": "serhan-oztekin-1",
-    "testimonial": "Wondor has been a game-changer for my creative collaborations. It's easy to connect with other musicians, share ideas, and inspire each other's work.",
-  },
-]
-
-const blogCard = [
-  {
-    "heading": "Unleashing the Power of Collaboration: 5 Reasons Why Artists Should Join Forces!",
-    "paragraph": "Unlock creativity, amplify reach, share resources, foster community, and elevate art through the power of collaborative synergy.",
-    "url": "/blog/top-5-reasons-for-why-artists-should-collaborate",
-  },
-  {
-    "heading": "The Art of Connection: How Collaboration Is Elevating Painters to New Heights!",
-    "paragraph": "Collaboration broadens perspectives, sparks innovation, and propels painters to unparalleled heights of artistic achievement and recognition",
-    "url": "/category/painting/wiki/learn-about-painting-and-collaboration-opportunities",
-  },
-  {
-    "heading": "How Photographers Are Collaborating to Dominate the Art Scene?",
-    "paragraph": "Photographers unite for diverse perspectives, collective impact, and art dominance through strategic collaboration in the creative realm.",
-    "url": "/category/photography/wiki/learn-about-photography-and-collaboration-opportunities",
-  },
-  {
-    "heading": "6 Powerful Ways to Embrace Cross-Disciplinary Collaboration",
-    "paragraph": "Combining different art forms, artists can create unique and innovative works that challenge traditional boundaries and push the limits of what is possible.",
-    "url": "/blog/6-powerful-ways-to-embrace-cross-discipline-collaboration",
-  },
-  {
-    "heading": "5 Ways in which Wondor.art Help Artists Achieve their Cretaivity Goals!",
-    "paragraph": "Wondor.art: Nurturing artists, unlocking potential, and propelling creativity to new heights with tailored support and resources.",
-    "url": "/blog/top-5-reasons-for-why-artists-should-use-wondor",
-  },
-  {
-    "heading": "Expanding Literary Horizons: The Art and Benefits of Writer Collaboration!",
-    "paragraph": "Writers collaborate for enriched creativity, mutual growth, diverse perspectives, and the joy of shared storytelling",
-    "url": "/category/writing/wiki/learn-about-writing-and-collaboration-opportunities",
-  },
-]
-
-const popularCollabProposals = [
-  {
-    "title": "Cover & promo art for a hard SF trilogy set on Mars.",
-    "artist": "Nicolas Nelson",
-    "slug": "nicolas-nelson-1",
-    "category": ["Illustration", "Digital Art", "Sketching"],
-    "url": "collab-proposal/5aa94f/cover-promo-art-for-a-hard-sf-trilogy-set-on-mars",
-  },
-  {
-    "title": "A Journal of Gratitude for the Little Gestures That Make a Big Difference.",
-    "artist": "Rahul Gupta",
-    "slug": "rahul-gupta-1",
-    "category": ["Spoken Words", "Art Journaling", "Sketching"],
-    "url": "collab-proposal/a607d1/a-journal-of-gratitude-for-the-little-gestures-that-make-a-big-difference",
-  },
-  {
-    "title": "Inner child exploration.",
-    "artist": "Valeria Vecchi",
-    "slug": "valeria-vecchi-1",
-    "category": ["Creative Journaling", "Scrapbooking"],
-    "url": "collab-proposal/35b72a/inner-child-exploration",
-  },
-]
-
-const artistsForCollab = [
-  {
-    "artist": "Rahul Gupta",
-    "slug": "rahul-gupta-1",
-    "category": ["Panting"],
-    "url": "https://wondor-profile-pictures.s3.amazonaws.com/8ffcaaca61c03f6.jpg?updatedAt=1680903708371",
-  },
-  {
-    "artist": "Valeria Vecchi",
-    "slug": "valeria-vecchi-1",
-    "category": ["Creative Journaling"],
-    "url": "https://wondor-profile-pictures.s3.amazonaws.com/thumbnails/333f8d06249d9bf.png?updatedAt=1701558748516",
-  },
-  {
-    "artist": "Rico Garcia",
-    "slug": "rico-garcia-1",
-    "category": ["Doodling"],
-    "url": "https://wondor-profile-pictures.s3.amazonaws.com/thumbnails/ccc7177292d35b4.png?updatedAt=1701301361164",
-  },
-  {
-    "artist": "Nicolas Nelson",
-    "slug": "nicolas-nelson-1",
-    "category": ["Creative Writing"],
-    "url": "https://lh3.googleusercontent.com/a/ACg8ocIomh_mX68BECxwLykxdzUrS4oLVbgOGFB6LbxiTIsbsJaR=s96-c",
-  },
-  {
-    "artist": "Benjamin T",
-    "slug": "benjamin-t-1",
-    "category": ["Poetry"],
-    "url": "https://contest-submission.s3.amazonaws.com/NOV2023/originals/85b5f9284142330_1700403155250.jpeg",
-  },
-  {
-    "artist": "Prashant Joshi",
-    "slug": "prashant-joshi-1",
-    "category": ["Music"],
-    "url": "https://wondor-profile-pictures.s3.amazonaws.com/thumbnails/ab76cd7aef2ddb6.png?updatedAt=1701310099659",
-  },
-]
 
 
 
