@@ -168,7 +168,7 @@ const MyWondorPage = ({
                                                 className="common-btn-dimension gap-2"
                                             >
                                                 <Link
-                                                    href={routeToHref(toArtistPortal("collab-requests"))}
+                                                    href={routeToHref(toArtistPortal("collab-request"))}
                                                 >
                                                     Manage Requests
                                                 </Link>
