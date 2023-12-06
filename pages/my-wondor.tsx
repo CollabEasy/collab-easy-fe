@@ -70,7 +70,7 @@ const MyWondorPage = ({
         if (isLoggedIn) {
             return "Welcome, " + user.first_name + " " + user.last_name;
         } else {
-            return "Welcome to myWondor";
+            return "Welcome";
         }
     }
 
@@ -323,14 +323,16 @@ const MyWondorPage = ({
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-6 p-4" style={{ display: "flex", justifyContent: "center" }}>
-                                    <Button
-                                        danger
-                                        onClick={logoutUser}
-                                    >
-                                        Log out
-                                    </Button>
-                                </div>
+                                {isLoggedIn && (
+                                    <div className="col-md-6 p-4" style={{ display: "flex", justifyContent: "center" }}>
+                                        <Button
+                                            danger
+                                            onClick={logoutUser}
+                                        >
+                                            Log out
+                                        </Button>
+                                    </div>
+                                )}
                             </div>
                         }
                     </div>
