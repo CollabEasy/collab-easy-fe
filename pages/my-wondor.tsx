@@ -253,7 +253,7 @@ const MyWondorPage = ({
                                                 <Link
                                                     href={routeToHref(toArtistPortal("preferences"))}
                                                 >
-                                                    Go to my portal
+                                                    Go to Portal
                                                 </Link>
                                             </Button>
                                         </div>
