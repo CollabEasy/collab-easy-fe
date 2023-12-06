@@ -49,6 +49,12 @@ export function IsArtistPortal(pathname) {
   return false;
 }
 
+export function IsMyWondorPortal(pathname) {
+  if (pathname.includes("/my-wondor")) {
+    return true;
+  };
+  return false;
+}
 
 export function getLoginDetails() {
   const accessToken = localStorage.getItem("token");
