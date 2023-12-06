@@ -61,6 +61,10 @@ export const routes: AppRouteCreators = {
     href: '/admin/analytics',
     as: '/admin/analytics',
   }),
+  toMyWondorPage: () => ({
+    href: '/my-wondor',
+    as: '/my-wondor',
+  }),
   // toSampleUpload: () => ({
   //   href: '/artist/settings/',
   //   as: `/artist/settings/samples`,

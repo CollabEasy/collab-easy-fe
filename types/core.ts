@@ -26,4 +26,5 @@ export interface AppRouteCreators {
   toAnalyticsPage: () => WebRoute;
   toProposalPage: (proposalId: string, title: string) => WebRoute;
   toBlogPage: (url: string) => WebRoute;
+  toMyWondorPage: () => WebRoute;
 }
