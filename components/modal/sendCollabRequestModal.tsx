@@ -63,7 +63,6 @@ const SendCollabRequestModal = ({
   const isNewCollab = collabDetails.id === "";
   const [collabDataCached, setCollabDataCached] =
     useState<CollabRequestData>(collabDetails);
-    console.log("collab request details : ", collabDetails);
   const [editable, setEditable] = useState(
     isNewCollab ||
       (user.artist_id === collabDetails.senderId &&

@@ -155,7 +155,7 @@ Props) => {
   useEffect(() => {
     getProposalByIdAction(proposalId as string);
     getProposalsInterests(proposalId as string);
-  }, []);
+  }, [])
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -168,7 +168,6 @@ Props) => {
   }, []);
 
   useEffect(() => {
-    
     if (showCollabPage && interestAcceptData !== undefined) {
       openNav();
     } else {

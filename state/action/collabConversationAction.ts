@@ -19,6 +19,10 @@ export const fetchCollabConversationByCollabIdSuccess = (data: any[]) => ({
   }
 })
 
+export const fetchCollabConversationByCollabIdFailure = () => ({
+  type: actionType.FETCH_COLLAB_CONVERSATION_BY_COLLAB_ID_FAILURE,
+})
+
 export const addCollabConversationComment = (data: any) => ({
 	type: actionType.ADD_COLLAB_CONVERSATION_COMMENT,
 	payload: {

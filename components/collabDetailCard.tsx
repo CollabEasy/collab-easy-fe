@@ -77,6 +77,7 @@ const CollabDetailCard = ({
     status: "",
     createdAt: undefined,
     updatedAt: undefined,
+    proposalId: null,
   };
   const [collabRequestDetails, setCollabRequestDetails] =
     useState(emptyCollabDetails);
@@ -201,6 +202,9 @@ const CollabDetailCard = ({
 
   return (
     <>
+    {collabDetails.id === "" || collabDetails.id === undefined || collabDetails.id === null && (
+      <p>No such collab request</p>
+    )}
       {showCollabModal.show && collabDetails.id === showCollabModal.id && (
         <div className="padding20">
           <SendCollabRequestModal

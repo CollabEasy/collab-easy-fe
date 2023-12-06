@@ -107,6 +107,22 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
       return {
         ...state,
         isFetchingCollabDetails: false,
+        collabDetails: {
+          sent: {
+            all: [],
+            active: [],
+            pending: [],
+            rejected: [],
+            completed: [],
+          },
+          received: {
+            all: [],
+            active: [],
+            pending: [],
+            rejected: [],
+            completed: [],
+          },
+        },
       };
     case actionTypes.UPDATE_COLLAB_REQUEST_REQUEST:
       return {
