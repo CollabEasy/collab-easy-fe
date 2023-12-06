@@ -69,7 +69,7 @@ const NavBar = ({
     return window.matchMedia("only screen and (max-width: 767px)").matches;
   };
 
-  const { toWondorHome, toMyWondorPage, toAnalyticsPage } =
+  const { toWondorHome, toArtistPortal, toMyWondorPage, toAnalyticsPage } =
     useRoutesContext();
   const { toGetInspired, toAllContestPage, toAllCategoryPage } = useRoutesContext();
 
@@ -246,7 +246,7 @@ const NavBar = ({
                     <div className="common-login-option">
                       <Link
                         href={routeToHref(
-                          toMyWondorPage()
+                          toArtistPortal("profile")
                         )}
                         passHref
                       >
@@ -255,7 +255,22 @@ const NavBar = ({
                           onClick={() => setShowLoginOptions(false)}
                         >
                           <span className="f-14 common-text-style">
-                            myWondor
+                            Profile
+                          </span>
+                        </div>
+                      </Link>
+                      <Link
+                        href={routeToHref(
+                          toArtistPortal("collab-request")
+                        )}
+                        passHref
+                      >
+                        <div
+                          className="selected-option-shadow settings-option"
+                          onClick={() => setShowLoginOptions(false)}
+                        >
+                          <span className="f-14 common-text-style">
+                            Collab Requests
                           </span>
                         </div>
                       </Link>

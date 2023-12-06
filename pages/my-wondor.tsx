@@ -98,7 +98,7 @@ const MyWondorPage = ({
                         <div className="col-md-8 col-lg-6 col-xl-5 p-0 mx-auto">
                             <h4 className="common-h4-style font-weight-bold my-3">{getWelcomeHeading()}</h4>
                             <div className="common-p-style mb-2">
-                                <b>myWondor</b> is your private page designed to make your journey on Wondor better and easier.
+                                This is your private page designed to make your journey on Wondor better and easier.
                             </div>
                             {!isLoggedIn ? (
                                 <Button
