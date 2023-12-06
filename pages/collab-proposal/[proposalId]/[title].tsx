@@ -356,8 +356,8 @@ Props) => {
                 setShowCollabPage(false);
               }}
               proposalId={proposalId as string}
-              collabTitle={interestAcceptData.requestData.message}
-              collabTheme={interestAcceptData.requestData.collabTheme}
+              collabTheme={interestAcceptData.requestData.message}
+              collabTitle={interestAcceptData.requestData.collabTheme}
               otherUser={otherUser}
               isFetchingOtherUser={isFetchingBasicUser}
               isFetchingPastCollabs={collabWithUser.isFetchingCollabsWithUser}
