@@ -69,9 +69,9 @@ const NavBar = ({
     return window.matchMedia("only screen and (max-width: 767px)").matches;
   };
 
-  const { toWondorHome, toArtistProfile, toArtistPortal, toAnalyticsPage } =
+  const { toWondorHome, toMyWondorPage, toAnalyticsPage } =
     useRoutesContext();
-  const { toContestPage, toGetInspired, toAllContestPage, toAllCategoryPage } = useRoutesContext();
+  const { toGetInspired, toAllContestPage, toAllCategoryPage } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = !checkDevice() ? document.querySelector("#desktop-p-h") : document.querySelector("#p-h");
@@ -246,7 +246,7 @@ const NavBar = ({
                     <div className="common-login-option">
                       <Link
                         href={routeToHref(
-                          toArtistPortal("profile")
+                          toMyWondorPage()
                         )}
                         passHref
                       >
@@ -255,37 +255,7 @@ const NavBar = ({
                           onClick={() => setShowLoginOptions(false)}
                         >
                           <span className="f-14 common-text-style">
-                            Profile
-                          </span>
-                        </div>
-                      </Link>
-                      <Link
-                        href={routeToHref(
-                          toArtistPortal("rewards")
-                        )}
-                        passHref
-                      >
-                        <div
-                          className="selected-option-shadow settings-option"
-                          onClick={() => setShowLoginOptions(false)}
-                        >
-                          <span className="f-14 common-text-style">
-                            Reward Points
-                          </span>
-                        </div>
-                      </Link>
-                      <Link
-                        href={routeToHref(
-                          toArtistPortal("collab-request")
-                        )}
-                        passHref
-                      >
-                        <div
-                          className="selected-option-shadow settings-option"
-                          onClick={() => setShowLoginOptions(false)}
-                        >
-                          <span className="f-14 common-text-style">
-                            Collab Requests
+                            myWondor
                           </span>
                         </div>
                       </Link>

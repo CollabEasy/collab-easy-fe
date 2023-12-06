@@ -100,19 +100,31 @@ const MyWondorPage = ({
             <div className="my-wondor-container">
                 <div className="bg-white">
                     <div className="text-center">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={isLoggedIn ? user.profile_pic_url : "https://bootdey.com/img/Content/avatar/avatar6.png"} className="ui-w-100 rounded-circle" />
                         <div className="col-md-8 col-lg-6 col-xl-5 p-0 mx-auto">
                             <h4 className="common-h4-style font-weight-bold my-3">{getWelcomeHeading()}</h4>
                             <div className="common-p-style mb-2">
-                                This is your private page designed to make your journey on Wondor better and easier.
+                                <b>myWondor</b> is your private page designed to make your journey on Wondor better and easier.
                             </div>
-                            {!isLoggedIn && (
+                            {!isLoggedIn ? (
                                 <Button
                                     type="primary"
                                     className="common-btn-dimension"
                                     onClick={openLoginModal}
                                 >
                                     Sign In
+                                </Button>
+                            ) : (
+                                <Button
+                                    type="primary"
+                                    className="common-btn-dimension"
+                                >
+                                    <Link
+                                        href={routeToHref(toArtistProfile(user.slug))}
+                                    >
+                                        My Profile
+                                    </Link>
                                 </Button>
                             )}
                         </div>
@@ -132,29 +144,16 @@ const MyWondorPage = ({
                                                 visibility and collaboration opportunities. Go make your
                                                 profile the best one yet!
                                             </p>
-                                            {!isLoggedIn ? (
-                                                <Button
-                                                    type="primary"
-                                                    className="common-btn-dimension gap-2"
+                                            <Button
+                                                type="primary"
+                                                className="common-btn-dimension gap-2"
+                                            >
+                                                <Link
+                                                    href={routeToHref(toArtistPortal("basic-information"))}
                                                 >
-                                                    <Link
-                                                        href={routeToHref(toArtistProfile(user.slug))}
-                                                    >
-                                                        Public Profile
-                                                    </Link>
-                                                </Button>
-                                            ) : (
-                                                <Button
-                                                    type="primary"
-                                                    className="common-btn-dimension gap-2"
-                                                >
-                                                    <Link
-                                                        href={routeToHref(toArtistPortal("basic-information"))}
-                                                    >
-                                                        Update Profile
-                                                    </Link>
-                                                </Button>
-                                            )}
+                                                    Update Profile
+                                                </Link>
+                                            </Button>
                                         </div>
                                     </div>
                                 </div>
@@ -331,7 +330,7 @@ const MyWondorPage = ({
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-6 p-4" style={{display: "flex", justifyContent: "center"}}>
+                                <div className="col-md-6 p-4" style={{ display: "flex", justifyContent: "center" }}>
                                     <Button
                                         danger
                                         onClick={logoutUser}
