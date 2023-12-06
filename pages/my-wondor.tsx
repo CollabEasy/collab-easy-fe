@@ -1,4 +1,4 @@
-import { Tabs, Input, Button } from "antd";
+import { Button } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -6,20 +6,13 @@ import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
-import { Card, Tag } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
-import Image from 'next/image';
 import * as actions from "state/action";
 import Layout from "@/components/layout";
-import { UserOutlined } from "@ant-design/icons";
-import ProfilePicture from "@/components/profilePicture";
 import Link from "next/link";
 import GenericActionBanner from "@/components/genericActionBanner";
-
-const { TextArea } = Input;
-const { TabPane } = Tabs;
-const { Meta } = Card;
+import avatarImage from "../public/images/avatar.png";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
