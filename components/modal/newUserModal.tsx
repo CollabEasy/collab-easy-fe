@@ -55,7 +55,6 @@ const NewUserModal = ({ user }: Props) => {
   function handleNextModal() {
     if (modal === 1) {
       setVisible(false);
-      router.push("/my-wondor");
     }
     setModal(modal + 1);
   }
