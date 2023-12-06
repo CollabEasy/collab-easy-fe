@@ -9,6 +9,7 @@ import { AppState } from "types/states";
 import * as actions from "../../state/action";
 import NewUser from "./newUser";
 import RefferalCodeModal from "./RefferalCodeModal";
+import { useRouter } from "next/router";
 // import SubmitImg from 'public/images/submit.png';
 
 const layout = {
@@ -49,9 +50,12 @@ const NewUserModal = ({ user }: Props) => {
   const windowWidth = 1000;
   const [modal, setModal] = useState(0);
 
+  const router = useRouter();
+
   function handleNextModal() {
     if (modal === 1) {
       setVisible(false);
+      router.push("/my-wondor");
     }
     setModal(modal + 1);
   }
