@@ -40,6 +40,7 @@
     "sass": "^1.35.2",
     "slate": "^0.73.1",
     "slate-react": "^0.74.0",
+    "use-state-with-callback": "^3.0.2",
     "video-react": "^0.15.0",
     "webpack": "^5.19.0"
   },

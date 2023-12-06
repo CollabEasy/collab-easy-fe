@@ -34,6 +34,8 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type Props = {
   edit?: boolean;
   otherUser: string;
+  proposalId?: string;
+  sendButtonEnabled?: boolean;
   collabDetails: CollabRequestData;
   onCancel?: () => void;
   onCollabRequestSend: (id: string) => void
@@ -43,10 +45,12 @@ const SendCollabRequestModal = ({
   edit = false,
   user,
   otherUser,
+  proposalId,
   collabDetails,
   isSendingRequest,
   isAcceptingRequest,
   isRejectingRequest,
+  sendButtonEnabled = true,
   updateCollabRequest,
   acceptCollabRequest,
   rejectCollabRequest,
@@ -59,6 +63,7 @@ const SendCollabRequestModal = ({
   const isNewCollab = collabDetails.id === "";
   const [collabDataCached, setCollabDataCached] =
     useState<CollabRequestData>(collabDetails);
+    console.log("collab request details : ", collabDetails);
   const [editable, setEditable] = useState(
     isNewCollab ||
       (user.artist_id === collabDetails.senderId &&
@@ -93,6 +98,7 @@ const SendCollabRequestModal = ({
           collabTheme: collabDataCached.requestData.collabTheme,
         },
         collabDate: collabDataCached.collabDate ?? tomorrow.toDate(),
+        proposalId: proposalId,
       };
       const res = await sendCollabRequestAPI(data);
       setShowCollabModalState(false, "");
@@ -185,7 +191,7 @@ const SendCollabRequestModal = ({
           <div className="text-center twoButtonsSpacing">
             <Button
               disabled={
-                collabDataCached.requestData.collabTheme.trim().length === 0
+                collabDataCached.requestData.collabTheme.trim().length === 0 || !sendButtonEnabled
               }
               size="large"
               className="sendCollabRequestModal__button"

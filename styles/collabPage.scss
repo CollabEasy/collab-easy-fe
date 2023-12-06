@@ -14,7 +14,6 @@
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    margin-top: 10%;
     margin-bottom: 5%;
     margin-left: auto;
     margin-right: auto;
@@ -110,6 +109,11 @@
 	// border-radius: .4rem;
   }
 
+  .textlink {
+    color: #0088cc;
+    cursor: pointer;
+  }
+
   .collabPage_pastRequestCardContainer {
     display: flex;
     flex-direction: column;
@@ -130,17 +134,24 @@
     justify-content: space-between;
   }
 
-  @media (max-width: 1200px) {
-    /* Adjust styles for smaller screens if needed */
-    .collabPage_userCollabPageContainer {
-      width: 100%; /* Stack components vertically on smaller screens */
-
-    }
+  .collabPage_userCollabPageContainerFullWidth {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    gap: 24px;
+    width: 100%;
   }
 
-  @media (max-width: 1200px) {
-    /* Adjust styles for smaller screens if needed */
-    .collabPage_formContainer {
-      width: 100%; /* Stack components vertically on smaller screens */
-    }
+  .collabPage_formContainerFullWidth {
+    background: #fff;
+    box-shadow: 0 4px 0 #cfd7de;
+    // margin-bottom: 20px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 65%;
+    // text-align: center;
+	  background-clip: border-box;
+	  border: 1px solid rgba(0, 0, 0, .125);
+    width: 100%
   }

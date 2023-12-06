@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import {
   Artist,
   CollabRequestData,
@@ -27,36 +27,52 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({});
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
+  bigScreenWidth?: number;
   otherUser: any;
+  showBackButton?: boolean;
+  proposalId?: string;
+  onClickBackButton?: () => void;
   pastCollabs: any[];
   isFetchingOtherUser: boolean;
   isFetchingPastCollabs: boolean;
   onCollabRequestSend: (id: string) => void;
+  collabTitle?: string;
+  collabTheme?: string;
+  collabDate?: Date;
 } & ConnectedProps<typeof connector>;
 
 const CollabPage = ({
   user,
+  bigScreenWidth = 1200,
+  showBackButton = false,
+  collabTitle = "",
+  collabTheme = "",
+  proposalId="",
+  collabDate = new Date(),
   otherUser,
   pastCollabs,
   isFetchingPastCollabs,
   isFetchingOtherUser,
-  onCollabRequestSend
+  onClickBackButton,
+  onCollabRequestSend,
 }: Props) => {
   const emptyCollabDetails: CollabRequestData = {
     id: "",
     senderId: "",
     receiverId: "",
-    collabDate: undefined,
+    collabDate: collabDate,
     requestData: {
-      message: "",
-      collabTheme: "",
+      message: collabTitle,
+      collabTheme: collabTheme,
     },
+
     status: "",
     createdAt: undefined,
     updatedAt: undefined,
   };
 
   const { toArtistProfile, toCollabPage } = useRoutesContext();
+  const [width, setWidth] = useState(0);
   const [collabRequestDetails, setCollabRequestDetails] =
     useState(emptyCollabDetails);
   const prismicLoader = ({ src, width, quality }) => {
@@ -66,6 +82,10 @@ const CollabPage = ({
   const getDate = (collabTime: number) => {
     return moment(collabTime).format("DD-MM-YYYY");
   };
+
+  useEffect(() => {
+    setWidth(window.screen.width);
+  }, []);
 
   const getCollabCards = () => {
     const collabsCards = [];
@@ -87,20 +107,41 @@ const CollabPage = ({
     });
     return collabsCards;
   };
+  const bannerMsg =
+    pastCollabs.length < 3
+      ? "NOTE : You can have a maximum of 3 open collaborations with an artist at a time."
+      : "NOTE : You already have 3 open collaboration requests with the artist. Please complete or close existing.";
 
   return (
     <div>
       <div className="collabPage_container">
+        {showBackButton && (
+          <p
+            onClick={() => {
+              onClickBackButton();
+            }}
+            className="padding20 textlink"
+          >
+            {"< Go Back"}
+          </p>
+        )}
         <p className="h1 collabPage_title">{`Your collaboration with ${otherUser.firstName}`}</p>
         <div className="padding20_sides">
           <Alert
             banner
-            message="NOTE : You can have a maximum of 3 open collaborations with an artist at a time."
+            type={ pastCollabs.length < 3 ? "info" : "error"}
+            message={bannerMsg}
           ></Alert>
         </div>
         <div className="collabPage_userAndFormContainer">
           {/* JUST USER CARD */}
-          <div className="collabPage_userCollabPageContainer">
+          <div
+            className={
+              width > bigScreenWidth
+                ? "collabPage_userCollabPageContainer"
+                : "collabPage_userCollabPageContainerFullWidth"
+            }
+          >
             <div className="collabPage_userContainer">
               <div className="collabPage_picNameContainer padding20">
                 <img src={otherUser.profilePicUrl} className="profilePic" />
@@ -122,17 +163,27 @@ const CollabPage = ({
               {isFetchingPastCollabs ? (
                 <Loader />
               ) : (
-                <div className="mt16 collabPage_pastCollabCardsContainer">{getCollabCards()}</div>
+                <div className="mt16 collabPage_pastCollabCardsContainer">
+                  {getCollabCards()}
+                </div>
               )}
             </div>
           </div>
           {/* USER CARD ENDS */}
-          <div className="collabPage_formContainer padding20">
+          <div
+            className={
+              width > bigScreenWidth
+                ? "collabPage_formContainer padding20"
+                : "collabPage_formContainerFullWidth padding20"
+            }
+          >
             <SendCollabRequestModal
+              proposalId={proposalId}
               otherUser={otherUser.userId}
+              sendButtonEnabled={pastCollabs.length < 3}
               collabDetails={collabRequestDetails}
               onCollabRequestSend={(id: string) => {
-                  onCollabRequestSend(id);
+                onCollabRequestSend(id);
               }}
             />
           </div>

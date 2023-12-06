@@ -65,7 +65,8 @@ const CollabPage = ({
     },
     status: "",
     createdAt: undefined,
-    updatedAt: undefined
+    updatedAt: undefined,
+    proposalId: null,
   };
 
   const [comment, setComment] = useState("");

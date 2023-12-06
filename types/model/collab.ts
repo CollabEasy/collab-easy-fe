@@ -5,6 +5,7 @@ export interface SendCollabRequest {
     collabTheme: string;
   };
   collabDate: Date;
+  proposalId?: string;
 }
 
 export interface SearchCollab {
@@ -47,4 +48,5 @@ export interface CollabRequestData {
   status: string
   createdAt: Date
   updatedAt: Date
+  proposalId: string | null
 }
