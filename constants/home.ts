@@ -147,19 +147,19 @@ export const artistsForCollab = [
     artist: "Rahul Gupta",
     slug: "rahul-gupta-1",
     category: ["Panting"],
-    url: "https://wondor-profile-pictures.s3.amazonaws.com/8ffcaaca61c03f6.jpg?updatedAt=1680903708371",
+    url: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/YK4QV9uKPEeyz-gbVVebpQ/rahul.png",
   },
   {
     artist: "Valeria Vecchi",
     slug: "valeria-vecchi-1",
     category: ["Creative Journaling"],
-    url: "https://wondor-profile-pictures.s3.amazonaws.com/thumbnails/333f8d06249d9bf.png?updatedAt=1701558748516",
+    url: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/99mjxqsgSkeT8aHeQ0JPMQ/val.png",
   },
   {
     artist: "Rico Garcia",
     slug: "rico-garcia-1",
     category: ["Doodling"],
-    url: "https://wondor-profile-pictures.s3.amazonaws.com/thumbnails/ccc7177292d35b4.png?updatedAt=1701301361164",
+    url: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/AwyK-rvIUEiy8ZTdebm8pw/rico.svg",
   },
   {
     artist: "Nicolas Nelson",
@@ -171,12 +171,12 @@ export const artistsForCollab = [
     artist: "Benjamin T",
     slug: "benjamin-t-1",
     category: ["Poetry"],
-    url: "https://contest-submission.s3.amazonaws.com/NOV2023/originals/85b5f9284142330_1700403155250.jpeg",
+    url: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/yCS0omuvnUqRUGg09gIV0w/ben.png",
   },
   {
     artist: "Prashant Joshi",
     slug: "prashant-joshi-1",
     category: ["Music"],
-    url: "https://wondor-profile-pictures.s3.amazonaws.com/thumbnails/ab76cd7aef2ddb6.png?updatedAt=1701310099659",
+    url: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/VIk_yQ-790yuuh9z54ib2g/pj.png",
   },
 ];
