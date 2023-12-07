@@ -72,6 +72,7 @@ const SendCollabRequestPage = ({
     status: "",
     createdAt: undefined,
     updatedAt: undefined,
+    proposalId: undefined,
   };
 
   const { toCollabPage } = useRoutesContext();

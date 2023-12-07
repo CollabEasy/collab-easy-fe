@@ -69,6 +69,7 @@ const CollabPage = ({
     status: "",
     createdAt: undefined,
     updatedAt: undefined,
+    proposalId: proposalId,
   };
 
   const { toArtistProfile, toCollabPage } = useRoutesContext();
