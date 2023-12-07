@@ -218,7 +218,7 @@ Props) => {
           // to type in custom message.
           message: "I'm interested",
         };
-        addProposalInterest(proposalData.proposalId, obj);
+        addProposalInterest(proposalData.proposal.proposalId, obj);
       },
       onCancel() {
         // Do nothing
