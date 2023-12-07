@@ -702,7 +702,8 @@
       }
 
       p {
-        font-size: 2vw;
+        font-size: 2.75vw;
+        line-height: 4.5vw;
         padding-left: 10%;
         padding-right: 10%;
       }
@@ -713,14 +714,13 @@
     }
   }
 
+
   .scroll-container {
     .scroll-list {
 
       .scroll-list-item,
       .scroll-list-item-popular {
         width: 145px;
-        height: 240px;
-
         h5 {
           font-size: 2.5vw;
         }
@@ -736,43 +736,129 @@
         }
       }
     }
+
+    .scroll-list-item {
+      height: 200px;
+    }
+    .scroll-list-item-popular {
+      height: 250px;
+    }
   }
+
 
   .popular-collaborator-container {
     .section-title {
+      padding-left: 2%;
+      padding-right: 2%;
       text-align: center;
+
+      h2 {
+        font-size: 5vw;
+        line-height: 6vw;
+      }
+
+      p {
+        font-size: 2.75vw;
+        line-height: 4.5vw;
+      }
     }
   }
 
+  // popular categories container
   .popular-proposal-container {
     .popular-proposal-list-item {
-      height: 18vh;
+      height: 24vw;
+
+      h5 {
+        font-size: 3vw;
+        line-height: 3.5vw;
+      }
+
+      p {
+        font-size: 2vw;
+      }
     }
   }
 
+
   .wondor-offerings-container {
-    padding-left: 2%;
-    padding-right: 2%;
-    text-align: center;
+    .section-title {
+      padding-left: 2%;
+      padding-right: 2%;
+      text-align: center;
+
+      h2 {
+        font-size: 5vw;
+        line-height: 6vw;
+      }
+
+      p {
+        font-size: 2.75vw;
+        line-height: 4.5vw;
+      }
+    }
+
   }
 
   .wondor-offerings-container-card {
-    width: calc(33.333% - 20px);
+    width: calc(50% - 20px);
+
+    .card-text {
+      h5 {
+        font-size: 3vw;
+        line-height: 3.5vw;
+      }
+
+      p {
+        font-size: 2vw;
+      }
+    }
+  }
+
+  .popular-blog-section {
+    h2 {
+      font-size: 5vw;
+      line-height: 6vw;
+    }
+
+    p {
+      font-size: 2.75vw;
+      line-height: 4.5vw;
+    }
+
+    .blog-card {
+
+      h6 {
+        font-size: 3vw;
+        line-height: 3.5vw;
+      }
+
+      text {
+        font-size: 2vw;
+      }
+    }
   }
 
   .signup-container {
 
     h1 {
+      font-size: 7vw;
+      line-height: 50px;
       padding-left: 10%;
       padding-right: 10%;
     }
 
     p {
+      font-size: 3vw;
+      line-height: 30px;
       padding-left: 15%;
       padding-right: 15%;
     }
-  }
 
+    a {
+      font-size: 3vw;
+    }
+  }
 }
 
 @media only screen and (min-width: 400px) and (max-width: 600px) {
