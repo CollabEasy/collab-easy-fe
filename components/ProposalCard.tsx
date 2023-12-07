@@ -27,6 +27,7 @@ type Props = {
   onClickEdit: (proposal: any) => void;
   onClickMarkClosed: (proposal: any) => void;
   onClickShowInterestedArtist: (proposal: any) => void;
+  confirmShowInterest: (proposal: any) => void;
 } & ConnectedProps<typeof connector>;
 
 const ProposalCard = ({
@@ -37,6 +38,7 @@ const ProposalCard = ({
   onClickEdit,
   onClickMarkClosed,
   onClickShowInterestedArtist,
+  confirmShowInterest
 }: Props) => {
   const { toDiscover, toAllProposalsPage, toArtistProfile } =
     useRoutesContext();
@@ -89,7 +91,7 @@ const ProposalCard = ({
             disabled={
               proposalData.proposal.proposalStatus === "CLOSED" || !isLoggedIn
             }
-            onClick={() => {}}
+            onClick={confirmShowInterest}
           >
             Show Interest
           </Button>

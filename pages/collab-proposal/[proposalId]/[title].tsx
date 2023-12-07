@@ -208,7 +208,7 @@ Props) => {
     }
   }
 
-  const confirmShowInterest = (proposalData) => {
+  const confirmShowInterest = () => {
     confirm({
       title: "We are glad to know that you are intersted",
       content: "Please click OK to confirm!",
@@ -255,6 +255,7 @@ Props) => {
           // setInterestedArtists(interests);
           setShowProposalInterestedArtistModal(true);
         }}
+        confirmShowInterest={confirmShowInterest}
       />
     );
   };
