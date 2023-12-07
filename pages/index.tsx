@@ -386,7 +386,7 @@ const Home = ({
             key={item.id}
           >
             <Link href={GetBlogUrl(item.url)} passHref>
-              <div className="home-card">
+              <div className="blog-card">
                 <div className="d-flex justify-content-between align-items-center p-2">
                   <div className="flex-column lh-1">
                     <h6

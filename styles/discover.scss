@@ -79,7 +79,8 @@
     overflow-x: scroll;
   }
 
-  .scroll-list-item, .scroll-list-item-popular {
+  .scroll-list-item,
+  .scroll-list-item-popular {
     position: relative;
     display: inline-block;
     margin: 8px 8px;
@@ -95,11 +96,13 @@
 
     &:hover {
       box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
-      .overlay-cnt{
+
+      .overlay-cnt {
         display: block;
-        background: rgba(0 ,0, 0, .3);
+        background: rgba(0, 0, 0, .3);
       }
-      .card-btn-info-cnt{
+
+      .card-btn-info-cnt {
         opacity: 1;
       }
     }
@@ -125,16 +128,18 @@
       background-color: white;
       margin: 20px;
     }
-    .overlay-cnt{
+
+    .overlay-cnt {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0 ,0, 0, 0);
+      background: rgba(0, 0, 0, 0);
       transition: background 0.5s ease;
     }
-    .card-btn-info-cnt{
+
+    .card-btn-info-cnt {
       position: absolute;
       top: 0;
       left: 0;
@@ -143,27 +148,33 @@
       align-items: center;
       opacity: 0;
       flex-direction: column;
-      .common-p-style{
+
+      .common-p-style {
         font-size: 13px;
         color: white;
         padding-bottom: 20px;
       }
-      a{
+
+      a {
         color: white;
       }
-      .ant-btn.ant-btn-background-ghost{
+
+      .ant-btn.ant-btn-background-ghost {
         border-width: 2px;
-        &:hover{
+
+        &:hover {
           border-color: white !important;
           color: white !important;
         }
       }
     }
   }
-  .scroll-list-item{
+
+  .scroll-list-item {
     height: 200px;
   }
-  .scroll-list-item-popular{
+
+  .scroll-list-item-popular {
     height: 300px;
   }
 }
@@ -213,7 +224,7 @@
     overflow: hidden;
   }
 
-  .home-card {
+  .blog-card {
     height: 100%;
     position: relative;
     display: flex;
@@ -381,6 +392,148 @@
 
 @media only screen and (min-width: 1200px) {
   /* Styles for extra-large screens (desktops) */
+
+  // Hero text container
+  .hero-text-container {
+    .text-content {
+      h1 {
+        font-size: 54px;
+        line-height: 72px;
+      }
+
+      p {
+        font-size: 24px;
+        line-height: 40px;
+      }
+    }
+  }
+
+  .scroll-container {
+
+    .scroll-list-item,
+    .scroll-list-item-popular {
+      h5 {
+        font-size: 21px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      a {
+        font-size: 16px;
+      }
+    }
+  }
+
+  // popular collaborator container
+  .popular-collaborator-container {
+    .section-title {
+
+      h2 {
+        font-size: 54px;
+        line-height: 72px;
+      }
+
+      p {
+        font-size: 24px;
+        line-height: 40px;
+      }
+    }
+  }
+
+  // popular blogs container
+  .popular-blog-section {
+
+    h2 {
+      font-size: 54px;
+      line-height: 72px;
+    }
+
+    p {
+      font-size: 24px;
+      line-height: 40px;
+    }
+
+    .blog-card {
+      h6 {
+        font-size: 22px;
+        line-height: 26px;
+      }
+
+      text {
+        font-size: 17px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  // popular categories container
+  .popular-proposal-container {
+
+    .popular-proposal-list-item {
+      height: 165px;
+
+      h5 {
+        font-size: 22px;
+        line-height: 26px;
+      }
+
+      p {
+        font-size: 17px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  // Wondor Offerings cards
+  .wondor-offerings-container {
+    .section-title {
+      h2 {
+        font-size: 54px;
+        line-height: 72px;
+      }
+
+      p {
+        font-size: 24px;
+        line-height: 40px;
+      }
+    }
+  }
+
+  .wondor-offerings-container-card {
+
+    .card-text {
+      h5 {
+        font-size: 22px;
+        line-height: 26px;
+      }
+
+      p {
+        font-size: 17px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  // Final Sign up container
+  .signup-container {
+    h1 {
+      font-size: 54px;
+      line-height: 72px;
+    }
+
+    p {
+      font-size: 24px;
+      line-height: 40px;
+    }
+
+    a {
+      font-size: 24px;
+    }
+  }
+
+
 }
 
 
@@ -459,7 +612,9 @@
 
   .scroll-container {
     .scroll-list {
-      .scroll-list-item, .scroll-list-item-popular {
+
+      .scroll-list-item,
+      .scroll-list-item-popular {
         width: 145px;
         height: 240px;
 
@@ -560,7 +715,9 @@
 
   .scroll-container {
     .scroll-list {
-      .scroll-list-item, .scroll-list-item-popular {
+
+      .scroll-list-item,
+      .scroll-list-item-popular {
         width: 145px;
         height: 240px;
 
@@ -655,12 +812,14 @@
         height: 45px;
       }
     }
-    
+
   }
 
   .scroll-container {
     .scroll-list {
-      .scroll-list-item, .scroll-list-item-popular {
+
+      .scroll-list-item,
+      .scroll-list-item-popular {
         width: 145px;
         height: 240px;
 
@@ -707,7 +866,7 @@
       h5 {
         font-size: 4vw;
       }
-  
+
       p {
         font-size: 3.5vw;
       }
@@ -743,7 +902,7 @@
       h5 {
         font-size: 4vw;
       }
-  
+
       p {
         font-size: 3.5vw;
       }
@@ -762,13 +921,13 @@
       line-height: 6vw;
     }
 
-    .home-card {
-  
+    .blog-card {
+
       h6 {
         font-size: 3.5vw;
         line-height: 25px;
       }
-  
+
       text {
         font-size: 3vw;
         line-height: 20px;
@@ -791,6 +950,7 @@
       padding-left: 15%;
       padding-right: 15%;
     }
+
     a {
       font-size: 4vw;
     }
@@ -838,7 +998,9 @@
 
   .scroll-container {
     .scroll-list {
-      .scroll-list-item, .scroll-list-item-popular {
+
+      .scroll-list-item,
+      .scroll-list-item-popular {
         width: 145px;
         height: 240px;
 
@@ -887,14 +1049,14 @@
       h5 {
         font-size: 4vw;
       }
-  
+
       p {
         font-size: 3.5vw;
       }
     }
   }
 
-  
+
   .wondor-offerings-container {
     .section-title {
       padding-left: 5%;
@@ -921,7 +1083,7 @@
       h5 {
         font-size: 4vw;
       }
-  
+
       p {
         font-size: 3.5vw;
       }
@@ -939,13 +1101,13 @@
       line-height: 6vw;
     }
 
-    .home-card {
-  
+    .blog-card {
+
       h6 {
         font-size: 3.5vw;
         line-height: 25px;
       }
-  
+
       text {
         font-size: 3vw;
         line-height: 20px;
