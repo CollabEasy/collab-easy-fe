@@ -16,6 +16,7 @@ import NewUserModal from '../../components/modal/newUserModal';
 import Layout from '@/components/layout';
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import GenericActionBanner from "@/components/genericActionBanner";
+import GenericPageBanner from "@/components/genericPageBanner";
 
 const { Panel } = Collapse;
 
@@ -101,11 +102,11 @@ const FAQs = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, artistL
                     />
                 }
                 <div className="faq-section-container">
-                    <h1 className="common-h1-style">Frequently Asked Questions</h1>
+                    <GenericPageBanner
+                        heading="How can we help you today?"
+                        paragraph="Welcome to  Wondor's help center. If any of your questions is not answered here, please contact us without any hesitation."
+                    />
                     {getFAQCard()}
-                </div>
-                <div className="row">
-                    <GenericActionBanner />
                 </div>
             </div>
         </Layout>

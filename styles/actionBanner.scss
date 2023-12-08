@@ -5,6 +5,7 @@
 }
 
 .actionBanner-cnt {
+    padding-top: 2%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -14,7 +15,14 @@
 }
 
 .actionBanner-text {
-    width: 80%;
+    width: 90%;
+}
+
+.actionBanner-button-group {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -24,18 +32,34 @@
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {}
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .actionBanner-button-group {
 
-@media only screen and (min-width: 601px) and (max-width: 767px) {}
-
-@media only screen and (min-width: 400px) and (max-width: 600px) {
-    .actionBanner-cover {
-        margin: 10px;
+        .actionBanner-button {
+            font-size: 12px; // Adjust the font size as needed
+            height: 24px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
     }
 }
 
-@media only screen and (max-width: 399px) {
+@media only screen and (min-width: 601px) and (max-width: 767px) {}
+
+@media only screen and (max-width: 600px) {
     .actionBanner-cover {
         margin: 10px;
+    }
+
+    .actionBanner-button-group {
+
+        .actionBanner-button {
+            font-size: 12px; // Adjust the font size as needed
+            height: 25px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
     }
 }

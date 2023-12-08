@@ -67,7 +67,6 @@ const GenericPageBanner = ({
         }
     }, [artistListData]);
 
-
     // https://bootdey.com/snippets/view/blog-page#html
     return (
         <>
@@ -84,17 +83,17 @@ const GenericPageBanner = ({
                 <div className="row d-flex justify-content-center pageBanner-cover">
                     <div className="col-12">
                         <div className="row">
-                            <div className="col-md-4 col-sm-4">
-                                <div className="text-center">
+                            <div className="col-lg-4 col-md-6 col-sm-12 text-center">
                                     <Image
-                                        src={pageBannerImage}
-                                        layout="responsive"
+                                        src="https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/KVSqk1x-kEuZo9pMZLBaGw/Group.svg"
+                                        height={386}
+                                        width={500}
+                                        unoptimized={true}
                                         alt="4 steps to start using wondor for your next collaboration"
                                         priority
                                     />
-                                </div>
                             </div>
-                            <div className="col-md-8 col-sm-8">
+                            <div className="col-lg-8 col-md-6 col-sm-12">
                                 <div className="pageBanner-cnt">
                                     <div className="pageBanner-text text-center">
                                         <h3 className="common-h3-style">
