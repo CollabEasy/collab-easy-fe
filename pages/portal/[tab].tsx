@@ -109,6 +109,7 @@ const ArtistPortal = ({
     status: "",
     createdAt: undefined,
     updatedAt: undefined,
+    proposalId: undefined,
   };
 
   const [collapsed, setCollapsed] = useState(false);

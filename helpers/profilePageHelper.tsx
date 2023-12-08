@@ -48,7 +48,8 @@ export function GetCollabDataForUser(collabs, senderUserId, recieverUserId) {
         },
         status: "",
         createdAt: undefined,
-        updatedAt: undefined
+        updatedAt: undefined,
+        proposalId: undefined,
     };
 
     for (var i = 0; i < collabs.length; i++) {
@@ -71,7 +72,8 @@ export function GetPendingCollabRequest(collabData, loggedInUserId: string, prof
         },
         status: "",
         createdAt: undefined,
-        updatedAt: undefined
+        updatedAt: undefined,
+        proposalId: undefined,
     };
     if (!collabData || !collabData.collabDetails) {
         return emptyCollabDetails;

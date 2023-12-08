@@ -26,6 +26,7 @@ const collabConversationReducer = (state = initialState, action): CollabConversa
       return {
         ...state,
         isFetchingCollabConversation: false,
+        collabConversation: [],
       };
 
     case actionType.ADD_COLLAB_CONVERSATION_COMMENT:

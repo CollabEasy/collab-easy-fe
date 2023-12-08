@@ -562,10 +562,6 @@ const ContestPage = ({
                   - Overall impact and emotional engagement.
                 </li>
                 <li>
-                  - You work will also be judged by the number of votes you
-                  have recieved. Share with your friends and get votes.
-                </li>
-                <li>
                   - Final decision will include things like creativity,
                   technique, adherence to the theme, and overall impact.
                 </li>

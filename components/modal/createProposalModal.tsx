@@ -54,7 +54,6 @@ const CreateProposalModal = ({
     createProposal,
     updateProposal,
 }: Props) => {
-
     let categoriesNames = Object.values(proposalDetails.categories).map(function (value) {
         return value;
     });
@@ -115,7 +114,8 @@ const CreateProposalModal = ({
             createProposal(obj);
         }
         // This is a hack until we can doit from reducer.
-        location.reload();
+        // location.reload();
+        onCancel();
     };
 
     const hideCreateProposalModal = (isAddingProposal) => {

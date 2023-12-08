@@ -2,7 +2,7 @@ import React, { Dispatch, useEffect, useRef, useState } from 'react'
 import { FooterColumn } from 'types/model/footer';
 import Link from 'next/link';
 import { useRoutesContext } from "../components/routeContext";
-import { IsArtistPortal, IsContestPage, IsInspirationPage, IsLandingPage, IsProfilePage, IsProposalPage, IsRewardsPage } from 'helpers/helper';
+import { IsArtistPortal, IsContestPage, IsInspirationPage, IsLandingPage, IsMyWondorPortal, IsProfilePage, IsProposalPage, IsRewardsPage } from 'helpers/helper';
 import { useRouter } from "next/router";
 import { routeToHref } from "config/routes";
 import {
@@ -71,7 +71,7 @@ const Footer = ({
         setIsFooterVisible(true);
       } else if (currentScrollY + window.innerHeight >= document.documentElement.scrollHeight) {
         // When at the bottom of the page, make the footer visible
-        setIsFooterVisible(true);
+        // setIsFooterVisible(true);
       } else {
         setIsFooterVisible(scrollingUp);
       }
@@ -93,8 +93,8 @@ const Footer = ({
       router.push("/artist/" + user.slug);
     } else if (page === "rewards") {
       router.push("/rewards-info");
-    } else if (page === "account") {
-      router.push("/portal/basic-information");
+    } else if (page === "my-wondor") {
+      router.push("/my-wondor");
     } else if (page === "inspiration") {
       router.push("/content-creation-ideas-for-artists");
     } else if (page === "contest") {
@@ -188,12 +188,12 @@ const Footer = ({
                   {IsInspirationPage(pathname) ? (
                     <>
                       <BulbOutlined style={{ color: "black" }} />
-                      <span className="f-10 common-text-style" style={{ color: "black" }}>Inspiration</span>
+                      <span className="f-10 common-text-style" style={{ color: "black" }}>Inspiration Hub</span>
                     </>
                   ) : (
                     <>
                       <BulbOutlined style={{ color: "grey" }} />
-                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Inspiration</span>
+                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Inspiration Hub</span>
                     </>
                   )}
 
@@ -216,64 +216,25 @@ const Footer = ({
 
                 </div>
               </div>
-
-              {isLoggedIn && (
-                <div className="bottom-nav-item">
-                  <div className="bottom-nav-link" onClick={(e) => reloadPage("profile")}>
-                    {IsProfilePage(pathname) ? (
-                      <>
-                        <UserOutlined style={{ color: "black" }} />
-                        <span className="f-10 common-text-style" style={{ color: "black" }}>Profile</span>
-                      </>
-                    ) : (
-                      <>
-                        <UserOutlined style={{ color: "grey" }} />
-                        <span className="f-10 common-text-style" style={{ color: "grey" }}>Profile</span>
-                      </>
-                    )}
-
-                  </div>
-                </div>
-              )}
-
-
-              {!isLoggedIn && (
-                <div className="bottom-nav-item">
-                  <div className="bottom-nav-link" onClick={(e) => reloadPage("contest")}>
-                    {IsContestPage(pathname) ? (
-                      <>
-                        <TrophyOutlined style={{ color: "black" }} />
-                        <span className="f-10 common-text-style" style={{ color: "black" }}>Contest</span>
-                      </>
-                    ) : (
-                      <>
-                        <TrophyOutlined style={{ color: "grey" }} />
-                        <span className="f-10 common-text-style" style={{ color: "grey" }}>Contest</span>
-                      </>
-                    )}
-
-                  </div>
-                </div>
-              )}
               <div className="bottom-nav-item">
-                <div className="bottom-nav-link" onClick={(e) => reloadPage("rewards")}>
-                  {IsRewardsPage(pathname) ? (
+                <div className="bottom-nav-link" onClick={(e) => reloadPage("contest")}>
+                  {IsContestPage(pathname) ? (
                     <>
-                      <DollarOutlined style={{ color: "black" }} />
-                      <span className="f-10 common-text-style" style={{ color: "black" }}>Rewards</span>
+                      <TrophyOutlined style={{ color: "black" }} />
+                      <span className="f-10 common-text-style" style={{ color: "black" }}>Contests</span>
                     </>
                   ) : (
                     <>
-                      <DollarOutlined style={{ color: "grey" }} />
-                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Rewards</span>
+                      <TrophyOutlined style={{ color: "grey" }} />
+                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Contests</span>
                     </>
                   )}
 
                 </div>
               </div>
-              <div className="bottom-nav-item" onClick={(e) => reloadPage("account")}>
+              <div className="bottom-nav-item" onClick={(e) => reloadPage("my-wondor")}>
                 <div className="bottom-nav-link">
-                  {IsArtistPortal(pathname) ? (
+                  {IsMyWondorPortal(pathname) ? (
                     <>
                       <SettingOutlined style={{ color: "black" }} />
                       <span className="f-10 common-text-style" style={{ color: "black" }}>Account</span>

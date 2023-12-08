@@ -81,8 +81,8 @@ const GenericActionBanner = ({
                 <div className="row d-flex justify-content-center actionBanner-cover">
                     <div className="col-md-12">
                         <div className="row">
-                            <div className="col-md-4">
-                                <div className="text-center" style={{ padding: "10px" }}>
+                            <div className="col-lg-4 col-md-6 col-sm-12 text-center">
+                                <div style={{ padding: "10px" }}>
                                     <Image
                                         src={notFoundImage}
                                         height={200}
@@ -92,7 +92,7 @@ const GenericActionBanner = ({
                                     />
                                 </div>
                             </div>
-                            <div className="col-md-8">
+                            <div className="col-lg-8 col-md-6 col-sm-12">
                                 <div className="actionBanner-cnt">
                                     <div className="actionBanner-text text-center">
                                         <h3 className="common-h3-style">

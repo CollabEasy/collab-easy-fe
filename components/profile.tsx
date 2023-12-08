@@ -184,6 +184,7 @@ const Profile = ({
     status: "",
     createdAt: undefined,
     updatedAt: undefined,
+    proposalId: null,
   };
 
   const [userSocialProspectus, setUserSocialProspectus] = useState([]);

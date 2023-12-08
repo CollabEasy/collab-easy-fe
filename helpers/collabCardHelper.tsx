@@ -122,15 +122,15 @@ export function GetCollabAdditionalDetails(loggedInUserId: string, collabDetails
 export function GetScheduledDate(status: string) {
     var scheduledDate = "";
     if (status === "PENDING") {
-        scheduledDate += "It is scheduled for ";
+        scheduledDate += "Tentative completion date is ";
     } else if (status === "ACTIVE") {
-        scheduledDate += "It is scheduled for ";
+        scheduledDate += "Tentative completion date is ";
     } else if (status == "COMPLETED") {
-        scheduledDate += "It was completed on ";
+        scheduledDate += "Tentative completion date was ";
     } else if (status === "REJECTED") {
-        scheduledDate += "It was scheduled for ";
+        scheduledDate += "Tentative completion date was ";
     } else if (status === "EXPIRED") {
-        scheduledDate += "It was scheduled for ";
+        scheduledDate += "Tentative completion date was ";
     }
 
     return scheduledDate;

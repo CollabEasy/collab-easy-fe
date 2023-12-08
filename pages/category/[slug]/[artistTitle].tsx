@@ -105,6 +105,7 @@ const DiscoverArtist = ({
     status: "",
     createdAt: undefined,
     updatedAt: undefined,
+    proposalId: undefined,
   };
   const [collabRequestDetails, setCollabRequestDetails] =
     useState(emptyCollabDetails);
