@@ -158,12 +158,11 @@ const Home = ({
   const getLCPImage = () => {
     return (
       <div
-        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item cursor-pointer"
+        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
       >
-        <div >
-          <div
-            className="d-flex justify-content-center align-items-center p-2 category-icon"
-          >
+        <div className="popular-category-card popular-category-colors">
+          <div className="popular-category-overlay"></div>
+          <div className="popular-category-circle">
             <Image
               src={getPopularCategoryImage("writing")}
               layout="fixed"
@@ -175,31 +174,21 @@ const Home = ({
               priority
             />
           </div>
-          <div className="d-flex justify-content-center text-align-center p-2">
-            <h5
-              className="common-h5-style"
-            >
-              Writing
-            </h5>
-          </div>
-          <div className="overlay-cnt"></div>
-          <div className="d-flex justify-content-center card-btn-info-cnt" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-            <p
-              className="common-p-style"
-            >
-              Find writers available to 
-            </p>
+          <h5 className="common-h5-style">
+            Writing
+          </h5>
+          <div className="card-btn-info-cnt">
             <Button ghost>
               <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
-                <span style={{fontWeight: 500}}>Collab Now</span>
+                <span style={{fontWeight: 500, fontSize: '17px'}}>Collab Now</span>
               </Link>
             </Button>
           </div>
         </div>
-
       </div>
-    );
+    )
   }
+
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
     return (
@@ -212,14 +201,13 @@ const Home = ({
                   {getLCPImage()}
                   {popularCollabCategories.map((item) => (
                     <div
-                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item cursor-pointer"
+                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
                       key={item.id}
                     >
 
-                      <div >
-                        <div
-                          className="d-flex justify-content-center align-items-center p-2 category-icon"
-                        >
+                      <div className="popular-category-card popular-category-colors">
+                        <div className="popular-category-overlay"></div>
+                        <div className="popular-category-circle">
                           <Image
                             src={getPopularCategoryImage(item.slug)}
                             layout="fixed"
@@ -231,28 +219,21 @@ const Home = ({
                             loading="lazy"
                           />
                         </div>
-                        <div className="d-flex justify-content-center text-align-center p-2">
+                        <div className="">
                           <h5
                             className="common-h5-style"
                           >
                             {item.title}
                           </h5>
                         </div>
-                        <div className="overlay-cnt"></div>
-                        <div className="d-flex justify-content-center card-btn-info-cnt" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-                          <p
-                            className="common-p-style"
-                          >
-                            {item.para}
-                          </p>
+                        <div className="card-btn-info-cnt">
                           <Button ghost>
                             <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                              <span style={{fontWeight: 500}}>{item.buttonText}</span>
+                              <span style={{fontWeight: 500, fontSize: '17px'}}>{item.buttonText}</span>
                             </Link>
                           </Button>
                         </div>
                       </div>
-
                     </div>
                   ))}
                 </>
