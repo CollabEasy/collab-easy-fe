@@ -165,29 +165,7 @@ const NavBar = ({
           </div>
           <div className="navbar-search">
             <>
-              {!IsLandingPage(router.pathname) || showSearchBar ? (
                 <Search />
-              ) : (
-                <div className="navbar-links">
-                  <ul style={{ textAlign: "center" }}>
-                    <li>
-                      <p className="common-p-style nav-text">
-                        <a href={routeToHref(toGetInspired())}>Inspiration Hub</a>
-                      </p>
-                    </li>
-                    <li>
-                      <p className="common-p-style nav-text">
-                        <a href={routeToHref(toAllContestPage())}>Art Contests</a>
-                      </p>
-                    </li>
-                    <li>
-                      <p className="common-p-style nav-text">
-                        <a href={routeToHref(toAllCategoryPage())}>Collab Categories</a>
-                      </p>
-                    </li>
-                  </ul>
-                </div>
-              )}
             </>
           </div>
           {!hideSignUp ? (
@@ -261,21 +239,6 @@ const NavBar = ({
                       </Link>
                       <Link
                         href={routeToHref(
-                          toArtistPortal("collab-request")
-                        )}
-                        passHref
-                      >
-                        <div
-                          className="selected-option-shadow settings-option"
-                          onClick={() => setShowLoginOptions(false)}
-                        >
-                          <span className="f-14 common-text-style">
-                            Collab Requests
-                          </span>
-                        </div>
-                      </Link>
-                      <Link
-                        href={routeToHref(
                           toMyWondorPage()
                         )}
                         passHref
@@ -285,7 +248,7 @@ const NavBar = ({
                           onClick={() => setShowLoginOptions(false)}
                         >
                           <span className="f-14 common-text-style">
-                            Settings
+                            myWondor
                           </span>
                         </div>
                       </Link>
