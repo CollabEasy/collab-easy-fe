@@ -65,6 +65,7 @@ import {
   faGoogle,
 } from "@fortawesome/free-brands-svg-icons";
 import { GetProposalTags } from "helpers/proposalHelper";
+import CreateProposalModal from "./modal/createProposalModal";
 
 const { Meta } = Card;
 
@@ -74,6 +75,9 @@ const mapStateToProps = (state: AppState) => {
   const collab = state.collab;
 
   const isFetchingCollabs = state.collab.isFetchingCollabDetails;
+
+  const showCreateOrEditProposalModal =
+    state.proposal.showCreateOrUpdateProposalModal;
 
   const userSamples = state.sample.samples;
 
@@ -112,6 +116,7 @@ const mapStateToProps = (state: AppState) => {
     isFetchingSamples,
 
     isfetchingUserProposals,
+    showCreateOrEditProposalModal,
   };
 };
 
@@ -128,6 +133,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(action.fetchProposalByArtistSlug(slug)),
   fetchArtistSocialProspectus: (slug: string) =>
     dispatch(action.fetchArtistSocialProspectus(slug)),
+  setShowCreateOrUpdateProposalModal: (show: boolean) =>
+    dispatch(action.setShowCreateOrUpdateProposalModal(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -163,12 +170,14 @@ const Profile = ({
   isfetchingUserProposals,
   isUpdatingProfile,
   isProfileComplete,
+  showCreateOrEditProposalModal,
   setShowCollabModalState,
   fetchArtistSamples,
   fetchProposalByArtistSlug,
   fetchArtistSocialProspectus,
   getCollabRequestsAction,
   updateArtistProfile,
+  setShowCreateOrUpdateProposalModal,
 }: Props) => {
   const router = useRouter();
 
@@ -570,9 +579,17 @@ const Profile = ({
   const getProposalsTabs = () => {
     if (proposal.userProposals.length === 0) {
       return (
-        <div className="artistProfile__tabContainer">
-          No collab proposals submitted by {user.first_name}!
-        </div>
+        <>
+          {!isSelf ? (
+            <div className="artistProfile__tabContainer text-center">
+              No collab proposals submitted by {user.first_name}!
+            </div>
+          ) : (
+            <div className="artistProfile__tabContainer text-center">
+              Got an idea, <Link href={routeToHref(toArtistPortal("proposals"))}>add a collaboration proposal now!</Link>
+            </div>
+          )}
+        </>
       );
     }
 
@@ -581,9 +598,17 @@ const Profile = ({
 
     if (data["created"].length === 0) {
       return (
-        <div className="artistProfile__tabContainer">
-          No collab proposals submitted by {user.first_name}!
-        </div>
+        <>
+          {!isSelf ? (
+            <div className="artistProfile__tabContainer text-center">
+              No collab proposals submitted by {user.first_name}!
+            </div>
+          ) : (
+            <div className="artistProfile__tabContainer text-center">
+              Got an idea, <Link href={routeToHref(toArtistPortal("proposals"))}>add a collaboration proposal now!</Link>
+            </div>
+          )}
+        </>
       );
     }
 
