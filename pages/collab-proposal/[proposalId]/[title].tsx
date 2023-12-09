@@ -282,7 +282,7 @@ Props) => {
       title={(title as string).replace(/-/g, " ")}
       name={"description"}
       content={
-        "Check out this interesting proposals for collaboration. Show interest and unlock the opportunity for working on a masterpiece with a fellow artist!"
+        "Check out this interesting proposals for collaboration. Express interest and unlock the opportunity for working on a masterpiece with a fellow artist!"
       }
     >
       <div

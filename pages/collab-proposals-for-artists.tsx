@@ -140,7 +140,7 @@ const ProposalsPage = ({
         <Layout
             title={"Popular collaboration proposals for artists | Wondor"}
             name={"description"}
-            content={"Check out all of the interesting proposals for collaboration by artists around the world. Show interest and unlock the opportunity for working on a masterpiece with a fellow artist. Join now!"}
+            content={"Check out all of the interesting proposals for collaboration by artists around the world. Express interest and unlock the opportunity for working on a masterpiece with a fellow artist. Join now!"}
 
         >
             {loginModalDetails.openModal && !user.new_user && (
@@ -170,7 +170,7 @@ const ProposalsPage = ({
                                             Artists, your next collaboration opportunity is here 😎
                                         </h1>
                                         <h3 className="common-h3-style">
-                                            Checkout these amazing proposals by fellow artists and show interest!
+                                            Checkout these amazing proposals by fellow artists and express interest!
                                         </h3>
                                     </div>
                                 </div>

@@ -74,12 +74,12 @@ const ProposalCard = ({
       <>
         {!isLoggedIn && (
           <div className="login-message">
-            <p>Please, login to show interest</p>
+            <p>Please, login to express interest</p>
           </div>
         )}
         {interestStatus["shown_interest"] ? (
           <p className="common-text-style">
-            You have shown interest{" "}
+            You have expressed interest{" "}
             {interestStatus["accepeted"]
               ? "and it got accepted too 🥳"
               : interestStatus["rejected"]
@@ -93,7 +93,7 @@ const ProposalCard = ({
             }
             onClick={confirmShowInterest}
           >
-            Show Interest
+            Express Interest
           </Button>
         )}
       </>
@@ -115,8 +115,8 @@ const ProposalCard = ({
             }}
           >
             <p>
-              This proposal is active 🎉. Show interest now and take the first
-              step towards a powerful collab!
+              This proposal is active 🎉. Express interest now and take the first
+              step towards a powerful collaboration!
             </p>
           </div>
         ) : (
