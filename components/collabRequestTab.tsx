@@ -22,12 +22,6 @@ import {
   getCollabRequestsAction,
   rejectCollabRequestAction,
 } from "state/action";
-import Timeline from "@mui/lab/Timeline";
-import TimelineItem, { timelineItemClasses } from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineContent from "@mui/lab/TimelineContent";
-import TimelineDot from "@mui/lab/TimelineDot";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import * as action from "./../state/action";
@@ -41,7 +35,6 @@ import Layout from "@/components/layout";
 import $ from "jquery";
 import Link from "next/link";
 import { GetCollabHeading } from "helpers/collabCardHelper";
-import { CSSProperties } from "@emotion/serialize";
 
 const { Option } = Select;
 
