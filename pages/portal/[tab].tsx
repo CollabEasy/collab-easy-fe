@@ -57,7 +57,6 @@ const mapStateToProps = (state: AppState) => {
   return {
     user: state.user.user,
     loginModalDetails: state.home.loginModalDetails,
-    collab: state.collab,
     preferences: state.user.preferences,
     isLoggedIn: state.user.isLoggedIn,
     isFetchingSamples: state.sample.isFetchingSamples,
@@ -68,9 +67,6 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchArtistSamples: (slug: string) =>
     dispatch(actions.fetchArtistSamples(slug)),
-
-  getCollabRequestsAction: (data: SearchCollab) =>
-    dispatch(actions.getCollabRequestsAction(data)),
 
   resetUserLoggedIn: () => dispatch(resetUserLoggedIn())
 });
@@ -90,34 +86,14 @@ const ArtistPortal = ({
   user,
   isLoggedIn,
   loginModalDetails,
-  collab,
   preferences,
   isFetchingSamples,
   fetchArtistSamples,
-  getCollabRequestsAction,
   resetUserLoggedIn,
 }: Props) => {
-  const emptyCollabDetails: CollabRequestData = {
-    id: "",
-    senderId: "",
-    receiverId: "",
-    collabDate: undefined,
-    requestData: {
-      message: "",
-      collabTheme: "",
-    },
-    status: "",
-    createdAt: undefined,
-    updatedAt: undefined,
-    proposalId: undefined,
-  };
-
   const [collapsed, setCollapsed] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const [collabRequestDetails, setCollabRequestDetails] =
-    useState(emptyCollabDetails);
-  const [hasPendingCollab, setHasPendingCollab] = useState(false);
-
+  
   const { Option } = Select;
 
   const activeTabKey = useRef("1");
@@ -125,39 +101,17 @@ const ArtistPortal = ({
 
   useEffect(() => {
     fetchArtistSamples(user.slug);
-    getCollabRequestsAction({});
-  }, [getCollabRequestsAction]);
-
-  useEffect(() => {
-    if (
-      collab.collabDetails.sent.pending.length > 0 ||
-      collab.collabDetails.sent.active.length > 0
-    ) {
-      setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
-      setHasPendingCollab(true);
-    } else if (
-      collab.collabDetails.received.pending.length > 0 ||
-      collab.collabDetails.received.active.length > 0
-    ) {
-      setHasPendingCollab(true);
-      setCollabRequestDetails(collab.collabDetails.received.active[0]);
-    } else {
-      setHasPendingCollab(false);
-      setCollabRequestDetails(emptyCollabDetails);
-    }
-
-    if (window.innerWidth < 500) {
-      setCollapsed(true);
-    }
-
-  }, [
-    collab.collabDetails.received.pending,
-    collab.collabDetails.sent.pending,
-  ]);
+  }, []);
 
   const router = useRouter();
   const { tab } = router.query;
   const [upForCollaboration, setUpForCollaboration] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 500) {
+      setCollapsed(true);
+    }
+  }, [])
 
   useEffect(() => {
     if (
@@ -264,9 +218,6 @@ const ArtistPortal = ({
       </Breadcrumb>
     );
   }
-
-  if (user && Object.keys(user).length === 0 && collab.isFetchingCollabDetails)
-    return <Loader />;
 
   const getMobileMenu = () => {
     return (
@@ -527,15 +478,7 @@ const ArtistPortal = ({
                       </>
                     }
                     <div className="settings__basicProfileCard">
-                      <CollabRequestTab
-                        otherUser={user.artist_id}
-                        collabRequests={collab.collabDetails}
-                        onClickCollabRequest={(
-                          collabDetails: CollabRequestData
-                        ) => {
-                          setCollabRequestDetails(collabDetails);
-                        }}
-                      />
+                      <CollabRequestTab />
                     </div>
                   </Content>
                 )}

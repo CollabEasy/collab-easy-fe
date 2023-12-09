@@ -14,6 +14,7 @@ import Meta from "antd/lib/card/Meta";
 import {
   CollabRequestData,
   CollabResponse,
+  SearchCollab,
   SendCollabRequest,
 } from "types/model";
 import { AppState } from "state";
@@ -42,6 +43,7 @@ const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
   isFetchingCollabDetails: state.collab.isFetchingCollabDetails,
   datewiseCollab: state.collab.dateWiseCollabs,
+  collab: state.collab,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -49,31 +51,48 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(action.sendCollabRequestAction(data)),
   fetchCollabsDateWise: (fetchAllCollabs: boolean) =>
     dispatch(action.fetchCollabsDateWise(fetchAllCollabs)),
+  getCollabRequestsAction: (data: SearchCollab) =>
+    dispatch(action.getCollabRequestsAction(data)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
-  otherUser: string;
-  collabRequests: CollabResponse;
-  onClickCollabRequest: (collabRequest: CollabRequestData) => void;
 } & ConnectedProps<typeof connector>;
 
 export const CollabRequestTab = ({
   user,
-  otherUser,
+  collab,
   datewiseCollab,
-  collabRequests,
   isFetchingCollabDetails,
-  onClickCollabRequest,
   fetchCollabsDateWise,
+  getCollabRequestsAction,
+  sendCollabRequestAction,
 }: Props) => {
+  const emptyCollabDetails: CollabRequestData = {
+    id: "",
+    senderId: "",
+    receiverId: "",
+    collabDate: undefined,
+    requestData: {
+      message: "",
+      collabTheme: "",
+    },
+    status: "",
+    createdAt: undefined,
+    updatedAt: undefined,
+    proposalId: undefined,
+  };
+
   const { toCollabPage } = useRoutesContext();
   const dispatch = useDispatch();
   const [allSentReceivedStatus, setAllSentReceivedStatus] = useState("all");
   const [collabStatusFilter, setCollabStatusFilter] = useState("all");
   const [activeKey, setActiveKey] = useState("1");
   const [fetchAllCollabs, setFetchAllCollabs] = useState(false);
+  const [collabRequestDetails, setCollabRequestDetails] =
+    useState(emptyCollabDetails);
+  const [hasPendingCollab, setHasPendingCollab] = useState(false);
   const dateToday = new Date();
   const dateTodayStr =
     dateToday.getFullYear() +
@@ -84,12 +103,35 @@ export const CollabRequestTab = ({
 
   const [selectedDate, setSelectedDate] = useState(dateTodayStr);
   const { TabPane } = Tabs;
+  const collabRequests = collab.collabDetails;
 
   useEffect(() => {
     if (activeKey === "2") {
       fetchCollabsDateWise(fetchAllCollabs);
+    } else {
+      getCollabRequestsAction({});
     }
   }, [activeKey, fetchAllCollabs]);
+
+  useEffect(() => {
+    if (
+      collab.collabDetails.sent.pending.length > 0 ||
+      collab.collabDetails.sent.active.length > 0
+    ) {
+      setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
+      setHasPendingCollab(true);
+    } else if (
+      collab.collabDetails.received.pending.length > 0 ||
+      collab.collabDetails.received.active.length > 0
+    ) {
+      setHasPendingCollab(true);
+      setCollabRequestDetails(collab.collabDetails.received.active[0]);
+    } else {
+      setHasPendingCollab(false);
+      setCollabRequestDetails(emptyCollabDetails);
+    }
+
+  }, []);
 
   const dateToCollabRequestMap = {};
   collabRequests["sent"]["all"].forEach((collabRequest) => {
@@ -294,12 +336,16 @@ export const CollabRequestTab = ({
     );
   };
 
+  if ((user && Object.keys(user).length === 0)|| collab.isFetchingCollabDetails) {
+    return <Loader />;
+  }
+
   return (
     <>
       <div className="collabRequestTab__container">
         <Tabs
-          defaultActiveKey="1"
           centered
+          activeKey={activeKey}
           onChange={(activeKey: string) => {
             setActiveKey(activeKey);
           }}
