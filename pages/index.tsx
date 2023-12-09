@@ -141,9 +141,9 @@ const Home = ({
             {mainContent["paragraph"]}
           </p>
           <div className="hero-text-cnt-wrapper">
-            <button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }} onClick={openLoginModal}>
+            {!isLoggedIn && (<button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }} onClick={openLoginModal}>
               Join for Free!
-            </button>
+            </button>)}
             <Link href={routeToHref(toTutorial())} passHref >
               <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
                 How it works?
