@@ -53,6 +53,7 @@ const mapStateToProps = (state: AppState) => {
   const otherUser = state.user.basicUser;
   const isFetchingBasicUser = state.user.isFetchingBasicUser;
   const collabWithUser = state.collab.userCollabs;
+  console.log("State : ", state);
   // const isAddingProposalComment = state.proposalComments.isAddingProposalComment;
   return {
     user,
@@ -273,7 +274,7 @@ Props) => {
     );
   };
 
-  if (proposalData.proposal === undefined || isFetchingUser || isfetchingProposal) {
+  if (proposalData.proposal === undefined || isfetchingProposal) {
     return <Loader />
   }
 
