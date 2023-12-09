@@ -146,7 +146,7 @@ export const artistsForCollab = [
   {
     artist: "Rahul Gupta",
     slug: "rahul-gupta-1",
-    category: ["Paniting"],
+    category: ["Painting"],
     url: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/YK4QV9uKPEeyz-gbVVebpQ/rahul.png",
   },
   {
