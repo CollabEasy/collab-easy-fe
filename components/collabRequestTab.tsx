@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Pagination, Button, Card, Avatar, Select, Table } from "antd";
+import {
+  Pagination,
+  Button,
+  Card,
+  Avatar,
+  Select,
+  Table,
+  Tabs,
+  Collapse,
+  Switch,
+} from "antd";
 import Meta from "antd/lib/card/Meta";
 import {
   CollabRequestData,
@@ -12,6 +22,12 @@ import {
   getCollabRequestsAction,
   rejectCollabRequestAction,
 } from "state/action";
+import Timeline from "@mui/lab/Timeline";
+import TimelineItem, { timelineItemClasses } from "@mui/lab/TimelineItem";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps, useDispatch } from "react-redux";
 import * as action from "./../state/action";
@@ -25,17 +41,21 @@ import Layout from "@/components/layout";
 import $ from "jquery";
 import Link from "next/link";
 import { GetCollabHeading } from "helpers/collabCardHelper";
+import { CSSProperties } from "@emotion/serialize";
 
 const { Option } = Select;
 
 const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
   isFetchingCollabDetails: state.collab.isFetchingCollabDetails,
+  datewiseCollab: state.collab.dateWiseCollabs,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   sendCollabRequestAction: (data: SendCollabRequest) =>
     dispatch(action.sendCollabRequestAction(data)),
+  fetchCollabsDateWise: (fetchAllCollabs: boolean) =>
+    dispatch(action.fetchCollabsDateWise(fetchAllCollabs)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -49,14 +69,18 @@ type Props = {
 export const CollabRequestTab = ({
   user,
   otherUser,
+  datewiseCollab,
   collabRequests,
   isFetchingCollabDetails,
   onClickCollabRequest,
+  fetchCollabsDateWise,
 }: Props) => {
   const { toCollabPage } = useRoutesContext();
   const dispatch = useDispatch();
   const [allSentReceivedStatus, setAllSentReceivedStatus] = useState("all");
   const [collabStatusFilter, setCollabStatusFilter] = useState("all");
+  const [activeKey, setActiveKey] = useState("1");
+  const [fetchAllCollabs, setFetchAllCollabs] = useState(false);
   const dateToday = new Date();
   const dateTodayStr =
     dateToday.getFullYear() +
@@ -66,6 +90,13 @@ export const CollabRequestTab = ({
     dateToday.getDate();
 
   const [selectedDate, setSelectedDate] = useState(dateTodayStr);
+  const { TabPane } = Tabs;
+
+  useEffect(() => {
+    if (activeKey === "2") {
+      fetchCollabsDateWise(fetchAllCollabs);
+    }
+  }, [activeKey, fetchAllCollabs]);
 
   const dateToCollabRequestMap = {};
   collabRequests["sent"]["all"].forEach((collabRequest) => {
@@ -96,7 +127,6 @@ export const CollabRequestTab = ({
     dateToCollabRequestMap[collabDate].push(collabRequest);
   });
 
-
   const columns = [
     { title: "Title", dataIndex: "title", key: "title" },
     {
@@ -111,11 +141,8 @@ export const CollabRequestTab = ({
       // eslint-disable-next-line react/display-name
       render: (_text: any, collab: any) => (
         <>
-          <Button >
-            <Link
-              href={toCollabPage(collab.id).as}
-              passHref
-            >
+          <Button>
+            <Link href={toCollabPage(collab.id).as} passHref>
               Details
             </Link>
           </Button>
@@ -136,18 +163,15 @@ export const CollabRequestTab = ({
             <span>
               <p>{collab.status}</p>
             </span>
-            <Button >
-              <Link
-                href={toCollabPage(collab.id).as}
-                passHref
-              >
+            <Button>
+              <Link href={toCollabPage(collab.id).as} passHref>
                 Details
               </Link>
             </Button>
           </div>
-        )
-      }
-    }
+        );
+      },
+    },
   ];
 
   const scrollSmoothlyToID = (id) => {
@@ -155,8 +179,10 @@ export const CollabRequestTab = ({
     element.scrollIntoView();
   };
 
-  const getCollabRequestCards = () => {
-    let requestsToShow = [];
+  const getCollabRequestCards = (
+    requestsToShow?: any[],
+    paginate?: boolean
+  ) => {
     // if (allSentReceivedStatus === "all") {
     //   if (collabStatusFilter === "all") {
     //     requestsToShow = collabRequests["sent"]["all"].concat(collabRequests["received"]["all"]);
@@ -167,7 +193,15 @@ export const CollabRequestTab = ({
     // else {
     //   requestsToShow = collabRequests[allSentReceivedStatus][collabStatusFilter];
     // }
-    requestsToShow = dateToCollabRequestMap[selectedDate] ?? [];
+    if (requestsToShow === undefined || requestsToShow.length === 0) {
+      requestsToShow = dateToCollabRequestMap[selectedDate] ?? [];
+    }
+
+    if (paginate === undefined) {
+      paginate = true;
+    } else {
+      paginate = false;
+    }
     if (requestsToShow.length > 0) {
       let updatedData = [];
       requestsToShow.forEach((request) => {
@@ -175,11 +209,17 @@ export const CollabRequestTab = ({
           title: GetCollabHeading(user.artist_id, request),
           status: request.status,
           id: request.id,
-        }
+        };
         updatedData.push(formattedCollabDetails);
-      })
-      return (
+      });
+      return paginate ? (
         <Table
+          columns={window.innerWidth < 500 ? deviceColumns : columns}
+          dataSource={updatedData}
+        />
+      ) : (
+        <Table
+          pagination={false}
           columns={window.innerWidth < 500 ? deviceColumns : columns}
           dataSource={updatedData}
         />
@@ -191,8 +231,8 @@ export const CollabRequestTab = ({
     const noCollabMessage = (
       <div style={{ padding: "32px 16px" }}>
         <p className="common-h1-style h4">
-          No collab requests for selected date? It&apos;s never too late! Reach out to your
-          favorite artist and collaborate now!{" "}
+          No collab requests for selected date? It&apos;s never too late! Reach
+          out to your favorite artist and collaborate now!{" "}
         </p>
         <p className="common-h1-style h5">
           {" "}
@@ -219,7 +259,9 @@ export const CollabRequestTab = ({
       }
     }
 
-    const nextDateDate = new Date(nextDate.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+    const nextDateDate = new Date(
+      nextDate.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3")
+    );
     const message = `You do not have any collab requests for selected date. Your upcoming collabs or requests are on ${nextDateDate.toUTCString()}.`;
     return (
       <div style={{ padding: "32px 16px" }}>
@@ -232,18 +274,56 @@ export const CollabRequestTab = ({
     );
   };
 
+  const { Panel } = Collapse;
+
+  const getCollabCards = (data: CollabRequestData[]) => {
+    const result = [];
+    data.forEach((element) => {
+      result.push(<CollabDetailCard showUser={true} collabDetails={element} />);
+    });
+    return result;
+  };
+
+  const getCollabTimeline = () => {
+    const timelineItems = [];
+
+    for (let dateString in datewiseCollab) {
+      timelineItems.push(
+        <Panel header={dateString} key={""}>
+          {getCollabCards(datewiseCollab[dateString])}
+        </Panel>
+      );
+    }
+    return (
+      <Collapse ghost accordion>
+        {timelineItems}
+      </Collapse>
+    );
+  };
+
   return (
     <>
       <div className="collabRequestTab__container">
-        <div id="collab_calender" className="collabRequestTab__filterContainer">
-          <CollabCalender
-            events={dateToCollabRequestMap}
-            onSelectDate={(date: string) => {
-              setSelectedDate(date);
-              scrollSmoothlyToID("collab_cards");
-            }}
-          />
-          {/* <Select
+        <Tabs
+          defaultActiveKey="1"
+          centered
+          onChange={(activeKey: string) => {
+            setActiveKey(activeKey);
+          }}
+        >
+          <TabPane tab="Calender View" key="1">
+            <div
+              id="collab_calender padding20"
+              className="collabRequestTab__filterContainer"
+            >
+              <CollabCalender
+                events={dateToCollabRequestMap}
+                onSelectDate={(date: string) => {
+                  setSelectedDate(date);
+                  scrollSmoothlyToID("collab_cards");
+                }}
+              />
+              {/* <Select
             className="collabRequestTab__filter collabRequestTab__antFilter"
             defaultValue="all"
             onChange={(value) => {
@@ -267,19 +347,32 @@ export const CollabRequestTab = ({
             <Option value="rejected">Rejected</Option>
             <Option value="completed">Completed</Option>
           </Select> */}
-        </div>
+            </div>
+            {activeKey === "1" && isFetchingCollabDetails ? (
+              <Loader />
+            ) : (
+              <div
+                id="collab_cards"
+                className="collabRequestTab__collabListContainer"
+              >
+                {getCollabRequestCards()}
+              </div>
+            )}
+          </TabPane>
+          <TabPane tab="List View" key="2">
+            <div className="flex-row">
+              <Switch
+                loading={isFetchingCollabDetails}
+                onChange={() => {
+                  setFetchAllCollabs(!fetchAllCollabs);
+                }}
+              />
+              <p>{fetchAllCollabs ? "Show Active" : "Show All"}</p>
+            </div>
+            <div className="padding20">{getCollabTimeline()}</div>
+          </TabPane>
+        </Tabs>
       </div>
-
-      {isFetchingCollabDetails ? (
-        <Loader />
-      ) : (
-        <div
-          id="collab_cards"
-          className="collabRequestTab__collabListContainer"
-        >
-          {getCollabRequestCards()}
-        </div>
-      )}
     </>
   );
 };

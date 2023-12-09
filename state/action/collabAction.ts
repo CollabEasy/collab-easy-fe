@@ -250,3 +250,22 @@ export const fetchCollabsWithUserSuccess = (data: any) => ({
 export const fetchCollabsWithUserFailure = () => ({
   type: actionTypes.FETCH_COLLAB_WITH_USER_FAILURE,
 });
+
+export const fetchCollabsDateWise = (fetchAll: boolean) => ({
+  type: actionTypes.FETCH_COLLABS_DATE_WISE,
+  payload : {
+    fetchAll
+  }
+})
+
+export const fetchCollabsDateWiseSuccess = (data: any) => ({
+  type: actionTypes.FETCH_COLLABS_DATE_WISE_SUCCESS,
+  payload : {
+    data
+  }
+})
+
+
+export const fetchCollabsDateWiseFailure = () => ({
+  type: actionTypes.FETCH_COLLABS_DATE_WISE_FAILURE,
+})

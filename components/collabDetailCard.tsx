@@ -135,6 +135,8 @@ const CollabDetailCard = ({
     );
   };
 
+  const sentReceived = user.artist_id === collabDetails.senderId ? "Sent " : "Received ";
+
   const getCollabCard = () => {
     return (
       <div className="ui-block">
@@ -159,7 +161,7 @@ const CollabDetailCard = ({
                 {collabDetails.senderName}
               </a>
               <p className="common-p-style">
-                Sent on  {GetDateString(collabDetails.createdAt as unknown as number)}
+                {sentReceived + "on " + GetDateString(collabDetails.createdAt as unknown as number)}
               </p>
             </div>
           </div>

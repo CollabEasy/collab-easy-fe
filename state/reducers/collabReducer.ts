@@ -32,6 +32,7 @@ const initialState: CollabRequestState = {
     user_id: undefined,
     isFetchingCollabsWithUser: false,
   },
+  dateWiseCollabs: {},
 };
 
 const getUpdatedList = (
@@ -403,6 +404,18 @@ const collabReducer = (state = initialState, action): CollabRequestState => {
           user_id: data.otherUserId,
           isFetchingCollabsWithUser: false,
         },
+      };
+    case actionTypes.FETCH_COLLABS_DATE_WISE_SUCCESS:
+      const datewisedata = action.payload.data.data;
+      return {
+        ...state,
+        dateWiseCollabs: datewisedata,
+        isFetchingCollabDetails: false,
+      };
+    case actionTypes.FETCH_COLLABS_DATE_WISE_FAILURE:
+      return {
+        ...state,
+        isFetchingCollabDetails: false,
       };
     default:
       return state;

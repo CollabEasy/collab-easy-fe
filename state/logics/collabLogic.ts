@@ -241,3 +241,24 @@ export const fetchCollabsWithUser = createLogic<
     }
   },
 });
+
+export const fetchCollabsDateWise = createLogic<
+  AppState,
+  FSACreatorPayload<typeof actions.fetchCollabsDateWise>,
+  any,
+  LogicDeps
+>({
+  type: [actionTypes.FETCH_COLLABS_DATE_WISE],
+  async process({ action, api }, dispatch, done) {
+    const fetchAll = action.payload.fetchAll;
+    try {
+      dispatch(actions.getCollabRequestsActionRequest());
+      const response = await api.collabApi.fetchCollabsDateWise(fetchAll);
+      dispatch(actions.fetchCollabsDateWiseSuccess(response));
+    } catch (error) {
+      dispatch(actions.fetchCollabsDateWiseFailure());
+    } finally {
+      done();
+    }
+  },
+});

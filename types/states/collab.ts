@@ -9,5 +9,6 @@ export interface CollabRequestState {
   isCancellingRequest: boolean;
   isCompletingRequest: boolean;
   isFetchingCollabDetails: boolean;
-  userCollabs: {collabs: CollabResponse[], user_id: string, isFetchingCollabsWithUser: boolean}
+  userCollabs: {collabs: CollabResponse[], user_id: string, isFetchingCollabsWithUser: boolean},
+  dateWiseCollabs: Record<string, CollabRequestData[]>
 }

@@ -56,3 +56,7 @@
 @media only screen and (max-width: 399px) {
     
 }
+
+.timeline.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    border-top: 3px solid black;
+}

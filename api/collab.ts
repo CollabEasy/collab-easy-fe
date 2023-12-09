@@ -11,6 +11,15 @@ const postConfig = (dataToSend?: object) => {
   };
 };
 
+const getConfigWithToken = () => {
+  return {
+    method: "get",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  };
+};
+
 export const sendCollabRequest = async (collabRequest: SendCollabRequest) => {
   try {
     return await api.call<SendCollabRequest>(
@@ -79,3 +88,12 @@ export const fetchCollabsWithUser = async (data: any) => {
     throw error;
   }
 };
+
+export const fetchCollabsDateWise = async (fetchAll: boolean) => {
+  try {
+    const config = getConfigWithToken();
+    return await api.call(`api/v1/collab/getByDate?all=${fetchAll}`, config);
+  } catch (error) {
+    throw error;
+  }
+}
