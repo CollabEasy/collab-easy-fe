@@ -103,7 +103,7 @@ const GenericPageBanner = ({
                                             {paragraph}
                                         </p>
                                     </div>
-                                    <div className="pageBanner-button-group">
+                                    <div className="pageBanner-button-group twoButtonsSpacing">
                                         <Button
                                             type="primary"
                                             className="common-btn-dimension pageBanner-button"
