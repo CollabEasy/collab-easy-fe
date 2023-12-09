@@ -273,9 +273,9 @@ Props) => {
     );
   };
 
-  // if (isFetchingUser) {
-  //   return <Loader />
-  // }
+  if (proposalData.proposal === undefined || isFetchingUser || isfetchingProposal) {
+    return <Loader />
+  }
 
   return (
     <Layout

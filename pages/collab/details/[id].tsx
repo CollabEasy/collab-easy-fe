@@ -93,6 +93,7 @@ const CollabPage = ({
   const [collabDetails, setCollabRequestDetails] =
     useState<CollabRequestData>(emptyCollabDetails);
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [isNewRequest, setIsNewRequest] = useState(false);
 
   const { toDiscover, toArtistPortal } = useRoutesContext();
 
@@ -105,26 +106,27 @@ const CollabPage = ({
       collabRequestId: collabId as string,
     });
     fetchCollabConversationById(collabId as string);
+    setWindowWidth(window.innerWidth);
   }, [getCollabRequestsAction, fetchCollabConversationById, collabId]);
 
   useEffect(() => {
-    setWindowWidth(window.innerWidth);
-    setCollabConversation(collabConversation.collabConversation);
-
     if (
-      collab.collabDetails.sent.pending.length > 0 ||
-      collab.collabDetails.sent.active.length > 0
+      collab.collabDetails.sent.all.length > 0
     ) {
-      setCollabRequestDetails(collab.collabDetails.sent.pending[0]);
+      setCollabRequestDetails(collab.collabDetails.sent.all[0]);
     } else if (
-      collab.collabDetails.received.pending.length > 0 ||
-      collab.collabDetails.received.active.length > 0
+      collab.collabDetails.sent.all.length > 0
     ) {
-      setCollabRequestDetails(collab.collabDetails.received.active[0]);
+      setCollabRequestDetails(collab.collabDetails.received.all[0]);
     } else {
       setCollabRequestDetails(emptyCollabDetails);
+      setIsNewRequest(true);
     }
-  }, [collabConversation, collab]);
+  }, [collab]);
+
+  useEffect(() => {
+    setCollabConversation(collabConversation.collabConversation);
+  }, [collabConversation])
 
   const saveComment = () => {
     let obj = {
@@ -178,6 +180,10 @@ const CollabPage = ({
       </Breadcrumb>
     );
   };
+
+  if (isFetchingCollabs) {
+    return <Loader />
+  }
 
   return (
     <Layout
