@@ -26,3 +26,10 @@ export const setIsLoading = (isLoading: boolean) => ({
 		isLoading,
 	}
 })
+
+export const routeToMyWondor = (route: boolean) => ({
+	type: actionTypes.ROUTE_TO_MY_WONDOR,
+	payload: {
+		route,
+	}
+})

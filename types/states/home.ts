@@ -5,4 +5,5 @@ export interface HomeState {
   isLoading: boolean,
   loginModalDetails: LoginModalDetails;
   artistListDetails: any;
+  routeToMyWondor: boolean
 }
