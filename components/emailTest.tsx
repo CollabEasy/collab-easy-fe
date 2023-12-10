@@ -104,11 +104,12 @@ const EmailTest = ({
   });
 
   const menu = <Menu style={{ width: 140 }}>{menuItems}</Menu>;
-  const buttonDisabled = subject.length < 5 || content.length < 10;
+  const buttonDisabled = selectedEmailOption !== 'INCOMPLETE_PROFILE' && (subject.length < 5 || content.length < 10);
   return (
     <Form form={form} name="control-hooks" style={{ maxWidth: 600 }}>
       <Form.Item name="Subject" label="Subject" rules={[{ required: true }]}>
         <Input
+          disabled={selectedEmailOption === 'INCOMPLETE_PROFILE'}
           onChange={(e) => {
             setSubject(e.target.value);
           }}
@@ -118,6 +119,7 @@ const EmailTest = ({
 
       <Form.Item name="Content" label="Content" rules={[{ required: true }]}>
         <TextArea
+          disabled={selectedEmailOption === 'INCOMPLETE_PROFILE'}
           onChange={(e) => {
             setContent(e.target.value);
           }}

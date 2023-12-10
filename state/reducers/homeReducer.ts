@@ -8,10 +8,12 @@ const initialState: HomeState = {
     openModal: false,
   },
   isLoading: true,
+  routeToMyWondor: false,
   artistListDetails: {}
 };
 
 const homeReducer = (state = initialState, action): HomeState => {
+  console.log("action : ", action);
   switch (action.type) {
     case actionTypes.HOME:
       return {
@@ -30,6 +32,13 @@ const homeReducer = (state = initialState, action): HomeState => {
       return { ...state, loginModalDetails: { openModal: false } };
     case actionTypes.SET_IS_LOADING:
       return { ...state, isLoading: action.payload.isLoading}
+    case actionTypes.ROUTE_TO_MY_WONDOR:
+      const { route } = action.payload;
+      console.log("route : ", route);
+      return {
+        ...state,
+        routeToMyWondor: route,
+      }
     default:
       return state;
   }

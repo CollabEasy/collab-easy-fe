@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
 import Image from "next/image";
 import profileImageImg from "../..//public/images/profile.png";
-import { closeLoginModalAction, fetchLoginData } from "../../state/action";
+import { closeLoginModalAction, fetchLoginData, routeToMyWondor } from "../../state/action";
 import { Dispatch } from "redux";
 import { AppState } from "types/states";
 import { useRoutesContext } from "../routeContext";
@@ -36,7 +36,8 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
   };
 
   const OnSuccessCallback = (response) => {
-    let  tokenId  = response.credential;
+
+    let tokenId  = response.credential;
     fetchLoginData(tokenId);
   };
 

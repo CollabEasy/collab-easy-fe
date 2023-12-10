@@ -25,6 +25,7 @@ const mapStateToProps = (state: AppState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     openLoginModalAction: () => dispatch(actions.openLoginModalAction()),
     resetUserLoggedIn: () => dispatch(actions.resetUserLoggedIn()),
+    routeToMyWondor: (route: boolean) => dispatch(actions.routeToMyWondor(route)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -36,6 +37,7 @@ const MyWondorPage = ({
     isLoggedIn,
     loginModalDetails,
     artistListData,
+    routeToMyWondor,
     openLoginModalAction,
     resetUserLoggedIn,
 }: Props) => {
@@ -46,6 +48,7 @@ const MyWondorPage = ({
     const [windowWidth, setWindowWidth] = useState(-1);
 
     useEffect(() => {
+        routeToMyWondor(false);
         if (user) {
             if (user.new_user) {
                 setShowProfileModal(true);
