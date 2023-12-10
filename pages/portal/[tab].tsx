@@ -329,8 +329,7 @@ const ArtistPortal = ({
           "Portal for artists to manage their information at one place. Update your basic information, collab readiness etc here. Join Wondor now!"
         }
       >
-        {loginModalDetails.openModal && !user.new_user && <LoginModal />}
-        {showProfileModal && <NewUserModal />}
+        
         {!isLoggedIn ? (
           <>
             <NotAuthorised

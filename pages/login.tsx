@@ -2,13 +2,14 @@ import { connect, ConnectedProps } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
 import Image from "next/image";
-import profileImageImg from "../..//public/images/profile.png";
-import { closeLoginModalAction, fetchLoginData, routeToMyWondor } from "../../state/action";
+import profileImageImg from "..//public/images/profile.png";
+import { closeLoginModalAction, fetchLoginData, routeToMyWondor } from "../state/action";
 import { Dispatch } from "redux";
 import { AppState } from "types/states";
-import { useRoutesContext } from "../routeContext";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
+import { useRoutesContext } from "@/components/routeContext";
+import { useRouter } from "next/router";
 
 export const AMPLIFY_GOOGLE_CLIENT_ID = process.env.AMPLIFY_GOOGLE_CLIENT_ID
 export const AMPLIFY_GA_TRACKING_ID = process.env.AMPLIFY_GA_TRACKING_ID
@@ -16,7 +17,8 @@ export const AMPLIFY_GA_TRACKING_ID = process.env.AMPLIFY_GA_TRACKING_ID
 const mapStateToProps = (state: AppState) => {
   const user = state.user;
   const loginModalDetails = state.home.loginModalDetails;
-  return { loginModalDetails, user };
+  const routeToMyWondor = state.home.routeToMyWondor;
+  return { loginModalDetails, user, routeToMyWondor};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -25,9 +27,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
-type Props = {} & ConnectedProps<typeof connector>;
+type Props = {previousPath: string} & ConnectedProps<typeof connector>;
 
-const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
+const Login = ({ user, routeToMyWondor, closeLoginModalAction, fetchLoginData }: Props) => {
   const [visible, setVisible] = useState(true);
   const [errorMessageVisible, setErrorMessageVisible] = useState(false);
   const closeLoginModal = () => {
@@ -35,9 +37,18 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
     closeLoginModalAction();
   };
 
+  const router = useRouter();
+
   const OnSuccessCallback = (response) => {
     let tokenId  = response.credential;
     fetchLoginData(tokenId);
+    console.log("route to woindor : ", routeToMyWondor)
+    if (routeToMyWondor) {
+        router.push("/my-wondor");
+    } else {
+        router.back();
+    }
+    
   };
 
   const OnFailureCallback = (response) => {
@@ -47,14 +58,7 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
   const { toTerms, toPrivacy } = useRoutesContext()
 
   return (
-    <Modal
-      visible={visible}
-      destroyOnClose={true}
-      onCancel={closeLoginModal}
-      footer={null}
-      width={900}
-      bodyStyle={{ height: "500px", padding: "0px" }}
-    >
+    <div className="padding20">
       <div className="login-modal-container">
         <div className="login-signup-container">
           <div className="login-image">
@@ -100,8 +104,8 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
           </div>
         </div>
       </div>
-    </Modal>
+    </div>
   );
 };
 
-export default connector(LoginModal);
+export default connector(Login);

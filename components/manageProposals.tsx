@@ -194,13 +194,7 @@ const ManageProposals = ({
 
     return (
         <>
-            {loginModalDetails.openModal && !user.new_user && (
-                <LoginModal />
-            )}
-            {showProfileModal && (
-                <NewUserModal />
-            )
-            }
+
 
             {isfetchingUserProposals ? (
                 <Loader />

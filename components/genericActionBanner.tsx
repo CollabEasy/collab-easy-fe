@@ -13,6 +13,7 @@ import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from './modal/newUserModal';
 import notFoundImage from '../public/images/not-found.svg';
+import { useRouter } from "next/router";
 
 const mapStateToProps = (state: AppState) => ({
     loginModalDetails: state.home.loginModalDetails,
@@ -46,8 +47,9 @@ const GenericActionBanner = ({
     const [showProfileModal, setShowProfileModal] = useState(false);
     const { toContactUs, toFAQ } = useRoutesContext();
 
-    const openLoginModal = () => {
-        openLoginModalAction();
+    const router = useRouter();
+    const openLogin = () => {
+        router.push("/login");
     };
 
     useEffect(() => {
@@ -68,15 +70,7 @@ const GenericActionBanner = ({
     // https://bootdey.com/snippets/view/blog-page#html
     return (
         <>
-            {loginModalDetails.openModal && !user.new_user && (
-                <LoginModal />
-            )
-            }
-            {showProfileModal && (
-                <NewUserModal />
-            )
-            }
-
+            
             <div style={{ width: "100%" }}>
                 <div className="row d-flex justify-content-center actionBanner-cover">
                     <div className="col-md-12">
@@ -115,7 +109,7 @@ const GenericActionBanner = ({
                                         </Button>
                                         <Button
                                             className="common-btn-dimension actionBanner-button"
-                                            onClick={openLoginModal}
+                                            onClick={openLogin}
                                         >
                                             Join Now
                                         </Button>

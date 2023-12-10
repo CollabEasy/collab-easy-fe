@@ -10,6 +10,7 @@ import NewUserModal from "../modal/newUserModal";
 import { LoginModalDetails } from "types/model";
 import { openLoginModalAction } from "state/action";
 import loginImage from "../../public/images/login.svg"
+import router from "next/router";
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
@@ -40,14 +41,12 @@ const NotAuthorised = ({
   const [showProfileModal, setShowProfileModal] = useState(false);
 
   const openLoginModal = () => {
-    openLoginModalAction();
+    router.push("/login");
   };
 
   let message = error.length !== 0 ? error : "Create a new account or log in to your existing account to get the most from wondor!";
   return (
     <>
-      {loginModalDetails.openModal && !user.new_user && <LoginModal />}
-      {showProfileModal && <NewUserModal />}
       <div className="d-flex justify-content-between align-items-center" style={{ marginTop: "10%", marginBottom: "15%" }}>
         <div className="common-text-style">
           <Result

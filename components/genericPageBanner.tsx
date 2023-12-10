@@ -12,6 +12,7 @@ import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from './modal/newUserModal';
 import pageBannerImage from '../public/images/mobile-landing.svg';
+import router from "next/router";
 
 const mapStateToProps = (state: AppState) => ({
     loginModalDetails: state.home.loginModalDetails,
@@ -50,7 +51,7 @@ const GenericPageBanner = ({
     const { toContactUs } = useRoutesContext();
 
     const openLoginModal = () => {
-        openLoginModalAction();
+        router.push("/login");
     };
 
     useEffect(() => {
@@ -70,14 +71,6 @@ const GenericPageBanner = ({
     // https://bootdey.com/snippets/view/blog-page#html
     return (
         <>
-            {loginModalDetails.openModal && !user.new_user && (
-                <LoginModal />
-            )
-            }
-            {showProfileModal && (
-                <NewUserModal />
-            )
-            }
 
             <div style={{ width: "100%" }}>
                 <div className="row d-flex justify-content-center pageBanner-cover">

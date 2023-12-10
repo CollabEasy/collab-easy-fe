@@ -143,15 +143,6 @@ const ProposalsPage = ({
             content={"Check out all of the interesting proposals for collaboration by artists around the world. Express interest and unlock the opportunity for working on a masterpiece with a fellow artist. Join now!"}
 
         >
-            {loginModalDetails.openModal && !user.new_user && (
-                <LoginModal />
-            )
-            }
-            {showProfileModal && (
-                <NewUserModal />
-            )
-            }
-
             {isFetchingAllProposals ? (
                 <Loader />
             ) : (

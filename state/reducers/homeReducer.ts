@@ -9,7 +9,8 @@ const initialState: HomeState = {
   },
   isLoading: true,
   routeToMyWondor: false,
-  artistListDetails: {}
+  artistListDetails: {},
+  currentPathname: "",
 };
 
 const homeReducer = (state = initialState, action): HomeState => {
@@ -38,6 +39,12 @@ const homeReducer = (state = initialState, action): HomeState => {
       return {
         ...state,
         routeToMyWondor: route,
+      }
+    case actionTypes.SET_CURRENT_PATHNAME:
+      const {pathname} = action.payload;
+      return {
+        ...state,
+        currentPathname: pathname,
       }
     default:
       return state;

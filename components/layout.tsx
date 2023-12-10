@@ -72,11 +72,7 @@ const Layout = ({
       pathname = pathname.replace(":3000", "");
     }
     setPathname(pathname);
-    console.log("pushing to wondor");
-    if (routeToMyWondor) {
-      router.push("/my-wondor");
-    }
-  }, [routeToMyWondor]);
+  }, []);
 
   if (!ISSERVER && (user === undefined || Object.keys(user).length === 1)) {
     const userDetailsCached = getLoginDetails();

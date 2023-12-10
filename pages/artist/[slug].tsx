@@ -1,19 +1,15 @@
-import Layout from "../../components/layout";
-import React, { useEffect, useState } from "react";
-import { Tabs } from "antd";
-import { Card } from "antd";
-import Profile from "components/profile";
-import { AppState } from "state";
-import { connect, ConnectedProps } from "react-redux";
-import router, { useRouter } from "next/router";
-import { Dispatch } from "redux";
-import * as artistApi from "api/artist-user";
-import { User } from "types/model";
-import * as actions from "state/action";
 import Loader from "@/components/loader";
-import NotAuthorised from "@/components/error/notAuthorised";
-import LoginModal from "@/components/modal/loginModal";
-import NewUserModal from "@/components/modal/newUserModal";
+import { Card, Tabs } from "antd";
+import * as artistApi from "api/artist-user";
+import Profile from "components/profile";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { connect, ConnectedProps } from "react-redux";
+import { Dispatch } from "redux";
+import { AppState } from "state";
+import * as actions from "state/action";
+import { User } from "types/model";
+import Layout from "../../components/layout";
 
 // https://ant.design/components/card/
 const { Meta } = Card;
@@ -109,16 +105,14 @@ const ArtistProfile = ({
         ". Send them a collaboration request | Wondor"
       }
     >
-      {loginModalDetails.openModal && !user.new_user && <LoginModal />}
-      {showProfileModal && <NewUserModal />}
       <Profile
-          isSelf={isSelf}
-          upForCollab={upForCollab}
-          isLoggedIn={isLoggedIn}
-          loggedInUserId={isLoggedIn ? user.artist_id : ""}
-          user={isSelf ? user : otherUser}
-          isProfileComplete={isProfileComplete}
-        />
+        isSelf={isSelf}
+        upForCollab={upForCollab}
+        isLoggedIn={isLoggedIn}
+        loggedInUserId={isLoggedIn ? user.artist_id : ""}
+        user={isSelf ? user : otherUser}
+        isProfileComplete={isProfileComplete}
+      />
     </Layout>
   );
 };
