@@ -71,7 +71,7 @@ const NavBar = ({
 
   const { toWondorHome, toArtistPortal, toMyWondorPage, toAnalyticsPage } =
     useRoutesContext();
-  const { toGetInspired, toAllContestPage, toAllCategoryPage } = useRoutesContext();
+  const { toContestPage, toAllContestPage, toAllCategoryPage } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = !checkDevice() ? document.querySelector("#desktop-p-h") : document.querySelector("#p-h");
@@ -294,8 +294,9 @@ const NavBar = ({
               closable
               message={
                 <span>
-                  Stuck in creativity block? Sign up for weekly emails packed with creative prompts, 
-                  inspirational quotes. Checkout <a href={routeToHref(toGetInspired())}>ideas for this week!</a>
+                  Join the "Overcome Self Doubt" Comic Strip Contest. 
+                  Be a part of the laughter revolution and stand a chance to win the handsome prize of $75.{" "} 
+                  <a href={routeToHref(toContestPage("DEC2023", "details"))}>Submit your entries now!</a>
                 </span>
               }
             />
