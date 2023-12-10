@@ -174,6 +174,19 @@ const NewUser = ({
             onFinishFailed={onFinishFailed}
             requiredMark={false}
           >
+            <Form.Item label="Bio">
+              <Input.TextArea
+                value={userDataCached ? userDataCached.bio : ""}
+                maxLength={300}
+                showCount
+                onChange={(e) => {
+                  setUserDataCached((prevState) => ({
+                    ...prevState,
+                    bio: e.target.value,
+                  }));
+                }}
+              />
+            </Form.Item>
             <Form.Item label="Country">
               <Select
                 showSearch
@@ -302,7 +315,6 @@ const NewUser = ({
             </Form.Item>
             <Form.Item noStyle={true}>
               <div className="submit-container">
-                <p className="submit-text common-p-style">Let’s collaborate</p>
                 <Button
                   type="text"
                   onClick={handleSubmit}
