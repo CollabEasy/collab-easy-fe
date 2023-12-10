@@ -1,3 +1,5 @@
+import { CollapseProps } from "antd";
+
 export const popularCollabCategories = [
   {
     id: 2,
@@ -103,9 +105,9 @@ export const blogCard = [
   },
   {
     heading:
-      "5 Ways in which Wondor.art Help Artists Achieve their Cretaivity Goals!",
+      "5 Ways in which Wondor Help Artists Achieve their Cretaivity Goals!",
     paragraph:
-      "Wondor.art: Nurturing artists, unlocking potential, and propelling creativity to new heights with tailored support and resources.",
+      "Wondor Nurturing artists, unlocking potential, and propelling creativity to new heights with tailored support and resources.",
     url: "/blog/top-5-reasons-for-why-artists-should-use-wondor",
   },
   {
@@ -178,5 +180,49 @@ export const artistsForCollab = [
     slug: "prashant-joshi-1",
     category: ["Music"],
     url: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/VIk_yQ-790yuuh9z54ib2g/pj.png",
+  },
+];
+
+
+export const generalFaqContent = [
+  {
+    key: '2',
+    question: "Why should I use Wondor?",
+    answer: "Wondor is a unique platform designed to enhance your collaboration process. Whether you're a writer in search of an illustrator, a singer looking for a musician, a poet seeking a collaborative doodler, or anyone else, Wondor streamlines the process. Focus on your craft while we handle the rest, from discovering the right collaborator to managing your collaboration effectively."
+  },
+  {
+    key: '3',
+    question: "What are the other benefits of Wondor?",
+    answer: "Beyond connecting you with available artists and managing collaborations, Wondor offers additional features to boost your artistic journey. The Inspiration Hub provides weekly updates on trending themes and ideas, helping overcome creativity blocks. Participate in our monthly art challenges to showcase your skills and win exclusive prizes. Additionally, earn Wondor rewards points as you explore the platform, redeemable for real money."
+  },
+  {
+    key: '4',
+    question: "How can I find artists to collaborate with?",
+    answer: "Finding collaborators is easy on Wondor. Utilize our search feature to discover artists by name or specific collaboration categories of interest. Browse the list and initiate collaboration requests using our user-friendly collab tool."
+  },
+  {
+    key: '5', 
+    question: "What types of projects are suitable for collaboration?",
+    answer: "Wondor encourages collaboration across various creative fields, including visual arts, music, literature, multimedia, design, cross-disciplinary projects, community art, performance, educational initiatives, and social impact projects. Any artist with a set of skills can find suitable collaboration opportunities."
+  },
+  {
+    key: '6',
+    question: "Can I create Collaboration Proposals?",
+    answer: "Absolutely! Wondor allows users to create collaboration proposals, inviting other artists to express interest. As a proposal creator, you have the flexibility to choose and initiate collaboration with any artist who shows interest."
+  },
+  {
+    key: '7',
+    question: "Who can use Wondor?",
+    answer: "Wondor is an inclusive platform open to all artists and content creators, regardless of their experience level. Whether you're a seasoned professional or just starting, Wondor welcomes you to join our vibrant community."
+  },
+  {
+    key: '8',
+    question: "How can I get started using Wondor?",
+    answer: "Getting started on Wondor is easy! Simply create a profile on our website. Once you have a profile, you can start connecting with fellow artists, creating collaboration proposals, and participating in exciting contests that fuel your creativity."
+  },
+  {
+    key: '9',
+    question: "How much does Wondor cost?",
+    answer: "Wondor is completely free to use. There are no fees associated with creating a profile, submitting proposals, or participating in contests. Join us and explore the limitless possibilities of collaborative creativity!"
   },
 ];

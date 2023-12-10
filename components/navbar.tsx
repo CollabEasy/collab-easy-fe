@@ -294,7 +294,7 @@ const NavBar = ({
               closable
               message={
                 <span>
-                  Join the "Overcome Self Doubt" Comic Strip Contest. 
+                  Join the &quot;Overcome Self Doubt&quot; Comic Strip Contest. 
                   Be a part of the laughter revolution and stand a chance to win the handsome prize of $75.{" "} 
                   <a href={routeToHref(toContestPage("DEC2023", "details"))}>Submit your entries now!</a>
                 </span>

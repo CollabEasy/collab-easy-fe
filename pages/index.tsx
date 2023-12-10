@@ -2,6 +2,8 @@ import NewUserModal from "../components/modal/newUserModal";
 import LoginModal from "../components/modal/loginModal";
 import Layout from "../components/layout";
 import Link from "next/link";
+import { Button, Collapse } from "antd";
+import { UpOutlined, DownOutlined } from '@ant-design/icons';
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from "next/image";
@@ -18,8 +20,17 @@ import * as actions from "state/action";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
 import { getPopularCategoryImage, getPopularProposalCategory } from "helpers/homePageHelper";
-import {popularCollabCategories, mainContent, artistsForCollab, popularCollabProposals, blogCard, testimonialContent} from "../constants/home";
-import { Button } from "antd";
+import {
+  popularCollabCategories,
+  mainContent,
+  artistsForCollab,
+  popularCollabProposals,
+  blogCard,
+  testimonialContent,
+  generalFaqContent
+} from "../constants/home";
+
+const { Panel } = Collapse;
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -60,7 +71,7 @@ const Home = ({
   popularCollabProposals,
   artistsForCollab,
   blogCard,
-
+  generalFaqContent,
 }) => {
   // const [showProfileModal, setShowProfileModal] = useState(false);
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
@@ -74,6 +85,8 @@ const Home = ({
     toAllContestPage,
     toRewardsInfoPage,
     toUserCollabPage,
+    toFAQ,
+    toContactUs,
   } = useRoutesContext();
 
   // useEffect(() => {
@@ -109,6 +122,26 @@ const Home = ({
     return (typeof window !== "undefined" && window.location.origin
       ? window.location.origin + url
       : "");
+  }
+
+  const getfaqCard = (faqContent) => {
+    return (
+      <div className="row">
+        <div style={{ width: "100%" }}>
+          <div className="row" style={{ paddingLeft: "2%", paddingRight: "2%" }}>
+            <div className="col-md-12" >
+              <Collapse ghost accordion expandIconPosition="right" expandIcon={({ isActive }) => (isActive ? <UpOutlined /> : <DownOutlined />)}>
+                {faqContent.map((question, index) => (
+                  <Panel header={<h6 className="common-h6-style">{question.question}</h6>} key={index} style={{ borderBottom: '1px solid #e8e8e8' }}>
+                    <p className="common-p-style" style={{ textAlign: "left" }}>{question.answer}</p>
+                  </Panel>
+                ))}
+              </Collapse>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const getMainContent = () => {
@@ -187,11 +220,11 @@ const Home = ({
             <p
               className="common-p-style"
             >
-              Find writers available to 
+              Find writers available to
             </p>
             <Button ghost>
               <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
-                <span style={{fontWeight: 500}}>Collab Now</span>
+                <span style={{ fontWeight: 500 }}>Collab Now</span>
               </Link>
             </Button>
           </div>
@@ -247,7 +280,7 @@ const Home = ({
                           </p>
                           <Button ghost>
                             <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                              <span style={{fontWeight: 500}}>{item.buttonText}</span>
+                              <span style={{ fontWeight: 500 }}>{item.buttonText}</span>
                             </Link>
                           </Button>
                         </div>
@@ -522,6 +555,46 @@ const Home = ({
     );
   }
 
+  const getBasicFAQSection = () => {
+
+    return (
+      <div className="basic-faq-section">
+        <div className="faq-card">
+          <div className="row justify-content-center mt-4">
+            <div className="col-12">
+              <div className="section-title">
+                <h2 className="common-h3-style">Frequently Asked Questions and Resources</h2>
+                <p className="common-p-style ">
+                  Do you have a question about Wondor? See the list of
+                  our most frequenty asked question. If your question is not listed
+                  here, then please checkout our FAQ page or contact us directly.
+                </p>
+                <div>
+                  <Link href={routeToHref(toFAQ())} passHref>
+                    <button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
+                      FAQs
+                    </button>
+                  </Link>
+                  <Link href={routeToHref(toContactUs())} passHref >
+                    <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
+                      Contact Us
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row justify-content-center mt-5">
+            <div className="col-xl-6 col-lg-8 col-md-10 col-sm-10 col-xs-10">
+              {getfaqCard(generalFaqContent)}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+
+  }
+
   return (
     <Layout
       title={"Wondor - Connect with Artists, Manage Collabs, Create Proposals, and More. Join Now!"}
@@ -633,6 +706,14 @@ const Home = ({
         <div className="row mt-2 g-4">{getPopularBlogCard()}</div>
       </div>
 
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        {getBasicFAQSection()}
+      </div>
+
+      <div className="row" style={{ borderBottom: '1px solid #e8e8e8' }}>
+
+      </div>
+
       {getSignUpCard()}
 
       {showCreateOrEditProposalModal && (
@@ -655,7 +736,17 @@ const Home = ({
 export async function getStaticProps({ params }) {
 
   // Pass post data to the page via props
-  return { props: { popularCollabCategories, mainContent, artistsForCollab, popularCollabProposals, blogCard, testimonialContent } }
+  return {
+    props: {
+      popularCollabCategories,
+      mainContent,
+      artistsForCollab,
+      popularCollabProposals,
+      blogCard,
+      testimonialContent,
+      generalFaqContent,
+    }
+  }
 }
 
 export default connector(Home);

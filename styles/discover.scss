@@ -388,6 +388,31 @@
   }
 }
 
+.basic-faq-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+
+  .section-title {
+    padding-left: 20%;
+    padding-right: 20%;
+
+    h2 {
+      font-size: 3vw;
+      line-height: 5vw;
+    }
+
+    p {
+      font-size: 1.5vw;
+      line-height: 2.5vw;
+    }
+  }
+}
+
+
 // Response CSS starts here
 
 @media only screen and (min-width: 1200px) {
@@ -513,6 +538,20 @@
       p {
         font-size: 17px;
         line-height: 20px;
+      }
+    }
+  }
+
+  .basic-faq-section {
+    .section-title {
+      h2 {
+        font-size: 50px;
+        line-height: 65px;
+      }
+
+      p {
+        font-size: 20px;
+        line-height: 35px;
       }
     }
   }
@@ -747,6 +786,24 @@
     }
   }
 
+  .basic-faq-section {
+    .section-title {
+      padding-left: 8%;
+      padding-right: 8%;
+      text-align: center;
+
+      h2 {
+        font-size: 5vw;
+        line-height: 6vw;
+      }
+
+      p {
+        font-size: 2vw;
+        line-height: 3vw;
+      }
+    }
+  }
+
   .signup-container {
 
     h1 {
@@ -933,6 +990,24 @@
 
       text {
         font-size: 2vw;
+      }
+    }
+  }
+
+  .basic-faq-section {
+    .section-title {
+      padding-left: 2%;
+      padding-right: 2%;
+      text-align: center;
+
+      h2 {
+        font-size: 5vw;
+        line-height: 6vw;
+      }
+
+      p {
+        font-size: 2.75vw;
+        line-height: 4.5vw;
       }
     }
   }
@@ -1126,6 +1201,23 @@
     }
   }
 
+  .basic-faq-section {
+    .section-title {
+      padding-left: 10%;
+      padding-right: 10%;
+
+      h2 {
+        font-size: 7vw;
+        line-height: 7vw;
+      }
+
+      p {
+        font-size: 3.75vw;
+        line-height: 6vw;
+      }
+    }
+  }
+
   .signup-container {
 
     h1 {
@@ -1309,6 +1401,24 @@
       text {
         font-size: 3vw;
         line-height: 20px;
+      }
+    }
+  }
+
+  .basic-faq-section {
+    .section-title {
+      padding-left: 5%;
+      padding-right: 5%;
+      text-align: center;
+
+      h2 {
+        font-size: 6vw;
+        line-height: 7vw;
+      }
+
+      p {
+        font-size: 3.75vw;
+        line-height: 6vw;
       }
     }
   }
