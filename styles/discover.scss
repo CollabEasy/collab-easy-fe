@@ -363,28 +363,44 @@
   }
 }
 
-// Final Sign up container
-.signup-container {
-  padding-top: 10%;
-  padding-bottom: 5%;
+.basic-testimonial-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   text-align: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-color: #F4F6E9;
 
-  h1 {
-    font-size: 4vw;
-    line-height: 5vw;
-    padding-left: 30%;
-    padding-right: 30%;
+  .section-title {
+    padding-left: 20%;
+    padding-right: 20%;
+
+    h2 {
+      font-size: 3vw;
+      line-height: 5vw;
+    }
+
+    p {
+      font-size: 1.5vw;
+      line-height: 2.5vw;
+    }
+  }
+}
+
+.basic-testimonial-text {
+  background-color: #F4F6E9;
+  text-align: center;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-bottom: 5%;
+
+  h5 {
+    font-size: 1.75vw;
   }
 
   p {
-    font-size: 1.75vw;
-    line-height: 2vw;
-    padding-left: 35%;
-    padding-right: 35%;
-  }
-
-  a {
-    font-size: 1.75vw;
+    font-size: 1.25vw;
   }
 }
 
@@ -412,6 +428,30 @@
   }
 }
 
+// Final Sign up container
+.signup-container {
+  padding-top: 10%;
+  padding-bottom: 5%;
+  text-align: center;
+
+  h1 {
+    font-size: 4vw;
+    line-height: 5vw;
+    padding-left: 30%;
+    padding-right: 30%;
+  }
+
+  p {
+    font-size: 1.75vw;
+    line-height: 2vw;
+    padding-left: 35%;
+    padding-right: 35%;
+  }
+
+  a {
+    font-size: 1.75vw;
+  }
+}
 
 // Response CSS starts here
 
@@ -542,8 +582,34 @@
     }
   }
 
+  .basic-testimonial-container {
+    .section-title {
+      h2 {
+        font-size: 50px;
+        line-height: 65px;
+      }
+
+      p {
+        font-size: 20px;
+        line-height: 35px;
+      }
+    }
+  }
+
+  .basic-testimonial-text {
+    h5 {
+      font-size: 22px;
+      line-height: 26px;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 20px;
+    }
+  }
+
   .basic-faq-section {
-    
+
     .section-title {
       h2 {
         font-size: 50px;
@@ -787,6 +853,37 @@
     }
   }
 
+  .basic-testimonial-container {
+    padding-bottom: 8%;
+
+    .section-title {
+      padding-left: 8%;
+      padding-right: 8%;
+      text-align: center;
+
+      h2 {
+        font-size: 5vw;
+        line-height: 6vw;
+      }
+
+      p {
+        font-size: 2vw;
+        line-height: 3vw;
+      }
+    }
+  }
+
+  .basic-testimonial-text {
+    h5 {
+      font-size: 2vw;
+      line-height: 2.5vw;
+    }
+
+    p {
+      font-size: 1.5vw;
+    }
+  }
+
   .basic-faq-section {
 
     padding-bottom: 8%;
@@ -995,6 +1092,37 @@
       text {
         font-size: 2vw;
       }
+    }
+  }
+
+  .basic-testimonial-container {
+    padding-bottom: 8%;
+
+    .section-title {
+      padding-left: 2%;
+      padding-right: 2%;
+      text-align: center;
+
+      h2 {
+        font-size: 5vw;
+        line-height: 6vw;
+      }
+
+      p {
+        font-size: 2.75vw;
+        line-height: 4.5vw;
+      }
+    }
+  }
+
+  .basic-testimonial-text {
+    h5 {
+      font-size: 3vw;
+      line-height: 3.5vw;
+    }
+
+    p {
+      font-size: 2vw;
     }
   }
 
@@ -1208,6 +1336,35 @@
     }
   }
 
+  .basic-testimonial-container {
+    padding-bottom: 10%;
+
+    .section-title {
+      padding-left: 10%;
+      padding-right: 10%;
+
+      h2 {
+        font-size: 7vw;
+        line-height: 7vw;
+      }
+
+      p {
+        font-size: 3.75vw;
+        line-height: 6vw;
+      }
+    }
+  }
+
+  .basic-testimonial-text {
+    h5 {
+      font-size: 4vw;
+    }
+
+    p {
+      font-size: 3.5vw;
+    }
+  }
+
   .basic-faq-section {
 
     padding-bottom: 10%;
@@ -1412,6 +1569,36 @@
         font-size: 3vw;
         line-height: 20px;
       }
+    }
+  }
+
+  .basic-testimonial-container {
+    padding-bottom: 10%;
+
+    .section-title {
+      padding-left: 5%;
+      padding-right: 5%;
+      text-align: center;
+
+      h2 {
+        font-size: 6vw;
+        line-height: 7vw;
+      }
+
+      p {
+        font-size: 3.75vw;
+        line-height: 6vw;
+      }
+    }
+  }
+
+  .basic-testimonial-text {
+    h5 {
+      font-size: 4vw;
+    }
+
+    p {
+      font-size: 3.5vw;
     }
   }
 

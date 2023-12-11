@@ -57,6 +57,18 @@ export const mainContent = {
 
 export const testimonialContent = [
   {
+    user_name: "Serhan Oztekin",
+    user_slug: "serhan-oztekin-1",
+    testimonial:
+      "Wondor has been a game-changer for my creative collaborations. It's easy to connect with other musicians, share ideas, and inspire each other's work.",
+  },
+  {
+    user_name: "SRUTHI S KUMAR",
+    user_slug: "sruthi-s-1",
+    testimonial:
+      "I am very happy to become a part of Wondor.art community; a platform to showcase  talents as an artist, photographer, writer and so on. The encouragement and  rewards are noticable moreover appreciable; a great effort to give opportunities to deserved people.",
+  },
+  {
     user_name: "Valeria Vecchi",
     user_slug: "valeria-vecchi-1",
     testimonial:
@@ -67,12 +79,6 @@ export const testimonialContent = [
     user_slug: "rahul-gupta-1",
     testimonial:
       "Wondor's weekly writing themes have helped me so much. I'm constantly discovering new writing prompts and inspiration instead of being stuck.",
-  },
-  {
-    user_name: "Serhan Oztekin",
-    user_slug: "serhan-oztekin-1",
-    testimonial:
-      "Wondor has been a game-changer for my creative collaborations. It's easy to connect with other musicians, share ideas, and inspire each other's work.",
   },
 ];
 
@@ -201,7 +207,7 @@ export const generalFaqContent = [
     answer: "Finding collaborators is easy on Wondor. Utilize our search feature to discover artists by name or specific collaboration categories of interest. Browse the list and initiate collaboration requests using our user-friendly collab tool."
   },
   {
-    key: '5', 
+    key: '5',
     question: "What types of projects are suitable for collaboration?",
     answer: "Wondor encourages collaboration across various creative fields, including visual arts, music, literature, multimedia, design, cross-disciplinary projects, community art, performance, educational initiatives, and social impact projects. Any artist with a set of skills can find suitable collaboration opportunities."
   },

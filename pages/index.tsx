@@ -15,6 +15,7 @@ import { LoginModalDetails, User } from "types/model";
 import { AppState } from "types/states";
 import { openLoginModalAction, resetUserLoggedIn } from "state/action";
 import api from "api/client";
+import { Carousel } from 'antd';
 import { GetCategoryArtistTitle } from "helpers/categoryHelper";
 import * as actions from "state/action";
 import CreateProposalModal from "@/components/modal/createProposalModal";
@@ -71,6 +72,7 @@ const Home = ({
   popularCollabProposals,
   artistsForCollab,
   blogCard,
+  testimonialContent,
   generalFaqContent,
 }) => {
   // const [showProfileModal, setShowProfileModal] = useState(false);
@@ -87,6 +89,7 @@ const Home = ({
     toUserCollabPage,
     toFAQ,
     toContactUs,
+    toArtistProfile,
   } = useRoutesContext();
 
   // useEffect(() => {
@@ -522,44 +525,11 @@ const Home = ({
     );
   };
 
-  const getSignUpCard = () => {
-    return (
-      <div className="row">
-        <div className="signup-container">
-          <div className="row d-flex justify-content-center text-align-center">
-            <h1 className="common-h1-style">
-              Ready for your next collaboration opportunity?
-            </h1>
-            <p className="common-p-style">
-              Embark on a creative adventure by connecting and
-              collaborating with fellow artists today!
-            </p>
-            <div>
-              <Link href={routeToHref(toAllCategoryPage())} passHref>
-                <button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
-
-                  Collab Categories
-
-                </button>
-              </Link>
-              <Link href={routeToHref(toAllProposalsPage())} passHref >
-                <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
-                  Collab Proposals
-                </button>
-              </Link>
-            </div>
-            <p className="common-p-style">Are you an artist? <a onClick={openLoginModal} style={{ textDecoration: "underline" }}>Join Wondor!</a></p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   const getBasicFAQSection = () => {
 
     return (
       <div className="basic-faq-section">
-        <div className="faq-card">
+        <div>
           <div className="row justify-content-center mt-4">
             <div className="col-12">
               <div className="section-title">
@@ -593,6 +563,39 @@ const Home = ({
       </div>
     )
 
+  }
+
+  const getSignUpCard = () => {
+    return (
+      <div className="row">
+        <div className="signup-container">
+          <div className="row d-flex justify-content-center text-align-center">
+            <h1 className="common-h1-style">
+              Ready for your next collaboration opportunity?
+            </h1>
+            <p className="common-p-style">
+              Embark on a creative adventure by connecting and
+              collaborating with fellow artists today!
+            </p>
+            <div>
+              <Link href={routeToHref(toAllCategoryPage())} passHref>
+                <button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
+
+                  Collab Categories
+
+                </button>
+              </Link>
+              <Link href={routeToHref(toAllProposalsPage())} passHref >
+                <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
+                  Collab Proposals
+                </button>
+              </Link>
+            </div>
+            <p className="common-p-style">Are you an artist? <a onClick={openLoginModal} style={{ textDecoration: "underline" }}>Join Wondor!</a></p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -660,10 +663,6 @@ const Home = ({
         </div>
       </div>
 
-      {/* <div className="row" style={{ backgroundColor: "#FFFFF" }}>
-        {getTestimonialContent()}
-      </div> */}
-
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
           <div className="wondor-offerings-container">
@@ -684,7 +683,7 @@ const Home = ({
         </div>
         {getWondorOfferings()}
       </div>
-
+      {/* 
       <div className="row popular-blog-section">
         <div className="row align-items-end">
           <div className="col-md-8">
@@ -704,6 +703,52 @@ const Home = ({
           </div>
         </div>
         <div className="row mt-2 g-4">{getPopularBlogCard()}</div>
+      </div> */}
+
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        <div className="basic-testimonial-container">
+          <div>
+            <div className="row justify-content-center mt-4">
+              <div className="col-12">
+                <div className="section-title">
+                  <h2 className="common-h3-style">What artists have to say about us</h2>
+                  <p className="common-p-style ">
+                    On the way to building trust with artists around the globe. Discover how Wondor has positively impacted the
+                    lives of it users
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <Carousel autoplay>
+            <div className="basic-testimonial-text">
+              <p className="common-p-style">{testimonialContent[0]["testimonial"]}</p>
+              <Link href={routeToHref(toArtistProfile(testimonialContent[0]["user_slug"]))} passHref>
+                <h5 className="common-h5-style cursor-pointer">{testimonialContent[0]["user_name"]}</h5>
+              </Link>
+            </div>
+            <div className="basic-testimonial-text">
+              <p className="common-p-style">{testimonialContent[1]["testimonial"]}</p>
+              <Link href={routeToHref(toArtistProfile(testimonialContent[1]["user_slug"]))} passHref>
+                <h5 className="common-h5-style cursor-pointer">{testimonialContent[1]["user_name"]}</h5>
+              </Link>
+            </div>
+            <div className="basic-testimonial-text">
+              <p className="common-p-style">{testimonialContent[2]["testimonial"]}</p>
+              <Link href={routeToHref(toArtistProfile(testimonialContent[2]["user_slug"]))} passHref>
+                <h5 className="common-h5-style cursor-pointer">{testimonialContent[2]["user_name"]}</h5>
+              </Link>
+            </div>
+            <div className="basic-testimonial-text">
+              <p className="common-p-style">{testimonialContent[3]["testimonial"]}</p>
+              <Link href={routeToHref(toArtistProfile(testimonialContent[3]["user_slug"]))} passHref>
+                <h5 className="common-h5-style cursor-pointer">{testimonialContent[3]["user_name"]}</h5>
+              </Link>
+            </div>
+          </Carousel>
+        </div>
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
@@ -711,7 +756,6 @@ const Home = ({
       </div>
 
       <div className="row" style={{ borderBottom: '1px solid #e8e8e8' }}>
-
       </div>
 
       {getSignUpCard()}
