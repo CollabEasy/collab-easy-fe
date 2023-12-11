@@ -294,10 +294,12 @@ const Home = ({
                             ))}
                           </p>
                         </div>
-                        <div className="d-flex justify-content-center">
-                          <a href={routeToHref(toUserCollabPage(item.slug))}>
-                            send collab request
-                          </a>
+                        <div className="d-flex justify-content-center card-btn-info-cnt">
+                          <Button ghost>
+                            <Link href={routeToHref(toUserCollabPage(item.slug))}>
+                              <span style={{fontWeight: 500, fontSize: '12px'}}>Send collab request</span>
+                            </Link>
+                          </Button>
                         </div>
                       </div>
                     </div>

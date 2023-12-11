@@ -240,10 +240,6 @@
         display: block;
         background: rgba(0, 0, 0, .3);
       }
-
-      .card-btn-info-cnt {
-        opacity: 1;
-      }
     }
 
     h5 {
@@ -279,30 +275,17 @@
     }
 
     .card-btn-info-cnt {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      align-items: center;
-      opacity: 0;
-      flex-direction: column;
-
-      .common-p-style {
-        font-size: 13px;
-        color: white;
-        padding-bottom: 20px;
-      }
-
-      a {
-        color: white;
-      }
-
+      position: relative;
+      top: 20px;
       .ant-btn.ant-btn-background-ghost {
         border-width: 2px;
-
+        border-radius: 8px;
+        border-color: #4C5656;
+        color: #4C5656;
+        height: 34px;
         &:hover {
-          border-color: white !important;
+          border-color: #4C5656 !important;
+          background: #4C5656 !important;
           color: white !important;
         }
       }
