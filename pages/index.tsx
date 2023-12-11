@@ -135,7 +135,7 @@ const Home = ({
             <div className="col-md-12" >
               <Collapse ghost accordion expandIconPosition="right" expandIcon={({ isActive }) => (isActive ? <UpOutlined /> : <DownOutlined />)}>
                 {faqContent.map((question, index) => (
-                  <Panel header={<h6 className="common-h6-style">{question.question}</h6>} key={index} style={{ borderBottom: '1px solid #e8e8e8' }}>
+                  <Panel header={<h6 className="common-h6-style" style={{ textAlign: "left" }}>{question.question}</h6>} key={index} style={{ borderBottom: '1px solid #e8e8e8' }}>
                     <p className="common-p-style" style={{ textAlign: "left" }}>{question.answer}</p>
                   </Panel>
                 ))}
