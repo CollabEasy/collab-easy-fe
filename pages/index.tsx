@@ -3,7 +3,7 @@ import LoginModal from "../components/modal/loginModal";
 import Layout from "../components/layout";
 import Link from "next/link";
 import { Button, Collapse } from "antd";
-import { UpOutlined, DownOutlined } from '@ant-design/icons';
+import { UpOutlined, DownOutlined, CaretDownOutlined } from '@ant-design/icons';
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from "next/image";
@@ -131,12 +131,34 @@ const Home = ({
     return (
       <div className="row">
         <div style={{ width: "100%" }}>
-          <div className="row" style={{ paddingLeft: "2%", paddingRight: "2%" }}>
-            <div className="col-md-12" >
-              <Collapse ghost accordion expandIconPosition="right" expandIcon={({ isActive }) => (isActive ? <UpOutlined /> : <DownOutlined />)}>
+          <div
+            className="row"
+            style={{ paddingLeft: "2%", paddingRight: "2%" }}
+          >
+            <div className="col-md-12">
+              <Collapse
+                ghost
+                accordion
+                expandIconPosition="right"
+                expandIcon={({ isActive }) => <CaretDownOutlined rotate={isActive ? 180 : 0} />}
+              >
                 {faqContent.map((question, index) => (
-                  <Panel header={<h6 className="common-h6-style" style={{ textAlign: "left" }}>{question.question}</h6>} key={index} style={{ borderBottom: '1px solid #e8e8e8' }}>
-                    <p className="common-p-style" style={{ textAlign: "left" }}>{question.answer}</p>
+                  <Panel
+                    header={
+                      <h6
+                        className="common-h6-style"
+                        style={{ textAlign: "left" }}
+                      >
+                        {question.question}
+                      </h6>
+                    }
+                    key={index}
+                    className="faq-header-card"
+                    // style={{ borderBottom: "1px solid #e8e8e8" }}
+                  >
+                    <p className="common-p-style" style={{ textAlign: "left" }}>
+                      {question.answer}
+                    </p>
                   </Panel>
                 ))}
               </Collapse>
@@ -194,12 +216,11 @@ const Home = ({
   const getLCPImage = () => {
     return (
       <div
-        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item cursor-pointer"
+        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
       >
-        <div >
-          <div
-            className="d-flex justify-content-center align-items-center p-2 category-icon"
-          >
+        <div className="popular-category-card popular-category-colors">
+          <div className="popular-category-overlay"></div>
+          <div className="popular-category-circle">
             <Image
               src={getPopularCategoryImage("writing")}
               layout="fixed"
@@ -211,31 +232,21 @@ const Home = ({
               priority
             />
           </div>
-          <div className="d-flex justify-content-center text-align-center p-2">
-            <h5
-              className="common-h5-style"
-            >
-              Writing
-            </h5>
-          </div>
-          <div className="overlay-cnt"></div>
-          <div className="d-flex justify-content-center card-btn-info-cnt" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-            <p
-              className="common-p-style"
-            >
-              Find writers available to
-            </p>
+          <h5 className="common-h5-style">
+            Writing
+          </h5>
+          <div className="card-btn-info-cnt">
             <Button ghost>
               <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
-                <span style={{ fontWeight: 500 }}>Collab Now</span>
+                <span style={{fontWeight: 500, fontSize: '14px'}}>Collab Now</span>
               </Link>
             </Button>
           </div>
         </div>
-
       </div>
-    );
+    )
   }
+
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
     return (
@@ -248,14 +259,13 @@ const Home = ({
                   {getLCPImage()}
                   {popularCollabCategories.map((item) => (
                     <div
-                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item cursor-pointer"
+                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
                       key={item.id}
                     >
 
-                      <div >
-                        <div
-                          className="d-flex justify-content-center align-items-center p-2 category-icon"
-                        >
+                      <div className="popular-category-card popular-category-colors">
+                        <div className="popular-category-overlay"></div>
+                        <div className="popular-category-circle">
                           <Image
                             src={getPopularCategoryImage(item.slug)}
                             layout="fixed"
@@ -267,28 +277,21 @@ const Home = ({
                             loading="lazy"
                           />
                         </div>
-                        <div className="d-flex justify-content-center text-align-center p-2">
+                        <div className="">
                           <h5
                             className="common-h5-style"
                           >
                             {item.title}
                           </h5>
                         </div>
-                        <div className="overlay-cnt"></div>
-                        <div className="d-flex justify-content-center card-btn-info-cnt" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-                          <p
-                            className="common-p-style"
-                          >
-                            {item.para}
-                          </p>
+                        <div className="card-btn-info-cnt">
                           <Button ghost>
                             <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                              <span style={{ fontWeight: 500 }}>{item.buttonText}</span>
+                              <span style={{fontWeight: 500, fontSize: '14px'}}>{item.buttonText}</span>
                             </Link>
                           </Button>
                         </div>
                       </div>
-
                     </div>
                   ))}
                 </>
@@ -349,10 +352,12 @@ const Home = ({
                             ))}
                           </p>
                         </div>
-                        <div className="d-flex justify-content-center">
-                          <a href={routeToHref(toUserCollabPage(item.slug))}>
-                            send collab request
-                          </a>
+                        <div className="d-flex justify-content-center card-btn-info-cnt">
+                          <Button ghost>
+                            <Link href={routeToHref(toUserCollabPage(item.slug))}>
+                              <span style={{fontWeight: 500, fontSize: '12px'}}>Send collab request</span>
+                            </Link>
+                          </Button>
                         </div>
                       </div>
                     </div>

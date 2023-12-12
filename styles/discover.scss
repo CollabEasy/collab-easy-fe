@@ -1,5 +1,5 @@
 .centered-div {
-  width: 65%;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -71,6 +71,13 @@
   }
 }
 
+.popular-category-colors {
+  --bg-color: #DCE9FF;
+  --bg-color-light: #f1f7ff;
+  --text-color-hover: #4C5656;
+  --box-shadow-color: rgba(220, 233, 255, 0.48);
+}
+
 .scroll-container {
   .scroll-list {
     height: 100%;
@@ -78,6 +85,139 @@
     white-space: nowrap;
     overflow-x: scroll;
   }
+
+  .popular-category-container{
+    position: relative;
+    display: inline-block;
+    margin: 8px 8px;
+    width: 190px;
+    height: 250px;
+  
+    .popular-category-card{
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      // background: var(--bg-color);
+      border-top-right-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 14px 26px rgba(0,0,0,0.04);
+      transition: all 0.3s ease-out;
+      text-decoration: none;
+      border: 1px solid #e1e1e1;
+      &:hover{
+        transform: translateY(-5px) scale(1.005) translateZ(0);
+        box-shadow: 0 24px 36px rgba(0,0,0,0.11),
+        0 24px 46px var(--box-shadow-color);
+        border: none;
+        .card-btn-info-cnt {
+          .ant-btn.ant-btn-background-ghost {
+            border-color: #4C5656;
+            background: #4C5656;
+            color: white;
+            // height: 36px;
+            &:hover {
+              border-color: #4C5656 !important;
+              background: #4C5656 !important;
+              color: white !important;
+            }
+          }
+        }
+      }
+      .card-btn-info-cnt {
+        position: relative;
+        top: 10px;
+        .ant-btn.ant-btn-background-ghost {
+          border-width: 2px;
+          border-radius: 8px;
+          border-color: #4C5656;
+          color: #4C5656;
+          // height: 36px;
+        }
+      }
+    }
+  
+    .popular-category-card:hover .popular-category-overlay {
+      transform: scale(4) translateZ(0);
+    }
+  
+    .popular-category-card:hover .popular-category-circle {
+      border-color: var(--bg-color-light);
+      background: var(--bg-color);
+    }
+  
+    .popular-category-card:hover .popular-category-circle:after {
+      background: var(--bg-color-light);
+    }
+  
+    .popular-category-card:hover h5 {
+      color: var(--text-color-hover);
+    }
+  
+    .popular-category-card:active {
+      transform: scale(1) translateZ(0);
+      box-shadow: 0 15px 24px rgba(0,0,0,0.11),
+        0 15px 24px var(--box-shadow-color);
+    }
+  
+    .popular-category-card h5 {
+      position: relative;
+      font-size: 17px;
+      color: #4C5656;
+      margin-top: 25px;
+      z-index: 1;
+      transition: color 0.3s ease-out;
+    }
+  
+    .popular-category-circle {
+      width: 111px;
+      height: 111px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease-out;
+    }
+  
+    .popular-category-circle:after {
+      content: "";
+      width: 98px;
+      height: 98px;
+      display: block;
+      position: absolute;
+      background: var(--bg-color);
+      border-radius: 50%;
+      top: 5px;
+      left: 5px;
+      transition: opacity 0.3s ease-out;
+    }
+  
+    .popular-category-circle img {
+      z-index: 10000;
+      transform: translateZ(0);
+    }
+  
+    .popular-category-overlay {
+      width: 98px;
+      position: absolute; 
+      height: 98px;
+      border-radius: 50%;
+      background: var(--bg-color);
+      top: 32px;
+      left: 50px;
+      z-index: 0;
+      transition: transform 0.3s ease-out;
+    }
+  }
+
 
   .scroll-list-item,
   .scroll-list-item-popular {
@@ -100,10 +240,6 @@
       .overlay-cnt {
         display: block;
         background: rgba(0, 0, 0, .3);
-      }
-
-      .card-btn-info-cnt {
-        opacity: 1;
       }
     }
 
@@ -140,30 +276,17 @@
     }
 
     .card-btn-info-cnt {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      align-items: center;
-      opacity: 0;
-      flex-direction: column;
-
-      .common-p-style {
-        font-size: 13px;
-        color: white;
-        padding-bottom: 20px;
-      }
-
-      a {
-        color: white;
-      }
-
+      position: relative;
+      top: 20px;
       .ant-btn.ant-btn-background-ghost {
         border-width: 2px;
-
+        border-radius: 8px;
+        border-color: #4C5656;
+        color: #4C5656;
+        height: 34px;
         &:hover {
-          border-color: white !important;
+          border-color: #4C5656 !important;
+          background: #4C5656 !important;
           color: white !important;
         }
       }
@@ -409,6 +532,7 @@
   text-align: center;
   padding-top: 5%;
   padding-bottom: 5%;
+  background: rgba(250, 250, 250, 1);
 
   .section-title {
     padding-left: 20%;
@@ -422,6 +546,25 @@
     p {
       font-size: 1.5vw;
       line-height: 2.5vw;
+    }
+  }
+  .faq-header-card{
+    border: 1px solid rgba(228, 228, 231, 1) !important;
+    padding: 10px 0px 5px;
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 4px;
+    &:hover{
+      background: rgba(250, 250, 250, 1);
+    }
+    .common-h6-style{
+      margin-bottom: 0px;
+    }
+    &.ant-collapse-item-active{
+      --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
     }
   }
 }
@@ -745,6 +888,24 @@
         a {
           font-size: 1.25vw;
         }
+
+        .category-icon {
+          width: 95px;
+          height: 95px;
+          margin: 10px auto;
+        }
+        .card-btn-info-cnt {
+          .ant-btn.ant-btn-background-ghost {
+            padding: 3px 10px;
+            height: initial;
+            border-color: #4C5656 !important;
+            background: #4C5656 !important;
+            color: white !important;
+            span{
+              font-size: 10px !important;
+            }
+          }
+        }
       }
     }
 
@@ -987,6 +1148,24 @@
         a {
           font-size: 1.75vw;
         }
+
+        .category-icon {
+          width: 95px;
+          height: 95px;
+          margin: 10px auto;
+        }
+        .card-btn-info-cnt {
+          .ant-btn.ant-btn-background-ghost {
+            padding: 3px 10px;
+            height: initial;
+            border-color: #4C5656 !important;
+            background: #4C5656 !important;
+            color: white !important;
+            span{
+              font-size: 10px !important;
+            }
+          }
+        }
       }
     }
 
@@ -995,7 +1174,37 @@
     }
 
     .scroll-list-item-popular {
-      height: 250px;
+      height: 260px;
+    }
+
+    .popular-category-container{
+      .popular-category-card{
+        background: var(--bg-color);
+        .popular-category-circle {
+          border-color: var(--bg-color-light);
+          background: var(--bg-color);
+        }
+      
+        .popular-category-circle:after {
+          background: var(--bg-color-light);
+        }
+      
+        h5 {
+          color: var(--text-color-hover);
+        }
+        .card-btn-info-cnt{
+          .ant-btn.ant-btn-background-ghost{
+            border-color: #4C5656;
+            background: #4C5656;
+            color: white;
+          }
+        }
+        &:hover{
+          transform: none;
+          box-shadow: none;
+          border: none;
+        }
+      }
     }
   }
 
@@ -1227,6 +1436,24 @@
         a {
           font-size: 2.5vw;
         }
+        .category-icon {
+          width: 95px;
+          height: 95px;
+          margin: 10px auto;
+        }
+        .card-btn-info-cnt {
+          top: 10px;
+          .ant-btn.ant-btn-background-ghost {
+            padding: 3px 10px;
+            height: initial;
+            border-color: #4C5656 !important;
+            background: #4C5656 !important;
+            color: white !important;
+            span{
+              font-size: 10px !important;
+            }
+          }
+        }
       }
     }
 
@@ -1236,6 +1463,36 @@
 
     .scroll-list-item-popular {
       height: 260px;
+    }
+
+    .popular-category-container{
+      .popular-category-card{
+        background: var(--bg-color);
+        .popular-category-circle {
+          border-color: var(--bg-color-light);
+          background: var(--bg-color);
+        }
+      
+        .popular-category-circle:after {
+          background: var(--bg-color-light);
+        }
+      
+        h5 {
+          color: var(--text-color-hover);
+        }
+        .card-btn-info-cnt{
+          .ant-btn.ant-btn-background-ghost{
+            border-color: #4C5656;
+            background: #4C5656;
+            color: white;
+          }
+        }
+        &:hover{
+          transform: none;
+          box-shadow: none;
+          border: none;
+        }
+      }
     }
   }
 
@@ -1464,6 +1721,24 @@
         a {
           font-size: 2.5vw;
         }
+        .category-icon {
+          width: 95px;
+          height: 95px;
+          margin: 10px auto;
+        }
+        .card-btn-info-cnt {
+          top: 10px;
+          .ant-btn.ant-btn-background-ghost {
+            padding: 3px 10px;
+            height: initial;
+            border-color: #4C5656 !important;
+            background: #4C5656 !important;
+            color: white !important;
+            span{
+              font-size: 10px !important;
+            }
+          }
+        }
       }
     }
 
@@ -1473,6 +1748,36 @@
 
     .scroll-list-item-popular {
       height: 240px;
+    }
+
+    .popular-category-container{
+      .popular-category-card{
+        background: var(--bg-color);
+        .popular-category-circle {
+          border-color: var(--bg-color-light);
+          background: var(--bg-color);
+        }
+      
+        .popular-category-circle:after {
+          background: var(--bg-color-light);
+        }
+      
+        h5 {
+          color: var(--text-color-hover);
+        }
+        .card-btn-info-cnt{
+          .ant-btn.ant-btn-background-ghost{
+            border-color: #4C5656;
+            background: #4C5656;
+            color: white;
+          }
+        }
+        &:hover{
+          transform: none;
+          box-shadow: none;
+          border: none;
+        }
+      }
     }
   }
 
