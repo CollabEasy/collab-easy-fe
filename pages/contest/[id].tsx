@@ -545,6 +545,9 @@ const ContestPage = ({
                   - Submit a high-resolution image file PNG, JPEG.
                 </li>
                 <li>
+                  - You can also submit your entry by email to us at admin@wondor.art
+                </li>
+                <li>
                   - Include a brief description of your story.
                 </li>
               </ul>
