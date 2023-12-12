@@ -216,7 +216,7 @@ const Home = ({
           <div className="card-btn-info-cnt">
             <Button ghost>
               <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
-                <span style={{fontWeight: 500, fontSize: '17px'}}>Collab Now</span>
+                <span style={{fontWeight: 500, fontSize: '14px'}}>Collab Now</span>
               </Link>
             </Button>
           </div>
@@ -265,7 +265,7 @@ const Home = ({
                         <div className="card-btn-info-cnt">
                           <Button ghost>
                             <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                              <span style={{fontWeight: 500, fontSize: '17px'}}>{item.buttonText}</span>
+                              <span style={{fontWeight: 500, fontSize: '14px'}}>{item.buttonText}</span>
                             </Link>
                           </Button>
                         </div>

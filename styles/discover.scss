@@ -1,5 +1,5 @@
 .centered-div {
-  width: 65%;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -83,8 +83,8 @@
     position: relative;
     display: inline-block;
     margin: 8px 8px;
-    width: 210px;
-    height: 270px;
+    width: 190px;
+    height: 250px;
     .popular-category-colors {
       --bg-color: #DCE9FF;
       --bg-color-light: #f1f7ff;
@@ -118,7 +118,7 @@
             border-color: #4C5656;
             background: #4C5656;
             color: white;
-            height: 36px;
+            // height: 36px;
             &:hover {
               border-color: #4C5656 !important;
               background: #4C5656 !important;
@@ -135,7 +135,7 @@
           border-radius: 8px;
           border-color: #4C5656;
           color: #4C5656;
-          height: 36px;
+          // height: 36px;
         }
       }
     }
@@ -173,8 +173,8 @@
     }
   
     .popular-category-circle {
-      width: 121px;
-      height: 121px;
+      width: 111px;
+      height: 111px;
       border-radius: 50%;
       background: #fff;
       border: 2px solid var(--bg-color);
@@ -188,8 +188,8 @@
   
     .popular-category-circle:after {
       content: "";
-      width: 108px;
-      height: 108px;
+      width: 98px;
+      height: 98px;
       display: block;
       position: absolute;
       background: var(--bg-color);
@@ -205,9 +205,9 @@
     }
   
     .popular-category-overlay {
-      width: 108px;
+      width: 98px;
       position: absolute; 
-      height: 108px;
+      height: 98px;
       border-radius: 50%;
       background: var(--bg-color);
       top: 32px;
