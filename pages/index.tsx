@@ -3,7 +3,7 @@ import LoginModal from "../components/modal/loginModal";
 import Layout from "../components/layout";
 import Link from "next/link";
 import { Button, Collapse } from "antd";
-import { UpOutlined, DownOutlined } from '@ant-design/icons';
+import { UpOutlined, DownOutlined, CaretDownOutlined } from '@ant-design/icons';
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from "next/image";
@@ -131,12 +131,34 @@ const Home = ({
     return (
       <div className="row">
         <div style={{ width: "100%" }}>
-          <div className="row" style={{ paddingLeft: "2%", paddingRight: "2%" }}>
-            <div className="col-md-12" >
-              <Collapse ghost accordion expandIconPosition="right" expandIcon={({ isActive }) => (isActive ? <UpOutlined /> : <DownOutlined />)}>
+          <div
+            className="row"
+            style={{ paddingLeft: "2%", paddingRight: "2%" }}
+          >
+            <div className="col-md-12">
+              <Collapse
+                ghost
+                accordion
+                expandIconPosition="right"
+                expandIcon={({ isActive }) => <CaretDownOutlined rotate={isActive ? 180 : 0} />}
+              >
                 {faqContent.map((question, index) => (
-                  <Panel header={<h6 className="common-h6-style" style={{ textAlign: "left" }}>{question.question}</h6>} key={index} style={{ borderBottom: '1px solid #e8e8e8' }}>
-                    <p className="common-p-style" style={{ textAlign: "left" }}>{question.answer}</p>
+                  <Panel
+                    header={
+                      <h6
+                        className="common-h6-style"
+                        style={{ textAlign: "left" }}
+                      >
+                        {question.question}
+                      </h6>
+                    }
+                    key={index}
+                    className="faq-header-card"
+                    // style={{ borderBottom: "1px solid #e8e8e8" }}
+                  >
+                    <p className="common-p-style" style={{ textAlign: "left" }}>
+                      {question.answer}
+                    </p>
                   </Panel>
                 ))}
               </Collapse>
