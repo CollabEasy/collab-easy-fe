@@ -238,7 +238,7 @@ const Home = ({
           <div className="card-btn-info-cnt">
             <Button ghost>
               <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
-                <span style={{ fontWeight: 500, fontSize: '14px' }}>Collab now</span>
+                <span style={{ fontWeight: 500, fontSize: '12px' }}>Find Collaborator</span>
               </Link>
             </Button>
           </div>
@@ -287,7 +287,7 @@ const Home = ({
                         <div className="card-btn-info-cnt">
                           <Button ghost>
                             <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                              <span style={{ fontWeight: 500, fontSize: '14px' }}>{item.buttonText}</span>
+                              <span style={{ fontWeight: 500, fontSize: '12px' }}>Find Collaborator</span>
                             </Link>
                           </Button>
                         </div>
@@ -344,7 +344,7 @@ const Home = ({
                             {/* eslint-disable react/jsx-key */}
                             {item["category"].map((category) => (
                               <span
-                                style={{ background: "#EAEBED", color: "black" }}
+                                style={{ background: "white", color: "black" }}
                                 className="badge bg-soft-secondary fs-14 mt-1"
                               >
                                 {category}
