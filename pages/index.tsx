@@ -154,7 +154,7 @@ const Home = ({
                     }
                     key={index}
                     className="faq-header-card"
-                    // style={{ borderBottom: "1px solid #e8e8e8" }}
+                  // style={{ borderBottom: "1px solid #e8e8e8" }}
                   >
                     <p className="common-p-style" style={{ textAlign: "left" }}>
                       {question.answer}
@@ -238,7 +238,7 @@ const Home = ({
           <div className="card-btn-info-cnt">
             <Button ghost>
               <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
-                <span style={{fontWeight: 500, fontSize: '14px'}}>Collab Now</span>
+                <span style={{ fontWeight: 500, fontSize: '14px' }}>Collab Now</span>
               </Link>
             </Button>
           </div>
@@ -287,7 +287,7 @@ const Home = ({
                         <div className="card-btn-info-cnt">
                           <Button ghost>
                             <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                              <span style={{fontWeight: 500, fontSize: '14px'}}>{item.buttonText}</span>
+                              <span style={{ fontWeight: 500, fontSize: '14px' }}>{item.buttonText}</span>
                             </Link>
                           </Button>
                         </div>
@@ -355,7 +355,7 @@ const Home = ({
                         <div className="d-flex justify-content-center card-btn-info-cnt">
                           <Button ghost>
                             <Link href={routeToHref(toUserCollabPage(item.slug))}>
-                              <span style={{fontWeight: 500, fontSize: '12px'}}>Send collab request</span>
+                              <span style={{ fontWeight: 500, fontSize: '12px' }}>Send collab request</span>
                             </Link>
                           </Button>
                         </div>
@@ -570,6 +570,30 @@ const Home = ({
 
   }
 
+  const getTestimonialCard = (testimonial) => {
+    return (
+      <div className="basic-testimonial-text">
+        <div
+          className="d-flex justify-content-center align-items-center p-2 testimony-img"
+        >
+          <Image
+            unoptimized
+            src={testimonial["img"]}
+            height={75}
+            width={75}
+            className="testimony-img-dim"
+            alt={"Send collaboration request to " + testimonial["user_name"]}
+            priority={true}
+          />
+        </div>
+        <p className="common-p-style">{testimonial["testimonial"]}</p>
+        <Link href={routeToHref(toArtistProfile(testimonial["user_slug"]))} passHref>
+          <h5 className="common-h5-style cursor-pointer">{testimonial["user_name"]}</h5>
+        </Link>
+      </div>
+    );
+  }
+
   const getSignUpCard = () => {
     return (
       <div className="row">
@@ -728,30 +752,13 @@ const Home = ({
         </div>
         <div>
           <Carousel autoplay>
-            <div className="basic-testimonial-text">
-              <p className="common-p-style">{testimonialContent[0]["testimonial"]}</p>
-              <Link href={routeToHref(toArtistProfile(testimonialContent[0]["user_slug"]))} passHref>
-                <h5 className="common-h5-style cursor-pointer">{testimonialContent[0]["user_name"]}</h5>
-              </Link>
-            </div>
-            <div className="basic-testimonial-text">
-              <p className="common-p-style">{testimonialContent[1]["testimonial"]}</p>
-              <Link href={routeToHref(toArtistProfile(testimonialContent[1]["user_slug"]))} passHref>
-                <h5 className="common-h5-style cursor-pointer">{testimonialContent[1]["user_name"]}</h5>
-              </Link>
-            </div>
-            <div className="basic-testimonial-text">
-              <p className="common-p-style">{testimonialContent[2]["testimonial"]}</p>
-              <Link href={routeToHref(toArtistProfile(testimonialContent[2]["user_slug"]))} passHref>
-                <h5 className="common-h5-style cursor-pointer">{testimonialContent[2]["user_name"]}</h5>
-              </Link>
-            </div>
-            <div className="basic-testimonial-text">
-              <p className="common-p-style">{testimonialContent[3]["testimonial"]}</p>
-              <Link href={routeToHref(toArtistProfile(testimonialContent[3]["user_slug"]))} passHref>
-                <h5 className="common-h5-style cursor-pointer">{testimonialContent[3]["user_name"]}</h5>
-              </Link>
-            </div>
+
+            {testimonialContent.map((testimonial) => (
+              <>
+                {getTestimonialCard(testimonial)}
+              </>
+            ))}
+
           </Carousel>
         </div>
       </div>

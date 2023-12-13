@@ -57,24 +57,28 @@ export const mainContent = {
 
 export const testimonialContent = [
   {
+    img: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/WjsRg_A4nk2TlfPquubTpQ/serhan.png",
     user_name: "Serhan Oztekin",
     user_slug: "serhan-oztekin-1",
     testimonial:
       "Wondor has been a game-changer for my creative collaborations. It's easy to connect with other musicians, share ideas, and inspire each other's work.",
   },
   {
+    img: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/9YsSRiwRYEqMTJK4O_OJUQ/sruthi.png",
     user_name: "SRUTHI S KUMAR",
     user_slug: "sruthi-s-1",
     testimonial:
       "I am very happy to become a part of Wondor.art community; a platform to showcase  talents as an artist, photographer, writer and so on. The encouragement and  rewards are noticable moreover appreciable; a great effort to give opportunities to deserved people.",
   },
   {
+    img: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/99mjxqsgSkeT8aHeQ0JPMQ/val.png",
     user_name: "Valeria Vecchi",
     user_slug: "valeria-vecchi-1",
     testimonial:
       "Wondor is exactly the tool I needed as an artist: it allows me to find like-minded Journalers to collab with, and it's a source of inspiration for my projects too! I like monthly contests as they spark my creativity. Such an intuitive website too.",
   },
   {
+    img: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/YK4QV9uKPEeyz-gbVVebpQ/rahul.png",
     user_name: "Rahul Gupta",
     user_slug: "rahul-gupta-1",
     testimonial:
