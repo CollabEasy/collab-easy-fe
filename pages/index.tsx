@@ -734,7 +734,7 @@ const Home = ({
         <div className="row mt-2 g-4">{getPopularBlogCard()}</div>
       </div> */}
 
-      <div className="row" style={{ backgroundColor: "#F4F6E9" }}>
+      <div className="row" style={{ backgroundColor: "#EAEED8" }}>
         <div className="basic-testimonial-container">
           <div>
             <div className="row justify-content-center mt-4">
