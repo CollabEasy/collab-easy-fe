@@ -17,6 +17,7 @@ import { User } from "types/model";
 
 const mapStateToProps = (state: AppState) => ({
   userModel: state.user,
+  isLoggedIn: state.user.isLoggedIn,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -34,6 +35,7 @@ type Props = { isSelf: boolean; userProfileOpened: User } & ConnectedProps<
 
 const ProfilePicture = ({
   isSelf,
+  isLoggedIn,
   userProfileOpened,
   userModel,
   updateProfilePicture,
@@ -102,9 +104,8 @@ const ProfilePicture = ({
 
   const uploadButton = (
     <div
-      className={`artistProfile_profilePicEditButton${
-        showUploadingLoader ? "Uploading" : ""
-      }`}
+      className={`artistProfile_profilePicEditButton${showUploadingLoader ? "Uploading" : ""
+        }`}
     >
       {showUploadingLoader ? (
         <LoadingOutlined style={{ marginTop: "26px" }} />
@@ -121,23 +122,22 @@ const ProfilePicture = ({
     return `${src}?w=${width}&q=${quality || 75}`;
   };
 
-  const containerClassName = editable
+  const containerClassName = editable && isLoggedIn
     ? 'artistProfile__profileDpContainer'
     : "artistProfile__profileDpContainerNonSelf";
   return (
     <div className={containerClassName}>
       <Image
-        className={`artistProfile_profileImage${
-          showUploadingLoader ? "Uploading" : ""
-        }`}
+        className={`artistProfile_profileImage${showUploadingLoader ? "Uploading" : ""
+          }`}
         loader={prismicLoader}
-        src={user?.profile_pic_url}
+        src={isLoggedIn ? (user?.profile_pic_url) : ("https://bootdey.com/img/Content/avatar/avatar6.png")}
         alt="profile picture"
         height={150}
         width={150}
         priority
       />
-      {editable && (
+      {editable && isLoggedIn && (
         <Upload
           name="avatar"
           listType="picture-card"

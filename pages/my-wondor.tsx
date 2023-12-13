@@ -15,6 +15,7 @@ import GenericActionBanner from "@/components/genericActionBanner";
 import avatarImage from "../public/images/avatar.png";
 import CollabLinkClipBoard from "@/components/asset/collabLinkClipBoard";
 import RewardCodeClipBoard from "@/components/asset/rewardCodeClipBoard";
+import ProfilePicture from "@/components/profilePicture";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -99,7 +100,15 @@ const MyWondorPage = ({
                 <div className="bg-white">
                     <div className="text-center">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={isLoggedIn ? user.profile_pic_url : "https://bootdey.com/img/Content/avatar/avatar6.png"} className="ui-w-100 rounded-circle" />
+
+                        <div className="container">
+                            <div className="artistProfile__profileCoverContainer">
+                                <div className="graph"></div>
+                            </div>
+                            <ProfilePicture isSelf={true} userProfileOpened={user} />
+                        </div>
+
+
                         <div className="col-md-8 col-lg-6 col-xl-5 p-0 mx-auto">
                             <h4 className="common-h4-style font-weight-bold my-3">{getWelcomeHeading()}</h4>
                             <div className="common-p-style mb-2">
