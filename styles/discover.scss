@@ -237,7 +237,7 @@
     background-position: top left;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #F3F8FE;
+    background-color: #DCE9FF;
 
     &:hover {
       box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px, rgb(14 30 37 / 32%) 0px 2px 16px 0px;
@@ -287,8 +287,12 @@
       .ant-btn.ant-btn-background-ghost {
         border-width: 2px;
         border-radius: 8px;
-        border-color: #4C5656;
-        color: #4C5656;
+        // border-color: #4C5656;
+        // color: #4C5656;
+
+        border-color: #4C5656 !important;
+        background: #4C5656 !important;
+        color: white !important;
         height: 34px;
 
         &:hover {

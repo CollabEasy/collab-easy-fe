@@ -44,47 +44,12 @@
 .rewardsInfo_container {
 	position: relative;
 	width: 100%;
-	margin-top: 5%;
+	margin-top: 2%;
 	margin-bottom: 5%;
 	margin-left: auto;
 	margin-right: auto;
 	flex-direction: column;
 	overflow-x: hidden;
-
-	.points-earn-container {
-		background-color: #e6f7ff;
-		border: 1px solid #91d5ff;
-		border-radius: 8px;
-		padding: 15px;
-		margin-bottom: 10px;
-
-		.points-part-heading {
-			font-size: 16px;
-			color: rgba(0, 0, 0, 0.85);
-		}
-
-		.clipboard-text-cnt {
-			display: inline-block;
-			border-radius: 8px;
-			padding: 5px 10px;
-			border: 1px dotted;
-		}
-
-		.copy-btn {
-			display: inline-block;
-			background-color: black;
-			color: white;
-			margin-left: 10px;
-			cursor: pointer;
-			border-radius: 8px;
-			padding: 2px 10px;
-		}
-
-		.clipboard-text {
-			// color: white;
-			font-weight: 700;
-		}
-	}
 }
 
 .display-linebreak {
@@ -210,6 +175,11 @@
 	.card {
 		height: 200px;
 	}
+
+	.rewardsInfo_container {
+		margin-top: 5%;
+		margin-bottom: 5%;
+	}
 }
 
 @media only screen and (max-width: 767px) and (min-width: 601px) {
@@ -240,6 +210,10 @@
 
 	.card {
 		height: 200px;
+	}
+	.rewardsInfo_container {
+		margin-top: 5%;
+		margin-bottom: 5%;
 	}
 }
 
@@ -276,6 +250,11 @@
 		height: 225px;
 	}
 
+	.rewardsInfo_container {
+		margin-top: 5%;
+		margin-bottom: 5%;
+	}
+
 }
 
 @media only screen and (max-width: 399px) {
@@ -306,5 +285,10 @@
 
 	.card {
 		height: 250px;
+	}
+
+	.rewardsInfo_container {
+		margin-top: 5%;
+		margin-bottom: 5%;
 	}
 }

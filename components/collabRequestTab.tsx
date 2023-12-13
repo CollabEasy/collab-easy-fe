@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Pagination,
   Button,
@@ -36,6 +36,8 @@ import Layout from "@/components/layout";
 import $ from "jquery";
 import Link from "next/link";
 import { GetCollabHeading } from "helpers/collabCardHelper";
+import RewardCodeClipBoard from "./asset/rewardCodeClipBoard";
+import CollabLinkClipBoard from "./asset/collabLinkClipBoard";
 
 const { Option } = Select;
 
@@ -84,6 +86,9 @@ export const CollabRequestTab = ({
     proposalId: undefined,
   };
 
+  const textRef = useRef(null);
+  const [isCopied, setIsCopied] = useState(false);
+  
   const { toCollabPage } = useRoutesContext();
   const dispatch = useDispatch();
   const [allSentReceivedStatus, setAllSentReceivedStatus] = useState("all");
@@ -340,9 +345,23 @@ export const CollabRequestTab = ({
     return <Loader />;
   }
 
+  const handleCopyClick = () => {
+    if (textRef.current) {
+      navigator.clipboard.writeText(textRef.current.value);
+      setIsCopied(true);
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    }
+  };
+
   return (
     <>
       <div className="collabRequestTab__container">
+        <CollabLinkClipBoard
+          slug={user.slug}
+        />
+
         <Tabs
           centered
           activeKey={activeKey}
@@ -362,30 +381,6 @@ export const CollabRequestTab = ({
                   scrollSmoothlyToID("collab_cards");
                 }}
               />
-              {/* <Select
-            className="collabRequestTab__filter collabRequestTab__antFilter"
-            defaultValue="all"
-            onChange={(value) => {
-              setAllSentReceivedStatus(value);
-            }}
-          >
-            <Option value="all">All</Option>
-            <Option value="sent">Sent</Option>
-            <Option value="received">Received</Option>
-          </Select>
-          <Select
-            className="collabRequestTab__filter collabRequestTab__antFilter"
-            defaultValue="all"
-            onChange={(value) => {
-              setCollabStatusFilter(value);
-            }}
-          >
-            <Option value="all">All</Option>
-            <Option value="active">Active</Option>
-            <Option value="pending">Pending</Option>
-            <Option value="rejected">Rejected</Option>
-            <Option value="completed">Completed</Option>
-          </Select> */}
             </div>
             {activeKey === "1" && isFetchingCollabDetails ? (
               <Loader />

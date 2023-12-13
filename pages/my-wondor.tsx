@@ -13,6 +13,8 @@ import Layout from "@/components/layout";
 import Link from "next/link";
 import GenericActionBanner from "@/components/genericActionBanner";
 import avatarImage from "../public/images/avatar.png";
+import CollabLinkClipBoard from "@/components/asset/collabLinkClipBoard";
+import RewardCodeClipBoard from "@/components/asset/rewardCodeClipBoard";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -127,6 +129,21 @@ const MyWondorPage = ({
                     </div>
                     <hr className="mb-2" />
                     <div className="row my-wondor-cards-container">
+                        {isLoggedIn && (<div className="row">
+                            <div className="col-md-6">
+                                <RewardCodeClipBoard
+                                    code={user["referral_code"]}
+                                />
+                            </div>
+
+                            <div className="col-md-6">
+                                <CollabLinkClipBoard
+                                    slug={user.slug}
+                                />
+                            </div>
+                        </div>
+                        )}
+
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="my-wondor-card mt-4 p-4">
@@ -344,7 +361,6 @@ const MyWondorPage = ({
                 <div style={{ top: "3%" }}>
                     <GenericActionBanner />
                 </div>
-
             </div>
         </Layout>
     );

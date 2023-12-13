@@ -238,7 +238,7 @@ const Home = ({
           <div className="card-btn-info-cnt">
             <Button ghost>
               <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
-                <span style={{ fontWeight: 500, fontSize: '14px' }}>Collab Now</span>
+                <span style={{ fontWeight: 500, fontSize: '14px' }}>Collab now</span>
               </Link>
             </Button>
           </div>

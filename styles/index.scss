@@ -49,10 +49,20 @@
 @import "./pages/wondor/allBlogs.scss";
 
 @import "./collabPage.scss";
-@import "./assets/countdownTimer.scss";
+
 @import "./pages/proposals/proposalHome.scss";
 
 @import "./myWondorPage.scss";
+
+
+// Assets
+@import "./assets/countdownTimer.scss";
+@import "./assets/genericClipboard.scss";
+
+
+
+
+
 
 html, body {
   max-width: 100%;

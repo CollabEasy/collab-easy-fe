@@ -20,6 +20,7 @@ import {
 import { CopyFilled } from "@ant-design/icons";
 import Link from "next/link";
 import { routeToHref } from "config/routes";
+import RewardCodeClipBoard from "./asset/rewardCodeClipBoard";
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
@@ -161,39 +162,18 @@ const RewardsPage = ({
       ) : (
         <>
           <div className="rewardsInfo_container">
-            <div className="points-earn-container" style={{ backgroundColor: "#FFFBE6", border: "1px solid #f2a114" }}>
+            <div className="clipboard-container" style={{ backgroundColor: "#FFFBE6", border: "1px solid #f2a114" }}>
               <div className="points-info-cnt">
                 <div className="points-list-cnt">
                   Hello {user.first_name}, learn how to earn and redeem points here
                   <Link href={routeToHref(toRewardsInfoPage())} passHref> here.</Link>
                 </div>
               </div>
-              {/* <div className="close-icon"></div> */}
             </div>
-            <div className="points-earn-container">
-              <div className="points-info-cnt">
-                <div className="points-list-cnt">
-                  Share code {" "}
-                  <div className="clipboard-text-cnt">
-                    <span className="clipboard-text">{user["referral_code"]}</span>
-                    <div className="copy-btn" onClick={handleCopyClick}>
-                      {isCopied ? 'Copied!' : 'Copy'}
-                    </div>
-                  </div>
-                  {" "} with your friends to earn 100 points for successful refferal.
-                </div>
-                <input
-                  type="text"
-                  ref={textRef}
-                  defaultValue={user["referral_code"]}
-                  style={{
-                    opacity: 0,
-                    position: "absolute",
-                    pointerEvents: "none",
-                  }}
-                />
-              </div>
-              {/* <div className="close-icon"></div> */}
+            <div >
+              <RewardCodeClipBoard
+                code={user["referral_code"]}
+              />
             </div>
             <div style={{ marginTop: "20px" }}>
               <h5>Summary</h5>
