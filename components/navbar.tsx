@@ -292,8 +292,9 @@ const NavBar = ({
               showIcon={false}
               banner
               closable
+              style={{ backgroundColor: 'black'}}
               message={
-                <span>
+                <span style={{ color: 'white' }}>
                   Join the &quot;Overcome Self Doubt&quot; Comic Strip Contest. 
                   Be a part of the laughter revolution and stand a chance to win the handsome prize of $75.{" "} 
                   <a href={routeToHref(toContestPage("DEC2023", "details"))}>Submit your entries now!</a>

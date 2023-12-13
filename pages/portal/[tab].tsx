@@ -519,9 +519,9 @@ const ArtistPortal = ({
                       <Alert
                         showIcon={false}
                         banner
-                        style={{ textAlign: "center" }}
+                        style={{ textAlign: "center", backgroundColor: 'black' }}
                         message={
-                          <span>
+                          <span style={{ color: 'white' }}>
                             This is how your profile appears to artists looking for collaboration; 
                             Enhance your profile visibility by keeping details up to date. <b>
                               A complete profiles makes a positive impression.
