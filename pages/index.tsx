@@ -169,6 +169,40 @@ const Home = ({
     );
   }
 
+  const getLCPImage = () => {
+    return (
+      <div
+        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
+      >
+        <div className="popular-category-card popular-category-colors">
+          <div className="popular-category-overlay"></div>
+          <div className="popular-category-circle">
+            <Image
+              src={getPopularCategoryImage("writing")}
+              layout="fixed"
+              height={50}
+              width={100}
+              unoptimized={true}
+              alt="Creative writers collaborating on a creative writing project. Send collab request."
+              // className="category-icon"
+              priority
+            />
+          </div>
+          <h5 className="common-h5-style">
+            Writing
+          </h5>
+          <div className="card-btn-info-cnt">
+            <Button ghost>
+              <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
+                <span style={{ fontWeight: 500, fontSize: '12px' }}>Find Collaborator</span>
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const getMainContent = () => {
     return (
       <div className="hero-text-container">
@@ -212,40 +246,6 @@ const Home = ({
       </div>
     );
   };
-
-  const getLCPImage = () => {
-    return (
-      <div
-        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
-      >
-        <div className="popular-category-card popular-category-colors">
-          <div className="popular-category-overlay"></div>
-          <div className="popular-category-circle">
-            <Image
-              src={getPopularCategoryImage("writing")}
-              layout="fixed"
-              height={50}
-              width={100}
-              unoptimized={true}
-              alt="Creative writers collaborating on a creative writing project. Send collab request."
-              // className="category-icon"
-              priority
-            />
-          </div>
-          <h5 className="common-h5-style">
-            Writing
-          </h5>
-          <div className="card-btn-info-cnt">
-            <Button ghost>
-              <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
-                <span style={{ fontWeight: 500, fontSize: '12px' }}>Find Collaborator</span>
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-    )
-  }
 
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {

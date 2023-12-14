@@ -46,6 +46,15 @@ export const popularCollabCategories = [
     para: "Find Painters available to",
     buttonText: "Collab Now"
   },
+  {
+    id: 9,
+    title: "Music",
+    slug: "musician",
+    imgAltTag:
+      "Musicians collaborating on a creative music project. Send collab request.",
+    para: "Find Musicians available to",
+    buttonText: "Collab Now"
+  },
 ];
 
 export const mainContent = {
