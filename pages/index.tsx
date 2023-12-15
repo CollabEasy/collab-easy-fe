@@ -505,6 +505,7 @@ const Home = ({
             <div className="col-12 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
               <div className="widget single-news">
                 <div className="image">
+                  {/* eslint-disable @next/next/no-img-element */}
                   <img src="https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/KVSqk1x-kEuZo9pMZLBaGw/Group.svg" className="img-responsive" />
                   <span className="gradient"></span>
                 </div>
@@ -731,13 +732,13 @@ const Home = ({
         {getBlogPosts()}
       </div>
 
-      <div className="row" style={{ backgroundColor: "#EAEED8" }}>
+      <div className="row" style={{ backgroundColor: "#E6CCF5" }}>
         <div className="basic-testimonial-container">
           <div>
             <div className="row justify-content-center mt-4">
               <div className="col-12">
                 <div className="section-title">
-                  <h2 className="common-h3-style">What artists have to say about us</h2>
+                  <h2 className="common-h3-style">What Artists Have to Say About Us</h2>
                   <p className="common-p-style ">
                     On the way to building trust with artists around the globe. Discover how Wondor has positively impacted the
                     lives of it users
