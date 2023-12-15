@@ -691,7 +691,7 @@ const Home = ({
               <div className="col-md-12">
                 <div className="section-title text-md-center">
                   <h2 className="common-h2-style">
-                    Wondor Helps You Take Your Artistic Journey to the Next Level!
+                    Take Your Artistic Journey to the Next Level with Us!
                   </h2>
                   <p className="common-p-style" style={{ width: "100%" }}>
                     Our platform is committed to your growth. Discover fellow artists, improved collaboration experience,
