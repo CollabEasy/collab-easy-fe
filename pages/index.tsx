@@ -233,7 +233,7 @@ const Home = ({
             {mainContent["paragraph"]}
           </p>
           <div className="hero-text-cnt-wrapper">
-            {!isLoggedIn && (<button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }} onClick={openLoginModal}>
+            {!isLoggedIn && (<button className="homepage-button" style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
               Join for Free!
             </button>)}
             <Link href={routeToHref(toTutorial())} passHref >
@@ -538,7 +538,7 @@ const Home = ({
                 </p>
                 <div>
                   <Link href={routeToHref(toFAQ())} passHref>
-                    <button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
+                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
                       FAQs
                     </button>
                   </Link>
@@ -600,7 +600,7 @@ const Home = ({
             </p>
             <div>
               <Link href={routeToHref(toAllCategoryPage())} passHref>
-                <button className="homepage-button" style={{ backgroundColor: "#41A8F7", color: "white" }}>
+                <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
 
                   Collab Categories
 
