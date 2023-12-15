@@ -705,33 +705,6 @@ const Home = ({
         {getWondorOfferings()}
       </div>
 
-
-      <div className="row" style={{ backgroundColor: "#FAFAFA" }}>
-        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-          <div className="wondor-offerings-container">
-            <div className="row align-items-center">
-              <div className="col-md-12">
-                <div className="section-title text-md-center">
-                  <h2 className="common-h2-style">
-                    Understand the Power of Collaboration!
-                  </h2>
-                  <p className="common-p-style" style={{ width: "100%" }}>
-                    Collaboration multiplies creativity, fosters innovation, and amplifies shared success. 
-                    Gain insights into the practical aspects of various kind of collaboration for your artistic growth.
-                  </p>
-                  <a href={routeToHref(toAllBlogs())}>
-                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                      All Blogs
-                    </button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {getBlogPosts()}
-      </div>
-
       <div className="row" style={{ backgroundColor: "#E6CCF5" }}>
         <div className="basic-testimonial-container">
           <div>
@@ -765,7 +738,33 @@ const Home = ({
         {getBasicFAQSection()}
       </div>
 
-      <div className="row" style={{ borderBottom: '1px solid #e8e8e8' }}>
+      {/* <div className="row" style={{ borderBottom: '1px solid #e8e8e8' }}>
+      </div> */}
+
+      <div className="row" style={{ backgroundColor: "#FAFAFA" }}>
+        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+          <div className="wondor-offerings-container">
+            <div className="row align-items-center">
+              <div className="col-md-12">
+                <div className="section-title text-md-center">
+                  <h2 className="common-h2-style">
+                    Understand the Power of Collaboration!
+                  </h2>
+                  <p className="common-p-style" style={{ width: "100%" }}>
+                    Collaboration multiplies creativity, fosters innovation, and amplifies shared success. 
+                    Gain insights into the practical aspects of various kind of collaboration for your artistic growth.
+                  </p>
+                  <a href={routeToHref(toAllBlogs())}>
+                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                      All Blogs
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {getBlogPosts()}
       </div>
 
       {getSignUpCard()}

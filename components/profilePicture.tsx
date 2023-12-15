@@ -131,7 +131,7 @@ const ProfilePicture = ({
         className={`artistProfile_profileImage${showUploadingLoader ? "Uploading" : ""
           }`}
         loader={prismicLoader}
-        src={isLoggedIn ? (user?.profile_pic_url) : ("https://bootdey.com/img/Content/avatar/avatar6.png")}
+        src={(user?.profile_pic_url.length !== 0) ? (user?.profile_pic_url) : ("https://bootdey.com/img/Content/avatar/avatar6.png")}
         alt="profile picture"
         height={150}
         width={150}
