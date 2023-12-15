@@ -520,6 +520,30 @@
   }
 }
 
+.wondor-story-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+
+  .section-title {
+    padding-left: 20%;
+    padding-right: 20%;
+
+    h2 {
+      font-size: 3vw;
+      line-height: 5vw;
+    }
+
+    p {
+      text-align: left;
+      font-size: 1.5vw;
+      line-height: 2.5vw;
+    }
+  }
+}
+
 .basic-faq-section {
   display: flex;
   flex-wrap: wrap;
@@ -1093,6 +1117,25 @@
     }
   }
 
+  .wondor-story-container {
+    .section-title {
+      padding-left: 8%;
+      padding-right: 8%;
+      text-align: center;
+
+      h2 {
+        font-size: 5vw;
+        line-height: 6vw;
+      }
+
+      p {
+        font-size: 2vw;
+        line-height: 3vw;
+      }
+    }
+  }
+
+
   .wondor-offerings-container {
     .section-title {
       padding-left: 8%;
@@ -1374,6 +1417,23 @@
     }
   }
 
+  .wondor-story-container {
+    .section-title {
+      padding-left: 2%;
+      padding-right: 2%;
+      text-align: center;
+
+      h2 {
+        font-size: 5vw;
+        line-height: 6vw;
+      }
+
+      p {
+        font-size: 2.75vw;
+        line-height: 4.5vw;
+      }
+    }
+  }
 
   .wondor-offerings-container {
     .section-title {
@@ -1656,6 +1716,23 @@
 
       p {
         font-size: 3.5vw;
+      }
+    }
+  }
+
+  .wondor-story-container {
+    .section-title {
+      padding-left: 10%;
+      padding-right: 10%;
+
+      h2 {
+        font-size: 7vw;
+        line-height: 7vw;
+      }
+
+      p {
+        font-size: 3.75vw;
+        line-height: 6vw;
       }
     }
   }
@@ -1944,6 +2021,23 @@
     }
   }
 
+  .wondor-story-container {
+    .section-title {
+      padding-left: 5%;
+      padding-right: 5%;
+      text-align: center;
+
+      h2 {
+        font-size: 6vw;
+        line-height: 7vw;
+      }
+
+      p {
+        font-size: 3.75vw;
+        line-height: 6vw;
+      }
+    }
+  }
 
   .wondor-offerings-container {
     .section-title {
@@ -2106,5 +2200,3 @@
     margin-top: -450px;
   }
 }
-
-

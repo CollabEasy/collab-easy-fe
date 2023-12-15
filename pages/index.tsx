@@ -497,6 +497,75 @@ const Home = ({
     );
   };
 
+  const getWondorStory = () => {
+    return (
+      <div>
+        <p className="common-p-style" style={{ width: "100%" }}>
+          Do you remember the time you spent hours scouring online platforms in an
+          attempt to find a collaborator who shared your vision? {" "}
+          <b style={{ color: "black" }}>Each click felt like a dead end, every scroll made you hopeless, and your vision seemed to fade away!</b>
+        </p>
+        <p className="common-p-style" style={{ width: "100%" }}>
+          Art journaling saved me during the pandemic, but as a solo creator, staying consistent
+          became challenging. <b style={{ color: "black" }}>Sometimes I lacked new ideas, and at other times, motivation was
+            the missing piece.</b>
+        </p>
+        <p className="common-p-style" style={{ width: "100%" }}>
+          <i>Finding collaborators on existing platforms was a herculean task –
+            an ocean of profiles with confusing collaboration preferences.{" "}</i>
+          It felt like searching
+          for a needle in a haystack. On top of that, juggling between tools and managing
+          communication across time zones became a daunting mess.
+        </p>
+        <p className="common-p-style" style={{ width: "100%" }}>
+          That&pos;s when I decided to work on Wondor – to create a space where we could find
+          like-minded individuals, spark new ideas, and bring them to life.{" "}
+          <b style={{ color: "black" }}>Here, collaboration wasn&pos;t just possible; it was effortless.</b>
+        </p>
+        <p className="common-p-style" style={{ width: "100%" }}>
+          Designed for artists by an artist, Wondor is more than a platform;{" "}
+          <b style={{ color: "black" }}>it&pos;s a global community connecting creative minds.</b>
+          {" "}Forget juggling multiple tools! Wondor seamlessly integrates proposal creation,
+          communication, and time-zone management, making collaboration a breeze.
+        </p>
+        <p className="common-p-style" style={{ width: "100%" }}>
+          <span style={{ borderBottom: '1px solid black' }}>Our journey has just begun</span>, and Wondor invites you to join and shape the community
+          you&pos;ve always envisioned.
+        </p>
+        <p className="common-p-style" style={{ width: "100%" }}>
+          <b style={{ color: "black" }}><i>Stop wasting time and effort {" "}</i></b>.
+          Discover seamless collaboration, boundless creativity,
+          and {" "}<span style={{ borderBottom: '1px solid black' }}>a community you can proudly call your own!</span>
+        </p>
+        <br />
+      </div>
+    );
+  };
+
+  const getTestimonialCard = (testimonial) => {
+    return (
+      <div className="basic-testimonial-text">
+        <div
+          className="d-flex justify-content-center align-items-center p-2 testimony-img"
+        >
+          <Image
+            unoptimized
+            src={testimonial["img"]}
+            height={75}
+            width={75}
+            className="testimony-img-dim"
+            alt={"Send collaboration request to " + testimonial["user_name"]}
+            priority={true}
+          />
+        </div>
+        <p className="common-p-style">{testimonial["testimonial"]}</p>
+        <Link href={routeToHref(toArtistProfile(testimonial["user_slug"]))} passHref>
+          <h5 className="common-h5-style cursor-pointer">{testimonial["user_name"]}</h5>
+        </Link>
+      </div>
+    );
+  }
+
   const getBlogPosts = () => {
     return (
       <div className="col-12 popular-blog-post" style={{ paddingTop: "0px", paddingBottom: "4%" }}>
@@ -523,7 +592,6 @@ const Home = ({
   }
 
   const getBasicFAQSection = () => {
-
     return (
       <div className="basic-faq-section">
         <div>
@@ -560,30 +628,6 @@ const Home = ({
       </div>
     )
 
-  }
-
-  const getTestimonialCard = (testimonial) => {
-    return (
-      <div className="basic-testimonial-text">
-        <div
-          className="d-flex justify-content-center align-items-center p-2 testimony-img"
-        >
-          <Image
-            unoptimized
-            src={testimonial["img"]}
-            height={75}
-            width={75}
-            className="testimony-img-dim"
-            alt={"Send collaboration request to " + testimonial["user_name"]}
-            priority={true}
-          />
-        </div>
-        <p className="common-p-style">{testimonial["testimonial"]}</p>
-        <Link href={routeToHref(toArtistProfile(testimonial["user_slug"]))} passHref>
-          <h5 className="common-h5-style cursor-pointer">{testimonial["user_name"]}</h5>
-        </Link>
-      </div>
-    );
   }
 
   const getSignUpCard = () => {
@@ -705,6 +749,32 @@ const Home = ({
         {getWondorOfferings()}
       </div>
 
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+          <div className="wondor-story-container">
+            <div className="row align-items-center">
+              <div className="col-md-12">
+                <div className="section-title text-md-center">
+                  <h2 className="common-h2-style">
+                    The Wondor Story, A Story of Artists, for Artists - By an Artist!
+                  </h2>
+                  {getWondorStory()}
+                  <div>
+                    <button
+                      className="homepage-button"
+                      style={{ backgroundColor: "black", color: "white" }}
+                      onClick={openLoginModal}
+                    >
+                      Be a part of this journey
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="row" style={{ backgroundColor: "#E6CCF5" }}>
         <div className="basic-testimonial-container">
           <div>
@@ -751,7 +821,7 @@ const Home = ({
                     Understand the Power of Collaboration!
                   </h2>
                   <p className="common-p-style" style={{ width: "100%" }}>
-                    Collaboration multiplies creativity, fosters innovation, and amplifies shared success. 
+                    Collaboration multiplies creativity, fosters innovation, and amplifies shared success.
                     Gain insights into the practical aspects of various kind of collaboration for your artistic growth.
                   </p>
                   <a href={routeToHref(toAllBlogs())}>
