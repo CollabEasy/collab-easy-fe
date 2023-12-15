@@ -418,39 +418,6 @@ const Home = ({
     );
   }
 
-  const getPopularBlogCard = () => {
-    return (
-      <>
-        {blogCard.map((item) => (
-          <div
-            className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 cursor-pointer"
-            key={item.id}
-          >
-            <Link href={GetBlogUrl(item.url)} passHref>
-              <div className="blog-card">
-                <div className="d-flex justify-content-between align-items-center p-2">
-                  <div className="flex-column lh-1">
-                    <h6
-                      className="common-h6-style font-bold"
-                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                    >
-                      {item.heading}
-                    </h6>
-                    <text className="common-p-style truncate-line-clamp"
-                      style={{ paddingLeft: "10px", paddingRight: "10px" }}
-                    >
-                      {item.paragraph}
-                    </text>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        ))}
-      </>
-    );
-  };
-
   const getWondorOfferings = () => {
     return (
       <div className="wondor-offerings-container" style={{ paddingTop: "0px", paddingBottom: "4%" }}>
@@ -529,6 +496,30 @@ const Home = ({
       </div>
     );
   };
+
+  const getBlogPosts = () => {
+    return (
+      <div className="col-12 popular-blog-post" style={{ paddingTop: "0px", paddingBottom: "4%" }}>
+        <div className="row container">
+          {blogCard.map((blog) => (
+            <div className="col-12 col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+              <div className="widget single-news">
+                <div className="image">
+                  <img src="https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/KVSqk1x-kEuZo9pMZLBaGw/Group.svg" className="img-responsive" />
+                  <span className="gradient"></span>
+                </div>
+                <div className="details">
+                  <div className="category"><a href="">Blog</a></div>
+                  <h3 className="common-h3-style" ><a href={GetBlogUrl(blog["url"])}>{blog["heading"]}</a></h3>
+                  <time className="common-p-style">Read More</time>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   const getBasicFAQSection = () => {
 
@@ -666,7 +657,7 @@ const Home = ({
         {getPopularCollaborators()}
       </div>
 
-      <div className="row popular-blog-section">
+      <div className="row popular-proposal-section">
         <div className="row align-items-end">
           <div className="col-md-8">
             <div className="section-title text-md-start">
@@ -712,27 +703,33 @@ const Home = ({
         </div>
         {getWondorOfferings()}
       </div>
-      {/* 
-      <div className="row popular-blog-section">
-        <div className="row align-items-end">
-          <div className="col-md-8">
-            <div className="section-title text-md-start">
-              <h2 className="common-h2-style">
-                Go Beyond Your Comfort Zones, Try Cross-discipline Collaboration!
-              </h2>
-              <p className="common-p-style">
-                Gain insights into the practical aspects of other disciplines, contributing to your overall artistic growth
-              </p>
-              <a href={routeToHref(toAllBlogs())}>
-                <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                  Read More
-                </button>
-              </a>
+
+
+      <div className="row" style={{ backgroundColor: "#FAFAFA" }}>
+        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+          <div className="wondor-offerings-container">
+            <div className="row align-items-center">
+              <div className="col-md-12">
+                <div className="section-title text-md-center">
+                  <h2 className="common-h2-style">
+                    Understand the Power of Collaboration!
+                  </h2>
+                  <p className="common-p-style" style={{ width: "100%" }}>
+                    Collaboration multiplies creativity, fosters innovation, and amplifies shared success. 
+                    Gain insights into the practical aspects of various kind of collaboration for your artistic growth.
+                  </p>
+                  <a href={routeToHref(toAllBlogs())}>
+                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                      All Blogs
+                    </button>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="row mt-2 g-4">{getPopularBlogCard()}</div>
-      </div> */}
+        {getBlogPosts()}
+      </div>
 
       <div className="row" style={{ backgroundColor: "#EAEED8" }}>
         <div className="basic-testimonial-container">

@@ -104,20 +104,7 @@ export const blogCard = [
     url: "/blog/top-5-reasons-for-why-artists-should-collaborate",
   },
   {
-    heading:
-      "The Art of Connection: How Collaboration Is Elevating Painters to New Heights!",
-    paragraph:
-      "Collaboration broadens perspectives, sparks innovation, and propels painters to unparalleled heights of artistic achievement and recognition",
-    url: "/category/painting/wiki/learn-about-painting-and-collaboration-opportunities",
-  },
-  {
-    heading: "How Photographers Are Collaborating to Dominate the Art Scene?",
-    paragraph:
-      "Photographers unite for diverse perspectives, collective impact, and art dominance through strategic collaboration in the creative realm.",
-    url: "/category/photography/wiki/learn-about-photography-and-collaboration-opportunities",
-  },
-  {
-    heading: "6 Powerful Ways to Embrace Cross-Disciplinary Collaboration",
+    heading: "6 Powerful Ways for Artists to Embrace Cross-Disciplinary Collaboration!",
     paragraph:
       "Combining different art forms, artists can create unique and innovative works that challenge traditional boundaries and push the limits of what is possible.",
     url: "/blog/6-powerful-ways-to-embrace-cross-discipline-collaboration",
@@ -128,13 +115,6 @@ export const blogCard = [
     paragraph:
       "Wondor Nurturing artists, unlocking potential, and propelling creativity to new heights with tailored support and resources.",
     url: "/blog/top-5-reasons-for-why-artists-should-use-wondor",
-  },
-  {
-    heading:
-      "Expanding Literary Horizons: The Art and Benefits of Writer Collaboration!",
-    paragraph:
-      "Writers collaborate for enriched creativity, mutual growth, diverse perspectives, and the joy of shared storytelling",
-    url: "/category/writing/wiki/learn-about-writing-and-collaboration-opportunities",
   },
 ];
 
