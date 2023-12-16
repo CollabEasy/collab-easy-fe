@@ -208,7 +208,7 @@ const Home = ({
       <div className="hero-text-container">
         <div className="text-content">
           <div>
-            <p className="common-p-style">
+            <p className="common-p-style" style={{ marginTop: "30px" }}>
               {mainContent["actionText"]}
             </p>
             <h1 className="common-h1-style">
@@ -237,7 +237,7 @@ const Home = ({
               Join for Free!
             </button>)}
             <Link href={routeToHref(toTutorial())} passHref >
-              <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
+              <button className="homepage-button" style={{ backgroundColor: "white", color: "black" }}>
                 How it works?
               </button>
             </Link>
@@ -775,7 +775,7 @@ const Home = ({
         </div>
       </div>
 
-      <div className="row" style={{ backgroundColor: "#E6CCF5" }}>
+      <div className="row" style={{ backgroundColor: "#D6EBE7" }}>
         <div className="basic-testimonial-container">
           <div>
             <div className="row justify-content-center mt-4">
