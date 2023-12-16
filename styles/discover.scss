@@ -27,10 +27,14 @@
 
   .text-content {
     top: 5%;
-
     width: 90%;
-    background-color: #DFE8D3;
     border-radius: 10px;
+    // https://codepen.io/P1N2O/pen/pyBNzX
+    // https://codepen.io/tedmcdo/pen/PqxKXg
+    background: linear-gradient(-45deg, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #B7E8EB 100%);
+    background-size: 400% 400%;
+    animation: hero-text-gradient 15s ease infinite;
+
 
     word-wrap: break-word;
     text-align: center;
@@ -2205,4 +2209,16 @@
   100% {
     margin-top: -450px;
   }
+}
+
+@keyframes hero-text-gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
