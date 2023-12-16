@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-key */
+
 import NewUserModal from "../components/modal/newUserModal";
 import LoginModal from "../components/modal/loginModal";
 import Layout from "../components/layout";
@@ -697,11 +699,11 @@ const Home = ({
           <div className="col-md-8">
             <div className="section-title text-md-start">
               <h2 className="common-h2-style">
-                Collaboration Attracts a Wider Audience!
+                Have a project you want to work on together?
               </h2>
               <p className="common-p-style" style={{ width: "80%" }}>
                 Millions of artists are collaborating on Instagram, YouTube, TikTok,
-                and other platforms, propelling themselves to new heights of success.
+                and other platforms, propelling themselves to new heights of success. Start your success story by adding your project today.
               </p>
               <a onClick={() => {
                 setShowCreateOrUpdateProposalModal(true);
