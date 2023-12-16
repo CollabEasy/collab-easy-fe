@@ -245,46 +245,48 @@ const Home = ({
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
     return (
-      <div style={{ paddingTop: "5vw", paddingBottom: "2%" }}>
-        <div className="scroll-container">
-          <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
-            <div className="col-12">
-              <div className="scroll-list">
-                <>
-                  {getLCPImage()}
-                  {popularCollabCategories.map((item) => (
-                    <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                      <div
-                        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
-                        key={item.id}
-                      >
+      <div className="row centered-div">
+        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+          <div className="scroll-container">
+            <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
+              <div className="col-12">
+                <div className="scroll-list">
+                  <>
+                    {getLCPImage()}
+                    {popularCollabCategories.map((item) => (
+                      <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
+                        <div
+                          className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
+                          key={item.id}
+                        >
 
-                        <div className="popular-category-card popular-category-colors">
-                          <div className="popular-category-overlay"></div>
-                          <div className="popular-category-circle">
-                            <Image
-                              src={getPopularCategoryImage(item.slug)}
-                              layout="fixed"
-                              height={50}
-                              width={100}
-                              alt={item.imgAltTag}
-                              unoptimized={true}
-                              // className="category-icon"
-                              loading="lazy"
-                            />
-                          </div>
-                          <div className="">
-                            <h5
-                              className="common-h5-style"
-                            >
-                              {item.title}
-                            </h5>
+                          <div className="popular-category-card popular-category-colors">
+                            <div className="popular-category-overlay"></div>
+                            <div className="popular-category-circle">
+                              <Image
+                                src={getPopularCategoryImage(item.slug)}
+                                layout="fixed"
+                                height={50}
+                                width={100}
+                                alt={item.imgAltTag}
+                                unoptimized={true}
+                                // className="category-icon"
+                                loading="lazy"
+                              />
+                            </div>
+                            <div className="">
+                              <h5
+                                className="common-h5-style"
+                              >
+                                {item.title}
+                              </h5>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </Link>
-                  ))}
-                </>
+                      </Link>
+                    ))}
+                  </>
+                </div>
               </div>
             </div>
           </div>
@@ -664,10 +666,6 @@ const Home = ({
         {getMainContent()}
       </div>
 
-      <div className="row centered-div" style={{ backgroundColor: "#FFFFF" }}>
-        {getPopularCollabCategories()}
-      </div>
-
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="popular-collaborator-container">
           <div className="row align-items-center">
@@ -678,12 +676,20 @@ const Home = ({
                 </h2>
                 <p className="common-p-style" style={{ width: "100%" }}>
                   Collaboration brings together artists with diverse backgrounds, skills, and perspectives,
-                  fostering innovation and satisfaction beyond what&apos;s achieved individually.
+                  fostering innovation and satisfaction beyond what&apos;s achieved individually. Don't forget to checkout out popular categories and collaborators!
                 </p>
+                <div>
+                  <Link href={routeToHref(toAllCategoryPage())} passHref>
+                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                      All Collab Categories
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        {getPopularCollabCategories()}
         {getPopularCollaborators()}
       </div>
 
