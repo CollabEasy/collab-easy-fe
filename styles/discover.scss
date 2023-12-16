@@ -99,7 +99,7 @@
     display: inline-block;
     margin: 8px 8px;
     width: 190px;
-    height: 250px;
+    height: 210px;
 
     .popular-category-card {
       width: 100%;
@@ -312,12 +312,8 @@
     }
   }
 
-  .scroll-list-item {
-    height: 200px;
-  }
-
   .scroll-list-item-popular {
-    height: 300px;
+    height: 230px;
   }
 }
 
@@ -344,7 +340,7 @@
 
 .popular-proposal-section {
   margin-top: 30px;
-  background-color: #CEC0D7;
+  background-color: #F5FBEA;
   padding: 30px 0px 30px 20px;
   display: flex;
 
@@ -813,6 +809,20 @@
     }
   }
 
+  .wondor-story-container {
+    .section-title {
+      h2 {
+        font-size: 50px;
+        line-height: 65px;
+      }
+
+      p {
+        font-size: 20px;
+        line-height: 35px;
+      }
+    }
+  }
+
   // Wondor Offerings cards
   .wondor-offerings-container {
     .section-title {
@@ -1058,12 +1068,8 @@
       }
     }
 
-    .scroll-list-item {
-      height: 190px;
-    }
-
     .scroll-list-item-popular {
-      height: 260px;
+      height: 210px;
     }
   }
 
@@ -1338,12 +1344,8 @@
       }
     }
 
-    .scroll-list-item {
-      height: 200px;
-    }
-
     .scroll-list-item-popular {
-      height: 260px;
+      height: 210px;
     }
 
     .popular-category-container {
@@ -1642,12 +1644,8 @@
       }
     }
 
-    .scroll-list-item {
-      height: 190px;
-    }
-
     .scroll-list-item-popular {
-      height: 260px;
+      height: 210px;
     }
 
     .popular-category-container {
@@ -1943,12 +1941,8 @@
       }
     }
 
-    .scroll-list-item {
-      height: 190px;
-    }
-
     .scroll-list-item-popular {
-      height: 240px;
+      height: 210px;
     }
 
     .popular-category-container {

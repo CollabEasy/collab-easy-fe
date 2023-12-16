@@ -171,35 +171,30 @@ const Home = ({
 
   const getLCPImage = () => {
     return (
-      <div
-        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
-      >
-        <div className="popular-category-card popular-category-colors">
-          <div className="popular-category-overlay"></div>
-          <div className="popular-category-circle">
-            <Image
-              src={getPopularCategoryImage("writing")}
-              layout="fixed"
-              height={50}
-              width={100}
-              unoptimized={true}
-              alt="Creative writers collaborating on a creative writing project. Send collab request."
-              // className="category-icon"
-              priority
-            />
-          </div>
-          <h5 className="common-h5-style">
-            Writing
-          </h5>
-          <div className="card-btn-info-cnt">
-            <Button ghost>
-              <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
-                <span style={{ fontWeight: 500, fontSize: '12px' }}>Find Collaborator</span>
-              </Link>
-            </Button>
+      <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
+        <div
+          className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
+        >
+          <div className="popular-category-card popular-category-colors">
+            <div className="popular-category-overlay"></div>
+            <div className="popular-category-circle">
+              <Image
+                src={getPopularCategoryImage("writing")}
+                layout="fixed"
+                height={50}
+                width={100}
+                unoptimized={true}
+                alt="Creative writers collaborating on a creative writing project. Send collab request."
+                // className="category-icon"
+                priority
+              />
+            </div>
+            <h5 className="common-h5-style">
+              Writing
+            </h5>
           </div>
         </div>
-      </div>
+      </Link>
     )
   }
 
@@ -250,7 +245,7 @@ const Home = ({
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
     return (
-      <div style={{ paddingTop: "5%", paddingBottom: "2%" }}>
+      <div style={{ paddingTop: "5vw", paddingBottom: "2%" }}>
         <div className="scroll-container">
           <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
             <div className="col-12">
@@ -258,41 +253,36 @@ const Home = ({
                 <>
                   {getLCPImage()}
                   {popularCollabCategories.map((item) => (
-                    <div
-                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
-                      key={item.id}
-                    >
+                    <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
+                      <div
+                        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
+                        key={item.id}
+                      >
 
-                      <div className="popular-category-card popular-category-colors">
-                        <div className="popular-category-overlay"></div>
-                        <div className="popular-category-circle">
-                          <Image
-                            src={getPopularCategoryImage(item.slug)}
-                            layout="fixed"
-                            height={50}
-                            width={100}
-                            alt={item.imgAltTag}
-                            unoptimized={true}
-                            // className="category-icon"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="">
-                          <h5
-                            className="common-h5-style"
-                          >
-                            {item.title}
-                          </h5>
-                        </div>
-                        <div className="card-btn-info-cnt">
-                          <Button ghost>
-                            <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                              <span style={{ fontWeight: 500, fontSize: '12px' }}>Find Collaborator</span>
-                            </Link>
-                          </Button>
+                        <div className="popular-category-card popular-category-colors">
+                          <div className="popular-category-overlay"></div>
+                          <div className="popular-category-circle">
+                            <Image
+                              src={getPopularCategoryImage(item.slug)}
+                              layout="fixed"
+                              height={50}
+                              width={100}
+                              alt={item.imgAltTag}
+                              unoptimized={true}
+                              // className="category-icon"
+                              loading="lazy"
+                            />
+                          </div>
+                          <div className="">
+                            <h5
+                              className="common-h5-style"
+                            >
+                              {item.title}
+                            </h5>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </>
               </div>
@@ -312,55 +302,50 @@ const Home = ({
               <div className="col-12">
                 <div className="scroll-list">
                   {artistsForCollab.map((item) => (
-                    <div
-                      className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item-popular cursor-pointer"
-                      key={item.id}
-                    >
-                      <div >
-                        <div
-                          className="d-flex justify-content-center align-items-center p-2 category-icon"
-                        >
-                          <Image
-                            unoptimized
-                            src={item.url}
-                            height={200}
-                            width={200}
-                            className="collaborator-icon"
-                            alt={"Send collaboration request to " + item.artist}
-                            priority={true}
-                          />
-                        </div>
-                        <div className="d-flex justify-content-center text-align-center p-2">
-                          <h5
-                            className="common-h5-style"
+                    <Link href={routeToHref(toUserCollabPage(item.slug))}>
+                      <div
+                        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item-popular cursor-pointer"
+                        key={item.id}
+                      >
+                        <div >
+                          <div
+                            className="d-flex justify-content-center align-items-center p-2 category-icon"
                           >
-                            {item.artist}
-                          </h5>
-                        </div>
-                        <div className="d-flex justify-content-center" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-                          <p
-                            className="common-p-style"
-                          >
-                            {/* eslint-disable react/jsx-key */}
-                            {item["category"].map((category) => (
-                              <span
-                                style={{ background: "white", color: "black" }}
-                                className="badge bg-soft-secondary fs-14 mt-1"
-                              >
-                                {category}
-                              </span>
-                            ))}
-                          </p>
-                        </div>
-                        <div className="d-flex justify-content-center card-btn-info-cnt">
-                          <Button ghost>
-                            <Link href={routeToHref(toUserCollabPage(item.slug))}>
-                              <span style={{ fontWeight: 500, fontSize: '12px' }}>Send collab request</span>
-                            </Link>
-                          </Button>
+                            <Image
+                              unoptimized
+                              src={item.url}
+                              height={200}
+                              width={200}
+                              className="collaborator-icon"
+                              alt={"Send collaboration request to " + item.artist}
+                              priority={true}
+                            />
+                          </div>
+                          <div className="d-flex justify-content-center text-align-center p-2">
+                            <h5
+                              className="common-h5-style"
+                            >
+                              {item.artist}
+                            </h5>
+                          </div>
+                          <div className="d-flex justify-content-center" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
+                            <p
+                              className="common-p-style"
+                            >
+                              {/* eslint-disable react/jsx-key */}
+                              {item["category"].map((category) => (
+                                <span
+                                  style={{ background: "white", color: "black" }}
+                                  className="badge bg-soft-secondary fs-14 mt-1"
+                                >
+                                  {category}
+                                </span>
+                              ))}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>
