@@ -17,6 +17,7 @@ import * as actions from "state/action";
 import {
   openLoginModalAction,
   routeToMyWondor,
+  setCurrentPathName,
   updateLoginData,
 } from "state/action";
 import { LoginModalDetails, User } from "types/model";
@@ -44,6 +45,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   updateLoggedInData: (loginDetails: any) =>
     dispatch(updateLoginData(loginDetails)),
   openLoginModalAction: () => dispatch(openLoginModalAction()),
+  setCurrentPathName: (path: string) => dispatch(setCurrentPathName(path)),
   routeToMyWondor: (route: boolean) => dispatch(routeToMyWondor(route)),
   setShowCreateOrUpdateProposalModal: (show: boolean) =>
     dispatch(actions.setShowCreateOrUpdateProposalModal(show)),
@@ -65,6 +67,7 @@ const Home = ({
   artistListData,
   showCreateOrEditProposalModal,
   openLoginModalAction,
+  setCurrentPathName,
   setShowCreateOrUpdateProposalModal,
   routeToMyWondor,
   // Below is Content
@@ -111,7 +114,7 @@ const Home = ({
   const [proposalData, setProposalData] = useState(emptyProposalData);
 
   const openLoginModal = () => {
-    routeToMyWondor(true);
+    setCurrentPathName(router.asPath);
     router.push("/login");
   };
 

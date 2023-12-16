@@ -28,4 +28,5 @@ export interface AppRouteCreators {
   toBlogPage: (url: string) => WebRoute;
   toMyWondorPage: () => WebRoute;
   toLoginPage: () => WebRoute;
+  toBasicInfo: () => WebRoute;
 }

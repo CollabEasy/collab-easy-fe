@@ -8,7 +8,7 @@ import Image from "next/image";
 import LoginModal from "../modal/loginModal";
 import NewUserModal from "../modal/newUserModal";
 import { LoginModalDetails } from "types/model";
-import { openLoginModalAction } from "state/action";
+import { openLoginModalAction, setCurrentPathName } from "state/action";
 import loginImage from "../../public/images/login.svg"
 import router from "next/router";
 
@@ -21,6 +21,7 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   openLoginModalAction: () => dispatch(openLoginModalAction()),
+  setCurrentPathName: (path: string) => dispatch(setCurrentPathName(path))
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -35,12 +36,14 @@ const NotAuthorised = ({
   error,
   user,
   loginModalDetails,
+  setCurrentPathName,
   openLoginModalAction,
 }: Props) => {
 
   const [showProfileModal, setShowProfileModal] = useState(false);
 
   const openLoginModal = () => {
+    setCurrentPathName(router.asPath);
     router.push("/login");
   };
 

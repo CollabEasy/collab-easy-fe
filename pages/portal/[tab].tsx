@@ -198,9 +198,9 @@ const ArtistPortal = ({
   };
 
   const logoutUser = () => {
+    router.push("/");
     localStorage.removeItem("token");
     resetUserLoggedIn();
-    router.push("/");
   };
 
   const getBreadcrum = (page: string) => {

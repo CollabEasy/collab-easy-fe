@@ -15,7 +15,7 @@ import titleMobileImg from "../public/images/logo.svg";
 import titleMobileBlueImg from "../public/images/mobile-blue.jpg";
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
-import { openLoginModalAction, resetUserLoggedIn, routeToMyWondor } from "state/action";
+import { openLoginModalAction, resetUserLoggedIn, routeToMyWondor, setCurrentPathName } from "state/action";
 import { IsAdmin, IsLandingPage } from "helpers/helper";
 import * as actions from "state/action";
 
@@ -31,7 +31,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchRewards: () => dispatch(actions.fetchRewards()),
   openLoginModalAction: () => dispatch(openLoginModalAction()),
   resetUserLoggedIn: () => dispatch(resetUserLoggedIn()),
-  routeToMyWondor: (route: boolean) => dispatch(routeToMyWondor(route))
+  routeToMyWondor: (route: boolean) => dispatch(routeToMyWondor(route)),
+  setCurrentPathName: (path: string) => dispatch(setCurrentPathName(path)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -46,6 +47,7 @@ const NavBar = ({
   fetchRewards,
   resetUserLoggedIn,
   routeToMyWondor,
+  setCurrentPathName,
   openLoginModalAction,
 }: Props) => {
   const [ref, inView, entry] = useInView({
@@ -64,11 +66,7 @@ const NavBar = ({
   const router = useRouter();
 
   const openLoginModal = () => {
-    console.log("path : ", router.pathname)
-    if (router.pathname === '/') {
-      console.log("route to wondor");
-      routeToMyWondor(true);
-    }
+    setCurrentPathName(router.asPath);
     router.push("/login");
   };
 
@@ -110,6 +108,7 @@ const NavBar = ({
   }, [user]);
 
   const logoutUser = () => {
+    router.push("/");
     localStorage.removeItem("token");
     resetUserLoggedIn();
     setHideSignUp(false);

@@ -10,11 +10,10 @@ const initialState: HomeState = {
   isLoading: true,
   routeToMyWondor: false,
   artistListDetails: {},
-  currentPathname: "",
+  lastPathname: "",
 };
 
 const homeReducer = (state = initialState, action): HomeState => {
-  console.log("action : ", action);
   switch (action.type) {
     case actionTypes.HOME:
       return {
@@ -35,16 +34,18 @@ const homeReducer = (state = initialState, action): HomeState => {
       return { ...state, isLoading: action.payload.isLoading}
     case actionTypes.ROUTE_TO_MY_WONDOR:
       const { route } = action.payload;
-      console.log("route : ", route);
       return {
         ...state,
         routeToMyWondor: route,
       }
-    case actionTypes.SET_CURRENT_PATHNAME:
-      const {pathname} = action.payload;
+    case actionTypes.SET_LAST_PATHNAME:
+      let { pathname } = action.payload;
+      if (pathname === "/") {
+        pathname = "/my-wondor";
+      }
       return {
         ...state,
-        currentPathname: pathname,
+        lastPathname: pathname,
       }
     default:
       return state;

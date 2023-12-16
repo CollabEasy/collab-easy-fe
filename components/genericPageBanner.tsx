@@ -6,7 +6,7 @@ import Image from 'next/image';
 import LoginModal from './modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
-import { openLoginModalAction, updateLoginData } from 'state/action';
+import { openLoginModalAction, setCurrentPathName, updateLoginData } from 'state/action';
 import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
@@ -24,6 +24,7 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     openLoginModalAction: () => dispatch(openLoginModalAction()),
     updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
+    setCurrentPathName: (path: string) => dispatch(setCurrentPathName(path)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -45,12 +46,14 @@ const GenericPageBanner = ({
     user,
     heading,
     paragraph,
+    setCurrentPathName,
     artistListData
 }: Props) => {
     const [showProfileModal, setShowProfileModal] = useState(false);
     const { toContactUs } = useRoutesContext();
 
     const openLoginModal = () => {
+        setCurrentPathName(router.asPath);
         router.push("/login");
     };
 

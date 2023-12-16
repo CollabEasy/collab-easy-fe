@@ -10,7 +10,7 @@ const initialState: UserState = {
   preferences: {},
   errors: {},
   artCategories: [],
-  isFetchingUser: true,
+  isFetchingUser: false,
   isUpdatingProfilePic: false,
   showProfilePictureUpdateModal: false,
   basicUser: {},
@@ -55,7 +55,7 @@ const userReducer = (state = initialState, action): UserState => {
     case actionType.USER_LOGIN_REQUEST:
       return {
         ...state,
-        isFetchingUser: false,
+        isFetchingUser: true,
         user: { new_user: false },
         isLoggedIn: false,
         errors: {},

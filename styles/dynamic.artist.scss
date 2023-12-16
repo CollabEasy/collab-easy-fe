@@ -28,126 +28,93 @@
   border-radius: 5px;
 }
 
-.container {
+.artistProfile__profileDpContainerNonSelf {
   position: relative;
-
   margin: auto;
-
-  .artistProfile__profileDpContainerNonSelf {
-    position: relative;
-
-    margin: auto;
-
-    bottom: -80px;
-
-    height: 150px;
-
-    width: 150px;
-
-    overflow: hidden;
-
-    border-radius: 50%;
-  }
+  height: 150px;
+  width: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  
 }
 
-.container {
+.artistProfile__profileDpContainer {
   position: relative;
-
   margin: auto;
+  height: 150px;
+  width: 150px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 50%;
+  
+}
 
-  .artistProfile__profileDpContainer {
-    position: relative;
+.artistProfile__profileDpContainer:hover .artistProfile_profilePicEditButton {
+  position: absolute;
+  visibility: visible;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  bottom: 58px;
+  right: 58px;
+  width: 32px;
 
-    margin: auto;
+  height: 32px;
 
-    bottom: -80px;
+  text-align: center;
 
-    height: 150px;
+  background-color: #c4c2c2;
 
-    width: 150px;
+  border-radius: 50%;
 
-    cursor: pointer;
+  z-index: 100;
+}
 
-    overflow: hidden;
+.artistProfile_profilePicEditButtonUploading {
+  position: absolute;
 
-    border-radius: 50%;
-  }
+  visibility: visible;
 
-  .artistProfile__profileDpContainer:hover .artistProfile_profilePicEditButton {
-    position: absolute;
+  display: flex;
 
-    visibility: visible;
+  align-items: center;
 
-    display: flex;
+  flex-direction: column;
 
-    align-items: center;
+  justify-content: center;
 
-    flex-direction: column;
+  bottom: 58px;
 
-    justify-content: center;
+  right: 58px;
 
-    bottom: 58px;
+  width: 32px;
 
-    right: 58px;
+  height: 32px;
 
-    width: 32px;
+  text-align: center;
 
-    height: 32px;
+  background-color: #c4c2c2;
 
-    text-align: center;
+  border-radius: 50%;
 
-    background-color: #c4c2c2;
+  z-index: 100;
+}
 
-    border-radius: 50%;
+.artistProfile__profileDpContainer:hover .artistProfile_profileImage {
+  opacity: 0.3;
+}
 
-    z-index: 100;
-  }
+.artistProfile_profileImage {
+  z-index: 0;
+}
 
-  .artistProfile_profilePicEditButtonUploading {
-    position: absolute;
+.artistProfile_profileImageUploading {
+  opacity: 0.1;
+}
 
-    visibility: visible;
-
-    display: flex;
-
-    align-items: center;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    bottom: 58px;
-
-    right: 58px;
-
-    width: 32px;
-
-    height: 32px;
-
-    text-align: center;
-
-    background-color: #c4c2c2;
-
-    border-radius: 50%;
-
-    z-index: 100;
-  }
-
-  .artistProfile__profileDpContainer:hover .artistProfile_profileImage {
-    opacity: 0.3;
-  }
-
-  .artistProfile_profileImage {
-    z-index: 0;
-  }
-
-  .artistProfile_profileImageUploading {
-    opacity: 0.1;
-  }
-
-  .artistProfile_profilePicEditButton {
-    visibility: hidden;
-  }
+.artistProfile_profilePicEditButton {
+  visibility: hidden;
 }
 
 .edit_hover_class div {
@@ -183,7 +150,7 @@
 }
 
 .artistProfile__profileCoverContainer {
-  height: 315px;
+  height: 150px;
 
   .graph {
     position: absolute;

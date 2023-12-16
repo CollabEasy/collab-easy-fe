@@ -294,8 +294,6 @@ Props) => {
         }}
       >
         <div id="main">
-          
-          {showProfileModal && <NewUserModal />}
           <div className="allProposalsPage_listingPagecontainer">
             {isfetchingProposal || isfetchingProposalInterest ? (
               <Loader />

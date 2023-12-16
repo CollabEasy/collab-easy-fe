@@ -69,6 +69,10 @@ export const routes: AppRouteCreators = {
     href: '/login',
     as: '/login',
   }),
+  toBasicInfo: () => ({
+    href: '/basic-information',
+    as: '/basic-information',
+  }),
   // toSampleUpload: () => ({
   //   href: '/artist/settings/',
   //   as: `/artist/settings/samples`,

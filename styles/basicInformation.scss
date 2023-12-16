@@ -1,0 +1,45 @@
+.basicInformation_container {
+    position: relative;
+    margin-top: 6%;
+    margin-bottom: 5%;
+    flex-direction: column;
+    width: 100%;
+    transition: 0.3s;
+    border-radius: 5px;
+    justify-content: space-between;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.newUser__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.newUser__formContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.newUser__textContainer {
+    margin-top: 5%;
+    width: 50%;
+    margin-left: 15%;
+    align-self: center;
+}
+
+.newUser__horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.newUser_imageFormContainer {
+    padding-left: 15%;
+    
+}

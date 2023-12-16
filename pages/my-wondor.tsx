@@ -1,5 +1,6 @@
 import GenericActionBanner from "@/components/genericActionBanner";
 import Layout from "@/components/layout";
+import Loader from "@/components/loader";
 import { Button } from "antd";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
@@ -13,15 +14,17 @@ import * as actions from "state/action";
 
 const mapStateToProps = (state: AppState) => {
   const user = state.user.user;
+  const isFetchingUser = state.user.isFetchingUser;
   const isLoggedIn = state.user.isLoggedIn;
   const loginModalDetails = state.home.loginModalDetails;
   const artistListData = state.home.artistListDetails;
-  return { user, isLoggedIn, artistListData, loginModalDetails };
+  return { user, isLoggedIn, artistListData, loginModalDetails, isFetchingUser };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   openLoginModalAction: () => dispatch(actions.openLoginModalAction()),
   resetUserLoggedIn: () => dispatch(actions.resetUserLoggedIn()),
+  setCurrentPathName: (path: string) => dispatch(actions.setCurrentPathName(path)),
   routeToMyWondor: (route: boolean) => dispatch(actions.routeToMyWondor(route)),
 });
 
@@ -34,7 +37,9 @@ const MyWondorPage = ({
   isLoggedIn,
   loginModalDetails,
   artistListData,
+  isFetchingUser,
   routeToMyWondor,
+  setCurrentPathName,
   openLoginModalAction,
   resetUserLoggedIn,
 }: Props) => {
@@ -51,27 +56,20 @@ const MyWondorPage = ({
     toTerms,
     toPrivacy,
   } = useRoutesContext();
-  const [showProfileModal, setShowProfileModal] = useState(false);
   const [windowWidth, setWindowWidth] = useState(-1);
 
   useEffect(() => {
     routeToMyWondor(false);
-    if (user) {
-      if (user.new_user) {
-        setShowProfileModal(true);
-      }
-    }
-    if (artistListData.status === "success") {
-      setShowProfileModal(false);
-    }
     setWindowWidth(window.innerWidth);
   }, [user]);
 
   const openLoginModal = () => {
+    setCurrentPathName(router.asPath);
     router.push("/login");
   };
 
   const logoutUser = () => {
+    router.push("/");
     localStorage.removeItem("token");
     resetUserLoggedIn();
   };
@@ -92,7 +90,9 @@ const MyWondorPage = ({
         "My wondor is your go to place to find everything you can need to make your experience on wondor friction less."
       }
     >
-      {/* https://bootdey.com/snippets/view/bs4-social-profile-header#html */}
+    {isFetchingUser ? (
+        <Loader />
+    ) : (
       <div className="my-wondor-container">
         <div className="bg-white">
           <div className="text-center">
@@ -358,6 +358,7 @@ const MyWondorPage = ({
           <GenericActionBanner />
         </div>
       </div>
+      )}
     </Layout>
   );
 };
