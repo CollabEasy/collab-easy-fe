@@ -518,19 +518,19 @@ const Home = ({
           communication across time zones became a daunting mess.
         </p>
         <p className="common-p-style" style={{ width: "100%" }}>
-          That&pos;s when I decided to work on Wondor – to create a space where we could find
+          That&apos;s when I decided to work on Wondor – to create a space where we could find
           like-minded individuals, spark new ideas, and bring them to life.{" "}
-          <b style={{ color: "black" }}>Here, collaboration wasn&pos;t just possible; it was effortless.</b>
+          <b style={{ color: "black" }}>Here, collaboration wasn&apos;t just possible; it was effortless.</b>
         </p>
         <p className="common-p-style" style={{ width: "100%" }}>
           Designed for artists by an artist, Wondor is more than a platform;{" "}
-          <b style={{ color: "black" }}>it&pos;s a global community connecting creative minds.</b>
+          <b style={{ color: "black" }}>it&apos;s a global community connecting creative minds.</b>
           {" "}Forget juggling multiple tools! Wondor seamlessly integrates proposal creation,
           communication, and time-zone management, making collaboration a breeze.
         </p>
         <p className="common-p-style" style={{ width: "100%" }}>
           <span style={{ borderBottom: '1px solid black' }}>Our journey has just begun</span>, and Wondor invites you to join and shape the community
-          you&pos;ve always envisioned.
+          you&apos;ve always envisioned.
         </p>
         <p className="common-p-style" style={{ width: "100%" }}>
           <b style={{ color: "black" }}><i>Stop wasting time and effort {" "}</i></b>.
