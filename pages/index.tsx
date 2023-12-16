@@ -250,7 +250,7 @@ const Home = ({
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
     return (
-      <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+      <div style={{ paddingTop: "5%", paddingBottom: "2%" }}>
         <div className="scroll-container">
           <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
             <div className="col-12">
