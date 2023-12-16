@@ -675,8 +675,7 @@ const Home = ({
                   Together, You Create Better!
                 </h2>
                 <p className="common-p-style" style={{ width: "100%" }}>
-                  Collaboration brings together artists with diverse backgrounds, skills, and perspectives,
-                  fostering innovation and satisfaction beyond what&apos;s achieved individually. Don't forget to checkout out popular categories and collaborators!
+                  Collaboration unites diverse artists, fostering innovation and satisfaction beyond what achieved individually.
                 </p>
                 <div>
                   <Link href={routeToHref(toAllCategoryPage())} passHref>
