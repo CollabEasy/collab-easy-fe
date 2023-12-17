@@ -191,9 +191,6 @@ const CollabPage = ({
       name={"description"}
       content={"Manage your collab request on Wondor!"}
     >
-      {collabDetails.id === "" || collabDetails.id === undefined ? (
-        <p>No such collab request</p>
-      ) : (
         <>
           {loginModalDetails.openModal && !user.new_user && <LoginModal />}
           {showProfileModal && <NewUserModal />}
@@ -252,7 +249,6 @@ const CollabPage = ({
             </div>
           )}
         </>
-      )}
     </Layout>
   );
 };
