@@ -125,13 +125,14 @@ const ProfilePicture = ({
   const containerClassName = editable && isLoggedIn
     ? 'artistProfile__profileDpContainer'
     : "artistProfile__profileDpContainerNonSelf";
+
   return (
     <div className={containerClassName}>
       <Image
         className={`artistProfile_profileImage${showUploadingLoader ? "Uploading" : ""
           }`}
         loader={prismicLoader}
-        src={(user?.profile_pic_url.length !== 0) ? (user?.profile_pic_url) : ("https://bootdey.com/img/Content/avatar/avatar6.png")}
+        src={("profile_pic_url" in user) ? (user?.profile_pic_url) : ("https://bootdey.com/img/Content/avatar/avatar6.png")}
         alt="profile picture"
         height={150}
         width={150}
