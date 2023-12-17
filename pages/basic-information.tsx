@@ -97,7 +97,6 @@ const BasicInformation = ({
   }
 
   useEffect(() => {
-    console.log("user : ", user);
     if (user.isFetchingUser) {
       return;
     }

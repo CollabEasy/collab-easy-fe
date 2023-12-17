@@ -94,6 +94,9 @@ const NewUser = ({
       handleNext();
       return;
     }
+    if (user !== undefined) {
+      setUserDataCached(user);
+    }
     if (user?.first_name) {
       let name = `${user?.first_name}`;
       setUserName(name);
@@ -119,26 +122,6 @@ const NewUser = ({
   function handleChange(value) {
     setSelectedCategories(value);
   }
-
-  const handleSubmit = () => {
-    if (selectedCategories.length === 0) {
-      message.error("You need to select atleast one art style.");
-      return;
-    }
-    let dataToSend = {
-      initial: user.new_user,
-      artNames: selectedCategories,
-    };
-
-    postArtistArt(dataToSend);
-    updateArtistPreference("upForCollaboration", true);
-    updateArtistProfile(userDataCached);
-    handleNext();
-  };
-
-  const onChange = (val) => {
-    setCollaborationCheck(val);
-  };
 
   function AboveEighteen(dob) {
     return moment().diff(dob, "years") >= 18;
@@ -166,9 +149,11 @@ const NewUser = ({
     return "";
   };
 
-  if (user.artist_id === undefined) {
+  if (user === undefined || user.artist_id === undefined) {
     return <></>
   }
+
+  console.log("user : ", userDataCached);
 
   return (
     <div className="padding20">
@@ -190,14 +175,14 @@ const NewUser = ({
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           initialValues={{
-            ["first name"]: userDataCached ? userDataCached.first_name : "",
-            ["last name"]: userDataCached ? userDataCached.last_name : "",
-            ["date of birth"]: moment(userDataCached.date_of_birth
-              ? userDataCached.date_of_birth
+            ["first name"]: user.first_name,
+            ["last name"]: user.last_name,
+            ["date of birth"]: moment(user.date_of_birth
+              ? user.date_of_birth
               : currentDate),
-            ["bio"]: userDataCached ? userDataCached.bio : "",
-            ["email"]: userDataCached ? userDataCached.email : "",
-            ["country"]: userDataCached ? userDataCached.country : "",
+            ["bio"]: user ? user.bio : "",
+            ["email"]: user ? user.email : "",
+            ["country"]: user ? user.country : "",
           }}
         >
           <Row gutter={16}>
