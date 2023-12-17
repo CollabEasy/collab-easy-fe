@@ -126,7 +126,7 @@ const CollabPage = ({
             {"< Go Back"}
           </p>
         )}
-        <p className="h1 collabPage_title">{`Your collaboration with ${otherUser.firstName}`}</p>
+        <h1 className="common-h1-style collabPage_title">{`Your collaboration(s) with ${otherUser.firstName}`}</h1>
         <div className="padding20_sides">
           <Alert
             banner

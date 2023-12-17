@@ -124,13 +124,14 @@ const SendCollabRequestModal = ({
   return (
     <div className="sendCollabRequestModal__modal">
       <div className="sendCollabRequestModal__container">
-        <h2 className="f-20 text-center">{edit ? "Edit collab request" : "New collab request"}</h2>
+        <h2 className="common-h2-style f-20 text-center">{edit ? "Edit collaboration request" : "New collaboration request"}</h2>
         <div className="sendCollabRequestModal__textAreaContainer">
-          <p className="mb0">Add your theme.</p>
+          <p className="common-p-style mb0">Add collab title</p>
           <Input.TextArea
             disabled={!editable}
             showCount
             maxLength={50}
+            placeholder="Briefly describe the topic or theme of this collaboration request."
             value={collabDataCached.requestData?.collabTheme}
             onChange={(e) => {
               setCollabDataCached((prevState) => ({
@@ -145,7 +146,7 @@ const SendCollabRequestModal = ({
         </div>
 
         <div className="sendCollabRequestModal__textAreaContainer">
-          <p className="mb0">Add more details.</p>
+          <p className="common-p-style mb0">Add collab details</p>
           <Input.TextArea
             disabled={!editable}
             placeholder="Add details about your idea, social media platform you are hoping to post etc."
@@ -166,7 +167,7 @@ const SendCollabRequestModal = ({
 
         {/* Date should be allowed to be changed even for active collabs to allow collaborators to push date ahead if needed. */}
         <div className="sendCollabRequestModal__textAreaContainer">
-          <p className="mb0">Tentative completion date</p>
+          <p className="common-p-style mb0">Tentative completion date</p>
           <DatePicker
             clearIcon={null}
             disabledDate={(d) => d.isSameOrBefore(currentDate)}
