@@ -61,15 +61,9 @@ type Props = {
 
 const Home = ({
   isLoggedIn,
-  updateLoggedInData,
-  loginModalDetails,
-  user,
-  artistListData,
   showCreateOrEditProposalModal,
-  openLoginModalAction,
   setCurrentPathName,
   setShowCreateOrUpdateProposalModal,
-  routeToMyWondor,
   // Below is Content
   mainContent,
   popularCollabCategories,

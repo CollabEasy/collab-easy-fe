@@ -15,7 +15,12 @@ import titleMobileImg from "../public/images/logo.svg";
 import titleMobileBlueImg from "../public/images/mobile-blue.jpg";
 import { useRoutesContext } from "../components/routeContext";
 import { routeToHref } from "config/routes";
-import { openLoginModalAction, resetUserLoggedIn, routeToMyWondor, setCurrentPathName } from "state/action";
+import {
+  openLoginModalAction,
+  resetUserLoggedIn,
+  routeToMyWondor,
+  setCurrentPathName,
+} from "state/action";
 import { IsAdmin, IsLandingPage } from "helpers/helper";
 import * as actions from "state/action";
 
@@ -74,12 +79,13 @@ const NavBar = ({
     return window.matchMedia("only screen and (max-width: 767px)").matches;
   };
 
-  const { toWondorHome, toArtistPortal, toMyWondorPage, toAnalyticsPage } =
+  const { toWondorHome, toArtistPortal, toMyWondorPage, toAnalyticsPage, toContestPage } =
     useRoutesContext();
-  const { toContestPage, toAllContestPage, toAllCategoryPage } = useRoutesContext();
-
+  
   useEffect(() => {
-    const navBarElement = !checkDevice() ? document.querySelector("#desktop-p-h") : document.querySelector("#p-h");
+    const navBarElement = !checkDevice()
+      ? document.querySelector("#desktop-p-h")
+      : document.querySelector("#p-h");
     if (!inView && entry !== undefined) {
       navBarElement.classList.add("scroll-effect");
       navBarElement.classList.add("animate__fadeInDown");
@@ -115,13 +121,12 @@ const NavBar = ({
     setShowLoginOptions(false);
   };
 
+  const isIntroFlow = router.asPath === "/basic-information";
+
   const getMobileNavbar = () => {
     return (
       <div className="row">
-        <div
-          id="p-h"
-          className="nv-f-t animate__animated"
-        >
+        <div id="p-h" className="nv-f-t animate__animated">
           <div id="app-logo-mobile">
             <Link href={routeToHref(toWondorHome())} passHref>
               <Image
@@ -141,14 +146,54 @@ const NavBar = ({
         <div ref={ref} className="dummy-div"></div>
       </div>
     );
-  }
+  };
+
+  const getIntroFlowNavbarMobile = () => {
+    return (
+      <div className="row">
+        <div id="p-h" className="nv-f-t animate__animated">
+          <div id="app-logo-mobile">
+            <Image
+              src={titleMobileBlueImg}
+              alt="Wondor - Join now to collab with painters, singers, musicians and more."
+              onClick={() => setShowLoginOptions(false)}
+            />
+          </div>
+        </div>
+        <div ref={ref} className="dummy-div"></div>
+      </div>
+    );
+  };
+
+  const getIntroFlowNavbarWeb = () => {
+    return (
+      <div className="row">
+        <div id="desktop-p-h" className="nv-f-t animate__animated">
+          <div id="app-logo-desktop">
+            <Image
+              src={titleDesktopImg}
+              alt="Wondor - Join now to collab with painters, singers, musicians and more."
+              onClick={() => setShowLoginOptions(false)}
+              priority
+            />
+          </div>
+          <div id="app-logo-mobile">
+            <Image
+              src={titleMobileBlueImg}
+              alt="Wondor - Join now to collab with painters, singers, musicians and more."
+              onClick={() => setShowLoginOptions(false)}
+              priority
+            />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const getWebNavbar = () => {
     return (
       <div className="row">
-        <div
-          id="desktop-p-h"
-          className="nv-f-t animate__animated"
-        >
+        <div id="desktop-p-h" className="nv-f-t animate__animated">
           <div id="app-logo-desktop">
             <Link href={routeToHref(toWondorHome())} passHref>
               <Image
@@ -171,7 +216,7 @@ const NavBar = ({
           </div>
           <div className="navbar-search">
             <>
-                <Search />
+              <Search />
             </>
           </div>
           {!hideSignUp ? (
@@ -192,7 +237,11 @@ const NavBar = ({
               >
                 Log in
               </Button>
-              <Button id="sign-up-mobile" shape="circle" onClick={openLoginModal}>
+              <Button
+                id="sign-up-mobile"
+                shape="circle"
+                onClick={openLoginModal}
+              >
                 <UserOutlined />
               </Button>
             </div>
@@ -211,89 +260,82 @@ const NavBar = ({
                   </div>
                 )}
               </div>
-              {showLoginOptions &&
-                (
-                  <div
-                    className={`login-options-container ${checkDevice() ? "animate__animated animate__slideInRight" : ""
-                      }`}
-                  >
-                    <div className={"login-mobile-userdetails"}>
-                      {user?.profile_pic_url ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={profilePic} alt="profile-pic" />
-                      ) : (
-                        <div className="default-profile">
-                          <UserOutlined className="user-icon" />
-                        </div>
-                      )}
-                    </div>
-                    <div className="common-login-option">
-                      <Link
-                        href={routeToHref(
-                          toArtistPortal("profile")
-                        )}
-                        passHref
-                      >
-                        <div
-                          className="selected-option-shadow settings-option"
-                          onClick={() => setShowLoginOptions(false)}
-                        >
-                          <span className="f-14 common-text-style">
-                            Profile
-                          </span>
-                        </div>
-                      </Link>
-                      <Link
-                        href={routeToHref(
-                          toMyWondorPage()
-                        )}
-                        passHref
-                      >
-                        <div
-                          className="selected-option-shadow settings-option"
-                          onClick={() => setShowLoginOptions(false)}
-                        >
-                          <span className="f-14 common-text-style">
-                            myWondor
-                          </span>
-                        </div>
-                      </Link>
-                      {IsAdmin(user.email) && (
-                        <Link href={routeToHref(toAnalyticsPage())} passHref>
-                          <div
-                            className="selected-option-shadow settings-option"
-                            onClick={() => setShowLoginOptions(false)}
-                          >
-                            <span className="f-14 common-text-style">
-                              Admin
-                            </span>
-                          </div>
-                        </Link>
-                      )}
-                      <div
-                        className="selected-option-shadow logout-option"
-                        onClick={logoutUser}
-                      >
-                        <span className="f-14 common-text-style">Logout</span>
+              {showLoginOptions && (
+                <div
+                  className={`login-options-container ${
+                    checkDevice()
+                      ? "animate__animated animate__slideInRight"
+                      : ""
+                  }`}
+                >
+                  <div className={"login-mobile-userdetails"}>
+                    {user?.profile_pic_url ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={profilePic} alt="profile-pic" />
+                    ) : (
+                      <div className="default-profile">
+                        <UserOutlined className="user-icon" />
                       </div>
+                    )}
+                  </div>
+                  <div className="common-login-option">
+                    <Link
+                      href={routeToHref(toArtistPortal("profile"))}
+                      passHref
+                    >
+                      <div
+                        className="selected-option-shadow settings-option"
+                        onClick={() => setShowLoginOptions(false)}
+                      >
+                        <span className="f-14 common-text-style">Profile</span>
+                      </div>
+                    </Link>
+                    <Link href={routeToHref(toMyWondorPage())} passHref>
+                      <div
+                        className="selected-option-shadow settings-option"
+                        onClick={() => setShowLoginOptions(false)}
+                      >
+                        <span className="f-14 common-text-style">myWondor</span>
+                      </div>
+                    </Link>
+                    {IsAdmin(user.email) && (
+                      <Link href={routeToHref(toAnalyticsPage())} passHref>
+                        <div
+                          className="selected-option-shadow settings-option"
+                          onClick={() => setShowLoginOptions(false)}
+                        >
+                          <span className="f-14 common-text-style">Admin</span>
+                        </div>
+                      </Link>
+                    )}
+                    <div
+                      className="selected-option-shadow logout-option"
+                      onClick={logoutUser}
+                    >
+                      <span className="f-14 common-text-style">Logout</span>
                     </div>
                   </div>
-                )}
+                </div>
+              )}
             </div>
           )}
         </div>
         <div ref={ref} className="dummy-div"></div>
       </div>
     );
-  }
+  };
 
   return (
     <>
       <div id="mobile-nav">
-        {getMobileNavbar()}
+        {isIntroFlow ? getIntroFlowNavbarMobile() : getMobileNavbar()}
       </div>
       <div id="desktop-nav">
-        {showBanner && <Space direction="vertical" style={{ width: '100%', textAlign: 'center' }}>
+        {showBanner && (
+          <Space
+            direction="vertical"
+            style={{ width: "100%", textAlign: "center" }}
+          >
             <Alert
               showIcon={false}
               banner
@@ -307,8 +349,9 @@ const NavBar = ({
                 </span>
               }
             />
-        </Space>}
-        {getWebNavbar()}
+          </Space>
+        )}
+        {isIntroFlow ? getIntroFlowNavbarWeb() : getWebNavbar()}
       </div>
     </>
   );

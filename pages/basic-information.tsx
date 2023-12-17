@@ -1,6 +1,7 @@
 import Layout from "@/components/layout";
 import Loader from "@/components/loader";
 import NewUser from "@/components/modal/newUser";
+import NewUserCategory from "@/components/newUserCategory";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -33,7 +34,7 @@ const BasicInformation = ({
   getAllCategories,
 }: Props) => {
   const router = useRouter();
-  const totalSegments = 1;
+  const totalSegments = 2;
   const [activeSegment, setActiveSegment] = useState(1);
 
   const GetApprovedCategories = (allCategories) => {
@@ -70,14 +71,40 @@ const BasicInformation = ({
     );
   };
 
+  const getArtCategoryComponent = () => {
+    return (
+      <div
+        className="basicInformation_container"
+        style={{ paddingTop: "0px", paddingBottom: "4%" }}
+      >
+        <NewUserCategory
+          handleNext={() => {
+            setActiveSegment(activeSegment + 1);
+          }}
+        />
+      </div>
+    );
+  };
+
+  function getComponentToRender() {
+    if (activeSegment === 1) {
+      return getBasicInfoComponent();
+    }
+
+    if (activeSegment === 2) {
+      return getArtCategoryComponent();
+    }
+  }
+
   useEffect(() => {
+    console.log("user : ", user);
     if (user.isFetchingUser) {
-        return;
+      return;
     }
-    if (!user.isLoggedIn || user.user === undefined) {
-        router.push("/login");
-    }
-  }, [])
+    // if (!user.isLoggedIn || user.user === undefined) {
+    //   router.push("/login");
+    // }
+  }, [user.isFetchingUser]);
 
   useEffect(() => {
     if (activeSegment > totalSegments) {
@@ -96,14 +123,8 @@ const BasicInformation = ({
         "Fill you basic information to increase reach and let more people find you."
       }
     >
-    <>
-      {user.isFetchingUser ? (
-        <Loader />
-      ) : (
-        activeSegment === 1 && getBasicInfoComponent()
-      )}
-      </>
-     </Layout>
+      <>{user.isFetchingUser ? <Loader /> : getComponentToRender()}</>
+    </Layout>
   );
 };
 

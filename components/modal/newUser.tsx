@@ -21,6 +21,7 @@ import { User } from "types/model";
 import { AppState } from "types/states";
 import * as actions from "../../state/action";
 import ProfilePicture from "../profilePicture";
+
 // import SubmitImg from 'public/images/submit.png';
 // https://www.npmjs.com/package/country-state-city
 
@@ -164,6 +165,10 @@ const NewUser = ({
     }
     return "";
   };
+
+  if (user.artist_id === undefined) {
+    return <></>
+  }
 
   return (
     <div className="padding20">
