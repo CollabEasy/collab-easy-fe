@@ -115,7 +115,7 @@ const SendCollabRequestPage = ({
       }
     >
       {isLoggedIn ? (
-        <div style={{ marginTop: "10%"}}>
+        <div>
         <CollabPage
           otherUser={otherUser}
           pastCollabs={collabWithUser.collabs}
@@ -127,7 +127,7 @@ const SendCollabRequestPage = ({
         />
         </div>
       ) : (
-        <NotAuthorised error={"Please login to see collaboration details."} />
+        <NotAuthorised error={"Please login to send collaboration request"} />
       )}
     </Layout>
   )

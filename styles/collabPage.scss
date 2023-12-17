@@ -1,157 +1,194 @@
 .profilePic {
-    // display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    text-align: center;
-  
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-  }
+  // display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  text-align: center;
 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.collabPage_container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  margin-bottom: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+  width: 70%;
+  margin-top: 10%;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.collabPage_title {
+  font-weight: 700;
+  font-size: 32px;
+  padding: 20px;
+  margin-top: 20px;
+  font-family: Bogart-Semibold, Averta, Avenir, Helvetica Neue, Calibri, Helvetica, Roboto, sans-serif;
+  margin-bottom: 48px;
+}
+
+.collabPage_userAndFormContainer {
+  display: flex;
+  flex-wrap: wrap;
+  //   flex-direction: row;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.collabPage_userContainer {
+  background: #fff;
+  box-shadow: 0 4px 0 #cfd7de;
+  // margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: #fff;
+
+  text-align: center;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, .125);
+  display: flex;
+  flex-direction: column;
+  // border-radius: .4rem;
+}
+
+.collabPage_picNameContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  vertical-align: middle;
+  // justify-content: space-evenly;
+}
+
+.collabPage_formContainer {
+  background: #fff;
+  box-shadow: 0 4px 0 #cfd7de;
+  // margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: #fff;
+  width: 65%;
+  // text-align: center;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, .125);
+  // border-radius: .4rem;
+}
+
+.collabPage_skill_name_container {
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  margin-top: 20px;
+}
+
+.collabPage_userCollabPageContainer {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  gap: 24px;
+}
+
+.collabPage_pastRequestContainer {
+  background: #fff;
+  box-shadow: 0 4px 0 #cfd7de;
+  // margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: #fff;
+
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, .125);
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  // border-radius: .4rem;
+}
+
+.textlink {
+  color: #0088cc;
+  cursor: pointer;
+}
+
+.collabPage_pastRequestCardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 8px;
+  border: 1px solid rgba(0, 0, 0, .125);
+}
+
+.collabPage_collabCard_dateStatusContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.collabPage_pastCollabCardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.collabPage_userCollabPageContainerFullWidth {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  gap: 24px;
+  width: 100%;
+}
+
+.collabPage_formContainerFullWidth {
+  background: #fff;
+  box-shadow: 0 4px 0 #cfd7de;
+  // margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: #fff;
+  width: 65%;
+  // text-align: center;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, .125);
+  width: 100%
+}
+
+
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
   .collabPage_container {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    margin-bottom: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    flex-direction: column;
-    width: 70%;
-    transition: 0.3s;
-    border-radius: 5px;
+    margin-top: 15%;
   }
-  
-  .collabPage_title {
-      font-weight: 700;
-      font-size: 32px;
-      padding: 20px;
-      margin-top: 20px;
-      font-family: Bogart-Semibold,Averta,Avenir,Helvetica Neue,Calibri,Helvetica,Roboto,sans-serif;
-      margin-bottom: 48px;
-  }
+}
 
-  .collabPage_userAndFormContainer {
-      display: flex;
-      flex-wrap: wrap;
-    //   flex-direction: row;
-      gap: 16px;
-      justify-content: space-between;
-      padding: 20px;
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .collabPage_container {
+    width: 90%;
+    margin-top: 15%;
   }
+}
 
-  .collabPage_userContainer {
-    background: #fff;
-    box-shadow: 0 4px 0 #cfd7de;
-    // margin-bottom: 20px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    background-color: #fff;
-    
-    text-align: center;
-	  background-clip: border-box;
-	  border: 1px solid rgba(0, 0, 0, .125);
-    display: flex;
-    flex-direction: column;
-	// border-radius: .4rem;
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .collabPage_container {
+    width: 90%;
+    margin-top: 25%;
   }
+}
 
-  .collabPage_picNameContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-    vertical-align: middle;
-    // justify-content: space-evenly;
+@media only screen and (min-width: 400px) and (max-width: 600px) {
+  .collabPage_container {
+    width: 90%;
+    margin-top: 20%;
   }
+}
 
-  .collabPage_formContainer {
-    background: #fff;
-    box-shadow: 0 4px 0 #cfd7de;
-    // margin-bottom: 20px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    background-color: #fff;
-    width: 65%;
-    // text-align: center;
-	  background-clip: border-box;
-	  border: 1px solid rgba(0, 0, 0, .125);
-	// border-radius: .4rem;
+@media only screen and (max-width: 399px) {
+  .collabPage_container {
+    width: 90%;
+    margin-top: 20%;
   }
-
-  .collabPage_skill_name_container {
-      display: flex;
-      flex-direction: column;
-      padding: 2px;
-      margin-top: 20px;
-  }
-
-  .collabPage_userCollabPageContainer {
-    display: flex;
-    flex-direction: column;
-    width: 33%;
-    gap: 24px;
-  }
-
-  .collabPage_pastRequestContainer{
-    background: #fff;
-    box-shadow: 0 4px 0 #cfd7de;
-    // margin-bottom: 20px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    background-color: #fff;
-  
-	  background-clip: border-box;
-	  border: 1px solid rgba(0, 0, 0, .125);
-    display: flex;
-    padding: 20px;
-    flex-direction: column;
-	// border-radius: .4rem;
-  }
-
-  .textlink {
-    color: #0088cc;
-    cursor: pointer;
-  }
-
-  .collabPage_pastRequestCardContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    gap: 8px;
-    border: 1px solid rgba(0, 0, 0, .125);
-  }
-
-  .collabPage_collabCard_dateStatusContainer {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .collabPage_pastCollabCardsContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    justify-content: space-between;
-  }
-
-  .collabPage_userCollabPageContainerFullWidth {
-    display: flex;
-    flex-direction: column;
-    width: 33%;
-    gap: 24px;
-    width: 100%;
-  }
-
-  .collabPage_formContainerFullWidth {
-    background: #fff;
-    box-shadow: 0 4px 0 #cfd7de;
-    // margin-bottom: 20px;
-    box-sizing: border-box;
-    border-radius: 4px;
-    background-color: #fff;
-    width: 65%;
-    // text-align: center;
-	  background-clip: border-box;
-	  border: 1px solid rgba(0, 0, 0, .125);
-    width: 100%
-  }
+}
