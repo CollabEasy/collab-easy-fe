@@ -1,6 +1,6 @@
 .basicInformation_container {
     position: relative;
-    margin-top: 6%;
+    margin-top: 10%;
     margin-bottom: 5%;
     flex-direction: column;
     width: 100%;
@@ -52,3 +52,41 @@
     padding: 32px 32px 32px 32px;
     // margin-top: 32px;
 }
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .basicInformation_container {
+      margin-top: 15%;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .basicInformation_container {
+      margin-top: 20%;
+    }
+  }
+  
+  @media only screen and (min-width: 601px) and (max-width: 767px) {
+    .basicInformation_container {
+      margin-top: 25%;
+      padding-left: 0%;
+      padding-right: 0%;
+    }
+  }
+  
+  @media only screen and (min-width: 400px) and (max-width: 600px) {
+    .basicInformation_container {
+      margin-top: 25%;
+      padding-left: 0%;
+    }
+  }
+  
+  @media only screen and (max-width: 399px) {
+    .basicInformation_container {
+      margin-top: 25%;
+      padding-left: 0%;
+    }
+
+    .newUser__textContainer {
+        width: 80%;
+    }
+  }

@@ -156,9 +156,9 @@ const NewUser = ({
   console.log("user : ", userDataCached);
 
   return (
-    <div className="padding20">
+    <>
       <div className="newUser__textContainer">
-        <h3 className="common-h1-style">Welcome aboard </h3>
+        <h3 className="common-h1-style">Welcome aboard, {user.first_name}</h3>
         <p className="common-p-style">
           To get you started with Wondor, let’s gather some information about
           you first.
@@ -418,7 +418,7 @@ const NewUser = ({
               </Form.Item>
             </Form> */}
       </div>
-    </div>
+    </>
   );
 };
 
