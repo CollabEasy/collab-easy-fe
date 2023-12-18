@@ -63,7 +63,14 @@ const Privacy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, user, arti
       name={"description"}
       content={"Privacy policy for using Wondor. Know the privacy Policy while using Wondor here."}
     >
-
+      {loginModalDetails.openModal && !user.new_user && (
+        <LoginModal />
+      )
+      }
+      {showProfileModal && (
+        <NewUserModal />
+      )
+      }
 
       <div className='genericPageLayout_container'>
         {windowWidth > 500 &&

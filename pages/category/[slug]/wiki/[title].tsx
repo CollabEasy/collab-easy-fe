@@ -132,6 +132,15 @@ const CategoryPage = ({
         <Layout
             title={categoryMetadata["wiki-data"]["meta-title"]} name={"description"} content={categoryMetadata["wiki-data"]["meta-content"]}
         >
+
+            {loginModalDetails.openModal && !user.new_user && (
+                <LoginModal />
+            )
+            }
+            {showProfileModal && (
+                <NewUserModal />
+            )
+            }
             <>
                 <div className="categoryDetailPage_container">
                     {windowWidth > 500 &&

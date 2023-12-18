@@ -5,6 +5,5 @@ export interface HomeState {
   isLoading: boolean,
   loginModalDetails: LoginModalDetails;
   artistListDetails: any;
-  routeToMyWondor: boolean;
-  lastPathname: string;
+  routeToMyWondor: boolean
 }

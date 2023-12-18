@@ -107,7 +107,7 @@ const RefferalCodeModal = ({
       bodyStyle={{ padding: 0 }}
       //bodyStyle={{ height: "500px", padding: "0px" }}
     >
-      <div className="referral-container">
+      <div className="container">
         <div className="left-image">
           <Image src={landingPageImg} alt="Profile left" layout="fill" />
         </div>
