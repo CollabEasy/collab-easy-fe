@@ -646,7 +646,7 @@ const Profile = ({
                 <p>
                   <b>{user.first_name}</b>, looks like your profile is not
                   complete 😔. For maximum reach, please complete it by adding
-                  bio, skills, and social account.
+                  bio, skills etc
                   <Link
                     href={routeToHref(toArtistPortal("basic-information"))}
                     passHref
