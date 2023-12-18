@@ -33,3 +33,10 @@ export const routeToMyWondor = (route: boolean) => ({
 		route,
 	}
 })
+
+export const setCurrentPathName = (pathname: string) => ({
+	type: actionTypes.SET_LAST_PATHNAME,
+	payload: {
+		pathname
+	}
+})

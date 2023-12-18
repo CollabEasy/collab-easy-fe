@@ -36,7 +36,6 @@ const LoginModal = ({ user, closeLoginModalAction, fetchLoginData }: Props) => {
   };
 
   const OnSuccessCallback = (response) => {
-
     let tokenId  = response.credential;
     fetchLoginData(tokenId);
   };

@@ -1,15 +1,27 @@
-import React, { useState, useEffect } from "react";
+import {
+  Button,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  message,
+  Row,
+  Select,
+} from "antd";
 import "antd/dist/antd.css";
-import { RightCircleFilled } from "@ant-design/icons";
-import { Form, Switch, Modal, Button, Select, message, Input } from "antd";
-import Image from "next/image";
-import landingPageImg from "public/images/profile.png";
+import { COUNTRIES } from "constants/constants";
+import {
+  GetCountryByName,
+  GetCountryCodeFromName,
+} from "helpers/artistSettingPageHelper";
+import moment from "moment";
+import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
+import { User } from "types/model";
 import { AppState } from "types/states";
 import * as actions from "../../state/action";
-import { User } from "types/model";
-import { COUNTRIES } from "constants/constants";
-import { GetCountryByName, GetCountryCodeFromName } from "helpers/artistSettingPageHelper";
+import ProfilePicture from "../profilePicture";
+
 // import SubmitImg from 'public/images/submit.png';
 // https://www.npmjs.com/package/country-state-city
 
@@ -49,22 +61,20 @@ const mapDispatchToProps = (dispatch) => ({
   postArtistArt: (data: any) => dispatch(actions.updateArtistArt(data)),
   updateArtistPreference: (key: string, value: any) =>
     dispatch(actions.updateArtistPreference(key, value)),
-  updateArtistProfile: (user: any) => dispatch(actions.updateArtistProfile(user)),
+  updateArtistProfile: (user: any) =>
+    dispatch(actions.updateArtistProfile(user)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
-  visible: boolean;
   handleNext: () => void;
 } & ConnectedProps<typeof connector>;
 
 const NewUser = ({
   user,
-  visible,
   publishedCategories,
   handleNext,
-  setNewUser,
   postArtistArt,
   getAllCategories,
   updateArtistPreference,
@@ -80,30 +90,13 @@ const NewUser = ({
   const windowWidth = 1000;
 
   useEffect(() => {
-    if (user && !user.new_user) {
-      // setVisibility(false);
+    if (user && user.basic_info_complete) {
       handleNext();
+      return;
     }
-  }, [user.new_user]);
-
-  const onFinish = (values: any) => {
-    alert(JSON.stringify(values));
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-  };
-
-  const getModalWidth = (): number => {
-    const width = window.innerWidth;
-    if (width < 680) return 450;
-    return 900;
-  };
-
-  useEffect(() => {
-    if (publishedCategories.length === 0) getAllCategories();
-  }, [publishedCategories.length, getAllCategories]);
-
-  useEffect(() => {
+    if (user !== undefined) {
+      setUserDataCached(user);
+    }
     if (user?.first_name) {
       let name = `${user?.first_name}`;
       setUserName(name);
@@ -120,217 +113,318 @@ const NewUser = ({
       //   });
       // }
     }
-  }, [user]);
+  }, [user.basic_info_complete, user.first_name, user.country]);
+
+  // useEffect(() => {
+  //   if (publishedCategories.length === 0) getAllCategories();
+  // }, [publishedCategories.length, getAllCategories]);
 
   function handleChange(value) {
     setSelectedCategories(value);
   }
 
-  const handleSubmit = () => {
-    if (selectedCategories.length === 0) {
-      message.error("You need to select atleast one art style.");
-      return;
+  function AboveEighteen(dob) {
+    return moment().diff(dob, "years") >= 18;
+  }
+
+  const [form] = Form.useForm();
+  const currentDate = moment(new Date());
+
+  const getErrorMessage = () => {
+    if (userDataCached.country === null || userDataCached.country === "") {
+      return "Country cannot be blank";
     }
-    let dataToSend = {
-      initial: user.new_user,
-      artNames: selectedCategories,
-    };
 
-    postArtistArt(dataToSend);
-    updateArtistPreference("upForCollaboration", true);
-    updateArtistProfile(userDataCached);
-    handleNext();
+    if (userDataCached.bio === null || userDataCached.bio === "") {
+      return "Bio cannot be blank";
+    }
+
+    if (userDataCached.first_name === "" || userDataCached.last_name === "") {
+      return "First or Last name cannot be blank";
+    }
+
+    if (!AboveEighteen(userDataCached.date_of_birth)) {
+      return "You must be above 18 to use Wondor.";
+    }
+    return "";
   };
 
-  const onChange = (val) => {
-    setCollaborationCheck(val);
-  };
+  if (user === undefined || user.artist_id === undefined) {
+    return <></>
+  }
+
+  // console.log("user : ", userDataCached);
 
   return (
-    <Modal
-      visible={visible}
-      destroyOnClose={true}
-      closable={false}
-      footer={null}
-      width={windowWidth > 680 ? 1100 : 450}
-      bodyStyle={{ padding: 0 }}
-    >
-      <div className="container">
-        <div className="left-image">
-          <Image src={landingPageImg} alt="Profile left" layout="fill" />
-        </div>
-        <div className="profile-form">
-          <div className="profile-title">
-            <h3 className="common-h3-style">Welcome aboard, {userName}</h3>
-          </div>
-          <p className="common-p-style">
-            You are just one step away from collaborating with fellow artists.
-            Let’s gather some information about you first.
-          </p>
-          <Form
-            {...layout}
-            layout="vertical"
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            requiredMark={false}
-          >
-            <Form.Item label="Bio">
-              <Input.TextArea
-                value={userDataCached ? userDataCached.bio : ""}
-                maxLength={300}
-                showCount
-                onChange={(e) => {
-                  setUserDataCached((prevState) => ({
-                    ...prevState,
-                    bio: e.target.value,
-                  }));
-                }}
-              />
-            </Form.Item>
-            <Form.Item label="Country">
-              <Select
-                showSearch
-                value={userDataCached ? userDataCached.country : ""}
-                onChange={(e) => {
-                  setUserDataCached((prevState) => ({
-                    ...prevState,
-                    country: e,
-                  }));
-                  setUserCountryCode(GetCountryCodeFromName(e));
-                  setShowCity(false);
-                }}
-              >
-                {COUNTRIES.map((country) => (
-                  <Select.Option key={country.Iso2} value={country.Name}>
-                    {country.Unicode} {country.Name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            <Form.Item label="State">
-                <Input
-                    value={userDataCached ? userDataCached.state : ""}
-                    onChange={(e) => {
-                        setUserDataCached((prevState) => ({
-                            ...prevState,
-                            state: e.target.value,
-                        }));
-                    }}
-                />
-            </Form.Item>
-            <Form.Item label="City">
-                <Input
-                    value={userDataCached ? userDataCached.city : ""}
-                    onChange={(e) => {
-                        setUserDataCached((prevState) => ({
-                            ...prevState,
-                            city: e.target.value,
-                        }));
-                    }}
-                />
-            </Form.Item>
-            {/* <Form.Item label="State">
-              <Select
-                showSearch
-                value={userDataCached ? userDataCached.state : ""}
-                onChange={(e) => {
-                  setUserDataCached((prevState) => ({
-                    ...prevState,
-                    state: State.getStateByCodeAndCountry(e, userCountryCode).name,
-                  }));
-                  setUserStateCode(e);
-                  if (City.getCitiesOfState(userCountryCode, e).length !== 0) {
-                    setShowCity(true);
-                  }
-                }}
-              >
-                {State.getStatesOfCountry(userCountryCode).map((state) => (
-                  <Select.Option key={state.name} value={state.isoCode}>
-                    {state.name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            {showUserCity && <Form.Item label="City">
-              <Select
-                showSearch
-                value={userDataCached ? userDataCached.city : ""}
-                onChange={(e) => {
-                  setUserDataCached((prevState) => ({
-                    ...prevState,
-                    city: e,
-                  }));
-                }}
-              >
-                {City.getCitiesOfState(userCountryCode, userStateCode).map((city) => (
-                  <Select.Option key={city.name} value={city.name}>
-                    {city.name}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-            } */}
-            <Form.Item
-              name="art"
-              label="Art Styles"
-              rules={[
-                {
-                  validator(_, value) {
-                    if (value === undefined) {
-                      return Promise.reject();
-                    }
-                    return Promise.resolve();
-                  },
-                },
-              ]}
-            >
-              <Select
-                mode="multiple"
-                style={{ width: "100%" }}
-                className="common-text-style"
-                placeholder="select atleast one art style"
-                onChange={(value) => {
-                  if (value?.length > 5) {
-                    value.pop();
-                    message.error("You can select maximum 5 art styles");
-                  } else {
-                    handleChange(value);
-                  }
-                }}
-                optionLabelProp="label"
-              >
-                {publishedCategories.length > 0 &&
-                  publishedCategories.map((category, index) => (
-                    <Option
-                      value={category.artName}
-                      label={category.artName}
-                      key={category.artName}
-                    >
-                      <div className="demo-option-label-item">
-                        {category.artName}
-                      </div>
-                    </Option>
-                  ))}
-              </Select>
-            </Form.Item>
-            <Form.Item noStyle={true}>
-              <div className="submit-container">
-                <Button
-                  type="text"
-                  onClick={handleSubmit}
-                  shape="circle"
-                  icon={
-                    <RightCircleFilled
-                      style={{ color: "black", fontSize: 30 }}
-                    />
-                  }
-                ></Button>
-              </div>
-            </Form.Item>
-          </Form>
-        </div>
+    <>
+      <div className="newUser__textContainer">
+        <h3 className="common-h1-style">Welcome aboard, {user.first_name}</h3>
+        <p className="common-p-style">
+          To get you started with Wondor, let’s gather some basic information about
+          you first. <b style={{color: "black"}}>Sharing this information will provide 
+          fellow artists with a glimpse into who you are and help establish connections 
+          within the creative community.</b>
+        </p>
       </div>
-    </Modal>
+      <div className="artistProfile__profileCoverContainer">
+        <div className="profileCoverContainer">
+          <div className="graph"></div>
+        </div>
+        <ProfilePicture isSelf={true} userProfileOpened={user} />
+      </div>
+      <div className="mt32 newUser_imageFormContainer">
+        <Form
+          {...layout}
+          form={form}
+          layout="vertical"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          initialValues={{
+            ["first name"]: user.first_name,
+            ["last name"]: user.last_name,
+            ["date of birth"]: moment(user.date_of_birth
+              ? user.date_of_birth
+              : currentDate),
+            ["bio"]: user ? user.bio : "",
+            ["email"]: user ? user.email : "",
+            ["country"]: user ? user.country : "",
+          }}
+        >
+          <Row gutter={16}>
+            <Col sm={12} xs={24}>
+              <Form.Item
+                name={"first name"}
+                label="First Name"
+                style={{ width: "100%" }}
+                rules={[{ required: true, message: "Please enter First Name" }]}
+              >
+                <Input
+                  value={userDataCached ? userDataCached.first_name : ""}
+                  onChange={(e) => {
+                    setUserDataCached((prevState) => ({
+                      ...prevState,
+                      first_name: e.target.value,
+                    }));
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            <Col sm={12} xs={24}>
+              <Form.Item
+                name="last name"
+                label="Last Name"
+                style={{ width: "100%" }}
+                rules={[{ required: true, message: "Please enter Last Name" }]}
+              >
+                <Input
+                  value={userDataCached ? userDataCached.last_name : ""}
+                  onChange={(e) => {
+                    setUserDataCached((prevState) => ({
+                      ...prevState,
+                      last_name: e.target.value,
+                    }));
+                  }}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row gutter={16}>
+            <Col sm={12} xs={24}>
+              <Form.Item label="DoB" name="date of birth">
+                <DatePicker
+                  clearIcon={null}
+                  disabledDate={(d) =>
+                    !d ||
+                    d.isAfter(currentDate) ||
+                    currentDate >= moment().endOf("day")
+                  }
+                  format="DD/MM/YYYY"
+                  value={moment(
+                    userDataCached.date_of_birth
+                      ? userDataCached.date_of_birth
+                      : currentDate
+                  )}
+                  onChange={(e) => {
+                    if (!AboveEighteen(e)) {
+                      message.error("You must be above 18 to use Wondor.art!");
+                    } else {
+                      setUserDataCached((prevState) => ({
+                        ...prevState,
+                        date_of_birth: e.toDate(),
+                      }));
+                    }
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            <Col sm={12} xs={24}>
+              <Form.Item label="Email" name="email">
+                <Input
+                  disabled
+                  value={userDataCached ? userDataCached.email : ""}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row gutter={16}>
+            <Col sm={8} xs={24}>
+              <Form.Item
+                name="country"
+                label="Country"
+                rules={[{ required: true, message: "Please enter country" }]}
+              >
+                <Select
+                  showSearch
+                  value={userDataCached ? userDataCached.country : ""}
+                  onChange={(e) => {
+                    setUserDataCached((prevState) => ({
+                      ...prevState,
+                      country: e,
+                    }));
+                    setUserCountryCode(GetCountryCodeFromName(e));
+                    setShowCity(false);
+                  }}
+                >
+                  {COUNTRIES.map((country) => (
+                    <Select.Option key={country.Iso2} value={country.Name}>
+                      {country.Unicode} {country.Name}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
+            <Col sm={7} xs={24}>
+              <Form.Item label="State" style={{}}>
+                <Input
+                  value={userDataCached ? userDataCached.state : ""}
+                  onChange={(e) => {
+                    setUserDataCached((prevState) => ({
+                      ...prevState,
+                      state: e.target.value,
+                    }));
+                  }}
+                />
+              </Form.Item>
+            </Col>
+            <Col sm={8} xs={24}>
+              <Form.Item label="City">
+                <Input
+                  value={userDataCached ? userDataCached.city : ""}
+                  onChange={(e) => {
+                    setUserDataCached((prevState) => ({
+                      ...prevState,
+                      city: e.target.value,
+                    }));
+                  }}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row gutter={24}>
+            <Col span={24}>
+              <Form.Item
+                name="bio"
+                label="Bio"
+                rules={[{ required: true, message: "Please enter Bio" }]}
+              >
+                <Input.TextArea
+                  value={userDataCached ? userDataCached.bio : ""}
+                  maxLength={300}
+                  placeholder="Tell a little about who you are and who you are looking to collaborate with."
+                  showCount
+                  onChange={(e) => {
+                    setUserDataCached((prevState) => ({
+                      ...prevState,
+                      bio: e.target.value,
+                    }));
+                  }}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Form.Item>
+            <Button
+              type="primary"
+              onClick={() => {
+                const error_message = getErrorMessage();
+                if (error_message === "") {
+                  updateArtistProfile(userDataCached);
+                  handleNext();
+                } else {
+                  message.error(error_message);
+                }
+              }}
+            >
+              Next
+            </Button>
+          </Form.Item>
+        </Form>
+        {/* <Form.Item
+                name="art"
+                label="Art Styles"
+                rules={[
+                  {
+                    validator(_, value) {
+                      if (value === undefined) {
+                        return Promise.reject();
+                      }
+                      return Promise.resolve();
+                    },
+                  },
+                ]}
+              >
+                <Select
+                  mode="multiple"
+                  style={{ width: "100%" }}
+                  className="common-text-style"
+                  placeholder="select atleast one art style"
+                  onChange={(value) => {
+                    if (value?.length > 5) {
+                      value.pop();
+                      message.error("You can select maximum 5 art styles");
+                    } else {
+                      handleChange(value);
+                    }
+                  }}
+                  optionLabelProp="label"
+                >
+                  {publishedCategories.length > 0 &&
+                    publishedCategories.map((category, index) => (
+                      <Option
+                        value={category.artName}
+                        label={category.artName}
+                        key={category.artName}
+                      >
+                        <div className="demo-option-label-item">
+                          {category.artName}
+                        </div>
+                      </Option>
+                    ))}
+                </Select>
+              </Form.Item>
+              <Form.Item noStyle={true}>
+                <div className="submit-container">
+                  <p className="submit-text common-p-style">
+                    Let’s collaborate
+                  </p>
+                  <Button
+                    type="text"
+                    onClick={handleSubmit}
+                    shape="circle"
+                    icon={
+                      <RightCircleFilled
+                        style={{ color: "black", fontSize: 30 }}
+                      />
+                    }
+                  ></Button>
+                </div>
+              </Form.Item>
+            </Form> */}
+      </div>
+    </>
   );
 };
 

@@ -23,6 +23,8 @@ export interface User {
   skills?: string[];
   sample?: string[];
   profile_complete?: boolean;
+  basic_info_complete?: boolean;
+  categories_added?: boolean;
 }
 
 export interface Artist {

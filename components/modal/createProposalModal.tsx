@@ -124,14 +124,6 @@ const CreateProposalModal = ({
 
     return (
         <>
-            {loginModalDetails.openModal && !user.new_user && (
-                <LoginModal />
-            )
-            }
-            {showProfileModal && (
-                <NewUserModal />
-            )
-            }
             <Modal
                 closable
                 onCancel={onCancel}
