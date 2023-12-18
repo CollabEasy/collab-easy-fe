@@ -144,7 +144,7 @@ const userReducer = (state = initialState, action): UserState => {
         isUpdatingProfilePic: true,
       };
     case actionType.UPDATE_PROFILE_PICTURE_SUCCESS:
-      //console.log("data : ", action.payload.data.data);
+      // console.log("data : ", action.payload.data.data);
       return {
         ...state,
         user: action.payload.data.data,
