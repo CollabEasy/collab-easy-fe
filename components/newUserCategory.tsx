@@ -8,6 +8,7 @@ import { User } from "types/model";
 import { AppState } from "types/states";
 import * as actions from "../state/action";
 import EditSocialProspectus from "./editSocialProspectus";
+import Loader from "./loader";
 // import SubmitImg from 'public/images/submit.png';
 // https://www.npmjs.com/package/country-state-city
 
@@ -38,6 +39,7 @@ const mapStateToProps = (state: AppState) => {
   return {
     publishedCategories: state.category.publishedCategories,
     user: state.user.user,
+    isFetchingUser: state.user.isFetchingUser,
   };
 };
 
@@ -59,6 +61,7 @@ type Props = {
 
 const NewUserCategory = ({
   user,
+  isFetchingUser,
   publishedCategories,
   handleNext,
   postArtistArt,
@@ -106,6 +109,10 @@ const NewUserCategory = ({
     }
     return "";
   };
+
+  if (user === undefined || user.artist_id === undefined || isFetchingUser) {
+    return <Loader />
+  }
 
   return (
     <div className="padding20">

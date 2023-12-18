@@ -20,6 +20,7 @@ import { connect, ConnectedProps } from "react-redux";
 import { User } from "types/model";
 import { AppState } from "types/states";
 import * as actions from "../../state/action";
+import Loader from "../loader";
 import ProfilePicture from "../profilePicture";
 
 // import SubmitImg from 'public/images/submit.png';
@@ -52,6 +53,7 @@ const mapStateToProps = (state: AppState) => {
   return {
     publishedCategories: state.category.publishedCategories,
     user: state.user.user,
+    isFetchingUser: state.user.isFetchingUser,
   };
 };
 
@@ -73,6 +75,7 @@ type Props = {
 
 const NewUser = ({
   user,
+  isFetchingUser,
   publishedCategories,
   handleNext,
   postArtistArt,
@@ -149,8 +152,8 @@ const NewUser = ({
     return "";
   };
 
-  if (user === undefined || user.artist_id === undefined) {
-    return <></>
+  if (user === undefined || user.artist_id === undefined || isFetchingUser) {
+    return <Loader />
   }
 
   // console.log("user : ", userDataCached);
