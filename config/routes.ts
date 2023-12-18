@@ -65,6 +65,10 @@ export const routes: AppRouteCreators = {
     href: '/my-wondor',
     as: '/my-wondor',
   }),
+  toMySearchPage: () => ({
+    href: '/search',
+    as: '/search',
+  }),
   // toSampleUpload: () => ({
   //   href: '/artist/settings/',
   //   as: `/artist/settings/samples`,

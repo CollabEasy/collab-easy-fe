@@ -1,0 +1,165 @@
+.searchPageContainer {
+    //display: flex;
+    //padding: 200px;
+    position: relative;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    width: 70%;
+    //box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+    // border: 1px solid rgb(0 0 0 / 10%);
+    //background-color: rgb(0 0 0 / 5%);
+    overflow-x: hidden;
+
+    .searchPageContent {
+
+        .heroContent {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-top: 5%;
+            padding-bottom: 2%;
+          
+            .section-title {
+              padding-left: 10%;
+              padding-right: 10%;
+          
+              h2 {
+                font-size: 3vw;
+                line-height: 5vw;
+              }
+          
+              p {
+                font-size: 1.5vw;
+                line-height: 2.5vw;
+              }
+            }
+          
+        }
+
+        .overlay-container {
+            position: relative;
+        }
+
+        .project-item img.gallery-thumb-img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .project-item-overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            border-radius: 5px;
+            background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+            /* FF3.6-15 */
+            background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+            /* Chrome10-25,Safari5.1-6 */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            transition: .5s ease;
+        }
+
+        .project-item-overlay h4 {
+            font-size: 18px;
+            font-weight: 500;
+            white-space: nowrap;
+            color: white;
+            position: absolute;
+            overflow: hidden;
+            top: 7%;
+            left: 7%;
+            margin: 0;
+            text-overflow: ellipsis;
+        }
+
+        .project-item-overlay p {
+            font-size: 15px;
+            font-weight: 600;
+            white-space: nowrap;
+            color: white;
+            position: absolute;
+            overflow: hidden;
+            bottom: 7%;
+            left: 7%;
+            text-overflow: ellipsis;
+            margin: 0;
+        }
+
+        .overlay-container:hover .project-item-overlay {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 1;
+            height: 100%;
+            width: 100%;
+            transition: .5s ease;
+        }
+
+        .thumb-sm {
+            height: 32px;
+            width: 32px;
+        }
+
+        .rounded-circle {
+            border-radius: 50%;
+        }
+    }
+
+}
+
+
+
+@media only screen and (max-width: 1200px) and (min-width: 1101px) {
+    .searchPageContainer {
+        width: 90%;
+    }
+
+}
+
+@media only screen and (max-width: 1100px) and (min-width: 901px) {
+    .searchPageContainer {
+        width: 90%;
+
+    }
+}
+
+@media only screen and (max-width: 900px) and (min-width: 766px) {
+    .searchPageContainer {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 601px) {
+    .searchPageContainer {
+        width: 90%;
+        margin-top: 20%;
+    }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 400px) {
+    .searchPageContainer {
+        width: 90%;
+        margin-top: 20%;
+    }
+
+}
+
+@media only screen and (max-width: 399px) {
+    .searchPageContainer {
+        width: 90%;
+        margin-top: 20%;
+    }
+}
