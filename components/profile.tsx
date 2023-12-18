@@ -646,7 +646,7 @@ const Profile = ({
                 <p>
                   <b>{user.first_name}</b>, looks like your profile is not
                   complete 😔. For maximum reach, please complete it by adding
-                  bio, skills, samples, and social account.
+                  bio, skills, and social account.
                   <Link
                     href={routeToHref(toArtistPortal("basic-information"))}
                     passHref
@@ -695,8 +695,8 @@ const Profile = ({
           {user.country && (
             <div className="d-flex flex-row artist-location">
               <span>{user.country}</span>
-              {user.state && <span>, {user.state}</span>}
-              {user.city && <span>, {user.city}</span>}
+              {user.state &&<span>, {user.state}</span>}
+              {user.city &&<span>, {user.city}</span>}
             </div>
           )}
           {getButton()}
