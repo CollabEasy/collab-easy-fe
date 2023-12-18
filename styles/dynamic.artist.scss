@@ -28,25 +28,34 @@
   border-radius: 5px;
 }
 
-.artistProfile__profileDpContainerNonSelf {
+.artistProfile__profileCoverContainer {
   position: relative;
   margin: auto;
-  height: 150px;
-  width: 150px;
-  overflow: hidden;
-  border-radius: 50%;
-  
+
+  .artistProfile__profileDpContainerNonSelf {
+    position: relative;
+    margin: auto;
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+    border-radius: 50%;
+    
+  }
 }
 
-.artistProfile__profileDpContainer {
+.artistProfile__profileCoverContainer {
   position: relative;
   margin: auto;
-  height: 150px;
-  width: 150px;
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 50%;
-  
+  .artistProfile__profileDpContainer {
+    position: relative;
+    margin: auto;
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 50%;
+    
+  }
 }
 
 .artistProfile__profileDpContainer:hover .artistProfile_profilePicEditButton {
@@ -149,7 +158,7 @@
   padding: 48px;
 }
 
-.artistProfile__profileCoverContainer {
+.profileCoverContainer {
   height: 150px;
 
   .graph {
@@ -383,7 +392,7 @@
     width: 90%;
   }
 
-  .artistProfile__profileCoverContainer {
+  .profileCoverContainer {
     height: 300px;
   }
 
@@ -419,7 +428,7 @@
     width: 90%;
   }
 
-  .artistProfile__profileCoverContainer {
+  .profileCoverContainer {
     height: 115px;
   }
 
@@ -455,7 +464,7 @@
     width: 90%;
   }
 
-  .artistProfile__profileCoverContainer {
+  .profileCoverContainer {
     height: 115px;
   }
 
