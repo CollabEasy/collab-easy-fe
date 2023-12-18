@@ -59,7 +59,7 @@ const Login = ({
           <Image
             className="profile-image"
             src={profileImageImg}
-            alt="Welcome to Wondor. Join the growing community of artists who are available for collaboration"
+            alt="Welcome to Wondor. Join the growing community of artists who are available for collaboration."
             priority
           />
         </div>
