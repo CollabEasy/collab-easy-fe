@@ -160,11 +160,13 @@ const NewUser = ({
       <div className="newUser__textContainer">
         <h3 className="common-h1-style">Welcome aboard, {user.first_name}</h3>
         <p className="common-p-style">
-          To get you started with Wondor, let’s gather some information about
-          you first.
+          To get you started with Wondor, let’s gather some basic information about
+          you first. <b style={{color: "black"}}>Sharing this information will provide 
+          fellow artists with a glimpse into who you are and help establish connections 
+          within the creative community.</b>
         </p>
       </div>
-      <div className="container padding20">
+      <div className="artistProfile__profileCoverContainer">
         <ProfilePicture isSelf={true} userProfileOpened={user} />
       </div>
       <div className="mt32 newUser_imageFormContainer">
@@ -328,6 +330,7 @@ const NewUser = ({
                 <Input.TextArea
                   value={userDataCached ? userDataCached.bio : ""}
                   maxLength={300}
+                  placeholder="Tell a little about who you are and who you are looking to collaborate with."
                   showCount
                   onChange={(e) => {
                     setUserDataCached((prevState) => ({

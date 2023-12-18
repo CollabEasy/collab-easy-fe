@@ -110,13 +110,14 @@ const NewUserCategory = ({
   return (
     <div className="padding20">
       <div className="newUser__textContainer">
-        <h3 className="common-h1-style">Welcome aboard </h3>
+        <h1 className="common-h1-style">You are almost there,{" "} {user.first_name} </h1>
         <p className="common-p-style">
-          Add some more details about with what art you identify the most with.
-          Don&apos;t forget to add your social media accounts to show-case your work
+          Add just a little more details about you so that we can recommend most suitable collaborators to you.
         </p>
       </div>
       <div className="mt32 newUser_imageFormContainer">
+        <p className="common-p-style">Add the skills which describes you the best. Whether you excel in visual arts, music production, writing, or any other creative discipline, 
+        showcasing your key skills will give fellow artists a clearer understanding of your unique talents</p>
         <Form
           {...layout}
           form={form}
@@ -126,7 +127,7 @@ const NewUserCategory = ({
         >
           <Form.Item
             name="art"
-            label="Art Styles"
+            label="Skills"
             rules={[
               {
                 validator(_, value) {
@@ -168,8 +169,8 @@ const NewUserCategory = ({
             </Select>
           </Form.Item>
           <p className="mt32 common-p-style">
-            Add Social media account information. This helps the other artists
-            to explore your art style.
+            To enhance your presence on Wondor and spark interest among fellow artists, add your social accounts which have your work samples - be it instagram, youtube, spotify, or any other website. 
+            Let your work speak for itself and ignite the excitement for potential collaborations.
           </p>
           <div className="newUser__basicProfileCard">
             <EditSocialProspectus />
