@@ -6,13 +6,12 @@ import Image from 'next/image';
 import LoginModal from './modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
-import { openLoginModalAction, setCurrentPathName, updateLoginData } from 'state/action';
+import { openLoginModalAction, updateLoginData } from 'state/action';
 import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from './modal/newUserModal';
 import pageBannerImage from '../public/images/mobile-landing.svg';
-import router from "next/router";
 
 const mapStateToProps = (state: AppState) => ({
     loginModalDetails: state.home.loginModalDetails,
@@ -24,7 +23,6 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     openLoginModalAction: () => dispatch(openLoginModalAction()),
     updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
-    setCurrentPathName: (path: string) => dispatch(setCurrentPathName(path)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -46,15 +44,13 @@ const GenericPageBanner = ({
     user,
     heading,
     paragraph,
-    setCurrentPathName,
     artistListData
 }: Props) => {
     const [showProfileModal, setShowProfileModal] = useState(false);
     const { toContactUs } = useRoutesContext();
 
     const openLoginModal = () => {
-        setCurrentPathName(router.asPath);
-        router.push("/login");
+        openLoginModalAction();
     };
 
     useEffect(() => {
@@ -74,6 +70,14 @@ const GenericPageBanner = ({
     // https://bootdey.com/snippets/view/blog-page#html
     return (
         <>
+            {loginModalDetails.openModal && !user.new_user && (
+                <LoginModal />
+            )
+            }
+            {showProfileModal && (
+                <NewUserModal />
+            )
+            }
 
             <div style={{ width: "100%" }}>
                 <div className="row d-flex justify-content-center pageBanner-cover">

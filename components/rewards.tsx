@@ -154,7 +154,9 @@ const RewardsPage = ({
 
   return (
     <>
-  
+      {loginModalDetails.openModal && !user.new_user && <LoginModal />}
+      {showProfileModal && <NewUserModal />}
+
       {isFetchingRewardsActivity && isFetchingRewardPoints ? (
         <Loader />
       ) : (

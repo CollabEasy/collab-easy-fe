@@ -680,8 +680,8 @@ const Profile = ({
           </>
         )}
 
-        <div className="artistProfile__profileCoverContainer">
-          <div className="profileCoverContainer">
+        <div className="container">
+          <div className="artistProfile__profileCoverContainer">
             <div className="graph"></div>
           </div>
 

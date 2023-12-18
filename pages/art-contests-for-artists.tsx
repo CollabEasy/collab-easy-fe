@@ -119,6 +119,15 @@ const AllContestPage = ({
             content={"Participate in the Wondor monthly art contests and earn exclusive prizes for winning. Get all the information about the contests hosted every month. Earn reward points for participation. Join now!"}
 
         >
+            {loginModalDetails.openModal && !user.new_user && (
+                <LoginModal />
+            )
+            }
+            {showProfileModal && (
+                <NewUserModal />
+            )
+            }
+
             {isFetchingContest ? (
                 <Loader />
             ) : (

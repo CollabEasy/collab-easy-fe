@@ -97,7 +97,15 @@ const AllBlogs = ({
             content={"Explore the transformative power of collaboration in art, discover practical tips for managing collaborations, and delve into inspiring stories of successful collaborative projects on Wondor's blog."}
 
         >
-        
+            {loginModalDetails.openModal && !user.new_user && (
+                <LoginModal />
+            )
+            }
+            {showProfileModal && (
+                <NewUserModal />
+            )
+            }
+
             <div className="genericPageLayout_container">
                 {windowWidth > 500 &&
                     <GenericBreadcrumb

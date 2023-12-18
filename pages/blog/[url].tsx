@@ -1,12 +1,21 @@
-import Layout from "@/components/layout";
-import { Breadcrumb } from "antd";
-import { useRoutesContext } from "components/routeContext";
-import { BLOGS } from "constants/blogs";
-import { GetBlogMetadata } from "helpers/blogHelper";
-import Image from 'next/image';
+import { Breadcrumb, Button } from "antd";
+import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
-import { AppState } from "state";
+import router, { useRouter } from "next/router";
+import { Dispatch } from "redux";
+import { routeToHref } from "config/routes";
+import LoginModal from '@/components/modal/loginModal';
+import NewUserModal from '@/components/modal/newUserModal';
+import Image from 'next/image';
+import Link from "next/link";
+import { useRoutesContext } from "components/routeContext";
+import { GetCategoryMetadata } from "helpers/categoryHelper";
+import { GetCategoryArtistTitle } from "helpers/categoryHelper";
+import Layout from "@/components/layout";
+import { CATEGORY_METADATA } from "constants/category";
+import { BLOGS } from "constants/blogs";
+import { GetBlogMetadata } from "helpers/blogHelper";
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -100,6 +109,15 @@ const BlogPage = ({
         <Layout
             title={blogMetadata["title"]} name={"description"} content={blogMetadata["meta-content"]}
         >
+
+            {loginModalDetails.openModal && !user.new_user && (
+                <LoginModal />
+            )
+            }
+            {showProfileModal && (
+                <NewUserModal />
+            )
+            }
             <>
                 <div className="categoryDetailPage_container">
                     {windowWidth > 500 &&

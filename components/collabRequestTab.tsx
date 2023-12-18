@@ -1,20 +1,42 @@
-import { Button, Collapse, Select, Switch, Table, Tabs } from "antd";
-import { GetCollabHeading } from "helpers/collabCardHelper";
-import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import { connect, ConnectedProps, useDispatch } from "react-redux";
-import { Dispatch } from "redux";
-import { AppState } from "state";
+import {
+  Pagination,
+  Button,
+  Card,
+  Avatar,
+  Select,
+  Table,
+  Tabs,
+  Collapse,
+  Switch,
+} from "antd";
+import Meta from "antd/lib/card/Meta";
 import {
   CollabRequestData,
+  CollabResponse,
   SearchCollab,
   SendCollabRequest,
 } from "types/model";
+import { AppState } from "state";
+import {
+  acceptCollabRequestAction,
+  getCollabRequestsAction,
+  rejectCollabRequestAction,
+} from "state/action";
+import { Dispatch } from "redux";
+import { connect, ConnectedProps, useDispatch } from "react-redux";
 import * as action from "./../state/action";
-import CollabCalender from "./collabCalender";
+import { CollabRequestStatus } from "constants/constants";
 import CollabDetailCard from "./collabDetailCard";
 import Loader from "./loader";
 import { useRoutesContext } from "./routeContext";
+import router from "next/router";
+import CollabCalender from "./collabCalender";
+import Layout from "@/components/layout";
+import $ from "jquery";
+import Link from "next/link";
+import { GetCollabHeading } from "helpers/collabCardHelper";
+import RewardCodeClipBoard from "./asset/rewardCodeClipBoard";
 import CollabLinkClipBoard from "./asset/collabLinkClipBoard";
 
 const { Option } = Select;
@@ -37,7 +59,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {} & ConnectedProps<typeof connector>;
+type Props = {
+} & ConnectedProps<typeof connector>;
 
 export const CollabRequestTab = ({
   user,
@@ -112,6 +135,7 @@ export const CollabRequestTab = ({
       setHasPendingCollab(false);
       setCollabRequestDetails(emptyCollabDetails);
     }
+
   }, []);
 
   const dateToCollabRequestMap = {};
@@ -317,10 +341,7 @@ export const CollabRequestTab = ({
     );
   };
 
-  if (
-    (user && Object.keys(user).length === 0) ||
-    collab.isFetchingCollabDetails
-  ) {
+  if ((user && Object.keys(user).length === 0)|| collab.isFetchingCollabDetails) {
     return <Loader />;
   }
 

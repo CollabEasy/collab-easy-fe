@@ -611,6 +611,9 @@ const ContestPage = ({
       }
     >
       <>
+        {loginModalDetails.openModal && !user.new_user && <LoginModal />}
+        {showProfileModal && <NewUserModal />}
+
         {isFetchingContest &&
           isFetchingSubmissions &&
           isFetchingSubmissionVotes ? (

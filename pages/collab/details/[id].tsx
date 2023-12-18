@@ -192,7 +192,8 @@ const CollabPage = ({
       content={"Manage your collab request on Wondor!"}
     >
         <>
-          
+          {loginModalDetails.openModal && !user.new_user && <LoginModal />}
+          {showProfileModal && <NewUserModal />}
           {!isLoggedIn ? (
             <>
               <NotAuthorised

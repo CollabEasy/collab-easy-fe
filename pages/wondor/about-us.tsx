@@ -70,6 +70,15 @@ const AboutUs = ({
       name={"description"}
       content={"Wondor is one-stop platform for all artists. We connect artists with each other and promote collaboration among artists. Win money for wining monthly contest. Earn rewards point by referring friends!"}
     >
+
+      {loginModalDetails.openModal && !user.new_user && (
+        <LoginModal />
+      )
+      }
+      {showProfileModal && (
+        <NewUserModal />
+      )
+      }
       <div className="genericPageLayout_container">
         {windowWidth > 500 &&
           <GenericBreadcrumb

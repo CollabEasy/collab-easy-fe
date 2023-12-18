@@ -72,7 +72,14 @@ const Tutorial = ({
       content={"Find singers, photograhers etc to collaborate. Create account, send collab request, manage collaboration requests. Find ideas and themes for your work. Win money from winning art contests. Earn rewards by reffering your friends."}
 
     >
-
+      {loginModalDetails.openModal && !user.new_user && (
+        <LoginModal />
+      )
+      }
+      {showProfileModal && (
+        <NewUserModal />
+      )
+      }
 
       <div className="genericPageLayout_container">
         {windowWidth > 500 &&
