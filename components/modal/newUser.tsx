@@ -167,6 +167,9 @@ const NewUser = ({
         </p>
       </div>
       <div className="artistProfile__profileCoverContainer">
+        <div className="profileCoverContainer">
+          <div className="graph"></div>
+        </div>
         <ProfilePicture isSelf={true} userProfileOpened={user} />
       </div>
       <div className="mt32 newUser_imageFormContainer">
