@@ -15,6 +15,7 @@ import CollabCalender from "./collabCalender";
 import CollabDetailCard from "./collabDetailCard";
 import Loader from "./loader";
 import { useRoutesContext } from "./routeContext";
+import CollabLinkClipBoard from "./asset/collabLinkClipBoard";
 
 const { Option } = Select;
 
