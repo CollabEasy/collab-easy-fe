@@ -1,4 +1,4 @@
-.container {
+.referral-container {
   display: flex;
   flex-direction: column;
   max-width: 100%;
@@ -35,7 +35,7 @@
 }
 
 @media only screen and (max-width: 680px) and (min-width: 601px) {
-  .container {
+  .referral-container {
       flex-direction: column-reverse;
     }
     .profile-form {
@@ -50,7 +50,7 @@
 }
 
 @media only screen and (max-width: 600px) and  (min-width: 400px) {
-  .container {
+  .referral-container {
     flex-direction: column-reverse;
   }
   .profile-form {
@@ -65,7 +65,7 @@
 }
 
 @media only screen and (max-width: 399px) {
-  .container {
+  .referral-container {
       flex-direction: column-reverse;
     }
     .profile-form {
