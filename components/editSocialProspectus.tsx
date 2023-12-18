@@ -159,7 +159,7 @@ const EditSocialProspectus = ({
             };
             updatedData.push(obj);
         });
-        return <Table columns={window.innerWidth < 500 ? deviceColumns : columns} dataSource={updatedData} />;
+        return <Table columns={window.innerWidth < 600 ? deviceColumns : columns} dataSource={updatedData} />;
     };
 
     return (
