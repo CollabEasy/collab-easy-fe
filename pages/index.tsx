@@ -32,6 +32,7 @@ import {
   testimonialContent,
   generalFaqContent
 } from "../constants/home";
+import { GetBlogUrl, GetProposalUrl } from "helpers/routeHelper";
 
 const { Panel } = Collapse;
 
@@ -116,18 +117,6 @@ const Home = ({
   const openLoginModal = () => {
     openLoginModalAction();
   };
-
-  const GetBlogUrl = (url) => {
-    return (typeof window !== "undefined" && window.location.origin
-      ? window.location.origin + url
-      : "");
-  }
-
-  const GetProposalUrl = (url) => {
-    return (typeof window !== "undefined" && window.location.origin
-      ? window.location.origin + url
-      : "");
-  }
 
   const getfaqCard = (faqContent) => {
     return (

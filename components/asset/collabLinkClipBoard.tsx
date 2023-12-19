@@ -1,17 +1,10 @@
+import { GetCollabLink } from 'helpers/routeHelper';
 import { useState, useEffect, useRef } from 'react';
 
 const CollabLinkClipBoard = ({ slug }) => {
 
     const textRef = useRef(null);
     const [isCopied, setIsCopied] = useState(false);
-
-
-    const GetCollabLink = (slug) => {
-        return (typeof window !== "undefined" && window.location.origin
-            ? window.location.origin + "/collab/artist/" + slug
-            : "");
-    }
-
 
     const handleCopyClick = () => {
         if (textRef.current) {

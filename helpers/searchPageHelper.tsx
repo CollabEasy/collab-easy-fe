@@ -3,13 +3,15 @@ import {
     SearchOutlined,
 } from "@ant-design/icons";
 import { artistsForCollab } from "constants/home";
+import { GetAllCategories, GetAllProposals, GetArtistCollabPage, GetCategoryPage } from "./routeHelper";
+
 
 export function GetSearchPageCategories() {
     const categories: JSX.Element[] = [];
     for (var i = 0; i < 5; i++) {
         categories.push(
             <div className="col-lg-3 col-md-4 col-sm-4 col-xs-6 col-6">
-                <a href="#" className="gallery-popup" title="Morning Dew">
+                <a href={GetCategoryPage(CATEGORY_METADATA[i]["slug"])} className="gallery-popup" title="Morning Dew">
                     <div className="project-item">
                         <div className="overlay-container">
                             <div className="searchPage-card">
@@ -33,7 +35,7 @@ export function GetSearchPageCategories() {
     }
     categories.push(
         <div className="col-lg-3 col-md-4 col-sm-4 col-xs-6 col-6">
-            <a href="#" className="gallery-popup" title="Morning Dew">
+            <a href={GetAllCategories()} className="gallery-popup" title="Morning Dew">
                 <div className="project-item">
                     <div className="overlay-container">
                         <div className="searchPage-card">
@@ -59,7 +61,7 @@ export function GetSearchPageProposals() {
     for (var i = 0; i < 5; i++) {
         proposals.push(
             <div className="col-lg-3 col-md-4 col-sm-4 col-xs-6 col-6">
-                <a href="#" className="gallery-popup" title="Morning Dew">
+                <a href={GetAllProposals()} className="gallery-popup" title="Morning Dew">
                     <div className="project-item">
                         <div className="overlay-container">
                             <div className="searchPage-card">
@@ -83,7 +85,7 @@ export function GetSearchPageProposals() {
     }
     proposals.push(
         <div className="col-lg-3 col-md-4 col-sm-4 col-xs-6 col-6">
-            <a href="#" className="gallery-popup" title="Morning Dew">
+            <a href={GetAllProposals()} className="gallery-popup" title="Morning Dew">
                 <div className="project-item">
                     <div className="overlay-container">
                         <div className="searchPage-card">
@@ -107,7 +109,7 @@ export function GetSearchPageCollaborators() {
     for (var i = 0; i < artistsForCollab.length; i++) {
         collaborators.push(
             <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-6">
-                <a href="#" className="gallery-popup" title="Morning Dew">
+                <a href={GetArtistCollabPage(artistsForCollab[i]["slug"])} className="gallery-popup">
                     <div className="project-item">
                         <div className="overlay-container">
                             <div className="searchPage-card">
