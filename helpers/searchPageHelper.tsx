@@ -46,7 +46,7 @@ export function GetUserMightLikeCategories(skill) {
 export function GetSearchCategoryCard(slug, name) {
     return (
         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-6 col-6">
-            <a href={GetCategoryPage({ slug })} className="gallery-popup" title="Morning Dew">
+            <a href={GetCategoryPage(slug)} className="gallery-popup" title="Morning Dew">
                 <div className="project-item">
                     <div className="overlay-container">
                         <div className="searchPage-card">
