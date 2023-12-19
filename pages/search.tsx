@@ -107,11 +107,18 @@ const MySearchPage = ({
                                         <div className="col-md-12">
                                             <div className="section-title text-md-center">
                                                 <h2 className="common-h2-style">
-                                                    Just a Step Away from Your Perfect Creative Collaboration!
+                                                    Perfect Creative Collaboration is a Step Away!
                                                 </h2>
                                                 <p className="common-p-style" style={{ width: "100%" }}>
-                                                    All you need is a collaborator to unleash our creativity with, and guess what? We've got just the perfect setup to make you meet one.
+                                                    We've got just the perfect setup to help you start.
                                                 </p>
+                                                <div>
+                                                    <Link href={routeToHref(toTutorial())} passHref>
+                                                        <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                                                            Get Started
+                                                        </button>
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -121,7 +128,7 @@ const MySearchPage = ({
                                         <div className="col-md-12">
                                             <div className="section-title text-md-center">
                                                 <h2 className="common-h2-style">
-                                                    Start Collaborating Today — Connect, Create, and Inspire Together!
+                                                    Connect, Create, and Inspire Together!
                                                 </h2>
                                                 <p className="common-p-style" style={{ width: "100%" }}>
                                                     Artists of every skill and experience level, start your creative journey today.
@@ -142,10 +149,10 @@ const MySearchPage = ({
                                         <div className="col-md-12">
                                             <div className="section-title text-md-center">
                                                 <h2 className="common-h2-style">
-                                                    Discover Collaboration Proposals that Sparks Your Creative Enthusiasm!
+                                                    Collaboration Proposals that Sparks Creative Enthusiasm!
                                                 </h2>
                                                 <p className="common-p-style" style={{ width: "100%" }}>
-                                                    Check out these amazing collaboration proposals or add your own
+                                                    Express interest in amazing collaboration proposals from other artists
                                                 </p>
                                                 <div>
                                                     <Link href={routeToHref(toAllProposalsPage())} passHref >
@@ -163,10 +170,10 @@ const MySearchPage = ({
                                         <div className="col-md-12">
                                             <div className="section-title text-md-center">
                                                 <h2 className="common-h2-style">
-                                                    Explore Fresh Art Ideas for Your Next Masterpiece!
+                                                    Stuck in Creative Block? We got your back!
                                                 </h2>
                                                 <p className="common-p-style" style={{ width: "100%" }}>
-                                                    Check out these amazing collaboration proposals or add your own
+                                                    Explore fresh art ideas for your next masterpiece
                                                 </p>
                                                 <div>
                                                     <Link href={routeToHref(toGetInspired())} passHref >

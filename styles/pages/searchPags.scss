@@ -84,19 +84,6 @@
             transition: .5s ease;
         }
 
-        .project-item-overlay h4 {
-            font-size: 18px;
-            font-weight: 500;
-            white-space: nowrap;
-            color: white;
-            position: absolute;
-            overflow: hidden;
-            top: 7%;
-            left: 7%;
-            margin: 0;
-            text-overflow: ellipsis;
-        }
-
         .project-item-overlay p {
             font-size: small;
             font-weight: 600;
@@ -257,7 +244,11 @@
 @media only screen and (max-width: 399px) {
     .searchPageContainer {
         width: 90%;
-        margin-top: 20%;
+        margin-top: 30%;
+
+        .searchPage-carousel {
+            min-height: 160px;
+        }
 
         .searchPageContent {
 
