@@ -14,13 +14,14 @@ import * as actions from "state/action";
 import Layout from "@/components/layout";
 import Link from "next/link";
 import GenericActionBanner from "@/components/genericActionBanner";
-import { GetSearchPageCategories, GetSearchPageProposals, GetSearchPageCollaborators } from "helpers/searchPageHelper";
+import { GetSearchPageCategories, GetSearchPageProposals, GetSearchPageCollaborators, GetUserMightLikeCategories } from "helpers/searchPageHelper";
 
 const { Meta } = Card;
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
     const isLoggedIn = state.user.isLoggedIn;
+    const isFetchingUser = state.user.isFetchingUser;
     const loginModalDetails = state.home.loginModalDetails;
     const artistListData = state.home.artistListDetails;
     const contests = state.contest;
@@ -29,8 +30,7 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    fetchAllContests: () =>
-        dispatch(actions.fetchAllContests()),
+
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -42,32 +42,26 @@ const MySearchPage = ({
     isLoggedIn,
     loginModalDetails,
     artistListData,
-    isFetchingContest,
-    fetchAllContests,
 }: Props) => {
 
     const {
-        toCategoryArtistList,
         toAllProposalsPage,
         toAllCategoryPage,
         toGetInspired,
         toTutorial,
-        toAllBlogs,
-        toAllContestPage,
-        toRewardsInfoPage,
-        toUserCollabPage,
-        toFAQ,
-        toContactUs,
-        toArtistProfile,
     } = useRoutesContext();
 
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [windowWidth, setWindowWidth] = useState(-1);
+    const [mightLikeCategories, setUserMightLikeCategories] = useState([]);
 
     const router = useRouter();
 
     useEffect(() => {
-    }, []);
+        if (isLoggedIn) {
+            setUserMightLikeCategories(GetUserMightLikeCategories(user.skills));
+        }
+    }, [user]);
 
     useEffect(() => {
         if (user) {
@@ -196,7 +190,7 @@ const MySearchPage = ({
                         </div>
                         <div className="container">
                             <div className="row">
-                                {GetSearchPageCategories()}
+                                {GetSearchPageCategories(mightLikeCategories)}
                             </div>
                         </div>
 
@@ -207,7 +201,7 @@ const MySearchPage = ({
                         </div>
                         <div className="container">
                             <div className="row">
-                                {GetSearchPageProposals()}
+                                {GetSearchPageProposals(mightLikeCategories)}
                             </div>
                         </div>
 
@@ -218,7 +212,7 @@ const MySearchPage = ({
                         </div>
                         <div className="container">
                             <div className="row">
-                                {GetSearchPageCollaborators()}
+                                {GetSearchPageCollaborators(mightLikeCategories)}
                             </div>
                         </div>
 

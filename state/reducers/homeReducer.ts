@@ -13,7 +13,6 @@ const initialState: HomeState = {
 };
 
 const homeReducer = (state = initialState, action): HomeState => {
-  console.log("action : ", action);
   switch (action.type) {
     case actionTypes.HOME:
       return {
@@ -34,7 +33,6 @@ const homeReducer = (state = initialState, action): HomeState => {
       return { ...state, isLoading: action.payload.isLoading}
     case actionTypes.ROUTE_TO_MY_WONDOR:
       const { route } = action.payload;
-      console.log("route : ", route);
       return {
         ...state,
         routeToMyWondor: route,

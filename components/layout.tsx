@@ -72,7 +72,6 @@ const Layout = ({
       pathname = pathname.replace(":3000", "");
     }
     setPathname(pathname);
-    console.log("pushing to wondor");
     if (routeToMyWondor) {
       router.push("/my-wondor");
     }
