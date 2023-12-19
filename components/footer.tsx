@@ -2,7 +2,7 @@ import React, { Dispatch, useEffect, useRef, useState } from 'react'
 import { FooterColumn } from 'types/model/footer';
 import Link from 'next/link';
 import { useRoutesContext } from "../components/routeContext";
-import { IsArtistPortal, IsContestPage, IsInspirationPage, IsLandingPage, IsMyWondorPortal, IsProfilePage, IsProposalPage, IsRewardsPage } from 'helpers/helper';
+import { IsArtistPortal, IsContestPage, IsInspirationPage, IsLandingPage, IsMySearchPage, IsMyWondorPortal, IsProfilePage, IsProposalPage, IsRewardsPage } from 'helpers/helper';
 import { useRouter } from "next/router";
 import { routeToHref } from "config/routes";
 import {
@@ -11,6 +11,7 @@ import {
   UserOutlined,
   TrophyOutlined,
   DollarOutlined,
+  SearchOutlined,
   BulbOutlined,
   FileTextOutlined,
   CopyrightOutlined,
@@ -101,6 +102,8 @@ const Footer = ({
       router.push("/art-contests-for-artists");
     } else if (page === "proposal") {
       router.push("/collab-proposals-for-artists");
+    } else if (page === "search") {
+      router.push("/search");
     }
   }
 
@@ -125,6 +128,16 @@ const Footer = ({
           <div className='col-md-6'>
             <div className='row'>
               <div className="col-md-4 col-4">
+                <h6 className="common-h6-style">For artists</h6>
+                <ul className="common-text-style">
+                  <li><a href={toGetInspired().href} >Inspiration Hub</a></li>
+                  <li><a href={toAllContestPage().href} >Art Contests</a></li>
+                  <li><a href={toAllCategoryPage().href} >Collab Categories</a></li>
+                  <li><a href={toAllProposalsPage().href} >Collab Proposals</a></li>
+                  <li><a href={toRewardsInfoPage().href} >Rewards Program</a></li>
+                </ul>
+              </div>
+              <div className="col-md-4 col-4">
                 <h6 className="common-h6-style">Company</h6>
                 <ul className="common-text-style">
                   <li><a href={toAboutUs().href} >About Us</a></li>
@@ -132,16 +145,6 @@ const Footer = ({
                   <li><a href={toPrivacy().href} >Privacy Policy</a></li>
                   <li><a href={toTutorial().href} >How Wondor Works</a></li>
                   <li><a href={toAllBlogs().href} >Blog</a></li>
-                </ul>
-              </div>
-              <div className="col-md-4 col-4">
-                <h6 className="common-h6-style">For artists</h6>
-                <ul className="common-text-style">
-                  <li><a href={toGetInspired().href} >Inspiration Hub</a></li>
-                  <li><a href={toAllContestPage().href} >Art Contests</a></li>
-                  <li><a href={toAllCategoryPage().href} >Collab Categories</a></li>
-                  <li><a href={toAllProposalsPage().href} >Collab Proposals</a></li>
-                  <li><a href={toRewardsInfoPage().href} >Earn Rewards</a></li>
                 </ul>
               </div>
               <div className="col-md-4 col-4">
@@ -172,12 +175,12 @@ const Footer = ({
                   {IsLandingPage(router.pathname) ? (
                     <>
                       <HomeOutlined style={{ color: "black" }} />
-                      <span className="f-10 common-text-style" style={{ color: "black" }}>Discover</span>
+                      <span className="f-10 common-text-style" style={{ color: "black" }}>Wondor</span>
                     </>
                   ) : (
                     <>
                       <HomeOutlined style={{ color: "grey" }} />
-                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Discover</span>
+                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Wondor</span>
                     </>
                   )}
 
@@ -201,16 +204,16 @@ const Footer = ({
               </div>
                     
               <div className="bottom-nav-item">
-                <div className="bottom-nav-link" onClick={(e) => reloadPage("proposal")}>
-                  {IsProposalPage(pathname) ? (
+                <div className="bottom-nav-link" onClick={(e) => reloadPage("search")}>
+                  {IsMySearchPage(pathname) ? (
                     <>
-                      <FileTextOutlined style={{ color: "black" }} />
-                      <span className="f-10 common-text-style" style={{ color: "black" }}>Proposals</span>
+                      <SearchOutlined style={{ color: "black" }} />
+                      <span className="f-10 common-text-style" style={{ color: "black" }}>Search</span>
                     </>
                   ) : (
                     <>
-                      <FileTextOutlined style={{ color: "grey" }} />
-                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Proposals</span>
+                      <SearchOutlined style={{ color: "grey" }} />
+                      <span className="f-10 common-text-style" style={{ color: "grey" }}>Search</span>
                     </>
                   )}
 

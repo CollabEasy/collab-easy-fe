@@ -46,7 +46,19 @@ const MyWondorPage = ({
 }: Props) => {
 
     const router = useRouter();
-    const { toDiscover, toArtistProfile, toAllBlogs, toAllProposalsPage, toRewardsInfoPage, toArtistPortal, toAboutUs, toTutorial, toTerms, toPrivacy } = useRoutesContext();
+    const { 
+        toDiscover, 
+        toArtistProfile, 
+        toAllBlogs, 
+        toAllProposalsPage, 
+        toRewardsInfoPage, 
+        toArtistPortal, 
+        toAboutUs, 
+        toTutorial, 
+        toTerms, 
+        toPrivacy,
+        toMySearchPage,
+    } = useRoutesContext();
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [windowWidth, setWindowWidth] = useState(-1);
 
@@ -226,7 +238,7 @@ const MyWondorPage = ({
                                                 className="common-btn-dimension"
                                             >
                                                 <Link
-                                                    href={routeToHref(toDiscover())}
+                                                    href={routeToHref(toMySearchPage())}
                                                 >
                                                     Find Collaborator
                                                 </Link>

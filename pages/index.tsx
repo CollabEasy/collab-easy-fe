@@ -89,6 +89,7 @@ const Home = ({
     toAllBlogs,
     toAllContestPage,
     toRewardsInfoPage,
+    toMySearchPage,
     toUserCollabPage,
     toFAQ,
     toContactUs,
@@ -219,9 +220,19 @@ const Home = ({
             {mainContent["paragraph"]}
           </p>
           <div className="hero-text-cnt-wrapper">
-            {!isLoggedIn && (<button className="homepage-button" style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
-              Join for Free!
-            </button>)}
+            {!isLoggedIn ?
+              (
+                <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
+                  Join for Free!
+                </button>
+              ) : (
+                <Link href={routeToHref(toMySearchPage())} passHref >
+                  <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                    Let's Collaborate
+                  </button>
+                </Link>
+              )
+            }
             <Link href={routeToHref(toTutorial())} passHref >
               <button className="homepage-button" style={{ backgroundColor: "white", color: "black" }}>
                 How it works?
@@ -582,7 +593,7 @@ const Home = ({
                   our most frequenty asked question. If your question is not listed
                   here, then please checkout our FAQ page or contact us directly.
                 </p>
-                <div>
+                <div className="hero-text-cnt-wrapper">
                   <Link href={routeToHref(toFAQ())} passHref>
                     <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
                       FAQs
@@ -620,7 +631,7 @@ const Home = ({
               Embark on a creative adventure by connecting and
               collaborating with fellow artists today!
             </p>
-            <div>
+            <div className="hero-text-cnt-wrapper">
               <Link href={routeToHref(toAllCategoryPage())} passHref>
                 <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
 
@@ -668,10 +679,15 @@ const Home = ({
                 <p className="common-p-style" style={{ width: "100%" }}>
                   Collaboration unites diverse artists, fostering innovation and satisfaction beyond what achieved individually.
                 </p>
-                <div>
-                  <Link href={routeToHref(toAllCategoryPage())} passHref>
+                <div className="hero-text-cnt-wrapper">
+                  <Link href={routeToHref(toMySearchPage())} passHref >
                     <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                      All Collab Categories
+                      Let's Collaborate
+                    </button>
+                  </Link>
+                  <Link href={routeToHref(toAllCategoryPage())} passHref>
+                    <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
+                      Collab Categories
                     </button>
                   </Link>
                 </div>
