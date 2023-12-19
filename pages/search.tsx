@@ -1,4 +1,4 @@
-import { Col, Row, Statistic, Table, Alert, Carousel } from "antd";
+import { Carousel } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -10,13 +10,11 @@ import { Card, Tag } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import Image from 'next/image';
-import headerImage from '../public/images/reward.svg';
 import * as actions from "state/action";
 import Layout from "@/components/layout";
 import Link from "next/link";
-import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import GenericActionBanner from "@/components/genericActionBanner";
-import Search from "@/components/search";
+import { GetSearchPageCategories, GetSearchPageProposals, GetSearchPageCollaborators } from "helpers/searchPageHelper";
 
 const { Meta } = Card;
 
@@ -101,304 +99,116 @@ const MySearchPage = ({
 
             <>
                 <div className="searchPageContainer">
-                    {windowWidth > 500 &&
-                        <GenericBreadcrumb
-                            page={"Search on Wondor"}
-                        />
-                    }
                     <div className="searchPageContent">
-                        <Carousel autoplay className="carousel">
-                            <div className="heroContent">
-                                <div className="row align-items-center">
-                                    <div className="col-md-12">
-                                        <div className="section-title text-md-center">
-                                            <h2 className="common-h2-style">
-                                                Just a step away from your perfect creative collaboration!
-                                            </h2>
-                                            <p className="common-p-style" style={{ width: "100%" }}>
-                                                All you need is a collaborator to unleash our creativity with, and guess what? We've got just the perfect setup to make you meet one.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="heroContent">
-                                <div className="row align-items-center">
-                                    <div className="col-md-12">
-                                        <div className="section-title text-md-center">
-                                            <h2 className="common-h2-style">
-                                                Start Collaborating Today — Connect, Create, and Inspire Together!
-                                            </h2>
-                                            <p className="common-p-style" style={{ width: "100%" }}>
-                                                Artists of every skill and experience level, start your creative journey today.
-                                            </p>
-                                            <div>
-                                                <Link href={routeToHref(toAllCategoryPage())} passHref>
-                                                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                                                        Collab Categories
-                                                    </button>
-                                                </Link>
+                        <div className="searchPage-carousel">
+                            <Carousel autoplay>
+                                <div className="heroContent">
+                                    <div className="row align-items-center">
+                                        <div className="col-md-12">
+                                            <div className="section-title text-md-center">
+                                                <h2 className="common-h2-style">
+                                                    Just a Step Away from Your Perfect Creative Collaboration!
+                                                </h2>
+                                                <p className="common-p-style" style={{ width: "100%" }}>
+                                                    All you need is a collaborator to unleash our creativity with, and guess what? We've got just the perfect setup to make you meet one.
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="heroContent">
-                                <div className="row align-items-center">
-                                    <div className="col-md-12">
-                                        <div className="section-title text-md-center">
-                                            <h2 className="common-h2-style">
-                                                Discover Collaboration Proposals that Sparks Your Creative Enthusiasm!
-                                            </h2>
-                                            <p className="common-p-style" style={{ width: "100%" }}>
-                                                Check out these amazing collaboration proposals or add your own
-                                            </p>
-                                            <div>
-                                                <Link href={routeToHref(toAllProposalsPage())} passHref >
-                                                    <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
-                                                        Collab Proposals
-                                                    </button>
-                                                </Link>
+                                <div className="heroContent">
+                                    <div className="row align-items-center">
+                                        <div className="col-md-12">
+                                            <div className="section-title text-md-center">
+                                                <h2 className="common-h2-style">
+                                                    Start Collaborating Today — Connect, Create, and Inspire Together!
+                                                </h2>
+                                                <p className="common-p-style" style={{ width: "100%" }}>
+                                                    Artists of every skill and experience level, start your creative journey today.
+                                                </p>
+                                                <div>
+                                                    <Link href={routeToHref(toAllCategoryPage())} passHref>
+                                                        <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                                                            Collab Categories
+                                                        </button>
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="heroContent">
-                                <div className="row align-items-center">
-                                    <div className="col-md-12">
-                                        <div className="section-title text-md-center">
-                                            <h2 className="common-h2-style">
-                                                Explore Fresh Art Ideas for Your Next Masterpiece!
-                                            </h2>
-                                            <p className="common-p-style" style={{ width: "100%" }}>
-                                                Check out these amazing collaboration proposals or add your own
-                                            </p>
-                                            <div>
-                                                <Link href={routeToHref(toGetInspired())} passHref >
-                                                    <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
-                                                        Inspiration Hub
-                                                    </button>
-                                                </Link>
+                                <div className="heroContent">
+                                    <div className="row align-items-center">
+                                        <div className="col-md-12">
+                                            <div className="section-title text-md-center">
+                                                <h2 className="common-h2-style">
+                                                    Discover Collaboration Proposals that Sparks Your Creative Enthusiasm!
+                                                </h2>
+                                                <p className="common-p-style" style={{ width: "100%" }}>
+                                                    Check out these amazing collaboration proposals or add your own
+                                                </p>
+                                                <div>
+                                                    <Link href={routeToHref(toAllProposalsPage())} passHref >
+                                                        <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                                                            Collab Proposals
+                                                        </button>
+                                                    </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </Carousel>
-
-                        <h5>Discover</h5>
+                                <div className="heroContent">
+                                    <div className="row align-items-center">
+                                        <div className="col-md-12">
+                                            <div className="section-title text-md-center">
+                                                <h2 className="common-h2-style">
+                                                    Explore Fresh Art Ideas for Your Next Masterpiece!
+                                                </h2>
+                                                <p className="common-p-style" style={{ width: "100%" }}>
+                                                    Check out these amazing collaboration proposals or add your own
+                                                </p>
+                                                <div>
+                                                    <Link href={routeToHref(toGetInspired())} passHref >
+                                                        <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                                                            Inspiration Hub
+                                                        </button>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Carousel>
+                        </div>
 
                         <div className="container">
+                            <h5 className="searchPage-sectionHeading common-h5-style">You might like</h5>
+                        </div>
+                        <div className="container">
                             <div className="row">
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Open Imagination">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/87CEFA/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Open Imagination</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Locked Steel Gate">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/008B8B/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Locked Steel Gate</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Mac Sunglasses">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/9932CC/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Mac Sunglasses</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Morning Dew">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/1E90FF/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Morning Dew</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Console Activity">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/FF69B4/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Console Activity</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Shake It!">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/87CEFA/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Shake It!</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Backpack Content">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/D3D3D3/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Backpack Content</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Sunset Bulb Glow">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/90EE90/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Sunset Bulb Glow</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Open Imagination">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/87CEFA/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Open Imagination</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Console Activity">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/20B2AA/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Console Activity</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Open Imagination">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/87CEFA/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Open Imagination</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div className="col-md-3 col-sm-6">
-                                    <a href="#" className="gallery-popup" title="Shake It!">
-                                        <div className="project-item">
-                                            <div className="overlay-container">
-                                                <img src="https://www.bootdey.com/image/350x180/B0C4DE/000000" alt="img" className="gallery-thumb-img" />
-                                                <div className="project-item-overlay">
-                                                    <h4>Shake It!</h4>
-                                                    <p>
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="user" className="thumb-sm rounded-circle" />
-                                                        <span className="ml-2">Curtis Marion</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
+                                {GetSearchPageCategories()}
                             </div>
                         </div>
 
-                        <h5>Explore Collab Categories</h5>
+                        <div className="container">
+                            <h5 className="searchPage-sectionHeading common-h5-style">Explore proposals</h5>
+                        </div>
+                        <div className="container">
+                            <div className="row">
+                                {GetSearchPageProposals()}
+                            </div>
+                        </div>
+
+                        <div className="container">
+                            <h5 className="searchPage-sectionHeading common-h5-style">Top Collaborators</h5>
+                        </div>
+                        <div className="container">
+                            <div className="row">
+                                {GetSearchPageCollaborators()}
+                            </div>
+                        </div>
+
                     </div>
                     <div className="row">
                         <GenericActionBanner />

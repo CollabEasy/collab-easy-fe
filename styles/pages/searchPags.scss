@@ -1,18 +1,4 @@
-.homepage-button {
-    height: 50px;
-    border: none;
-    padding: 15px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 0px 2px 30px 2px;
-    border-radius: 35px;
-  }
-  
 .searchPageContainer {
-    //display: flex;
-    //padding: 200px;
     position: relative;
     margin-top: 10%;
     margin-bottom: 5%;
@@ -20,18 +6,17 @@
     margin-right: auto;
     flex-direction: column;
     width: 70%;
-    //box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
-    // border: 1px solid rgb(0 0 0 / 10%);
-    //background-color: rgb(0 0 0 / 5%);
     overflow-x: hidden;
 
-    .carousel {
+    .searchPage-carousel {
         border-radius: 10px;
-        // https://codepen.io/P1N2O/pen/pyBNzX
-        // https://codepen.io/tedmcdo/pen/PqxKXg
         background: linear-gradient(-45deg, rgba(255, 254, 234, 1) 0%, rgba(255, 254, 234, 1) 35%, #B7E8EB 100%);
         background-size: 400% 400%;
         animation: hero-text-gradient 15s ease infinite;
+    }
+
+    .searchPage-sectionHeading {
+        padding-top: 20px;
     }
 
     .searchPageContent {
@@ -41,36 +26,43 @@
             flex-wrap: wrap;
             justify-content: center;
             padding-top: 5%;
-            padding-bottom: 2%;
-          
+
             .section-title {
-              padding-left: 10%;
-              padding-right: 10%;
-          
-              h2 {
-                font-size: 3vw;
-                line-height: 5vw;
-              }
-          
-              p {
-                font-size: 1.5vw;
-                line-height: 2.5vw;
-              }
+                padding-left: 10%;
+                padding-right: 10%;
+
+                h2 {
+                    font-size: 3vw;
+                    line-height: 5vw;
+                }
+
+                p {
+                    font-size: 1.5vw;
+                    line-height: 2.5vw;
+                }
             }
-          
+
         }
 
         .overlay-container {
             position: relative;
         }
 
-        .project-item img.gallery-thumb-img {
-            display: block;
+        .project-item .searchPage-card {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            align-items: center;
             width: 100%;
-            height: auto;
             border-radius: 5px;
             margin-bottom: 10px;
             margin-top: 10px;
+
+            .searchPage-cardText {
+                font-size: small;
+                margin-right: 10px;
+            }
         }
 
         .project-item-overlay {
@@ -106,7 +98,7 @@
         }
 
         .project-item-overlay p {
-            font-size: 15px;
+            font-size: small;
             font-weight: 600;
             white-space: nowrap;
             color: white;
@@ -141,46 +133,154 @@
 
 }
 
-
-
-@media only screen and (max-width: 1200px) and (min-width: 1101px) {
+@media only screen and (min-width: 1200px) {
     .searchPageContainer {
-        width: 90%;
+        width: 70%;
+        .searchPageContent {
+            .heroContent {
+                .section-title {
+                    h2 {
+                        font-size: 50px;
+                        line-height: 65px;
+                    }
+
+                    p {
+                        font-size: 20px;
+                        line-height: 35px;
+                    }
+                }
+
+            }
+        }
     }
 
 }
 
-@media only screen and (max-width: 1100px) and (min-width: 901px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
     .searchPageContainer {
         width: 90%;
 
+        .searchPageContent {
+
+            .heroContent {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding-top: 5%;
+                padding-bottom: 2%;
+
+                .section-title {
+                    padding-left: 8%;
+                    padding-right: 8%;
+                    text-align: center;
+
+                    h2 {
+                        font-size: 5vw;
+                        line-height: 6vw;
+                    }
+
+                    p {
+                        font-size: 2vw;
+                        line-height: 3vw;
+                    }
+                }
+
+            }
+        }
     }
 }
 
-@media only screen and (max-width: 900px) and (min-width: 766px) {
+@media only screen and (min-width: 601px) and (max-width: 767px) {
     .searchPageContainer {
         width: 90%;
+
+        .searchPageContent {
+
+            .heroContent {
+                padding-top: 5%;
+                padding-bottom: 2%;
+
+                .section-title {
+                    padding-left: 2%;
+                    padding-right: 2%;
+                    text-align: center;
+
+                    h2 {
+                        font-size: 5vw;
+                        line-height: 6vw;
+                    }
+
+                    p {
+                        font-size: 2.75vw;
+                        line-height: 4.5vw;
+                    }
+                }
+
+            }
+        }
     }
 }
 
-@media only screen and (max-width: 767px) and (min-width: 601px) {
+@media only screen and (min-width: 400px) and (max-width: 600px) {
     .searchPageContainer {
         width: 90%;
         margin-top: 20%;
-    }
-}
 
-@media only screen and (max-width: 600px) and (min-width: 400px) {
-    .searchPageContainer {
-        width: 90%;
-        margin-top: 20%;
-    }
+        .searchPageContent {
 
+            .heroContent {
+                padding-top: 5%;
+                padding-bottom: 2%;
+
+                .section-title {
+                    padding-left: 2%;
+                    padding-right: 2%;
+                    text-align: center;
+
+                    h2 {
+                        font-size: 5vw;
+                        line-height: 6vw;
+                    }
+
+                    p {
+                        font-size: 2.75vw;
+                        line-height: 4.5vw;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: 399px) {
     .searchPageContainer {
         width: 90%;
         margin-top: 20%;
+
+        .searchPageContent {
+
+            .heroContent {
+                padding-top: 5%;
+                padding-bottom: 2%;
+
+                .section-title {
+                    padding-left: 5%;
+                    padding-right: 5%;
+                    text-align: center;
+
+                    h2 {
+                        font-size: 6vw;
+                        line-height: 7vw;
+                    }
+
+                    p {
+                        font-size: 3.75vw;
+                        line-height: 6vw;
+                    }
+                }
+            }
+        }
     }
 }
