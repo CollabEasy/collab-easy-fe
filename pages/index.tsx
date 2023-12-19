@@ -228,7 +228,7 @@ const Home = ({
               ) : (
                 <Link href={routeToHref(toMySearchPage())} passHref >
                   <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                    Let's Collaborate
+                    Let&apos;s Collaborate
                   </button>
                 </Link>
               )
@@ -682,7 +682,7 @@ const Home = ({
                 <div className="hero-text-cnt-wrapper">
                   <Link href={routeToHref(toMySearchPage())} passHref >
                     <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                      Let's Collaborate
+                      Let&apos;s Collaborate
                     </button>
                   </Link>
                   <Link href={routeToHref(toAllCategoryPage())} passHref>
