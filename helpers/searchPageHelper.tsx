@@ -8,18 +8,21 @@ import { GetAllCategories, GetAllProposals, GetArtistCollabPage, GetCategoryPage
 
 export function onlyUnique(value, index, array) {
     if (typeof value === 'object' && value !== null) {
-      // Check for pairs based on their properties
-      const existingIndex = array.findIndex(item =>
-        typeof item === 'object' && item !== null && item.key === value.key && item.value === value.value
-      );
-  
-      return existingIndex === index;
+        // Check for objects based on their properties
+        const existingIndex = array.findIndex(item =>
+            typeof item === 'object' &&
+            item !== null &&
+            item.name === value.name &&
+            item.slug === value.slug
+        );
+
+        return existingIndex === index;
     } else {
-      // Check for regular values
-      return array.indexOf(value) === index;
+        // Check for regular values
+        return array.indexOf(value) === index;
     }
-  }
-  
+}
+
 
 export function GetUserMightLikeCategories(skill) {
     let mightLikeCategories = [];
@@ -37,8 +40,7 @@ export function GetUserMightLikeCategories(skill) {
             }
         }
     }
-    console.log(mightLikeCategories.filter(onlyUnique));
-    return mightLikeCategories;
+    return mightLikeCategories.filter(onlyUnique);
 }
 
 export function GetSearchCategoryCard(slug, name) {
