@@ -213,7 +213,7 @@ const MySearchPage = ({
 
                         <div className="container">
                             <div className="searchPage-sectionHeading">
-                                <h5 className="common-h5-style">Top Collaborators</h5>
+                                <h5 className="common-h5-style">Active collaborators</h5>
                             </div>
                         </div>
                         <div className="container">

@@ -24,7 +24,7 @@ export function GetSearchPageCategories() {
                             </div>
                             <div className="project-item-overlay">
                                 <p className="common-text-style">
-                                    Find Collaborator
+                                    Find collaborators
                                 </p>
                             </div>
                         </div>
@@ -41,7 +41,7 @@ export function GetSearchPageCategories() {
                         <div className="searchPage-card">
                             <div className="searchPage-cardText">
                                 <p className="common-text-style">
-                                    More Categories
+                                    More categories
                                 </p>
                             </div>
                             <SearchOutlined />
@@ -74,7 +74,7 @@ export function GetSearchPageProposals() {
                             </div>
                             <div className="project-item-overlay">
                                 <p className="common-text-style">
-                                    Find Proposals
+                                    Find proposals
                                 </p>
                             </div>
                         </div>
@@ -91,7 +91,7 @@ export function GetSearchPageProposals() {
                         <div className="searchPage-card">
                             <div className="searchPage-cardText">
                                 <p className="common-text-style">
-                                    All Proposals
+                                    All proposals
                                 </p>
                             </div>
                             <SearchOutlined />
@@ -124,7 +124,7 @@ export function GetSearchPageCollaborators() {
                             </div>
                             <div className="project-item-overlay">
                                 <p className="common-text-style">
-                                    Collaborate Now
+                                    Collaborate now
                                 </p>
                             </div>
                         </div>
