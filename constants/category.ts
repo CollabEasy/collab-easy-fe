@@ -350,7 +350,7 @@ export const CATEGORY_METADATA = [
     },
     {
         "slug": "digital-art",
-        "category": "Digital Art",
+        "name": "Digital Art",
         "image": illustratorImage,
         "background-color": "#FFDAC1",
         "artist-title": "Digital Artists",
@@ -410,7 +410,7 @@ export const CATEGORY_METADATA = [
     },
     {
         "slug": "guitar-playing",
-        "category": "Guitar Playing",
+        "name": "Guitar Playing",
         "image": musicImage,
         "background-color": "#E2F0CB",
         "artist-title": "Guitar Players",
