@@ -104,7 +104,7 @@ const MySearchPage = ({
                                                     Perfect Creative Collaboration is a Step Away!
                                                 </h2>
                                                 <p className="common-p-style" style={{ width: "100%" }}>
-                                                    We've got just the perfect setup to help you start.
+                                                    We&apos;ve got just the perfect setup to help you start.
                                                 </p>
                                                 <div>
                                                     <Link href={routeToHref(toTutorial())} passHref>

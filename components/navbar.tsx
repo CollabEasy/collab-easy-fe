@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from "react-redux";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import Search from "./search";
+import Search from "./searchBar";
 import { Dispatch } from "redux";
 import { useRouter } from "next/router";
 import { Alert, Space, Button } from "antd";
