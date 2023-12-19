@@ -190,7 +190,9 @@ const MySearchPage = ({
                         </div>
 
                         <div className="container">
-                            <h5 className="searchPage-sectionHeading common-h5-style">You might like</h5>
+                            <div className="searchPage-sectionHeading">
+                                <h5 className="common-h5-style">You might like</h5>
+                            </div>
                         </div>
                         <div className="container">
                             <div className="row">
@@ -199,7 +201,9 @@ const MySearchPage = ({
                         </div>
 
                         <div className="container">
-                            <h5 className="searchPage-sectionHeading common-h5-style">Explore proposals</h5>
+                            <div className="searchPage-sectionHeading">
+                                <h5 className="common-h5-style">Explore proposals</h5>
+                            </div>
                         </div>
                         <div className="container">
                             <div className="row">
@@ -208,7 +212,9 @@ const MySearchPage = ({
                         </div>
 
                         <div className="container">
-                            <h5 className="searchPage-sectionHeading common-h5-style">Top Collaborators</h5>
+                            <div className="searchPage-sectionHeading">
+                                <h5 className="common-h5-style">Top Collaborators</h5>
+                            </div>
                         </div>
                         <div className="container">
                             <div className="row">

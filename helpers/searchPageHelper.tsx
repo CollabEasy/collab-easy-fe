@@ -6,9 +6,9 @@ import { artistsForCollab } from "constants/home";
 
 export function GetSearchPageCategories() {
     const categories: JSX.Element[] = [];
-    for (var i = 0; i < CATEGORY_METADATA.length; i++) {
+    for (var i = 0; i < 5; i++) {
         categories.push(
-            <div className="col-lg-3 col-md-3 col-sm-3 col-6">
+            <div className="col-lg-3 col-md-4 col-sm-4 col-xs-6 col-6">
                 <a href="#" className="gallery-popup" title="Morning Dew">
                     <div className="project-item">
                         <div className="overlay-container">
@@ -30,43 +30,42 @@ export function GetSearchPageCategories() {
                 </a>
             </div>
         )
-        if (i === 6) {
-            categories.push(
-                <div className="col-lg-3 col-md-3 col-sm-3 col-6">
-                    <a href="#" className="gallery-popup" title="Morning Dew">
-                        <div className="project-item">
-                            <div className="overlay-container">
-                                <div className="searchPage-card">
-                                    <div className="searchPage-cardText">
-                                        <p className="common-text-style">
-                                            More Categories
-                                        </p>
-                                    </div>
-                                    <SearchOutlined />
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            )
-            break;
-        }
     }
+    categories.push(
+        <div className="col-lg-3 col-md-4 col-sm-4 col-xs-6 col-6">
+            <a href="#" className="gallery-popup" title="Morning Dew">
+                <div className="project-item">
+                    <div className="overlay-container">
+                        <div className="searchPage-card">
+                            <div className="searchPage-cardText">
+                                <p className="common-text-style">
+                                    More Categories
+                                </p>
+                            </div>
+                            <SearchOutlined />
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    )
+
     return categories;
 }
 
 export function GetSearchPageProposals() {
     const proposals: JSX.Element[] = [];
-    for (var i = 0; i < CATEGORY_METADATA.length; i++) {
+    let count = CATEGORY_METADATA.length - 1;
+    for (var i = 0; i < 5; i++) {
         proposals.push(
-            <div className="col-lg-3 col-md-3 col-sm-3 col-6">
+            <div className="col-lg-3 col-md-4 col-sm-4 col-xs-6 col-6">
                 <a href="#" className="gallery-popup" title="Morning Dew">
                     <div className="project-item">
                         <div className="overlay-container">
                             <div className="searchPage-card">
                                 <div className="searchPage-cardText">
                                     <p className="common-text-style">
-                                        {CATEGORY_METADATA[i]["name"]}
+                                        {CATEGORY_METADATA[count - i]["name"]}
                                     </p>
                                 </div>
                                 <SearchOutlined />
@@ -81,28 +80,25 @@ export function GetSearchPageProposals() {
                 </a>
             </div>
         )
-        if (i === 6) {
-            proposals.push(
-                <div className="col-lg-3 col-md-3 col-sm-3 col-6">
-                    <a href="#" className="gallery-popup" title="Morning Dew">
-                        <div className="project-item">
-                            <div className="overlay-container">
-                                <div className="searchPage-card">
-                                    <div className="searchPage-cardText">
-                                        <p className="common-text-style">
-                                            All Proposals
-                                        </p>
-                                    </div>
-                                    <SearchOutlined />
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            )
-            break;
-        }
     }
+    proposals.push(
+        <div className="col-lg-3 col-md-4 col-sm-4 col-xs-6 col-6">
+            <a href="#" className="gallery-popup" title="Morning Dew">
+                <div className="project-item">
+                    <div className="overlay-container">
+                        <div className="searchPage-card">
+                            <div className="searchPage-cardText">
+                                <p className="common-text-style">
+                                    All Proposals
+                                </p>
+                            </div>
+                            <SearchOutlined />
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    )
     return proposals;
 }
 
@@ -110,15 +106,15 @@ export function GetSearchPageCollaborators() {
     const collaborators: JSX.Element[] = [];
     for (var i = 0; i < artistsForCollab.length; i++) {
         collaborators.push(
-            <div className="col-lg-3 col-md-3 col-sm-3 col-6">
+            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3 col-6">
                 <a href="#" className="gallery-popup" title="Morning Dew">
                     <div className="project-item">
                         <div className="overlay-container">
                             <div className="searchPage-card">
                                 <div className="searchPage-cardText">
-                                    <div className="d-flex flex-column align-items-center">
+                                    <div className="d-flex flex-column flex-md-row align-items-center">
                                         <img src={artistsForCollab[i]["url"]} alt="user" className="thumb-sm rounded-circle mb-2" />
-                                        <p className="common-text-style text-center">
+                                        <p className="common-text-style text-center" style={{ paddingLeft: "10px" }}>
                                             {artistsForCollab[i]["artist"]}
                                         </p>
                                     </div>
