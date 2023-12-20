@@ -122,6 +122,7 @@ export const popularCollabProposals = [
   {
     title: "Cover & promo art for a hard SF trilogy set on Mars.",
     artist: "Nicolas Nelson",
+    img: "https://lh3.googleusercontent.com/a/ACg8ocIomh_mX68BECxwLykxdzUrS4oLVbgOGFB6LbxiTIsbsJaR=s96-c",
     slug: "nicolas-nelson-1",
     category: ["Illustration", "Digital Art", "Sketching"],
     url: "collab-proposal/5aa94f/cover-promo-art-for-a-hard-sf-trilogy-set-on-mars",
@@ -130,6 +131,7 @@ export const popularCollabProposals = [
     title:
       "A Journal of Gratitude for the Little Gestures That Make a Big Difference.",
     artist: "Rahul Gupta",
+    img: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/YK4QV9uKPEeyz-gbVVebpQ/rahul.png",
     slug: "rahul-gupta-1",
     category: ["Spoken Words", "Art Journaling", "Sketching"],
     url: "collab-proposal/a607d1/a-journal-of-gratitude-for-the-little-gestures-that-make-a-big-difference",
@@ -137,6 +139,7 @@ export const popularCollabProposals = [
   {
     title: "Inner child exploration.",
     artist: "Valeria Vecchi",
+    img: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/99mjxqsgSkeT8aHeQ0JPMQ/val.png",
     slug: "valeria-vecchi-1",
     category: ["Creative Journaling", "Scrapbooking"],
     url: "collab-proposal/35b72a/inner-child-exploration",
