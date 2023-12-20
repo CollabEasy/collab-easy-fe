@@ -141,23 +141,21 @@ const DiscoverArtist = ({
     const similarCategoriesHtml: JSX.Element[] = [];
     GetCategoryMetadata(artSlug)["similar-categories"].forEach((category) => {
       similarCategoriesHtml.push(
-        <>
-          <div style={{ paddingLeft: "15px", paddingTop: "15px" }}>
-            <Button>
-              <Link
-                href={
-                  toCategoryArtistList(
-                    category["slug"],
-                    GetCategoryArtistTitle(category["slug"])
-                  ).as
-                }
-                passHref
-              >
-                {category["name"]}
-              </Link>
-            </Button>
-          </div>
-        </>
+        <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
+          <Button>
+            <Link
+              href={
+                toCategoryArtistList(
+                  category["slug"],
+                  GetCategoryArtistTitle(category["slug"])
+                ).as
+              }
+              passHref
+            >
+              {category["name"]}
+            </Link>
+          </Button>
+        </div>
       );
     });
     return similarCategoriesHtml;
@@ -364,10 +362,11 @@ const DiscoverArtist = ({
             </div>
 
             {getSimilarCategories(artSlug).length > 0 && (
-              <div className="flex-row  d-flex align-items-center justify-content-center colors my-2 scrolling-wrapper">
-                <div className="btn-group flex-wrap">
-                  {/* <p className="common-text-style" style={{ paddingLeft: "15px", paddingTop: "20px" }}>Similar categories:</p>  */}
-                  {getSimilarCategories(artSlug)}
+              <div className="row-fluid">
+                <div className="col-lg-12 col-md-10 ">
+                  <div className="similar-categories-container">
+                    {getSimilarCategories(artSlug)}
+                  </div>
                 </div>
               </div>
             )}
