@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         source: '/get-inspired',
-        destination: '/content-creation-ideas-for-artists',
+        destination: '/content-creation-ideas-for-artists?category=all',
         permanent: true,
       },
       {
