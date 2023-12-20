@@ -21,6 +21,8 @@ import { ProposalData } from "types/model/proposal";
 import moment from "moment";
 import { GetProposalTags } from "helpers/proposalHelper";
 import GenericActionBanner from "@/components/genericActionBanner";
+import FloatingButton from "@/components/asset/addFloatButton";
+import Link from "next/link";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -70,10 +72,10 @@ const ProposalsPage = ({
         categories: [],
     };
 
-    const [proposalData, setProposalData] = useState(emptyProposalData);
     const { toArtistProfile, toProposalPage } = useRoutesContext();
     const [allProposals, setAllProposals] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
+    const [proposalData, setProposalData] = useState(emptyProposalData);
     const [windowWidth, setWindowWidth] = useState(-1);
 
     const router = useRouter();
@@ -185,18 +187,14 @@ const ProposalsPage = ({
                             </div>
                         </div>
                         <div className="col-md-12 listingContainer">
-                            <div>
-                                <Button
-                                    type="text"
-                                    className="createProposalButton common-medium-btn"
-                                    onClick={() => {
-                                        setShowCreateOrUpdateProposalModal(true);
-                                    }}
-                                >
-                                    Add Proposal
-                                </Button>
-                            </div>
                             {getAllProposals(allProposals)}
+                            <div
+                                onClick={() => {
+                                    setShowCreateOrUpdateProposalModal(true);
+                                }}
+                            >
+                                <FloatingButton />
+                            </div>
                         </div>
                         <div className="row">
                             <GenericActionBanner />
