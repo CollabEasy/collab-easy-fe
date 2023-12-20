@@ -126,7 +126,9 @@ const GetInspired = ({
         </div>
         <div className="getInspired-sectionContainer">
           <div className="getInspired-textContainer">
-            Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You will not want to miss out!
+            <p className="common-p-style">
+              Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You will not want to miss out!
+            </p>
           </div>
           <div className="inspo-grid">
             {getThemes()}
