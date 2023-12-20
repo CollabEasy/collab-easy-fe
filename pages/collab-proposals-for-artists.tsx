@@ -18,7 +18,7 @@ import detailsImage from "../public/images/proposal.svg";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
-import { GetProposalTags, GetSimilarCategoriesWithIds } from "helpers/proposalHelper";
+import { GetProposalTags } from "helpers/proposalHelper";
 import GenericActionBanner from "@/components/genericActionBanner";
 import FloatingButton from "@/components/asset/addFloatButton";
 import { GetUserMightLikeCategories } from "helpers/searchPageHelper";
@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
-  
+
 const ProposalsPage = ({
     user,
     isLoggedIn,
@@ -78,37 +78,31 @@ const ProposalsPage = ({
         categories: [],
     };
 
-    const { toArtistProfile, toProposalPage } = useRoutesContext();
+    const { toArtistProfile, toProposalPage, toAllProposalsPage } = useRoutesContext();
     const [allProposals, setAllProposals] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [proposalData, setProposalData] = useState(emptyProposalData);
     const [windowWidth, setWindowWidth] = useState(-1);
     const [similarCategoriesWithIds, setSimilarCategoriesWithIds] = useState([]);
-    const [actualCategory, setActualCategory] = useState("all");
 
     const router = useRouter();
+
     const { category } = router.query;
-    
+
     useEffect(() => {
         getAllCategories();
-        setActualCategory(category.toString());
-        
-        console.log("inside useeffect", actualCategory);
-        
-        if (actualCategory === "all") {
+        if (category === "all") {
             fetchAllProposals([]);
-            console.log("fetch all proposals");
         } else {
-            setSimilarCategoriesWithIds(GetSimilarCategoriesWithIds(GetCategoryMetadata(actualCategory)["similar-categories"], publishedCategories));
-            let categoryId = -1;
-            similarCategoriesWithIds.forEach((category) => {
-                if (category["slug"] === actualCategory) {
-                    categoryId = category["id"];
+            let selectedCategoryId = -1;
+            publishedCategories.forEach((publishedCategory) => {
+                if (publishedCategory["slug"] === category) {
+                    selectedCategoryId = publishedCategory["id"];
                 }
-            });
-            fetchAllProposals(categoryId > 0 ? [categoryId] : []);
+            })
+            fetchAllProposals([selectedCategoryId]);
         }
-    }, [actualCategory]);
+    }, [category]);
 
     useEffect(() => {
         if (user) {
@@ -121,23 +115,21 @@ const ProposalsPage = ({
         }
         setAllProposals(proposal.proposals);
         setWindowWidth(window.innerWidth);
-    }, [user, artistListData, proposal.proposals]);
-
-    const ReloadProposals = (slug) => {
-        setActualCategory(slug);
-        router.push(`/collab-proposals-for-artists?category=${slug}`);
-    }
+    }, [artistListData, proposal.proposals]);
 
     const getSimilarCategories = () => {
         const similarCategoriesHtml: JSX.Element[] = [];
-        if (actualCategory === "all") {
+        if (category === "all") {
             publishedCategories.forEach((category) => {
                 similarCategoriesHtml.push(
                     <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
-                        <Button
-                            onClick={(e) => { ReloadProposals(category["slug"]) }}
-                        >
-                            {category["artName"]}
+                        <Button>
+                            <Link
+                                href={toAllProposalsPage(category["slug"]).as}
+                                passHref
+                            >
+                                {category["artName"]}
+                            </Link>
                         </Button>
                     </div>
                 );
@@ -145,26 +137,31 @@ const ProposalsPage = ({
         } else {
             similarCategoriesHtml.push(
                 <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
-                    <Button
-                        onClick={(e) => { ReloadProposals("all") }}
-                    >
-                        All Proposals
+                    <Button>
+                        <Link
+                            href={toAllProposalsPage("all").as}
+                            passHref
+                        >
+                            All Proposals
+                        </Link>
                     </Button>
                 </div>
             );
-            GetCategoryMetadata(actualCategory)["similar-categories"].forEach((category) => {
+            GetCategoryMetadata(category)["similar-categories"].forEach((category) => {
                 similarCategoriesHtml.push(
                     <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
-                        <Button
-                            onClick={(e) => { ReloadProposals(category["slug"]) }}
-                        >
-                            {category["name"]}
+                        <Button>
+                            <Link
+                                href={toAllProposalsPage(category["slug"]).as}
+                                passHref
+                            >
+                                {category["name"]}
+                            </Link>
                         </Button>
                     </div>
                 );
             });
         }
-        
         return similarCategoriesHtml;
     };
 

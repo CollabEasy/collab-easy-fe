@@ -63,7 +63,6 @@ export const fetchAllProposalsLogic = createLogic<
     async process({ action, api }, dispatch, done) {
         try {
             const categories = action.payload.categories;
-            console.log(categories);
             dispatch(actions.getAllProposalsRequest())
             const proposalsData = await proposalApi.getAllProposalsApi(categories);
             dispatch(actions.getAllProposalsSuccess([proposalsData]));

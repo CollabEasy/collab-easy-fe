@@ -13,7 +13,7 @@ export interface AppRouteCreators {
   toRewardsInfoPage: () => WebRoute;
   toContestPage: (slug: string, tab: string) => WebRoute;
   toAllCategoryPage: () => WebRoute;
-  toAllProposalsPage: () => WebRoute;
+  toAllProposalsPage: (category: string) => WebRoute;
   toCategoryWikiPage: (slug: string, title: string) => WebRoute;
   toAboutUs: () => WebRoute;
   toTutorial: () => WebRoute;
