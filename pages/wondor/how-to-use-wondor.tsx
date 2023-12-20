@@ -154,7 +154,7 @@ const Tutorial = ({
                         className="common-btn-dimension tutorial-button"
                       >
                         <Link
-                          href={routeToHref(toAllProposalsPage())}
+                          href={routeToHref(toAllProposalsPage("all"))}
                           passHref
                         >Collab Proposals</Link>
                       </Button>

@@ -210,7 +210,7 @@ const ManageProposals = ({
                         <h4 className="common-h4-style">Hello {user.first_name}</h4>
                         <div style={{ marginBottom: 16, marginTop: 16 }}>
                             <Button >
-                                <Link href={routeToHref((toAllProposalsPage()))} passHref>
+                                <Link href={routeToHref((toAllProposalsPage("all")))} passHref>
                                     Search Proposals
                                 </Link>
                             </Button>

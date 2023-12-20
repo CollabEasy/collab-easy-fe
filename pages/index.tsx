@@ -390,7 +390,7 @@ const Home = ({
                 <div
                   className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 popular-proposal-list-item cursor-pointer"
                 >
-                  <Link href={routeToHref(toAllProposalsPage())} passHref >
+                  <Link href={routeToHref(toAllProposalsPage("all"))} passHref >
                     <div style={{ textAlign: "center", whiteSpace: "pre-line" }}>
                       <p className="common-p-style mb-2">See more interesting collaboration proposals from other artists on Wondor</p>
                       <div className="align-text-center">
@@ -428,7 +428,7 @@ const Home = ({
             </div>
           </div>
         </Link>
-        <Link href={routeToHref(toAllProposalsPage())} passHref>
+        <Link href={routeToHref(toAllProposalsPage("all"))} passHref>
           <div className="wondor-offerings-container-card cursor-pointer">
             <div className="card-img" style={{ backgroundColor: "#FEF7EF" }}>
               <Image
@@ -639,7 +639,7 @@ const Home = ({
 
                 </button>
               </Link>
-              <Link href={routeToHref(toAllProposalsPage())} passHref >
+              <Link href={routeToHref(toAllProposalsPage("all"))} passHref >
                 <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
                   Collab Proposals
                 </button>

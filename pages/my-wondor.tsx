@@ -264,7 +264,7 @@ const MyWondorPage = ({
                                                 className="common-btn-dimension gap-2"
                                             >
                                                 <Link
-                                                    href={routeToHref(toAllProposalsPage())}
+                                                    href={routeToHref(toAllProposalsPage("all"))}
                                                 >
                                                     Find Proposal
                                                 </Link>

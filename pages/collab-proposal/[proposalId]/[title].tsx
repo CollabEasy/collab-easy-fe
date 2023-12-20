@@ -267,7 +267,7 @@ Props) => {
           <a href={toDiscover().href}>Home</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <a href={toAllProposalsPage().href}>Collab Proposals</a>
+          <a href={toAllProposalsPage("all").href}>Collab Proposals</a>
         </Breadcrumb.Item>
       </Breadcrumb>
     );

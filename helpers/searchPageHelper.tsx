@@ -106,7 +106,7 @@ export function GetSearchPageCategories(skill: any[]) {
 export function GetSearchProposalCard(slug, name) {
     return (
         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-6 col-6">
-            <a href={GetAllProposals()} className="gallery-popup" title="Morning Dew">
+            <a href={GetAllProposals(slug)} className="gallery-popup" title="Morning Dew">
                 <div className="project-item">
                     <div className="overlay-container">
                         <div className="searchPage-card">
@@ -146,7 +146,7 @@ export function GetSearchPageProposals(skill: string[]) {
     }
     proposals.push(
         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-6 col-6">
-            <a href={GetAllProposals()} className="gallery-popup" title="Morning Dew">
+            <a href={GetAllProposals("all")} className="gallery-popup" title="Morning Dew">
                 <div className="project-item">
                     <div className="overlay-container">
                         <div className="searchPage-card">
