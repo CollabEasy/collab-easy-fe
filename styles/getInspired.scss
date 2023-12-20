@@ -1,42 +1,35 @@
-.getInspired-cover {
-    background-color: #EAEED8;
-    border-radius: 10px
-}
-
-
-.getInspired-cnt {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.getInspired-text {
-    width: 80%;
-}
-
 .getInspired-sectionContainer {
     padding-top: 30px;
     width: 100%;
     float: left;
-}
 
-.getInspired-textContainer {
-    h3 {
-        text-align: left;
+    .getInspired-textContainer {
+        padding-bottom: 50px;
     }
 
-    .theme {
-        padding-top: 10px;
-    }
-}
+    .inspo-grid {
+        columns: 250px;
+        column-gap: 20px;
 
-.getInspired-buttonContainer {
-    padding-top: 20px;
-    display: flex;
-    // justify-content: center;  
-    // align-items: center; 
+        article {
+            padding: 20px;
+            border: 1px solid #999;
+            border-radius: 5px;
+            background: #fff;
+            break-inside: avoid-column;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease-out;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+
+            &:hover {
+                box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+                margin-top: -5px;
+                transform: translateY(-5px) scale(1.005) translateZ(0);
+            }
+        }
+    }
 }
 
 /* mobile css starts from here  */
@@ -155,36 +148,5 @@
     .getInspired-buttonContainer {
         justify-content: center;
         align-items: center;
-    }
-}
-
-.newGrid {
-    columns: 250px;
-    column-gap: 20px;
-
-    img {
-        width: 100%;
-    }
-
-    article {
-        padding: 20px;
-        border: 1px solid #999;
-        border-radius: 5px;
-        background: #fff;
-    }
-
-    a:link,
-    a:visited {
-        color: black;
-    }
-
-    h1 {
-        margin-top: 0;
-        margin-left: 0.75rem;
-    }
-
-    article {
-        break-inside: avoid-column;
-        margin-bottom: 1rem;
     }
 }
