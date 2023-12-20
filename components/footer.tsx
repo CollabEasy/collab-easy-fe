@@ -133,7 +133,7 @@ const Footer = ({
                   <li><a href={toGetInspired().href} >Inspiration Hub</a></li>
                   <li><a href={toAllContestPage().href} >Art Contests</a></li>
                   <li><a href={toAllCategoryPage().href} >Collab Categories</a></li>
-                  <li><a href={toAllProposalsPage("all").href} >Collab Proposals</a></li>
+                  <li><a href={toAllProposalsPage("all").as} >Collab Proposals</a></li>
                   <li><a href={toRewardsInfoPage().href} >Rewards Program</a></li>
                 </ul>
               </div>
