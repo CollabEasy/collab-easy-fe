@@ -60,10 +60,11 @@ export const fetchAllProposalsLogic = createLogic<
     LogicDeps
 >({
     type: [actionTypes.FETCH_ALL_PROPOSALS],
-    async process({ api }, dispatch, done) {
+    async process({ action, api }, dispatch, done) {
         try {
+            const categories = action.payload.categories;
             dispatch(actions.getAllProposalsRequest())
-            const proposalsData = await proposalApi.getAllProposalsApi();
+            const proposalsData = await proposalApi.getAllProposalsApi(categories);
             dispatch(actions.getAllProposalsSuccess([proposalsData]));
         } catch (error) {
         } finally {

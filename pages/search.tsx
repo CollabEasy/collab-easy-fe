@@ -149,7 +149,7 @@ const MySearchPage = ({
                                                     Express interest in amazing collaboration proposals from other artists
                                                 </p>
                                                 <div>
-                                                    <Link href={routeToHref(toAllProposalsPage())} passHref >
+                                                    <Link href={routeToHref(toAllProposalsPage("all"))} passHref >
                                                         <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
                                                             Collab Proposals
                                                         </button>

@@ -27,9 +27,9 @@ export function GetArtistCollabPage(slug) {
 }
 
 
-export function GetAllProposals() {
+export function GetAllProposals(slug) {
     return (typeof window !== "undefined" && window.location.origin
-        ? window.location.origin + "/collab-proposals-for-artists"
+        ? window.location.origin + "/collab-proposals-for-artists?category=" + slug
         : "");
 }
 
