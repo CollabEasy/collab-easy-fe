@@ -1,0 +1,15 @@
+.similar-categories-container {
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.similar-catgeory-chip {
+    position: relative;
+    display: inline-block;
+    margin: 4px 4px;
+    vertical-align: bottom;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
