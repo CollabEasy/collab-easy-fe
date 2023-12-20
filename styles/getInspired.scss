@@ -1,42 +1,34 @@
-
-.getInspired-cover {
-    background-color: #EAEED8;
-    border-radius: 10px
-}
-
-
-.getInspired-cnt {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.getInspired-text {
-    width: 80%;
-}
-
 .getInspired-sectionContainer {
     padding-top: 30px;
     width: 100%;
     float: left;
-}
 
-.getInspired-textContainer {
-    h3 {
-        text-align: left;
+    .getInspired-textContainer {
+        padding-bottom: 20px;
     }
-    .theme {
-        padding-top: 10px;
-    }
-}
 
-.getInspired-buttonContainer {
-    padding-top: 20px;
-    display: flex;  
-    // justify-content: center;  
-    // align-items: center; 
+    .inspo-grid {
+        columns: 250px;
+        column-gap: 20px;
+
+        article {
+            padding: 20px;
+            border-radius: 5px;
+            background: #fff;
+            break-inside: avoid-column;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease-out;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+
+            &:hover {
+                box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+                margin-top: -5px;
+                transform: translateY(-5px) scale(1.005) translateZ(0);
+            }
+        }
+    }
 }
 
 /* mobile css starts from here  */
@@ -45,12 +37,6 @@
         width: 90%;
         margin-top: 10rem;
     }
-
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
-    }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 993px) {
@@ -58,57 +44,19 @@
         width: 90%;
         margin-top: 9rem;
     }
-
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
-    }
-} 
+}
 
 @media only screen and (max-width: 992px) and (min-width: 768px) {
     .getInspired-parentContainer {
         width: 80%;
         margin-top: 8rem;
     }
-    
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
-    }
-
-    .getInspired-sectionContainer {
-        width: 100%;
-        text-align: left;
-    }
-
-    .getInspired-buttonContainer { 
-        justify-content: center;  
-        align-items: center; 
-    }
-} 
+}
 
 @media only screen and (max-width: 767px) and (min-width: 601px) {
     .getInspired-parentContainer {
         width: 80%;
         margin-top: 7rem;
-    }
-    
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
-    }
-
-    .getInspired-sectionContainer {
-        width: 100%;
-        text-align: left;
-    }
-
-    .getInspired-buttonContainer { 
-        justify-content: center;  
-        align-items: center; 
     }
 }
 
@@ -117,43 +65,11 @@
         width: 90%;
         margin-top: 7rem;
     }
-
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
-    }
-
-    .getInspired-sectionContainer {
-        width: 100%;
-        text-align: left;
-    }
-
-    .getInspired-buttonContainer { 
-        justify-content: center;  
-        align-items: center; 
-    }
 }
 
 @media only screen and (max-width: 399px) {
     .getInspired-parentContainer {
         width: 90%;
         margin-top: 5rem;
-    }
-    
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
-    }
-    
-    .getInspired-sectionContainer {
-        width: 100%;
-        text-align: left;
-    }
-
-    .getInspired-buttonContainer { 
-        justify-content: center;  
-        align-items: center; 
     }
 }

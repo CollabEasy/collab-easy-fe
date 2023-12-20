@@ -70,21 +70,27 @@ const GetInspired = ({
   }, [artistListData]);
 
 
+  // Array of random colors
+  const colors = [  '#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff',  '#ffb6c1', '#ffd700', '#add8e6', '#98fb98', '#dda0dd',  '#ffcccb', '#d3ffce', '#f0fff0', '#f5f5dc', '#e6e6fa',  '#ffe4e1', '#f0e68c', '#dda0dd', '#87cefa', '#faebd7'];
+
+  // Function to get a random color
+  const getRandomColor = () => {
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+  };
+
+
   const getThemes = () => {
     const themes: JSX.Element[] = [];
     /* eslint-disable react/jsx-key */
     CURRENT_THEMES.forEach((element, index) => {
+      const cardColor = getRandomColor();
       themes.push(
-        /* eslint-disable react/jsx-key */
-        <div className="col my-3">
-          <div className="card border-hover-primary">
-            <div className="card-body">
-              <h6 className="font-weight-bold mb-3">{element.title}</h6>
-              <p className="text-muted mb-0">{element.description}</p>
-              <p style={{ paddingTop: "10px" }}> {GetUserSkillsTags(element["categories"], true)}</p>
-            </div>
-          </div>
-        </div>
+        <article style={{ backgroundColor: cardColor, borderRadius: '10px' }}>
+          <h3 className="common-h3-style">{element.title}</h3>
+          <p className="common-p-style">{element.description}</p>
+          <p className="common-p-style" style={{ paddingTop: "10px" }}> {GetUserSkillsTags(element["categories"], true)}</p>
+        </article>
       )
     });
     return themes;
@@ -120,14 +126,12 @@ const GetInspired = ({
         </div>
         <div className="getInspired-sectionContainer">
           <div className="getInspired-textContainer">
-            Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You will not want to miss out!
+            <p className="common-p-style">
+              Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You will not want to miss out!
+            </p>
           </div>
-          <div className="getInspired-textContainer">
-            <section className="bg-light-primary">
-              <div className="row row-cols-lg-2 row-cols-md-1 row-cols-1 justify-content-left px-xl-6">
-                {getThemes()}
-              </div>
-            </section>
+          <div className="inspo-grid">
+            {getThemes()}
           </div>
 
           <div className="getInspired-sectionContainer">

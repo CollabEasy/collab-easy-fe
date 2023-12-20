@@ -10,8 +10,10 @@ export function GetUserSkillsTags(skillsList: string[], all: boolean) {
     }
     skillsList.forEach((skill: string, index: number) => {
         skills.push(
-            <Tag color={TAGS_COLORS[index]}>{skill}</Tag>
-        )
+            <Tag key={index} style={{ marginRight: "2px", marginBottom: "2px", display: "inline-block" }} color={TAGS_COLORS[index]}>
+                {skill}
+            </Tag>
+        );
     });
     return skills;
 };
