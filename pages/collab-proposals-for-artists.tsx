@@ -1,15 +1,15 @@
-import { Tabs, Input } from "antd";
+import { Tabs, Input, Button } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
+import Image from "next/image";
 import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
 import { Card } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
-import Image from 'next/image';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
 import { GetDateString } from "helpers/contest";
@@ -18,10 +18,11 @@ import detailsImage from "../public/images/proposal.svg";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
-import { GetProposalTags, GetUserMightLikecategoriesIds } from "helpers/proposalHelper";
+import { GetProposalTags, GetUsermightLikeCategoriesWithIds } from "helpers/proposalHelper";
 import GenericActionBanner from "@/components/genericActionBanner";
 import FloatingButton from "@/components/asset/addFloatButton";
 import { GetUserMightLikeCategories } from "helpers/searchPageHelper";
+import Link from "next/link";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -81,18 +82,18 @@ const ProposalsPage = ({
     const [proposalData, setProposalData] = useState(emptyProposalData);
     const [windowWidth, setWindowWidth] = useState(-1);
     const [mightLikeCategories, setUserMightLikeCategories] = useState([]);
-    const [mightLikeCategoriesIds, setUserMightLikeCategoriesIds] = useState([]);
+    const [mightLikeCategoriesWithIds, setUserMightLikeCategoriesWithIds] = useState([]);
 
     const router = useRouter();
 
     useEffect(() => {
         getAllCategories();
+        fetchAllProposals([]);
 
         if (user) {
             setUserMightLikeCategories(GetUserMightLikeCategories(user.skills));
-            setUserMightLikeCategoriesIds(GetUserMightLikecategoriesIds(mightLikeCategories, publishedCategories));
+            setUserMightLikeCategoriesWithIds(GetUsermightLikeCategoriesWithIds(mightLikeCategories, publishedCategories));
         }
-        fetchAllProposals(mightLikeCategoriesIds);
     }, [user]);
 
     useEffect(() => {
@@ -108,8 +109,51 @@ const ProposalsPage = ({
         setWindowWidth(window.innerWidth);
     }, [user, artistListData, proposal.proposals]);
 
+    const ReloadProposals = (id) => {
+        fetchAllProposals(id > 0 ? [id] : []);
+    }
+
+    const getSimilarCategories = () => {
+        const similarCategoriesHtml: JSX.Element[] = [];
+        similarCategoriesHtml.push(
+            <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
+                <Button
+                    onClick={(e) => { ReloadProposals(-1) }}
+                >
+                    All Proposals
+                </Button>
+            </div>
+        );
+        mightLikeCategoriesWithIds.forEach((category) => {
+            similarCategoriesHtml.push(
+                <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
+                    <Button
+                        onClick={(e) => { ReloadProposals(category["id"]) }}
+                    >
+                        {category["name"]}
+                    </Button>
+                </div>
+            );
+        });
+        return similarCategoriesHtml;
+    };
+
     // https://bootsnipp.com/snippets/5MqgR
     const getAllProposals = (allProposals) => {
+        if (allProposals.length === 0 || allProposals[0].data.length === 0) {
+            return (
+                <div className="d-flex flex-column align-items-center text-center">
+                    <Image
+                        src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/dZg9sz3b3Uy6KzTwn0moUA/Page_not_found.svg"}
+                        height={350}
+                        width={350}
+                    />
+                    <span>Apologies, the collaboration stage in this category is craving
+                        your spotlight. Be the star by adding your own dazzling proposal!
+                    </span>
+                </div>
+            )
+        }
         const resultArtists: JSX.Element[] = [];
         let data = allProposals.length != 0 ? allProposals[0].data : [];
         data.sort((a, b) => b.proposal.createdAt - a.proposal.createdAt);
@@ -194,6 +238,13 @@ const ProposalsPage = ({
                                         layout="responsive"
                                         objectFit="contain" // Scale your image down to fit into the container
                                     />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row-fluid">
+                            <div className="col-lg-12 col-md-10 ">
+                                <div className="similar-categories-container">
+                                    {getSimilarCategories()}
                                 </div>
                             </div>
                         </div>

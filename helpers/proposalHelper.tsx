@@ -85,15 +85,15 @@ const getMatchingIds = (list1, list2) => {
     const commonNames = namesList1.filter(name => namesList2.includes(name));
   
     // Get corresponding ids
-    const matchingIds = list2
+    const matchingCategories = list2
       .filter(item => commonNames.includes(item.artName))
-      .map(item => item.id);
+      .map(({ id, slug, artName }) => ({ id, slug, name: artName }));
   
-    return matchingIds;
+    return matchingCategories;
 };
 
-export function GetUserMightLikecategoriesIds(mightLikeCategories, publishedCategories) {
-    let mightLikeCategoriesIds = []
-    mightLikeCategoriesIds = getMatchingIds(mightLikeCategories, publishedCategories);
-    return mightLikeCategoriesIds;
+export function GetUsermightLikeCategoriesWithIds(mightLikeCategories, publishedCategories) {
+    let mightLikeCategoriesWithIds = []
+    mightLikeCategoriesWithIds = getMatchingIds(mightLikeCategories, publishedCategories);
+    return mightLikeCategoriesWithIds;
 }
