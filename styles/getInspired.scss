@@ -4,7 +4,7 @@
     float: left;
 
     .getInspired-textContainer {
-        padding-bottom: 50px;
+        padding-bottom: 20px;
     }
 
     .inspo-grid {
@@ -13,7 +13,6 @@
 
         article {
             padding: 20px;
-            border: 1px solid #999;
             border-radius: 5px;
             background: #fff;
             break-inside: avoid-column;
@@ -38,24 +37,12 @@
         width: 90%;
         margin-top: 10rem;
     }
-
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
-    }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 993px) {
     .getInspired-parentContainer {
         width: 90%;
         margin-top: 9rem;
-    }
-
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
     }
 }
 
@@ -64,44 +51,12 @@
         width: 80%;
         margin-top: 8rem;
     }
-
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
-    }
-
-    .getInspired-sectionContainer {
-        width: 100%;
-        text-align: left;
-    }
-
-    .getInspired-buttonContainer {
-        justify-content: center;
-        align-items: center;
-    }
 }
 
 @media only screen and (max-width: 767px) and (min-width: 601px) {
     .getInspired-parentContainer {
         width: 80%;
         margin-top: 7rem;
-    }
-
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
-    }
-
-    .getInspired-sectionContainer {
-        width: 100%;
-        text-align: left;
-    }
-
-    .getInspired-buttonContainer {
-        justify-content: center;
-        align-items: center;
     }
 }
 
@@ -110,43 +65,11 @@
         width: 90%;
         margin-top: 7rem;
     }
-
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
-    }
-
-    .getInspired-sectionContainer {
-        width: 100%;
-        text-align: left;
-    }
-
-    .getInspired-buttonContainer {
-        justify-content: center;
-        align-items: center;
-    }
 }
 
 @media only screen and (max-width: 399px) {
     .getInspired-parentContainer {
         width: 90%;
         margin-top: 5rem;
-    }
-
-    .getInspired-textContainer {
-        h3 {
-            text-align: left;
-        }
-    }
-
-    .getInspired-sectionContainer {
-        width: 100%;
-        text-align: left;
-    }
-
-    .getInspired-buttonContainer {
-        justify-content: center;
-        align-items: center;
     }
 }

@@ -71,7 +71,7 @@ const GetInspired = ({
 
 
   // Array of random colors
-  const colors = ['#ff5733', '#33ff57', '#5733ff', '#ff3366', '#33ccff'];
+  const colors = [  '#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff',  '#ffb6c1', '#ffd700', '#add8e6', '#98fb98', '#dda0dd',  '#ffcccb', '#d3ffce', '#f0fff0', '#f5f5dc', '#e6e6fa',  '#ffe4e1', '#f0e68c', '#dda0dd', '#87cefa', '#faebd7'];
 
   // Function to get a random color
   const getRandomColor = () => {
@@ -87,9 +87,9 @@ const GetInspired = ({
       const cardColor = getRandomColor();
       themes.push(
         <article style={{ backgroundColor: cardColor, borderRadius: '10px' }}>
-          <h3>{element.title}</h3>
-          <p>{element.description}</p>
-          <p style={{ paddingTop: "10px" }}> {GetUserSkillsTags(element["categories"], true)}</p>
+          <h3 className="common-h3-style">{element.title}</h3>
+          <p className="common-p-style">{element.description}</p>
+          <p className="common-p-style" style={{ paddingTop: "10px" }}> {GetUserSkillsTags(element["categories"], true)}</p>
         </article>
       )
     });
