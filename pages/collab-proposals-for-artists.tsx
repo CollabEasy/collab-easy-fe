@@ -174,6 +174,7 @@ const ProposalsPage = ({
                         src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/dZg9sz3b3Uy6KzTwn0moUA/Page_not_found.svg"}
                         height={350}
                         width={350}
+                        priority
                     />
                     <span>Apologies, the collaboration stage in this category is craving
                         your spotlight. Be the star by adding your own dazzling proposal!
