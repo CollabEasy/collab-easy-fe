@@ -18,11 +18,13 @@ import detailsImage from "../public/images/proposal.svg";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
-import { GetProposalTags, GetUsermightLikeCategoriesWithIds } from "helpers/proposalHelper";
+import { GetProposalTags, GetSimilarCategoriesWithIds } from "helpers/proposalHelper";
 import GenericActionBanner from "@/components/genericActionBanner";
 import FloatingButton from "@/components/asset/addFloatButton";
 import { GetUserMightLikeCategories } from "helpers/searchPageHelper";
 import Link from "next/link";
+import { useLocation, useParams } from 'react-router-dom';
+import { GetCategoryMetadata } from "helpers/categoryHelper";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -51,7 +53,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {} & ConnectedProps<typeof connector>;
-
+  
 const ProposalsPage = ({
     user,
     isLoggedIn,
@@ -81,20 +83,32 @@ const ProposalsPage = ({
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [proposalData, setProposalData] = useState(emptyProposalData);
     const [windowWidth, setWindowWidth] = useState(-1);
-    const [mightLikeCategories, setUserMightLikeCategories] = useState([]);
-    const [mightLikeCategoriesWithIds, setUserMightLikeCategoriesWithIds] = useState([]);
+    const [similarCategoriesWithIds, setSimilarCategoriesWithIds] = useState([]);
+    const [actualCategory, setActualCategory] = useState("all");
 
     const router = useRouter();
-
+    const { category } = router.query;
+    
     useEffect(() => {
         getAllCategories();
-        fetchAllProposals([]);
-
-        if (user) {
-            setUserMightLikeCategories(GetUserMightLikeCategories(user.skills));
-            setUserMightLikeCategoriesWithIds(GetUsermightLikeCategoriesWithIds(mightLikeCategories, publishedCategories));
+        setActualCategory(category.toString());
+        
+        console.log("inside useeffect", actualCategory);
+        
+        if (actualCategory === "all") {
+            fetchAllProposals([]);
+            console.log("fetch all proposals");
+        } else {
+            setSimilarCategoriesWithIds(GetSimilarCategoriesWithIds(GetCategoryMetadata(actualCategory)["similar-categories"], publishedCategories));
+            let categoryId = -1;
+            similarCategoriesWithIds.forEach((category) => {
+                if (category["slug"] === actualCategory) {
+                    categoryId = category["id"];
+                }
+            });
+            fetchAllProposals(categoryId > 0 ? [categoryId] : []);
         }
-    }, [user]);
+    }, [actualCategory]);
 
     useEffect(() => {
         if (user) {
@@ -109,32 +123,48 @@ const ProposalsPage = ({
         setWindowWidth(window.innerWidth);
     }, [user, artistListData, proposal.proposals]);
 
-    const ReloadProposals = (id) => {
-        fetchAllProposals(id > 0 ? [id] : []);
+    const ReloadProposals = (slug) => {
+        setActualCategory(slug);
+        router.push(`/collab-proposals-for-artists?category=${slug}`);
     }
 
     const getSimilarCategories = () => {
         const similarCategoriesHtml: JSX.Element[] = [];
-        similarCategoriesHtml.push(
-            <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
-                <Button
-                    onClick={(e) => { ReloadProposals(-1) }}
-                >
-                    All Proposals
-                </Button>
-            </div>
-        );
-        mightLikeCategoriesWithIds.forEach((category) => {
+        if (actualCategory === "all") {
+            publishedCategories.forEach((category) => {
+                similarCategoriesHtml.push(
+                    <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
+                        <Button
+                            onClick={(e) => { ReloadProposals(category["slug"]) }}
+                        >
+                            {category["artName"]}
+                        </Button>
+                    </div>
+                );
+            });
+        } else {
             similarCategoriesHtml.push(
                 <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
                     <Button
-                        onClick={(e) => { ReloadProposals(category["id"]) }}
+                        onClick={(e) => { ReloadProposals("all") }}
                     >
-                        {category["name"]}
+                        All Proposals
                     </Button>
                 </div>
             );
-        });
+            GetCategoryMetadata(actualCategory)["similar-categories"].forEach((category) => {
+                similarCategoriesHtml.push(
+                    <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
+                        <Button
+                            onClick={(e) => { ReloadProposals(category["slug"]) }}
+                        >
+                            {category["name"]}
+                        </Button>
+                    </div>
+                );
+            });
+        }
+        
         return similarCategoriesHtml;
     };
 

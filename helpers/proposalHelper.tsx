@@ -92,7 +92,7 @@ const getMatchingIds = (list1, list2) => {
     return matchingCategories;
 };
 
-export function GetUsermightLikeCategoriesWithIds(mightLikeCategories, publishedCategories) {
+export function GetSimilarCategoriesWithIds(mightLikeCategories, publishedCategories) {
     let mightLikeCategoriesWithIds = []
     mightLikeCategoriesWithIds = getMatchingIds(mightLikeCategories, publishedCategories);
     return mightLikeCategoriesWithIds;
