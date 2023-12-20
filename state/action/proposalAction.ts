@@ -1,9 +1,11 @@
 import { ProposalData } from 'types/model';
 import * as actionType from '../actionTypes/proposalActionTypes';
 
-export const getAllProposals = () => ({
+export const getAllProposals = (categories: number[]) => ({
     type: actionType.FETCH_ALL_PROPOSALS,
-    payload: {},
+    payload: {
+        categories
+    },
 });
 
 

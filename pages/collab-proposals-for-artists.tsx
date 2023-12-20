@@ -1,4 +1,4 @@
-import { Tabs, Input, Button } from "antd";
+import { Tabs, Input } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -6,23 +6,22 @@ import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
 import LoginModal from '@/components/modal/loginModal';
 import NewUserModal from '@/components/modal/newUserModal';
-import { Card, Tag } from 'antd';
+import { Card } from 'antd';
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import Image from 'next/image';
 import * as actions from "state/action";
 import Loader from "@/components/loader";
-import { GetContestStatus, GetDateString } from "helpers/contest";
+import { GetDateString } from "helpers/contest";
 import Layout from "@/components/layout";
 import detailsImage from "../public/images/proposal.svg";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import CreateProposalModal from "@/components/modal/createProposalModal";
 import { ProposalData } from "types/model/proposal";
-import moment from "moment";
-import { GetProposalTags } from "helpers/proposalHelper";
+import { GetProposalTags, GetUserMightLikecategoriesIds } from "helpers/proposalHelper";
 import GenericActionBanner from "@/components/genericActionBanner";
 import FloatingButton from "@/components/asset/addFloatButton";
-import Link from "next/link";
+import { GetUserMightLikeCategories } from "helpers/searchPageHelper";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -33,15 +32,17 @@ const mapStateToProps = (state: AppState) => {
     const isLoggedIn = state.user.isLoggedIn;
     const loginModalDetails = state.home.loginModalDetails;
     const artistListData = state.home.artistListDetails;
+    const publishedCategories = state.category.publishedCategories;
     const proposal = state.proposal;
     const isFetchingAllProposals = state.proposal.isFetchingAllProposals;
     const showCreateOrEditProposalModal = state.proposal.showCreateOrUpdateProposalModal;
-    return { user, isLoggedIn, artistListData, loginModalDetails, proposal, isFetchingAllProposals, showCreateOrEditProposalModal }
+    return { user, publishedCategories, isLoggedIn, artistListData, loginModalDetails, proposal, isFetchingAllProposals, showCreateOrEditProposalModal }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    fetchAllProposals: () =>
-        dispatch(actions.getAllProposals()),
+    getAllCategories: () => dispatch(actions.getAllCategories()),
+    fetchAllProposals: (categories: number[]) =>
+        dispatch(actions.getAllProposals(categories)),
     setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(actions.setShowCreateOrUpdateProposalModal(show)),
 
 });
@@ -56,9 +57,11 @@ const ProposalsPage = ({
     loginModalDetails,
     artistListData,
     proposal,
+    publishedCategories,
     showCreateOrEditProposalModal,
     isFetchingAllProposals,
     fetchAllProposals,
+    getAllCategories,
     setShowCreateOrUpdateProposalModal,
 }: Props) => {
 
@@ -77,12 +80,20 @@ const ProposalsPage = ({
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [proposalData, setProposalData] = useState(emptyProposalData);
     const [windowWidth, setWindowWidth] = useState(-1);
+    const [mightLikeCategories, setUserMightLikeCategories] = useState([]);
+    const [mightLikeCategoriesIds, setUserMightLikeCategoriesIds] = useState([]);
 
     const router = useRouter();
 
     useEffect(() => {
-        fetchAllProposals();
-    }, []);
+        getAllCategories();
+
+        if (user) {
+            setUserMightLikeCategories(GetUserMightLikeCategories(user.skills));
+            setUserMightLikeCategoriesIds(GetUserMightLikecategoriesIds(mightLikeCategories, publishedCategories));
+        }
+        fetchAllProposals(mightLikeCategoriesIds);
+    }, [user]);
 
     useEffect(() => {
         if (user) {

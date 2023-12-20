@@ -74,3 +74,26 @@ export function InterestStatus(interests: any[], userId: string) {
     });
     return interestStatus;
 };
+
+
+const getMatchingIds = (list1, list2) => {
+    // Extract names from both lists
+    const namesList1 = list1.map(item => item.name);
+    const namesList2 = list2.map(item => item.artName); // Assuming 'artName' is the property in list2
+  
+    // Find common names
+    const commonNames = namesList1.filter(name => namesList2.includes(name));
+  
+    // Get corresponding ids
+    const matchingIds = list2
+      .filter(item => commonNames.includes(item.artName))
+      .map(item => item.id);
+  
+    return matchingIds;
+};
+
+export function GetUserMightLikecategoriesIds(mightLikeCategories, publishedCategories) {
+    let mightLikeCategoriesIds = []
+    mightLikeCategoriesIds = getMatchingIds(mightLikeCategories, publishedCategories);
+    return mightLikeCategoriesIds;
+}

@@ -37,8 +37,9 @@ const postConfig = (dataToSend) => {
   };
 };
 
-export const getAllProposalsApi = async () => {
-  let dataToSend = { "categories": [] }
+export const getAllProposalsApi = async (categories: number[]) => {
+  console.log(categories);
+  let dataToSend = { "categories": categories }
   const config = postConfig(dataToSend);
   try {
     const proposals = await api.call("api/v1/proposal/get", config);
