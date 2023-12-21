@@ -190,35 +190,36 @@ const ProposalsPage = ({
         data.sort((a, b) => b.proposal.createdAt - a.proposal.createdAt);
         data.forEach(proposal => {
             resultArtists.push(
-                <div className="ui-block">
-                    <article className="hentry post">
-                        <div className="m-link">
-                            <a href={toProposalPage(proposal.proposal.proposalId, proposal.proposal.title.trim().replace(/[^a-zA-Z ]/g, "").replace(/\s+/g, '-').toLowerCase()).as} target="_blank" rel="noreferrer">
+                <a href={toProposalPage(proposal.proposal.proposalId, proposal.proposal.title.trim().replace(/[^a-zA-Z ]/g, "").replace(/\s+/g, '-').toLowerCase()).as} target="_blank" rel="noreferrer">
+                    <div className="ui-block">
+                        <article className="hentry post">
+                            <div className="m-link">
+
                                 <h5 className="common-h4-style">{proposal.proposal.title}</h5>
-                            </a>
-                        </div>
-                        <div className="post__author author inline-items">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={proposal.creatorProfilePicUrl} alt="author" />
-                            <div className="author-date">
-                                <a className="post__author-name fn" href={toArtistProfile(proposal.creatorSlug).as} target="_blank" rel="noreferrer">
-                                    {proposal.creatorFirstName} {proposal.creatorLastName}
-                                </a>
-                                <p className="common-p-style">
-                                    Created at  {GetDateString(proposal.proposal.createdAt)}
+                            </div>
+                            <div className="post__author author inline-items">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={proposal.creatorProfilePicUrl} alt="author" />
+                                <div className="author-date">
+                                    <a className="post__author-name fn" href={toArtistProfile(proposal.creatorSlug).as} target="_blank" rel="noreferrer">
+                                        {proposal.creatorFirstName} {proposal.creatorLastName}
+                                    </a>
+                                    <p className="common-p-style">
+                                        Created at  {GetDateString(proposal.proposal.createdAt)}
+                                    </p>
+                                </div>
+                            </div>
+                            <p className="common-p-style">
+                                {proposal.proposal.description}
+                            </p>
+                            <div className="post-additional-info inline-items">
+                                <p>
+                                    {GetProposalTags(proposal.proposal)}
                                 </p>
                             </div>
-                        </div>
-                        <p className="common-p-style">
-                            {proposal.proposal.description}
-                        </p>
-                        <div className="post-additional-info inline-items">
-                            <p>
-                                {GetProposalTags(proposal.proposal)}
-                            </p>
-                        </div>
-                    </article>
-                </div>
+                        </article>
+                    </div>
+                </a>
             )
         });
         return resultArtists;
@@ -252,7 +253,7 @@ const ProposalsPage = ({
                         }
                         <HeroSection
                             heading={"Artists, Your Next Collaboration Opportunity is Here 😎"}
-                            paragaraph={"Checkout these amazing proposals by fellow artists and express interest!"}
+                            paragaraph={"Express interest in these amazing proposals by fellow artists and start your collaboration today!"}
                         />
                         <div className="row-fluid">
                             <div className="col-lg-12 col-md-10 ">
