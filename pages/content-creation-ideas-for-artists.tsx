@@ -105,7 +105,7 @@ const GetInspired = ({
         <article style={{ backgroundColor: cardColor, borderRadius: '10px' }}>
           <h3 className="common-h3-style">{element.title}</h3>
           <p className="common-p-style">{element.description}</p>
-          <p className="common-p-style" style={{ paddingTop: "10px" }}> {GetUserSkillsTags(element["categories"], true)}</p>
+          {/* <p className="common-p-style" style={{ paddingTop: "10px" }}> {GetUserSkillsTags(element["categories"], true)}</p> */}
         </article>
       )
     });

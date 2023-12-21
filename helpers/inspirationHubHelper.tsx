@@ -4,26 +4,46 @@ const colors = ['#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff', '#ffb6c1'
 
 // Function to get a random color
 export function getRandomColor() {
-  const randomIndex = Math.floor(Math.random() * colors.length);
-  return colors[randomIndex];
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
 };
+
+
+function findUniqueElementsByTitle(themes) {
+    const uniqueElements = [];
+    const titles = [];
+
+    themes.forEach((element) => {
+        // Check if the title is not in the list of titles
+        if (titles.indexOf(element.title) === -1) {
+            // Add the title to the list and the element to the uniqueElements array
+            titles.push(element.title);
+            uniqueElements.push(element);
+        }
+    });
+
+    return uniqueElements;
+}
 
 
 export function findMatchingThemes(firstArray, secondArray, selectedCategory) {
     const matchingElements = [];
-    const similarCategories = firstArray["similar-categories"];
+    const similarCategoriesNames = [];
+    firstArray["similar-categories"].forEach((category) => {
+        similarCategoriesNames.push(category["name"]);
+    });
+    similarCategoriesNames.push(selectedCategory);
+
     // Check if the first array element has similar categories
-    if (similarCategories && similarCategories.length > 0) {
-        similarCategories.forEach((category) => {
-            // Check if the category name exists in the second array
-            const matchingElement = secondArray.find((secondElement) => {
-                return secondElement.categories.includes(category.name) || secondElement.categories.includes(selectedCategory);
+    if (similarCategoriesNames && similarCategoriesNames.length > 0) {
+        similarCategoriesNames.forEach((categoryName) => {
+            secondArray.forEach(element => {
+                if (element["categories"].includes(categoryName)) {
+                    matchingElements.push(element);
+                }
             });
-            if (matchingElement) {
-                matchingElements.push(matchingElement);
-            }
         });
     }
 
-    return matchingElements;
+    return findUniqueElementsByTitle(matchingElements);
 }
