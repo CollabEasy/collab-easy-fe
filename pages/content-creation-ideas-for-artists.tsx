@@ -194,14 +194,6 @@ const GetInspired = ({
           <div className="inspo-grid">
             {getThemes()}
           </div>
-          <div className="getInspired-sectionContainer">
-            <div className="getInspired-textContainer">
-              <p className="common-p-style">
-                Think you got enough to get your creative juices going? Send a collab request to a fellow artist on one of these topics
-                because we do believe <b><i>together you create better!</i></b>
-              </p>
-            </div>
-          </div>
         </div>
         <div className="row">
           <GenericActionBanner />
