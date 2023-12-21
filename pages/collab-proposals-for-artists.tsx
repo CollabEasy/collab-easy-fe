@@ -25,6 +25,7 @@ import { GetUserMightLikeCategories } from "helpers/searchPageHelper";
 import Link from "next/link";
 import { useLocation, useParams } from 'react-router-dom';
 import { GetCategoryMetadata } from "helpers/categoryHelper";
+import HeroSection from "@/components/asset/pageHeroSection";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -249,28 +250,10 @@ const ProposalsPage = ({
                                 page={"Collab Proposals"}
                             />
                         }
-                        <div className="allProposalsPage__listingPageCoverContainer">
-                            <div className="row ">
-                                <div className="col-sm-8" style={{ backgroundColor: "#FFF3C9" }}>
-                                    <div className="allProposalsPage_desktopCoverTextContainer">
-                                        <h1 className="common-h1-style">
-                                            Artists, your next collaboration opportunity is here 😎
-                                        </h1>
-                                        <h3 className="common-h3-style">
-                                            Checkout these amazing proposals by fellow artists and express interest!
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div className="col-sm-4 " style={{ backgroundColor: "#FFF3C9" }}>
-                                    <Image
-                                        alt="Embark on a creative journey with like-minded artists. Explore our extensive list of collaboration proposals."
-                                        src={detailsImage}
-                                        layout="responsive"
-                                        objectFit="contain" // Scale your image down to fit into the container
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                        <HeroSection
+                            heading={"Inspiring Ideas for Your Next Masterpiece!"}
+                            paragaraph={"Let these guiding ideas be the catalyst for your next creative endeavor, shaping a masterpiece that reflects your unique voice and passion"}
+                            />
                         <div className="row-fluid">
                             <div className="col-lg-12 col-md-10 ">
                                 <div className="similar-categories-container">

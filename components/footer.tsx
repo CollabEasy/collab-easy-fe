@@ -97,11 +97,11 @@ const Footer = ({
     } else if (page === "my-wondor") {
       router.push("/my-wondor");
     } else if (page === "inspiration") {
-      router.push("/content-creation-ideas-for-artists");
+      router.push("/content-creation-ideas-for-artists?category=all");
     } else if (page === "contest") {
       router.push("/art-contests-for-artists");
     } else if (page === "proposal") {
-      router.push("/collab-proposals-for-artists");
+      router.push("/collab-proposals-for-artists?category=all");
     } else if (page === "search") {
       router.push("/search");
     }
