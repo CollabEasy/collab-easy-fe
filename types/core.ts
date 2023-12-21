@@ -14,6 +14,7 @@ export interface AppRouteCreators {
   toContestPage: (slug: string, tab: string) => WebRoute;
   toAllCategoryPage: () => WebRoute;
   toAllProposalsPage: (category: string) => WebRoute;
+  toGetInspired: (category: string) => WebRoute;
   toCategoryWikiPage: (slug: string, title: string) => WebRoute;
   toAboutUs: () => WebRoute;
   toTutorial: () => WebRoute;
@@ -22,7 +23,6 @@ export interface AppRouteCreators {
   toPrivacy: () => WebRoute;
   toContactUs: () => WebRoute;
   toAllBlogs: () => WebRoute;
-  toGetInspired: () => WebRoute;
   toAnalyticsPage: () => WebRoute;
   toProposalPage: (proposalId: string, title: string) => WebRoute;
   toBlogPage: (url: string) => WebRoute;

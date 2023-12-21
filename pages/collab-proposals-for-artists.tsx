@@ -83,7 +83,6 @@ const ProposalsPage = ({
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [proposalData, setProposalData] = useState(emptyProposalData);
     const [windowWidth, setWindowWidth] = useState(-1);
-    const [similarCategoriesWithIds, setSimilarCategoriesWithIds] = useState([]);
 
     const router = useRouter();
 
@@ -94,7 +93,6 @@ const ProposalsPage = ({
     }, []);
 
     useEffect(() => {
-        
         if (category === "all") {
             fetchAllProposals([]);
         } else {

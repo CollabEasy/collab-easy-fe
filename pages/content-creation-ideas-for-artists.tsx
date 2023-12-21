@@ -15,19 +15,24 @@ import NewUserModal from '../components/modal/newUserModal';
 import Layout from '@/components/layout';
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
-import { Collapse } from 'antd';
 import GenericActionBanner from "@/components/genericActionBanner";
 import GenericPageBanner from "@/components/genericPageBanner";
 import { GetUserSkillsTags } from "helpers/profilePageHelper";
+import { useRouter } from "next/router";
+import * as actions from "state/action";
+import { GetCategoryMetadata } from "helpers/categoryHelper";
+import { findMatchingThemes, getRandomColor } from "helpers/inspirationHubHelper";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
   user: state.user.user,
   artistListData: state.home.artistListDetails,
-  isLoggedIn: state.user.isLoggedIn
+  isLoggedIn: state.user.isLoggedIn,
+  publishedCategories: state.category.publishedCategories
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+  getAllCategories: () => dispatch(actions.getAllCategories()),
   updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
 });
 
@@ -45,14 +50,22 @@ const GetInspired = ({
   loginModalDetails,
   user,
   artistListData,
-  CURRENT_THEMES,
-  coverSection,
-}) => {
+  publishedCategories,
+  getAllCategories,
+}: Props) => {
 
-  const { Panel } = Collapse;
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [windowWidth, setWindowWidth] = useState(-1);
-  const { toDiscover } = useRoutesContext()
+
+  const [filteredThemes, setFilteredThemes] = useState([]);
+
+  const { toGetInspired } = useRoutesContext()
+  const router = useRouter();
+  const { category } = router.query;
+
+  useEffect(() => {
+    getAllCategories();
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -60,7 +73,20 @@ const GetInspired = ({
         setShowProfileModal(true);
       }
     }
-  }, [user])
+    if (category === "all") {
+      setFilteredThemes(CURRENT_THEMES);
+    } else {
+      let selectedCategory = "";
+      publishedCategories.forEach((publishedCategory) => {
+        if (publishedCategory["slug"] === category) {
+          selectedCategory = publishedCategory["artName"];
+        }
+      })
+      let filteredThemes = findMatchingThemes(GetCategoryMetadata(category), CURRENT_THEMES, selectedCategory);
+      setFilteredThemes(filteredThemes);
+    }
+
+  }, [category, user])
 
   useEffect(() => {
     if (artistListData.status === "success") {
@@ -70,31 +96,69 @@ const GetInspired = ({
   }, [artistListData]);
 
 
-  // Array of random colors
-  const colors = [  '#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff',  '#ffb6c1', '#ffd700', '#add8e6', '#98fb98', '#dda0dd',  '#ffcccb', '#d3ffce', '#f0fff0', '#f5f5dc', '#e6e6fa',  '#ffe4e1', '#f0e68c', '#dda0dd', '#87cefa', '#faebd7'];
-
-  // Function to get a random color
-  const getRandomColor = () => {
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    return colors[randomIndex];
-  };
-
-
   const getThemes = () => {
     const themes: JSX.Element[] = [];
     /* eslint-disable react/jsx-key */
-    CURRENT_THEMES.forEach((element, index) => {
+    filteredThemes.forEach((element, index) => {
       const cardColor = getRandomColor();
       themes.push(
         <article style={{ backgroundColor: cardColor, borderRadius: '10px' }}>
           <h3 className="common-h3-style">{element.title}</h3>
           <p className="common-p-style">{element.description}</p>
-          <p className="common-p-style" style={{ paddingTop: "10px" }}> {GetUserSkillsTags(element["categories"], true)}</p>
+          {/* <p className="common-p-style" style={{ paddingTop: "10px" }}> {GetUserSkillsTags(element["categories"], true)}</p> */}
         </article>
       )
     });
     return themes;
   }
+
+  const getSimilarCategories = () => {
+    const similarCategoriesHtml: JSX.Element[] = [];
+    if (category === "all") {
+      publishedCategories.forEach((category) => {
+        similarCategoriesHtml.push(
+          <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
+            <Button>
+              <Link
+                href={toGetInspired(category["slug"]).as}
+                passHref
+              >
+                {category["artName"]}
+              </Link>
+            </Button>
+          </div>
+        );
+      });
+    } else {
+      similarCategoriesHtml.push(
+        <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
+          <Button>
+            <Link
+              href={toGetInspired("all").as}
+              passHref
+            >
+              All Categories
+            </Link>
+          </Button>
+        </div>
+      );
+      GetCategoryMetadata(category)["similar-categories"].forEach((category) => {
+        similarCategoriesHtml.push(
+          <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
+            <Button>
+              <Link
+                href={toGetInspired(category["slug"]).as}
+                passHref
+              >
+                {category["name"]}
+              </Link>
+            </Button>
+          </div>
+        );
+      });
+    }
+    return similarCategoriesHtml;
+  };
 
   return (
     <Layout
@@ -130,6 +194,13 @@ const GetInspired = ({
               Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You will not want to miss out!
             </p>
           </div>
+          <div className="row-fluid">
+            <div className="col-lg-12 col-md-10 ">
+              <div className="similar-categories-container">
+                {getSimilarCategories()}
+              </div>
+            </div>
+          </div>
           <div className="inspo-grid">
             {getThemes()}
           </div>
@@ -156,12 +227,6 @@ const coverSection = {
   heading: "Looking for new content inspiration? Look no further than Wondor's Inspiration Hub!",
   paragraph: "Whether you are a blogger, YouTuber, social media influencer, or any other type of content creator, Wondor's Inspiration Hub can help you take your content to the next level.",
   imgAltTag: "Easy content ideas for Photographers, Writers, Singers, Musicians for your next post on youtube and instagram.",
-}
-
-export async function getStaticProps({ }) {
-
-  // Pass post data to the page via props
-  return { props: { CURRENT_THEMES, coverSection } }
 }
 
 export default connector(GetInspired);
