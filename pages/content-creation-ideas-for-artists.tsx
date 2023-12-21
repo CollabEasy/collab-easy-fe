@@ -21,6 +21,7 @@ import { GetUserSkillsTags } from "helpers/profilePageHelper";
 import { useRouter } from "next/router";
 import * as actions from "state/action";
 import { GetCategoryMetadata } from "helpers/categoryHelper";
+import { findMatchingThemes, getRandomColor } from "helpers/inspirationHubHelper";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -55,7 +56,7 @@ const GetInspired = ({
 
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [windowWidth, setWindowWidth] = useState(-1);
-  
+
   const [filteredThemes, setFilteredThemes] = useState([]);
 
   const { toGetInspired } = useRoutesContext()
@@ -75,13 +76,14 @@ const GetInspired = ({
     if (category === "all") {
       setFilteredThemes(CURRENT_THEMES);
     } else {
-      let selectedCategoryId = -1;
+      let selectedCategory = "";
       publishedCategories.forEach((publishedCategory) => {
         if (publishedCategory["slug"] === category) {
-          selectedCategoryId = publishedCategory["id"];
+          selectedCategory = publishedCategory["artName"];
         }
       })
-      setFilteredThemes(CURRENT_THEMES);
+      let filteredThemes = findMatchingThemes(GetCategoryMetadata(category), CURRENT_THEMES, selectedCategory);
+      setFilteredThemes(filteredThemes);
     }
 
   }, [category, user])
@@ -92,15 +94,6 @@ const GetInspired = ({
     }
     setWindowWidth(window.innerWidth);
   }, [artistListData]);
-
-  // Array of random colors
-  const colors = ['#ffb3ba', '#ffdfba', '#ffffba', '#baffc9', '#bae1ff', '#ffb6c1', '#ffd700', '#add8e6', '#98fb98', '#dda0dd', '#ffcccb', '#d3ffce', '#f0fff0', '#f5f5dc', '#e6e6fa', '#ffe4e1', '#f0e68c', '#dda0dd', '#87cefa', '#faebd7'];
-
-  // Function to get a random color
-  const getRandomColor = () => {
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    return colors[randomIndex];
-  };
 
 
   const getThemes = () => {
@@ -120,7 +113,6 @@ const GetInspired = ({
   }
 
   const getSimilarCategories = () => {
-    console.log(category);
     const similarCategoriesHtml: JSX.Element[] = [];
     if (category === "all") {
       publishedCategories.forEach((category) => {

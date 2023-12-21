@@ -93,7 +93,6 @@ const ProposalsPage = ({
     }, []);
 
     useEffect(() => {
-        
         if (category === "all") {
             fetchAllProposals([]);
         } else {
