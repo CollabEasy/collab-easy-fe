@@ -170,7 +170,7 @@ const MySearchPage = ({
                                                     Explore fresh art ideas for your next masterpiece
                                                 </p>
                                                 <div>
-                                                    <Link href={routeToHref(toGetInspired())} passHref >
+                                                    <Link href={routeToHref(toGetInspired("all"))} passHref >
                                                         <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
                                                             Inspiration Hub
                                                         </button>

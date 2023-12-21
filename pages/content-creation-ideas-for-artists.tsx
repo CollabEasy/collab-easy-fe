@@ -17,7 +17,6 @@ import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
 import GenericActionBanner from "@/components/genericActionBanner";
 import GenericPageBanner from "@/components/genericPageBanner";
-import { GetUserSkillsTags } from "helpers/profilePageHelper";
 import { useRouter } from "next/router";
 import * as actions from "state/action";
 import { GetCategoryMetadata } from "helpers/categoryHelper";

@@ -446,7 +446,7 @@ const Home = ({
             </div>
           </div>
         </Link>
-        <Link href={routeToHref(toGetInspired())} passHref>
+        <Link href={routeToHref(toGetInspired("all"))} passHref>
           <div className="wondor-offerings-container-card cursor-pointer">
             <div className="card-img" style={{ backgroundColor: "#FFFEF1" }}>
               <Image
