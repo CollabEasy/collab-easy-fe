@@ -21,6 +21,7 @@ import { useRouter } from "next/router";
 import * as actions from "state/action";
 import { GetCategoryMetadata } from "helpers/categoryHelper";
 import { findMatchingThemes, getRandomColor } from "helpers/inspirationHubHelper";
+import HeroSection from "@/components/asset/pageHeroSection";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -181,18 +182,11 @@ const GetInspired = ({
             page={"Inspiration Hub"}
           />
         }
-        <div className="row">
-          <GenericPageBanner
-            heading={coverSection["heading"]}
-            paragraph={coverSection["paragraph"]}
-          />
-        </div>
+        <HeroSection
+          heading={"Inspiring Ideas for Your Next Masterpiece!"}
+          paragaraph={"Let these guiding ideas be the catalyst for your next creative endeavor, shaping a masterpiece that reflects your unique voice and passion"}
+        />
         <div className="getInspired-sectionContainer">
-          <div className="getInspired-textContainer">
-            <p className="common-p-style">
-              Here, we update our list of themes and quotes on a weekly basis, so be sure to check back often. You will not want to miss out!
-            </p>
-          </div>
           <div className="row-fluid">
             <div className="col-lg-12 col-md-10 ">
               <div className="similar-categories-container">
@@ -203,7 +197,6 @@ const GetInspired = ({
           <div className="inspo-grid">
             {getThemes()}
           </div>
-
           <div className="getInspired-sectionContainer">
             <div className="getInspired-textContainer">
               <p className="common-p-style">
