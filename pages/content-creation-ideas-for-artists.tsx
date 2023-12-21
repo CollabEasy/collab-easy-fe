@@ -1,6 +1,4 @@
 import { Button } from "antd";
-import Image from "next/image";
-import ideaImage from "../public/images/idea.svg";
 import Link from "next/link";
 import { routeToHref } from "config/routes";
 import { useRoutesContext } from "../components/routeContext";
@@ -16,7 +14,6 @@ import Layout from '@/components/layout';
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
 import GenericActionBanner from "@/components/genericActionBanner";
-import GenericPageBanner from "@/components/genericPageBanner";
 import { useRouter } from "next/router";
 import * as actions from "state/action";
 import { GetCategoryMetadata } from "helpers/categoryHelper";
@@ -212,13 +209,6 @@ const GetInspired = ({
       </div>
     </Layout>
   )
-}
-
-const coverSection = {
-  imgUrl: ideaImage,
-  heading: "Looking for new content inspiration? Look no further than Wondor's Inspiration Hub!",
-  paragraph: "Whether you are a blogger, YouTuber, social media influencer, or any other type of content creator, Wondor's Inspiration Hub can help you take your content to the next level.",
-  imgAltTag: "Easy content ideas for Photographers, Writers, Singers, Musicians for your next post on youtube and instagram.",
 }
 
 export default connector(GetInspired);
