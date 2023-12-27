@@ -85,8 +85,8 @@ export const CONTEST_METADATA = [
             }
         ],
         "winner": {
-            "name": "",
-            "slug": "",
+            "name": "Rico Garcia",
+            "slug": "rico-garcia-1",
         }
     },
 ];
