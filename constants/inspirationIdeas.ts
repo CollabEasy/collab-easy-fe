@@ -83,7 +83,82 @@ export const CURRENT_THEMES = [
         "title": "Whimsical Childhood Adventures",
         "description": "Unleash your inner child and recreate the magic of your early years in a playful scrapbook. Use nostalgic embellishments, colorful photos, and handwritten stories to capture those joyous moments that make you smile. Share anecdotes, showcase your favorite toys, and preserve those cherished memories that shaped your journey.",
         "categories": ["scrapbooking", "collage-making"]
-    },  
+    },
+    {
+        "title": "Quote of the Day",
+        "description": "Select an inspiring quote, such as \"Believe you can and you're halfway there.\" by Theodore Roosevelt, and transform it into a stunning calligraphy or hand-lettered piece. Play with different fonts and styles to convey the message effectively.",
+        "categories": ["calligraphy", "hand-lettering"]
+    },
+    {
+        "title": "Celebrity Caricatures",
+        "description": "Put a humorous spin on well-known celebrities by creating exaggerated caricatures that highlight their distinctive features and personalities.",
+        "categories": ["caricature-drawing", "doodling", "carticaturing"]
+    },
+    {
+        "title": "Political Cartoon Commentary",
+        "description": "Express your views on current events or political figures through witty and satirical caricatures. Use humor to convey a powerful message.",
+        "categories": ["caricature-drawing", "doodling", "carticaturing"]
+    },
+    {
+        "title": "Fantasy Character Doodling",
+        "description": "Let your imagination run wild by doodling whimsical and fantastical characters. Combine elements from different genres to create unique and amusing creatures.",
+        "categories": ["caricature-drawing", "doodling", "carticaturing"]
+    },
+    {
+        "title": "Enchanting Fairy Doodles",
+        "description": "Create whimsical and delicate fairies with oversized wings, flowing gowns, and playful expressions. Experiment with different hairstyles, flower crowns, and magical accessories to bring your fairies to life.",
+        "categories": ["doodling",],
+    },
+    {
+        "title": "Mad Scientist Doodles",
+        "description": "Unleash your inner science geek by creating comical caricatures of eccentric scientists. Play with wild hair, thick glasses, bubbling beakers, and outlandish inventions to bring your characters to life.",
+        "categories": ["doodling"],
+    },
+    {
+        "title": "Wild West Outlaw Caricatures",
+        "description": "Capture the rugged features and wild personalities of iconic Western figures. Exaggerate their bushy mustaches, wide-brimmed hats, and menacing stares, while incorporating elements like pistols, bandanas, and dusty boots.",
+        "categories": ["caricature-drawing"],
+    },
+    {
+        "title": "Animals with Human Professions",
+        "description": "Imagine a dog as a doctor, a cat as a ballerina, or a bear as a lumberjack. Combine animal features with human clothing and accessories to create hilarious and unexpected caricatures.",
+        "categories": ["caricature-drawing"],
+    },    
+    {
+        "title": "Animal Caricature Safari",
+        "description": "Take a humorous journey into the animal kingdom by creating caricatures of various animals. Emphasize their quirky traits and create a zoo of amusing characters.",
+        "categories": ["caricature-drawing", "doodling", "carticaturing"]
+    },
+    {
+        "title": "Everyday Doodle Adventures",
+        "description": "Transform mundane moments from your daily life into entertaining doodles. Capture the humor in ordinary situations and turn them into amusing caricatures.",
+        "categories": ["caricature-drawing", "doodling", "carticaturing"]
+    },
+    {
+        "title": "Family Recipe Card",
+        "description": "Hand letter your favorite family recipe, like Grandma's Chocolate Chip Cookies, onto a beautifully designed card. Add decorative elements to make it a cherished keepsake for generations to come.",
+        "categories": ["calligraphy", "hand-lettering"]
+    },
+    {
+        "title": "Personalized Stationery Set",
+        "description": "Create a set of personalized stationery with your name beautifully hand-lettered. Experiment with various scripts and embellishments, like a monogrammed notecard set, for a unique touch.",
+        "categories": ["calligraphy", "hand-lettering"]
+    },
+    {
+        "title": "Celebration Banners",
+        "description": "Design vibrant and celebratory banners for special occasions, such as a Happy Birthday Banner, using calligraphy to add a touch of elegance to the festive atmosphere.",
+        "categories": ["calligraphy", "hand-lettering"]
+    },
+    {
+        "title": "Starry Night Dreamscape",
+        "description": "Capture the swirling constellations and celestial dance of stars in a mesmerizing nightscape painting. Employ vibrant blues, purples, and golds to depict the cosmos, and incorporate dreamlike imagery like floating objects or mythical creatures.",
+        "categories": ["painting"],
+    },
+    {
+        "title": "Nature-Inspired Quotes",
+        "description": "Select nature-inspired quotes, like \"The mountains are calling, and I must go.\" by John Muir, and create artistic pieces that incorporate elements like leaves, flowers, or landscapes into your calligraphy or hand-lettering.",
+        "categories": ["calligraphy", "hand-lettering"]
+    },
     {
         "title": "Travel Chronicles: Wanderlust Unbound",
         "description": "Embark on a captivating journey through your travel memories with a scrapbook that ignites wanderlust. Map out your adventures with vintage tickets, cherished souvenirs, and vibrant photos that transport you back to those awe-inspiring moments. Weave tales of exploration, cultural encounters, and personal growth, creating a treasured keepsake that celebrates the world's wonders.",
