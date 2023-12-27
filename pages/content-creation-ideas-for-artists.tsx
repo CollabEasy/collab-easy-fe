@@ -183,14 +183,15 @@ const GetInspired = ({
           heading={"Inspiring Ideas for Your Next Masterpiece!"}
           paragaraph={"Let these guiding ideas be the catalyst for your next creative endeavor, shaping a masterpiece that reflects your unique voice and passion"}
         />
-        <div className="getInspired-sectionContainer">
-          <div className="row-fluid">
-            <div className="col-lg-12 col-md-10 ">
-              <div className="similar-categories-container">
-                {getSimilarCategories()}
-              </div>
+        <div className="row-fluid">
+          <div className="col-lg-12 col-md-10 ">
+            <div className="similar-categories-container">
+              {getSimilarCategories()}
             </div>
           </div>
+        </div>
+        <div className="getInspired-sectionContainer">
+
           <div className="inspo-grid">
             {getThemes()}
           </div>
