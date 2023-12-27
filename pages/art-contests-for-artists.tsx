@@ -116,7 +116,7 @@ const AllContestPage = ({
 									</div>
 									<div className="listing-details">
 										<div className="row">
-											<div className="col-sm-9">
+											<div className="col-md-9 col-sm-12">
 												<div className="contest-details">
 													<h3 className="">
 														{contestObj.title}
@@ -136,7 +136,7 @@ const AllContestPage = ({
 													</div>
 												}
 											</div>
-											<div className="col-sm-3">
+											<div className="col-md-3 col-sm-12">
 												<div className="total-designs">
 													<FileImageFilled style={{ fontSize: "12px" }} />
 													<span className="">{data.length}</span>
@@ -181,7 +181,7 @@ const AllContestPage = ({
             <div className="allContestPage__listingPageCoverContainer">
               <div className="row">
                 {/* <div className="col-sm-12"> */}
-                  <div className="contest-heading-cnt col-sm-6">
+                  <div className="contest-heading-cnt col-md-6 col-sm-12">
                     <h1 className="common-h1-style">
 											Artists, this is the place to show off your talent
 										</h1>
@@ -210,7 +210,7 @@ const AllContestPage = ({
 											</div>
 										</div>
                   </div>
-									<div className="contest-main-image col-sm-6">
+									<div className="contest-main-image col-sm-6 d-none d-md-block">
 										{/* <img alt="contest image" src={headerImage} /> */}
 										<Image
 												alt="Image Alt"
@@ -225,9 +225,9 @@ const AllContestPage = ({
 					<div className="col-md-12 listingContainer">
 						{getAllContests(allContests)}
 					</div>
-					<div className="row">
+					{/* <div className="row">
 						<GenericActionBanner />
-					</div>
+					</div> */}
         </>
       )}
     </Layout>
