@@ -71,7 +71,7 @@ const NavBar = ({
 
   const { toWondorHome, toArtistPortal, toMyWondorPage, toAnalyticsPage } =
     useRoutesContext();
-  const { toContestPage, toAllContestPage, toAllCategoryPage } = useRoutesContext();
+  const { toGetInspired, toContestPage } = useRoutesContext();
 
   useEffect(() => {
     const navBarElement = !checkDevice() ? document.querySelector("#desktop-p-h") : document.querySelector("#p-h");
@@ -295,9 +295,8 @@ const NavBar = ({
               style={{ backgroundColor: 'black'}}
               message={
                 <span style={{ color: 'white' }}>
-                  Join the &quot;Overcome Self Doubt&quot; Comic Strip Contest. 
-                  Be a part of the laughter revolution and stand a chance to win the handsome prize of $75.{" "} 
-                  <a href={routeToHref(toContestPage("DEC2023", "details"))}>Submit your entries now!</a>
+                  Checkout latest themes and ideas for your upcoming content 
+                  <a href={routeToHref(toGetInspired("all"))}>now!</a>
                 </span>
               }
             />
