@@ -19,6 +19,8 @@ import * as actions from "state/action";
 import { GetCategoryMetadata } from "helpers/categoryHelper";
 import { findMatchingThemes, getRandomColor } from "helpers/inspirationHubHelper";
 import HeroSection from "@/components/asset/pageHeroSection";
+import FloatingButton from "@/components/asset/addFloatButton";
+import ContentIdeaSubmissionModal from "@/components/modal/contentIdeaSubmissionModal";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -52,6 +54,7 @@ const GetInspired = ({
 }: Props) => {
 
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showContentIdeaSubmissionModal, setShowContentIdeaSubmissionModal] = useState(false);
   const [windowWidth, setWindowWidth] = useState(-1);
 
   const [filteredThemes, setFilteredThemes] = useState([]);
@@ -194,12 +197,27 @@ const GetInspired = ({
 
           <div className="inspo-grid">
             {getThemes()}
+            <div
+              onClick={() => {
+                setShowContentIdeaSubmissionModal(true);
+              }}
+            >
+              <FloatingButton />
+            </div>
           </div>
         </div>
         <div className="row">
           <GenericActionBanner />
         </div>
       </div>
+      {showContentIdeaSubmissionModal && (
+        <ContentIdeaSubmissionModal
+          onCancel={() => {
+            setShowContentIdeaSubmissionModal(false);
+          }}
+          isViewMode={true}
+        />
+      )}
     </Layout>
   )
 }
