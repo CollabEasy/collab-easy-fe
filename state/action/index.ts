@@ -14,4 +14,4 @@ export * from "./rewardsAction";
 export * from "./proposalAction";
 export * from "./proposalComment";
 export * from "./proposalInterest";
-export * from "./inspoAction";
+export * from "./inspirationHubAction";

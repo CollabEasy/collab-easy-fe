@@ -14,4 +14,4 @@ export * from "./emailState";
 export * from "./rewardsState";
 export * from "./proposalState";
 export * from "./proposalInterest";
-export * from "./inspoState";
+export * from "./inspirationHubState";

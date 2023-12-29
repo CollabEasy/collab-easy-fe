@@ -1,3 +1,3 @@
-export interface InspoState {
+export interface InspirationHubState {
     showNewInspoSubmissionModal: boolean;
 }
