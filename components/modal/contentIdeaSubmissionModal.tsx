@@ -16,6 +16,7 @@ const { Option } = Select;
 
 const mapStateToProps = (state: AppState) => ({
     isLoggedIn: state.user.isLoggedIn,
+    user: state.user.user,
     isUpdatingContest: state.contest?.isUpdatingContest,
     publishedCategories: state.category.publishedCategories,
 });
@@ -42,6 +43,7 @@ const ContentIdeaSubmissionModal = ({
     isViewMode,
     isLoggedIn,
     publishedCategories,
+    user,
     getAllCategories,
     sendEmail,
 }: Props) => {
@@ -50,8 +52,8 @@ const ContentIdeaSubmissionModal = ({
         title: "",
         description: "",
         categories: [],
-        full_name: "",
-        email: ""
+        full_name: user?.first_name || "",
+        email: user?.email || "",
     };
 
     const [showModal, setViewModal] = useState(isViewMode);
