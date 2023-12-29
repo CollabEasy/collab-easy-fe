@@ -12,4 +12,3 @@ export * from "./rewardsLogic";
 export * from "./proposalLogic";
 export * from "./proposalCommentLogic";
 export * from "./proposalInterestLogic";
-export * from "./inspirationHubLogic";

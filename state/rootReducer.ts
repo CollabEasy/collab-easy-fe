@@ -16,7 +16,6 @@ import contestSubmissionVote from "./reducers/contestSubmissionVoteReducer";
 import rewardsActivity from "./reducers/rewardsReducer";
 import proposal from "./reducers/proposalReducer";
 import proposalInterest from "./reducers/proposalInterestReducer";
-import inspirationHubReducer from "./reducers/inspirationHubReducer";
 
 
 const appReducer = combineReducers<AppState>({
@@ -36,7 +35,6 @@ const appReducer = combineReducers<AppState>({
   rewardsActivity,
   proposal,
   proposalInterest,
-  inspirationHubReducer,
 });
 
 const rootReducer = (state, action) => {
