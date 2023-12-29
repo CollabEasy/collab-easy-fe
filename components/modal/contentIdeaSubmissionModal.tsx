@@ -12,6 +12,8 @@ import * as action from "../../state/action";
 import { NewInspoTheme } from "types/model/newInspoTheme";
 import { CreateNewInspoThemeEmailContent } from "helpers/inspirationHubHelper";
 
+const { Option } = Select;
+
 const mapStateToProps = (state: AppState) => ({
     isLoggedIn: state.user.isLoggedIn,
     isUpdatingContest: state.contest?.isUpdatingContest,
