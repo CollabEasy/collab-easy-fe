@@ -27,12 +27,14 @@ const mapStateToProps = (state: AppState) => ({
   user: state.user.user,
   artistListData: state.home.artistListDetails,
   isLoggedIn: state.user.isLoggedIn,
-  publishedCategories: state.category.publishedCategories
+  publishedCategories: state.category.publishedCategories,
+  showAddInspirationThemeModal: state.inspirationHub.showAddInspirationThemeModal
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   getAllCategories: () => dispatch(actions.getAllCategories()),
   updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
+  setShowAddInspirationThemeModal: (show: boolean) => dispatch(actions.setShowAddInspirationThemeModal(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -50,7 +52,9 @@ const GetInspired = ({
   user,
   artistListData,
   publishedCategories,
+  showAddInspirationThemeModal,
   getAllCategories,
+  setShowAddInspirationThemeModal,
 }: Props) => {
 
   const [showProfileModal, setShowProfileModal] = useState(false);
@@ -199,7 +203,7 @@ const GetInspired = ({
             {getThemes()}
             <div
               onClick={() => {
-                setShowContentIdeaSubmissionModal(true);
+                setShowAddInspirationThemeModal(true);
               }}
             >
               <FloatingButton />
@@ -210,10 +214,10 @@ const GetInspired = ({
           <GenericActionBanner />
         </div>
       </div>
-      {showContentIdeaSubmissionModal && (
+      {showAddInspirationThemeModal && (
         <ContentIdeaSubmissionModal
           onCancel={() => {
-            setShowContentIdeaSubmissionModal(false);
+            setShowAddInspirationThemeModal(false);
           }}
           isViewMode={true}
         />
