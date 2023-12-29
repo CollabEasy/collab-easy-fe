@@ -295,7 +295,7 @@ const NavBar = ({
               style={{ backgroundColor: 'black'}}
               message={
                 <span style={{ color: 'white' }}>
-                  Checkout latest themes and ideas for your upcoming content 
+                  Checkout latest themes and ideas for your upcoming content{" "}
                   <a href={routeToHref(toGetInspired("all"))}>now!</a>
                 </span>
               }
