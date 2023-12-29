@@ -46,12 +46,14 @@ export const sendEmailToSlug = createLogic<
   type: [actionTypes.SEND_EMAIL_TO_SLUG],
   async process({ action, api }, dispatch, done) {
     try {
+      console.log(action.payload);
       const result = await emailApi.sendEmailToSlug(
         action.payload['slug'],
         action.payload["subject"],
         encryptContent(action.payload["content"])
       );
     } catch (error) {
+        console.log(error);
         const error_response = error.response.data;
     } finally {
       done();

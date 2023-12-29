@@ -1,3 +1,4 @@
+import { NewInspoTheme } from "types/model";
 
 // Array of random colors
 const colors = [
@@ -65,4 +66,24 @@ export function findMatchingThemes(firstArray, secondArray, selectedCategory) {
     }
 
     return findUniqueElementsByTitle(matchingElements);
+}
+
+export function CreateNewInspoThemeEmailContent(newInspoThemeData: NewInspoTheme) {
+    let emailContent = "";
+    if (newInspoThemeData.title) {
+        emailContent += "The title is: " + newInspoThemeData.title + "\n";
+    }
+    if (newInspoThemeData.description) {
+        emailContent += "The description is: " + newInspoThemeData.description + "\n";
+    }
+    if (newInspoThemeData.categories) {
+        emailContent += "It is submitted for skills: " + newInspoThemeData.categories + "\n";
+    }
+    if (newInspoThemeData.full_name) {
+        emailContent += "It is submitted by: " + newInspoThemeData.full_name + "\n";
+    }
+    if (newInspoThemeData.email) {
+        emailContent += "The user email is: " + newInspoThemeData.email;
+    }
+    return emailContent;
 }

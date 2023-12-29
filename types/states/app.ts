@@ -1,4 +1,4 @@
-import { HomeState, UserState } from ".";
+import { HomeState, InspirationHubState, UserState } from ".";
 import { CollabRequestState } from "./collab";
 import { ArtistCategoriesState } from "./artistCategories";
 import { UserSampleState } from "./sample";
@@ -30,4 +30,5 @@ export interface AppState {
   rewardsActivity: RewardsActivityState,
   proposal: ProposalState,
   proposalInterest: ProposalInterestState,
+  inspirationHub: InspirationHubState,
 }
