@@ -695,8 +695,8 @@ const Profile = ({
           {user.country && (
             <div className="d-flex flex-row artist-location">
               <span>{user.country}</span>
-              {user.state &&<span>, {user.state}</span>}
-              {user.city &&<span>, {user.city}</span>}
+              {user.state && <span> | {user.state}</span>}
+              {user.city && (user.state ? <span> | {user.city}</span> : <span>{user.city}</span>)}
             </div>
           )}
           {getButton()}
