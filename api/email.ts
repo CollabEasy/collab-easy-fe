@@ -1,7 +1,7 @@
 import api from "./client";
 import { User } from "types/model";
 
-const postConfig = (dataToSend) => {
+const postConfigWithToken = (dataToSend) => {
   return {
     method: "post",
     data: dataToSend,
@@ -9,6 +9,13 @@ const postConfig = (dataToSend) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       "content-type": "application/json",
     },
+  };
+};
+
+const postConfig = (dataToSend) => {
+  return {
+    method: "post",
+    data: dataToSend,
   };
 };
 
@@ -25,7 +32,7 @@ export const sendEmail = async (
   subject: string,
   content: string
 ) => {
-  const config = postConfig({"subject" : subject, "content": content});
+  const config = postConfigWithToken({"subject" : subject, "content": content});
   try {
     const result = await api.call(`api/v1/notify/user`, config);
     return result;
@@ -53,7 +60,7 @@ export const sendEmailToAll = async (
   subject: string,
   content: string
 ) => {
-  const config = postConfig({"subject" : subject, "content": content});
+  const config = postConfigWithToken({"subject" : subject, "content": content});
   try {
     const result = await api.call(`api/v1/notify/all`, config);
     return result;
@@ -67,7 +74,7 @@ export const sendEmailToEnumGroup = async (
   subject: string,
   content: string,
 ) => {
-  const config = postConfig({"subject" : subject, "content": content});
+  const config = postConfigWithToken({"subject" : subject, "content": content});
   try {
     const result = await api.call(`api/v1/notify/group/${enumGroup}`, config);
     return result;

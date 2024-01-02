@@ -19,18 +19,22 @@ import * as actions from "state/action";
 import { GetCategoryMetadata } from "helpers/categoryHelper";
 import { findMatchingThemes, getRandomColor } from "helpers/inspirationHubHelper";
 import HeroSection from "@/components/asset/pageHeroSection";
+import FloatingButton from "@/components/asset/addFloatButton";
+import ContentIdeaSubmissionModal from "@/components/modal/contentIdeaSubmissionModal";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
   user: state.user.user,
   artistListData: state.home.artistListDetails,
   isLoggedIn: state.user.isLoggedIn,
-  publishedCategories: state.category.publishedCategories
+  publishedCategories: state.category.publishedCategories,
+  showAddInspirationThemeModal: state.inspirationHub.showAddInspirationThemeModal
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   getAllCategories: () => dispatch(actions.getAllCategories()),
   updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
+  setShowAddInspirationThemeModal: (show: boolean) => dispatch(actions.setShowAddInspirationThemeModal(show)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -48,10 +52,13 @@ const GetInspired = ({
   user,
   artistListData,
   publishedCategories,
+  showAddInspirationThemeModal,
   getAllCategories,
+  setShowAddInspirationThemeModal,
 }: Props) => {
 
   const [showProfileModal, setShowProfileModal] = useState(false);
+  const [showContentIdeaSubmissionModal, setShowContentIdeaSubmissionModal] = useState(false);
   const [windowWidth, setWindowWidth] = useState(-1);
 
   const [filteredThemes, setFilteredThemes] = useState([]);
@@ -183,22 +190,38 @@ const GetInspired = ({
           heading={"Inspiring Ideas for Your Next Masterpiece!"}
           paragaraph={"Let these guiding ideas be the catalyst for your next creative endeavor, shaping a masterpiece that reflects your unique voice and passion"}
         />
-        <div className="getInspired-sectionContainer">
-          <div className="row-fluid">
-            <div className="col-lg-12 col-md-10 ">
-              <div className="similar-categories-container">
-                {getSimilarCategories()}
-              </div>
+        <div className="row-fluid">
+          <div className="col-lg-12 col-md-10 ">
+            <div className="similar-categories-container">
+              {getSimilarCategories()}
             </div>
           </div>
+        </div>
+        <div className="getInspired-sectionContainer">
+
           <div className="inspo-grid">
             {getThemes()}
+            <div
+              onClick={() => {
+                setShowAddInspirationThemeModal(true);
+              }}
+            >
+              <FloatingButton />
+            </div>
           </div>
         </div>
         <div className="row">
           <GenericActionBanner />
         </div>
       </div>
+      {showAddInspirationThemeModal && (
+        <ContentIdeaSubmissionModal
+          onCancel={() => {
+            setShowAddInspirationThemeModal(false);
+          }}
+          isViewMode={true}
+        />
+      )}
     </Layout>
   )
 }

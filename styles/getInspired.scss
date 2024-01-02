@@ -42,13 +42,20 @@
 }
 
 @media only screen and (max-width: 767px) and (min-width: 601px) {
-    
+    .getInspired-sectionContainer {
+        .inspo-grid {
+            columns: 2; 
+        }
+    }
 }
 
 @media only screen and (max-width: 600px) and (min-width: 400px) {
-    
+    .getInspired-sectionContainer {
+        .inspo-grid {
+            columns: 2; 
+        }
+    }
 }
 
 @media only screen and (max-width: 399px) {
-    
 }
