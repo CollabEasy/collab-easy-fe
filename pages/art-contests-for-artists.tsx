@@ -106,7 +106,7 @@ const AllContestPage = ({
 							)}
 						>
 							<div className="listings-list__item">
-								<div className="listing-preview">
+								{/* <div className="listing-preview">
 									{contestObj?.winner?.profilePicUrl ? (
 										<img alt="listing-image" src={contestObj?.winner?.profilePicUrl}></img>
 									) : (
@@ -114,7 +114,7 @@ const AllContestPage = ({
 									)
 									}
 
-								</div>
+								</div> */}
 								<div className="listing-details">
 									<div className="row">
 										<div className="col-md-9 col-sm-12">
@@ -196,7 +196,7 @@ const AllContestPage = ({
 						<div className="allContestPage__listingPageCoverContainer">
 							<div className="row">
 								{/* <div className="col-sm-12"> */}
-								<div className="contest-heading-cnt col-md-8 col-sm-12">
+								<div className="contest-heading-cnt col-xl-8 col-lg-8 col-md-10 col-sm-12">
 									<h1 className="common-h1-style">
 										Artists, this is the place to show off your talent
 									</h1>
@@ -240,9 +240,9 @@ const AllContestPage = ({
 					<div className="col-md-12 listingContainer">
 						{getAllContests(allContests)}
 					</div>
-					{/* <div className="row">
+					<div className="row listingContainer">
 						<GenericActionBanner />
-					</div> */}
+					</div>
 				</>
 			)}
 		</Layout>
