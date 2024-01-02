@@ -1,6 +1,7 @@
 // --------- All contest page css ----------
 .allContestPage_listingPagecontainer {
   position: relative;
+
   .ant-breadcrumb {
     margin-top: 7%;
     margin-left: auto;
@@ -9,6 +10,7 @@
     padding-top: 30px;
     position: relative;
   }
+
   .allContestPage__listingPageCoverContainer {
     margin-bottom: 2%;
     margin-left: auto;
@@ -19,12 +21,14 @@
     .contest-heading-cnt {
       position: relative;
       padding-top: 2rem;
+
       .heading-line {
         border: 2px solid;
         width: 70px;
         margin-bottom: 30px;
         margin-top: 30px;
       }
+
       h1 {
         font-size: 40px;
         text-align: left;
@@ -37,6 +41,7 @@
         padding-right: 10%;
         padding-bottom: 2rem;
       }
+
       .current-contest-btn {
         border-radius: 30px;
         background-color: black;
@@ -45,28 +50,34 @@
         padding: 12px 20px;
       }
     }
-		.current-contest-btn-cnt{
-			display: flex;
-			gap: 20px;
-			align-items: center;
-		}
-		.how-it-works-cnt{
-			display: inline-block;
-			font-size: 19px;
-			cursor: pointer;
-			.how-cnt{
-				display: flex;
-				align-items: center;
-				gap: 10px;
-			}
-			a{
-				color: black;
-			}
-			&:hover{
-				text-decoration: underline;
-			}
-		}
+
+    .current-contest-btn-cnt {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .how-it-works-cnt {
+      display: inline-block;
+      font-size: 19px;
+      cursor: pointer;
+
+      .how-cnt {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      a {
+        color: black;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
+
   &:before {
     content: "";
     position: absolute;
@@ -78,79 +89,107 @@
     background-image: linear-gradient(#fff, #f3f2f0);
   }
 }
+
 .listingContainer {
   padding: 20px;
-	.allcontest-list{
-		.content-listing__item{
-			padding: 15px 0px;
-			border-bottom: 1px solid #f3f2f0;
-			cursor: pointer;
-			&:hover{
-				background: linear-gradient(to right,#fff 0,#f6f6f6 35%,#f6f6f6 65%,#fff 100%);
-			}
-		}
-		.listings-list__item{
-			display: flex;
-    	gap: 30px;
-		}
-		.listing-preview{
-			width: 200px;
-    	height: 200px;
-			box-shadow: 0 3px 9px 0 rgba(0,0,0,.1);
-    	background: #fff;
-			img{
-				width: 200px;
-    		height: 100%;
-			}
-		}
-		.listing-details{
-			flex: 1;
-		}
-		.contest-details{
-			padding-top: 20px;
-		}
-		.total-designs{
-			padding-top: 20px;
-			margin-bottom: 15px;
-			display: flex;
-			gap: 10px;
-			align-items: center;
-		}
-		.contest-timing{
-			display: flex;
-			gap: 10px;
-			align-items: center;
-		}
-		.contest-tags-cnt{
-			display: flex;
-    	gap: 10px;
-			flex-wrap: wrap;
-			margin-top: 20px;
-			.tag-cnt{
-				font-size: 14px;
-				border: 1px solid;
-				border-radius: 3px;
-				padding-left: 0.5em;
-    		padding-right: 0.5em;
-			}
-		}
-		h3{
-			font-size: 16px;
-			color: #313030;
-			margin-bottom: 20px;
-		}
-		h5{
-			font-size: 14px;
-			color: #5b5a58;
-			max-width: 90%;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			display: -webkit-box;
-			-webkit-line-clamp: 2;
-			-webkit-box-orient: vertical;
-			max-height: 3em;
-		}
-	}
+
+  .allcontest-list {
+    .content-listing__item {
+      padding: 15px 0px;
+      border-bottom: 1px solid #f3f2f0;
+      cursor: pointer;
+
+      &:hover {
+        background: linear-gradient(to right, #fff 0, #f6f6f6 35%, #f6f6f6 65%, #fff 100%);
+      }
+    }
+
+    .listings-list__item {
+      display: flex;
+      gap: 30px;
+    }
+
+    .listing-preview {
+      width: 200px;
+      height: 200px;
+      box-shadow: 0 3px 9px 0 rgba(0, 0, 0, .1);
+      background: #fff;
+
+      img {
+        width: 200px;
+        height: 100%;
+      }
+    }
+
+    .listing-details {
+      flex: 1;
+    }
+
+    .contest-details {
+      padding-top: 20px;
+    }
+
+    .total-designs {
+      padding-top: 20px;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .contest-timing {
+      margin-bottom: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .contest-winner {
+      margin-bottom: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .contest-prize {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .contest-tags-cnt {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+
+      .tag-cnt {
+        font-size: 14px;
+        border: 1px solid;
+        border-radius: 3px;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
+    }
+
+    h3 {
+      font-size: 16px;
+      color: #313030;
+      margin-bottom: 20px;
+    }
+
+    h5 {
+      font-size: 14px;
+      color: #5b5a58;
+      max-width: 90%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      max-height: 3em;
+    }
+  }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 1101px) {
@@ -252,27 +291,31 @@
           padding-bottom: 2%;
         }
       }
-			.current-contest-btn-cnt{
-				flex-direction: column;
-				.current-contest-btn{
-					width: 100%;
-				}
-			}
+
+      .current-contest-btn-cnt {
+        flex-direction: column;
+
+        .current-contest-btn {
+          width: 100%;
+        }
+      }
     }
   }
-	.listingContainer {
-		padding: 10px;
-		align-items: center;
-		
-		.allcontest-list{
-			.contest-details{
-				padding-top: 0px;
-			}
-			.listings-list__item{
-				// flex-direction: column;
-			}
-		}
-	}
+
+  .listingContainer {
+    padding: 10px;
+    align-items: center;
+
+    .allcontest-list {
+      .contest-details {
+        padding-top: 0px;
+      }
+
+      .listings-list__item {
+        // flex-direction: column;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 600px) and (min-width: 400px) {
@@ -301,33 +344,40 @@
           padding-bottom: 2%;
         }
       }
-			.current-contest-btn-cnt{
-				flex-direction: column;
-				.current-contest-btn{
-					width: 100%;
-				}
-			}
+
+      .current-contest-btn-cnt {
+        flex-direction: column;
+
+        .current-contest-btn {
+          width: 100%;
+        }
+      }
     }
   }
-	.listingContainer {
-		padding: 10px;
-		align-items: center;
-		.allcontest-list{
-			.contest-details{
-				padding-top: 0px;
-			}
-			.listing-preview{
-				width: 100%;
-				height: initial;
-				img{
-					width: 100%;
-				}
-			}
-			.listings-list__item{
-				flex-direction: column;
-			}
-		}
-	}
+
+  .listingContainer {
+    padding: 10px;
+    align-items: center;
+
+    .allcontest-list {
+      .contest-details {
+        padding-top: 0px;
+      }
+
+      .listing-preview {
+        width: 100%;
+        height: initial;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .listings-list__item {
+        flex-direction: column;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 399px) {
@@ -352,31 +402,38 @@
           padding-bottom: 2%;
         }
       }
-			.current-contest-btn-cnt{
-				flex-direction: column;
-				.current-contest-btn{
-					width: 100%;
-				}
-			}
+
+      .current-contest-btn-cnt {
+        flex-direction: column;
+
+        .current-contest-btn {
+          width: 100%;
+        }
+      }
     }
   }
-	.listingContainer {
-		padding: 10px;
-		align-items: center;
-		.allcontest-list{
-			.contest-details{
-				padding-top: 0px;
-			}
-			.listing-preview{
-				width: 100%;
-				height: initial;
-				img{
-					width: 100%;
-				}
-			}
-			.listings-list__item{
-				flex-direction: column;
-			}
-		}
-	}
+
+  .listingContainer {
+    padding: 10px;
+    align-items: center;
+
+    .allcontest-list {
+      .contest-details {
+        padding-top: 0px;
+      }
+
+      .listing-preview {
+        width: 100%;
+        height: initial;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .listings-list__item {
+        flex-direction: column;
+      }
+    }
+  }
 }

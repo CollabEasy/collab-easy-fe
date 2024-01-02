@@ -49,11 +49,11 @@ export function GetContestStatusTag(now: number, start: number, end: number) {
 export function GetContestMetaDescription(now: number, start: number, end: number) {
 
     if (now < start) {
-        return "This contest will start on " + GetDateString(start);
+        return "Will start on " + GetDateString(start);
     } else if (now >= start && now <= end) {
-        return "This contest has begun and will end on " + GetDateString(end);
+        return "Will end on " + GetDateString(end);
     } else {
-        return "This contest had ended on " + GetDateString(end);
+        return "Ended on " + GetDateString(end);
     }
 }
 
@@ -79,8 +79,7 @@ export function GetContestMetadata(contestSlug: string) {
         if (contest["slug"] === contestSlug) {
             genericMetadata = contest;
         }
-    });
-
+    }); 
     return genericMetadata;
 }
 

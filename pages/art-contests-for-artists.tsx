@@ -10,25 +10,24 @@ import { Card, Tag } from "antd";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import Image from "next/image";
-import headerImage from "../public/images/contest.svg";
 import * as actions from "state/action";
 import Loader from "@/components/loader";
 import {
 	GetContestMetaDescription,
-	GetContestStatusTag,
+	GetContestMetadata,
 	GetContestStatus
 } from "helpers/contest";
 import Layout from "@/components/layout";
 import GenericBreadcrumb from "@/components/genericBreadcrumb";
 import GenericActionBanner from "@/components/genericActionBanner";
-import { GetDateString } from "helpers/proposalHelper";
-import { ContestEntry } from "types/model";
 import Link from "next/link";
-import { ClockCircleFilled, FileImageFilled, ArrowRightOutlined } from '@ant-design/icons';
-
-const { TextArea } = Input;
-const { TabPane } = Tabs;
-const { Meta } = Card;
+import {
+	ClockCircleFilled,
+	FileImageFilled,
+	ArrowRightOutlined,
+	TrophyFilled,
+	WalletFilled,
+} from '@ant-design/icons';
 
 const mapStateToProps = (state: AppState) => {
 	const user = state.user.user;
@@ -66,7 +65,7 @@ const AllContestPage = ({
 	fetchAllContests,
 	openLoginModalAction,
 }: Props) => {
-	const { toContestPage, toFAQ } = useRoutesContext();
+	const { toContestPage, toFAQ, toArtistProfile } = useRoutesContext();
 	const [showProfileModal, setShowProfileModal] = useState(false);
 	const [allContests, setAllContests] = useState([]);
 	const [windowWidth, setWindowWidth] = useState(-1);
@@ -95,6 +94,7 @@ const AllContestPage = ({
 		const now = new Date();
 		let data = allContests.length != 0 ? allContests[0].data : [];
 		data.sort((a, b) => b.startDate - a.startDate);
+
 		console.log(data);
 		return (
 			<div className="allcontest-list">
@@ -126,25 +126,39 @@ const AllContestPage = ({
 													{contestObj.description}
 												</h5>
 											</div>
-											{contestObj?.winner?.artCategories?.length > 0 &&
-												<div className="contest-tags-cnt">
-													{contestObj?.winner?.artCategories.map((artObj, idx) => (
-														<div className="tag-cnt" key={idx}>
-															<span className="tag-text">{artObj.artName}</span>
-														</div>
-													))
-													}
-												</div>
-											}
+											<div className="contest-tags-cnt">
+												{GetContestMetadata(contestObj.contestSlug)["category"].map((artObj, idx) => (
+													<div className="tag-cnt" key={idx}>
+														<span className="tag-text">{artObj}</span>
+													</div>
+												))
+												}
+											</div>
 										</div>
 										<div className="col-md-3 col-sm-12">
-											<div className="total-designs">
-												<FileImageFilled style={{ fontSize: "12px" }} />
-												<span className="">{data.length}</span>
-											</div>
+											{GetContestStatus(new Date().getTime(), contestObj.startDate, contestObj.endDate) === "Past" &&
+												<div className="total-designs">
+													<FileImageFilled style={{ fontSize: "12px" }} />
+													<span className="">{GetContestMetadata(contestObj.contestSlug)["participants"]} participants</span>
+												</div>
+											}
 											<div className="contest-timing">
 												<ClockCircleFilled style={{ fontSize: "12px" }} />
-												<span className="">{GetContestStatus(new Date().getTime(), contestObj.startDate, contestObj.endDate)}</span>
+												<span className="">{GetContestMetaDescription(now.getTime(), contestObj.startDate, contestObj.endDate)}</span>
+											</div>
+											{GetContestStatus(new Date().getTime(), contestObj.startDate, contestObj.endDate) === "Past" &&
+												<div className="contest-winner">
+													<TrophyFilled style={{ fontSize: "12px" }} />
+													<Link
+														href={routeToHref(toArtistProfile(contestObj.winner.artistSlug))}
+													>
+														<span className="">{contestObj.winner.artistName}</span>
+													</Link>
+												</div>
+											}
+											<div className="contest-prize">
+												<WalletFilled style={{ fontSize: "12px" }} />
+												<span className="">${GetContestMetadata(contestObj.contestSlug)["prize"]}</span>
 											</div>
 										</div>
 									</div>
@@ -182,7 +196,7 @@ const AllContestPage = ({
 						<div className="allContestPage__listingPageCoverContainer">
 							<div className="row">
 								{/* <div className="col-sm-12"> */}
-								<div className="contest-heading-cnt col-md-6 col-sm-12">
+								<div className="contest-heading-cnt col-md-8 col-sm-12">
 									<h1 className="common-h1-style">
 										Artists, this is the place to show off your talent
 									</h1>
@@ -211,12 +225,12 @@ const AllContestPage = ({
 										</div>
 									</div>
 								</div>
-								<div className="contest-main-image col-sm-6 d-none d-md-block">
-									{/* <img alt="contest image" src={headerImage} /> */}
+								<div className="col-sm-4 d-none d-lg-flex align-items-center justify-content-center">
 									<Image
-										alt="Image Alt"
-										src={headerImage}
-										layout="responsive"
+										alt="Participate in the Wondor monthly art contests and earn exclusive prizes for winning. Get all the information about the contests hosted every month"
+										src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/6_NUZgxCjUKBWNDWUuhpxA/Winning_a_prize.svg"}
+										height={300}
+										width={400}
 										objectFit="contain" // Scale your image down to fit into the container
 									/>
 								</div>
