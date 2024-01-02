@@ -16,7 +16,6 @@ import * as action from "../../state/action";
 import Loader from "@/components/loader";
 import { Alert, Space } from 'antd';
 import { GetContestEligibleCategoriesTags, GetContestMetadata, GetContestStatus, GetDateString, getContestCountdownHeading } from "helpers/contest";
-import { IsAdmin } from "helpers/helper";
 import UploadContestArtworkPage from "@/components/contestArtworkPage";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
@@ -26,7 +25,7 @@ import Layout from "@/components/layout";
 import SampleTile from "@/components/sampleTile";
 import GenericActionBanner from "@/components/genericActionBanner";
 import CountdownTimer from "@/components/asset/countdownTimer";
-import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
+import Confetti from "@/components/asset/confettiAnimation";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -687,13 +686,13 @@ const ContestPage = ({
                               </>
                             ) : (
                               <>
+                                <Confetti />
                                 <Alert
                                   showIcon={false}
                                   banner
                                   message={
                                     <span>
-                                      <b>{allSubmissions[0].data.length}</b> artists
-                                      participated in the contest. The winner is{" "}
+                                      Presenting our final <b>{allSubmissions[0].data.length}</b> artists who have been meticulously shortlisted for their outstanding work, demonstrating a steadfast commitment to the contest's rules and regulations. And the triumphant winner is none other than is{" "}
                                       <Link
                                         href={routeToHref(toArtistProfile(GetContestMetadata(slug.toString())["winner"]["slug"]))}>
                                         {GetContestMetadata(slug.toString())["winner"]["name"]}

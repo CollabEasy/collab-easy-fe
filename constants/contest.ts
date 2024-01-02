@@ -2,7 +2,7 @@ export const CONTEST_METADATA = [
     {
         "slug": "JUN2023",
         "prize": 20,
-        "participants": 11,
+        "participants": 21,
         "category": [
             "Illustration",
             "Digital Art",
@@ -25,7 +25,7 @@ export const CONTEST_METADATA = [
     {
         "slug": "JUL2023",
         "prize": 20,
-        "participants": 4,
+        "participants": 32,
         "category": [
             "Illustration",
             "Digital Art",
@@ -47,7 +47,7 @@ export const CONTEST_METADATA = [
     {
         "slug": "OCT2023",
         "prize": 20,
-        "participants": 5,
+        "participants": 26,
         "category": [
             "Illustration",
             "Digital Art",
@@ -70,7 +70,7 @@ export const CONTEST_METADATA = [
     {
         "slug": "NOV2023",
         "prize": 50,
-        "participants": 5,
+        "participants": 25,
         "category": [
             "Photography",
             "Illustration",
@@ -90,7 +90,7 @@ export const CONTEST_METADATA = [
     {
         "slug": "DEC2023",
         "prize": 75,
-        "participants": 4,
+        "participants": 14,
         "category": [
             "Illustration",
             "Digital Art",
