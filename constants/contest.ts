@@ -2,7 +2,14 @@ export const CONTEST_METADATA = [
     {
         "slug": "JUN2023",
         "prize": 20,
+        "participants": 11,
         "category": [
+            "Illustration",
+            "Digital Art",
+            "Sketching",
+            "Photography",
+            "Writing",
+            "Creative Journaling",
         ],
         "hosts": [
             {
@@ -18,7 +25,13 @@ export const CONTEST_METADATA = [
     {
         "slug": "JUL2023",
         "prize": 20,
+        "participants": 4,
         "category": [
+            "Illustration",
+            "Digital Art",
+            "Sketching",
+            "Photography",
+            "Writing",
         ],
         "hosts": [
             {
@@ -34,7 +47,14 @@ export const CONTEST_METADATA = [
     {
         "slug": "OCT2023",
         "prize": 20,
+        "participants": 5,
         "category": [
+            "Illustration",
+            "Digital Art",
+            "Sketching",
+            "Photography",
+            "Writing",
+            "Spoken Words"
         ],
         "hosts": [
             {
@@ -50,6 +70,7 @@ export const CONTEST_METADATA = [
     {
         "slug": "NOV2023",
         "prize": 50,
+        "participants": 5,
         "category": [
             "Photography",
             "Illustration",
@@ -69,6 +90,7 @@ export const CONTEST_METADATA = [
     {
         "slug": "DEC2023",
         "prize": 75,
+        "participants": 4,
         "category": [
             "Illustration",
             "Digital Art",
