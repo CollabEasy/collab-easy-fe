@@ -130,8 +130,8 @@ const ContestPage = ({
                     <>{getBreadcrum(selectedSubmission["submission"].contestSlug)}</>
                 )}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                    <div className="submissionImage" style={{ textAlign: 'center' }}>
-                        <img src={selectedSubmission["submission"].artworkUrl} alt="Submitted Image" style={{ maxWidth: '100%', height: 'auto' }} />
+                    <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', overflow: 'auto', maxWidth: '100%' }}>
+                        <img src={selectedSubmission["submission"].artworkUrl} alt="Submitted Image" style={{ width: '100%', height: 'auto' }} />
                     </div>
                     <div style={{ margin: '20px', textAlign: 'center' }}>
                         <div>

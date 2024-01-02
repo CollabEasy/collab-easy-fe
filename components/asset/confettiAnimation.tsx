@@ -24,7 +24,7 @@ const Confetti = () => {
   }, []);
 
   return (
-    <div id="confetti-container" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden' }}>
+    <div id="confetti-container" style={{ top: 0, left: 0, width: '100%', height: '100%', overflow: 'hidden' }}>
       <style>
         {`
           .confetti {
