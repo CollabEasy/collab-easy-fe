@@ -88,10 +88,6 @@ const ContestPage = ({
   fetchContestSubmissionArtistVotes,
   upvoteContestSubmission,
 }: Props) => {
-  const emptyContestSubmissionDetails: ContestSubmission = {
-    imageUrl: "",
-    description: "",
-  };
 
   const router = useRouter();
   const { toContestPage } = useRoutesContext();
@@ -99,12 +95,8 @@ const ContestPage = ({
   const { id: slug, tab: tab } = router.query;
 
   const [showProfileModal, setShowProfileModal] = useState(false);
-  const [isContestModalOpen, setIsContestModalOpen] = useState(false);
-  const [contestSubmissionDetails, setContestSubmissionDetails] = useState(
-    emptyContestSubmissionDetails
-  );
   const [windowWidth, setWindowWidth] = useState(-1);
-  const { toDiscover, toAllContestPage, toArtistProfile, toRewardsInfoPage } = useRoutesContext();
+  const { toDiscover, toAllContestPage, toArtistProfile, toContestSubmissionPage } = useRoutesContext();
 
   useEffect(() => {
     fetchContestAction(slug as string);
@@ -123,19 +115,6 @@ const ContestPage = ({
     }
     setWindowWidth(window.innerWidth);
   }, [user, artistListData]);
-
-  const showContestModal = (imageUrl, description) => {
-    let obj = {
-      imageUrl: imageUrl,
-      description: description,
-    };
-    setContestSubmissionDetails(obj);
-    setIsContestModalOpen(true);
-  };
-
-  const handleCancel = () => {
-    setIsContestModalOpen(false);
-  };
 
   const getActiveTab = () => {
     let active = "1";
@@ -252,9 +231,12 @@ const ContestPage = ({
             user={user}
             isSelf={false}
             sample={sample}
-            onClick={() => {
-              showContestModal(submission.artworkUrl, submission.description);
-            }}
+            onClick={() =>
+              toContestSubmissionPage(
+                slug.toString(),
+                artistSlug
+              )
+            }
             onClickDelete={() => { }}
           />
           <div className="tileContainer">
@@ -312,9 +294,9 @@ const ContestPage = ({
                 key="details"
                 style={{ padding: "12px" }}
                 onClick={() =>
-                  showContestModal(
-                    submission.artworkUrl,
-                    submission.description
+                  toContestSubmissionPage(
+                    slug.toString(),
+                    artistSlug
                   )
                 }
               />
@@ -385,14 +367,18 @@ const ContestPage = ({
                   {item["meta_text"]}
                 </p>,
                 /* eslint-disable react/jsx-key */
-                <Button
-                  type="primary"
-                  onClick={(e) => {
-                    showContestModal(item["submission_url"], item["description"]);
-                  }}
+                <Link
+                  href={routeToHref(toContestSubmissionPage(
+                    slug.toString(),
+                    item["artist_slug"]
+                  ))}
                 >
-                  Artwork
-                </Button>
+                  <Button
+                    type="primary"
+                  >
+                    Artwork
+                  </Button>
+                </Link>
               ]
             }
           >
@@ -422,6 +408,7 @@ const ContestPage = ({
   }
 
   const getContestHeader = (contest: any) => {
+
     return (
       <Space direction="vertical" style={{ width: '100%' }}>
         <Alert
@@ -449,6 +436,14 @@ const ContestPage = ({
                 <Link
                   href={routeToHref(toArtistProfile(GetContestMetadata(slug.toString())["winner"]["slug"]))}>
                   {GetContestMetadata(slug.toString())["winner"]["name"]}
+                </Link>.{" "} Checkout their amazing
+                <Link
+                  href={routeToHref(
+                    toContestSubmissionPage(
+                      slug.toString(),
+                      GetContestMetadata(slug.toString())["winner"]["slug"]))}
+                >
+                  work
                 </Link>
               </span>
             }
@@ -692,7 +687,7 @@ const ContestPage = ({
                                   banner
                                   message={
                                     <span>
-                                      Presenting our final <b>{allSubmissions[0].data.length}</b> artists who have been meticulously shortlisted for their outstanding work, demonstrating a steadfast commitment to the contest's rules and regulations. And the triumphant winner is none other than is{" "}
+                                      Presenting our final <b>{allSubmissions[0].data.length}</b> artists who have been meticulously shortlisted for their outstanding work, demonstrating a steadfast commitment to the contest&apos;s rules and regulations. And the triumphant winner is none other than is{" "}
                                       <Link
                                         href={routeToHref(toArtistProfile(GetContestMetadata(slug.toString())["winner"]["slug"]))}>
                                         {GetContestMetadata(slug.toString())["winner"]["name"]}
@@ -729,41 +724,6 @@ const ContestPage = ({
           </>
         )}
       </>
-      <div>
-        {isContestModalOpen && (
-          <Modal
-            closable
-            onCancel={handleCancel}
-            visible={isContestModalOpen}
-            footer={null}
-          >
-            <div
-              style={{
-                overflow: "hidden",
-                textAlign: "center",
-                marginTop: "20px",
-                marginBottom: "10px",
-              }}
-            >
-              {/* <Image
-                                alt="sample"
-                                height= "100%"
-                                width= "100%"
-                                src={contestSubmissionDetails.imageUrl}
-                            /> */}
-              <img
-                style={{ height: "auto" }}
-                className="uploadModal__image"
-                src={contestSubmissionDetails.imageUrl}
-                alt=""
-              />
-            </div>
-            <p style={{ textAlign: "center" }} className="common-text-style">
-              {contestSubmissionDetails.description}
-            </p>
-          </Modal>
-        )}
-      </div>
     </Layout>
   );
 };

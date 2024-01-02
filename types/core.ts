@@ -9,9 +9,8 @@ export interface AppRouteCreators {
   toArtistPortal: (tab: string) => WebRoute;
   toCollabPage: (id: string) => WebRoute;
   toUserCollabPage: (slug: string) => WebRoute;
-  toAllContestPage: () => WebRoute;
   toRewardsInfoPage: () => WebRoute;
-  toContestPage: (slug: string, tab: string) => WebRoute;
+ 
   toAllCategoryPage: () => WebRoute;
   toAllProposalsPage: (category: string) => WebRoute;
   toGetInspired: (category: string) => WebRoute;
@@ -28,4 +27,8 @@ export interface AppRouteCreators {
   toBlogPage: (url: string) => WebRoute;
   toMyWondorPage: () => WebRoute;
   toMySearchPage: () => WebRoute;
+
+  toAllContestPage: () => WebRoute;
+  toContestPage: (slug: string, tab: string) => WebRoute;
+  toContestSubmissionPage: (slug: string, artistSlug: string) => WebRoute;
 }
