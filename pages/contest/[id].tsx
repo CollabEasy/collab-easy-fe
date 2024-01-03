@@ -639,7 +639,7 @@ const ContestPage = ({
                   now.getTime(),
                   contest.contest[0]?.data.startDate,
                   contest.contest[0]?.data.endDate
-                ) !== "Upcoming" && (
+                ) === "Ongoing" && (
                     <TabPane tab="Leaderboard" key="3">
                       <div className="contestDetailPage_tabContainer">
                         {allSubmissions.length != 0 && (
