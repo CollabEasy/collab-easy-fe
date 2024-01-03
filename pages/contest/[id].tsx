@@ -422,14 +422,14 @@ const ContestPage = ({
                 <Link
                   href={routeToHref(toArtistProfile(GetContestMetadata(slug.toString())["winner"]["slug"]))}>
                   {GetContestMetadata(slug.toString())["winner"]["name"]}
-                </Link>.{" "} Checkout their amazing
+                </Link>.{" "}Checkout their amazing{" "}
                 <Link
                   href={routeToHref(
                     toContestSubmissionPage(
                       slug.toString(),
                       GetContestMetadata(slug.toString())["winner"]["slug"]))}
                 >
-                  work
+                  work!
                 </Link>
               </span>
             }
