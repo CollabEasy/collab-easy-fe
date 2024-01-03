@@ -95,7 +95,6 @@ const AllContestPage = ({
 		let data = allContests.length != 0 ? allContests[0].data : [];
 		data.sort((a, b) => b.startDate - a.startDate);
 
-		console.log(data);
 		return (
 			<div className="allcontest-list">
 				{data.map((contestObj, idx) => (

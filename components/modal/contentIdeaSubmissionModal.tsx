@@ -67,7 +67,6 @@ const ContentIdeaSubmissionModal = ({
 
     const saveNewInspoThemeEntry = () => {
         let emailContent = CreateNewInspoThemeEmailContent(newInspoThemeData);
-        console.log(emailContent);
         sendEmail(emailContent);
     };
 

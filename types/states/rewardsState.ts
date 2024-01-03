@@ -7,4 +7,5 @@ export interface RewardsActivityState {
     isSkippingRefferalCode: boolean;
     rewardsActivity?: any[];
     rewardPoints: RewardPoints;
+    referralCodeCorrect: boolean;
 }

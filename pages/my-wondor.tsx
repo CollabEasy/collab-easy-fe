@@ -64,6 +64,7 @@ const MyWondorPage = ({
 
     useEffect(() => {
         routeToMyWondor(false);
+        setWindowWidth(window.innerWidth);
     }, [user]);
 
     const openLoginModal = () => {

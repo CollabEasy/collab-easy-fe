@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
-import { Form, Modal, Button, Select, Input } from "antd";
+import { Form, Button, Select, Input, message } from "antd";
 import Image from "next/image";
 import landingPageImg from "public/images/profile.png";
 import { connect, ConnectedProps } from "react-redux";
@@ -8,6 +8,9 @@ import { AppState } from "types/states";
 import * as actions from "../../state/action";
 import { RefferalCode } from "types/model/rewards";
 import { User } from "types/model";
+import { useRouter } from "next/router";
+import * as rewardsAPI from "api/rewards";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const layout = {
   labelCol: {
@@ -46,27 +49,26 @@ const mapDispatchToProps = (dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
-  visible: boolean;
   handleNext: () => void;
 } & ConnectedProps<typeof connector>;
 
-
-const RefferalCodeModal = ({ 
-  user, 
-  visible,
-  handleNext, 
+const RefferalCodeModal = ({
+  user,
+  handleNext,
   verifyRefferalCode,
   skipRefferalCode,
 }: Props) => {
-  const emptyRefferalCode: RefferalCode = {
-    code: "",
-  };
+  const router = useRouter();
+  const { code } = router.query;
+
+  const refCode = code === undefined ? "" : code.toString();
+  const initReferalCode: RefferalCode = { code: refCode };
 
   const windowWidth = 1000;
 
   const [userName, setUserName] = useState("");
   const [refferalCode, setRefferalCode] =
-    useState<RefferalCode>(emptyRefferalCode);
+    useState<RefferalCode>(initReferalCode);
 
   useEffect(() => {
     if (user && user.is_referral_done) {
@@ -81,10 +83,40 @@ const RefferalCodeModal = ({
     }
   }, [user]);
 
-  const onFinish = () => {
-    verifyRefferalCode(refferalCode.code);
-    // setVisibility(false);
-    handleNext();
+  const verifyRefferalCodeFromAPI = async (data: any) => {
+    try {
+      /* Type 'any' is of type Array<object> but getting some error */
+      const result = await rewardsAPI.verifyRefferalCode(refferalCode.code);
+      return result;
+    } catch (err) {
+      return {
+        data: [],
+        error: true,
+        loading: false,
+        errorMessage: err.response.data.err_str,
+      };
+    }
+  };
+
+  const onFinish = async () => {
+    if (refferalCode.code === "") {
+      message.error("Enter a refferal code or skip to continue.");
+      return;
+    }
+    const verifyResults = await verifyRefferalCodeFromAPI(refferalCode.code);
+    if (
+      verifyResults["error"] === undefined ||
+      verifyResults["error"] === false
+    ) {
+      message.success("Referral reward points added successfully.");
+      handleNext();
+    } else {
+      message.error(
+        verifyResults["errorMessage"] +
+          ". Please enter correct code or Skip to continue. For more information contact admin@wondor.art",
+        6
+      );
+    }
   };
 
   const onSkip = () => {
@@ -98,57 +130,50 @@ const RefferalCodeModal = ({
   };
 
   return (
-    <Modal
-      visible={visible}
-      destroyOnClose={true}
-      closable={false}
-      footer={null}
-      width={windowWidth > 680 ? 900 : 450}
-      bodyStyle={{ padding: 0 }}
-      //bodyStyle={{ height: "500px", padding: "0px" }}
-    >
-      <div className="referral-container">
-        <div className="left-image">
-          <Image src={landingPageImg} alt="Profile left" layout="fill" />
+    <div className="referralPage__container">
+      <div className="left-image">
+        <Image src={landingPageImg} alt="Profile left" layout="fill" />
+      </div>
+      <div className="profile-form">
+        <div className="profile-title">
+          <h1 className="common-h1-style">Have a Referral code?</h1>
         </div>
-        <div className="profile-form">
-          <div className="profile-title">
-            <h1 className="common-h1-style">Have a Referral code?</h1>
-          </div>
-          <p className="common-p-style">
-            <b>{userName}</b>, if you were referred by another artist, please enter their referral
-            code and earn bonus points. Use <b>WONDOR-ART</b> if you do not have one to still earn 
-            bonus points.
-          </p>
-          <Form
-            {...layout}
-            layout="vertical"
-            onFinish={onFinish}
-            requiredMark={false}
-          >
-            <Form.Item>
-              <Input
-                placeholder="Enter referral code"
-                onChange={(e) => {
-                  setRefferalCode((prevState) => ({
-                    ...prevState,
-                    code: e.target.value,
-                  }));
-                }}
-              />
-            </Form.Item>
-            <Form.Item {...tailLayout}>
+        <p className="common-p-style">
+          <b>Hi {user.first_name}</b>, if you were referred by another artist,
+          please enter their referral code and earn bonus points. Use{" "}
+          <b>WONDOR-ART</b> if you do not have one to still earn bonus points.
+        </p>
+        <Form
+          {...layout}
+          layout="vertical"
+          onFinish={onFinish}
+          requiredMark={false}
+        >
+          <Form.Item>
+            <Input
+              placeholder="Enter referral code"
+              value={refferalCode.code}
+              onChange={(e) => {
+                setRefferalCode((prevState) => ({
+                  ...prevState,
+                  code: e.target.value,
+                }));
+              }}
+            />
+          </Form.Item>
+          <Form.Item {...tailLayout}>
+            <div className="twoButtonsSpacing">
               <Button htmlType="button" onClick={onSkip}>
                 Skip
               </Button>
               <Button type="primary" htmlType="submit">
                 Submit
               </Button>
-            </Form.Item>
-          </Form>
-        </div>
+            </div>
+          </Form.Item>
+        </Form>
       </div>
-    </Modal>
+    </div>
   );
 };
 
