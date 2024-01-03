@@ -14,9 +14,9 @@ import React, { useEffect, useState } from 'react';
 import NewUserModal from '../../components/modal/newUserModal';
 import Layout from '@/components/layout';
 import { BLOGS } from "constants/blogs";
-import GenericBreadcrumb from "@/components/genericBreadcrumb";
-import GenericActionBanner from "@/components/genericActionBanner";
-import GenericPageBanner from "@/components/genericPageBanner";
+import GenericBreadcrumb from "@/components/asset/genericBreadcrumb";
+import GenericActionBanner from "@/components/asset/genericActionBanner";
+import GenericPageBanner from "@/components/asset/genericPageBanner";
 
 const mapStateToProps = (state: AppState) => ({
     loginModalDetails: state.home.loginModalDetails,

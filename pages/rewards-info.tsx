@@ -14,8 +14,8 @@ import headerImage from '../public/images/reward.svg';
 import * as actions from "state/action";
 import Layout from "@/components/layout";
 import Link from "next/link";
-import GenericBreadcrumb from "@/components/genericBreadcrumb";
-import GenericActionBanner from "@/components/genericActionBanner";
+import GenericBreadcrumb from "@/components/asset/genericBreadcrumb";
+import GenericActionBanner from "@/components/asset/genericActionBanner";
 
 const { Meta } = Card;
 

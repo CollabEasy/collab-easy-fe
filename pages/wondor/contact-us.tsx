@@ -14,7 +14,7 @@ import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
 import NewUserModal from '../../components/modal/newUserModal';
 import Layout from '@/components/layout';
-import GenericBreadcrumb from "@/components/genericBreadcrumb";
+import GenericBreadcrumb from "@/components/asset/genericBreadcrumb";
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,

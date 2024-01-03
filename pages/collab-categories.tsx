@@ -16,10 +16,10 @@ import Loader from "@/components/loader";
 import { CategoryEntry } from "types/states/category";
 import CategoryModal from "@/components/modal/categoryModal";
 import Layout from "@/components/layout";
-import GenericBreadcrumb from "@/components/genericBreadcrumb";
+import GenericBreadcrumb from "@/components/asset/genericBreadcrumb";
 import { GetCategoryArtistTitle, } from "helpers/categoryHelper";
 import { GetCategoryMetadata } from "helpers/categoryHelper";
-import GenericActionBanner from "@/components/genericActionBanner";
+import GenericActionBanner from "@/components/asset/genericActionBanner";
 
 
 

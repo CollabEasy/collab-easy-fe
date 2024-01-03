@@ -11,7 +11,7 @@ import { routeToHref } from "config/routes";
 import * as actions from "state/action";
 import Layout from "@/components/layout";
 import Link from "next/link";
-import GenericActionBanner from "@/components/genericActionBanner";
+import GenericActionBanner from "@/components/asset/genericActionBanner";
 import avatarImage from "../public/images/avatar.png";
 import CollabLinkClipBoard from "@/components/asset/collabLinkClipBoard";
 import RewardCodeClipBoard from "@/components/asset/rewardCodeClipBoard";

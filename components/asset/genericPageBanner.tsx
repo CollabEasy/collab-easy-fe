@@ -2,17 +2,16 @@ import { Button } from "antd";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
-import { Card } from 'antd';
 import Image from 'next/image';
-import LoginModal from './modal/loginModal';
+import LoginModal from '../modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
 import { openLoginModalAction, updateLoginData } from 'state/action';
 import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
-import NewUserModal from './modal/newUserModal';
-import notFoundImage from '../public/images/not-found.svg';
+import NewUserModal from '../modal/newUserModal';
+import pageBannerImage from '../public/images/mobile-landing.svg';
 
 const mapStateToProps = (state: AppState) => ({
     loginModalDetails: state.home.loginModalDetails,
@@ -32,19 +31,23 @@ type Props = {
     loginModalDetails: LoginModalDetails,
     user: any,
     artistListData: any
+    heading: string
+    paragraph: string
 } & ConnectedProps<typeof connector>;
 
 
-const GenericActionBanner = ({
+const GenericPageBanner = ({
     isLoggedIn,
     updateLoggedInData,
     openLoginModalAction,
     loginModalDetails,
     user,
+    heading,
+    paragraph,
     artistListData
 }: Props) => {
     const [showProfileModal, setShowProfileModal] = useState(false);
-    const { toContactUs, toFAQ } = useRoutesContext();
+    const { toContactUs } = useRoutesContext();
 
     const openLoginModal = () => {
         openLoginModalAction();
@@ -64,7 +67,6 @@ const GenericActionBanner = ({
         }
     }, [artistListData]);
 
-
     // https://bootdey.com/snippets/view/blog-page#html
     return (
         <>
@@ -78,46 +80,42 @@ const GenericActionBanner = ({
             }
 
             <div style={{ width: "100%" }}>
-                <div className="row d-flex justify-content-center actionBanner-cover">
-                    <div className="col-md-12">
+                <div className="row d-flex justify-content-center pageBanner-cover">
+                    <div className="col-12">
                         <div className="row">
                             <div className="col-lg-4 col-md-6 col-sm-12 text-center">
-                                <div style={{ padding: "10px" }}>
                                     <Image
-                                        src={notFoundImage}
-                                        height={200}
-                                        width={200}
-                                        alt="Checkout Wondor.art FAQs section or reach out to let the team help you."
+                                        src="https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/KVSqk1x-kEuZo9pMZLBaGw/Group.svg"
+                                        height={386}
+                                        width={500}
+                                        unoptimized={true}
+                                        alt="4 steps to start using wondor for your next collaboration"
                                         priority
                                     />
-                                </div>
                             </div>
                             <div className="col-lg-8 col-md-6 col-sm-12">
-                                <div className="actionBanner-cnt">
-                                    <div className="actionBanner-text text-center">
+                                <div className="pageBanner-cnt">
+                                    <div className="pageBanner-text text-center">
                                         <h3 className="common-h3-style">
-                                            Got a question? Do not worry!
+                                            {heading}
                                         </h3>
                                         <p className="common-p-style">
-                                            Checkout our FAQs section or reach out to us and let us know how we can help you.
+                                            {paragraph}
                                         </p>
                                     </div>
-                                    <div className="actionBanner-button-group">
+                                    <div className="pageBanner-button-group twoButtonsSpacing">
                                         <Button
                                             type="primary"
-                                            className="common-btn-dimension actionBanner-button"
-                                        >
-                                            <Link
-                                                href={routeToHref(toFAQ())}
-                                                passHref
-                                            >FAQs
-                                            </Link>
-                                        </Button>
-                                        <Button
-                                            className="common-btn-dimension actionBanner-button"
+                                            className="common-btn-dimension pageBanner-button"
                                             onClick={openLoginModal}
                                         >
                                             Join Now
+                                        </Button>
+                                        <Button className="common-btn-dimension pageBanner-button">
+                                            <Link
+                                                href={routeToHref(toContactUs())}
+                                                passHref
+                                            >Ask Question</Link>
                                         </Button>
                                     </div>
                                 </div>
@@ -130,4 +128,4 @@ const GenericActionBanner = ({
     )
 }
 
-export default connector(GenericActionBanner);
+export default connector(GenericPageBanner);

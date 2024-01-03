@@ -21,7 +21,7 @@ import { useRoutesContext } from "components/routeContext";
 import { Config } from "config/config";
 import Layout from "@/components/layout";
 import SampleTile from "@/components/sampleTile";
-import GenericActionBanner from "@/components/genericActionBanner";
+import GenericActionBanner from "@/components/asset/genericActionBanner";
 import CountdownTimer from "@/components/asset/countdownTimer";
 
 const { TextArea } = Input;

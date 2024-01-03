@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { Breadcrumb, Result } from "antd";
-import { useRoutesContext } from "./routeContext";
+import { useRoutesContext } from "../routeContext";
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
 });

@@ -18,8 +18,8 @@ import {
 	GetContestStatus
 } from "helpers/contest";
 import Layout from "@/components/layout";
-import GenericBreadcrumb from "@/components/genericBreadcrumb";
-import GenericActionBanner from "@/components/genericActionBanner";
+import GenericBreadcrumb from "@/components/asset/genericBreadcrumb";
+import GenericActionBanner from "@/components/asset/genericActionBanner";
 import Link from "next/link";
 import {
 	ClockCircleFilled,

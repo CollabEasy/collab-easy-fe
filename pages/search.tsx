@@ -13,7 +13,7 @@ import Image from 'next/image';
 import * as actions from "state/action";
 import Layout from "@/components/layout";
 import Link from "next/link";
-import GenericActionBanner from "@/components/genericActionBanner";
+import GenericActionBanner from "@/components/asset/genericActionBanner";
 import { GetSearchPageCategories, GetSearchPageProposals, GetSearchPageCollaborators, GetUserMightLikeCategories } from "helpers/searchPageHelper";
 
 const { Meta } = Card;
