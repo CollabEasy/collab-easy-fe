@@ -115,8 +115,8 @@ const EditBasicInformation = ({
         onFinish={submitForm}
       >
         <Form.Item>
-          <div className="container">
-            <div className="artistProfile__profileCoverContainer">
+          <div className="artistProfile__profileCoverContainer">
+            <div className="profileCoverContainer">
               <div className="graph"></div>
             </div>
 

@@ -64,15 +64,6 @@ const MyWondorPage = ({
 
     useEffect(() => {
         routeToMyWondor(false);
-        if (user) {
-            if (user.new_user) {
-                setShowProfileModal(true);
-            }
-        }
-        if (artistListData.status === "success") {
-            setShowProfileModal(false);
-        }
-        setWindowWidth(window.innerWidth);
     }, [user]);
 
     const openLoginModal = () => {

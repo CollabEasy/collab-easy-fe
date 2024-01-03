@@ -64,14 +64,7 @@ const TermsAndPolicy = ({ isLoggedIn, updateLoggedInData, loginModalDetails, use
       name={"description"}
       content={"Know the Terms and Condition while using Wondor here. Learn how we collect, use and share user data to support you. Use tools to manage your privacy preferences."}
     >
-      {loginModalDetails.openModal && !user.new_user && (
-        <LoginModal />
-      )
-      }
-      {showProfileModal && (
-        <NewUserModal />
-      )
-      }
+
 
       <div className='genericPageLayout_container'>
         {windowWidth > 500 &&

@@ -7,12 +7,18 @@ import Image from 'next/image';
 import LoginModal from '../modal/loginModal';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
-import { openLoginModalAction, updateLoginData } from 'state/action';
+import { openLoginModalAction, setCurrentPathName, updateLoginData } from 'state/action';
 import { connect, ConnectedProps } from "react-redux";
 import { LoginModalDetails } from 'types/model';
 import React, { useEffect, useState } from 'react';
+<<<<<<< HEAD:components/asset/genericActionBanner.tsx
 import NewUserModal from '../modal/newUserModal';
 import notFoundImage from '../../public/images/not-found.svg';
+=======
+import NewUserModal from './modal/newUserModal';
+import notFoundImage from '../public/images/not-found.svg';
+import { useRouter } from "next/router";
+>>>>>>> 87a8b0d (Revert "Revert "Login pages""):components/genericActionBanner.tsx
 
 const mapStateToProps = (state: AppState) => ({
     loginModalDetails: state.home.loginModalDetails,
@@ -24,6 +30,7 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     openLoginModalAction: () => dispatch(openLoginModalAction()),
     updateLoggedInData: (loginDetails: any) => dispatch(updateLoginData(loginDetails)),
+    setCurrentPathName: (path: string) => dispatch(setCurrentPathName(path))
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -38,6 +45,7 @@ type Props = {
 const GenericActionBanner = ({
     isLoggedIn,
     updateLoggedInData,
+    setCurrentPathName,
     openLoginModalAction,
     loginModalDetails,
     user,
@@ -46,8 +54,10 @@ const GenericActionBanner = ({
     const [showProfileModal, setShowProfileModal] = useState(false);
     const { toContactUs, toFAQ } = useRoutesContext();
 
-    const openLoginModal = () => {
-        openLoginModalAction();
+    const router = useRouter();
+    const openLogin = () => {
+        setCurrentPathName(router.asPath);
+        router.push("/login");
     };
 
     useEffect(() => {
@@ -68,15 +78,7 @@ const GenericActionBanner = ({
     // https://bootdey.com/snippets/view/blog-page#html
     return (
         <>
-            {loginModalDetails.openModal && !user.new_user && (
-                <LoginModal />
-            )
-            }
-            {showProfileModal && (
-                <NewUserModal />
-            )
-            }
-
+            
             <div style={{ width: "100%" }}>
                 <div className="row d-flex justify-content-center actionBanner-cover">
                     <div className="col-md-12">
@@ -115,7 +117,7 @@ const GenericActionBanner = ({
                                         </Button>
                                         <Button
                                             className="common-btn-dimension actionBanner-button"
-                                            onClick={openLoginModal}
+                                            onClick={openLogin}
                                         >
                                             Join Now
                                         </Button>
