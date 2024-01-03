@@ -142,7 +142,7 @@ const ContestPage = ({
             title={"Enter now and win exclusize prizes on Wondor"}
             name={"description"}
             content={
-                "Calling all artists to join our monthy contest. The theme is Enter now, showcase your creativity and win exciting prizes."
+                "Calling all artists to join our monthy contest. Showcase your creativity and win exciting prizes."
             }
         >
             <>
