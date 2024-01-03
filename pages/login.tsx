@@ -35,15 +35,16 @@ const Login = ({
   closeLoginModalAction,
   fetchLoginData,
 }: Props) => {
+  const router = useRouter();
+  const {code} = router.query;
   const [visible, setVisible] = useState(true);
   const [errorMessageVisible, setErrorMessageVisible] = useState(false);
-
-  const router = useRouter();
 
   const OnSuccessCallback = (response) => {
     let tokenId = response.credential;
     fetchLoginData(tokenId);
-    router.push("/basic-information");
+    const urlToRedirect = "/basic-information" + (code !== undefined && code.length > 0 ? `?code=${code}` : "");
+    router.push(urlToRedirect);
   };
 
   const OnFailureCallback = (response) => {

@@ -1,6 +1,7 @@
 import Layout from "@/components/layout";
 import Loader from "@/components/loader";
 import NewUser from "@/components/modal/newUser";
+import RefferalCodeModal from "@/components/modal/RefferalCodeModal";
 import NewUserCategory from "@/components/newUserCategory";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -34,7 +35,8 @@ const BasicInformation = ({
   getAllCategories,
 }: Props) => {
   const router = useRouter();
-  const totalSegments = 2;
+  // Increase this number each time a new screen needs to be added
+  const totalSegments = 3;
   const [activeSegment, setActiveSegment] = useState(1);
 
   const GetApprovedCategories = (allCategories) => {
@@ -93,6 +95,16 @@ const BasicInformation = ({
 
     if (activeSegment === 2) {
       return getArtCategoryComponent();
+    }
+
+    if (activeSegment === 3) {
+      return (
+        <RefferalCodeModal
+          handleNext={() => {
+            setActiveSegment(activeSegment + 1);
+          }}
+        />
+      );
     }
   }
 
