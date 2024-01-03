@@ -82,7 +82,7 @@ const ContestPage = ({
                     <a href={toDiscover().href}>Home</a>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
-                    <a href={toContestPage(contestSlug, "leaderboard").as}>{contestSlug}</a>
+                    <a href={toContestPage(contestSlug, "details").as}>{contestSlug}</a>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
                     submission
