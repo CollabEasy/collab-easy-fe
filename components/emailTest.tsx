@@ -1,32 +1,13 @@
-import Image from "next/image";
-import { DownOutlined } from "@ant-design/icons";
-import React, { useEffect, useState } from "react";
-import { Card, Tabs, Button, Form, Input, Tooltip } from "antd";
-import type { MenuProps } from "antd";
-import { AppState } from "state";
-import { connect, ConnectedProps, useStore } from "react-redux";
-import router, { useRouter } from "next/router";
-import { Dispatch } from "redux";
-import { User, UserSocialProspectus } from "types/model";
-import * as actions from "state/action/emailAction";
-import { SOCIAL_PLATFORMS } from "constants/constants";
-import Link from "next/link";
-import { useRoutesContext } from "components/routeContext";
-import { routeToHref } from "config/routes";
-import Loader from "./loader";
-import { encryptContent } from "helpers/helper";
-import {
-  GetSocialMediaUrl,
-  IsPersonalWebsite,
-  GetSocialPlatformName,
-  GetSocialPlatformImage,
-  GetSocialPlatformBaseUrl,
-} from "../helpers/socialProspectusHelper";
+import { Button, Card, Form, Input, Tooltip } from "antd";
 import TextArea from "antd/lib/input/TextArea";
-import { EmailEnumGroupDetail } from "types/model/analytics";
 import Dropdown from "rc-dropdown";
-import Menu, { Item as MenuItem } from "rc-menu";
 import "rc-dropdown/assets/index.css";
+import Menu, { Item as MenuItem } from "rc-menu";
+import React, { useEffect, useState } from "react";
+import { connect, ConnectedProps } from "react-redux";
+import { Dispatch } from "redux";
+import { AppState } from "state";
+import * as actions from "state/action/emailAction";
 
 const { Meta } = Card;
 
@@ -41,7 +22,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   sendEmailToAll: (subject: string, content: string, fromAdmin: boolean) =>
     dispatch(actions.sendEmailToAllUsers(subject, content, fromAdmin)),
   fetchAllEmailEnumDetails: () => dispatch(actions.fetchAllEmailEnumDetails()),
-  sendEmailToGroup: (enumGroup: string, subject: string, content: string, fromAdmin: boolean) =>
+  sendEmailToGroup: (
+    enumGroup: string,
+    subject: string,
+    content: string,
+    fromAdmin: boolean
+  ) =>
     dispatch(actions.sendEmailToGroup(enumGroup, subject, content, fromAdmin)),
 });
 
@@ -72,7 +58,7 @@ const EmailTest = ({
   const [content, setContent] = useState(html);
   const [selectedEmailOption, setSelectedEmailOption] = useState(null);
   var date = new Date(0); // The 0 there is the key, which sets the date to the epoch
-    
+
   useEffect(() => {
     fetchAllEmailEnumDetails();
   }, [fetchAllEmailEnumDetails]);
@@ -104,12 +90,14 @@ const EmailTest = ({
   });
 
   const menu = <Menu style={{ width: 140 }}>{menuItems}</Menu>;
-  const buttonDisabled = selectedEmailOption !== 'INCOMPLETE_PROFILE' && (subject.length < 5 || content.length < 10);
+  const buttonDisabled =
+    selectedEmailOption !== "INCOMPLETE_PROFILE" &&
+    (subject.length < 5 || content.length < 10);
   return (
     <Form form={form} name="control-hooks" style={{ maxWidth: 600 }}>
       <Form.Item name="Subject" label="Subject" rules={[{ required: true }]}>
         <Input
-          disabled={selectedEmailOption === 'INCOMPLETE_PROFILE'}
+          disabled={selectedEmailOption === "INCOMPLETE_PROFILE"}
           onChange={(e) => {
             setSubject(e.target.value);
           }}
@@ -119,7 +107,7 @@ const EmailTest = ({
 
       <Form.Item name="Content" label="Content" rules={[{ required: true }]}>
         <TextArea
-          disabled={selectedEmailOption === 'INCOMPLETE_PROFILE'}
+          disabled={selectedEmailOption === "INCOMPLETE_PROFILE"}
           onChange={(e) => {
             setContent(e.target.value);
           }}
@@ -158,12 +146,7 @@ const EmailTest = ({
               } else if (selectedEmailOption === "Send to all users") {
                 sendEmailToAll(subject, content, true);
               } else {
-                sendEmailToGroup(
-                  selectedEmailOption,
-                  subject,
-                  content,
-                  true
-                );
+                sendEmailToGroup(selectedEmailOption, subject, content, true);
               }
             }}
           >
@@ -172,9 +155,13 @@ const EmailTest = ({
         </Tooltip>
       </div>
       {selectedEmailOption !== "Send to all users" &&
-        selectedEmailOption !== "Send to myself" && selectedEmailOption !== null && (
+        selectedEmailOption !== "Send to myself" &&
+        selectedEmailOption !== null && (
           <p>
-            Last Sent : {enumStringsMapWithTime[selectedEmailOption] ? new Date(enumStringsMapWithTime[selectedEmailOption]).toString() : "Never"}
+            Last Sent :{" "}
+            {enumStringsMapWithTime[selectedEmailOption]
+              ? new Date(enumStringsMapWithTime[selectedEmailOption]).toString()
+              : "Never"}
           </p>
         )}
       {selectedEmailOption === "Send to all users" && (

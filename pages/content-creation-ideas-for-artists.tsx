@@ -40,9 +40,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
-  loginModalDetails: LoginModalDetails,
-  user: any,
-  artistListData: any
+  loginModalDetails: LoginModalDetails;
+  user: any;
+  artistListData: any;
 } & ConnectedProps<typeof connector>;
 
 const GetInspired = ({
@@ -99,7 +99,6 @@ const GetInspired = ({
     setWindowWidth(window.innerWidth);
   }, [artistListData]);
 
-
   const getThemes = () => {
     const themes: JSX.Element[] = [];
     /* eslint-disable react/jsx-key */
@@ -114,7 +113,7 @@ const GetInspired = ({
       )
     });
     return themes;
-  }
+  };
 
   const getSimilarCategories = () => {
     const similarCategoriesHtml: JSX.Element[] = [];
@@ -166,20 +165,14 @@ const GetInspired = ({
 
   return (
     <Layout
-      title={"New Topics, Themes, and Quotes for Creators: Inspire Your Next Content"}
+      title={
+        "New Topics, Themes, and Quotes for Creators: Inspire Your Next Content"
+      }
       name={"description"}
-      content={"Discover new and trending content ideas instantly for your next blog post, video, or artwork every week. Start now and find the perfect theme to engage your audience and grow your reach."}
-
+      content={
+        "Discover new and trending content ideas instantly for your next blog post, video, or artwork every week. Start now and find the perfect theme to engage your audience and grow your reach."
+      }
     >
-      {loginModalDetails.openModal && !user.new_user && (
-        <LoginModal />
-      )
-      }
-      {showProfileModal && (
-        <NewUserModal />
-      )
-      }
-
       <div className="genericPageLayout_container">
         {windowWidth > 500 &&
           <GenericBreadcrumb
@@ -223,7 +216,7 @@ const GetInspired = ({
         />
       )}
     </Layout>
-  )
-}
+  );
+};
 
 export default connector(GetInspired);

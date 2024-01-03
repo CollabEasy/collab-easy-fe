@@ -23,7 +23,6 @@ import GenericActionBanner from "@/components/asset/genericActionBanner";
 import FloatingButton from "@/components/asset/addFloatButton";
 import { GetUserMightLikeCategories } from "helpers/searchPageHelper";
 import Link from "next/link";
-import { useLocation, useParams } from 'react-router-dom';
 import { GetCategoryMetadata } from "helpers/categoryHelper";
 import HeroSection from "@/components/asset/pageHeroSection";
 

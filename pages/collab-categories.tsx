@@ -129,15 +129,6 @@ const AllCategoryPage = ({
             content={"Popular categories among artists for collaboration on instagram, tik-tok etc. Send collaboration request to available artists to work on an idea together."}
 
         >
-            {loginModalDetails.openModal && !user.new_user && (
-                <LoginModal />
-            )
-            }
-            {showProfileModal && (
-                <NewUserModal />
-            )
-            }
-
             {isFetchingCategories ? (
                 <Loader />
             ) : (

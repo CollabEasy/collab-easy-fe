@@ -71,6 +71,7 @@ const Layout = ({
     if (pathname.includes(":3000")) {
       pathname = pathname.replace(":3000", "");
     }
+    
     setPathname(pathname);
     if (routeToMyWondor) {
       router.push("/my-wondor");
@@ -84,7 +85,7 @@ const Layout = ({
       Object.keys(userDetailsCached).length === 0
     ) {
       // if (router.pathname !== '/' && !publicRoutes.includes(router.pathname)) router.push("/");
-      setIsFetchingUser(false);
+      // setIsFetchingUser(false);
     } else {
       accessToken = localStorage.getItem("token");
       const user = getLoginDetails();

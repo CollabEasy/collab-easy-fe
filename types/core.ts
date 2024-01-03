@@ -31,4 +31,6 @@ export interface AppRouteCreators {
   toAllContestPage: () => WebRoute;
   toContestPage: (slug: string, tab: string) => WebRoute;
   toContestSubmissionPage: (slug: string, artistSlug: string) => WebRoute;
+  toLoginPage: () => WebRoute;
+  toBasicInfo: () => WebRoute;
 }

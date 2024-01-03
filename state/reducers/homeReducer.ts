@@ -9,7 +9,8 @@ const initialState: HomeState = {
   },
   isLoading: true,
   routeToMyWondor: false,
-  artistListDetails: {}
+  artistListDetails: {},
+  lastPathname: "",
 };
 
 const homeReducer = (state = initialState, action): HomeState => {
@@ -36,6 +37,15 @@ const homeReducer = (state = initialState, action): HomeState => {
       return {
         ...state,
         routeToMyWondor: route,
+      }
+    case actionTypes.SET_LAST_PATHNAME:
+      let { pathname } = action.payload;
+      if (pathname === "/") {
+        pathname = "/my-wondor";
+      }
+      return {
+        ...state,
+        lastPathname: pathname,
       }
     default:
       return state;

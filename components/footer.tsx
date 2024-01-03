@@ -163,6 +163,9 @@ const Footer = ({
   };
 
   const getMobileFooter = () => {
+    if (router.asPath === "/basic-information") {
+      return <></>;
+    }
     return (<>
       <header className="navbar">
         {isFooterVisible ? (

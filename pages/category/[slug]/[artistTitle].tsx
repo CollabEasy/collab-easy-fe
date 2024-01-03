@@ -1,25 +1,24 @@
-import Image from "next/image";
-import { useRouter } from "next/router";
-import { Card, Button, Breadcrumb } from "antd";
-import { CloseOutlined, CheckOutlined, HomeOutlined } from "@ant-design/icons";
-import Link from "next/link";
-import { useRoutesContext } from "../../../components/routeContext";
-import { routeToHref } from "config/routes";
-import { AppState } from "state";
-import { Dispatch } from "redux";
-import { connect, ConnectedProps } from "react-redux";
-import React, { useEffect, useState } from "react";
-import * as action from "../../../state/action";
-import LoginModal from "../../../components/modal/loginModal";
-import { updateLoginData } from "state/action";
-import { LoginModalDetails, CollabRequestData } from "types/model";
-import NewUserModal from "../../../components/modal/newUserModal";
-import Loader from "@/components/loader";
-import SendCollabRequestModal from "../../../components/modal/sendCollabRequestModal";
-import { GetCategoryMetadata } from "helpers/categoryHelper";
 import Layout from "@/components/layout";
+import Loader from "@/components/loader";
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
+import { Breadcrumb, Button, Card } from "antd";
+import { routeToHref } from "config/routes";
 import { GetUserSkills } from "helpers/artistHelper";
-import { GetCategoryArtistTitle } from "helpers/categoryHelper";
+import {
+  GetCategoryArtistTitle,
+  GetCategoryMetadata,
+} from "helpers/categoryHelper";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { connect, ConnectedProps } from "react-redux";
+import { Dispatch } from "redux";
+import { AppState } from "state";
+import { updateLoginData } from "state/action";
+import { CollabRequestData, LoginModalDetails } from "types/model";
+import { useRoutesContext } from "../../../components/routeContext";
+import * as action from "../../../state/action";
 
 const { Meta } = Card;
 
@@ -304,8 +303,6 @@ const DiscoverArtist = ({
       name={"description"}
       content={GetCategoryMetadata(artSlug)["listing-data"]["meta-content"]}
     >
-      {loginModalDetails.openModal && !user.new_user && <LoginModal />}
-      {showProfileModal && <NewUserModal />}
       {isFetchingArtists ? (
         <Loader />
       ) : (
