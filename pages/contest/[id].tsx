@@ -9,7 +9,6 @@ import { routeToHref } from "config/routes";
 import LoginModal from "@/components/modal/loginModal";
 import NewUserModal from "@/components/modal/newUserModal";
 import { Card, notification } from "antd";
-import { Modal } from "antd";
 import { Collapse } from "antd";
 import { FireOutlined, FireFilled, ReadOutlined } from "@ant-design/icons";
 import * as action from "../../state/action";
@@ -19,13 +18,11 @@ import { GetContestEligibleCategoriesTags, GetContestMetadata, GetContestStatus,
 import UploadContestArtworkPage from "@/components/contestArtworkPage";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
-import { ContestSubmission } from "types/model/contest";
 import { Config } from "config/config";
 import Layout from "@/components/layout";
 import SampleTile from "@/components/sampleTile";
 import GenericActionBanner from "@/components/genericActionBanner";
 import CountdownTimer from "@/components/asset/countdownTimer";
-import Confetti from "@/components/asset/confettiAnimation";
 
 const { TextArea } = Input;
 const { TabPane } = Tabs;
@@ -345,13 +342,6 @@ const ContestPage = ({
       updatedSubmissionList.push(updatedSubmissionData);
     });
 
-    const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
-      <Space>
-        {React.createElement(icon)}
-        {text}
-      </Space>
-    );
-
     return (
       <List
         style={{ width: "100%" }}
@@ -362,10 +352,6 @@ const ContestPage = ({
           <List.Item
             actions={
               [
-                /* eslint-disable react/jsx-key */
-                <p className="common-h6-style">
-                  {item["meta_text"]}
-                </p>,
                 /* eslint-disable react/jsx-key */
                 <Link
                   href={routeToHref(toContestSubmissionPage(
@@ -681,7 +667,6 @@ const ContestPage = ({
                               </>
                             ) : (
                               <>
-                                <Confetti />
                                 <Alert
                                   showIcon={false}
                                   banner

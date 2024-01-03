@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Tabs, Input, Button, Comment, Tag, message, Breadcrumb, List } from "antd";
+import { Breadcrumb } from "antd";
 import { AppState } from "state";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -8,30 +8,12 @@ import { Dispatch } from "redux";
 import { routeToHref } from "config/routes";
 import LoginModal from "@/components/modal/loginModal";
 import NewUserModal from "@/components/modal/newUserModal";
-import { Card, notification } from "antd";
-import { Modal } from "antd";
-import { Collapse } from "antd";
-import { FireOutlined, FireFilled, ReadOutlined } from "@ant-design/icons";
 import * as action from "../../state/action";
 import Loader from "@/components/loader";
-import { Alert, Space } from 'antd';
-import { GetContestEligibleCategoriesTags, GetContestMetadata, GetContestStatus, GetDateString, getContestCountdownHeading } from "helpers/contest";
-import UploadContestArtworkPage from "@/components/contestArtworkPage";
 import Link from "next/link";
 import { useRoutesContext } from "components/routeContext";
-import { ContestSubmission } from "types/model/contest";
-import { Config } from "config/config";
 import Layout from "@/components/layout";
-import SampleTile from "@/components/sampleTile";
-import GenericActionBanner from "@/components/genericActionBanner";
-import CountdownTimer from "@/components/asset/countdownTimer";
 import Confetti from "@/components/asset/confettiAnimation";
-import GenericBreadcrumb from "@/components/genericBreadcrumb";
-
-const { TextArea } = Input;
-const { TabPane } = Tabs;
-const { Meta } = Card;
-const { Panel } = Collapse;
 
 const mapStateToProps = (state: AppState) => {
     const user = state.user.user;
@@ -92,8 +74,6 @@ const ContestPage = ({
         }
         setWindowWidth(window.innerWidth);
     }, [user, artistListData]);
-
-    const now = new Date();
 
     const getBreadcrum = (contestSlug: string) => {
         return (
@@ -166,6 +146,7 @@ const ContestPage = ({
                             <Loader />
                         ) : (
                             <>
+                                <Confetti />
                                 {getSubmissionComponent()}
                             </>
                         )}
