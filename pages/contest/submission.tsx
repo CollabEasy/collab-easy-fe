@@ -75,14 +75,23 @@ const ContestPage = ({
         setWindowWidth(window.innerWidth);
     }, [user, artistListData]);
 
-    const getBreadcrum = (contestSlug: string) => {
+    const getBreadcrum = (selectedSubmission) => {
+        let contestSlug = selectedSubmission["submission"].contestSlug;
+        let artistSlug = selectedSubmission.slug;
+        let artistName = selectedSubmission.firstName + " " + selectedSubmission.lastName;
         return (
             <Breadcrumb>
                 <Breadcrumb.Item>
                     <a href={toDiscover().href}>Home</a>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
+                    <a href={toAllContestPage().href}>Art Contests</a>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>
                     <a href={toContestPage(contestSlug, "details").as}>{contestSlug}</a>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                    <a href={toArtistProfile(artistSlug).as}>{artistName}</a>
                 </Breadcrumb.Item>
                 <Breadcrumb.Item>
                     submission
@@ -107,7 +116,7 @@ const ContestPage = ({
         return (
             <div className="genericPageLayout_container">
                 {windowWidth > 500 && (
-                    <>{getBreadcrum(selectedSubmission["submission"].contestSlug)}</>
+                    <>{getBreadcrum(selectedSubmission)}</>
                 )}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                     <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', overflow: 'auto', maxWidth: '100%' }}>
