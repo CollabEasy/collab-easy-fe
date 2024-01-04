@@ -236,10 +236,10 @@ const AllContestPage = ({
 							</div>
 						</div>
 					</div>
-					<div className="col-md-12 listingContainer">
+					<div className="col-md-12 allContestListingContainer">
 						{getAllContests(allContests)}
 					</div>
-					<div className="row listingContainer">
+					<div className="row allContestListingContainer">
 						<GenericActionBanner />
 					</div>
 				</>

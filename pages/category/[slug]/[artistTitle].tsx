@@ -319,19 +319,19 @@ const DiscoverArtist = ({
                   <h1 className="common-h1-style">
                     {artists.length > 1 ? artists.length : ""}{" "}
                     {categoryMetadata["artist-title"]} to collab
-                    with on your next big hit!<br></br>
+                    with on your next big hit 😎<br></br>
                   </h1>
                   <div className="heading-line"></div>
                   <div className="">
                     {artists.length > 0 ? (
                       <h3 className="common-h3-style">
                         Send them a collab request to achieve your creativity
-                        goals now.
+                        goals now!
                       </h3>
                     ) : (
                       <h3 className="common-h3-style">
                         Artists in similar categories might be interested to
-                        collab.
+                        collab!
                       </h3>
                     )}
                   </div>
@@ -356,7 +356,7 @@ const DiscoverArtist = ({
             </div>
           </div>
 
-          <div className="col-md-12 listingContainer">
+          <div className="col-md-12 categoryArtistsListingContainer">
             {getArtists(
               categoryMetadata["name"]
             )}
