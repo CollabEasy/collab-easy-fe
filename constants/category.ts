@@ -194,6 +194,7 @@ export const CATEGORY_METADATA = [
         "slug": "choreography",
         "name": "Choreography",
         "image": dancingImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/DFitmjT50k2Su2jz8wiKAA/People_dancing_at_disco_party.svg",
         "background-color": "#FFDAC1",
         "artist-title": "Choreographers",
         "similar-categories": [
@@ -333,6 +334,7 @@ export const CATEGORY_METADATA = [
         "slug": "dancing",
         "name": "Dancing",
         "image": dancingImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/DFitmjT50k2Su2jz8wiKAA/People_dancing_at_disco_party.svg",
         "background-color": "#FFDAC1",
         "artist-title": "Dancers",
         "similar-categories": [
@@ -589,6 +591,7 @@ export const CATEGORY_METADATA = [
         "slug": "painting",
         "name": "Painting",
         "image": paintingImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/sdMysQICx0unVu9ZwGtTcg/Happy_artist_with_palette_and_paintbrush.svg",
         "background-color": "#C7CEEA",
         "artist-title": "Painters",
         "similar-categories": [
@@ -806,6 +809,7 @@ export const CATEGORY_METADATA = [
         "slug": "singing",
         "name": "Singing",
         "image": singingImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/lbu0BWlI40WJVM9HyOLxAw/Online_party.svg",
         "background-color": "#FADAC1",
         "artist-title": "Singers",
         "similar-categories": [
@@ -830,6 +834,7 @@ export const CATEGORY_METADATA = [
         "slug": "sketching",
         "name": "Sketching",
         "image": sketchingImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/JGC1rOTfSE6-2aU1wYqZmQ/Woman_showing_portrait_of_man.svg",
         "background-color": "#FADAC1",
         "artist-title": "Sketchers",
         "similar-categories": [
@@ -903,6 +908,7 @@ export const CATEGORY_METADATA = [
         "slug": "standup-comedy",
         "name": "Standup Comedy",
         "image": singingImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/lbu0BWlI40WJVM9HyOLxAw/Online_party.svg",
         "background-color": "#FADAC1",
         "artist-title": "Standup Comedians",
         "similar-categories": [

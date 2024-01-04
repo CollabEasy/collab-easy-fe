@@ -140,15 +140,57 @@ const DiscoverArtist = ({
     return `${src}?w=${width}&q=${quality || 75}`;
   };
 
+  const getSimilarCategories = (artSlug) => {
+    const similarCategoriesHtml: JSX.Element[] = [];
+    GetCategoryMetadata(artSlug)["similar-categories"].forEach((category) => {
+      similarCategoriesHtml.push(
+        <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
+          <Button>
+            <Link
+              href={
+                toCategoryArtistList(
+                  category["slug"],
+                  GetCategoryArtistTitle(category["slug"])
+                ).as
+              }
+              passHref
+            >
+              {category["name"]}
+            </Link>
+          </Button>
+        </div>
+      );
+    });
+    return similarCategoriesHtml;
+  };
+
   const getArtists = (category) => {
     const resultArtists: JSX.Element[] = [];
     if (artists.length == 0) {
       return (
         <>
-          <div style={{ textAlign: "center", paddingTop: "20px" }}>
-            <h2 className="common-h2-style">
-              Sorry, no artists found for <b>{category}!</b>
-            </h2>
+          <div className="d-flex flex-column align-items-center text-center">
+            <Image
+              src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/dZg9sz3b3Uy6KzTwn0moUA/Page_not_found.svg"}
+              height={350}
+              width={350}
+              priority
+            />
+            <span>
+              Apologies, no artists found for {category}.
+              Artists in similar categories might be interested to collab.
+            </span>
+          </div>
+          <div className="centered-div">
+            {getSimilarCategories(artSlug).length > 0 && (
+              <div className="row-fluid">
+                <div className="col-lg-12 col-md-10 ">
+                  <div className="similar-categories-container">
+                    {getSimilarCategories(artSlug)}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </>
       );
@@ -312,7 +354,7 @@ const DiscoverArtist = ({
                 {getBreadcrum(categoryMetadata["name"])}
               </>
             }
-            
+
             <div className="discoverArtists__listingPageCoverContainer">
               <div className="row">
                 <div className="contest-heading-cnt col-xl-8 col-lg-8 col-md-10 col-sm-12">
