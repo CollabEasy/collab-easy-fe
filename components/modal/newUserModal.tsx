@@ -65,7 +65,7 @@ const NewUserModal = ({ user }: Props) => {
 
   return (
     <>
-      {modal === 1 && <RefferalCodeModal visible={visible} handleNext={handleNextModal} />}
+      {modal === 1 && <RefferalCodeModal handleNext={handleNextModal} />}
     </>
   );
 };

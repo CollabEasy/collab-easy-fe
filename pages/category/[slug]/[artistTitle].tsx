@@ -1,6 +1,6 @@
 import Layout from "@/components/layout";
 import Loader from "@/components/loader";
-import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
+import { CheckOutlined, CloseOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { Breadcrumb, Button, Card } from "antd";
 import { routeToHref } from "config/routes";
 import { GetUserSkills } from "helpers/artistHelper";
@@ -82,6 +82,7 @@ const DiscoverArtist = ({
   const [windowWidth, setWindowWidth] = useState(-1);
 
   const {
+    toFAQ,
     toDiscover,
     toAllCategoryPage,
     toArtistProfile,
@@ -108,6 +109,7 @@ const DiscoverArtist = ({
   };
   const [collabRequestDetails, setCollabRequestDetails] =
     useState(emptyCollabDetails);
+  const [categoryMetadata, setCategoryMetadata] = useState({});
 
   useEffect(() => {
     // we are not using selectedcategorySlug here because if a user is coming directly from a URL,
@@ -118,6 +120,8 @@ const DiscoverArtist = ({
         setShowProfileModal(true);
       }
     }
+    let categoryMetadata = GetCategoryMetadata(artSlug);
+    setCategoryMetadata(categoryMetadata)
   }, [artSlug]);
 
   useEffect(() => {
@@ -136,31 +140,7 @@ const DiscoverArtist = ({
     return `${src}?w=${width}&q=${quality || 75}`;
   };
 
-  const getSimilarCategories = (artSlug) => {
-    const similarCategoriesHtml: JSX.Element[] = [];
-    GetCategoryMetadata(artSlug)["similar-categories"].forEach((category) => {
-      similarCategoriesHtml.push(
-        <div className="similar-catgeory-chip" style={{ paddingLeft: "2px", paddingTop: "15px" }}>
-          <Button>
-            <Link
-              href={
-                toCategoryArtistList(
-                  category["slug"],
-                  GetCategoryArtistTitle(category["slug"])
-                ).as
-              }
-              passHref
-            >
-              {category["name"]}
-            </Link>
-          </Button>
-        </div>
-      );
-    });
-    return similarCategoriesHtml;
-  };
-
-  const getArtists = (color, category) => {
+  const getArtists = (category) => {
     const resultArtists: JSX.Element[] = [];
     if (artists.length == 0) {
       return (
@@ -194,7 +174,7 @@ const DiscoverArtist = ({
                 {artist.first_name} {artist?.last_name}
               </h5>
               {artist.country && (
-                <div className="d-flex flex-row artist-location">
+                <div className="artist-location">
                   <span>{artist.country}</span>
                   {artist.state && <span>, {artist.state}</span>}
                   {artist.city && <span>, {artist.city}</span>}
@@ -297,6 +277,25 @@ const DiscoverArtist = ({
     );
   };
 
+  const getHeaderImage = () => {
+    const imageUrl = categoryMetadata["cdn-image"];
+
+    if (!imageUrl) {
+      return null; // or return a placeholder image or handle the case when the image URL is not available
+    }
+
+    return (
+      <Image
+        alt={categoryMetadata["artist-title"] + " available to collaborate."}
+        src={imageUrl}
+        height={300}
+        width={400}
+        objectFit="contain"
+        priority
+      />
+    );
+  }
+
   return (
     <Layout
       title={GetCategoryMetadata(artSlug)["listing-data"]["meta-title"]}
@@ -307,72 +306,60 @@ const DiscoverArtist = ({
         <Loader />
       ) : (
         <>
-          <div className="fluid discoverArtists__listingPageContainer">
-            {windowWidth > 500 && (
-              <>{getBreadcrum(GetCategoryMetadata(artSlug)["name"])}</>
-            )}
+          <div className="discoverArtists__listingPageContainer">
+            {windowWidth > 500 &&
+              <>
+                {getBreadcrum(categoryMetadata["name"])}
+              </>
+            }
+            
             <div className="discoverArtists__listingPageCoverContainer">
-              <div className="row ">
-                <div
-                  className="col-sm-8"
-                  style={{
-                    backgroundColor:
-                      GetCategoryMetadata(artSlug)["background-color"],
-                  }}
-                >
-                  <div className="discoverArtists_desktopCoverTextContainer">
-                    <div>
-                      <h1 className="common-h1-style">
-                        {artists.length > 1 ? artists.length : ""}{" "}
-                        {GetCategoryMetadata(artSlug)["artist-title"]} to collab
-                        with on your next big hit!<br></br>
-                      </h1>
-                      {artists.length > 0 ? (
-                        <h3 className="common-h3-style">
-                          send them a collab request to achieve your creativity
-                          goals now.
-                        </h3>
-                      ) : (
-                        <h3 className="common-h3-style">
-                          artists in similar categories might be interested to
-                          collab.
-                        </h3>
-                      )}
+              <div className="row">
+                <div className="contest-heading-cnt col-xl-8 col-lg-8 col-md-10 col-sm-12">
+                  <h1 className="common-h1-style">
+                    {artists.length > 1 ? artists.length : ""}{" "}
+                    {categoryMetadata["artist-title"]} to collab
+                    with on your next big hit!<br></br>
+                  </h1>
+                  <div className="heading-line"></div>
+                  <div className="">
+                    {artists.length > 0 ? (
+                      <h3 className="common-h3-style">
+                        Send them a collab request to achieve your creativity
+                        goals now.
+                      </h3>
+                    ) : (
+                      <h3 className="common-h3-style">
+                        Artists in similar categories might be interested to
+                        collab.
+                      </h3>
+                    )}
+                  </div>
+                  <div className="current-contest-btn-cnt">
+                    <div className="how-it-works-cnt">
+                      <Link
+                        href={routeToHref(toFAQ())}
+                        passHref
+                      >
+                        <div className="how-cnt">
+                          <span>How it Works</span>
+                          <ArrowRightOutlined />
+                        </div>
+                      </Link>
                     </div>
                   </div>
                 </div>
-                <div
-                  className="col-sm-4"
-                  style={{
-                    backgroundColor:
-                      GetCategoryMetadata(artSlug)["background-color"],
-                  }}
-                >
-                  <Image
-                    alt="Image Alt"
-                    src={GetCategoryMetadata(artSlug)["image"]}
-                    layout="responsive"
-                    objectFit="contain" // Scale your image down to fit into the container
-                  />
+                <div className="col-sm-4 d-none d-lg-flex align-items-center justify-content-center">
+                  {getHeaderImage()}
                 </div>
               </div>
             </div>
+          </div>
 
-            {getSimilarCategories(artSlug).length > 0 && (
-              <div className="row-fluid">
-                <div className="col-lg-12 col-md-10 ">
-                  <div className="similar-categories-container">
-                    {getSimilarCategories(artSlug)}
-                  </div>
-                </div>
-              </div>
+          <div className="col-md-12 listingContainer">
+            {getArtists(
+              categoryMetadata["name"]
             )}
-            <div className="col-md-12 listingContainer">
-              {getArtists(
-                GetCategoryMetadata(artSlug)["background-color"],
-                GetCategoryMetadata(artSlug)["name"]
-              )}
-            </div>
           </div>
         </>
       )}

@@ -16,6 +16,7 @@ export const CATEGORY_METADATA = [
         "slug": "art-journaling",
         "name": "Art Journaling",
         "image": writerImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/iIYEOG9cDUqnMtEYNhMzjA/woman_writing_with_pencil.svg",
         "background-color": "#EDC5CD",
         "artist-title": "Art Journalers",
         "similar-categories": [
@@ -56,6 +57,7 @@ export const CATEGORY_METADATA = [
         "slug": "bullet-journaling",
         "name": "Bullet Journaling",
         "image": writerImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/iIYEOG9cDUqnMtEYNhMzjA/woman_writing_with_pencil.svg",
         "background-color": "#EDC5CD",
         "artist-title": "Bullet Journalers",
         "similar-categories": [
@@ -216,6 +218,7 @@ export const CATEGORY_METADATA = [
         "slug": "collage-making",
         "name": "Collage Making",
         "image": writerImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/iIYEOG9cDUqnMtEYNhMzjA/woman_writing_with_pencil.svg",
         "background-color": "#EDC5CD",
         "artist-title": "Collage Makers",
         "similar-categories": [
@@ -256,6 +259,7 @@ export const CATEGORY_METADATA = [
         "slug": "creative-journaling",
         "name": "Creative Journaling",
         "image": writerImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/iIYEOG9cDUqnMtEYNhMzjA/woman_writing_with_pencil.svg",
         "background-color": "#EDC5CD",
         "artist-title": "Creative Journalers",
         "similar-categories": [
@@ -292,6 +296,7 @@ export const CATEGORY_METADATA = [
         "slug": "creative-writing",
         "name": "Creative Writing",
         "image": writerImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/iIYEOG9cDUqnMtEYNhMzjA/woman_writing_with_pencil.svg",
         "background-color": "#EDC5CD",
         "artist-title": "Creative Writers",
         "similar-categories": [
@@ -412,6 +417,7 @@ export const CATEGORY_METADATA = [
         "slug": "guitar-playing",
         "name": "Guitar Playing",
         "image": musicImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/IuEd0lNnMUWWEp1TzV_anQ/Man_playing_music_on_the_piano.svg",
         "background-color": "#E2F0CB",
         "artist-title": "Guitar Players",
         "similar-categories": [],
@@ -483,6 +489,7 @@ export const CATEGORY_METADATA = [
         "slug": "journaling",
         "name": "Journaling",
         "image": writerImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/iIYEOG9cDUqnMtEYNhMzjA/woman_writing_with_pencil.svg",
         "background-color": "#EDC5CD",
         "artist-title": "Journalers",
         "similar-categories": [
@@ -562,6 +569,7 @@ export const CATEGORY_METADATA = [
         "slug": "musician",
         "name": "Musician",
         "image": musicImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/IuEd0lNnMUWWEp1TzV_anQ/Man_playing_music_on_the_piano.svg",
         "background-color": "#E2F0CB",
         "artist-title": "Musicians",
         "similar-categories": [],
@@ -656,6 +664,7 @@ export const CATEGORY_METADATA = [
         "slug": "photography",
         "name": "Photography",
         "image": cameramanImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/NMVd50KD8kW1sTfNDtjiPA/Man_with_giant_photo_camera.svg",
         "background-color": "#FFDAC1",
         "artist-title": "Photographers",
         "similar-categories": [
@@ -719,6 +728,7 @@ export const CATEGORY_METADATA = [
         "slug": "poetry",
         "name": "Poetry",
         "image": writerImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/iIYEOG9cDUqnMtEYNhMzjA/woman_writing_with_pencil.svg",
         "background-color": "#EDC5CD",
         "artist-title": "Poets",
         "similar-categories": [
@@ -755,6 +765,7 @@ export const CATEGORY_METADATA = [
         "slug": "scrapbooking",
         "name": "Scrapbooking",
         "image": writerImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/iIYEOG9cDUqnMtEYNhMzjA/woman_writing_with_pencil.svg",
         "background-color": "#EDC5CD",
         "artist-title": "Scrapbookers",
         "similar-categories": [
@@ -855,6 +866,7 @@ export const CATEGORY_METADATA = [
         "slug": "spoken-words",
         "name": "Spoken Words",
         "image": writerImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/iIYEOG9cDUqnMtEYNhMzjA/woman_writing_with_pencil.svg",
         "background-color": "#EDC5CD",
         "artist-title": "Poets",
         "similar-categories": [
@@ -915,6 +927,7 @@ export const CATEGORY_METADATA = [
         "slug": "writing",
         "name": "Writing",
         "image": writerImage,
+        "cdn-image": "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/iIYEOG9cDUqnMtEYNhMzjA/woman_writing_with_pencil.svg",
         "background-color": "#EDC5CD",
         "artist-title": "Writers",
         "similar-categories": [
