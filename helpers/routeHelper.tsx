@@ -7,6 +7,12 @@ export function GetCollabLink(slug) {
         : "");
 }
 
+export function GetRefferalLink(code) {
+    return (typeof window !== "undefined" && window.location.origin
+        ? window.location.origin + "/login?code=" + code
+        : "");
+}
+
 export function GetBlogUrl(url) {
     return (typeof window !== "undefined" && window.location.origin
         ? window.location.origin + url

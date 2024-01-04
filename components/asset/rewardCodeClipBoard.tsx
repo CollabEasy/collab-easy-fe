@@ -1,3 +1,4 @@
+import { GetRefferalLink } from 'helpers/routeHelper';
 import { useState, useEffect, useRef } from 'react';
 
 const RewardCodeClipBoard = ({ code }) => {
@@ -7,7 +8,7 @@ const RewardCodeClipBoard = ({ code }) => {
 
     const handleCopyClick = () => {
         if (textRef.current) {
-            navigator.clipboard.writeText(textRef.current.value);
+            navigator.clipboard.writeText(GetRefferalLink(textRef.current.value));
             setIsCopied(true);
             setTimeout(() => {
                 setIsCopied(false);

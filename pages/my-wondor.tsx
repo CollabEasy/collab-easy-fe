@@ -105,13 +105,13 @@ const MyWondorPage = ({
                     <div className="text-center">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
 
-                        <div className="container">
-                            <div className="artistProfile__profileCoverContainer">
+                        <div className="artistProfile__profileCoverContainer">
+                            <div className="profileCoverContainer">
                                 <div className="graph"></div>
                             </div>
+
                             <ProfilePicture isSelf={true} userProfileOpened={user} />
                         </div>
-
 
                         <div className="col-md-8 col-lg-6 col-xl-5 p-0 mx-auto">
                             <h4 className="common-h4-style font-weight-bold my-3">{getWelcomeHeading()}</h4>
