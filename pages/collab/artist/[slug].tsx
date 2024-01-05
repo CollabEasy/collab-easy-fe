@@ -75,7 +75,6 @@ const SendCollabRequestPage = ({
     proposalId: undefined,
   };
 
-  const { toCollabPage } = useRoutesContext();
   const [isSelf, setIsSelf] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
 
@@ -85,9 +84,17 @@ const SendCollabRequestPage = ({
   useEffect(() => {
     fetchBasicUser(slug.toString());
     fetchCollabsWithUser(slug.toString());
-  }, []);
+  }, [user]);
 
-  
+  useEffect(() => {
+    if (user.slug === slug) {
+      setIsSelf(true);
+
+    } else {
+      setIsSelf(false);
+    }
+  }, [user, slug]);
+
   if (otherUser === {}) {
     return <div />;
   }
@@ -97,20 +104,23 @@ const SendCollabRequestPage = ({
   }
 
 
-  const getUserName = (user: User) => {
-    return user.first_name + " " + user.last_name;
+  const getUserName = (isSelf: boolean, user) => {
+    if (isSelf) {
+      return user.first_name + " " + user.last_name;
+    } 
+    return user?.firstName + " " + user?.lastName;
   }
 
   return (
     <Layout
       title={
         "Send collab request to " +
-        (isSelf ? getUserName(user) : getUserName(otherUser)) +
+        (isSelf ? getUserName(isSelf, user) : getUserName(isSelf, otherUser)) +
         " | Wondor"
       }
       name={"description"}
       content={
-        "Work with " + (isSelf ? getUserName(user) : getUserName(otherUser)) +
+        "Work with " + (isSelf ? getUserName(isSelf, user) : getUserName(isSelf, otherUser)) +
         ". Send them a collaboration request | Wondor"
       }
     >
