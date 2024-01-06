@@ -2,14 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import { Button, Result } from "antd";
-import Layout from "../layout";
 import { AppState } from "state";
-import Image from "next/image";
-import LoginModal from "../modal/loginModal";
-import NewUserModal from "../modal/newUserModal";
 import { LoginModalDetails } from "types/model";
 import { openLoginModalAction, setCurrentPathName } from "state/action";
-import loginImage from "../../public/images/login.svg"
 import router from "next/router";
 
 const mapStateToProps = (state: AppState) => {

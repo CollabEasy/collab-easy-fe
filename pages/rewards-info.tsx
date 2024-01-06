@@ -74,15 +74,6 @@ const RewardsInfoPage = ({
             content={"Learn how to earn reward points and redeem them for real money. Join Wondor now to start earning."}
 
         >
-            {loginModalDetails.openModal && !user.new_user && (
-                <LoginModal />
-            )
-            }
-            {showProfileModal && (
-                <NewUserModal />
-            )
-            }
-
             <>
                 <div className="rewardsInfoPage_listingPagecontainer">
                     {windowWidth > 500 &&

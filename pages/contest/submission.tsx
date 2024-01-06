@@ -50,7 +50,7 @@ const ContestPage = ({
     allSubmissions,
     isFetchingSubmissions,
     artistListData,
-    fetchContestSubmissions
+    fetchContestSubmissions,
 }: Props) => {
 
     const router = useRouter();
@@ -146,9 +146,6 @@ const ContestPage = ({
             }
         >
             <>
-                {loginModalDetails.openModal && !user.new_user && <LoginModal />}
-                {showProfileModal && <NewUserModal />}
-
                 {
                     isFetchingSubmissions ?
                         (
@@ -158,7 +155,8 @@ const ContestPage = ({
                                 <Confetti />
                                 {getSubmissionComponent()}
                             </>
-                        )}
+                        )
+                }
             </>
         </Layout>
     );

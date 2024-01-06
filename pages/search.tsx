@@ -82,15 +82,6 @@ const MySearchPage = ({
             content={"Search artists who are available to collaborate, exiciting collaboration proposals etc on Wondor."}
 
         >
-            {loginModalDetails.openModal && !user.new_user && (
-                <LoginModal />
-            )
-            }
-            {showProfileModal && (
-                <NewUserModal />
-            )
-            }
-
             <>
                 <div className="searchPageContainer">
                     <div className="searchPageContent">

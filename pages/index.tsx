@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-key */
 
-import NewUserModal from "../components/modal/newUserModal";
-import LoginModal from "../components/modal/loginModal";
+import router, { useRouter } from "next/router";
 import Layout from "../components/layout";
 import Link from "next/link";
-import { Button, Collapse } from "antd";
-import { UpOutlined, DownOutlined, CaretDownOutlined } from '@ant-design/icons';
+import { Collapse } from "antd";
+import { CaretDownOutlined } from '@ant-design/icons';
 import { Dispatch } from "redux";
 import { connect, ConnectedProps } from "react-redux";
 import Image from "next/image";
@@ -15,8 +14,7 @@ import { updateLoginData } from "state/action";
 import React, { useEffect, useState } from "react";
 import { LoginModalDetails, User } from "types/model";
 import { AppState } from "types/states";
-import { openLoginModalAction, resetUserLoggedIn } from "state/action";
-import api from "api/client";
+import { openLoginModalAction } from "state/action";
 import { Carousel } from 'antd';
 import { GetCategoryArtistTitle } from "helpers/categoryHelper";
 import * as actions from "state/action";
@@ -49,6 +47,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(updateLoginData(loginDetails)),
   openLoginModalAction: () => dispatch(openLoginModalAction()),
   setShowCreateOrUpdateProposalModal: (show: boolean) => dispatch(actions.setShowCreateOrUpdateProposalModal(show)),
+  setCurrentPathName: (path: string) => dispatch(actions.setCurrentPathName(path)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -68,6 +67,7 @@ const Home = ({
   showCreateOrEditProposalModal,
   openLoginModalAction,
   setShowCreateOrUpdateProposalModal,
+  setCurrentPathName,
 
   // Below is Content
   mainContent,
@@ -78,6 +78,8 @@ const Home = ({
   testimonialContent,
   generalFaqContent,
 }) => {
+  const router = useRouter();
+
   // const [showProfileModal, setShowProfileModal] = useState(false);
   // const [showRefferalCodeModal, setShowRefferalCodeModal] = useState(false);
   const {
@@ -116,7 +118,8 @@ const Home = ({
   const [proposalData, setProposalData] = useState(emptyProposalData);
 
   const openLoginModal = () => {
-    openLoginModalAction();
+    setCurrentPathName(router.asPath);
+    router.push("/login");
   };
 
   const getfaqCard = (faqContent) => {
@@ -660,9 +663,6 @@ const Home = ({
         "Wondor is your one-stop solution for all artsy needs. Find artists to collaborate with, manage your collabs, create proposals, find art ideas, and join monthly art competitions—all on Wondor, the all-in-one platform for singers, painters, graphic designers, and more. Sign up for free today and start exploring!"
       }
     >
-      {loginModalDetails.openModal && !user.new_user && <LoginModal />}
-
-      {isLoggedIn && <NewUserModal />}
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         {getMainContent()}

@@ -48,7 +48,8 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
 	fetchAllContests: () => dispatch(actions.fetchAllContests()),
-	openLoginModalAction: () => dispatch(actions.openLoginModalAction())
+	openLoginModalAction: () => dispatch(actions.openLoginModalAction()),
+	setCurrentPathName: (path: string) => dispatch(actions.setCurrentPathName(path)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -64,6 +65,7 @@ const AllContestPage = ({
 	isFetchingContest,
 	fetchAllContests,
 	openLoginModalAction,
+	setCurrentPathName,
 }: Props) => {
 	const { toContestPage, toFAQ, toArtistProfile } = useRoutesContext();
 	const [showProfileModal, setShowProfileModal] = useState(false);
@@ -172,7 +174,8 @@ const AllContestPage = ({
 	};
 
 	const openLoginModal = () => {
-		openLoginModalAction();
+		setCurrentPathName(router.asPath);
+    	router.push("/login");
 	};
 
 	return (
@@ -183,9 +186,6 @@ const AllContestPage = ({
 				"Participate in the Wondor monthly art contests and earn exclusive prizes for winning. Get all the information about the contests hosted every month. Earn reward points for participation. Join now!"
 			}
 		>
-			{loginModalDetails.openModal && !user.new_user && <LoginModal />}
-			{showProfileModal && <NewUserModal />}
-
 			{isFetchingContest ? (
 				<Loader />
 			) : (

@@ -4,15 +4,12 @@ import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import router, { useRouter } from "next/router";
 import { Dispatch } from "redux";
-import LoginModal from '@/components/modal/loginModal';
-import NewUserModal from '@/components/modal/newUserModal';
 import { useRoutesContext } from "components/routeContext";
 import { routeToHref } from "config/routes";
 import * as actions from "state/action";
 import Layout from "@/components/layout";
 import Link from "next/link";
 import GenericActionBanner from "@/components/asset/genericActionBanner";
-import avatarImage from "../public/images/avatar.png";
 import CollabLinkClipBoard from "@/components/asset/collabLinkClipBoard";
 import RewardCodeClipBoard from "@/components/asset/rewardCodeClipBoard";
 import ProfilePicture from "@/components/profilePicture";
@@ -29,6 +26,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     openLoginModalAction: () => dispatch(actions.openLoginModalAction()),
     resetUserLoggedIn: () => dispatch(actions.resetUserLoggedIn()),
     routeToMyWondor: (route: boolean) => dispatch(actions.routeToMyWondor(route)),
+    setCurrentPathName: (path: string) => dispatch(actions.setCurrentPathName(path)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -43,6 +41,7 @@ const MyWondorPage = ({
     routeToMyWondor,
     openLoginModalAction,
     resetUserLoggedIn,
+    setCurrentPathName,
 }: Props) => {
 
     const router = useRouter();
@@ -68,7 +67,8 @@ const MyWondorPage = ({
     }, [user]);
 
     const openLoginModal = () => {
-        openLoginModalAction();
+        setCurrentPathName(router.asPath);
+        router.push("/login")
     };
 
     const logoutUser = () => {
@@ -91,14 +91,6 @@ const MyWondorPage = ({
             content={"My wondor is your go to place to find everything you can need to make your experience on wondor friction less."}
 
         >
-            {loginModalDetails.openModal && !user.new_user && (
-                <LoginModal />
-            )
-            }
-            {showProfileModal && (
-                <NewUserModal />
-            )
-            }
             {/* https://bootdey.com/snippets/view/bs4-social-profile-header#html */}
             <div className="my-wondor-container">
                 <div className="bg-white">
