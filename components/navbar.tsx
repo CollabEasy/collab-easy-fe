@@ -79,7 +79,13 @@ const NavBar = ({
     return window.matchMedia("only screen and (max-width: 767px)").matches;
   };
 
-  const { toWondorHome, toArtistPortal, toMyWondorPage, toAnalyticsPage } =
+  const {
+    toWondorHome,
+    toArtistPortal,
+    toMyWondorPage,
+    toAnalyticsPage,
+    toMySearchPage,
+  } =
     useRoutesContext();
   const { toGetInspired } = useRoutesContext();
 
@@ -263,11 +269,10 @@ const NavBar = ({
               </div>
               {showLoginOptions && (
                 <div
-                  className={`login-options-container ${
-                    checkDevice()
+                  className={`login-options-container ${checkDevice()
                       ? "animate__animated animate__slideInRight"
                       : ""
-                  }`}
+                    }`}
                 >
                   <div className={"login-mobile-userdetails"}>
                     {user?.profile_pic_url ? (
@@ -280,6 +285,17 @@ const NavBar = ({
                     )}
                   </div>
                   <div className="common-login-option">
+                    <Link
+                      href={routeToHref(toMySearchPage())}
+                      passHref
+                    >
+                      <div
+                        className="selected-option-shadow settings-option"
+                        onClick={() => setShowLoginOptions(false)}
+                      >
+                        <span className="f-14 common-text-style">Search</span>
+                      </div>
+                    </Link>
                     <Link
                       href={routeToHref(toArtistPortal("profile"))}
                       passHref
@@ -341,7 +357,7 @@ const NavBar = ({
               showIcon={false}
               banner
               closable
-              style={{ backgroundColor: 'black'}}
+              style={{ backgroundColor: 'black' }}
               message={
                 <span style={{ color: 'white' }}>
                   Checkout latest themes and ideas for your upcoming content{" "}

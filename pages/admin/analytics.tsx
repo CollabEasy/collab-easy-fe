@@ -15,11 +15,13 @@ import { ContestEntry } from "types/model/contest";
 import ContestModal from "@/components/modal/contestModal";
 import { IsAdmin } from "helpers/helper";
 import { routeToHref } from "config/routes";
+import { useRouter } from "next/router";
 import { GetContestStatus } from "helpers/contest";
 import { useRoutesContext } from "components/routeContext";
 import { CategoryEntry } from "types/states/category";
 import CategoryModal from "@/components/modal/categoryModal";
 import EmailTest from "@/components/emailTest";
+import Layout from "@/components/layout";
 
 const mapStateToProps = (state: AppState) => ({
   analytics: state.analytics,
@@ -44,8 +46,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
   setShowContestModal: (show: boolean) =>
     dispatch(actions.setShowContestModal(show)),
-  
-  setShowCategoryModal: (show: boolean) => 
+
+  setShowCategoryModal: (show: boolean) =>
     dispatch(actions.setShowCategoryModal(show)),
 
 });
@@ -94,10 +96,6 @@ const AnalyticsPage = ({
   Chart.register(CategoryScale);
   const startDate = new Date();
   const currentDate = format(new Date(), "yyyy-MM-dd");
-
-  if (!IsAdmin(user.user.email)) {
-    router.push("/");
-  }
 
   startDate.setDate(new Date().getDate() - 30);
   const startDateStr = format(startDate, "yyyy-MM-dd");
@@ -249,109 +247,120 @@ const AnalyticsPage = ({
 
 
   return (
-    <>
-      {analytics.users.isFetchingUserAnalytics || isFetchingContest ? (
-        <Loader />
+    <Layout
+      title={"Admin @ Wondor | Wondor"}
+      name={"description"}
+      content={"This is the portal for the admin @ Wondor."}
+
+    >
+      {!IsAdmin(user.user.email) ? (
+        <div className="genericPageLayout_container">
+          <p className="text-align-center">You are not authorized to see this page!</p>
+        </div>
       ) : (
         <>
-          <div className="analytics__pageContainer">
-            <h1 className="common-h1-style text-center">Total Users : {analytics.users.totalUsers}</h1>
-            <div className="analytics__pageContainer">
-              <Line
-                data={chartData}
-                options={{
-                  plugins: {
-                    title: {
-                      display: true,
-                      text: "Users gained in last " + peeklastDays + " days",
-                    },
-                    legend: {
-                      display: false,
-                    },
-                  },
-                  scales: {
-                    y: {
-                      title: {
-                        display: true,
-                        text: '# of Users'
+          {analytics.users.isFetchingUserAnalytics || isFetchingContest ? (
+            <Loader />
+          ) : (
+            <>
+              <div className="analytics__pageContainer">
+                <h1 className="common-h1-style text-center">Total Users : {analytics.users.totalUsers}</h1>
+                <div className="analytics__pageContainer">
+                  <Line
+                    data={chartData}
+                    options={{
+                      plugins: {
+                        title: {
+                          display: true,
+                          text: "Users gained in last " + peeklastDays + " days",
+                        },
+                        legend: {
+                          display: false,
+                        },
                       },
-                      min: 0,
-                      ticks: {
-                        stepSize: 1
+                      scales: {
+                        y: {
+                          title: {
+                            display: true,
+                            text: '# of Users'
+                          },
+                          min: 0,
+                          ticks: {
+                            stepSize: 1
+                          }
+                        }
                       }
-                    }
-                  }
-                }}
-              />
-            </div>
-          </div>
-          <div className="analytics__pageContainer">
-            <h1 className="common-h1-style text-center">Total contest : {contests.contestCount}</h1>
-            <div className="col-md-12 listingContainer" style={{ paddingLeft: "20px", paddingRight: "20px" }}>
-              {getAllContests(contests.contest)}
-            </div>
-            <div className="analytics__contestButtonContainer">
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="common-medium-btn"
-                style={{ height: 'auto', margin: '20px' }}
-                onClick={ShowContestEntryModal}
-              >
-                Add contest
-              </Button>
-            </div>
-          </div>
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="analytics__pageContainer">
+                <h1 className="common-h1-style text-center">Total contest : {contests.contestCount}</h1>
+                <div className="col-md-12 listingContainer" style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+                  {getAllContests(contests.contest)}
+                </div>
+                <div className="analytics__contestButtonContainer">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="common-medium-btn"
+                    style={{ height: 'auto', margin: '20px' }}
+                    onClick={ShowContestEntryModal}
+                  >
+                    Add contest
+                  </Button>
+                </div>
+              </div>
 
-          <div className="analytics__pageContainer">
-            <h1 className="common-h1-style text-center">Total categories : {categories.length}</h1>
-            <div className="col-md-12 listingContainer" style={{ paddingLeft: "20px", paddingRight: "20px" }}>
-              {getCategories(categories)}
-            </div>
-            <div className="analytics__contestButtonContainer">
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="common-medium-btn"
-                style={{ height: 'auto', margin: '20px' }}
-                onClick={ShowNewCategoryModal}
-              >
-                Add category
-              </Button>
-            </div>
-          </div>
-          <div>
-            {showContestModal && (
-              <ContestModal
-                onCancel={() => {
-                  HideContestEntryModal();
-                }}
-                isViewMode={true}
-                contestEntry={contestEntryRequestDetails}
-              />
-            )}
-          </div>
-          <div>
-            {showCategoryModal && (
-              <CategoryModal
-                onCancel={() => {
-                  HideCatgeoryEntryModal();
-                }}
-                isViewMode={true}
-                categoryEntry={newCategoryDetails}
-              />
-            )}
-          </div>
+              <div className="analytics__pageContainer">
+                <h1 className="common-h1-style text-center">Total categories : {categories.length}</h1>
+                <div className="col-md-12 listingContainer" style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+                  {getCategories(categories)}
+                </div>
+                <div className="analytics__contestButtonContainer">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="common-medium-btn"
+                    style={{ height: 'auto', margin: '20px' }}
+                    onClick={ShowNewCategoryModal}
+                  >
+                    Add category
+                  </Button>
+                </div>
+              </div>
+              <div>
+                {showContestModal && (
+                  <ContestModal
+                    onCancel={() => {
+                      HideContestEntryModal();
+                    }}
+                    isViewMode={true}
+                    contestEntry={contestEntryRequestDetails}
+                  />
+                )}
+              </div>
+              <div>
+                {showCategoryModal && (
+                  <CategoryModal
+                    onCancel={() => {
+                      HideCatgeoryEntryModal();
+                    }}
+                    isViewMode={true}
+                    categoryEntry={newCategoryDetails}
+                  />
+                )}
+              </div>
 
-          <div className="analytics__pageContainer">
-          <h1 className="common-h1-style text-center">Send Email</h1>
-            <EmailTest ></EmailTest>
-          </div>
+              <div className="analytics__pageContainer">
+                <h1 className="common-h1-style text-center">Send Email</h1>
+                <EmailTest ></EmailTest>
+              </div>
+            </>
+          )}
         </>
-
-
       )}
-    </>
+    </Layout>
   );
 };
 
