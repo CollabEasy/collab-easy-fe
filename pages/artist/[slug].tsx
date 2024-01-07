@@ -77,7 +77,6 @@ const ArtistProfile = ({
       fetchOtherUser();
     }
     setShowLoader(false);
-    fetchArtistSocialProspectus(user.slug);
   }, [router.query, user.slug]);
 
   if (
