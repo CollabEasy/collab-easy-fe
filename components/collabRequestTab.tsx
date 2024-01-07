@@ -1,4 +1,5 @@
 import { Button, Collapse, Select, Switch, Table, Tabs } from "antd";
+import Checkbox from "antd/lib/checkbox/Checkbox";
 import { routeToHref } from "config/routes";
 import { GetCollabHeading } from "helpers/collabCardHelper";
 import Link from "next/link";
@@ -381,13 +382,14 @@ export const CollabRequestTab = ({
           </TabPane>
           <TabPane tab="List View" key="2">
             <div className="flex-row">
-              <Switch
-                loading={isFetchingCollabDetails}
+              <Checkbox
+                checked={!fetchAllCollabs}
                 onChange={() => {
                   setFetchAllCollabs(!fetchAllCollabs);
                 }}
-              />
-              <p>{fetchAllCollabs ? "Show Active" : "Show All"}</p>
+              >
+              Show Active 
+              </Checkbox>
             </div>
             <div className="padding20">{getCollabTimeline()}</div>
           </TabPane>
