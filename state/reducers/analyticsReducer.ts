@@ -7,6 +7,7 @@ const initialState: AnalyticsState = {
     isFetchingUserAnalytics: true,
     totalUsers: 0,
     datewiseUsers: [],
+    countryWiseData: [],
   },
   collabs: {
     isFetchingCollabAnalytics: true,
@@ -27,16 +28,19 @@ const analyticsReducer = (state = initialState, action): AnalyticsState => {
             isFetchingUserAnalytics: true,
             totalUsers: 0,
             datewiseUsers: [],
+            countryWiseData: [],
         }
       };
     case actionType.FETCH_USER_ANALYTICS_SUCCESS:
       const data = action.payload.data.data;
+      console.log("data : ", data);
       return {
         ...state,
         users: { 
             isFetchingUserAnalytics: false,
             totalUsers: data.totalUsers,
             datewiseUsers: data.dateWiseUsersList,
+            countryWiseData: data.countryWiseData,
         }
       };
     case actionType.FETCH_USER_ANALYTICS_FAILURE:
@@ -46,6 +50,7 @@ const analyticsReducer = (state = initialState, action): AnalyticsState => {
             isFetchingUserAnalytics: true,
             totalUsers: 0,
             datewiseUsers: [],
+            countryWiseData: [],
         }
       };
     case emailActionTypes.FETCH_ALL_EMAIL_ENUMS_SUCCESS:

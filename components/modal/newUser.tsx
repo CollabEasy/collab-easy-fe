@@ -9,13 +9,9 @@ import {
   Select,
 } from "antd";
 import "antd/dist/antd.css";
-import {
-  GetCountries,
-  GetState,
-  GetCity,
-} from "react-country-state-city";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import { GetCity, GetCountries, GetState } from "react-country-state-city";
 import { connect, ConnectedProps } from "react-redux";
 import { User } from "types/model";
 import { AppState } from "types/states";
@@ -94,10 +90,13 @@ const NewUser = ({
   const [stateid, setStateid] = useState(0);
   const [cityid, setCityid] = useState(0);
 
-  const [selectedCountry, setSelectedCountry] = useState(userDataCached.country || '');
-  const [selectedState, setSelectedState] = useState(userDataCached.state || '');
-  const [selectedCity, setSelectedCity] = useState(userDataCached.city || '');
-
+  const [selectedCountry, setSelectedCountry] = useState(
+    userDataCached.country || ""
+  );
+  const [selectedState, setSelectedState] = useState(
+    userDataCached.state || ""
+  );
+  const [selectedCity, setSelectedCity] = useState(userDataCached.city || "");
 
   const [countriesList, setCountriesList] = useState([]);
   const [stateList, setStateList] = useState([]);
@@ -124,14 +123,14 @@ const NewUser = ({
             setStateList(result);
           });
         }
-      })
+      });
       if (user?.state) {
         setSelectedState(user.state);
         stateList.forEach((state) => {
           if (state.name === user.state) {
             setStateid(state.id);
           }
-        })
+        });
         GetCity(countryid, stateid).then((result) => {
           setCityList(result);
         });
@@ -142,13 +141,11 @@ const NewUser = ({
     }
   }, [user.basic_info_complete, user.first_name, user.country, user.state]);
 
-
   useEffect(() => {
     GetCountries().then((result) => {
       setCountriesList(result);
     });
   }, []);
-
 
   // useEffect(() => {
   //   if (publishedCategories.length === 0) getAllCategories();
@@ -185,7 +182,7 @@ const NewUser = ({
   };
 
   if (user === undefined || user.artist_id === undefined || isFetchingUser) {
-    return <Loader />
+    return <Loader />;
   }
 
   // console.log("user : ", userDataCached);
@@ -195,10 +192,13 @@ const NewUser = ({
       <div className="newUser__textContainer">
         <h3 className="common-h1-style">Welcome aboard, {user.first_name}</h3>
         <p className="common-p-style">
-          To get you started with Wondor, let’s gather some basic information about
-          you first. <b style={{ color: "black" }}>Sharing this information will provide
-            fellow artists with a glimpse into who you are and help establish connections
-            within the creative community.</b>
+          To get you started with Wondor, let’s gather some basic information
+          about you first.{" "}
+          <b style={{ color: "black" }}>
+            Sharing this information will provide fellow artists with a glimpse
+            into who you are and help establish connections within the creative
+            community.
+          </b>
         </p>
       </div>
       <div className="artistProfile__profileCoverContainer">
@@ -217,9 +217,9 @@ const NewUser = ({
           initialValues={{
             ["first name"]: user.first_name,
             ["last name"]: user.last_name,
-            ["date of birth"]: moment(user.date_of_birth
-              ? user.date_of_birth
-              : currentDate),
+            ["date of birth"]: moment(
+              user.date_of_birth ? user.date_of_birth : currentDate
+            ),
             ["bio"]: user ? user.bio : "",
             ["email"]: user ? user.email : "",
             ["country"]: user ? user.country : "",
@@ -315,12 +315,12 @@ const NewUser = ({
                   showSearch
                   value={userDataCached ? userDataCached.country : ""}
                   onChange={(e) => {
-                    let currCountry = countriesList[countryid]
+                    let currCountry = countriesList[countryid];
                     countriesList.forEach((country) => {
                       if (country.name === e) {
                         currCountry = country;
                       }
-                    })
+                    });
 
                     setUserDataCached((prevState) => ({
                       ...prevState,
@@ -349,12 +349,12 @@ const NewUser = ({
                   showSearch
                   value={userDataCached ? userDataCached.state : ""}
                   onChange={(e) => {
-                    let currState = stateList[stateid]
+                    let currState = stateList[stateid];
                     stateList.forEach((state) => {
                       if (state.name === e) {
                         currState = state;
                       }
-                    })
+                    });
                     setUserDataCached((prevState) => ({
                       ...prevState,
                       state: currState.name,

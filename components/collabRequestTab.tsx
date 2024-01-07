@@ -1,4 +1,5 @@
 import { Button, Collapse, Select, Switch, Table, Tabs } from "antd";
+import { routeToHref } from "config/routes";
 import { GetCollabHeading } from "helpers/collabCardHelper";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
@@ -11,11 +12,11 @@ import {
   SendCollabRequest,
 } from "types/model";
 import * as action from "./../state/action";
+import CollabLinkClipBoard from "./asset/collabLinkClipBoard";
 import CollabCalender from "./collabCalender";
 import CollabDetailCard from "./collabDetailCard";
 import Loader from "./loader";
 import { useRoutesContext } from "./routeContext";
-import CollabLinkClipBoard from "./asset/collabLinkClipBoard";
 
 const { Option } = Select;
 
@@ -65,7 +66,7 @@ export const CollabRequestTab = ({
 
   const textRef = useRef(null);
   const [isCopied, setIsCopied] = useState(false);
-  
+
   const { toCollabPage } = useRoutesContext();
   const dispatch = useDispatch();
   const [allSentReceivedStatus, setAllSentReceivedStatus] = useState("all");
@@ -295,7 +296,15 @@ export const CollabRequestTab = ({
   const getCollabCards = (data: CollabRequestData[]) => {
     const result = [];
     data.forEach((element) => {
-      result.push(<CollabDetailCard showUser={true} collabDetails={element} />);
+      result.push(
+        <a
+          href={routeToHref(toCollabPage(element.id))}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <CollabDetailCard showUser={true} collabDetails={element} />
+        </a>
+      );
     });
     return result;
   };
@@ -337,9 +346,7 @@ export const CollabRequestTab = ({
   return (
     <>
       <div className="collabRequestTab__container">
-        <CollabLinkClipBoard
-          slug={user.slug}
-        />
+        <CollabLinkClipBoard slug={user.slug} />
 
         <Tabs
           centered

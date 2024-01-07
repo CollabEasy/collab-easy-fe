@@ -245,6 +245,22 @@ const AnalyticsPage = ({
     return <Table columns={columns} dataSource={updatedData} />;
   };
 
+  const getCountryWiseData = () => {
+    const countryColumns = [
+      { title: "Country", dataIndex: "country", key: "country" },
+      { title: "# Users", dataIndex: "users", key: "users" },
+    ];
+
+    const data = analytics.users.countryWiseData;
+    data.sort((a, b) => -a.count + b.count);
+    let updatedData = [];
+    data.forEach((element: {country: string, count: number}) => {
+      updatedData.push( {country: element.country, users: element.count})
+    });
+
+    return <Table columns={countryColumns} dataSource={updatedData} />;
+  }
+
 
   return (
     <Layout
@@ -294,6 +310,7 @@ const AnalyticsPage = ({
                   />
                 </div>
               </div>
+              <div className="analytics__pageContainer">{getCountryWiseData()}</div>
               <div className="analytics__pageContainer">
                 <h1 className="common-h1-style text-center">Total contest : {contests.contestCount}</h1>
                 <div className="col-md-12 listingContainer" style={{ paddingLeft: "20px", paddingRight: "20px" }}>
