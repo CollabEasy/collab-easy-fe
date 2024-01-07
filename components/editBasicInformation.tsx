@@ -7,13 +7,14 @@ import { Dispatch } from "redux";
 import ProfilePicture from "./profilePicture";
 import { SizeType } from "antd/lib/config-provider/SizeContext";
 import { updateArtistProfile } from "state/action";
-import { COUNTRIES, GENDERS } from "constants/constants";
+import { GENDERS } from "constants/constants";
 import { User } from "types/model";
+
 import {
-  GetCountryByName,
-  GetCountryCodeFromName,
-} from "helpers/artistSettingPageHelper";
-import Layout from "./layout";
+  GetCountries,
+  GetState,
+  GetCity,
+} from "react-country-state-city";
 
 const mapStateToProps = (state: AppState) => {
   return {
@@ -36,12 +37,23 @@ const EditBasicInformation = ({
   updateArtistProfile,
 }: Props) => {
   const [userDataCached, setUserDataCached] = useState<User>(user);
-  const [userCountryCode, setUserCountryCode] = useState<string>("");
-  const [userStateCode, setUserStateCode] = useState<string>("");
   const [showUserCity, setShowCity] = useState<boolean>(false);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
   );
+
+  const [countryid, setCountryid] = useState(0);
+  const [stateid, setStateid] = useState(0);
+  const [cityid, setCityid] = useState(0);
+
+  const [selectedCountry, setSelectedCountry] = useState(userDataCached.country || '');
+  const [selectedState, setSelectedState] = useState(userDataCached.state || '');
+  const [selectedCity, setSelectedCity] = useState(userDataCached.city || '');
+
+
+  const [countriesList, setCountriesList] = useState([]);
+  const [stateList, setStateList] = useState([]);
+  const [cityList, setCityList] = useState([]);
 
   const currentDate = moment(new Date());
 
@@ -57,18 +69,14 @@ const EditBasicInformation = ({
       return;
     }
 
-    // if (userCountryCode &&
-    //     userDataCached.country &&
-    //     userDataCached.state.length === 0 &&
-    //     State.getStatesOfCountry(userCountryCode).length !== 0) {
-    //     message.error("Please submit the state along with the country you are based in.");
-    //     return;
-    // }
+    if (userDataCached.country &&
+      userDataCached.state.length === 0 && stateList.length !== 0) {
+      message.error("Please submit the state along with the country you are based in.");
+      return;
+    }
 
-    // if (userCountryCode &&
-    //     userStateCode &&
-    //     userDataCached.city.length === 0 &&
-    //     City.getCitiesOfState(userCountryCode, userStateCode).length !== 0) {
+    // if ( userDataCached.country && userDataCached.state && userDataCached.city.length === 0 &&
+    //     cityList.length !== 0) {
     //     message.error("Please submit the city along with the state and country you are based in.");
     //     return;
     // }
@@ -76,27 +84,43 @@ const EditBasicInformation = ({
     updateArtistProfile(userDataCached);
   };
 
+  useEffect(() => {
+    if (user?.country) {
+      setSelectedCountry(user.country);
+      countriesList.forEach((country) => {
+        if (country.name === user.country) {
+          setCountryid(country.id);
+          GetState(country.id).then((result) => {
+            setStateList(result);
+          });
+        }
+      })
+      if (user?.state) {
+        setSelectedState(user.state);
+        stateList.forEach((state) => {
+          if (state.name === user.state) {
+            setStateid(state.id);
+          }
+        })
+        GetCity(countryid, stateid).then((result) => {
+          setCityList(result);
+        });
+      }
+      if (user?.city) {
+        setSelectedCity(user.city);
+      }
+    }
+  }, [user]);
+
+  useEffect(() => {
+    GetCountries().then((result) => {
+      setCountriesList(result);
+    });
+  }, []);
+
   const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
   };
-
-  useEffect(() => {
-    if (user?.country) {
-      let country = GetCountryByName(user.country);
-      setUserCountryCode(country["Iso2"]);
-      // if (user?.state) {
-      //     let states = State.getStatesOfCountry(userCountryCode);
-      //     states.forEach((state) => {
-      //         if (state["name"] === user.state) {
-      //             setUserStateCode(state["isoCode"]);
-      //         }
-      //     });
-      // }
-      // if (user?.city) {
-      //     setShowCity(true);
-      // }
-    }
-  }, [user]);
 
   function AboveEighteen(dob) {
     return moment().diff(dob, "years") >= 18;
@@ -205,88 +229,80 @@ const EditBasicInformation = ({
             showSearch
             value={userDataCached ? userDataCached.country : ""}
             onChange={(e) => {
+              let currCountry = countriesList[countryid]
+              countriesList.forEach((country) => {
+                if (country.name === e) {
+                  currCountry = country;
+                }
+              })
+
               setUserDataCached((prevState) => ({
                 ...prevState,
-                country: e,
+                country: currCountry.name,
                 state: "",
                 city: "",
               }));
-              // setUserCountryCode(GetCountryCodeFromName(e));
-              // setShowCity(false);
+              setSelectedCountry(currCountry.name);
+              setCountryid(currCountry.id);
+              GetState(currCountry.id).then((result) => {
+                setStateList(result);
+              });
             }}
           >
-            {COUNTRIES.map((country) => (
-              <Select.Option key={country.Iso2} value={country.Name}>
-                {country.Unicode} {country.Name}
+            {countriesList.map((item, index) => (
+              <Select.Option key={index} value={item.name}>
+                {item.emoji} {item.name}
               </Select.Option>
             ))}
           </Select>
         </Form.Item>
         <Form.Item label="State">
-          <Input
+          <Select
+            showSearch
             value={userDataCached ? userDataCached.state : ""}
             onChange={(e) => {
-              setUserDataCached((prevState) => ({
-                ...prevState,
-                state: e.target.value,
-              }));
-            }}
-          />
-        </Form.Item>
-        <Form.Item label="City">
-          <Input
-            value={userDataCached ? userDataCached.city : ""}
-            onChange={(e) => {
-              setUserDataCached((prevState) => ({
-                ...prevState,
-                city: e.target.value,
-              }));
-            }}
-          />
-        </Form.Item>
 
-        {/* <Form.Item label="State">
-                    <Select
-                        showSearch
-                        value={userDataCached ? userDataCached.state : ""}
-                        onChange={(e) => {
-                            setUserDataCached((prevState) => ({
-                                ...prevState,
-                                state: State.getStateByCodeAndCountry(e, userCountryCode).name,
-                                city: "",
-                            }));
-                            setUserStateCode(e);
-                            if (City.getCitiesOfState(userCountryCode, e).length !== 0) {
-                                setShowCity(true);
-                            }
-                        }}
-                    >
-                        {State.getStatesOfCountry(userCountryCode).map((state) => (
-                            <Select.Option key={state.name} value={state.isoCode}>
-                                {state.name}
-                            </Select.Option>
-                        ))}
-                    </Select>
-                </Form.Item>
-                {showUserCity && <Form.Item label="City">
-                    <Select
-                        showSearch
-                        value={userDataCached ? userDataCached.city : ""}
-                        onChange={(e) => {
-                            setUserDataCached((prevState) => ({
-                                ...prevState,
-                                city: e,
-                            }));
-                        }}
-                    >
-                        {City.getCitiesOfState(userCountryCode, userStateCode).map((city) => (
-                            <Select.Option key={city.name} value={city.name}>
-                                {city.name}
-                            </Select.Option>
-                        ))}
-                    </Select>
-                </Form.Item>
-                } */}
+              let currState = stateList[stateid]
+              stateList.forEach((state) => {
+                if (state.name === e) {
+                  currState = state;
+                }
+              })
+              setUserDataCached((prevState) => ({
+                ...prevState,
+                state: currState.name,
+                city: "",
+              }));
+              setSelectedState(currState.name);
+              GetCity(countryid, currState.id).then((result) => {
+                setCityList(result);
+              });
+              if (cityList.length !== 0) {
+                setShowCity(true);
+              }
+            }}
+          >
+            {stateList.map((item, index) => (
+              <Select.Option key={index} value={item.name}>
+                {item.name}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+        {showUserCity &&
+          <Form.Item label="City">
+            <Input
+              value={userDataCached ? userDataCached.city : ""}
+              onChange={(e) => {
+                setUserDataCached((prevState) => ({
+                  ...prevState,
+                  city: e.target.value,
+                }));
+              }}
+            />
+          </Form.Item>
+        }
+
         <Form.Item label="Bio">
           <Input.TextArea
             value={userDataCached ? userDataCached.bio : ""}

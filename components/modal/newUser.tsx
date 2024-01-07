@@ -9,11 +9,11 @@ import {
   Select,
 } from "antd";
 import "antd/dist/antd.css";
-import { COUNTRIES } from "constants/constants";
 import {
-  GetCountryByName,
-  GetCountryCodeFromName,
-} from "helpers/artistSettingPageHelper";
+  GetCountries,
+  GetState,
+  GetCity,
+} from "react-country-state-city";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
@@ -87,10 +87,21 @@ const NewUser = ({
   const [selectedCategories, setSelectedCategories] = useState("");
   const [collaborationCheck, setCollaborationCheck] = useState(false);
   const [userName, setUserName] = useState("");
-  const [userCountryCode, setUserCountryCode] = useState<string>("");
-  const [userStateCode, setUserStateCode] = useState<string>("");
   const [showUserCity, setShowCity] = useState<boolean>(false);
   const windowWidth = 1000;
+
+  const [countryid, setCountryid] = useState(0);
+  const [stateid, setStateid] = useState(0);
+  const [cityid, setCityid] = useState(0);
+
+  const [selectedCountry, setSelectedCountry] = useState(userDataCached.country || '');
+  const [selectedState, setSelectedState] = useState(userDataCached.state || '');
+  const [selectedCity, setSelectedCity] = useState(userDataCached.city || '');
+
+
+  const [countriesList, setCountriesList] = useState([]);
+  const [stateList, setStateList] = useState([]);
+  const [cityList, setCityList] = useState([]);
 
   useEffect(() => {
     if (user && user.basic_info_complete) {
@@ -105,18 +116,39 @@ const NewUser = ({
       setUserName(name);
     }
     if (user?.country) {
-      let country = GetCountryByName(user.country);
-      setUserCountryCode(country["Iso2"]);
-      // if (user?.state) {
-      //   let states = State.getStatesOfCountry(userCountryCode);
-      //   states.forEach((state) => {
-      //     if (state["name"] === user.state) {
-      //       setUserStateCode(state["isoCode"]);
-      //     }
-      //   });
-      // }
+      setSelectedCountry(user.country);
+      countriesList.forEach((country) => {
+        if (country.name === user.country) {
+          setCountryid(country.id);
+          GetState(country.id).then((result) => {
+            setStateList(result);
+          });
+        }
+      })
+      if (user?.state) {
+        setSelectedState(user.state);
+        stateList.forEach((state) => {
+          if (state.name === user.state) {
+            setStateid(state.id);
+          }
+        })
+        GetCity(countryid, stateid).then((result) => {
+          setCityList(result);
+        });
+      }
+      if (user?.city) {
+        setSelectedCity(user.city);
+      }
     }
-  }, [user.basic_info_complete, user.first_name, user.country]);
+  }, [user.basic_info_complete, user.first_name, user.country, user.state]);
+
+
+  useEffect(() => {
+    GetCountries().then((result) => {
+      setCountriesList(result);
+    });
+  }, []);
+
 
   // useEffect(() => {
   //   if (publishedCategories.length === 0) getAllCategories();
@@ -164,9 +196,9 @@ const NewUser = ({
         <h3 className="common-h1-style">Welcome aboard, {user.first_name}</h3>
         <p className="common-p-style">
           To get you started with Wondor, let’s gather some basic information about
-          you first. <b style={{color: "black"}}>Sharing this information will provide 
-          fellow artists with a glimpse into who you are and help establish connections 
-          within the creative community.</b>
+          you first. <b style={{ color: "black" }}>Sharing this information will provide
+            fellow artists with a glimpse into who you are and help establish connections
+            within the creative community.</b>
         </p>
       </div>
       <div className="artistProfile__profileCoverContainer">
@@ -191,6 +223,7 @@ const NewUser = ({
             ["bio"]: user ? user.bio : "",
             ["email"]: user ? user.email : "",
             ["country"]: user ? user.country : "",
+            ["state"]: user ? user.state : "",
           }}
         >
           <Row gutter={16}>
@@ -282,33 +315,66 @@ const NewUser = ({
                   showSearch
                   value={userDataCached ? userDataCached.country : ""}
                   onChange={(e) => {
+                    let currCountry = countriesList[countryid]
+                    countriesList.forEach((country) => {
+                      if (country.name === e) {
+                        currCountry = country;
+                      }
+                    })
+
                     setUserDataCached((prevState) => ({
                       ...prevState,
-                      country: e,
+                      country: currCountry.name,
+                      state: "",
+                      city: "",
                     }));
-                    setUserCountryCode(GetCountryCodeFromName(e));
-                    setShowCity(false);
+                    setSelectedCountry(currCountry.name);
+                    setCountryid(currCountry.id);
+                    GetState(currCountry.id).then((result) => {
+                      setStateList(result);
+                    });
                   }}
                 >
-                  {COUNTRIES.map((country) => (
-                    <Select.Option key={country.Iso2} value={country.Name}>
-                      {country.Unicode} {country.Name}
+                  {countriesList.map((item, index) => (
+                    <Select.Option key={index} value={item.name}>
+                      {item.emoji} {item.name}
                     </Select.Option>
                   ))}
                 </Select>
               </Form.Item>
             </Col>
             <Col sm={7} xs={24}>
-              <Form.Item label="State" style={{}}>
-                <Input
+              <Form.Item name="state" label="State" style={{}}>
+                <Select
+                  showSearch
                   value={userDataCached ? userDataCached.state : ""}
                   onChange={(e) => {
+                    let currState = stateList[stateid]
+                    stateList.forEach((state) => {
+                      if (state.name === e) {
+                        currState = state;
+                      }
+                    })
                     setUserDataCached((prevState) => ({
                       ...prevState,
-                      state: e.target.value,
+                      state: currState.name,
+                      city: "",
                     }));
+                    setSelectedState(currState.name);
+                    GetCity(countryid, currState.id).then((result) => {
+                      setCityList(result);
+                    });
+                    if (cityList.length !== 0) {
+                      setShowCity(true);
+                    }
                   }}
-                />
+                >
+                  {stateList.map((item, index) => (
+                    <Select.Option key={index} value={item.name}>
+                      {item.name}
+                    </Select.Option>
+                  ))}
+                </Select>
               </Form.Item>
             </Col>
             <Col sm={8} xs={24}>
