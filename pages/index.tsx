@@ -252,9 +252,8 @@ const Home = ({
     return (
       <div className="row centered-div">
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-          <p className="common-p-style" style={{ textAlign: "center"}}>
+          <p className="common-p-style" style={{ textAlign: "center", textDecoration: "underline"}}>
             Popular Collaboration Categories
-            <div className="paragraph-line"></div>
           </p>
           <div className="scroll-container">
             <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
@@ -308,9 +307,8 @@ const Home = ({
     return (
       <div className="row centered-div">
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-          <p className="common-p-style" style={{ textAlign: "center" }}>
+          <p className="common-p-style" style={{ textAlign: "center", textDecoration: "underline" }}>
             Available Collaborators
-            <div className="paragraph-line"></div>
           </p>
           <div className="scroll-container">
             <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
