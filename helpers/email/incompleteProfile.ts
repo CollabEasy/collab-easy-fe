@@ -69,7 +69,7 @@ export const sendIncompleteProfileEmail = (user: User) => {
                                              <table class="m_image_block m_block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
                                                 <tr>
                                                    <td class="m_pad" style="width:100%;padding-right:0;padding-left:0">
-                                                      <div class="m_alignment" align="center" style="line-height:10px"><img class="m_big" src="https://ci3.googleusercontent.com/proxy/yuXQFw7maHOTLvl65wAmCAMj2rw0YTUJoI20aJdvfdvPSRG_tgVre5Z7MWacg-nuhWus-6Qcbl0ykY3iHxbQBJBDf4VOS5sCQ1wvhYtAgA=s0-d-e1-ft#https://wondor-assets.s3.us-east-2.amazonaws.com/landing.png" style="display:block;height:auto;border:0;width:590px;max-width:100%" width="590"></div>
+                                                      <div class="m_alignment" align="center" style="line-height:10px"><img class="m_big" src="https://ci3.googleusercontent.com/proxy/yuXQFw7maHOTLvl65wAmCAMj2rw0YTUJoI20aJdvfdvPSRG_tgVre5Z7MWacg-nuhWus-6Qcbl0ykY3iHxbQBJBDf4VOS5sCQ1wvhYtAgA=s0-d-e1-ft#https://wondor-assets-new.s3.us-west-2.amazonaws.com/landing.png" style="display:block;height:auto;border:0;width:590px;max-width:100%" width="590"></div>
                                                    </td>
                                                 </tr>
                                              </table>

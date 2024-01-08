@@ -6,6 +6,9 @@ const getConfig = () => {
     method: "get",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers":
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization",
     },
   };
 };
@@ -17,6 +20,9 @@ const postConfig = (dataToSend) => {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       "content-type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers":
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization",
     },
   };
 };
@@ -112,8 +118,8 @@ export const getArtistData = async (): Promise<User> => {
   return result.data as User;
 };
 
-export const fetchProfileCompleteStatus = async() => {
+export const fetchProfileCompleteStatus = async () => {
   const config = getConfig();
   const result = await api.call<any>("api/v1/artist/profile/complete", config);
   return result;
-}
+};

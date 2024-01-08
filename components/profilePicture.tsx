@@ -132,7 +132,7 @@ const ProfilePicture = ({
         className={`artistProfile_profileImage${showUploadingLoader ? "Uploading" : ""
           }`}
         loader={prismicLoader}
-        src={user?.profile_pic_url ?? "https://wondor-assets.s3.us-east-2.amazonaws.com/wondor-logo-nobg.png"}
+        src={user?.profile_pic_url ?? "https://wondor-assets-new.s3.us-west-2.amazonaws.com/wondor-logo-nobg.png"}
         alt="profile picture"
         height={150}
         width={150}
