@@ -60,7 +60,7 @@ export const popularCollabCategories = [
 export const mainContent = {
   heading: "Connect and Collaborate with",
   paragraph:
-    "Unlock Your Creativity Potential by Collaborating with Like-Minded Artists 💡 🤝 🎉",
+    "Artists, Unlock Your Creativity by Collaborating with Like-Minded Artists 💡 🤝 🎉",
   actionText: "Join the Growing Community of 100+ Artists Today!",
 };
 

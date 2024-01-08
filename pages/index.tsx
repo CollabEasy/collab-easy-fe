@@ -215,9 +215,9 @@ const Home = ({
                 <li className="common-h1-style">Sketchers</li>
               </ul>
             </h1>
-            <h1 className="common-h1-style">
-              For Your Next Collaboration!
-            </h1>
+            {/* <h1 className="common-h1-style">
+              For Your Next Collaboration
+            </h1> */}
           </div>
           <p style={{ paddingTop: "2vh" }}>
             {mainContent["paragraph"]}
@@ -226,7 +226,7 @@ const Home = ({
             {!isLoggedIn ?
               (
                 <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
-                  Join for Free!
+                  Join for Free
                 </button>
               ) : (
                 <Link href={routeToHref(toMySearchPage())} passHref >
@@ -252,6 +252,10 @@ const Home = ({
     return (
       <div className="row centered-div">
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+          <p className="common-p-style" style={{ textAlign: "center"}}>
+            Popular Collaboration Categories
+            <div className="paragraph-line"></div>
+          </p>
           <div className="scroll-container">
             <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
               <div className="col-12">
@@ -304,6 +308,10 @@ const Home = ({
     return (
       <div className="row centered-div">
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+          <p className="common-p-style" style={{ textAlign: "center" }}>
+            Available Collaborators
+            <div className="paragraph-line"></div>
+          </p>
           <div className="scroll-container">
             <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
               <div className="col-12">
@@ -603,7 +611,7 @@ const Home = ({
                     </button>
                   </Link>
                   <Link href={routeToHref(toContactUs())} passHref >
-                    <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
+                    <button className="homepage-button" style={{ backgroundColor: "white", color: "black" }}>
                       Contact Us
                     </button>
                   </Link>
@@ -632,7 +640,7 @@ const Home = ({
             </h1>
             <p className="common-p-style">
               Embark on a creative adventure by connecting and
-              collaborating with fellow artists today!
+              collaborating with fellow artists today.
             </p>
             <div className="hero-text-cnt-wrapper">
               <Link href={routeToHref(toAllCategoryPage())} passHref>
@@ -674,8 +682,10 @@ const Home = ({
             <div className="col-md-12">
               <div className="section-title text-md-center">
                 <h2 className="common-h2-style">
-                  Together, You Create Better!
+                  Together, You Create Better
+                  <div className="heading-line"></div>
                 </h2>
+                
                 <p className="common-p-style" style={{ width: "100%" }}>
                   Collaboration unites diverse artists, fostering innovation and satisfaction beyond what achieved individually.
                 </p>
@@ -732,7 +742,8 @@ const Home = ({
               <div className="col-md-12">
                 <div className="section-title text-md-center">
                   <h2 className="common-h2-style">
-                    Take Your Artistic Journey to the Next Level with Us!
+                    Take Your Artistic Journey to the Next Level with Us
+                    <div className="heading-line"></div>
                   </h2>
                   <p className="common-p-style" style={{ width: "100%" }}>
                     Our platform is committed to your growth. Discover fellow artists, improved collaboration experience,
@@ -753,7 +764,7 @@ const Home = ({
               <div className="col-md-12">
                 <div className="section-title text-md-center">
                   <h2 className="common-h2-style">
-                    The Wondor Story, A Story of Artists, for Artists - By an Artist!
+                    The Wondor Story, A Story of Artists, for Artists - By an Artist.
                   </h2>
                   {getWondorStory()}
                   <div>
@@ -800,22 +811,23 @@ const Home = ({
           </Carousel>
         </div>
       </div>
+      {getSignUpCard()}
 
-      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+      <div className="row">
         {getBasicFAQSection()}
       </div>
 
       {/* <div className="row" style={{ borderBottom: '1px solid #e8e8e8' }}>
       </div> */}
 
-      <div className="row" style={{ backgroundColor: "#FAFAFA" }}>
-        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+      <div className="row">
+        <div style={{ paddingTop: "2%", paddingBottom: "2%"}}>
           <div className="wondor-offerings-container">
             <div className="row align-items-center">
               <div className="col-md-12">
                 <div className="section-title text-md-center">
                   <h2 className="common-h2-style">
-                    Understand the Power of Collaboration!
+                    Understand the Power of Collaboration Among Artists
                   </h2>
                   <p className="common-p-style" style={{ width: "100%" }}>
                     Collaboration multiplies creativity, fosters innovation, and amplifies shared success.
@@ -833,8 +845,6 @@ const Home = ({
         </div>
         {getBlogPosts()}
       </div>
-
-      {getSignUpCard()}
 
       {showCreateOrEditProposalModal && (
         <CreateProposalModal
