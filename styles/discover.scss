@@ -343,7 +343,6 @@
 // popular collaborator container
 .popular-collaborator-container {
   padding-top: 5%;
-  padding-bottom: 2%;
 
   .section-title {
     padding-left: 20%;
@@ -432,6 +431,166 @@
   }
 }
 
+// art contest
+.contest-gallery {
+  margin: auto;
+  margin-bottom: 50px;
+
+  .options {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    overflow: hidden;
+
+    min-width: 600px;
+    max-width: 900px;
+    width: calc(100% - 100px);
+
+    height: 400px;
+
+    @for $i from 1 through 4 {
+      @media screen and (max-width:798px - $i*80) {
+        min-width: 600px - $i*80;
+
+        .option:nth-child(#{6-$i}) {
+          display: none;
+        }
+      }
+    }
+
+
+    .option {
+      position: relative;
+      overflow: hidden;
+
+      min-width: 60px;
+      margin: 10px;
+      //border:0px solid --defaultColor;
+
+      background: var(--optionBackground, var(--defaultBackground, #E6E9ED));
+      background-size: auto 120%;
+      background-position: center;
+
+      cursor: pointer;
+
+      transition: .5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+
+      &.active {
+        flex-grow: 10000;
+        transform: scale(1);
+
+        max-width: 600px;
+        margin: 0px;
+        border-radius: 40px;
+
+        background-size: auto 100%;
+
+        .shadow {
+          box-shadow: inset 0 -120px 120px -120px black, inset 0 -120px 120px -100px black;
+        }
+
+        .label {
+          bottom: 20px;
+          left: 20px;
+
+          .info>div {
+            left: 0px;
+            opacity: 1;
+          }
+        }
+
+        /*&:active {
+               transform:scale(0.9);
+            }*/
+        border: solid 2px rgba(64, 73, 73, 0.5);
+      }
+
+      &:not(.active) {
+        flex-grow: 1;
+
+        border-radius: 30px;
+
+        .shadow {
+          bottom: -40px;
+          box-shadow: inset 0 -120px 0px -120px black, inset 0 -120px 0px -100px black;
+        }
+
+        .label {
+          bottom: 10px;
+          left: 10px;
+
+          .info>div {
+            left: 20px;
+            opacity: 0;
+          }
+        }
+      }
+
+      .shadow {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+
+        height: 90px;
+
+        transition: .5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+      }
+
+      .label {
+        display: flex;
+        position: absolute;
+        right: 0px;
+
+        height: 40px;
+        transition: .5s cubic-bezier(0.05, 0.61, 0.41, 0.95);
+
+        .icon {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+
+          min-width: 40px;
+          max-width: 40px;
+          height: 40px;
+          border-radius: 100%;
+
+          background-color: white;
+          color: var(--defaultBackground);
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          margin-left: 10px;
+
+          color: white;
+
+          white-space: pre;
+
+          >div {
+            position: relative;
+
+            transition: .5s cubic-bezier(0.05, 0.61, 0.41, 0.95), opacity .5s ease-out;
+          }
+
+          .main {
+            font-weight: bold;
+            font-size: 1.2rem;
+          }
+
+          .sub {
+            transition-delay: .1s;
+          }
+        }
+      }
+    }
+  }
+}
+
 // Wondor Offerings cards
 .wondor-offerings-container {
   display: flex;
@@ -447,11 +606,13 @@
     h2 {
       font-size: 3vw;
       line-height: 5vw;
+      color: white
     }
 
     p {
       font-size: 1.5vw;
       line-height: 2.5vw;
+      color: white
     }
   }
 
@@ -1917,9 +2078,17 @@
     margin: 0;
   }
 
+  .heading-line {
+    border: 1px solid;
+    width: 170px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+  }
+
   /* Styles for small screens (phones) */
   .hero-text-container {
-    height: 450px;
+    height: 370px;
 
     .text-content {
       top: 3%;
@@ -2065,7 +2234,7 @@
 
   .popular-proposal-container {
     .popular-proposal-list-item {
-      height: 33vw;
+      height: 38vw;
 
       h5 {
         font-size: 4vw;

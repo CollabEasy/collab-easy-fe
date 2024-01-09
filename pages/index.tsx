@@ -28,7 +28,8 @@ import {
   popularCollabProposals,
   blogCard,
   testimonialContent,
-  generalFaqContent
+  generalFaqContent,
+  contestSubmissions,
 } from "../constants/home";
 import { GetBlogUrl, GetProposalUrl } from "helpers/routeHelper";
 
@@ -661,6 +662,13 @@ const Home = ({
     );
   }
 
+  const [activeOption, setActiveOption] = useState(0);
+
+  const handleOptionClick = (index) => {
+    setActiveOption(index);
+  };
+
+
   return (
     <Layout
       title={"Wondor - Connect with Artists, Manage Collabs, Create Proposals, and More. Join Now!"}
@@ -683,7 +691,7 @@ const Home = ({
                   Together, You Create Better
                   <div className="heading-line"></div>
                 </h2>
-                
+
                 <p className="common-p-style" style={{ width: "100%" }}>
                   Collaboration unites diverse artists, fostering innovation and satisfaction beyond what achieved individually.
                 </p>
@@ -734,6 +742,56 @@ const Home = ({
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        <div className="popular-collaborator-container">
+          <div className="row align-items-center">
+            <div className="col-md-12">
+              <div className="section-title text-md-center">
+                <h2 className="common-h2-style">
+                  Epic Art Contests to Showcase What You Got
+                  <div className="heading-line"></div>
+                </h2>
+                <p className="common-p-style" style={{ width: "100%" }}>
+                  Join Art Contest on Wondor to let your imagination run wild and win exclusive prizes.
+                </p>
+                <div className="hero-text-cnt-wrapper">
+                  <Link href={routeToHref(toAllContestPage())} passHref >
+                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                      Art Contests
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="contest-gallery">
+          <div className="options" style={{ margin: "auto" }}>
+            {contestSubmissions.map((option, index) => (
+              <div
+                key={index}
+                className={`option ${index === activeOption ? 'active' : ''}`}
+                style={{
+                  background: option.url,
+                  backgroundSize: 'cover',
+                }}
+                onClick={() => handleOptionClick(index)}
+              >
+                <div className="shadow" style={{ background: "rgba(64, 73, 73, 0.5)" }}></div>
+                <div className="label">
+                  <div className="info">
+                    <Link href={routeToHref(toArtistProfile(option.slug))}>
+                      <div className="main text-decoration-underline">{option.artist}</div>
+                    </Link>
+                    <div className="sub">{option.category[0]}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="row" style={{ backgroundColor: "#003E3F" }}>
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
           <div className="wondor-offerings-container">
             <div className="row align-items-center">
@@ -781,7 +839,7 @@ const Home = ({
         </div>
       </div>
 
-      <div className="row" style={{ backgroundColor: "#D6EBE7" }}>
+      <div className="row" style={{ backgroundColor: "#C8A75F" }}>
         <div className="basic-testimonial-container">
           <div>
             <div className="row justify-content-center mt-4">
@@ -819,15 +877,15 @@ const Home = ({
       </div> */}
 
       <div className="row">
-        <div style={{ paddingTop: "2%", paddingBottom: "2%"}}>
+        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
           <div className="wondor-offerings-container">
             <div className="row align-items-center">
               <div className="col-md-12">
                 <div className="section-title text-md-center">
-                  <h2 className="common-h2-style">
+                  <h2 className="common-h2-style" style={{color: "black"}}>
                     Understand the Power of Collaboration Among Artists
                   </h2>
-                  <p className="common-p-style" style={{ width: "100%" }}>
+                  <p className="common-p-style" style={{ width: "100%", color: "black" }}>
                     Collaboration multiplies creativity, fosters innovation, and amplifies shared success.
                     Gain insights into the practical aspects of various kind of collaboration for your artistic growth.
                   </p>
@@ -873,6 +931,7 @@ export async function getStaticProps({ params }) {
       blogCard,
       testimonialContent,
       generalFaqContent,
+      contestSubmissions,
     }
   }
 }
