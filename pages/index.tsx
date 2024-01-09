@@ -32,6 +32,8 @@ import {
   contestSubmissions,
 } from "../constants/home";
 import { GetBlogUrl, GetProposalUrl } from "helpers/routeHelper";
+import AnimatedList from "@/components/asset/animatedList";
+import { CURRENT_THEMES } from "constants/inspirationIdeas";
 
 const { Panel } = Collapse;
 
@@ -717,6 +719,37 @@ const Home = ({
         </div>
         {getPopularCollabCategories()}
         {getPopularCollaborators()}
+      </div>
+
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        <div className="popular-collaborator-container">
+          <div className="row align-items-center">
+            <div className="col-md-12">
+              <div className="section-title text-md-center">
+                <h2 className="common-h2-style">
+                  Inspiring Ideas for Your Next Masterpiece
+                  <div className="heading-line"></div>
+                </h2>
+
+                <p className="common-p-style" style={{ width: "100%" }}>
+                  Let these guiding ideas be the catalyst for your next creative endeavor, shaping a masterpiece that reflects your unique voice and passion.
+                </p>
+                <div className="hero-text-cnt-wrapper">
+                  <Link href={routeToHref(toGetInspired("all"))} passHref >
+                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                      Find More
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="animated-list">
+          <AnimatedList
+            list={CURRENT_THEMES}
+          />
+        </div>
       </div>
 
       <div className="row popular-proposal-section">
