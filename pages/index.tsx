@@ -423,7 +423,7 @@ const Home = ({
       <div className="wondor-offerings-container" style={{ paddingTop: "0px", paddingBottom: "4%" }}>
         <Link href={routeToHref(toAllCategoryPage())} passHref>
           <div className="wondor-offerings-container-card cursor-pointer">
-            <div className="card-img" style={{ backgroundColor: "#FDF6F6" }}>
+            <div className="card-img" style={{ backgroundColor: "#F5F5DC" }}>
               <Image
                 unoptimized
                 src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/m66U_jdH9k2kLtryfPldyw/Workshop.svg"}
@@ -441,7 +441,7 @@ const Home = ({
         </Link>
         <Link href={routeToHref(toAllProposalsPage("all"))} passHref>
           <div className="wondor-offerings-container-card cursor-pointer">
-            <div className="card-img" style={{ backgroundColor: "#FEF7EF" }}>
+            <div className="card-img" style={{ backgroundColor: "#D9D4CA" }}>
               <Image
                 unoptimized
                 src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/jpJE1BdwHkC31xMmhCxSmA/List_is_empty.svg"}
@@ -459,7 +459,7 @@ const Home = ({
         </Link>
         <Link href={routeToHref(toGetInspired("all"))} passHref>
           <div className="wondor-offerings-container-card cursor-pointer">
-            <div className="card-img" style={{ backgroundColor: "#FFFEF1" }}>
+            <div className="card-img" style={{ backgroundColor: "#CFDDE8" }}>
               <Image
                 unoptimized
                 src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/zIGF_3oJAk6uj11ByHJshA/Education.svg"}
@@ -477,7 +477,7 @@ const Home = ({
         </Link>
         <Link href={routeToHref(toAllContestPage())} passHref>
           <div className="wondor-offerings-container-card cursor-pointer">
-            <div className="card-img" style={{ backgroundColor: "#F7FEF3" }}>
+            <div className="card-img" style={{ backgroundColor: "#ECE1E9" }}>
               <Image
                 unoptimized
                 src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/FFvCaeFyPEKpyzYgQf8Nzg/Running_competition.svg"}
