@@ -598,7 +598,10 @@ const Home = ({
           <div className="row justify-content-center mt-4">
             <div className="col-12">
               <div className="section-title">
-                <h2 className="common-h3-style">Frequently Asked Questions and Resources</h2>
+                <h2 className="common-h3-style">
+                  Frequently Asked Questions and Resources
+                  <div className="heading-line"></div>
+                </h2>
                 <p className="common-p-style ">
                   Do you have a question about Wondor? See the list of
                   our most frequenty asked question. If your question is not listed
@@ -606,7 +609,7 @@ const Home = ({
                 </p>
                 <div className="hero-text-cnt-wrapper">
                   <Link href={routeToHref(toFAQ())} passHref>
-                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                    <button className="homepage-button" style={{ backgroundColor: "#13344C", color: "white" }}>
                       FAQs
                     </button>
                   </Link>
@@ -730,7 +733,7 @@ const Home = ({
               <a onClick={() => {
                 setShowCreateOrUpdateProposalModal(true);
               }}>
-                <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                <button className="homepage-button" style={{ backgroundColor: "#173F2D", color: "white" }}>
                   Add Collab Proposal
                 </button>
               </a>
@@ -846,8 +849,11 @@ const Home = ({
             <div className="row justify-content-center mt-4">
               <div className="col-12">
                 <div className="section-title">
-                  <h2 className="common-h3-style">What Artists Have to Say About Us</h2>
-                  <p className="common-p-style ">
+                  <h2 className="common-h3-style">
+                    What Artists Have to Say About Us
+                    <div className="heading-line"></div>
+                  </h2>
+                  <p className="common-p-style">
                     On the way to building trust with artists around the globe. Discover how Wondor has positively impacted the
                     lives of it users
                   </p>

@@ -362,19 +362,21 @@
 
 .popular-proposal-section {
   margin-top: 30px;
-  background-color: #F5FBEA;
+  background-color: #CDD1B8;
   padding: 30px 0px 30px 20px;
   display: flex;
-  border-radius: 0% 15% 0 0;
+  // border-radius: 0% 15% 0 0;
 
   h2 {
     font-size: 3vw;
     line-height: 5vw;
+    color: #173F2D;
   }
 
   p {
     font-size: 1.5vw;
     line-height: 2.5vw;
+    color: #173F2D;
   }
 
   .truncate-line-clamp {
@@ -667,15 +669,18 @@
   .section-title {
     padding-left: 20%;
     padding-right: 20%;
+    
 
     h2 {
       font-size: 3vw;
       line-height: 5vw;
+      color: rgb(91, 74, 82);
     }
 
     p {
       font-size: 1.5vw;
       line-height: 2.5vw;
+      color: rgb(91, 74, 82);
     }
   }
 }
@@ -685,7 +690,8 @@
   padding-left: 20%;
   padding-right: 20%;
   padding-bottom: 5%;
-
+  color: rgb(91, 74, 82);
+  
   .testimony-img {
     border-radius: 50%;
     background-color: white;
@@ -702,10 +708,12 @@
 
   h5 {
     font-size: 1.75vw;
+    color: rgb(91, 74, 82);
   }
 
   p {
     font-size: 1.25vw;
+    color: rgb(91, 74, 82);
   }
 }
 
@@ -741,7 +749,6 @@
   padding-top: 5%;
   padding-bottom: 5%;
   background: #C4DFDF;
-  border-radius: 0% 0% 15% 15%;
 
   .section-title {
     padding-left: 20%;
@@ -750,11 +757,13 @@
     h2 {
       font-size: 3vw;
       line-height: 5vw;
+      color: #13344C;
     }
 
     p {
       font-size: 1.5vw;
       line-height: 2.5vw;
+      color: #13344C;
     }
   }
 
@@ -1716,7 +1725,6 @@
   .basic-faq-section {
 
     padding-bottom: 8%;
-    border-radius: 0% 0% 10% 10%;
 
     .section-title {
       padding-left: 2%;
@@ -2021,7 +2029,6 @@
   .basic-faq-section {
 
     padding-bottom: 10%;
-    border-radius: 0% 0% 10% 10%;
 
     .section-title {
       padding-left: 10%;
@@ -2334,7 +2341,6 @@
 
   .basic-faq-section {
     padding-bottom: 10%;
-    border-radius: 0% 0% 5% 5%;
 
     .section-title {
       padding-left: 5%;
