@@ -97,6 +97,7 @@ const Home = ({
     toFAQ,
     toContactUs,
     toArtistProfile,
+    toContestSubmissionPage,
   } = useRoutesContext();
 
   // useEffect(() => {
@@ -253,7 +254,7 @@ const Home = ({
     return (
       <div className="row centered-div">
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-          <p className="common-p-style" style={{ textAlign: "center", textDecoration: "underline"}}>
+          <p className="common-p-style" style={{ textAlign: "center", textDecoration: "underline" }}>
             Popular Collaboration Categories
           </p>
           <div className="scroll-container">
@@ -779,7 +780,7 @@ const Home = ({
                 <div className="shadow" style={{ background: "rgba(64, 73, 73, 0.5)" }}></div>
                 <div className="label">
                   <div className="info">
-                    <Link href={routeToHref(toArtistProfile(option.slug))}>
+                    <Link href={routeToHref(toContestSubmissionPage(option.contestSlug, option.slug))}>
                       <div className="main text-decoration-underline">{option.artist}</div>
                     </Link>
                     <div className="sub">{option.category[0]}</div>
@@ -882,7 +883,7 @@ const Home = ({
             <div className="row align-items-center">
               <div className="col-md-12">
                 <div className="section-title text-md-center">
-                  <h2 className="common-h2-style" style={{color: "black"}}>
+                  <h2 className="common-h2-style" style={{ color: "black" }}>
                     Understand the Power of Collaboration Among Artists
                   </h2>
                   <p className="common-p-style" style={{ width: "100%", color: "black" }}>

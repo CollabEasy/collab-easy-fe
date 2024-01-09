@@ -190,35 +190,41 @@ export const contestSubmissions = [
     artist: "Rahul Gupta",
     slug: "rahul-gupta-1",
     category: ["Creative Journaling"],
+    contestSlug: "JUN2023",
     url: "url(https://contest-submissions-new.s3.us-west-2.amazonaws.com/JUN2023/originals/8ffcaaca61c03f6_1686022525933.jpeg)",
   },
   {
     artist: "Rico Garcia",
     slug: "rico-garcia-1",
+    contestSlug: "DEC2023",
     category: ["Digital Art"],
     url: "url(https://contest-submissions-new.s3.us-west-2.amazonaws.com/DEC2023/originals/ccc7177292d35b4_1702197856050.png)",
   },
   {
     artist: "Benjamin T",
     slug: "benjamin-t-1",
+    contestSlug: "JUN2023",
     category: ["Poetry"],
     url: "url(https://contest-submissions-new.s3.us-west-2.amazonaws.com/JUN2023/thumbnails/85b5f9284142330_1685639001997.png)",
   },
   {
     artist: "Prashant Joshi",
     slug: "prashant-joshi-1",
+    contestSlug: "JUL2023",
     category: ["Photography"],
     url: "url(https://contest-submissions-new.s3.us-west-2.amazonaws.com/NOV2023/originals/ab76cd7aef2ddb6_1700981487200.png)",
   },
   {
     artist: "Kyra",
     slug: "myo--1",
+    contestSlug: "DEC2023",
     category: ["Illustration"],
     url: "url(https://contest-submissions-new.s3.us-west-2.amazonaws.com/DEC2023/originals/475ff8e0c2e82c3_1703785247172.png)"
   },
   {
     artist: "SRUTHI",
     slug: "sruthi-s-1",
+    contestSlug:"JUL2023",
     category: ["Poetry"],
     url: "url(https://contest-submissions-new.s3.us-west-2.amazonaws.com/JUL2023/originals/e96ffdf72dd5213_1688745091968.jpg)"
   }
