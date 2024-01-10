@@ -171,18 +171,6 @@ export const artistsForCollab = [
     category: ["Creative Writing"],
     url: "https://lh3.googleusercontent.com/a/ACg8ocIomh_mX68BECxwLykxdzUrS4oLVbgOGFB6LbxiTIsbsJaR=s96-c",
   },
-  {
-    artist: "Benjamin T",
-    slug: "benjamin-t-1",
-    category: ["Poetry"],
-    url: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/yCS0omuvnUqRUGg09gIV0w/ben.png",
-  },
-  {
-    artist: "Prashant Joshi",
-    slug: "prashant-joshi-1",
-    category: ["Music"],
-    url: "https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/VIk_yQ-790yuuh9z54ib2g/pj.png",
-  },
 ];
 
 export const contestSubmissions = [
