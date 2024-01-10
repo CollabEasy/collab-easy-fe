@@ -722,11 +722,10 @@ const Home = ({
         {getPopularCollaborators()}
       </div>
       
-      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+
         <StackedCard
             list={artistsForCollab}
           />
-      </div>
       
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="popular-collaborator-container">
