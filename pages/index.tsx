@@ -34,6 +34,7 @@ import {
 import { GetBlogUrl, GetProposalUrl } from "helpers/routeHelper";
 import AnimatedList from "@/components/asset/animatedList";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
+import StackedCard from "@/components/asset/stackedCard";
 
 const { Panel } = Collapse;
 
@@ -720,7 +721,12 @@ const Home = ({
         {getPopularCollabCategories()}
         {getPopularCollaborators()}
       </div>
+      
 
+        <StackedCard
+            list={artistsForCollab}
+          />
+      
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="popular-collaborator-container">
           <div className="row align-items-center">

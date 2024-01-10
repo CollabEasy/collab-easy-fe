@@ -1,0 +1,63 @@
+// StackedCard.module.scss
+.stackCardsContainer {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#stack-cards {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 87vh);
+  gap: 4vw;
+  padding-bottom: calc(4 * 1.5em);
+  margin-bottom: 4vw;
+}
+
+#stack-card1 {
+  --index: 1;
+}
+#stack-card2 {
+  --index: 2;
+}
+#stack-card3 {
+  --index: 3;
+}
+#stack-card4 {
+  --index: 4;
+}
+
+.stackCard {
+  position: sticky;
+  top: 0;
+  padding-top: calc(var(--index) * 1.5em);
+}
+
+#stack-card1 .stackCardBody {
+  background-color: #52B2CF;
+}
+
+#stack-card2 .stackCardBody {
+  background-color: #E5A36F;
+}
+
+#stack-card3 .stackCardBody {
+  background-color: #9CADCE;
+}
+
+#stack-card4 .stackCardBody {
+  background-color: #D4AFB9;
+}
+
+.stackCardBody {
+  box-sizing: border-box;
+  padding: 30px;
+  border-radius: 50px;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+  height: 87vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
