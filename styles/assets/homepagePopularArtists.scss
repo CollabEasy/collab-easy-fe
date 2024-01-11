@@ -22,7 +22,6 @@
 
 .homePagePopularArtists_description {
   color: #fff;
-  padding: 0 50px;
 }
 
 .homePagePopularArtists_description>h1 {
@@ -74,10 +73,6 @@
     padding: 140px 50px;
   }
 
-  .homePagePopularArtists_description {
-    padding: 0 0px;
-  }
-
   .homePagePopularArtists_description>p {
     font-size: 1rem;
   }
@@ -88,10 +83,6 @@
     grid-template-columns: 45% 50%;
     gap: 60px;
     padding: 130px 70px;
-  }
-
-  .homePagePopularArtists_description {
-    padding: 0 0px;
   }
 }
 
