@@ -65,21 +65,25 @@
 @import "./assets/similarCategoriesChips.scss";
 @import "./assets/heroSection.scss";
 @import "./assets/animatedList.scss";
+@import "./assets/homepagePopularArtists.scss";
 
 
-
-
-html, body {
+html,
+body {
   max-width: 100%;
   min-height: 100%;
   // overflow-x: hidden;
 }
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.f-w-b {font-weight: bold};
+.f-w-b {
+  font-weight: bold
+}
+
+;
 
 .page-content {
   margin-top: -10px;

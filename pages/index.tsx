@@ -34,6 +34,7 @@ import {
 import { GetBlogUrl, GetProposalUrl } from "helpers/routeHelper";
 import AnimatedList from "@/components/asset/animatedList";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
+import HomePopularArtists from "@/components/asset/homePopularArtists";
 
 const { Panel } = Collapse;
 
@@ -256,9 +257,6 @@ const Home = ({
     return (
       <div className="row centered-div">
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-          <p className="common-p-style" style={{ textAlign: "center", textDecoration: "underline" }}>
-            Popular Collaboration Categories
-          </p>
           <div className="scroll-container">
             <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
               <div className="col-12">
@@ -298,72 +296,6 @@ const Home = ({
                       </Link>
                     ))}
                   </>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const getPopularCollaborators = () => {
-    return (
-      <div className="row centered-div">
-        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-          <p className="common-p-style" style={{ textAlign: "center", textDecoration: "underline" }}>
-            Available Collaborators
-          </p>
-          <div className="scroll-container">
-            <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
-              <div className="col-12">
-                <div className="scroll-list">
-                  {artistsForCollab.map((item) => (
-                    <Link href={routeToHref(toUserCollabPage(item.slug))}>
-                      <div
-                        className="col-sm-2 col-md-2 col-lg-2 col-xl-2 scroll-list-item-popular cursor-pointer"
-                        key={item.id}
-                      >
-                        <div >
-                          <div
-                            className="d-flex justify-content-center align-items-center p-2 category-icon"
-                          >
-                            <Image
-                              unoptimized
-                              src={item.url}
-                              height={200}
-                              width={200}
-                              className="collaborator-icon"
-                              alt={"Send collaboration request to " + item.artist}
-                              priority={true}
-                            />
-                          </div>
-                          <div className="d-flex justify-content-center text-align-center p-2">
-                            <h5
-                              className="common-h5-style"
-                            >
-                              {item.artist}
-                            </h5>
-                          </div>
-                          <div className="d-flex justify-content-center" style={{ textAlign: "center", whiteSpace: "pre-line" }}>
-                            <p
-                              className="common-p-style"
-                            >
-                              {/* eslint-disable react/jsx-key */}
-                              {item["category"].map((category) => (
-                                <span
-                                  style={{ background: "white", color: "black" }}
-                                  className="badge bg-soft-secondary fs-14 mt-1"
-                                >
-                                  {category}
-                                </span>
-                              ))}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
                 </div>
               </div>
             </div>
@@ -718,7 +650,12 @@ const Home = ({
           </div>
         </div>
         {getPopularCollabCategories()}
-        {getPopularCollaborators()}
+      </div>
+
+      <div className="row">
+        <HomePopularArtists
+          list={artistsForCollab}
+        />
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
