@@ -574,6 +574,7 @@ const Home = ({
           <div className="row d-flex justify-content-center text-align-center">
             <h1 className="common-h1-style">
               Ready for your next collaboration opportunity?
+              <div className="heading-line"></div>
             </h1>
             <p className="common-p-style">
               Embark on a creative adventure by connecting and
@@ -634,13 +635,8 @@ const Home = ({
                   Collaboration unites diverse artists, fostering innovation and satisfaction beyond what achieved individually.
                 </p>
                 <div className="hero-text-cnt-wrapper">
-                  <Link href={routeToHref(toMySearchPage())} passHref >
-                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                      Let&apos;s Collaborate
-                    </button>
-                  </Link>
                   <Link href={routeToHref(toAllCategoryPage())} passHref>
-                    <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
+                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
                       Collab Categories
                     </button>
                   </Link>
@@ -695,6 +691,7 @@ const Home = ({
             <div className="section-title text-md-start">
               <h2 className="common-h2-style">
                 Have a project you want to work on together?
+                <div className="heading-line" style={{marginLeft: "0", marginRight: "0"}}></div>
               </h2>
               <p className="common-p-style" style={{ width: "80%" }}>
                 Millions of artists are collaborating on Instagram, YouTube, TikTok,
@@ -765,7 +762,7 @@ const Home = ({
         </div>
       </div>
 
-      <div className="row" style={{ backgroundColor: "#003E3F" }}>
+      <div className="row" style={{ backgroundColor: "#854B5B" }}>
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
           <div className="wondor-offerings-container">
             <div className="row align-items-center">
@@ -795,6 +792,7 @@ const Home = ({
                 <div className="section-title text-md-center">
                   <h2 className="common-h2-style">
                     The Wondor Story, A Story of Artists, for Artists - By an Artist.
+                    <div className="heading-line"></div>
                   </h2>
                   {getWondorStory()}
                   <div>
@@ -861,6 +859,7 @@ const Home = ({
                 <div className="section-title text-md-center">
                   <h2 className="common-h2-style" style={{ color: "black" }}>
                     Understand the Power of Collaboration Among Artists
+                    <div className="heading-line"></div>
                   </h2>
                   <p className="common-p-style" style={{ width: "100%", color: "black" }}>
                     Collaboration multiplies creativity, fosters innovation, and amplifies shared success.

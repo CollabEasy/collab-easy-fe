@@ -6,7 +6,7 @@ import { useRoutesContext } from '../routeContext';
 const HomePopularArtists = ({ list }) => {
 
 
-    const { toUserCollabPage } = useRoutesContext();
+    const { toUserCollabPage, toMySearchPage } = useRoutesContext();
 
     return (
         <div className='homePagePopularArtistsContainer'>
@@ -18,11 +18,16 @@ const HomePopularArtists = ({ list }) => {
                             <div className="homepage-heading-line"></div>
                         </span>
                     </h1>
-                    <p className="common-p-style homePagePopularArtists_paragraph" style={{ color: "#F7B744" }}>
+                    <p className="common-p-style homePagePopularArtists_paragraph" style={{ color: "white" }}>
                         Always wanted to start a creative project with a friend?
                         Now you can. Meet with like-minded artists on Wondor and grow
                         your skill sets together.
                     </p>
+                    <Link href={routeToHref(toMySearchPage())} passHref >
+                        <button className="homepage-button" style={{ backgroundColor: "white", color: "black" }}>
+                            Let&apos;s Collaborate
+                        </button>
+                    </Link>
                 </div>
 
                 <div className="homePagePopularArtists_users-color-container">
