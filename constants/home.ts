@@ -215,8 +215,8 @@ export const contestSubmissions = [
     url: "url(https://contest-submissions-new.s3.us-west-2.amazonaws.com/NOV2023/originals/ab76cd7aef2ddb6_1700981487200.png)",
   },
   {
-    artist: "Kyra",
-    slug: "myo--1",
+    artist: "Mathew Lin",
+    slug: "mathew-lin-1",
     contestSlug: "DEC2023",
     category: ["Illustration"],
     url: "url(https://contest-submissions-new.s3.us-west-2.amazonaws.com/DEC2023/originals/475ff8e0c2e82c3_1703785247172.png)"
