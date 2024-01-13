@@ -19,12 +19,6 @@
   margin-right: auto;
 }
 
-.gradient-bg {
-  background-color: #348081;
-  background: linear-gradient(to bottom, #348081, #005265, white);
-  /* Adjust the color stops and add more colors if needed */
-}
-
 .homepage-button {
   height: 50px;
   border: none;
@@ -2317,8 +2311,7 @@
   }
 
   .basic-testimonial-container {
-    padding-bottom: 10%;
-
+    
     .section-title {
       padding-left: 5%;
       padding-right: 5%;
