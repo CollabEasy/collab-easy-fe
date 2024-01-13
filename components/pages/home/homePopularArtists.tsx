@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { routeToHref } from 'config/routes';
-import { useRoutesContext } from '../routeContext';
+import { useRoutesContext } from '../../routeContext';
 
 const HomePopularArtists = ({ list }) => {
 

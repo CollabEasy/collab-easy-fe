@@ -32,9 +32,9 @@ import {
   contestSubmissions,
 } from "../constants/home";
 import { GetBlogUrl, GetProposalUrl } from "helpers/routeHelper";
-import AnimatedList from "@/components/asset/animatedList";
+import AnimatedList from "@/components/pages/home/animatedList";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
-import HomePopularArtists from "@/components/asset/homePopularArtists";
+import HomePopularArtists from "@/components/pages/home/homePopularArtists";
 
 const { Panel } = Collapse;
 
@@ -256,7 +256,7 @@ const Home = ({
   const getPopularCollabCategories = () => {
     return (
       <div className="row centered-div">
-        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
+        <div style={{ paddingTop: "2%" }}>
           <div className="scroll-container">
             <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
               <div className="col-12">
@@ -556,7 +556,7 @@ const Home = ({
               </div>
             </div>
           </div>
-          <div className="row justify-content-center mt-5">
+          <div className="row justify-content-center ">
             <div className="col-xl-6 col-lg-8 col-md-10 col-sm-10 col-xs-10">
               {getfaqCard(generalFaqContent)}
             </div>
@@ -678,7 +678,7 @@ const Home = ({
             </div>
           </div>
         </div>
-        <div className="animated-list">
+        <div className="popular-theme-animated-list">
           <AnimatedList
             list={CURRENT_THEMES}
           />
