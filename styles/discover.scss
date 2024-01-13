@@ -249,8 +249,7 @@
   }
 
 
-  .scroll-list-item,
-  .scroll-list-item-popular {
+  .scroll-list-item {
     position: relative;
     display: inline-block;
     margin: 8px 8px;
@@ -290,12 +289,6 @@
       height: 105px;
     }
 
-    .collaborator-icon {
-      border-radius: 50%;
-      background-color: white;
-      margin: 20px;
-    }
-
     .overlay-cnt {
       position: absolute;
       top: 0;
@@ -328,10 +321,6 @@
         }
       }
     }
-  }
-
-  .scroll-list-item-popular {
-    height: 230px;
   }
 }
 
@@ -947,9 +936,7 @@
   }
 
   .scroll-container {
-
-    .scroll-list-item,
-    .scroll-list-item-popular {
+    .scroll-list-item {
       h5 {
         font-size: 18px;
       }
@@ -1233,8 +1220,7 @@
   .scroll-container {
     .scroll-list {
 
-      .scroll-list-item,
-      .scroll-list-item-popular {
+      .scroll-list-item {
         width: 190px;
 
         h5 {
@@ -1271,10 +1257,6 @@
           }
         }
       }
-    }
-
-    .scroll-list-item-popular {
-      height: 210px;
     }
   }
 
@@ -1508,9 +1490,7 @@
 
   .scroll-container {
     .scroll-list {
-
-      .scroll-list-item,
-      .scroll-list-item-popular {
+      .scroll-list-item {
         h5 {
           font-size: 2.5vw;
         }
@@ -1545,11 +1525,6 @@
           }
         }
       }
-    }
-
-    .scroll-list-item-popular {
-      width: 165px;
-      height: 200px;
     }
 
     .popular-category-container {
@@ -1816,8 +1791,7 @@
   .scroll-container {
     .scroll-list {
 
-      .scroll-list-item,
-      .scroll-list-item-popular {
+      .scroll-list-item {
         h5 {
           font-size: 3.5vw;
         }
@@ -1854,11 +1828,6 @@
           }
         }
       }
-    }
-
-    .scroll-list-item-popular {
-      width: 165px;
-      height: 200px;
     }
 
     .popular-category-container {
@@ -2130,8 +2099,7 @@
   .scroll-container {
     .scroll-list {
 
-      .scroll-list-item,
-      .scroll-list-item-popular {
+      .scroll-list-item {
         h5 {
           font-size: 3.5vw;
         }
@@ -2168,11 +2136,6 @@
           }
         }
       }
-    }
-
-    .scroll-list-item-popular {
-      width: 150px;
-      height: 190px;
     }
 
     .popular-category-container {
