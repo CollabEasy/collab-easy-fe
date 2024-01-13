@@ -102,6 +102,7 @@
   --box-shadow-color: rgba(220, 233, 255, 0.48);
 }
 
+// Popular Category section
 .scroll-container {
   .scroll-list {
     height: 100%;
@@ -335,12 +336,12 @@
 }
 
 // Animated List for Inspiration
-
-.animated-list {
+.popular-theme-animated-list {
   margin-bottom: 50px;
   width: 95%;
   margin: auto;
 }
+
 // popular collaborator container
 .popular-collaborator-container {
   padding-top: 5%;
@@ -361,6 +362,7 @@
   }
 }
 
+// Popular Proposal Section
 .popular-proposal-section {
   margin-top: 30px;
   background-color: #CDD1B8;
@@ -434,7 +436,7 @@
   }
 }
 
-// art contest
+// Art Contest Section
 .contest-gallery {
   margin: auto;
   margin-bottom: 50px;
@@ -594,7 +596,7 @@
   }
 }
 
-// Wondor Offerings cards
+// Wondor offerings cards
 .wondor-offerings-container {
   display: flex;
   flex-wrap: wrap;
@@ -659,6 +661,7 @@
   }
 }
 
+// Testimonial section
 .basic-testimonial-container {
   display: flex;
   flex-wrap: wrap;
@@ -718,6 +721,7 @@
   }
 }
 
+// Wondor story section
 .wondor-story-container {
   display: flex;
   flex-wrap: wrap;
@@ -742,6 +746,7 @@
   }
 }
 
+// Faq section
 .basic-faq-section {
   display: flex;
   flex-wrap: wrap;
@@ -792,7 +797,7 @@
   }
 }
 
-// Final Sign up container
+// Final Sign up section
 .signup-container {
   padding-top: 10%;
   padding-bottom: 5%;
@@ -817,6 +822,7 @@
   }
 }
 
+// Blog post section
 .popular-blog-post {
   display: flex;
   justify-content: center;
@@ -1275,8 +1281,6 @@
 
   .popular-collaborator-container {
 
-    padding-top: 10%;
-
     .section-title {
       padding-left: 8%;
       padding-right: 8%;
@@ -1388,7 +1392,6 @@
   }
 
   .basic-testimonial-container {
-    padding-bottom: 8%;
 
     .section-title {
       padding-left: 8%;
@@ -1589,8 +1592,6 @@
 
   .popular-collaborator-container {
 
-    padding-top: 10%;
-
     .section-title {
       padding-left: 2%;
       padding-right: 2%;
@@ -1693,8 +1694,6 @@
   }
 
   .basic-testimonial-container {
-    padding-bottom: 8%;
-
     .section-title {
       padding-left: 2%;
       padding-right: 2%;
@@ -1779,9 +1778,17 @@
     font-size: 13px;
   }
 
+  .heading-line {
+    border: 1px solid;
+    width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+  }
+
   /* Styles for small screens (phones) */
   .hero-text-container {
-    height: 550px;
+    height: 450px;
 
     .text-content {
       top: 4%;
@@ -1894,7 +1901,7 @@
 
   .popular-collaborator-container {
 
-    padding-top: 20%;
+    padding-top: 10%;
 
     .section-title {
       text-align: center;
@@ -1944,6 +1951,7 @@
     .section-title {
       padding-left: 10%;
       padding-right: 10%;
+      text-align: center;
 
       h2 {
         font-size: 7vw;
@@ -1999,8 +2007,6 @@
   }
 
   .basic-testimonial-container {
-    padding-bottom: 10%;
-
     .section-title {
       padding-left: 10%;
       padding-right: 10%;
@@ -2311,7 +2317,7 @@
   }
 
   .basic-testimonial-container {
-    
+
     .section-title {
       padding-left: 5%;
       padding-right: 5%;

@@ -556,7 +556,7 @@ const Home = ({
               </div>
             </div>
           </div>
-          <div className="row justify-content-center">
+          <div className="row justify-content-center ">
             <div className="col-xl-6 col-lg-8 col-md-10 col-sm-10 col-xs-10">
               {getfaqCard(generalFaqContent)}
             </div>
@@ -678,7 +678,7 @@ const Home = ({
             </div>
           </div>
         </div>
-        <div className="animated-list">
+        <div className="popular-theme-animated-list">
           <AnimatedList
             list={CURRENT_THEMES}
           />
