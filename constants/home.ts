@@ -60,7 +60,7 @@ export const popularCollabCategories = [
 export const mainContent = {
   heading: "Connect and Collaborate with",
   paragraph:
-    "Artists, Unlock Your Creativity by Collaborating with Like-Minded Artists 💡 🤝 🎉",
+    "Wondor connects like-minded artists for hassle-free collaboration around the world 🌎 🤝 🎉",
   actionText: "Join the Growing Community of 100+ Artists Today!",
 };
 
