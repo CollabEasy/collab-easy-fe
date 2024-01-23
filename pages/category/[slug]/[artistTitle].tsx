@@ -352,7 +352,7 @@ const DiscoverArtist = ({
                     </div>
                     <div className="artist-heading-cnt">
                       <div className="p-t-5">
-                        <h5 className="common-h5-style mb0">
+                        <h5 className="common-h5-style mb0 custom-name-cnt">
                           {artist.first_name} {artist?.last_name}
                         </h5>
                         {artist.country && (
@@ -407,8 +407,6 @@ const DiscoverArtist = ({
                         style={{
                           whiteSpace: "normal",
                           height: "auto",
-                          color: 'white',
-                          backgroundColor: '#1890ff'
                         }}
                       >
                         <Link
