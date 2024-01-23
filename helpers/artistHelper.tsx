@@ -14,3 +14,23 @@ export function GetUserSkills(skills: string[]) {
     }
     return skillsHtml;
 }
+
+export function getArtistSkills(skills=[]){
+    const maxSkillsToShow = 3;
+  
+    return (
+      <div className="artist-skills-container">
+        {skills.slice(0, maxSkillsToShow).map((skill, idx) => (
+          <div className="skill-cnt" key={idx}>
+            <span className="skill-name">{skill}</span>
+          </div>
+        ))}
+  
+        {skills.length > maxSkillsToShow && (
+          <div className="skill-cnt more-skill">
+            <span className="skill-name">+{skills.length - maxSkillsToShow}</span>
+          </div>
+        )}
+      </div>
+    );
+  };

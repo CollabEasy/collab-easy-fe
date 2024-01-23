@@ -1,3 +1,37 @@
+@keyframes circle-pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(77,170,87,0.9);
+    }
+
+    50%{
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(77,170,87,0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(77,170,87,0);
+    }
+}
+
+@keyframes circle-pulse-not {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(232, 52, 52, 0.9);
+    }
+
+    50%{
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(77,170,87,0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(77,170,87,0);
+    }
+}
+
 .discoverArtists__listingPageContainer {
     position: relative;
 
@@ -142,6 +176,124 @@
         color: red;
         font-size: 12px;
         text-align: center;
+    }
+
+    .artits-card-list-cnt{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        .artist-card-header{
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .custom-name-cnt{
+            width: 165px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .artist-profile-picture{
+            width: 100px;
+            height: 100px;
+        }
+        .artist-rounded{
+            border-radius: 50%;
+            border: 2px solid rgb(26, 25, 25) !important;
+        }
+        .artist-heading-cnt{
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .artist-location{
+            font-size: 12px;
+        }
+        .available-cnt{
+            .common-avai-text{
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+            .available-text{
+                color: #4daa57;
+                font-size: 12px;
+            }
+            .not-available-text{
+                color: #E32636;
+                font-size: 12px;
+            }
+            .available-circle{
+                position: relative;
+                box-sizing: content-box;
+                width: 8px;
+                height: 8px;
+                border: 2px solid #fff;
+                border-radius: 50%;
+                background: #4daa57;
+                top: -1px;
+                &::after{
+                    content: '';
+                    position: absolute;
+                    top: 0%;
+                    left: 0%;
+                    width: 100%;
+                    height: 100%;
+                    animation: circle-pulse 2s infinite;
+                    border-radius: 50%;
+                    box-shadow: 0 0 0 0 #4daa57;
+                }
+            }
+            .not-available-circle{
+                position: relative;
+                box-sizing: content-box;
+                width: 8px;
+                height: 8px;
+                border: 2px solid #fff;
+                border-radius: 50%;
+                background: #E32636;
+                top: -1px;
+                &::after{
+                    content: '';
+                    position: absolute;
+                    top: 0%;
+                    left: 0%;
+                    width: 100%;
+                    height: 100%;
+                    animation: circle-pulse-not 2s infinite;
+                    border-radius: 50%;
+                    box-shadow: 0 0 0 0 #E32636;
+                }
+            }
+        }
+        .artist-skills-container{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+            .skill-cnt{
+                border: 1px solid;
+                border-radius: 15px;
+                padding: 4px 7px 2px;
+                &.more-skill{
+                    background-color: black;
+                    color: white;
+                }
+            }
+            .skill-name{
+                font-size: 12px;
+            }
+        }
+        .artist-bio-cnt{
+            height: 110px;
+            margin-top: 15px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+        }
     }
 }
 

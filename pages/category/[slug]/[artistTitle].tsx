@@ -3,7 +3,7 @@ import Loader from "@/components/loader";
 import { CheckOutlined, CloseOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { Breadcrumb, Button, Card } from "antd";
 import { routeToHref } from "config/routes";
-import { GetUserSkills } from "helpers/artistHelper";
+import { GetUserSkills, getArtistSkills } from "helpers/artistHelper";
 import {
   GetCategoryArtistTitle,
   GetCategoryMetadata,
@@ -305,6 +305,154 @@ const DiscoverArtist = ({
     return resultArtists;
   };
 
+  const getArtistsList = (category) => {
+    return(
+      <>
+      { artists.length === 0 ? (
+          <>
+            <div className="d-flex flex-column align-items-center text-center">
+              <Image
+                src={"https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/dZg9sz3b3Uy6KzTwn0moUA/Page_not_found.svg"}
+                height={350}
+                width={350}
+                priority
+              />
+              <span>
+                Apologies, no artists found for {category}.
+                Artists in similar categories might be interested to collab.
+              </span>
+            </div>
+            <div className="centered-div">
+              {getSimilarCategories(artSlug).length > 0 && (
+                <div className="row-fluid">
+                  <div className="col-lg-12 col-md-10 ">
+                    <div className="similar-categories-container">
+                      {getSimilarCategories(artSlug)}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="artits-card-list-cnt">
+            { artists.map((artist, index) => (
+                <div className="p-3 bg-white border rounded artits-card-cnt" key={index}>
+                  <div className="artist-card-header">
+                    <div className="artist-profile-picture">
+                      <Image
+                        loader={prismicLoader}
+                        src={artist?.profile_pic_url}
+                        alt="cards"
+                        className="img-fluid img-responsive artist-rounded"
+                        height={100}
+                        width={100}
+                        layout="fixed"
+                      />
+                    </div>
+                    <div className="artist-heading-cnt">
+                      <div className="p-t-5">
+                        <h5 className="common-h5-style mb0">
+                          {artist.first_name} {artist?.last_name}
+                        </h5>
+                        {artist.country && (
+                          <div className="artist-location">
+                            <span>{artist.country}</span>
+                            {artist.state && <span>, {artist.state}</span>}
+                            {artist.city && <span>, {artist.city}</span>}
+                          </div>
+                        )}
+                      </div>
+                      <div className="available-cnt">
+                        {artist.up_for_collab == "false" ? (
+                          <div className="common-avai-text not-available-text">
+                            <span className="not-available-circle"></span>
+                            <span>Not available to collab</span>
+                          </div>
+                        ) : (
+                          <div className="common-avai-text available-text">
+                            <span className="available-circle"></span>
+                            <span>Available to collab</span>
+                          </div>
+                        )}
+                        {/* <span><PictureOutlined /> Sample work uploaded</span> */}
+                      </div>
+                    </div>
+                  </div>
+                  { artist?.skills?.length > 0 && 
+                    getArtistSkills(artist.skills)
+                  }
+                  <div className="artist-bio-cnt">
+                    { artist.bio ? (
+                      <span className="artist-bio-text">
+                        {artist.bio}
+                      </span>
+                      ) : (
+                        <span className="no-bio">No Bio Available!!</span>
+                      )
+                    }
+                  </div>
+                  <div className="d-flex flex-column" style={{marginTop: '15px'}}>
+                    {!isLoggedIn && (
+                      <div className="login-message">
+                        <p>Please, login to send a collab request</p>
+                      </div>
+                    )}
+                    <div className="d-flex" style={{gap: '15px'}}>
+                      <Button
+                        block
+                        className="common-medium-btn-round"
+                        type="primary"
+                        ghost
+                        style={{
+                          whiteSpace: "normal",
+                          height: "auto",
+                          color: 'white',
+                          backgroundColor: '#1890ff'
+                        }}
+                      >
+                        <Link
+                          key={index}
+                          href={routeToHref(toArtistProfile(artist.slug))}
+                          passHref
+                        >
+                          View Profile
+                        </Link>
+                      </Button>
+                      <Button
+                        block
+                        className="common-medium-btn-round"
+                        type="primary"
+                        disabled={
+                          loggedInUserSlug == artist.slug ||
+                          artist.up_for_collab == "false" ||
+                          !isLoggedIn
+                        }
+                        style={{
+                          whiteSpace: "normal",
+                          height: "auto"
+                        }}
+                      >
+                        <Link
+                          key={index}
+                          href={routeToHref(toUserCollabPage(artist.slug))}
+                          passHref
+                        >
+                          Request
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        )
+      }
+      </>
+    )
+  }
+
   const getBreadcrum = (category: string) => {
     return (
       <Breadcrumb>
@@ -399,9 +547,10 @@ const DiscoverArtist = ({
           </div>
 
           <div className="col-md-12 categoryArtistsListingContainer">
-            {getArtists(
+            {/* {getArtists(
               categoryMetadata["name"]
-            )}
+            )} */}
+            {getArtistsList(categoryMetadata["name"])}
           </div>
         </>
       )}
