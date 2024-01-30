@@ -35,6 +35,7 @@ import { GetBlogUrl, GetProposalUrl } from "helpers/routeHelper";
 import AnimatedList from "@/components/pages/home/animatedList";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
 import HomePopularArtists from "@/components/pages/home/homePopularArtists";
+import Blockquote from "@/components/asset/blockquote";
 
 const { Panel } = Collapse;
 
@@ -256,7 +257,7 @@ const Home = ({
   const getPopularCollabCategories = () => {
     return (
       <div className="row centered-div">
-        <div style={{ paddingTop: "2%" }}>
+        <div style={{ paddingTop: "2%", paddingBottom: "5%"}}>
           <div className="scroll-container">
             <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
               <div className="col-12">
@@ -647,8 +648,14 @@ const Home = ({
         </div>
         {getPopularCollabCategories()}
       </div>
+      
+      <div className="row" style={{ backgroundColor: "#F4E0D4"}}>
+        <Blockquote 
+            quotes={"A Community Artists Can Call Theirs"}
+        />
+      </div>
 
-      <div className="row">
+      <div >
         <HomePopularArtists
           list={artistsForCollab}
         />
