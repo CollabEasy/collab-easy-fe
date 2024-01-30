@@ -16,7 +16,7 @@ export function GetUserSkills(skills: string[]) {
 }
 
 export function getArtistSkills(skills=[]){
-    const maxSkillsToShow = 3;
+    const maxSkillsToShow = 2;
   
     return (
       <div className="artist-skills-container">
