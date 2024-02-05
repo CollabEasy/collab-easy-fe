@@ -35,6 +35,7 @@ import { GetBlogUrl, GetProposalUrl } from "helpers/routeHelper";
 import AnimatedList from "@/components/pages/home/animatedList";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
 import HomePopularArtists from "@/components/pages/home/homePopularArtists";
+import HeroContent from "@/components/pages/home/heroContent";
 
 const { Panel } = Collapse;
 
@@ -608,6 +609,8 @@ const Home = ({
   };
 
 
+  // ..... main code.....
+  
   return (
     <Layout
       title={"Wondor - Connect with Artists, Manage Collabs, Create Proposals, and More. Join Now!"}
@@ -616,6 +619,10 @@ const Home = ({
         "Wondor is your one-stop solution for all artsy needs. Find artists to collaborate with, manage your collabs, create proposals, find art ideas, and join monthly art competitions—all on Wondor, the all-in-one platform for singers, painters, graphic designers, and more. Sign up for free today and start exploring!"
       }
     >
+    
+      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+        <HeroContent />
+      </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         {getMainContent()}
