@@ -45,7 +45,9 @@ const HeroContent = ({
     const router = useRouter();
     const {
         toTutorial,
+        toAllContestPage,
         toMySearchPage,
+        toGetInspired,
     } = useRoutesContext();
 
     const openLoginModal = () => {
@@ -70,49 +72,51 @@ const HeroContent = ({
             </div>
 
             <div className="slide-right">
-                <section className="grow">
-                    <div className="grow-content">
-                        <h2 className="common-h2-style section__title grow__title">Grow Together</h2>
-                        <p className="common-p-style">
-                            Forge meaningful connections on our community platform by collaborating with fellow artists. Propose and explore creative ideas, because together, you create better
-                        </p>
-                        <p className="common-p-style">
-                            <Link href={routeToHref(toMySearchPage())} passHref>
-                                Discover Collaborations &rarr;
-                            </Link>
-                        </p>
-                    </div>
-                </section>
+                <div className="grow">
+                    <h2 className="common-h2-style section__title grow__title">Grow Together</h2>
+                    <p className="common-p-style">
+                        Forge meaningful connections on our community platform by collaborating with fellow artists. Propose and explore creative ideas, because together, you create better
+                        <br></br>
+                        <Link href={routeToHref(toMySearchPage())} passHref>
+                            Discover Collaborations &rarr;
+                        </Link>
+                    </p>
+                </div>
             </div>
 
             <div className="arrow-1"></div>
 
-            
-            <section className="get-feedback slide-left">
-                <h2 className="common-h2-style section__title get-feedback__title">
-                    Get quality feedback
-                </h2>
-                <p className="common-p-style">
-                    We are here for you. Participate in the weekly live events, get the tools and resources you need, and find
-                    friendships with people that have the same goal as you.
-                </p>
-                <button  style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
-                    Join for Free
-                </button>
-            </section>
+            <div className="slide-left">
+                <div className="feedback">
+                    <h2 className="common-h2-style section__title feedback__title">
+                        Get quality feedback
+                    </h2>
+                    <p className="common-p-style">
+                        We are here for you. Participate in the weekly live events, get the tools and resources you need, and find friendships with people that have the same goal as you.
+                        <br></br>
+                        <Link href={routeToHref(toAllContestPage())} passHref>
+                            Art Challenges &rarr;
+                        </Link>
+                    </p>
+                </div>
+            </div>
+
             <div className="arrow-2"></div>
-            <section className="learning slide-right">
-                <h2 className="common-h2-style section__title learning__title">
-                    Start learning immediately
-                </h2>
-                <p className="common-p-style">
-                    It takes no time to start learning with us, This means, once you sign up for an account, you can start
-                    learning immediately and get access to our community.
-                </p>
-                <button  style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
-                    Join for Free
-                </button>
-            </section>
+
+            <div className="slide-right">
+                <div className="learning">
+                    <h2 className="common-h2-style section__title learning__title">
+                        Start Creating immediately
+                    </h2>
+                    <p className="common-p-style">
+                        Jumpstart your creativity effortlessly with us. Whether you're facing a creative block or low on energy, we deliver a constant stream of fresh ideas right to your inbox, giving you the inspiration you need to get started in no time.
+                        <br></br>
+                        <Link href={routeToHref(toGetInspired("all"))} passHref>
+                            Inspiration Hub &rarr;
+                        </Link>
+                    </p>
+                </div>
+            </div>
         </div>
     );
 };
