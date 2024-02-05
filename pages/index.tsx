@@ -199,60 +199,6 @@ const Home = ({
     )
   }
 
-  const getMainContent = () => {
-    return (
-      <div className="hero-text-container">
-        <div className="text-content">
-          <div>
-            <p className="common-p-style" style={{ marginTop: "30px" }}>
-              {mainContent["actionText"]}
-            </p>
-            <h1 className="common-h1-style">
-              Go From Solo to Team, Find
-            </h1>
-            {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
-            <h1 className="animation-content">
-              <ul className="flip5">
-                <li className="common-h1-style">Painters</li>
-                <li className="common-h1-style">Photographers</li>
-                <li className="common-h1-style">Dancers</li>
-                <li className="common-h1-style">Poets</li>
-                <li className="common-h1-style">Journalers</li>
-                <li className="common-h1-style">Sketchers</li>
-              </ul>
-            </h1>
-            {/* <h1 className="common-h1-style">
-              For Your Next Collaboration
-            </h1> */}
-          </div>
-          <p style={{ paddingTop: "2vh" }}>
-            {mainContent["paragraph"]}
-          </p>
-          <div className="hero-text-cnt-wrapper">
-            {!isLoggedIn ?
-              (
-                <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
-                  Join for Free
-                </button>
-              ) : (
-                <Link href={routeToHref(toMySearchPage())} passHref >
-                  <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                    Let&apos;s Collaborate
-                  </button>
-                </Link>
-              )
-            }
-            <Link href={routeToHref(toTutorial())} passHref >
-              <button className="homepage-button" style={{ backgroundColor: "white", color: "black" }}>
-                How it works?
-              </button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
     return (
@@ -623,11 +569,7 @@ const Home = ({
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <HeroContent isLoggedIn={undefined} setCurrentPathName={undefined} />
       </div>
-
-      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
-        {getMainContent()}
-      </div>
-
+  
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="popular-collaborator-container">
           <div className="row align-items-center">
