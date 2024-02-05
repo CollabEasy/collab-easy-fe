@@ -3,6 +3,44 @@
     padding-top: 120px;
 }
 
+/* Sliding */
+
+/***** Global Slide *****/
+.slide-right,
+.slide-left {
+    width: 100%;
+}
+
+/***** Slide Right *****/
+.slide-right {
+    animation: 3s slide-right;
+}
+
+@keyframes slide-right {
+    from {
+        margin-left: -100%;
+    }
+
+    to {
+        margin-left: 0%;
+    }
+}
+
+/***** Slide Left *****/
+.slide-left {
+    animation: 3s slide-left;
+}
+
+@keyframes slide-left {
+    from {
+        margin-left: 100%;
+    }
+
+    to {
+        margin-left: 0%;
+    }
+}
+  
 /* Intro */
 .intro {
   margin-top: 2rem;
@@ -39,6 +77,14 @@
 .intro__illustration {
   max-width: 100%;
   margin: 2rem 0;
+}
+
+
+.section__title {
+    color: var(--darkPurple);
+    font-weight: var(--bold);
+    font-size: 1.85rem;
+    line-height: 1.1;
 }
 
 @media (min-width: 32em) {
@@ -94,65 +140,13 @@
   .hero-content-button {
     font-size: 1.1rem;
   }
-}
 
-/* Features */
-.features {
-  padding: 0 1em;
-  margin-top: 2.5rem;
-  text-align: center;
-}
-
-.features__list li {
-  padding: 1rem;
-}
-
-.features p {
-  font-size: 0.9rem;
-}
-
-@media (min-width: 32em) {
-  .features__list {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .features__list li {
-    flex-basis: 350px;
-  }
-}
-
-.features__list svg {
-  display: block;
-  margin: auto;
-  max-width: 100%;
-  margin-bottom: 1.5rem;
-}
-
-@media (min-width: 60em) {
-  .features {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .features p {
-    font-size: 1.1rem;
-  }
-}
-
-.section__title {
-  color: var(--darkPurple);
-  font-weight: var(--bold);
-  font-size: 1.85rem;
-  line-height: 1.1;
-}
-
-@media (min-width: 60em) {
   .section__title {
     font-size: 2.25rem;
   }
+
 }
+
 
 /* Grow */
 .grow {
@@ -161,19 +155,8 @@
   margin-top: 2.5rem;
 }
 
-.grow svg {
-  width: 100%;
-}
-
 .grow p {
   font-size: 0.9rem;
-}
-
-.blob {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
 }
 
 @media (min-width: 32em) {
@@ -199,10 +182,6 @@
 
   .grow > svg:first-of-type {
     grid-area: img;
-  }
-
-  .blob {
-    top: -50px;
   }
 }
 
@@ -319,265 +298,6 @@
   }
 }
 
-/* get-started */
-.get-started li {
-  width: 250px;
-  height: 250px;
-  padding: 2rem;
-  margin: 1.5rem auto;
-  background-image: url(https://res.cloudinary.com/alexandracaulea/image/upload/v1583497341/circle-shape_fbgxd9.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.get-started strong {
-  font-size: 2.2rem;
-}
-
-.get-started p {
-  margin: 0;
-  margin-top: 5px;
-  font-size: 0.9rem;
-}
-
-@media (min-width: 45em) {
-  .get-started {
-    margin-top: 100px;
-  }
-  .get-started ul {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .get-started li {
-    width: 320px;
-    height: 320px;
-    background-size: initial;
-  }
-}
-
-@media (min-width: 60em) {
-  .get-started {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .get-started p {
-    font-size: 1.1rem;
-  }
-}
-
-/* Start learning */
-.start-learning {
-  position: relative;
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-  text-align: center;
-}
-
-.start-learning .hero-content-button {
-  margin: 2rem 0;
-}
-
-.video-learning {
-  width: 80vw;
-  margin: 0 auto;
-  max-width: 800px;
-  position: relative;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-size: 0;
-  border-radius: 3px;
-}
-
-.video-learning:fullscreen {
-  max-width: none;
-  width: 100%;
-}
-
-.video-learning:-webkit-full-screen {
-  max-width: none;
-  width: 100%;
-}
-
-.video {
-  width: 100%;
-  object-fit: cover;
-  cursor: pointer;
-}
-
-.video-button {
-  max-width: 50px;
-  padding: 0.5rem;
-  background: none;
-  border: 0;
-  line-height: 1;
-  color: var(--white);
-  text-align: center;
-  cursor: pointer;
-}
-
-.video-button:hover {
-  background-color: var(--pink);
-}
-
-.video-slider {
-  width: 10px;
-  height: 30px;
-}
-
-.video-controls {
-  display: flex;
-  flex-wrap: wrap;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.video-learning .progress {
-  height: 10px;
-}
-
-.video-controls > * {
-  flex: 1;
-}
-
-.progress {
-  display: flex;
-  flex-basis: 100%;
-  height: 5px;
-  background-color: rgba(0, 0, 0, 0.5);
-  cursor: ew-resize;
-}
-
-.progress-fill {
-  width: 0%;
-  background-color: var(--pink);
-  flex: 0;
-  flex-basis: 0%;
-}
-
-.blob-learning {
-  width: 100%;
-  position: absolute;
-  top: 0px;
-  left: 0;
-  z-index: -1;
-  height: 500px;
-}
-
-@media (min-width: 32em) {
-  .blob-learning {
-    top: -100px;
-    height: 800px;
-  }
-}
-
-/* Footer */
-.footer {
-  padding: 1em;
-  margin: 2rem auto 0;
-  background-color: #f8f8f8;
-}
-
-.footer-nav {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 100px));
-}
-
-.footer-title {
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  color: var(--darkerGrey);
-  letter-spacing: 1px;
-}
-
-.footer-link {
-  font-size: 0.85rem;
-  font-weight: var(--bold);
-  color: inherit;
-}
-
-.footer-link:hover {
-  text-decoration: underline;
-}
-
-.footer-newsletter {
-  margin: 2rem auto;
-  text-align: center;
-}
-
-.footer-newsletter p {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: var(--darkGrey);
-}
-
-.footer-email {
-  display: block;
-  width: 100%;
-  padding: 0.35rem 1rem;
-  font-family: inherit;
-  font-size: 1rem;
-  line-height: 1.6;
-  box-shadow: none;
-  color: var(--darkGrey);
-  background-color: var(--white);
-  border: 2px solid rgba(79, 57, 97, 0.141);
-  border-radius: 3px;
-  outline-color: var(--yellow);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.form-error-message {
-  display: block;
-  text-align: left;
-  color: #cc3648;
-  visibility: hidden;
-}
-
-.form-error .footer-email {
-  border-color: #cc3648;
-}
-
-.form-error .form-error-message {
-  visibility: visible;
-}
-
-.hero-content-button-email {
-  margin-top: 1rem;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3),
-    0 2px 4px 0 rgba(14, 30, 37, 0.12);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-
-.copyright {
-  flex-basis: 100%;
-  text-align: center;
-  color: var(--darkerGrey);
-}
-
-.dotted-link {
-  color: #a94e76;
-  border-bottom: 1px dashed #a94e76;
-}
-
 .arrow-1,
 .arrow-2 {
   margin-top: 20px;
@@ -624,3 +344,5 @@
     background-image: url(https://res.cloudinary.com/alexandracaulea/image/upload/v1583497341/arrow-2-lg_cjykcq.svg);
   }
 }
+
+

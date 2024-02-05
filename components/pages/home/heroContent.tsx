@@ -55,7 +55,7 @@ const HeroContent = ({
 
     return (
         <div className='homepage_heroContent'>
-            <section className="intro">
+            <div className="intro">
                 <h1 className="common-h1-style intro__title">
                     Reach Your Creative Hieghts
                 </h1>
@@ -67,77 +67,51 @@ const HeroContent = ({
                     Join for Free
                 </button>
                 <img className="intro__illustration" src="https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/NmyT5rVjFkaG-uB6S-uXug/Stepping_up.svg" alt="" />
-            </section>
+            </div>
 
-            <section id="how-it-works" className="grow">
-                <h2 className="common-h2-style section__title grow__title">Grow Together</h2>
-                <p className="common-p-style">
-                    Start a meaningful conversation in our community platform, ask questions when you’re stuck and get help from a
-                    real person. Get answers fast, no matter your question.
-                </p>
-            </section>
+            <div className="slide-right">
+                <section className="grow">
+                    <div className="grow-content">
+                        <h2 className="common-h2-style section__title grow__title">Grow Together</h2>
+                        <p className="common-p-style">
+                            Forge meaningful connections on our community platform by collaborating with fellow artists. Propose and explore creative ideas, because together, you create better
+                        </p>
+                        <p className="common-p-style">
+                            <Link href={routeToHref(toMySearchPage())} passHref>
+                                Discover Collaborations &rarr;
+                            </Link>
+                        </p>
+                    </div>
+                </section>
+            </div>
+
             <div className="arrow-1"></div>
-            <section className="get-feedback">
-                <h2 className="section__title get-feedback__title">
+
+            
+            <section className="get-feedback slide-left">
+                <h2 className="common-h2-style section__title get-feedback__title">
                     Get quality feedback
                 </h2>
-                <p>
+                <p className="common-p-style">
                     We are here for you. Participate in the weekly live events, get the tools and resources you need, and find
                     friendships with people that have the same goal as you.
                 </p>
-                <svg width="519" height="366" viewBox="0 0 519 366" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-
-                </svg>
+                <button  style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
+                    Join for Free
+                </button>
             </section>
             <div className="arrow-2"></div>
-            <section className="learning">
-                <h2 className="section__title learning__title">
+            <section className="learning slide-right">
+                <h2 className="common-h2-style section__title learning__title">
                     Start learning immediately
                 </h2>
-                <p>
+                <p className="common-p-style">
                     It takes no time to start learning with us, This means, once you sign up for an account, you can start
                     learning immediately and get access to our community.
                 </p>
-                <svg width="598" height="323" viewBox="0 0 598 323" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-
-                </svg>
-            </section>
-            <div id="get-started" className="get-started">
-                <ul>
-                    <li>
-                        <svg width="80" height="56" viewBox="0 0 80 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-
-                        </svg>
-                        <p><strong className="counter community-members">1.2</strong><strong>K+</strong></p>
-                        <p>Community Members</p>
-                    </li>
-                    <li>
-                        <svg width="56" height="65" viewBox="0 0 56 65" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-
-                        </svg>
-                        <p><strong className="counter number-of-pages">1.9</strong><strong>K+</strong></p>
-                        <p>Pages with content for you to learn</p>
-                    </li>
-                </ul>
-            </div>
-            <section className="start-learning">
-                <h2 className="section__title">
-                    Ready To Start Learning English?
-                </h2>
-                <a href="#" className="button">Get Started</a>
-                <div className="video-learning">
-                    <video muted id="video" className="video" poster="https://res.cloudinary.com/alexandracaulea/image/upload/v1583497256/video-poster_lkwsdg.jpg">
-                        <source src="https://res.cloudinary.com/alexandracaulea/video/upload/v1583497287/video-learning_vpohou.mp4" type="video/mp4" />
-                    </video>
-                    <div className="video-controls">
-                        <div className="progress">
-                            <div className="progress-fill"></div>
-                        </div>
-                        <button className="video-button toggle" title="Play">►</button>
-                        <button data-skip="-5" className="video-button" aria-label="Skip backward 5 seconds">« 5s</button>
-                        <button data-skip="5" className="video-button" aria-label="Skip forward 5 seconds">5s »</button>
-                    </div>
-                </div>
+                <button  style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
+                    Join for Free
+                </button>
             </section>
         </div>
     );
