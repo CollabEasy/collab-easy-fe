@@ -16,36 +16,36 @@ import * as actions from "state/action";
 
 
 const mapStateToProps = (state: AppState) => ({
-  loginModalDetails: state.home.loginModalDetails,
-  user: state.user.user,
-  artistListData: state.home.artistListDetails,
-  isLoggedIn: state.user.isLoggedIn,
-  showCreateOrEditProposalModal: state.proposal.showCreateOrUpdateProposalModal
+    loginModalDetails: state.home.loginModalDetails,
+    user: state.user.user,
+    artistListData: state.home.artistListDetails,
+    isLoggedIn: state.user.isLoggedIn,
+    showCreateOrEditProposalModal: state.proposal.showCreateOrUpdateProposalModal
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  updateLoggedInData: (loginDetails: any) =>
-    dispatch(updateLoginData(loginDetails)),
-  openLoginModalAction: () => dispatch(openLoginModalAction()),
-  setCurrentPathName: (path: string) => dispatch(actions.setCurrentPathName(path)),
+    updateLoggedInData: (loginDetails: any) =>
+        dispatch(updateLoginData(loginDetails)),
+    openLoginModalAction: () => dispatch(openLoginModalAction()),
+    setCurrentPathName: (path: string) => dispatch(actions.setCurrentPathName(path)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
 type Props = {
-  loginModalDetails: LoginModalDetails;
-  user: User;
+    loginModalDetails: LoginModalDetails;
+    user: User;
 } & ConnectedProps<typeof connector>;
 
-const HeroContent = ({ 
+const HeroContent = ({
     isLoggedIn,
     setCurrentPathName,
 
 }) => {
     const router = useRouter();
     const {
-      toTutorial,
-      toMySearchPage,
+        toTutorial,
+        toMySearchPage,
     } = useRoutesContext();
 
     const openLoginModal = () => {
@@ -57,7 +57,7 @@ const HeroContent = ({
         <div className='homepage_heroContent'>
             <section className="intro">
                 <h1 className="common-h1-style intro__title">
-                    Unlock Your Creative Potential
+                    Reach Your Creative Hieghts
                 </h1>
                 <p className="common-p-style intro__subtitle">
                     Wondor is a global community of artists dedicated to creative excellence. Built by artists, for artists.
@@ -66,22 +66,15 @@ const HeroContent = ({
                 <button className="hero-content-button" style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
                     Join for Free
                 </button>
-
                 <img className="intro__illustration" src="https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/NmyT5rVjFkaG-uB6S-uXug/Stepping_up.svg" alt="" />
             </section>
 
             <section id="how-it-works" className="grow">
-                <h2 className="section__title grow__title">Grow Together</h2>
-                <p>
+                <h2 className="common-h2-style section__title grow__title">Grow Together</h2>
+                <p className="common-p-style">
                     Start a meaningful conversation in our community platform, ask questions when you’re stuck and get help from a
                     real person. Get answers fast, no matter your question.
                 </p>
-                <svg width="174" height="341" viewBox="0 0 174 341" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-
-                </svg>
-                <svg width="898" height="500" viewBox="0 0 898 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="blob">
-
-                </svg>
             </section>
             <div className="arrow-1"></div>
             <section className="get-feedback">
