@@ -32,10 +32,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type Props = {
-    loginModalDetails: LoginModalDetails;
-    user: User;
-} & ConnectedProps<typeof connector>;
+type Props = {} & ConnectedProps<typeof connector>;
 
 const HeroContent = ({
     isLoggedIn,
@@ -71,50 +68,69 @@ const HeroContent = ({
                 <img className="intro__illustration" src="https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/NmyT5rVjFkaG-uB6S-uXug/Stepping_up.svg" alt="" />
             </div>
 
-            <div className="slide-right">
-                <div className="grow">
-                    <h2 className="common-h2-style section__title grow__title">Grow Together</h2>
-                    <p className="common-p-style">
-                        Forge meaningful connections on our community platform by collaborating with fellow artists. Propose and explore creative ideas, because together, you create better
-                        <br></br>
-                        <Link href={routeToHref(toMySearchPage())} passHref>
-                            Discover Collaborations &rarr;
-                        </Link>
-                    </p>
-                </div>
+            <div className="curved-div upper">
+                <svg viewBox="0 0 1440 319">
+                    <path fill="#CBE6EF" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                </svg>
             </div>
+            <div className="curved-div">
+                <h1>
+                    Artistic growth made easy
+                </h1>
+                <p>
+                    At Wondor, we prioritize your creativity. Let your magic shine while we handle details. Explore collaborations, join contests, and stay inspired with weekly art ideas. We're here to empower your craft and support your journey.
+                </p>
+                <svg viewBox="0 0 1440 319">
+                    <path fill="#fff" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                </svg>
+            </div>  
 
-            <div className="arrow-1"></div>
-
-            <div className="slide-left">
-                <div className="feedback">
-                    <h2 className="common-h2-style section__title feedback__title">
-                        Get quality feedback
-                    </h2>
-                    <p className="common-p-style">
-                        We are here for you. Participate in the weekly live events, get the tools and resources you need, and find friendships with people that have the same goal as you.
-                        <br></br>
-                        <Link href={routeToHref(toAllContestPage())} passHref>
-                            Art Challenges &rarr;
-                        </Link>
-                    </p>
+            <div className="heropage-background">
+                <div className="slide-right">
+                    <div className="grow">
+                        <h2 className="common-h2-style section__title grow__title">Grow Together</h2>
+                        <p className="common-p-style">
+                            Forge meaningful connections on our community platform by collaborating with fellow artists who have the same goal as you. Propose and explore creative collaboration ideas, because together, you create better.
+                            <br></br>
+                            <Link href={routeToHref(toMySearchPage())} passHref>
+                                Discover Collaborations &rarr;
+                            </Link>
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            <div className="arrow-2"></div>
+                <div className="arrow-1"></div>
 
-            <div className="slide-right">
-                <div className="learning">
-                    <h2 className="common-h2-style section__title learning__title">
-                        Start Creating immediately
-                    </h2>
-                    <p className="common-p-style">
-                        Jumpstart your creativity effortlessly with us. Whether you're facing a creative block or low on energy, we deliver a constant stream of fresh ideas right to your inbox, giving you the inspiration you need to get started in no time.
-                        <br></br>
-                        <Link href={routeToHref(toGetInspired("all"))} passHref>
-                            Inspiration Hub &rarr;
-                        </Link>
-                    </p>
+                <div className="slide-left">
+                    <div className="feedback">
+                        <h2 className="common-h2-style section__title feedback__title">
+                            Showcase Your Skills
+                        </h2>
+                        <p className="common-p-style">
+                            We are here for you. Participate in our monthy challenges to compete, and win! Join for a chance to showcase your talent, learn from peers, and claim exclusive prizes.
+                            <br></br>
+                            <Link href={routeToHref(toAllContestPage())} passHref>
+                                Art Challenges &rarr;
+                            </Link>
+                        </p>
+                    </div>
+                </div>
+
+                <div className="arrow-2"></div>
+
+                <div className="slide-right">
+                    <div className="learning">
+                        <h2 className="common-h2-style section__title learning__title">
+                            Start Creating immediately
+                        </h2>
+                        <p className="common-p-style">
+                            Jumpstart your creativity effortlessly with us. Whether you're facing a creative block or low on energy, we deliver a constant stream of fresh ideas right to your inbox, giving you the inspiration you need to get started in no time.
+                            <br></br>
+                            <Link href={routeToHref(toGetInspired("all"))} passHref>
+                                Inspiration Hub &rarr;
+                            </Link>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

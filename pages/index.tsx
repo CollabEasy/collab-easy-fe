@@ -621,7 +621,7 @@ const Home = ({
     >
     
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
-        <HeroContent />
+        <HeroContent isLoggedIn={undefined} setCurrentPathName={undefined} />
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
