@@ -99,7 +99,7 @@ const HeroContent = ({
                     </div>
                 </div>
 
-                <div className="arrow-1"></div>
+                {/* <div className="arrow-1"></div> */}
 
                 <div className="slide-left">
                     <div className="feedback">
@@ -116,7 +116,7 @@ const HeroContent = ({
                     </div>
                 </div>
 
-                <div className="arrow-2"></div>
+                {/* <div className="arrow-2"></div> */}
 
                 <div className="slide-right">
                     <div className="learning">
