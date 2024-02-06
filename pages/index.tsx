@@ -571,22 +571,9 @@ const Home = ({
       </div>
 
       <div className="row">
-        <div className="curved-div upper">
-          <svg viewBox="0 0 1440 319">
-            <path fill="#E87A38" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-        </div>
-        <div className="curved-div" style={{ background: "#E87A38" }}>
-          <h1>
-            Wondor, A Community You Can Call Yours
-          </h1>
-          <p className="common-p-style">
-            Designed for artists by an artist, Wondor is more than a platform; it's a global community connecting creative minds.
-          </p>
-          <svg viewBox="0 0 1440 319">
-            <path fill="#fff" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-        </div>
+        <HomePopularArtists
+          list={artistsForCollab}
+        />
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
@@ -616,10 +603,31 @@ const Home = ({
         {getPopularCollabCategories()}
       </div>
 
-      <div className="row">
-        <HomePopularArtists
-          list={artistsForCollab}
-        />
+      <div className="row popular-proposal-section">
+        <div className="row align-items-end">
+          <div className="col-md-8">
+            <div className="section-title text-md-start">
+              <h2 className="common-h2-style">
+                Have a project you want to work on together?
+                <div className="heading-line" style={{ marginLeft: "0", marginRight: "0" }}></div>
+              </h2>
+              <p className="common-p-style" style={{ width: "80%" }}>
+                Millions of artists are collaborating on Instagram, YouTube, TikTok,
+                and other platforms, propelling themselves to new heights of success. Start your success story by adding your project today.
+              </p>
+              <a onClick={() => {
+                setShowCreateOrUpdateProposalModal(true);
+              }}>
+                <button className="homepage-button" style={{ backgroundColor: "#173F2D", color: "white" }}>
+                  Add Collab Proposal
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          {getPopularCollabProposals()}
+        </div>
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
@@ -653,32 +661,7 @@ const Home = ({
         </div>
       </div>
 
-      <div className="row popular-proposal-section">
-        <div className="row align-items-end">
-          <div className="col-md-8">
-            <div className="section-title text-md-start">
-              <h2 className="common-h2-style">
-                Have a project you want to work on together?
-                <div className="heading-line" style={{ marginLeft: "0", marginRight: "0" }}></div>
-              </h2>
-              <p className="common-p-style" style={{ width: "80%" }}>
-                Millions of artists are collaborating on Instagram, YouTube, TikTok,
-                and other platforms, propelling themselves to new heights of success. Start your success story by adding your project today.
-              </p>
-              <a onClick={() => {
-                setShowCreateOrUpdateProposalModal(true);
-              }}>
-                <button className="homepage-button" style={{ backgroundColor: "#173F2D", color: "white" }}>
-                  Add Collab Proposal
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div>
-          {getPopularCollabProposals()}
-        </div>
-      </div>
+
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="popular-collaborator-container">
@@ -730,26 +713,23 @@ const Home = ({
         </div>
       </div>
 
-      <div className="row" style={{ backgroundColor: "#854B5B" }}>
-        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-          <div className="wondor-offerings-container">
-            <div className="row align-items-center">
-              <div className="col-md-12">
-                <div className="section-title text-md-center">
-                  <h2 className="common-h2-style">
-                    Take Your Artistic Journey to the Next Level with Us
-                    <div className="heading-line"></div>
-                  </h2>
-                  <p className="common-p-style" style={{ width: "100%" }}>
-                    Our platform is committed to your growth. Discover fellow artists, improved collaboration experience,
-                    monthly art challenges, inspiration hub – all designed to uplift your skills.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="row">
+        <div className="curved-div upper">
+          <svg viewBox="0 0 1440 319">
+            <path fill="#E87A38" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
         </div>
-        {getWondorOfferings()}
+        <div className="curved-div" style={{ background: "#E87A38" }}>
+          <h1>
+            Wondor, A Community You Can Call Yours
+          </h1>
+          <p className="common-p-style">
+            Designed for artists by an artist, Wondor is more than a platform; it's a global community connecting creative minds.
+          </p>
+          <svg viewBox="0 0 1440 319">
+            <path fill="#fff" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+        </div>
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
