@@ -65,12 +65,13 @@ const HeroContent = ({
                 <button className="hero-content-button" style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
                     Join for Free
                 </button>
+                {/* eslint-disable @next/next/no-img-element */}
                 <img className="intro__illustration" src="https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/NmyT5rVjFkaG-uB6S-uXug/Stepping_up.svg" alt="" />
             </div>
 
             <div className="curved-div upper">
                 <svg viewBox="0 0 1440 319">
-                    <path fill="#CBE6EF" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    <path fill="#CBE6EF" fillOpacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
                 </svg>
             </div>
             <div className="curved-div">
@@ -78,10 +79,10 @@ const HeroContent = ({
                     Artistic growth made easy
                 </h1>
                 <p className="common-p-style">
-                    At Wondor, we prioritize your creativity. Let your magic shine while we handle details. Explore collaborations, join contests, and stay inspired with weekly art ideas. We're here to empower your craft and support your journey.
+                    At Wondor, we prioritize your creativity. Let your magic shine while we handle details. Explore collaborations, join contests, and stay inspired with weekly art ideas. We&apos;re here to empower your craft and support your journey.
                 </p>
                 <svg viewBox="0 0 1440 319">
-                    <path fill="#fff" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    <path fill="#fff" fillOpacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
                 </svg>
             </div>
             <div className="heropage-background">
@@ -112,7 +113,7 @@ const HeroContent = ({
                         <p className="common-p-style">
                             We are here for you. Participate in our monthy challenges to compete, and win! Join for a chance to showcase your talent, learn from peers, and claim exclusive prizes.
                             <br></br>
-                            
+
                             <Link href={routeToHref(toAllContestPage())} passHref>
                                 Art Challenges &rarr;
                             </Link>
@@ -129,7 +130,7 @@ const HeroContent = ({
                             <div className="homepage-heading-line"></div>
                         </h2>
                         <p className="common-p-style">
-                            Jumpstart your creativity effortlessly with us. Whether you're facing a creative block or low on energy, we deliver a constant stream of fresh ideas right to your inbox, giving you the inspiration you need to get started in no time.
+                            Jumpstart your creativity effortlessly with us. Whether you&apos;re facing a creative block or low on energy, we deliver a constant stream of fresh ideas right to your inbox, giving you the inspiration you need to get started in no time.
                             <br></br>
                             <Link href={routeToHref(toGetInspired("all"))} passHref>
                                 Inspiration Hub &rarr;
