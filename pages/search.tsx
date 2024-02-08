@@ -149,7 +149,7 @@ const MySearchPage = ({
                     <div className="searchPageContent">
                         <div className="container">
                             <div className="searchPage-sectionHeading">
-                                <h5 className="common-h5-style">You might like</h5>
+                                <h5 className="common-h5-style">Collab categories</h5>
                             </div>
                         </div>
                         <div className="container">

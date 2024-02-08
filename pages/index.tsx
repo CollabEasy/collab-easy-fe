@@ -490,12 +490,12 @@ const Home = ({
                 </p>
                 <div className="hero-text-cnt-wrapper">
                   <Link href={routeToHref(toFAQ())} passHref>
-                    <button className="homepage-button" style={{ backgroundColor: "#13344C", color: "white" }}>
+                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
                       FAQs
                     </button>
                   </Link>
                   <Link href={routeToHref(toContactUs())} passHref >
-                    <button className="homepage-button" style={{ backgroundColor: "white", color: "black" }}>
+                    <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
                       Contact Us
                     </button>
                   </Link>
@@ -587,7 +587,7 @@ const Home = ({
                 </h2>
 
                 <p className="common-p-style" style={{ width: "100%" }}>
-                  Here are some of the popular categories for your diverse artistic need. Collaborate for satisfaction beyond what achieved individually.
+                  Popular categories for your diverse artistic need. Collaborate for satisfaction beyond what achieved individually.
                 </p>
                 <div className="hero-text-cnt-wrapper">
                   <Link href={routeToHref(toAllCategoryPage())} passHref>
@@ -603,7 +603,7 @@ const Home = ({
         {getPopularCollabCategories()}
       </div>
 
-      <div className="row popular-proposal-section">
+      {/* <div className="row popular-proposal-section">
         <div className="row align-items-end">
           <div className="col-md-8">
             <div className="section-title text-md-start">
@@ -628,7 +628,7 @@ const Home = ({
         <div>
           {getPopularCollabProposals()}
         </div>
-      </div>
+      </div> */}
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="popular-collaborator-container">
@@ -660,8 +660,6 @@ const Home = ({
           />
         </div>
       </div>
-
-
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="popular-collaborator-container">
@@ -716,10 +714,10 @@ const Home = ({
       <div className="row">
         <div className="curved-div upper">
           <svg viewBox="0 0 1440 319">
-            <path fill="#E87A38" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            <path fill="#F4A547" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
           </svg>
         </div>
-        <div className="curved-div" style={{ background: "#E87A38" }}>
+        <div className="curved-div" style={{ background: "#F4A547" }}>
           <h1>
             Wondor, A Community You Can Call Yours
           </h1>
@@ -758,7 +756,12 @@ const Home = ({
           </div>
         </div>
       </div>
-
+                
+      <div className="curved-div upper">
+          <svg viewBox="0 0 1440 319">
+              <path fill="#C8A75F" fill-opacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+      </div>
       <div className="row" style={{ backgroundColor: "#C8A75F" }}>
         <div className="basic-testimonial-container">
           <div>
@@ -790,16 +793,17 @@ const Home = ({
           </Carousel>
         </div>
       </div>
-      {getSignUpCard()}
 
       <div className="row">
         {getBasicFAQSection()}
       </div>
+      
+      {getSignUpCard()}
 
       {/* <div className="row" style={{ borderBottom: '1px solid #e8e8e8' }}>
       </div> */}
 
-      <div className="row">
+      {/* <div className="row">
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
           <div className="wondor-offerings-container">
             <div className="row align-items-center">
@@ -824,7 +828,7 @@ const Home = ({
           </div>
         </div>
         {getBlogPosts()}
-      </div>
+      </div> */}
 
       {showCreateOrEditProposalModal && (
         <CreateProposalModal

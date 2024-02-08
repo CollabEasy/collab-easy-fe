@@ -27,7 +27,6 @@
 .curved-div p {
   font-size: 1rem;
   margin: 0 5rem 0rem 5rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .heropage-background {
@@ -39,9 +38,9 @@
   display: flex;
   justify-content: center;
   height: 2px;
-  width: 40%;
+  width: 80%;
   background-color: #D4D4D4;
-  margin: 35px auto 35px;
+  margin: 75px auto 5px;
   /* Center horizontally and add margin-bottom */
 }
 
@@ -92,9 +91,10 @@
 
 .intro__title {
   margin: 0;
-  font-size: 2.4rem;
+  font-size: 6rem;
   font-weight: normal;
   line-height: 1.3;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .intro__subtitle {
@@ -280,6 +280,129 @@
   }
 }
 
+@media only screen and (min-width: 1200px) {
+  .homepage_heroContent {
+    padding-top: 110px;
+  }
+
+  .intro {
+    margin-top: 0rem;
+    padding: 0 6em;
+  }
+
+  .intro__title {
+    font-size: 5vw;
+    line-height: 1;
+    font-weight: normal;
+  }
+  
+  .intro__subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-content-button {
+    height: 35px;
+    padding: 7px;
+    font-size: 13px;
+  }
+
+  .grow {
+    padding: 0 6em;
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .learning {
+    padding: 0 6em;
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .feedback {
+    padding: 0 6em;
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .curved-div h1 {
+    font-size: 6vw;
+    line-height: 1;
+  }
+
+  .curved-div p {
+    font-size: 1.1rem;
+    line-height: 2.5vw;
+    margin: 0 3rem 0rem 3rem
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .homepage_heroContent {
+    padding-top: 110px;
+  }
+
+  .intro {
+    margin-top: 0rem;
+    padding: 0 4em;
+  }
+
+  .intro__title {
+    font-size: 6vw;
+    line-height: 5vw;
+  }
+  
+  .intro__subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-content-button {
+    height: 35px;
+    padding: 7px;
+    font-size: 13px;
+  }
+
+  .grow {
+    padding: 0 4em;
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .learning {
+    padding: 0 4em;
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .feedback {
+    padding: 0 4em;
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .curved-div h1 {
+    font-size: 6vw;
+    line-height: 5vw;
+  }
+
+  .curved-div p {
+    font-size: 1.1rem;
+    line-height: 3.5vw;
+    margin: 0 3rem 0rem 3rem
+  }
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .homepage_heroContent {
     padding-top: 100px;
@@ -308,14 +431,26 @@
 
   .grow {
     padding: 0 4em;
+
+    p {
+      font-size: 1.1rem;
+    }
   }
 
   .learning {
     padding: 0 4em;
+
+    p {
+      font-size: 1.1rem;
+    }
   }
 
   .feedback {
     padding: 0 4em;
+
+    p {
+      font-size: 1.1rem;
+    }
   }
 
   .curved-div h1 {
@@ -324,7 +459,7 @@
   }
 
   .curved-div p {
-    font-size: 2vw;
+    font-size: 1.1rem;
     line-height: 3.5vw;
     margin: 0 3rem 0rem 3rem
   }
@@ -337,7 +472,39 @@
 
   .intro {
     margin-top: 0rem;
-    padding: 0 1em;
+    padding: 0 2em;
+  }
+
+  .intro__title {
+    font-size: 2.4rem;
+  }
+  
+  .intro__subtitle {
+    font-size: 1rem;
+  }
+
+  .grow {
+    padding: 0 2em;
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .learning {
+    padding: 0 2em;
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .feedback {
+    padding: 0 2em;
+
+    p {
+      font-size: 1rem;
+    }
   }
 
   .hero-content-button {
@@ -352,7 +519,7 @@
   }
 
   .curved-div p {
-    font-size: 2.75vw;
+    font-size: 1rem;
     line-height: 4.5vw;
     margin: 0 3rem 0rem 3rem
   }
@@ -367,6 +534,14 @@
   .intro {
     margin-top: 0rem;
     padding: 0 2em;
+  }
+
+  .intro__title {
+    font-size: 2.4rem;
+  }
+  
+  .intro__subtitle {
+    font-size: 1rem;
   }
 
   .grow {
@@ -403,6 +578,14 @@
   .intro {
     margin-top: 0rem;
     padding: 0 2em;
+  }
+
+  .intro__title {
+    font-size: 2.4rem;
+  }
+  
+  .intro__subtitle {
+    font-size: 1rem;
   }
 
   .grow {
