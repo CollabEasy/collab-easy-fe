@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['images.unsplash.com', 'lh3.googleusercontent.com', 'contest-submission.s3.amazonaws.com', 'cdn-us.icons8.com', 'github.com', 'github-production-user-asset-6210df.s3.amazonaws.com'],
+    domains: ['images.unsplash.com', 'lh3.googleusercontent.com', 'contest-submission.s3.amazonaws.com', 'cdn-in.icons8.com', 'cdn-us.icons8.com', 'github.com', 'github-production-user-asset-6210df.s3.amazonaws.com'],
     formats: ['image/webp', 'image/jpeg', 'image/png', 'image/gif', 'image/heic', 'image/svg'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     minimumCacheTTL: 3600,

@@ -88,9 +88,16 @@ const HeroContent = ({
             <div className="heropage-background">
                 <div className="slide-right">
                     <div className="grow">
+                        {/* eslint-disable @next/next/no-img-element */}
+                        <img 
+                            className="intro__illustration" 
+                            src="https://cdn-in.icons8.com/OTxSoZ_Oc0qX2Dl2t7iv7Q/FUq1Pu9JiEWsI0mhwopbUA/People_holding_pieces_of_puzzle.png" 
+                            alt="" 
+                        />
+
                         <h2 className="common-h2-style section__title grow__title">
                             Grow Together
-                            <div className="homepage-heading-line"></div>
+                            <div className="herocontent-heading-line"></div>
                         </h2>
                         <p className="common-p-style">
                             Forge meaningful connections on our community platform by collaborating with fellow artists who have the same goal as you. Propose and explore creative collaboration ideas, because together, you create better.
@@ -106,9 +113,16 @@ const HeroContent = ({
 
                 <div className="slide-left">
                     <div className="feedback">
+                        {/* eslint-disable @next/next/no-img-element */}
+                        <img 
+                            className="intro__illustration" 
+                            src="https://cdn-in.icons8.com/OTxSoZ_Oc0qX2Dl2t7iv7Q/RhfGcZUmmUCeOYZ8B4CsAA/Champions_with_a_first_place_cup.png" 
+                            alt="" 
+                        />
+
                         <h2 className="common-h2-style section__title feedback__title">
                             Showcase Your Skills
-                            <div className="homepage-heading-line"></div>
+                            <div className="herocontent-heading-line"></div>
                         </h2>
                         <p className="common-p-style">
                             We are here for you. Participate in our monthy challenges to compete, and win! Join for a chance to showcase your talent, learn from peers, and claim exclusive prizes.
@@ -125,9 +139,16 @@ const HeroContent = ({
 
                 <div className="slide-right">
                     <div className="learning">
+                        {/* eslint-disable @next/next/no-img-element */}
+                        <img 
+                            className="intro__illustration" 
+                            src="https://cdn-in.icons8.com/OTxSoZ_Oc0qX2Dl2t7iv7Q/8JQw2N9cpkO6vfnHB37rVw/Girl_with_paint_brush_and_light_bulb.png" 
+                            alt="" 
+                        />
+
                         <h2 className="common-h2-style section__title learning__title">
                             Start Creating immediately
-                            <div className="homepage-heading-line"></div>
+                            <div className="herocontent-heading-line"></div>
                         </h2>
                         <p className="common-p-style">
                             Jumpstart your creativity effortlessly with us. Whether you&apos;re facing a creative block or low on energy, we deliver a constant stream of fresh ideas right to your inbox, giving you the inspiration you need to get started in no time.

@@ -44,6 +44,11 @@
   /* Center horizontally and add margin-bottom */
 }
 
+.herocontent-heading-line {
+  border: 2px solid;
+  width: 110px;
+  margin-top: 20px;
+}
 
 /* Sliding */
 
@@ -527,6 +532,11 @@
 
 
 @media only screen and (min-width: 400px) and (max-width: 600px) {
+  .herocontent-heading-line {
+    border: 1px solid;
+    width: 120px;
+  }
+
   .homepage_heroContent {
     padding-top: 110px;
   }
@@ -574,6 +584,11 @@
 }
 
 @media only screen and (max-width: 399px) {
+
+  .herocontent-heading-line {
+    border: 1px solid;
+    width: 120px;
+  }
 
   .intro {
     margin-top: 0rem;
