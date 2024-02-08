@@ -142,9 +142,11 @@ const HomePopularArtists = ({ list }) => {
                         </Link>
                     </div>
                 </section>
-                <section className="pattern">
-
-                </section>
+            </div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
+                    <path fill="#163F40" fill-opacity="1" d="M0,96C120,64,240,32,360,32C480,32,600,64,720,85.3C840,107,960,117,1080,117.3C1200,117,1320,107,1380,101.3L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+                </svg>
             </div>
         </>
     );

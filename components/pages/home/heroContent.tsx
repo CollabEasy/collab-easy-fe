@@ -87,7 +87,10 @@ const HeroContent = ({
             <div className="heropage-background">
                 <div className="slide-right">
                     <div className="grow">
-                        <h2 className="common-h2-style section__title grow__title">Grow Together</h2>
+                        <h2 className="common-h2-style section__title grow__title">
+                            Grow Together
+                            <div className="homepage-heading-line"></div>
+                        </h2>
                         <p className="common-p-style">
                             Forge meaningful connections on our community platform by collaborating with fellow artists who have the same goal as you. Propose and explore creative collaboration ideas, because together, you create better.
                             <br></br>
@@ -104,10 +107,12 @@ const HeroContent = ({
                     <div className="feedback">
                         <h2 className="common-h2-style section__title feedback__title">
                             Showcase Your Skills
+                            <div className="homepage-heading-line"></div>
                         </h2>
                         <p className="common-p-style">
                             We are here for you. Participate in our monthy challenges to compete, and win! Join for a chance to showcase your talent, learn from peers, and claim exclusive prizes.
                             <br></br>
+                            
                             <Link href={routeToHref(toAllContestPage())} passHref>
                                 Art Challenges &rarr;
                             </Link>
@@ -121,6 +126,7 @@ const HeroContent = ({
                     <div className="learning">
                         <h2 className="common-h2-style section__title learning__title">
                             Start Creating immediately
+                            <div className="homepage-heading-line"></div>
                         </h2>
                         <p className="common-p-style">
                             Jumpstart your creativity effortlessly with us. Whether you're facing a creative block or low on energy, we deliver a constant stream of fresh ideas right to your inbox, giving you the inspiration you need to get started in no time.
