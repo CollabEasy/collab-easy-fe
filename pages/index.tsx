@@ -519,6 +519,13 @@ const Home = ({
       <div className="row">
         <div className="signup-container">
           <div className="row d-flex justify-content-center text-align-center">
+            
+            {/* eslint-disable @next/next/no-img-element */}
+            <img 
+              src="https://cdn-in.icons8.com/OTxSoZ_Oc0qX2Dl2t7iv7Q/WWNrOkEZfUePOPMAKL9ZNQ/Car_rental.png" 
+              alt="" 
+            />
+            
             <h1 className="common-h1-style">
               Are you ready to create your best work, together?
               <div className="heading-line"></div>
@@ -800,9 +807,8 @@ const Home = ({
       <div className="row">
         {getBasicFAQSection()}
       </div>
-      <div className="row">
-        {getSignUpCard()}
-      </div>
+        
+      {getSignUpCard()}
 
       {/* <div className="row" style={{ borderBottom: '1px solid #e8e8e8' }}>
       </div> */}
