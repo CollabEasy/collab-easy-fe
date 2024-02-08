@@ -35,6 +35,7 @@ import { GetBlogUrl, GetProposalUrl } from "helpers/routeHelper";
 import AnimatedList from "@/components/pages/home/animatedList";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
 import HomePopularArtists from "@/components/pages/home/homePopularArtists";
+import HeroContent from "@/components/pages/home/heroContent";
 
 const { Panel } = Collapse;
 
@@ -197,60 +198,6 @@ const Home = ({
       </Link>
     )
   }
-
-  const getMainContent = () => {
-    return (
-      <div className="hero-text-container">
-        <div className="text-content">
-          <div>
-            <p className="common-p-style" style={{ marginTop: "30px" }}>
-              {mainContent["actionText"]}
-            </p>
-            <h1 className="common-h1-style">
-              Go From Solo to Team, Find
-            </h1>
-            {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
-            <h1 className="animation-content">
-              <ul className="flip5">
-                <li className="common-h1-style">Painters</li>
-                <li className="common-h1-style">Photographers</li>
-                <li className="common-h1-style">Dancers</li>
-                <li className="common-h1-style">Poets</li>
-                <li className="common-h1-style">Journalers</li>
-                <li className="common-h1-style">Sketchers</li>
-              </ul>
-            </h1>
-            {/* <h1 className="common-h1-style">
-              For Your Next Collaboration
-            </h1> */}
-          </div>
-          <p style={{ paddingTop: "2vh" }}>
-            {mainContent["paragraph"]}
-          </p>
-          <div className="hero-text-cnt-wrapper">
-            {!isLoggedIn ?
-              (
-                <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
-                  Join for Free
-                </button>
-              ) : (
-                <Link href={routeToHref(toMySearchPage())} passHref >
-                  <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                    Let&apos;s Collaborate
-                  </button>
-                </Link>
-              )
-            }
-            <Link href={routeToHref(toTutorial())} passHref >
-              <button className="homepage-button" style={{ backgroundColor: "white", color: "black" }}>
-                How it works?
-              </button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
   const getPopularCollabCategories = () => {
@@ -543,12 +490,12 @@ const Home = ({
                 </p>
                 <div className="hero-text-cnt-wrapper">
                   <Link href={routeToHref(toFAQ())} passHref>
-                    <button className="homepage-button" style={{ backgroundColor: "#13344C", color: "white" }}>
+                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
                       FAQs
                     </button>
                   </Link>
                   <Link href={routeToHref(toContactUs())} passHref >
-                    <button className="homepage-button" style={{ backgroundColor: "white", color: "black" }}>
+                    <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
                       Contact Us
                     </button>
                   </Link>
@@ -573,24 +520,27 @@ const Home = ({
         <div className="signup-container">
           <div className="row d-flex justify-content-center text-align-center">
             <h1 className="common-h1-style">
-              Ready for your next collaboration opportunity?
+              Are you ready to create your best work, together?
               <div className="heading-line"></div>
             </h1>
             <p className="common-p-style">
-              Embark on a creative adventure by connecting and
-              collaborating with fellow artists today.
+              Try Wondor to unlock your creative potential by connecting and
+              collaborating with like-minded artists today.
             </p>
             <div className="hero-text-cnt-wrapper">
-              <Link href={routeToHref(toAllCategoryPage())} passHref>
+              <Link href={routeToHref(toMySearchPage())} passHref>
                 <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-
-                  Collab Categories
-
+                  Collab Opportunities
                 </button>
               </Link>
-              <Link href={routeToHref(toAllProposalsPage("all"))} passHref >
+              <Link href={routeToHref(toAllContestPage())} passHref >
                 <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
-                  Collab Proposals
+                  Art Challenges
+                </button>
+              </Link>
+              <Link href={routeToHref(toGetInspired("all"))} passHref>
+                <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                  Inspiration Hub
                 </button>
               </Link>
             </div>
@@ -608,6 +558,8 @@ const Home = ({
   };
 
 
+  // ..... main code.....
+
   return (
     <Layout
       title={"Wondor - Connect with Artists, Manage Collabs, Create Proposals, and More. Join Now!"}
@@ -618,7 +570,13 @@ const Home = ({
     >
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
-        {getMainContent()}
+        <HeroContent isLoggedIn={undefined} setCurrentPathName={undefined} />
+      </div>
+
+      <div className="row">
+        <HomePopularArtists
+          list={artistsForCollab}
+        />
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
@@ -627,12 +585,12 @@ const Home = ({
             <div className="col-md-12">
               <div className="section-title text-md-center">
                 <h2 className="common-h2-style">
-                  Together, You Create Better
+                  Collaboration Categories for Everyone
                   <div className="heading-line"></div>
                 </h2>
 
                 <p className="common-p-style" style={{ width: "100%" }}>
-                  Collaboration unites diverse artists, fostering innovation and satisfaction beyond what achieved individually.
+                  Popular categories for your diverse artistic need. Collaborate for satisfaction beyond what achieved individually.
                 </p>
                 <div className="hero-text-cnt-wrapper">
                   <Link href={routeToHref(toAllCategoryPage())} passHref>
@@ -648,11 +606,32 @@ const Home = ({
         {getPopularCollabCategories()}
       </div>
 
-      <div className="row">
-        <HomePopularArtists
-          list={artistsForCollab}
-        />
-      </div>
+      {/* <div className="row popular-proposal-section">
+        <div className="row align-items-end">
+          <div className="col-md-8">
+            <div className="section-title text-md-start">
+              <h2 className="common-h2-style">
+                Have a project you want to work on together?
+                <div className="heading-line" style={{ marginLeft: "0", marginRight: "0" }}></div>
+              </h2>
+              <p className="common-p-style" style={{ width: "80%" }}>
+                Millions of artists are collaborating on Instagram, YouTube, TikTok,
+                and other platforms, propelling themselves to new heights of success. Start your success story by adding your project today.
+              </p>
+              <a onClick={() => {
+                setShowCreateOrUpdateProposalModal(true);
+              }}>
+                <button className="homepage-button" style={{ backgroundColor: "#173F2D", color: "white" }}>
+                  Add Collab Proposal
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          {getPopularCollabProposals()}
+        </div>
+      </div> */}
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div className="popular-collaborator-container">
@@ -682,33 +661,6 @@ const Home = ({
           <AnimatedList
             list={CURRENT_THEMES}
           />
-        </div>
-      </div>
-
-      <div className="row popular-proposal-section">
-        <div className="row align-items-end">
-          <div className="col-md-8">
-            <div className="section-title text-md-start">
-              <h2 className="common-h2-style">
-                Have a project you want to work on together?
-                <div className="heading-line" style={{marginLeft: "0", marginRight: "0"}}></div>
-              </h2>
-              <p className="common-p-style" style={{ width: "80%" }}>
-                Millions of artists are collaborating on Instagram, YouTube, TikTok,
-                and other platforms, propelling themselves to new heights of success. Start your success story by adding your project today.
-              </p>
-              <a onClick={() => {
-                setShowCreateOrUpdateProposalModal(true);
-              }}>
-                <button className="homepage-button" style={{ backgroundColor: "#173F2D", color: "white" }}>
-                  Add Collab Proposal
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div>
-          {getPopularCollabProposals()}
         </div>
       </div>
 
@@ -762,26 +714,23 @@ const Home = ({
         </div>
       </div>
 
-      <div className="row" style={{ backgroundColor: "#854B5B" }}>
-        <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
-          <div className="wondor-offerings-container">
-            <div className="row align-items-center">
-              <div className="col-md-12">
-                <div className="section-title text-md-center">
-                  <h2 className="common-h2-style">
-                    Take Your Artistic Journey to the Next Level with Us
-                    <div className="heading-line"></div>
-                  </h2>
-                  <p className="common-p-style" style={{ width: "100%" }}>
-                    Our platform is committed to your growth. Discover fellow artists, improved collaboration experience,
-                    monthly art challenges, inspiration hub – all designed to uplift your skills.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div className="row">
+        <div className="curved-div upper">
+          <svg viewBox="0 0 1440 319">
+            <path fill="#F4A547" fillOpacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
         </div>
-        {getWondorOfferings()}
+        <div className="curved-div" style={{ background: "#F4A547" }}>
+          <h1>
+            Wondor, A Community You Can Call Yours
+          </h1>
+          <p className="common-p-style">
+            Designed for artists by an artist, Wondor is more than a platform; it&apos;s a global community connecting creative minds.
+          </p>
+          <svg viewBox="0 0 1440 319">
+            <path fill="#fff" fillOpacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+        </div>
       </div>
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
@@ -811,6 +760,11 @@ const Home = ({
         </div>
       </div>
 
+      <div className="curved-div upper">
+        <svg viewBox="0 0 1440 319">
+          <path fill="#C8A75F" fillOpacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+      </div>
       <div className="row" style={{ backgroundColor: "#C8A75F" }}>
         <div className="basic-testimonial-container">
           <div>
@@ -842,16 +796,18 @@ const Home = ({
           </Carousel>
         </div>
       </div>
-      {getSignUpCard()}
 
       <div className="row">
         {getBasicFAQSection()}
+      </div>
+      <div className="row">
+        {getSignUpCard()}
       </div>
 
       {/* <div className="row" style={{ borderBottom: '1px solid #e8e8e8' }}>
       </div> */}
 
-      <div className="row">
+      {/* <div className="row">
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>
           <div className="wondor-offerings-container">
             <div className="row align-items-center">
@@ -876,7 +832,7 @@ const Home = ({
           </div>
         </div>
         {getBlogPosts()}
-      </div>
+      </div> */}
 
       {showCreateOrEditProposalModal && (
         <CreateProposalModal

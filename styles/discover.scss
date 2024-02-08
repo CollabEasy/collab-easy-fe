@@ -662,7 +662,7 @@
   .section-title {
     padding-left: 20%;
     padding-right: 20%;
-    
+
 
     h2 {
       font-size: 3vw;
@@ -684,7 +684,7 @@
   padding-right: 20%;
   padding-bottom: 5%;
   color: rgb(91, 74, 82);
-  
+
   .testimony-img {
     border-radius: 50%;
     background-color: white;
@@ -743,7 +743,7 @@
   text-align: center;
   padding-top: 5%;
   padding-bottom: 5%;
-  background: #C4DFDF;
+  background: white;
 
   .section-title {
     padding-left: 20%;
@@ -752,13 +752,13 @@
     h2 {
       font-size: 3vw;
       line-height: 5vw;
-      color: #13344C;
+      color: black;
     }
 
     p {
       font-size: 1.5vw;
       line-height: 2.5vw;
-      color: #13344C;
+      color: black;
     }
   }
 
@@ -768,6 +768,7 @@
     margin-top: 15px;
     background-color: white;
     border-radius: 4px;
+    background: rgba(250, 250, 250, 1);
 
     &:hover {
       background: rgba(250, 250, 250, 1);
@@ -795,8 +796,8 @@
   h1 {
     font-size: 4vw;
     line-height: 5vw;
-    padding-left: 30%;
-    padding-right: 30%;
+    padding-left: 20%;
+    padding-right: 20%;
   }
 
   p {
@@ -954,7 +955,7 @@
   // popular collaborator container
   .popular-collaborator-container {
 
-    padding-top: 3%;
+    padding-top: 13%;
 
     .section-title {
 
@@ -1263,6 +1264,8 @@
 
   .popular-collaborator-container {
 
+    padding-top: 12%;
+
     .section-title {
       padding-left: 8%;
       padding-right: 8%;
@@ -1566,6 +1569,7 @@
 
 
   .popular-collaborator-container {
+    padding-top: 15%;
 
     .section-title {
       padding-left: 2%;

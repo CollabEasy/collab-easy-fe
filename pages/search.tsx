@@ -30,7 +30,8 @@ const mapStateToProps = (state: AppState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-
+    openLoginModalAction: () => dispatch(actions.openLoginModalAction()),
+    setCurrentPathName: (path: string) => dispatch(actions.setCurrentPathName(path)),
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -42,6 +43,8 @@ const MySearchPage = ({
     isLoggedIn,
     loginModalDetails,
     artistListData,
+    openLoginModalAction,
+    setCurrentPathName,
 }: Props) => {
 
     const {
@@ -49,6 +52,7 @@ const MySearchPage = ({
         toAllCategoryPage,
         toGetInspired,
         toTutorial,
+        toMySearchPage,
     } = useRoutesContext();
 
     const [showProfileModal, setShowProfileModal] = useState(false);
@@ -75,6 +79,62 @@ const MySearchPage = ({
         setWindowWidth(window.innerWidth);
     }, [user, artistListData]);
 
+    const openLoginModal = () => {
+        setCurrentPathName(router.asPath);
+        router.push("/login");
+    };
+
+    const getMainContent = () => {
+        return (
+            <div className="hero-text-container">
+                <div className="text-content">
+                    <div>
+                        <p className="common-p-style" style={{ marginTop: "30px" }}>
+                            Join the Growing Community of 100+ Artists Today!
+                        </p>
+                        <h1 className="common-h1-style">
+                            Go From Solo to Team, Find
+                        </h1>
+                        {/* https://codepen.io/EricPorter/pen/JjPmOOb */}
+                        <h1 className="animation-content">
+                            <ul className="flip5">
+                                <li className="common-h1-style">Painters</li>
+                                <li className="common-h1-style">Photographers</li>
+                                <li className="common-h1-style">Dancers</li>
+                                <li className="common-h1-style">Poets</li>
+                                <li className="common-h1-style">Journalers</li>
+                                <li className="common-h1-style">Sketchers</li>
+                            </ul>
+                        </h1>
+                    </div>
+                    <p style={{ paddingTop: "2vh" }}>
+                        Wondor connects like-minded artists for hassle-free collaboration around the world 🌎 🤝 🎉
+                    </p>
+                    <div className="hero-text-cnt-wrapper">
+                        {!isLoggedIn ?
+                            (
+                                <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }} onClick={openLoginModal}>
+                                    Join for Free
+                                </button>
+                            ) : (
+                                <Link href={routeToHref(toMySearchPage())} passHref >
+                                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                                        Let&apos;s Collaborate
+                                    </button>
+                                </Link>
+                            )
+                        }
+                        <Link href={routeToHref(toTutorial())} passHref >
+                            <button className="homepage-button" style={{ backgroundColor: "white", color: "black" }}>
+                                How it works?
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
     return (
         <Layout
             title={"Search on Wondor"}
@@ -83,100 +143,13 @@ const MySearchPage = ({
 
         >
             <>
+                {getMainContent()}
                 <div className="searchPageContainer">
-                    <div className="searchPageContent">
-                        <div className="searchPage-carousel">
-                            <Carousel autoplay>
-                                <div className="heroContent">
-                                    <div className="row align-items-center">
-                                        <div className="col-md-12">
-                                            <div className="section-title text-md-center">
-                                                <h2 className="common-h2-style">
-                                                    Perfect Creative Collaboration is a Step Away!
-                                                </h2>
-                                                <p className="common-p-style" style={{ width: "100%" }}>
-                                                    We&apos;ve got just the perfect setup to help you start.
-                                                </p>
-                                                <div>
-                                                    <Link href={routeToHref(toTutorial())} passHref>
-                                                        <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                                                            Get Started
-                                                        </button>
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="heroContent">
-                                    <div className="row align-items-center">
-                                        <div className="col-md-12">
-                                            <div className="section-title text-md-center">
-                                                <h2 className="common-h2-style">
-                                                    Connect, Create, and Inspire Together!
-                                                </h2>
-                                                <p className="common-p-style" style={{ width: "100%" }}>
-                                                    Artists of every skill and experience level, start your creative journey today.
-                                                </p>
-                                                <div>
-                                                    <Link href={routeToHref(toAllCategoryPage())} passHref>
-                                                        <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                                                            Collab Categories
-                                                        </button>
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="heroContent">
-                                    <div className="row align-items-center">
-                                        <div className="col-md-12">
-                                            <div className="section-title text-md-center">
-                                                <h2 className="common-h2-style">
-                                                    Collaboration Proposals that Sparks Creative Enthusiasm!
-                                                </h2>
-                                                <p className="common-p-style" style={{ width: "100%" }}>
-                                                    Express interest in amazing collaboration proposals from other artists
-                                                </p>
-                                                <div>
-                                                    <Link href={routeToHref(toAllProposalsPage("all"))} passHref >
-                                                        <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                                                            Collab Proposals
-                                                        </button>
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="heroContent">
-                                    <div className="row align-items-center">
-                                        <div className="col-md-12">
-                                            <div className="section-title text-md-center">
-                                                <h2 className="common-h2-style">
-                                                    Stuck in Creative Block? We got your back!
-                                                </h2>
-                                                <p className="common-p-style" style={{ width: "100%" }}>
-                                                    Explore fresh art ideas for your next masterpiece
-                                                </p>
-                                                <div>
-                                                    <Link href={routeToHref(toGetInspired("all"))} passHref >
-                                                        <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                                                            Inspiration Hub
-                                                        </button>
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Carousel>
-                        </div>
 
+                    <div className="searchPageContent">
                         <div className="container">
                             <div className="searchPage-sectionHeading">
-                                <h5 className="common-h5-style">You might like</h5>
+                                <h5 className="common-h5-style">Collab categories</h5>
                             </div>
                         </div>
                         <div className="container">
