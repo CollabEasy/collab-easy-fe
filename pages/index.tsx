@@ -520,24 +520,27 @@ const Home = ({
         <div className="signup-container">
           <div className="row d-flex justify-content-center text-align-center">
             <h1 className="common-h1-style">
-              Ready for your next collaboration opportunity?
+              Are you ready to create your best work, together?
               <div className="heading-line"></div>
             </h1>
             <p className="common-p-style">
-              Embark on a creative adventure by connecting and
-              collaborating with fellow artists today.
+              Try Wondor to unlock your creative potential by connecting and
+              collaborating with like-minded artists today.
             </p>
             <div className="hero-text-cnt-wrapper">
-              <Link href={routeToHref(toAllCategoryPage())} passHref>
+              <Link href={routeToHref(toMySearchPage())} passHref>
                 <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-
-                  Collab Categories
-
+                  Collab Opportunities
                 </button>
               </Link>
-              <Link href={routeToHref(toAllProposalsPage("all"))} passHref >
+              <Link href={routeToHref(toAllContestPage())} passHref >
                 <button className="homepage-button" style={{ backgroundColor: "#E1E4E7", color: "black" }}>
-                  Collab Proposals
+                  Art Challenges
+                </button>
+              </Link>
+              <Link href={routeToHref(toGetInspired("all"))} passHref>
+                <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
+                  Inspiration Hub
                 </button>
               </Link>
             </div>
@@ -797,8 +800,9 @@ const Home = ({
       <div className="row">
         {getBasicFAQSection()}
       </div>
-      
-      {getSignUpCard()}
+      <div className="row">
+        {getSignUpCard()}
+      </div>
 
       {/* <div className="row" style={{ borderBottom: '1px solid #e8e8e8' }}>
       </div> */}
