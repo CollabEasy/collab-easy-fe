@@ -1,6 +1,21 @@
-.homepage_heroContent {
-  padding-top: 120px;
+/* horizontal line */
+.gradient-line {
+  display: flex;
+  justify-content: center;
+  height: 2px;
+  width: 80%;
+  background-color: #D4D4D4;
+  margin: 75px auto 5px;
 }
+
+/* heading line */
+.herocontent-heading-line {
+  border: 2px solid;
+  width: 110px;
+  margin-top: 10px;
+}
+
+/* Curved Wave CSS */
 
 .curved-div {
   position: relative;
@@ -27,27 +42,6 @@
 .curved-div p {
   font-size: 1rem;
   margin: 0 5rem 0rem 5rem;
-}
-
-.heropage-background {
-  padding-top: 30px;
-  padding-bottom: 60px;
-}
-
-.gradient-line {
-  display: flex;
-  justify-content: center;
-  height: 2px;
-  width: 80%;
-  background-color: #D4D4D4;
-  margin: 75px auto 5px;
-  /* Center horizontally and add margin-bottom */
-}
-
-.herocontent-heading-line {
-  border: 2px solid;
-  width: 110px;
-  margin-top: 20px;
 }
 
 /* Sliding */
@@ -88,12 +82,36 @@
   }
 }
 
-/* Intro */
-.intro {
-  margin-top: 2rem;
-  padding: 0 1em;
+/* Actual containers...... */
+
+.homepageHeroContent {
+  padding-top: 120px;
 }
 
+.homepageHeroContent_container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.left-column {
+  flex: 1;
+  padding: 20px;
+}
+
+.right-column {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  /* Align content horizontally in the center */
+  align-items: center;
+}
+
+
+/* Intro */
 .intro__title {
   margin: 0;
   font-size: 6rem;
@@ -110,10 +128,7 @@
 .hero-content-button {
   display: inline-block;
   padding: 0.7em 1.2em;
-  background-color: var(--pink);
-  color: var(--white);
   border-radius: 35px;
-
   height: 50px;
   border: none;
   text-align: center;
@@ -124,170 +139,115 @@
 
 .intro__illustration {
   max-width: 100%;
-  margin: 2rem 0;
 }
 
 
+/* Service offers */
+
+.heropage-section {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .section__title {
-  color: var(--darkPurple);
-  font-weight: var(--bold);
   font-size: 1.85rem;
   line-height: 1.1;
 }
 
-/* Grow */
-.grow {
-  padding: 0 1em;
-  position: relative;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
+.discover,
+.contest,
+.inspo {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
 
-.grow p {
-  font-size: 0.9rem;
+.homepageHeroContent_section_container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
 }
 
-/* Learning */
-.learning {
-  padding: 0 1em;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
+.slide-right-section-left-column {
+  flex: 1;
+  padding: 20px;
 
-.learning p {
-  font-size: 0.9rem;
-}
-
-.learning svg {
-  width: 100%;
-}
-
-/* Feedback */
-.feedback {
-  padding: 0 1em;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
-
-.feedback p {
-  font-size: 0.9rem;
-}
-
-.feedback svg {
-  width: 100%;
-}
-
-@media (min-width: 32em) {
-  .intro {
-    margin: 2rem auto 0;
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    grid-gap: 20px;
-    grid-template-areas:
-      ". img"
-      "title img"
-      "subtitle img"
-      "button img"
-      ". img";
-  }
-
-  .intro__title {
-    grid-area: title;
-    margin: 0;
-  }
-
-  .intro__subtitle {
-    grid-area: subtitle;
-    margin: 0;
-  }
-
-  .intro .hero-content-button {
-    grid-area: button;
-    justify-self: start;
-    align-self: start;
-  }
-
-  .intro__illustration {
-    grid-area: img;
-    align-self: center;
-  }
-
-  .grow {
-    margin-top: 5rem;
-    display: grid;
-    grid-template-columns: minmax(200px, 550px) 40%;
-    grid-template-areas:
-      ". img"
-      "title img"
-      "p img"
-      ". img";
-  }
-
-  .grow__title {
-    grid-area: title;
-  }
-
-  .grow p {
-    grid-area: p;
-    margin: 0;
-  }
-
-  .grow>svg:first-of-type {
-    grid-area: img;
-  }
-
-  .feedback {
-    display: grid;
-    grid-gap: 24px;
-    grid-template-columns: 50% minmax(200px, 550px);
-    grid-template-areas:
-      "img ."
-      "img title"
-      "img p"
-      "img .";
-  }
-
-  .feedback__title {
-    grid-area: title;
-    margin-bottom: 0;
-  }
-
-  .feedback svg {
-    grid-area: img;
-  }
-
-  .feedback p {
-    grid-area: p;
-    margin: 0;
-  }
-
-  .learning {
-    display: grid;
-    grid-template-columns: minmax(200px, 450px) 50%;
-    grid-template-areas:
-      ". img"
-      "title img"
-      "p img"
-      ". img";
-  }
-
-  .learning__title {
-    grid-area: title;
-  }
-
-  .learning p {
-    grid-area: p;
-    margin: 0;
-  }
-
-  .learning svg {
-    grid-area: img;
+  p {
+    font-size: 0.9rem;
   }
 }
+
+.slide-right-section-right-column {
+  flex: 1;
+  padding: 20px;
+
+  display: flex;
+  justify-content: center;
+  /* Align content horizontally in the center */
+  align-items: center;
+}
+
+.slide-left-section-left-column {
+  flex: 1;
+  padding: 20px;
+
+  display: flex;
+  justify-content: center;
+  /* Align content horizontally in the center */
+  align-items: center;
+}
+
+.slide-left-section-right-column {
+  flex: 1;
+  padding: 20px;
+
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .homepageHeroContent_container {
+    flex-direction: column;
+  }
+
+  .homepageHeroContent_section_container {
+    flex-direction: column;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+
+  .slide-right-section-left-column,
+  .slide-right-section-right-column {
+    width: 100%;
+  }
+
+  .slide-left-section-left-column,
+  .slide-left-section-right-column {
+    width: 100%;
+  }
+
+  .right-column {
+    order: -1;
+  }
+
+  .slide-right-section-right-column {
+    order: -1;
+  }
+
+  .slide-left-section-left-column {
+    order: -1;
+  }
+}
+
 
 @media only screen and (min-width: 1200px) {
-  .homepage_heroContent {
-    padding-top: 110px;
+  .homepageHeroContent {
+    padding-top: 150px;
   }
 
   .intro {
@@ -300,39 +260,35 @@
     line-height: 1;
     font-weight: normal;
   }
-  
+
   .intro__subtitle {
     font-size: 1.1rem;
   }
 
   .hero-content-button {
-    height: 35px;
-    padding: 7px;
-    font-size: 13px;
+    height: 50px;
+    border: none;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0px 2px 30px 2px;
+    border-radius: 35px
   }
 
-  .grow {
-    padding: 0 6em;
-
+  .slide-right-section-left-column,
+  .slide-left-section-right-column {
     p {
       font-size: 1.1rem;
     }
   }
 
-  .learning {
-    padding: 0 6em;
-
-    p {
-      font-size: 1.1rem;
-    }
-  }
-
-  .feedback {
-    padding: 0 6em;
-
-    p {
-      font-size: 1.1rem;
-    }
+  .discover,
+  .contest,
+  .inspo {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .curved-div h1 {
@@ -348,8 +304,8 @@
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .homepage_heroContent {
-    padding-top: 110px;
+  .homepageHeroContent {
+    padding-top: 150px;
   }
 
   .intro {
@@ -359,9 +315,9 @@
 
   .intro__title {
     font-size: 6vw;
-    line-height: 5vw;
+    line-height: 6vw;
   }
-  
+
   .intro__subtitle {
     font-size: 1.1rem;
   }
@@ -372,28 +328,18 @@
     font-size: 13px;
   }
 
-  .grow {
-    padding: 0 4em;
-
+  .slide-right-section-left-column,
+  .slide-left-section-right-column {
     p {
       font-size: 1.1rem;
     }
   }
 
-  .learning {
-    padding: 0 4em;
-
-    p {
-      font-size: 1.1rem;
-    }
-  }
-
-  .feedback {
-    padding: 0 4em;
-
-    p {
-      font-size: 1.1rem;
-    }
+  .discover,
+  .contest,
+  .inspo {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .curved-div h1 {
@@ -409,8 +355,13 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .homepage_heroContent {
+  .homepageHeroContent {
     padding-top: 100px;
+  }
+
+  .homepageHeroContent_container,
+  .homepageHeroContent_section_container {
+    width: 90%;
   }
 
   .intro {
@@ -423,7 +374,7 @@
     font-weight: normal;
     line-height: 1;
   }
-  
+
   .intro__subtitle {
     font-size: 1.1rem;
   }
@@ -434,28 +385,22 @@
     font-size: 13px;
   }
 
-  .grow {
-    padding: 0 4em;
+  .slide-right-section-left-column,
+  .slide-left-section-right-column {
+    h2 {
+      font-size: 1.75rem;
+    }
 
     p {
       font-size: 1.1rem;
     }
   }
 
-  .learning {
-    padding: 0 4em;
-
-    p {
-      font-size: 1.1rem;
-    }
-  }
-
-  .feedback {
-    padding: 0 4em;
-
-    p {
-      font-size: 1.1rem;
-    }
+  .discover,
+  .contest,
+  .inspo {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .curved-div h1 {
@@ -471,8 +416,13 @@
 }
 
 @media only screen and (min-width: 601px) and (max-width: 767px) {
-  .homepage_heroContent {
+  .homepageHeroContent {
     padding-top: 110px;
+  }
+
+  .homepageHeroContent_container,
+  .homepageHeroContent_section_container {
+    width: 90%;
   }
 
   .intro {
@@ -483,39 +433,33 @@
   .intro__title {
     font-size: 2.4rem;
   }
-  
+
   .intro__subtitle {
     font-size: 1rem;
-  }
-
-  .grow {
-    padding: 0 2em;
-
-    p {
-      font-size: 1rem;
-    }
-  }
-
-  .learning {
-    padding: 0 2em;
-
-    p {
-      font-size: 1rem;
-    }
-  }
-
-  .feedback {
-    padding: 0 2em;
-
-    p {
-      font-size: 1rem;
-    }
   }
 
   .hero-content-button {
     height: 35px;
     padding: 7px;
     font-size: 13px;
+  }
+
+  .slide-right-section-left-column,
+  .slide-left-section-right-column {
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .discover,
+  .contest,
+  .inspo {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
   }
 
   .curved-div h1 {
@@ -537,8 +481,13 @@
     width: 120px;
   }
 
-  .homepage_heroContent {
+  .homepageHeroContent {
     padding-top: 110px;
+  }
+
+  .homepageHeroContent_container,
+  .homepageHeroContent_section_container {
+    width: 90%;
   }
 
   .intro {
@@ -549,27 +498,34 @@
   .intro__title {
     font-size: 2.4rem;
   }
-  
+
   .intro__subtitle {
     font-size: 1rem;
-  }
-
-  .grow {
-    padding: 0 2em;
-  }
-
-  .learning {
-    padding: 0 2em;
-  }
-
-  .feedback {
-    padding: 0 2em;
   }
 
   .hero-content-button {
     height: 35px;
     padding: 7px;
     font-size: 13px;
+  }
+
+  .slide-right-section-left-column,
+  .slide-left-section-right-column {
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  .discover,
+  .contest,
+  .inspo {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
   }
 
   .curved-div h1 {
@@ -588,6 +544,11 @@
   .herocontent-heading-line {
     border: 1px solid;
     width: 120px;
+
+  }
+
+  .homepageHeroContent_container {
+    width: 90%;
   }
 
   .intro {
@@ -597,28 +558,35 @@
 
   .intro__title {
     font-size: 2.4rem;
+    text-align: center;
   }
-  
+
   .intro__subtitle {
     font-size: 1rem;
+    text-align: center;
   }
 
-  .grow {
-    padding: 0 2em;
+  .intro_signupbutton {
+    display: flex;
+    justify-content: center;
+
+
+    .hero-content-button {
+      height: 28px;
+      padding: 6px;
+      font-size: 10px;
+    }
   }
 
-  .learning {
-    padding: 0 2em;
+  .homepageHeroContent_section_container {
+    width: 90%;
   }
 
-  .feedback {
-    padding: 0 2em;
-  }
-
-  .hero-content-button {
-    height: 28px;
-    padding: 6px;
-    font-size: 10px;
+  .discover,
+  .contest,
+  .inspo {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
   }
 
   .curved-div h1 {
