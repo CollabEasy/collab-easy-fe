@@ -66,6 +66,7 @@ const HeroContent = ({
                     </div>
                 </div>
                 <div className="right-column">
+                    {/* eslint-disable @next/next/no-img-element */}
                     <img className="intro__illustration" src="https://cdn-us.icons8.com/_k_capJRbUyqgGdB-hyXSA/NmyT5rVjFkaG-uB6S-uXug/Stepping_up.svg" alt="" />
                 </div>
             </div>
@@ -107,6 +108,7 @@ const HeroContent = ({
                             </p>
                         </div>
                         <div className="slide-right-section-right-column">
+                            {/* eslint-disable @next/next/no-img-element */}
                             <img className="intro__illustration"
                                 src="https://cdn-in.icons8.com/OTxSoZ_Oc0qX2Dl2t7iv7Q/FUq1Pu9JiEWsI0mhwopbUA/People_holding_pieces_of_puzzle.png" alt="" />
                         </div>
@@ -116,6 +118,7 @@ const HeroContent = ({
                 <div className="slide-left contest">
                     <div className="homepageHeroContent_section_container">
                         <div className="slide-left-section-left-column">
+                            {/* eslint-disable @next/next/no-img-element */}
                             <img className="intro__illustration"
                                 src="https://cdn-in.icons8.com/OTxSoZ_Oc0qX2Dl2t7iv7Q/RhfGcZUmmUCeOYZ8B4CsAA/Champions_with_a_first_place_cup.png" alt="" />
                         </div>
@@ -156,6 +159,7 @@ const HeroContent = ({
                             </p>
                         </div>
                         <div className="slide-right-section-right-column">
+                            {/* eslint-disable @next/next/no-img-element */}
                             <img className="intro__illustration"
                                 src="https://cdn-in.icons8.com/OTxSoZ_Oc0qX2Dl2t7iv7Q/8JQw2N9cpkO6vfnHB37rVw/Girl_with_paint_brush_and_light_bulb.png" alt="" />
                         </div>
