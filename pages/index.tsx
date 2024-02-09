@@ -586,7 +586,7 @@ const Home = ({
         />
       </div>
 
-      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+      <div className="row" style={{ background: '#EFF0F1', backgroundImage: 'linear-gradient(to bottom, #EFF0F1, #FFFFFF)' }}>
         <div className="popular-collaborator-container">
           <div className="row align-items-center">
             <div className="col-md-12">
@@ -640,7 +640,7 @@ const Home = ({
         </div>
       </div> */}
 
-      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
+      <div className="row" style={{ backgroundColor: "#ffff" }}>
         <div className="popular-collaborator-container">
           <div className="row align-items-center">
             <div className="col-md-12">
@@ -720,7 +720,6 @@ const Home = ({
           </div>
         </div>
       </div>
-
       <div className="row">
         <div className="curved-div upper">
           <svg viewBox="0 0 1440 319">
