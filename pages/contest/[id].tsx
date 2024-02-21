@@ -518,62 +518,70 @@ const ContestPage = ({
                 contributing to artistic growth and recognition.
               </p>
             </div>
-            <div className="project-info-box">
-              <h5 className="common-h5-style">Submission Guideline:</h5>
-              <ul className="common-text-style">
-                <li>
-                  - Submit a high-resolution image file PNG, JPEG.
-                </li>
-                <li>
-                  - You can also submit your entry by email to us at admin@wondor.art
-                </li>
-                <li>
-                  - Include a brief description of your story.
-                </li>
-              </ul>
-            </div>
-            <div className="project-info-box">
-              <h5 className="common-h5-style">Judging Criteria:</h5>
-              <ul className="common-text-style">
-                <li>
-                  - Creativity and originality of the story.
-                </li>
-                <li>
-                  - Effectiveness in conveying the theme.
-                </li>
-                <li>
-                  - Overall impact and emotional engagement.
-                </li>
-                <li>
-                  - Final decision will include things like creativity,
-                  technique, adherence to the theme, and overall impact.
-                </li>
-              </ul>
-            </div>
-            <div className="project-info-box">
-              <h5 className="common-h5-style">Rules and Regulations</h5>
-              <ul className="common-text-style">
-                <li>
-                  - Any artist with on Wondor with complete profile is
-                  eligible to participate.
-                </li>
-                <li>
-                  - Post about the contest on social media and tag Wondor.
-                  Instagram: <a style={{ color: "blue" }} href="https://www.instagram.com/wondor.art/">@wondor.art</a>,
-                  Twitter: <a style={{ color: "blue" }} href="https://twitter.com/Wondor4creators">@Wondor4creators</a>,
-                  Reddit: <a style={{ color: "blue" }} href="https://www.reddit.com/r/wondor4creators/">@wondor4creators</a>
-                </li>
-                <li>
-                  - You will be disqualified from the contest for
-                  plagiarism, offensive content, or failure to adhere to
-                  the rules and guidelines
-                </li>
-                <li>
-                  - You can also send in your queries in an email to
-                  <b> admin@wondor.com</b>, during the contest.
-                </li>
-              </ul>
-            </div>
+
+            {status === "Ongoing" && 
+              <div className="project-info-box">
+                <h5 className="common-h5-style">Submission Guideline:</h5>
+                <ul className="common-text-style">
+                  <li>
+                    - Submit a high-resolution image file PNG, JPEG.
+                  </li>
+                  <li>
+                    - You can also submit your entry by email to us at admin@wondor.art
+                  </li>
+                  <li>
+                    - Include a brief description of your story.
+                  </li>
+                </ul>
+              </div>
+            }
+
+            {status === "Ongoing" && 
+              <div className="project-info-box">
+                <h5 className="common-h5-style">Judging Criteria:</h5>
+                <ul className="common-text-style">
+                  <li>
+                    - Creativity and originality of the story.
+                  </li>
+                  <li>
+                    - Effectiveness in conveying the theme.
+                  </li>
+                  <li>
+                    - Overall impact and emotional engagement.
+                  </li>
+                  <li>
+                    - Final decision will include things like creativity,
+                    technique, adherence to the theme, and overall impact.
+                  </li>
+                </ul>
+              </div>
+            }
+            {status === "Ongoing" && 
+              <div className="project-info-box">
+                <h5 className="common-h5-style">Rules and Regulations</h5>
+                <ul className="common-text-style">
+                  <li>
+                    - Any artist with on Wondor with complete profile is
+                    eligible to participate.
+                  </li>
+                  <li>
+                    - Post about the contest on social media and tag Wondor.
+                    Instagram: <a style={{ color: "blue" }} href="https://www.instagram.com/wondor.art/">@wondor.art</a>,
+                    Twitter: <a style={{ color: "blue" }} href="https://twitter.com/Wondor4creators">@Wondor4creators</a>,
+                    Reddit: <a style={{ color: "blue" }} href="https://www.reddit.com/r/wondor4creators/">@wondor4creators</a>
+                  </li>
+                  <li>
+                    - You will be disqualified from the contest for
+                    plagiarism, offensive content, or failure to adhere to
+                    the rules and guidelines
+                  </li>
+                  <li>
+                    - You can also send in your queries in an email to
+                    <b> admin@wondor.com</b>, during the contest.
+                  </li>
+                </ul>
+              </div>
+            }
           </div>
         </div>
       </div>
