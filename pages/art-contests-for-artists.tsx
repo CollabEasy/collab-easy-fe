@@ -199,7 +199,7 @@ const AllContestPage = ({
 									<h1 className="common-h1-style">
 										Artists, this is the place to show off your talent
 									</h1>
-									<div className="heading-line"></div>
+									<div className="contest-heading-line"></div>
 									<div className="">
 										<h3 className="common-h3-style">
 											Join our art contests and let your creativity be the judge!
