@@ -519,7 +519,7 @@ const ContestPage = ({
               </p>
             </div>
 
-            {status === "Ongoing" && 
+            {status !== "Past" &&
               <div className="project-info-box">
                 <h5 className="common-h5-style">Submission Guideline:</h5>
                 <ul className="common-text-style">
@@ -536,7 +536,7 @@ const ContestPage = ({
               </div>
             }
 
-            {status === "Ongoing" && 
+            {status !== "Past" &&
               <div className="project-info-box">
                 <h5 className="common-h5-style">Judging Criteria:</h5>
                 <ul className="common-text-style">
@@ -556,7 +556,7 @@ const ContestPage = ({
                 </ul>
               </div>
             }
-            {status === "Ongoing" && 
+            {status !== "Past" &&
               <div className="project-info-box">
                 <h5 className="common-h5-style">Rules and Regulations</h5>
                 <ul className="common-text-style">
