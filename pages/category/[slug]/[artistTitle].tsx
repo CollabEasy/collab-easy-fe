@@ -509,7 +509,7 @@ const DiscoverArtist = ({
                     {categoryMetadata["artist-title"]} to collab
                     with on your next big hit 😎<br></br>
                   </h1>
-                  <div className="heading-line"></div>
+                  <div className="listing-page-heading-line"></div>
                   <div className="">
                     {artists.length > 0 ? (
                       <h3 className="common-h3-style">
