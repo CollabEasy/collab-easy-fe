@@ -28,6 +28,7 @@ export interface AppRouteCreators {
   toMyWondorPage: () => WebRoute;
   toMySearchPage: () => WebRoute;
 
+  toContestLandingPage: () => WebRoute;
   toAllContestPage: () => WebRoute;
   toContestPage: (slug: string, tab: string) => WebRoute;
   toContestSubmissionPage: (slug: string, artistSlug: string) => WebRoute;
