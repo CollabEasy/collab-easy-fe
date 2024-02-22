@@ -671,55 +671,6 @@ const Home = ({
         </div>
       </div>
 
-      <div className="row" style={{ backgroundColor: "#FFFFF" }}>
-        <div className="popular-collaborator-container">
-          <div className="row align-items-center">
-            <div className="col-md-12">
-              <div className="section-title text-md-center">
-                <h2 className="common-h2-style">
-                  Epic Art Contests to Showcase What You Got
-                  <div className="heading-line"></div>
-                </h2>
-                <p className="common-p-style" style={{ width: "100%" }}>
-                  Join Art Contest on Wondor to let your imagination run wild and win exclusive prizes.
-                </p>
-                <div className="hero-text-cnt-wrapper">
-                  <Link href={routeToHref(toAllContestPage())} passHref >
-                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                      Art Contests
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="contest-gallery">
-          <div className="options" style={{ margin: "auto" }}>
-            {contestSubmissions.map((option, index) => (
-              <div
-                key={index}
-                className={`option ${index === activeOption ? 'active' : ''}`}
-                style={{
-                  background: option.url,
-                  backgroundSize: 'cover',
-                }}
-                onClick={() => handleOptionClick(index)}
-              >
-                <div className="shadow" style={{ background: "rgba(64, 73, 73, 0.5)" }}></div>
-                <div className="label">
-                  <div className="info">
-                    <Link href={routeToHref(toContestSubmissionPage(option.contestSlug, option.slug))}>
-                      <div className="main text-decoration-underline">{option.artist}</div>
-                    </Link>
-                    <div className="sub">{option.category[0]}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
       <div className="row">
         <div className="curved-div upper">
           <svg viewBox="0 0 1440 319">

@@ -67,7 +67,7 @@ const AllContestPage = ({
 	openLoginModalAction,
 	setCurrentPathName,
 }: Props) => {
-	const { toContestPage, toFAQ, toArtistProfile } = useRoutesContext();
+	const { toContestPage, toArtistProfile, toAboutWondorArtContests } = useRoutesContext();
 	const [showProfileModal, setShowProfileModal] = useState(false);
 	const [allContests, setAllContests] = useState([]);
 	const [windowWidth, setWindowWidth] = useState(-1);
@@ -175,7 +175,7 @@ const AllContestPage = ({
 
 	const openLoginModal = () => {
 		setCurrentPathName(router.asPath);
-    	router.push("/login");
+		router.push("/login");
 	};
 
 	return (
@@ -213,7 +213,7 @@ const AllContestPage = ({
 										}
 										<div className="how-it-works-cnt">
 											<Link
-												href={routeToHref(toFAQ())}
+												href={routeToHref(toAboutWondorArtContests())}
 												passHref
 											>
 												<div className="how-cnt">

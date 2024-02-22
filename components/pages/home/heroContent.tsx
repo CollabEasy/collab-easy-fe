@@ -43,6 +43,7 @@ const HeroContent = ({
     const {
         toTutorial,
         toAllContestPage,
+        toAboutWondorArtContests,
         toMySearchPage,
         toGetInspired,
     } = useRoutesContext();
@@ -130,11 +131,11 @@ const HeroContent = ({
                             </h2>
 
                             <p className="common-p-style">
-                                We are here for you. Participate in our monthy challenges to compete, and win! Join for a chance to showcase your talent, learn from peers, and claim exclusive prizes.
+                                We are here for you. Participate in our monthy contests to compete, and win! Join for a chance to showcase your talent, learn from peers, and claim exclusive prizes.
                                 <br></br>
 
-                                <Link href={routeToHref(toAllContestPage())} passHref>
-                                    Art Challenges &rarr;
+                                <Link href={routeToHref(toAboutWondorArtContests())} passHref>
+                                    Art Contests &rarr;
                                 </Link>
                             </p>
                         </div>
