@@ -50,6 +50,7 @@ const ContestLandingPage = ({
 
   const router = useRouter();
   const {
+    toContestPage,
     toDiscover,
     toContestSubmissionPage,
     toAllContestPage
@@ -208,7 +209,9 @@ const ContestLandingPage = ({
                       <Link href={routeToHref(toContestSubmissionPage(option.contestSlug, option.slug))}>
                         <div className="main text-decoration-underline">{option.artist}</div>
                       </Link>
-                      <div className="sub">{option.category[0]}</div>
+                      <Link href={routeToHref(toContestPage(option.contestSlug, "details"))}>
+                        <div className="sub">{option.contestSlug}</div>
+                      </Link>
                     </div>
                   </div>
                 </div>
