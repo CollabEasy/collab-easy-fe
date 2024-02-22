@@ -1,8 +1,9 @@
-import { Breadcrumb, Button } from "antd";
+import { Breadcrumb, Button, Collapse } from "antd";
 import Link from "next/link";
 import { routeToHref } from "config/routes";
 import { useRoutesContext } from "../components/routeContext";
 import LoginModal from '../components/modal/loginModal';
+import { CaretDownOutlined } from '@ant-design/icons';
 import { AppState } from 'types/states';
 import { Dispatch } from "redux";
 import { updateLoginData } from 'state/action';
@@ -16,6 +17,9 @@ import { useRouter } from "next/router";
 import * as actions from "state/action";
 import HeroSection from "@/components/asset/pageHeroSection";
 import { contestSubmissions } from "constants/home";
+import { contestFaqContent } from "constants/faqs";
+
+const { Panel } = Collapse;
 
 const mapStateToProps = (state: AppState) => ({
   loginModalDetails: state.home.loginModalDetails,
@@ -95,6 +99,67 @@ const ContestLandingPage = ({
     );
   }
 
+  const getfaqCard = (faqContent) => {
+    return (
+      <div className="row">
+        <div style={{ width: "100%" }}>
+          <div
+            className="row"
+            style={{ paddingLeft: "2%", paddingRight: "2%" }}
+          >
+            <div className="col-md-12">
+              <Collapse
+                ghost
+                accordion
+                expandIconPosition="right"
+                expandIcon={({ isActive }) => <CaretDownOutlined rotate={isActive ? 180 : 0} />}
+              >
+                {faqContent.map((question, index) => (
+                  <Panel
+                    header={
+                      <h6
+                        className="common-h6-style"
+                        style={{ textAlign: "left" }}
+                      >
+                        {question.question}
+                      </h6>
+                    }
+                    key={index}
+                    className="faq-header-card"
+                  // style={{ borderBottom: "1px solid #e8e8e8" }}
+                  >
+                    <p className="common-p-style" style={{ textAlign: "left" }}>
+                      {question.answer}
+                    </p>
+                  </Panel>
+                ))}
+              </Collapse>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const getContestFAQSection = () => {
+    return (
+      <div className="basic-faq-section">
+        <div>
+          <HeroSection
+            heading={"Frequently Asked Questions and Resources"}
+            paragaraph={"If your question is not listed here, then please checkout our FAQ page or contact us directly"}
+          />
+          <div className="row justify-content-center ">
+            <div className="col-xl-6 col-lg-8 col-md-10 col-sm-10 col-xs-10">
+              {getfaqCard(contestFaqContent)}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+
+  }
+
   return (
     <Layout
       title={
@@ -150,6 +215,11 @@ const ContestLandingPage = ({
               ))}
             </div>
           </div>
+
+          <div className="row">
+            {getContestFAQSection()}
+          </div>
+
           <GenericActionBanner />
         </div>
       </div>

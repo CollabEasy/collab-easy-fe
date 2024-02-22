@@ -13,7 +13,7 @@ export const routes: AppRouteCreators = {
   toContactUs: () => ({ href: "/wondor/contact-us" }),
   toTerms: () => ({ href: "/wondor/terms-and-policy" }),
   
-  toAboutWondorArtContests: () => ({href: "/art-contests"}),
+  toAboutWondorArtContests: () => ({href: "/learn-about-wondor-art-contests"}),
   toAllContestPage: () => ({ href: "/art-contests-for-artists" }),
   toRewardsInfoPage: () => ({ href: "/rewards-info" }),
   toAllCategoryPage: () => ({ href: "/collab-categories" }),
