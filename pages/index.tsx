@@ -580,12 +580,6 @@ const Home = ({
         <HeroContent isLoggedIn={undefined} setCurrentPathName={undefined} />
       </div>
 
-      <div className="row">
-        <HomePopularArtists
-          list={artistsForCollab}
-        />
-      </div>
-
       <div className="row" style={{ background: '#EFF0F1', backgroundImage: 'linear-gradient(to bottom, #EFF0F1, #FFFFFF)' }}>
         <div className="popular-collaborator-container">
           <div className="row align-items-center">
@@ -613,6 +607,12 @@ const Home = ({
         {getPopularCollabCategories()}
       </div>
 
+      <div className="row">
+        <HomePopularArtists
+          list={artistsForCollab}
+        />
+      </div>
+      
       {/* <div className="row popular-proposal-section">
         <div className="row align-items-end">
           <div className="col-md-8">
