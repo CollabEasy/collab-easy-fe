@@ -111,4 +111,28 @@ export const CONTEST_METADATA = [
             "slug": "mathew-lin-1",
         }
     },
+    {
+        "slug": "MAR2024",
+        "prize": 50,
+        "participants": 14,
+        "category": [
+            "Illustration",
+            "Digital Art",
+            "Sketching",
+        ],
+        "hosts": [
+            {
+                "name": "Rahul Gupta",
+                "url": "https://www.wondor.art/artist/rahul-gupta-1",
+            },
+            {
+                "name": "diamantcomics",
+                "url": "https://twitter.com/diamantcomics",
+            }
+        ],
+        "winner": {
+            "name": "Mathew Lin",
+            "slug": "mathew-lin-1",
+        }
+    },
 ];
