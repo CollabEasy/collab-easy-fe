@@ -45,6 +45,8 @@ const ContestModal = ({
         description: contestEntry.description,
         startDate: contestEntry.startDate,
         endDate: contestEntry.endDate,
+        winnerArtistId: contestEntry.winnerArtistId,
+        categories: contestEntry.categories,
     };
 
     const [newContestData, setNewContestData] = useState<ContestEntry>(newContestEntry);
@@ -56,6 +58,8 @@ const ContestModal = ({
             "description": newContestData.description,
             "startDate": newContestData.startDate,
             "endDate": newContestData.endDate,
+            "winnerArtistId": "",
+            "categories": newContestData.categories,
         }
         addContest(obj);
     };
@@ -117,6 +121,19 @@ const ContestModal = ({
                                 setNewContestData((prevState) => ({
                                     ...prevState,
                                     description: e.target.value,
+                                }));
+                            }}
+                        />
+                    </Form.Item>
+                    <Form.Item label="Categories">
+                        <Input.TextArea
+                            value={newContestData.categories}
+                            maxLength={1000}
+                            showCount
+                            onChange={(e) => {
+                                setNewContestData((prevState) => ({
+                                    ...prevState,
+                                    categories: e.target.value,
                                 }));
                             }}
                         />

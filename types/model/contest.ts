@@ -4,6 +4,8 @@ export interface ContestEntry {
     description: string;
     startDate: Date;
     endDate: Date;
+    winnerArtistId: string;
+    categories: string;
 }
 
 export interface ContestSubmission {

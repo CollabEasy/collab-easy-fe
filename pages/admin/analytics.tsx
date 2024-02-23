@@ -66,6 +66,8 @@ const emptyContestEntryDetails: ContestEntry = {
   description: "",
   startDate: tomorrow.toDate(),
   endDate: weekLater.toDate(),
+  winnerArtistId: "",
+  categories: "",
 };
 
 
