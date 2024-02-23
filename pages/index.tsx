@@ -674,10 +674,10 @@ const Home = ({
       <div className="row">
         <div className="curved-div upper">
           <svg viewBox="0 0 1440 319">
-            <path fill="#8A89F7" fillOpacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            <path fill="#9CBCE2" fillOpacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
           </svg>
         </div>
-        <div className="curved-div" style={{ background: "#8A89F7" }}>
+        <div className="curved-div" style={{ background: "#9CBCE2" }}>
           <h1 style={{color: "#071C75"}}>
             Wondor, A Community You Can Call Yours
           </h1>
@@ -717,12 +717,12 @@ const Home = ({
         </div>
       </div>
 
-      <div className="curved-div upper">
+      {/* <div className="curved-div upper">
         <svg viewBox="0 0 1440 319">
-          <path fill="#C8A75F" fillOpacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          <path fill="#F3EDDF" fillOpacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
         </svg>
-      </div>
-      <div className="row" style={{ backgroundColor: "#C8A75F" }}>
+      </div> */}
+      <div className="row" style={{ backgroundColor: "#F3EDDF" }}>
         <div className="basic-testimonial-container">
           <div>
             <div className="row justify-content-center mt-4">
