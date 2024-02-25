@@ -516,7 +516,7 @@ const Home = ({
 
   const getSignUpCard = () => {
     return (
-      <div className="row">
+      <div className="row" style={{ background: '#EFF0F1', backgroundImage: 'linear-gradient(to bottom, #EFF0F1, #FFFFFF)' }}>
         <div className="signup-container">
           <div className="row d-flex justify-content-center text-align-center">
             
@@ -580,7 +580,7 @@ const Home = ({
         <HeroContent isLoggedIn={undefined} setCurrentPathName={undefined} />
       </div>
 
-      <div className="row" style={{ background: '#EFF0F1', backgroundImage: 'linear-gradient(to bottom, #EFF0F1, #FFFFFF)' }}>
+      <div className="row">
         <div className="popular-collaborator-container">
           <div className="row align-items-center">
             <div className="col-md-12">
