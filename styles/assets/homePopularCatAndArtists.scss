@@ -1,0 +1,161 @@
+.popularCatAndArtists {
+
+    display: grid;
+    place-content: center;
+    padding-bottom: 5%;
+
+    .scroller {
+        max-width: 800px;
+    }
+
+    .scroller__inner {
+        padding-block: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .scroller[data-animated="true"] {
+        overflow: hidden;
+        -webkit-mask: linear-gradient(90deg,
+                transparent,
+                white 20%,
+                white 80%,
+                transparent);
+        mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    }
+
+    .scroller[data-animated="true"] .scroller__inner {
+        width: max-content;
+        flex-wrap: nowrap;
+        animation: scrollCat var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+    }
+
+    .scroller[data-direction="right"] {
+        --_animation-direction: reverse;
+    }
+
+    .scroller[data-direction="left"] {
+        --_animation-direction: forwards;
+    }
+
+    .scroller[data-speed="fast"] {
+        --_animation-duration: 20s;
+    }
+
+    .scroller[data-speed="slow"] {
+        --_animation-duration: 60s;
+    }
+
+    .tag-list {
+        margin: 0;
+        padding-inline: 0;
+        list-style: none;
+    }
+
+    .artist-list img {
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+    }
+
+    .tag-list li {
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+    }
+
+    .popularCatAndArtists_img {
+        object-fit: cover;
+        width: 180px;
+        height: 180px;
+    }
+
+    @keyframes scrollCat {
+        to {
+            transform: translate(calc(-50% - 0.5rem));
+        }
+    }
+}
+
+@media (max-width: 1215px) {}
+
+@media (max-width: 1015px) {}
+
+@media (max-width: 1000px) {
+    .popularCatAndArtists {
+        min-block-size: 40vh;
+        .scroller {
+            max-width: 900px;
+        }
+
+        .tag-list li {
+            padding: .5rem;
+        }
+
+        .popularCatAndArtists_img {
+            object-fit: cover;
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    
+    .popularCatAndArtists {
+        min-block-size: 40vh;
+        .scroller {
+            max-width: 700px;
+        }
+
+        .tag-list li {
+            padding: .5rem;
+        }
+
+        .popularCatAndArtists_img {
+            object-fit: cover;
+            width: 130px;
+            height: 130px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    
+    .popularCatAndArtists {
+        min-block-size: 40vh;
+        .scroller {
+            max-width: 500px;
+        }
+
+        .tag-list li {
+            padding: .5rem;
+        }
+
+        .popularCatAndArtists_img {
+            object-fit: cover;
+            width: 130px;
+            height: 130px;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+
+    .popularCatAndArtists {
+        min-block-size: 40vh;
+        .scroller {
+            max-width: 300px;
+        }
+
+        .tag-list li {
+            padding: .35rem;
+        }
+
+        .popularCatAndArtists_img {
+            object-fit: cover;
+            width: 130px;
+            height: 130px;
+        }
+    }
+}

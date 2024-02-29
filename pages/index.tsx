@@ -36,6 +36,7 @@ import AnimatedList from "@/components/pages/home/animatedList";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
 import HomePopularArtists from "@/components/pages/home/homePopularArtists";
 import HeroContent from "@/components/pages/home/heroContent";
+import HomePopularCatAndArtists from "@/components/pages/home/homePopularCatAndArtists";
 
 const { Panel } = Collapse;
 
@@ -163,88 +164,6 @@ const Home = ({
                   </Panel>
                 ))}
               </Collapse>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const getLCPImage = () => {
-    return (
-      <Link href={toCategoryArtistList("writing", GetCategoryArtistTitle("writing")).as} passHref>
-        <div
-          className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
-        >
-          <div className="popular-category-card popular-category-colors">
-            <div className="popular-category-overlay"></div>
-            <div className="popular-category-circle">
-              <Image
-                src={getPopularCategoryImage("writing")}
-                layout="fixed"
-                height={50}
-                width={100}
-                unoptimized={true}
-                alt="Creative writers collaborating on a creative writing project. Send collab request."
-                // className="category-icon"
-                priority
-              />
-            </div>
-            <h5 className="common-h5-style">
-              Writing
-            </h5>
-          </div>
-        </div>
-      </Link>
-    )
-  }
-
-  // https://jsfiddle.net/abhitalks/o3mxb4x9/1/
-  const getPopularCollabCategories = () => {
-    return (
-      <div className="row centered-div">
-        <div style={{ paddingTop: "2%" }}>
-          <div className="scroll-container">
-            <div className="row-fluid" style={{ padding: "0px 20px 20px 20px" }}>
-              <div className="col-12">
-                <div className="scroll-list">
-                  <>
-                    {getLCPImage()}
-                    {popularCollabCategories.map((item) => (
-                      <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
-                        <div
-                          className="col-sm-2 col-md-2 col-lg-2 col-xl-2 popular-category-container cursor-pointer"
-                          key={item.id}
-                        >
-
-                          <div className="popular-category-card popular-category-colors">
-                            <div className="popular-category-overlay"></div>
-                            <div className="popular-category-circle">
-                              <Image
-                                src={getPopularCategoryImage(item.slug)}
-                                layout="fixed"
-                                height={50}
-                                width={100}
-                                alt={item.imgAltTag}
-                                unoptimized={true}
-                                // className="category-icon"
-                                loading="lazy"
-                              />
-                            </div>
-                            <div className="">
-                              <h5
-                                className="common-h5-style"
-                              >
-                                {item.title}
-                              </h5>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                  </>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -586,17 +505,17 @@ const Home = ({
             <div className="col-md-12">
               <div className="section-title text-md-center">
                 <h2 className="common-h2-style">
-                  Collaboration Categories for Everyone
+                  Advance Your Artistic Journey, Together
                   <div className="heading-line"></div>
                 </h2>
 
                 <p className="common-p-style" style={{ width: "100%" }}>
-                  Popular categories for your diverse artistic need. Collaborate for satisfaction beyond what achieved individually.
+                  Always wanted to start a creative project with a friend? Now you can. Meet with like-minded artists on Wondor and grow your skill sets together.
                 </p>
                 <div className="hero-text-cnt-wrapper">
-                  <Link href={routeToHref(toAllCategoryPage())} passHref>
+                  <Link href={routeToHref(toMySearchPage())} passHref>
                     <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                      Collab Categories
+                      Discover Collaborations
                     </button>
                   </Link>
                 </div>
@@ -604,16 +523,12 @@ const Home = ({
             </div>
           </div>
         </div>
-        {getPopularCollabCategories()}
-      </div>
-
-      <div className="row">
-        <HomePopularArtists
-          list={artistsForCollab}
-        />
+        
+        <HomePopularCatAndArtists/>
+      
       </div>
       
-      {/* <div className="row popular-proposal-section">
+      <div className="row popular-proposal-section">
         <div className="row align-items-end">
           <div className="col-md-8">
             <div className="section-title text-md-start">
@@ -638,7 +553,7 @@ const Home = ({
         <div>
           {getPopularCollabProposals()}
         </div>
-      </div> */}
+      </div>
 
       <div className="row" style={{ backgroundColor: "#ffff" }}>
         <div className="popular-collaborator-container">
