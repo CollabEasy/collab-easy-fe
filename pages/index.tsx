@@ -516,7 +516,7 @@ const Home = ({
 
   const getSignUpCard = () => {
     return (
-      <div className="row" style={{ background: '#EFF0F1', backgroundImage: 'linear-gradient(to bottom, #EFF0F1, #FFFFFF)' }}>
+      <div className="row" style={{ background: '#EFF0F1', backgroundImage: 'linear-gradient(to top, rgba(255, 255, 255, 1), rgba(239, 240, 241, 1), rgba(255, 255, 255, 1))' }}>
         <div className="signup-container">
           <div className="row d-flex justify-content-center text-align-center">
             
