@@ -1,11 +1,11 @@
 .popularCatAndArtists {
 
     display: grid;
-    min-block-size: 100vh;
     place-content: center;
+    padding-bottom: 5%;
 
     .scroller {
-        max-width: 600px;
+        max-width: 800px;
     }
 
     .scroller__inner {
@@ -28,7 +28,7 @@
     .scroller[data-animated="true"] .scroller__inner {
         width: max-content;
         flex-wrap: nowrap;
-        animation: scroll var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
+        animation: scrollCat var(--_animation-duration, 40s) var(--_animation-direction, forwards) linear infinite;
     }
 
     .scroller[data-direction="right"] {
@@ -53,21 +53,109 @@
         list-style: none;
     }
 
+    .artist-list img {
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+    }
+
     .tag-list li {
         padding: 1rem;
         border-radius: 0.5rem;
-        box-shadow: 0 0.5rem 1rem -0.25rem hsl(218, 33%, 9%);
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
     }
 
     .popularCatAndArtists_img {
         object-fit: cover;
-        width: 230px;
-        height: 230px;
+        width: 180px;
+        height: 180px;
     }
 
-    @keyframes scroll {
+    @keyframes scrollCat {
         to {
             transform: translate(calc(-50% - 0.5rem));
+        }
+    }
+}
+
+@media (max-width: 1215px) {}
+
+@media (max-width: 1015px) {}
+
+@media (max-width: 1000px) {
+    .popularCatAndArtists {
+        min-block-size: 40vh;
+        .scroller {
+            max-width: 900px;
+        }
+
+        .tag-list li {
+            padding: .5rem;
+        }
+
+        .popularCatAndArtists_img {
+            object-fit: cover;
+            width: 150px;
+            height: 150px;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    
+    .popularCatAndArtists {
+        min-block-size: 40vh;
+        .scroller {
+            max-width: 700px;
+        }
+
+        .tag-list li {
+            padding: .5rem;
+        }
+
+        .popularCatAndArtists_img {
+            object-fit: cover;
+            width: 130px;
+            height: 130px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    
+    .popularCatAndArtists {
+        min-block-size: 40vh;
+        .scroller {
+            max-width: 500px;
+        }
+
+        .tag-list li {
+            padding: .5rem;
+        }
+
+        .popularCatAndArtists_img {
+            object-fit: cover;
+            width: 130px;
+            height: 130px;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+
+    .popularCatAndArtists {
+        min-block-size: 40vh;
+        .scroller {
+            max-width: 300px;
+        }
+
+        .tag-list li {
+            padding: .35rem;
+        }
+
+        .popularCatAndArtists_img {
+            object-fit: cover;
+            width: 130px;
+            height: 130px;
         }
     }
 }

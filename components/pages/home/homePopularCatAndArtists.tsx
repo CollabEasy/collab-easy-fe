@@ -47,7 +47,7 @@ const HomePopularCatAndArtists = ({ }) => {
             </div>
 
             <div className="scroller" data-direction="right" data-speed="slow">
-                <div className="scroller__inner">
+                <div className="artist-list scroller__inner">
                     {artistsForCollab.map((item, index) => (
                         <Link
                             href={routeToHref(toUserCollabPage(item["slug"]))}
