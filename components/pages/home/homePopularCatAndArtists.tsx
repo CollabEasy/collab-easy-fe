@@ -39,6 +39,7 @@ const HomePopularCatAndArtists = ({ }) => {
             <div className="scroller" data-speed="fast">
                 <ul className="tag-list scroller__inner">
                     {popularCollabCategories.map((item, index) => (
+                        /* eslint-disable react/jsx-key */
                         <Link href={toCategoryArtistList(item.slug, GetCategoryArtistTitle(item.slug)).as} passHref>
                             <li className='cursor-pointer'>{item.title}</li>
                         </Link>
@@ -49,6 +50,7 @@ const HomePopularCatAndArtists = ({ }) => {
             <div className="scroller" data-direction="right" data-speed="slow">
                 <div className="artist-list scroller__inner">
                     {artistsForCollab.map((item, index) => (
+                        /* eslint-disable react/jsx-key */
                         <Link
                             href={routeToHref(toUserCollabPage(item["slug"]))}
                         >
