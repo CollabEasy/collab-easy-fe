@@ -34,9 +34,9 @@ import {
 import { GetBlogUrl, GetProposalUrl } from "helpers/routeHelper";
 import AnimatedList from "@/components/pages/home/animatedList";
 import { CURRENT_THEMES } from "constants/inspirationIdeas";
-import HomePopularArtists from "@/components/pages/home/homePopularArtists";
 import HeroContent from "@/components/pages/home/heroContent";
 import HomePopularCatAndArtists from "@/components/pages/home/homePopularCatAndArtists";
+import HomePopularInspoCards from "@/components/pages/home/homePopularInspo";
 
 const { Panel } = Collapse;
 
@@ -523,70 +523,14 @@ const Home = ({
             </div>
           </div>
         </div>
-        
         <HomePopularCatAndArtists/>
-      
-      </div>
-      
-      <div className="row popular-proposal-section">
-        <div className="row align-items-end">
-          <div className="col-md-8">
-            <div className="section-title text-md-start">
-              <h2 className="common-h2-style">
-                Have a project you want to work on together?
-                <div className="heading-line" style={{ marginLeft: "0", marginRight: "0" }}></div>
-              </h2>
-              <p className="common-p-style" style={{ width: "80%" }}>
-                Millions of artists are collaborating on Instagram, YouTube, TikTok,
-                and other platforms, propelling themselves to new heights of success. Start your success story by adding your project today.
-              </p>
-              <a onClick={() => {
-                setShowCreateOrUpdateProposalModal(true);
-              }}>
-                <button className="homepage-button" style={{ backgroundColor: "#173F2D", color: "white" }}>
-                  Add Collab Proposal
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div>
-          {getPopularCollabProposals()}
-        </div>
       </div>
 
-      <div className="row" style={{ backgroundColor: "#ffff" }}>
-        <div className="popular-collaborator-container">
-          <div className="row align-items-center">
-            <div className="col-md-12">
-              <div className="section-title text-md-center">
-                <h2 className="common-h2-style">
-                  Inspiring Ideas for Your Next Masterpiece
-                  <div className="heading-line"></div>
-                </h2>
-
-                <p className="common-p-style" style={{ width: "100%" }}>
-                  Let these guiding ideas be the catalyst for your next creative endeavor, shaping a masterpiece that reflects your unique voice and passion.
-                </p>
-                <div className="hero-text-cnt-wrapper">
-                  <Link href={routeToHref(toGetInspired("all"))} passHref >
-                    <button className="homepage-button" style={{ backgroundColor: "black", color: "white" }}>
-                      Find More
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="popular-theme-animated-list">
-          <AnimatedList
-            list={CURRENT_THEMES}
-          />
-        </div>
+      <div className="row" style={{ backgroundColor: "#F5F5DC" }}>
+        <HomePopularInspoCards />
       </div>
 
-      <div className="row">
+      {/* <div className="row">
         <div className="curved-div upper">
           <svg viewBox="0 0 1440 319">
             <path fill="#9CBCE2" fillOpacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
@@ -603,7 +547,7 @@ const Home = ({
             <path fill="#fff" fillOpacity="1" d="M0,32L48,80C96,128,192,224,288,224C384,224,480,128,576,90.7C672,53,768,75,864,96C960,117,1056,139,1152,149.3C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
           </svg>
         </div>
-      </div>
+      </div> */}
 
       <div className="row" style={{ backgroundColor: "#FFFFF" }}>
         <div style={{ paddingTop: "2%", paddingBottom: "2%" }}>

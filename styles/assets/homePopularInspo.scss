@@ -1,0 +1,181 @@
+
+.popularInspo {
+
+    padding-top: 10%;
+    display: grid;
+    place-content: center;
+    padding-bottom: 10%;
+
+    .popularInspoContainer {
+        max-width: 900px;
+
+        h2 {
+            font-size: 3vw;
+        }
+
+        p {
+            font-size: 1.5vw;
+        }
+    }
+
+    .inspo__illustration {
+        max-width: 100%;
+    }
+    
+    .inspo__text {
+        padding-top: 20px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+
+    .popularInspo {
+
+        padding-top: 10%;
+        padding-bottom: 10%;
+
+        .popularInspoContainer {
+            max-width: 900px;
+
+            h2 {
+                font-size: 3vw;
+            }
+
+            p {
+                font-size: 1.5vw;
+            }
+        }
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .popularInspo {
+
+        padding-top: 10%;
+        padding-bottom: 15%;
+
+        .popularInspoContainer {
+            max-width: calc(100vw - 100px);
+
+            h2 {
+                font-size: 3.5vw;
+            }
+    
+            p {
+                font-size: 2vw;
+            }
+        }
+
+        .inspo__illustration {
+            max-width: 70%;
+            margin: auto;
+        }
+
+        .inspo__text {
+            text-align: center;
+            h6 {
+                font-size: 2vw;
+            }
+        }
+    }
+
+}
+
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+    .popularInspo {
+
+        padding-top: 10%;
+        padding-bottom: 15%;
+
+        .popularInspoContainer {
+            max-width: calc(100vw - 100px);
+
+            h2 {
+                font-size: 5vw;
+                line-height: 6vw;
+            }
+
+            p {
+                font-size: 2.75vw;
+                line-height: 4.5vw;
+            }
+        }
+
+        .inspo__illustration {
+            max-width: 70%;
+            margin: auto;
+        }
+
+        .inspo__text {
+            text-align: center;
+            h6 {
+                font-size: 3vw;
+            }
+        }
+    }
+
+}
+
+@media only screen and (min-width: 400px) and (max-width: 600px) {
+
+    .popularInspo {
+
+        padding-top: 10%;
+        padding-bottom: 15%;
+
+        .popularInspoContainer {
+            max-width: calc(100vw - 50px);
+
+            h2 {
+                font-size: 7vw;
+                line-height: 7vw;
+            }
+
+            p {
+                font-size: 3.75vw;
+                line-height: 6vw;
+            }
+        }
+
+        .inspo__illustration {
+            max-width: 90%;
+            margin: auto;
+        }
+
+        .inspo__text {
+            text-align: center;
+            h6 {
+                font-size: 3vw;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 399px) {
+    .popularInspo {
+
+        padding-top: 10%;
+        padding-bottom: 15%;
+
+        .popularInspoContainer {
+            max-width: 300px;
+
+            h2 {
+                font-size: 6vw;
+            }
+
+            p {
+                font-size: 3.75vw;
+            }
+        }
+
+        .inspo__text {
+            text-align: center;
+            h6 {
+                font-size: 3vw;
+            }
+        }
+    }
+}
